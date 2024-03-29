@@ -6,6 +6,7 @@
 #include "../components/Render.h"
 #include "../components/Clickeable.h"
 #include "../architecture/Game.h"
+#include "../architecture/GeneralData.h"
 #include <sistemas/ComonObjectsFactory.h>
 
 //ecs::MainMenu::MainMenu()
@@ -24,6 +25,7 @@ ecs::MainMenu::~MainMenu()
 void ecs::MainMenu::init()
 {
 	std::cout << "Hola Menu" << std::endl;
+	//generalData().updateFelicidadPersonajes();
 	sdlutils().clearRenderer();
 
 	//Font* fuente = new Font("recursos/fonts/ARIAL.ttf", 50);
