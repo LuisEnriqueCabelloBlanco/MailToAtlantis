@@ -11,6 +11,9 @@
 
 //#define DEV_TOOLS
 
+
+
+
 class Game : public Singleton<Game> {
 
 	friend Singleton<Game>;

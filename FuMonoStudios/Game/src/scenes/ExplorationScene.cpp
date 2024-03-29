@@ -15,6 +15,7 @@
 #include "../sistemas/ComonObjectsFactory.h"
 #include "../architecture/GeneralData.h"
 #include "../components/DelayedCallback.h"
+#include <architecture/GameConstants.h>
 
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
@@ -23,7 +24,7 @@ ecs::ExplorationScene::ExplorationScene() :Scene()
 	actualPlace_ = &hestia;
 	navigate("Hestia");
 	createObjects("Hestia");
-	rect_ = build_sdlrect(0, 0, sdlutils().width() / 1.25, sdlutils().height() / 1.25);
+	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 	canStartConversation = true;
 	generalData().setDayData();
 }

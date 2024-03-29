@@ -121,9 +121,9 @@ void ecs::MainScene::init()
 	ComonObjectsFactory factory(this);
 	timer_ = MINIGAME_TIME;
 	// Fondo
-	Entity* Fondo = addEntity(ecs::layer::BACKGROUND);
-	Fondo->addComponent<Transform>(0, 0, sdlutils().width() / 1.25, sdlutils().height() / 1.25);
-	Fondo->addComponent<RenderImage>(&sdlutils().images().at("fondoOficina"));
+	factory_->setLayer(layer::BACKGROUND);
+	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
+		&sdlutils().images().at("fondoOficina"));
 
 	createManual();
 

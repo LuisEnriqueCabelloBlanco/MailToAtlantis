@@ -6,6 +6,7 @@
 #include "Trigger.h"
 #include "../architecture/Entity.h"
 #include "../sdlutils/InputHandler.h"
+#include <architecture/GameConstants.h>
 
 #include <SDL.h>
 #include <assert.h>
@@ -95,8 +96,8 @@ void DragAndDrop::update() {
 
 			// comprobacion para evitar sacar la entidad de la pantalla
 			if ((point.x - differenceX_ > -(tr_->getWidth() / 2))
-				&& (point.x - differenceX_ < sdlutils().width() - (tr_->getWidth() / 2))
-				&& (point.y - differenceY_ < sdlutils().height() - (tr_->getHeigth() / 6)))
+				&& (point.x - differenceX_ < LOGICAL_RENDER_WIDTH - (tr_->getWidth() / 2))
+				&& (point.y - differenceY_ < LOGICAL_RENDER_HEITH - (tr_->getHeigth() / 6)))
 			{
 
 				Vector2D pos = Vector2D(
