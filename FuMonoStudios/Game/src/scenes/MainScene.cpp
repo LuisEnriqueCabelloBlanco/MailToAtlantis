@@ -410,11 +410,11 @@ void ecs::MainScene::createTubo(pq::Distrito dist) {
 
 void ecs::MainScene::createManual()
 {
-	constexpr int MANUALNUMPAGES = 7;
+	constexpr int MANUALNUMPAGES = 8;
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 
-	Texture* buttonTexture = &sdlutils().images().at("flechaTest");
+	Texture* buttonTexture = &sdlutils().images().at("cambioPag");
 	//creado array de texturas par el libro
 	std::vector<Texture*> bookTextures;
 	bookTextures.reserve(MANUALNUMPAGES);
@@ -432,15 +432,16 @@ void ecs::MainScene::createManual()
 	manualEnt_->addComponent<Depth>();
 
 
-	Vector2D buttonSize(100, 40);
+	Vector2D buttonSize(40, 40);
 	factory_->setLayer(ecs::layer::FOREGROUND);
 	auto next = [manualRender]() {manualRender->nextTexture();};
-	auto right = factory_->createImageButton(Vector2D(400, 300), buttonSize, buttonTexture, next);
+	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
 	right->getComponent<Transform>()->setParent(manualTransform);
 
 	auto previous = [manualRender]() {manualRender->previousTexture();};
-	auto left = factory_->createImageButton(Vector2D(100, 300), buttonSize, buttonTexture, previous);
+	auto left = factory_->createImageButton(Vector2D(75, 250), buttonSize, buttonTexture, previous);
 	left->getComponent<Transform>()->setParent(manualTransform);
+	left->getComponent<Transform>()->setScale(-1);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 

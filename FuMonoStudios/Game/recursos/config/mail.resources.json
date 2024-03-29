@@ -45,6 +45,10 @@
       "file": "recursos/images/Book_InfoCalles_3.png"
     },
     {
+      "id": "book8",
+      "file": "recursos/images/Book_InfoSellos.png"
+    },
+    {
       "id": "flechaTest",
       "file": "recursos/images/flecha.png"
     },
