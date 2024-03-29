@@ -5,6 +5,7 @@
 #include "Component.h"
 #include "Scene.h"
 #include "../components/Trigger.h"
+#include "../components/Transform.h"
 #include "../components/DragAndDrop.h"
 //class Manager;
 
@@ -33,6 +34,13 @@ namespace ecs {
 		inline void setAlive(bool alive) { alive_ = alive; };
 
 		inline void setActive(bool active) { 
+
+			Transform* myTR = getComponent<Transform>();
+
+			if (myTR != nullptr) {
+				myTR->setActiveChildren(active);
+			}
+
 			active_ = active; 
 			if (active) {
 				myLayer = mySpecifyLayer;

@@ -84,6 +84,8 @@ public:
 	float getScale() { return scale_; }
 	float getTrueScale() { return trueScale_; }
 
+	void setActiveChildren(bool act);
+
 	void activateDepth();
 
 	std::list<Transform*> GetChildren() { return childsTr_; }
