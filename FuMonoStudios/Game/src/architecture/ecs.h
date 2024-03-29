@@ -61,6 +61,8 @@ namespace ecs {
 			BACKGROUND,
 			DEFAULT,
 			BIN,
+			MANUALSPACE,
+			MINIMANUAL,
 			PACKAGE,
 			INK,
 			STAMP,

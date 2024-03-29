@@ -22,8 +22,8 @@ namespace ecs {
         void setTimer(float time) { timer_ = time; }
     private:
         void createManual();
-
         void createMiniManual();
+        void createSpaceManual();
 
         //void createTubo(Paquete::Distrito dist, bool desbloqueado);
 
@@ -59,6 +59,9 @@ namespace ecs {
         // objects
         Entity* timerEnt_;
         Texture* timerTexture_;
+
+        Entity* manualEnt_;
+        Entity* miniManualEnt_;
 
         //El pinche paquete builder para no crear uno en cada paquete
         PaqueteBuilder* mPaqBuild_;

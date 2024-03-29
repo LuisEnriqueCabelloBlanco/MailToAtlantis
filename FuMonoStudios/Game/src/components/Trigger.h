@@ -43,6 +43,8 @@ public:
 
 	ecs::Entity* getSpecificEntity(ecs::layer::layerId lay);
 
+	std::list <ecs::layer::layerId> getEntitiesTouching();
+
 private:
 
 	Transform* mTr_;

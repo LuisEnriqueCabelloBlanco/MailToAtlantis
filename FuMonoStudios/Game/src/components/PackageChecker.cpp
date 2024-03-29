@@ -21,8 +21,8 @@ PackageChecker::~PackageChecker()
 
 void PackageChecker::initComponent()
 {
-	//std::function<void(ecs::Entity*)> call = [this](ecs::Entity* ent) {checkEntity(ent); };
-	//ent_->getComponent<Trigger>()->addCallback(call);
+	std::function<void(ecs::Entity*)> call = [this](ecs::Entity* ent) {checkEntity(ent); };
+	ent_->getComponent<Trigger>()->addCallback(call);
 }
 
 void PackageChecker::addCondition(Condition newCond)

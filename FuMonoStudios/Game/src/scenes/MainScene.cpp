@@ -89,8 +89,8 @@ void ecs::MainScene::init()
 	Fondo->addComponent<RenderImage>(&sdlutils().images().at("fondoOficina"));
 
 	createManual();
-
 	createMiniManual();
+	createSpaceManual();
 
 	createClock();
 
@@ -423,13 +423,13 @@ void ecs::MainScene::createManual()
 	}
 	factory_->setLayer(ecs::layer::MANUAL);
 
-	auto baseManual = factory_->createMultiTextureImage(Vector2D(500, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH),bookTextures);
-	Transform* manualTransform = baseManual->getComponent<Transform>();
-	RenderImage* manualRender = baseManual->getComponent<RenderImage>();
+	manualEnt_ = factory_->createMultiTextureImage(Vector2D(500, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH),bookTextures);
+	Transform* manualTransform = manualEnt_->getComponent<Transform>();
+	RenderImage* manualRender = manualEnt_->getComponent<RenderImage>();
 	manualRender->setVector(bookTextures);
-	baseManual->addComponent<Gravity>();
-	baseManual->addComponent<DragAndDrop>(true);
-	baseManual->addComponent<Depth>();
+	manualEnt_->addComponent<Gravity>();
+	manualEnt_->addComponent<DragAndDrop>(false);
+	manualEnt_->addComponent<Depth>();
 
 
 	Vector2D buttonSize(100, 40);
@@ -448,34 +448,107 @@ void ecs::MainScene::createManual()
 
 void ecs::MainScene::createMiniManual() {
 
-	
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
 
+	float minimanualX = 1200;
+	float minimanualY = 500;
 
-	factory_->setLayer(ecs::layer::MANUAL);
+	factory_->setLayer(ecs::layer::MINIMANUAL);
 
-	std::vector<Texture*> bookTextures;
-	bookTextures.reserve(2);
-	bookTextures.emplace_back(&sdlutils().images().at("cartel"));
-	bookTextures.emplace_back(&sdlutils().images().at("miniManual"));
+	Texture* bookTextures = &sdlutils().images().at("miniManual");
+
+	miniManualEnt_ = factory_->createImage(Vector2D(minimanualX, minimanualY), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
+
+	Transform* manualTransform = miniManualEnt_->getComponent<Transform>();
+	RenderImage* manualRender = miniManualEnt_->getComponent<RenderImage>();
+
+	miniManualEnt_->addComponent<DragAndDrop>(false, true);
+
+	Trigger* mmTri = miniManualEnt_->getComponent<Trigger>();
+
+
+	mmTri->addCallback([this, mmTri, manualTransform, minimanualX, minimanualY](ecs::Entity* entRec) {
+
+		if (miniManualEnt_->isActive()) {
+
+
+			std::list<ecs::layer::layerId> entTouchingID = mmTri->getEntitiesTouching();
+
+			if (entTouchingID.empty()) {
+
+				Transform* manualTR = manualEnt_->getComponent<Transform>();
+
+				Vector2D pos{ manualTransform->getPos().getX() - manualTR->getWidth() / 2, manualTransform->getPos().getY() - manualTR->getHeigth() / 2 };
+
+				manualTR->setPos(pos);
+
+				manualTransform->setPos(minimanualX, minimanualY);
+
+				miniManualEnt_->setActive(false);
+
+				manualEnt_->setActive(true);
+
+			}
+			else {
+
+				auto it = entTouchingID.begin();
+
+				while (it != entTouchingID.end() && (*it) != ecs::layer::MANUALSPACE) {
+					++it;
+				}
+
+				if (it == entTouchingID.end()) {
+
+					manualTransform->setPos(minimanualX, minimanualY);
+
+					miniManualEnt_->setActive(false);
+
+					manualEnt_->setActive(true);
+
+				}
+
+			}
+			
+		}
+
+	});
+
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+
+	miniManualEnt_->setActive(false);
+
+}
+
+void ecs::MainScene::createSpaceManual() {
+
+	constexpr float MANUAL_WIDTH = 70;
+	constexpr float MANUAL_HEITH = 118;
+
+	factory_->setLayer(ecs::layer::MANUALSPACE);
+
+	Texture* bookTextures = &sdlutils().images().at("cartel");
 	
-	
-	auto baseManual = factory_->createMultiTextureImage(Vector2D(1200, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
+	auto baseManual = factory_->createImage(Vector2D(1200, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
 	
 	Transform* manualTransform = baseManual->getComponent<Transform>();
 	RenderImage* manualRender = baseManual->getComponent<RenderImage>();
 	
 	Trigger* mmTri = baseManual->addComponent<Trigger>();
-
 	
-	mmTri->addCallback([this, manualRender](ecs::Entity* entRec) {
+	mmTri->addCallback([this, manualTransform](ecs::Entity* entRec) {
 
-		if (entRec->getLayer() == ecs::layer::MANUAL) {
 
-			entRec->setActive(false);
+		if (entRec->getLayer() == ecs::layer::MANUAL && manualEnt_->isActive()) {
 
-			manualRender->nextTexture();
+			Transform* manualTR = manualEnt_->getComponent<Transform>();
+
+			manualTR->setPos(0, 0);
+
+			manualEnt_->setActive(false);
+
+			miniManualEnt_->setActive(true);
 
 		}
 
