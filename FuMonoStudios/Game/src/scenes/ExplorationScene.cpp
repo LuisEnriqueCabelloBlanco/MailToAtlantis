@@ -9,6 +9,7 @@
 #include "../components/Trigger.h"
 #include "../architecture/Game.h"
 #include "../architecture/Config.h"
+#include "../architecture/GeneralData.h"
 #include <string>
 #include "../sdlutils/Texture.h"
 #include "../components/DialogComponent.h"
@@ -40,26 +41,40 @@ void ecs::ExplorationScene::init()
 
 void ecs::ExplorationScene::initPlacesDefaultMap()
 {
+	// Inicialización de distritos desbloqueados EN ORDEN
+	// En el caso de que los distritos no estén ordenados, habrá que ordenarlos
+	//int numDistritos = generalData().getDistrictsAmount(); // coge el numero de distritos que están desbloqueados
+	int numDistritos = 2;
+	int j = 0;
+	for (int i = 0;i < numDistritos; i++) {
+		navegableDistricts_[i] = true;
+		j++;
+	}
+	//Creación de paquetes bloqueados
+	for (int z = j; z < 7; z++) { //grande jose la los numeros magicos te la sabes (lo vuelvo a hacer, luego se cambia cuando funcione)
+		navegableDistricts_[z] = false;
+	}
+
 	//Demeter
-	demeter = Lugar(&sdlutils().images().at("demeter"), true);
+	demeter = Lugar(&sdlutils().images().at("demeter"), navegableDistricts_[0]);
 
 	//Hefesto
-	hefesto = Lugar(&sdlutils().images().at("hefesto"), true);
+	hefesto = Lugar(&sdlutils().images().at("hefesto"), navegableDistricts_[1]);
 
 	//Hestia
-	hestia = Lugar(&sdlutils().images().at("hestia"), true);
+	hestia = Lugar(&sdlutils().images().at("hestia"), navegableDistricts_[2]);
 
 	//Artemisa
-	artemisa = Lugar(&sdlutils().images().at("artemisa"), true);
+	artemisa = Lugar(&sdlutils().images().at("artemisa"), navegableDistricts_[3]);
 
 	//Hermes
-	hermes = Lugar(&sdlutils().images().at("hermes"), true);
+	hermes = Lugar(&sdlutils().images().at("hermes"), navegableDistricts_[4]);
 
 	//Apolo
-	apolo = Lugar(&sdlutils().images().at("apolo"), true);
+	apolo = Lugar(&sdlutils().images().at("apolo"), navegableDistricts_[5]);
 
 	//Posidon
-	poseidon = Lugar(&sdlutils().images().at("poseidon"), true);
+	poseidon = Lugar(&sdlutils().images().at("poseidon"), navegableDistricts_[6]);
 }
 
 void ecs::ExplorationScene::initDirectionsDefaultMap()

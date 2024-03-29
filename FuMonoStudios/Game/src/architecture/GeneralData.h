@@ -37,9 +37,19 @@ public:
 	int getDia() { return dia_; }
 	void setDia(int dia) { dia_ = dia; }
 
-	void setTubesAmount(int tubos) { numTubos_ = tubos; } // Aumenta el numero de tubos en el minijuego cuando se requiera (podría llamarse automáticamente
+	void setTubesAmount(int tubos) { 
+		if (tubos >= 7) numTubos_ = 7;
+		else numTubos_ = tubos; 
+	} // Aumenta el numero de tubos en el minijuego cuando se requiera (podría llamarse automáticamente
 														  // desde setDia modificado). Que jose lo haga cuando se sepan los días en los que un distrito y su tubo se desbloquean
 	int getTubesAmount() { return numTubos_; }
+
+	// Aumenta el numero de distritos desbloqueados
+	void setDistrictsAmount(int distritos) {
+		if (distritos >= 7) numDistritos_ = 7;
+		else numDistritos_ = distritos;
+	}
+	int getDistrictsAmount() { return numDistritos_; }
 
 	void correctPackage() { corrects_++; }
 	void wrongPackage() { fails_++; }
@@ -47,12 +57,13 @@ public:
 	int getFails() { return fails_; }
 	int getCorrects() { return corrects_; }
 
+	//Quien borre el metodo de abajo le castro
 	void updateFelicidadPersonajes() {
 		for (int i = 0; i < 7; i++) {
-			datosPersonajes_[i].p = felicidad().getPersonaje(i);
-			datosPersonajes_[i].f = felicidad().interpretaFel(datosPersonajes_[i].p);
-			std::cout << "El personaje es: " << datosPersonajes_[i].p << std::endl;
-			std::cout << "Y su felicidad es: " << datosPersonajes_[i].f << std::endl;
+			charactersData_[i].p = felicidad().getPersonaje(i);
+			charactersData_[i].f = felicidad().interpretaFel(charactersData_[i].p);
+			std::cout << "El personaje es: " << charactersData_[i].p << std::endl;
+			std::cout << "Y su felicidad es: " << charactersData_[i].f << std::endl;
 		}
 	}
 
@@ -79,7 +90,9 @@ private:
 	int dia_;
 	int paqueteLvl_ = 0; // de momento es 0
 	int numTubos_; // Numero de tubos que habrán en el minijuego de paquetes
-	DatosPersonajes datosPersonajes_[7]; // Recoge la felicidad de cada personaje
+	int numDistritos_; // Numero de distritos que habrán sido desbloqueados
+	//Quien borre lo de abajo le castro
+	DatosPersonajes charactersData_[7]; // Recoge la felicidad de cada personaje
 	std::vector<Paquete*> paquetesNPCs;
 };
 

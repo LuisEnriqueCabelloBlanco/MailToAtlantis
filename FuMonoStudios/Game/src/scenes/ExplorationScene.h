@@ -149,6 +149,10 @@ namespace ecs {
 		Lugar apolo;
 		Lugar poseidon;
 
+		//Cada posición corresponde a si un distrito está o no desbloqueaqdo y se puede navegar
+		//IMPORTANTE QUE ESTÉN ORDENADOS
+		bool navegableDistricts_[7];
+
 		//rect para renderizar el BackGround
 		SDL_Rect rect_;
 
