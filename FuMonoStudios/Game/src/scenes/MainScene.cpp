@@ -108,10 +108,9 @@ void ecs::MainScene::init()
 
 	//createSelladores();
 
-	createInks();
+	//createInks();
   
   	//cinta envolver
-	createCinta();
 
 	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
 
@@ -121,28 +120,11 @@ void ecs::MainScene::init()
 
 	int dia = generalData().getDia();
 	if (dia > 0 && dia < 2) {
-		/*
-		Texture* texturaSellador = &sdlutils().images().at("sellador0");
-		Entity* sellador = addEntity(ecs::layer::STAMP);
-		Transform* transformSellador = sellador->addComponent<Transform>(560, 0, texturaSellador->width(), texturaSellador->height());
-		transformSellador->setScale(1);
-		RenderImage* renderSellador = sellador->addComponent<RenderImage>(texturaSellador);
-		sellador->addComponent<Gravity>();
-		sellador->addComponent<DragAndDrop>();
-		sellador->addComponent<Herramientas>();
-		sellador->getComponent<Herramientas>()->setFunctionality(TipoHerramienta::SelloCalleA);
-		*/
-
 		createStamp(SelloCalleA);
-		
+		createInks();
 	}
 	else if (dia >= 2 && dia < 4) {
-		Texture* texturaCinta = &sdlutils().images().at("cinta");
-		Entity* cinta = addEntity();
-		Transform* transformCinta = cinta->addComponent<Transform>(560, 0, texturaCinta->width() / 2, texturaCinta->height() / 2);
-		RenderImage* renderCinta = cinta->addComponent<RenderImage>(texturaCinta);
-		cinta->addComponent<Gravity>();
-		cinta->addComponent<DragAndDrop>();
+		createCinta();
 	}
 	else if (dia >= 4 && dia < 6) {}
 	else if (dia >= 6 && dia < 8) {}
