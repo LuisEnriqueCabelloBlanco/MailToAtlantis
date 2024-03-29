@@ -77,7 +77,7 @@ void ecs::MainScene::init()
 	timer_ = MINIGAME_TIME;
 	// Fondo
 	factory_->setLayer(layer::BACKGROUND);
-	factory_->createImage(Vector2D(), Vector2D(sdlutils().width(), sdlutils().height()),
+	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
 		&sdlutils().images().at("fondoOficina"));
 
 	//for (int i = 0; i < 7; i++) {
