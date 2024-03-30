@@ -23,13 +23,21 @@ namespace ecs {
         void createPaquete(int lv);
     private:
         void createManual();
-        void createGarbage();
+        void createMiniManual();
+        void createSpaceManual();
+
+        //void createTubo(Paquete::Distrito dist, bool desbloqueado);
+
         void createClock();
+
+        void createErrorMessage(Paquete* paqComp, bool, bool);
+
+        //void createSelladores();
+        void createGarbage();
         void createCinta();
         void createTubo(pq::Distrito dist, bool);
         void createStamp(TipoHerramienta type);
         
-        void createErrorMessage(Paquete* paqComp, bool, bool);
         void createInks();
         void createOneInk(TipoHerramienta type);
 
@@ -53,6 +61,9 @@ namespace ecs {
 
         Entity* timerEnt_;
         Texture* timerTexture_;
+
+        Entity* manualEnt_;
+        Entity* miniManualEnt_;
 
         //El pinche paquete builder para no crear uno en cada paquete
         PaqueteBuilder* mPaqBuild_;
