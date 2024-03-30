@@ -166,7 +166,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 		{
 			canStartConversation = false;
 
-			boxBackground->setActive(true);
+			boxBackground->getComponent<RenderImage>()->setTexture(&sdlutils().images().at("cuadroDialogo"));
 
 			// activamos los dialogos correspondientes
 			std::pair<const std::string, int> aux = generalData().getNPCData(
@@ -323,21 +323,19 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 	// creamos la entidad caja dialogo
 	boxBackground = addEntity();
 	auto bgTr = boxBackground->addComponent<Transform>(100, sdlutils().height() - 250, sdlutils().width() - 200, 200);
-	boxBackground->addComponent<RenderImage>(&sdlutils().images().at("cuadroDialogo"));
+	boxBackground->addComponent<RenderImage>(nullptr);
 
 	// entidad del texto
 	textDialogue = addEntity();
 	auto textTr = textDialogue->addComponent<Transform>(100, 100, 80, 100);
 	textTr->setParent(bgTr);
 	textDialogue->addComponent<RenderImage>();
-
-	boxBackground->setActive(false);
 }
 
 void ecs::ExplorationScene::closeConversation() {
 	textDialogue->getComponent<RenderImage>()->setTexture(nullptr);
 	textDialogue->removeComponent<DialogComponent>();
-	boxBackground->setActive(false);
+	boxBackground->getComponent<RenderImage>()->setTexture(nullptr);
 	textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
 		canStartConversation = true;
 		});
