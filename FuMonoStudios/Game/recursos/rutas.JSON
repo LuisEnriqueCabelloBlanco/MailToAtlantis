@@ -1,0 +1,22 @@
+{
+    "rutas": [
+      {
+        "routeID": "ruta1",
+        "points": [ 0, 1, 4, 7, 8 ]
+      },
+      {
+        "routeID": "ruta2",
+        "points": [ 0, 2, 4, 6, 8 ]
+      },
+      {
+        "routeID": "ruta3",
+        "points": [ 6, 0, 1, 2, 8 ]
+      },
+      {
+        "routeID": "ruta4",
+        "points": [ 1, 0, 6, 8, 5 ]
+      }
+
+    ]
+  }
+

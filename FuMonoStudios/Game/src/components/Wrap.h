@@ -54,6 +54,9 @@ private:
 	//Comprueba si ha chocado con el punto especificado por última vez
 	void checkPointTouch(int point);
 
+	//Metodo para leer todas las rutas del JSON
+	void getRoutesFromJSON();
+
 	Transform* tr_ = nullptr;
 
 	Trigger* tri_ = nullptr;
