@@ -56,7 +56,13 @@ Transform* Transform::getParent() const {
 	return parentTr_;
 }
 
-// Los objetos solo pueden tener un �nico padre
+ecs::Entity* Transform::getParentEnt() const {
+	return parentTr_->ent_;
+}
+
+
+
+// Los objetos solo pueden tener un unico padre
 void Transform::setParent(Transform* newParent) {
 	if (parentTr_ != newParent) {
 		parentTr_ = newParent;
@@ -126,4 +132,18 @@ bool Transform::getIfPointerIn() const {
 	SDL_Point point{ ihdlr.getMousePos().first, ihdlr.getMousePos().second };
 
 	return SDL_PointInRect(&point, &getRect());
+}
+
+void Transform::setActiveChildren(bool act) {
+
+	if (!childsTr_.empty()) {
+
+		for (auto it = childsTr_.begin(); it != childsTr_.end(); ++it) {
+
+			(*it)->ent_->setActive(act);
+
+		}
+
+	}
+
 }

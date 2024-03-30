@@ -6,23 +6,29 @@
 #include "Trigger.h"
 #include "../architecture/Entity.h"
 #include "../sdlutils/InputHandler.h"
+#include <architecture/GameConstants.h>
 
 #include <SDL.h>
 #include <assert.h>
 
 DragAndDrop::DragAndDrop() : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
-usingCallback_(false), usingOnlyClosestEnt_(false) {
+usingCallback_(false), usingOnlyClosestEnt_(false), usingOwnCallback_(false) {
 }
 
 
 DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt) : 
 	tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0), 
-	usingCallback_(false), usingOnlyClosestEnt_(UsingOnlyClosestEnt) {
+	usingCallback_(false), usingOnlyClosestEnt_(UsingOnlyClosestEnt), usingOwnCallback_(false) {
+}
+
+DragAndDrop::DragAndDrop(bool usingClosestEnt, bool usingOwnCallback) : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
+usingCallback_(false), usingOnlyClosestEnt_(usingClosestEnt), usingOwnCallback_(usingOwnCallback) {
+
 }
 
 DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt, SimpleCallback Func) : 
 	tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
-	usingCallback_(true), usingOnlyClosestEnt_(UsingOnlyClosestEnt)
+	usingCallback_(true), usingOnlyClosestEnt_(UsingOnlyClosestEnt), usingOwnCallback_(false)
 {
 	func_ = Func;
 }
@@ -78,10 +84,20 @@ void DragAndDrop::update() {
 
 			//Al soltar el objeto activa los callback de todas las entidades que este tocando el objeto
 			// si no tenemos activado el activar solo al mas cercano
-			if (!usingOnlyClosestEnt_)
-				tri_->activateEventsFromEntities();
-			else
-				tri_->activateEventFromClosestEntity();
+
+			if (usingOwnCallback_) {
+				tri_->activateCallbacks(nullptr);
+			}
+			else {
+
+				if (!usingOnlyClosestEnt_)
+					tri_->activateEventsFromEntities();
+				else
+					tri_->activateEventFromClosestEntity();
+
+			}
+
+			
 
 			// si has asignado callback se activa
 			if (usingCallback_)
@@ -95,8 +111,8 @@ void DragAndDrop::update() {
 
 			// comprobacion para evitar sacar la entidad de la pantalla
 			if ((point.x - differenceX_ > -(tr_->getWidth() / 2))
-				&& (point.x - differenceX_ < sdlutils().width() - (tr_->getWidth() / 2))
-				&& (point.y - differenceY_ < sdlutils().height() - (tr_->getHeigth() / 6)))
+				&& (point.x - differenceX_ < LOGICAL_RENDER_WIDTH - (tr_->getWidth() / 2))
+				&& (point.y - differenceY_ < LOGICAL_RENDER_HEITH - (tr_->getHeigth() / 6)))
 			{
 
 				Vector2D pos = Vector2D(

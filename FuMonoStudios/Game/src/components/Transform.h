@@ -27,6 +27,8 @@ public:
 	/// </summary>
 	/// <returns></returns>
 	Transform* getParent() const;
+	ecs::Entity* getParentEnt() const;
+
 	/// <summary>
 	/// Establece el padre de este transform
 	/// </summary>
@@ -81,6 +83,8 @@ public:
 	void setTrueScale(float newScale) { trueScale_ = newScale; } 
 	float getScale() { return scale_; }
 	float getTrueScale() { return trueScale_; }
+
+	void setActiveChildren(bool act);
 
 	void activateDepth();
 

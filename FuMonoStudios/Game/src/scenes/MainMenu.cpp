@@ -7,6 +7,7 @@
 #include "../components/Clickeable.h"
 #include "../architecture/Game.h"
 #include "../components/RenderWithLight.h"
+#include <sistemas/ComonObjectsFactory.h>
 
 //ecs::MainMenu::MainMenu()
 //{
@@ -27,7 +28,6 @@ void ecs::MainMenu::init()
 	sdlutils().clearRenderer();
 
 	//Font* fuente = new Font("recursos/fonts/ARIAL.ttf", 50);
-
 	Entity* titulo = addEntity();
 	Texture* texturaTitulo = &sdlutils().images().at("title");
 	Transform* transformTitulo = titulo->addComponent<Transform>(0.0f, 0.0f, texturaTitulo->width(), texturaTitulo->height());

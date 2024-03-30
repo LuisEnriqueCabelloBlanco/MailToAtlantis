@@ -92,6 +92,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -106,6 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,6 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>DEV_TOOLS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,6 +137,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,6 +147,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\QATools\DataCollector.cpp" />
+    <ClCompile Include="src\entities\ClockAux.cpp" />
+    <ClCompile Include="src\architecture\Config.cpp" />
+    <ClCompile Include="src\components\DelayedCallback.cpp" />
+    <ClCompile Include="src\scenes\ExplorationScene2.cpp" />
     <ClCompile Include="ImGui\backends\imgui_impl_sdl2.cpp" />
     <ClCompile Include="ImGui\backends\imgui_impl_sdlrenderer2.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
@@ -150,7 +159,6 @@
     <ClCompile Include="ImGui\imgui_draw.cpp" />
     <ClCompile Include="ImGui\imgui_tables.cpp" />
     <ClCompile Include="ImGui\imgui_widgets.cpp" />
-    <ClCompile Include="src\components\RenderWithLight.cpp" />
     <ClCompile Include="src\components\ErrorNote.cpp" />
     <ClCompile Include="src\components\Depth.cpp" />
     <ClCompile Include="src\sistemas\ComonObjectsFactory.cpp" />
@@ -176,7 +184,7 @@
     <ClCompile Include="src\architecture\Entity.cpp" />
     <ClCompile Include="src\architecture\Game.cpp" />
     <ClCompile Include="src\architecture\Scene.cpp" />
-    <ClCompile Include="src\components\Dialog_Manager.cpp" />
+    <ClCompile Include="src\components\DialogManager.cpp" />
     <ClCompile Include="src\components\Trigger.cpp" />
     <ClCompile Include="src\json\JSON.cpp" />
     <ClCompile Include="src\json\JSONValue.cpp" />
@@ -195,6 +203,11 @@
     <ClCompile Include="src\architecture\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\QATools\DataCollector.h" />
+    <ClInclude Include="src\entities\ClockAux.h" />
+    <ClInclude Include="src\architecture\Config.h" />
+    <ClInclude Include="src\components\DelayedCallback.h" />
+    <ClInclude Include="src\scenes\ExplorationScene2.h" />
     <ClInclude Include="ImGui\backends\imgui_impl_sdl2.h" />
     <ClInclude Include="ImGui\backends\imgui_impl_sdlrenderer2.h" />
     <ClInclude Include="ImGui\imconfig.h" />
@@ -203,7 +216,7 @@
     <ClInclude Include="ImGui\imstb_rectpack.h" />
     <ClInclude Include="ImGui\imstb_textedit.h" />
     <ClInclude Include="ImGui\imstb_truetype.h" />
-    <ClInclude Include="src\components\RenderWithLight.h" />
+    <ClInclude Include="rapidCSV\rapidcsv.h" />
     <ClInclude Include="src\components\ErrorNote.h" />
     <ClInclude Include="src\components\Depth.h" />
     <ClInclude Include="src\sistemas\ComonObjectsFactory.h" />
@@ -229,7 +242,7 @@
     <ClInclude Include="src\architecture\Entity.h" />
     <ClInclude Include="src\architecture\Game.h" />
     <ClInclude Include="src\architecture\Scene.h" />
-    <ClInclude Include="src\components\Dialog_Manager.h" />
+    <ClInclude Include="src\components\DialogManager.h" />
     <ClInclude Include="src\components\Trigger.h" />
     <ClInclude Include="src\architecture\GameConstants.h" />
     <ClInclude Include="src\json\JSON.h" />
@@ -263,6 +276,10 @@
     <None Include="Properties.props" />
     <None Include="recursos\config\mail.direcctions.json" />
     <None Include="recursos\config\mail.resources.json" />
+    <None Include="recursos\data\dialogos.json" />
+    <None Include="recursos\data\npcData.json" />
+    <None Include="recursos\dialogos\dialogos.json" />
+    <None Include="recursos\dialogos\dialogosNPC.json" />
     <None Include="src\sdlutils\RAEDME.md" />
   </ItemGroup>
   <ItemGroup>

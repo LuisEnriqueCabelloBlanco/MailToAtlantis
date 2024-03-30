@@ -27,6 +27,8 @@ namespace ecs {
 			DEPTH,
 			ERROR_NOTE,
 			IMAGEWITHLIGHT,
+			DELAYEDCALLBACK,
+			CLOCKAUX,
 			// do not remove this
 			_LAST_CMP_ID
 		};
@@ -56,9 +58,14 @@ namespace ecs {
 	namespace layer {
 		enum layerId : lyId_t
 		{
+			INACTIVE,
 			BACKGROUND,
 			DEFAULT,
+			BIN,
+			MANUALSPACE,
+			MINIMANUAL,
 			PACKAGE,
+			INK,
 			STAMP,
 			OFFICEELEMENTS,
 			TAPE,

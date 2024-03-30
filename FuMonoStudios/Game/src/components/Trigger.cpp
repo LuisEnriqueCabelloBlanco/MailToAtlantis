@@ -63,8 +63,12 @@ bool Trigger::activateEventsFromEntities() {
 
 	for (auto it = entTouching_.begin(); it != entTouching_.end(); ++it) {
 
-		(*it)->getComponent<Trigger>()->activateCallbacks(ent_);
+		if ((*it)->isActive()) {
 
+			(*it)->getComponent<Trigger>()->activateCallbacks(ent_);
+
+		}
+		
 	}
 
 	return entTouching_.empty();
@@ -80,7 +84,7 @@ bool Trigger::activateEventFromClosestEntity() {
 	{
 		Vector2D otherPos = (*it)->getComponent<Transform>()->getCenter();
 		float distance = sqrt(pow(otherPos.getX() - entPos.getX(), 2) + pow(otherPos.getY() - entPos.getY(), 2));
-		if (distance < shortestDistance)
+		if (distance < shortestDistance && (*it)->isActive())
 		{
 			shortestDistance = distance;
 			closestEnt = (*it)->getComponent<Trigger>();
@@ -146,5 +150,23 @@ ecs::Entity* Trigger::getSpecificEntity(ecs::layer::layerId lay) {
 	}
 	
 	return nullptr;
+
+}
+
+std::list <ecs::layer::layerId> Trigger::getEntitiesTouching() {
+
+	std::list <ecs::layer::layerId> entTouchingID;
+
+	if (!entTouching_.empty()) {
+
+		for (auto i = entTouching_.begin(); i != entTouching_.end(); ++i) {
+
+			entTouchingID.emplace_back((*i)->getLayer());
+
+		}
+
+	}
+
+	return entTouchingID;
 
 }

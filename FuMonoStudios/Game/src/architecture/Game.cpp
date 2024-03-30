@@ -13,15 +13,19 @@
 #include "Time.h"
 #include "GeneralData.h"
 #include <iostream>
+#include <QATools/DataCollector.h>
 
 Game::Game() :exit_(false) {
-	SDLUtils::init("Mail To Atlantis", 1920, 1080, "recursos/config/mail.resources.json");
+	SDLUtils::init("Mail To Atlantis", 1152, 648, "recursos/config/mail.resources.json");
+	Config::init("recursos/config/mail.config.json");
 
 	auto& sdl = *SDLUtils::instance();
 
 	sdl.showCursor();
 	window_ = sdl.window();
 	renderer_ = sdl.renderer();
+
+	SDL_RenderSetLogicalSize(renderer_,LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 
 	SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
 	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),new EndWorkScene(),new ecs::MainMenu() };
@@ -42,8 +46,7 @@ void Game::run()
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.DisplaySize = ImVec2(1920, 1080);
-
+	io.DisplaySize = ImGui::GetMainViewport()->Size;
 	ImGui_ImplSDL2_InitForSDLRenderer(sdlutils().window(), sdlutils().renderer());
 	ImGui_ImplSDLRenderer2_Init(sdlutils().renderer());
 
@@ -74,7 +77,11 @@ void Game::run()
 		if (ih().isKeyDown(SDL_SCANCODE_W)) {
 			changeScene(ecs::sc::MAIN_SCENE, ecs::sc::MENU_SCENE);
 		}
-
+#ifdef QA_TOOLS
+		if (ih().mouseButtonDownEvent()&&ih().getMouseButtonState(0)) {
+			dataCollector().clicks()++;
+		}
+#endif // QA_TOOLS
 
 		update();
 		sdlutils().clearRenderer();
@@ -87,8 +94,10 @@ void Game::run()
 		sdlutils().presentRenderer();
 
 		Time::deltaTime_ = (sdlutils().virtualTimer().currTime() - startTime) / 1000.0;
-
-
+		/*if (sdlutils().virtualTimer().currTime()/1000 > autoRecodTime) {
+			dataCollector().record();
+			autoRecodTime++;
+		}*/
 	}
 	ImGui_ImplSDLRenderer2_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
@@ -106,16 +115,12 @@ void Game::run()
 /// </summary>
 /// <param name="scene"></param>
 
-//void Game::loadScene(ecs::sc::sceneId scene)
-//{
-//	//llamar al init de la escena a cargar????
-//	gameScenes[scene]->init();
-//	//cargamos la escena
-//	loadedScenes.push_back(gameScenes[scene]);
-//}
-
 void Game::loadScene(ecs::sc::sceneId scene)
 {
+#ifdef QA_TOOLS
+	sdataCollector().dataArray()[0] = (int)scene;
+#endif // QA_TOOLS
+
 	auto it = std::find(loadedScenes_.begin(), loadedScenes_.end(), gameScenes_[scene]);
 	if (it == loadedScenes_.end()) {
 		//llamar al init de la escena a cargar????
@@ -123,6 +128,10 @@ void Game::loadScene(ecs::sc::sceneId scene)
 		//cargamos la escena
 		loadedScenes_.push_back(gameScenes_[scene]);
 	}
+#ifdef QA_TOOLS
+	dataCollector().record();
+#endif // QA_TOOLS
+
 }
 
 /// <summary>
