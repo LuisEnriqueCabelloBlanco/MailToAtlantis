@@ -42,7 +42,7 @@ void ecs::ExplorationScene::init()
 void ecs::ExplorationScene::initPlacesDefaultMap()
 {
 	// Inicialización de distritos desbloqueados EN ORDEN
-	// En el caso de que los distritos no estén ordenados, habrá que ordenarlos
+	// En el caso de que los distritos no esten ordenados, habra que ordenarlos
 	//int numDistritos = generalData().getDistrictsAmount(); // coge el numero de distritos que están desbloqueados
 	int numDistritos = 2;
 	int j = 0;
@@ -50,19 +50,19 @@ void ecs::ExplorationScene::initPlacesDefaultMap()
 		navegableDistricts_[i] = true;
 		j++;
 	}
-	//Creación de paquetes bloqueados
+	//Configuracion de distritos bloqueados
 	for (int z = j; z < 7; z++) { //grande jose la los numeros magicos te la sabes (lo vuelvo a hacer, luego se cambia cuando funcione)
 		navegableDistricts_[z] = false;
 	}
 
-	//Demeter
-	demeter = Lugar(&sdlutils().images().at("demeter"), navegableDistricts_[0]);
+	//Hestia
+	hestia = Lugar(&sdlutils().images().at("hestia"), navegableDistricts_[0]);
 
 	//Hefesto
 	hefesto = Lugar(&sdlutils().images().at("hefesto"), navegableDistricts_[1]);
 
-	//Hestia
-	hestia = Lugar(&sdlutils().images().at("hestia"), navegableDistricts_[2]);
+	//Demeter
+	demeter = Lugar(&sdlutils().images().at("demeter"), navegableDistricts_[2]);
 
 	//Artemisa
 	artemisa = Lugar(&sdlutils().images().at("artemisa"), navegableDistricts_[3]);
@@ -79,32 +79,48 @@ void ecs::ExplorationScene::initPlacesDefaultMap()
 
 void ecs::ExplorationScene::initDirectionsDefaultMap()
 {
-	//demeter
+	//Hestia
+	if (navegableDistricts_[1]) {
+		hestia.addDirections("Hefesto", &hefesto);
+	}
+	if (navegableDistricts_[3]) {
+		hestia.addDirections("Artemisa", &artemisa);
+	}
+	else {
+		hestia.addDirections("Artemisa", nullptr);
+	}
+	//Hefesto
+	if (navegableDistricts_[2]) {
+		hefesto.addDirections("Demeter", &demeter);
+	}
+	hefesto.addDirections("Hestia", &hestia);
+	if (navegableDistricts_[4]) {
+		hefesto.addDirections("Hermes", &hermes);
+	}
+
+	//Demeter
 	demeter.addDirections("Hermes", &hermes);
 	demeter.addDirections("Hefesto", &hefesto);
-	demeter.addDirections("Artemisa", &artemisa);
-
-	//Hefesto
-	hefesto.addDirections("Demeter", &demeter);
-	hefesto.addDirections("Hestia", &hestia);
-	hefesto.addDirections("Hermes", &hermes);
-
-	//Hestia
-	hestia.addDirections("Hefesto", &hefesto);
-	hestia.addDirections("Artemisa", &artemisa);
+	if (navegableDistricts_[3]) {
+		demeter.addDirections("Artemisa", &artemisa);
+	}
 
 	//Artemisa
 	artemisa.addDirections("Demeter", &demeter);
 	artemisa.addDirections("Hestia", &hestia);
 
-	//hermes
+	//Hermes
 	hermes.addDirections("Demeter", &demeter);
 	hermes.addDirections("Hefesto", &hefesto);
-	hermes.addDirections("Apolo", &apolo);
+	if (navegableDistricts_[5]) {
+		hermes.addDirections("Apolo", &apolo);
+	}
 
-	//apolo
+	//Apolo
 	apolo.addDirections("Hermes", &hermes);
-	apolo.addDirections("Poseidon", &poseidon);
+	if (navegableDistricts_[6]) {
+		apolo.addDirections("Poseidon", &poseidon);
+	}
 
 	//Poseidon
 	poseidon.addDirections("Apolo", &apolo);
@@ -207,7 +223,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 	if (place == "Demeter") {
 
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
-
+			
 			demeter.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
 				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
 
@@ -244,10 +260,16 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 	}
 	else if (place == "Hestia") {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
-
+			
+			/*if (Lugar::getPlaceFromDirection("Artemisa") == nullptr) {
+				std::cout << "estoy bloqueado" << std::endl;
+			}
+			else {
+				hestia.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
+					pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+			}*/
 			hestia.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
 				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
-
 
 		}
 

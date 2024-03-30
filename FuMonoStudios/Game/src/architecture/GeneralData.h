@@ -57,6 +57,14 @@ public:
 	int getFails() { return fails_; }
 	int getCorrects() { return corrects_; }
 
+	int getCharacterEventID(int p) {
+		return charactersEvents_[p];
+	}
+
+	void setCharacterEventID(int p, int e) {
+		charactersEvents_[p] = e;
+	}
+
 	//Quien borre el metodo de abajo le castro
 	void updateFelicidadPersonajes() {
 		for (int i = 0; i < 7; i++) {
@@ -89,10 +97,13 @@ private:
 	int eventoID_; //Variable int que define cual evento especial de la historia deber� de ejecutarse
 	int dia_;
 	int paqueteLvl_ = 0; // de momento es 0
+	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
+	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo
 	int numTubos_; // Numero de tubos que habrán en el minijuego de paquetes
 	int numDistritos_; // Numero de distritos que habrán sido desbloqueados
 	//Quien borre lo de abajo le castro
 	DatosPersonajes charactersData_[7]; // Recoge la felicidad de cada personaje
+	int charactersEvents_[7]; // Recoge los eventos de paquete de cada personaje
 	std::vector<Paquete*> paquetesNPCs;
 };
 
