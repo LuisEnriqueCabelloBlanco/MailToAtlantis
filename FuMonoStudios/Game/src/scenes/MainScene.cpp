@@ -107,6 +107,7 @@ void ecs::MainScene::init()
 	}
 
 	sdlutils().musics().at("trabajo").play();
+	sdlutils().musics().at("trabajo").setMusicVolume(30);
 
 	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
 

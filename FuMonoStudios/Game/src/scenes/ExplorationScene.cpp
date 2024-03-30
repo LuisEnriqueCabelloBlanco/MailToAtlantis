@@ -373,4 +373,9 @@ void ecs::Lugar::addObjects(ecs::Entity* e)
 	ents_.push_back(e);
 }
 
+void ecs::Lugar::setNavegable(bool value)
+{
+	navegable_ = value;
+}
+
 

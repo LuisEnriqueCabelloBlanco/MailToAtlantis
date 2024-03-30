@@ -51,4 +51,5 @@ private:
 	bool usingCallback_ = false;
 	bool usingOwnCallback_ = false;
 	SimpleCallback func_;
+	std::pair<int,int> latestPoint_;
 };

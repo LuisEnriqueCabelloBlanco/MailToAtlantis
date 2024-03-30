@@ -133,8 +133,16 @@
   "sounds": [
     {
         "id": "click",
-        "file": "recursos/sounds/explosion.wav"
-    }
+        "file": "recursos/sounds/click.wav"
+    },
+    {
+      "id": "arrastrar",
+      "file": "recursos/sounds/arrastrar.wav"
+  },
+  {
+    "id": "choque",
+    "file": "recursos/sounds/choque.wav"
+}
 ],
 "musics":[
     {
