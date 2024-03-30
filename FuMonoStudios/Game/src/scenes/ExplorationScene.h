@@ -131,7 +131,7 @@ namespace ecs {
 		/// <summary>
 		/// Metodo factoria para las flechas de navegacion
 		/// </summary>
-		ecs::Entity* createNavegationsArrows(Vector2D pos, std::string placeDir, float scale);
+		ecs::Entity* createNavegationsArrows(Vector2D pos, std::string placeDir, float scale, int flip);
 
 		/// <summary>
 		/// Metodo factoria para characters

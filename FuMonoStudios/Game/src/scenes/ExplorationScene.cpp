@@ -126,7 +126,7 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 		actualPlace_ = actualPlace_->getPlaceFromDirection(placeDir);
 }
 
-ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string placeDir, float scale)
+ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string placeDir, float scale, int flip)
 {
 	//para crear la flecha a hefesto
 
@@ -145,6 +145,18 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	};
 
 	ecs::Entity* Arrow = factory.createImageButton(pos, size, sujetaplazas, cosa);
+
+	Transform* arrowTR = Arrow->getComponent<Transform>();
+
+	if (flip == 1) {
+		arrowTR->setFlip(SDL_FLIP_VERTICAL);
+	}
+	else if (flip == 2) {
+		arrowTR->setFlip(SDL_FLIP_HORIZONTAL);
+	}
+	else {
+		arrowTR->setFlip(SDL_FLIP_NONE);
+	}
 
 	factory.setLayer(ecs::layer::DEFAULT);
 	
@@ -192,7 +204,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 
 			demeter.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 
 		}
@@ -210,7 +222,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 
 			hefesto.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 
 		}
@@ -227,7 +239,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 
 			hestia.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 
 		}
@@ -255,7 +267,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 
 			artemisa.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 
 		}
@@ -272,7 +284,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 
 			hermes.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 
 		}
@@ -289,7 +301,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 
 			apolo.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 
 		}
@@ -306,7 +318,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 
 			poseidon.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 
 		}

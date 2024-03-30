@@ -27,8 +27,10 @@ public:
 
 		bool directionRight_;
 
-		Arrows(double x, double y, std::string destination, double scale, bool directionRight) : pos(x, y), destination_(destination),
-			scale_(scale), directionRight_(directionRight){}
+		int flip_;
+
+		Arrows(double x, double y, std::string destination, double scale, bool directionRight, int flip) : pos(x, y), destination_(destination),
+			scale_(scale), directionRight_(directionRight), flip_(flip){}
 
 
 	};

@@ -26,6 +26,11 @@ position_(x, y), width_(w), height_(h), scale_(1), trueScale_(1), parentTr_(null
 
 }
 
+Transform::Transform(float x, float y, float w, float h, float rot, SDL_RendererFlip flip) : Component(),
+position_(x, y), width_(w), height_(h), scale_(1), trueScale_(1), parentTr_(nullptr), rotation_(rot), flip_(flip){
+
+}
+
 Transform::~Transform() {
 	/// <summary>
 	/// destruimos la referencia que esta en su padre

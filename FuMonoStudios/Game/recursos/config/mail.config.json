@@ -12,7 +12,8 @@
                 "y" : 100,
                 "dest" : "Hefesto",
                 "scale" : 0.5,
-                "dir" : false              
+                "dir" : false,
+                "flip" : 2              
                 },
 
                 {"id" : 1,
@@ -20,7 +21,8 @@
                 "y" : 100,
                 "dest" : "Hermes",
                 "scale" : 0.5,
-                "dir" : true              
+                "dir" : true,
+                "flip" : 0              
                 },
 
                 {"id" : 2,
@@ -28,7 +30,8 @@
                 "y" : 100,
                 "dest" : "Artemisa",
                 "scale" : 0.5,
-                "dir" : true              
+                "dir" : true,
+                "flip" : 0              
                 }
 
             ]}
@@ -60,15 +63,26 @@
                 "y" : 100,
                 "dest" : "Hestia",
                 "scale" : 0.5,
-                "dir" : false              
+                "dir" : false,
+                "flip" : 2              
                 },
 
                 {"id" : 1,
                 "x" : 700,
                 "y" : 100,
+                "dest" : "Hermes",
+                "scale" : 0.5,
+                "dir" : true,
+                "flip" : 0              
+                },
+
+                {"id" : 2,
+                "x" : 1300,
+                "y" : 100,
                 "dest" : "Demeter",
                 "scale" : 0.5,
-                "dir" : true              
+                "dir" : true,
+                "flip" : 0              
                 }
 
             ]}
@@ -99,7 +113,8 @@
                 "y" : 650,
                 "dest" : "Artemisa",
                 "scale" : 0.45,
-                "dir" : false              
+                "dir" : false,
+                "flip" : 2              
                 },
 
                 {"id" : 1,
@@ -107,7 +122,8 @@
                 "y" : 500,
                 "dest" : "Hefesto",
                 "scale" : 0.35,
-                "dir" : true              
+                "dir" : true,
+                "flip" : 0              
                 }
 
             ]}
@@ -138,7 +154,8 @@
                 "y" : 375,
                 "dest" : "Demeter",
                 "scale" : 0.35,
-                "dir" : false              
+                "dir" : false,
+                "flip" : 2              
                 },
 
                 {"id" : 1,
@@ -146,7 +163,8 @@
                 "y" : 300,
                 "dest" : "Hestia",
                 "scale" : 0.3,
-                "dir" : true              
+                "dir" : true,
+                "flip" : 0              
                 }
 
             ]}
@@ -177,7 +195,8 @@
                 "y" : 100,
                 "dest" : "Hefesto",
                 "scale" : 0.5,
-                "dir" : false              
+                "dir" : false,
+                "flip" : 2              
                 },
 
                 {"id" : 1,
@@ -185,7 +204,8 @@
                 "y" : 100,
                 "dest" : "Apolo",
                 "scale" : 0.5,
-                "dir" : true              
+                "dir" : true,
+                "flip" : 0              
                 },
 
                 {"id" : 2,
@@ -193,7 +213,8 @@
                 "y" : 100,
                 "dest" : "Demeter",
                 "scale" : 0.5,
-                "dir" : true              
+                "dir" : true,
+                "flip" : 0              
                 }
 
             ]}
@@ -224,7 +245,8 @@
                 "y" : 100,
                 "dest" : "Poseidon",
                 "scale" : 0.5,
-                "dir" : false              
+                "dir" : false,
+                "flip" : 2              
                 },
 
                 {"id" : 1,
@@ -232,7 +254,8 @@
                 "y" : 100,
                 "dest" : "Hermes",
                 "scale" : 0.5,
-                "dir" : true              
+                "dir" : true,
+                "flip" : 0              
                 }
 
             ]}
@@ -263,7 +286,8 @@
                 "y" : 100,
                 "dest" : "Apolo",
                 "scale" : 0.5,
-                "dir" : false              
+                "dir" : false,
+                "flip" : 0              
                 }
 
             ]}
