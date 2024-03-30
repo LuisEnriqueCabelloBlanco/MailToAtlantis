@@ -15,7 +15,7 @@
 #include <iostream>
 
 Game::Game() :exit_(false) {
-	SDLUtils::init("Mail To Atlantis", 1152, 648, "recursos/config/mail.resources.json");
+	SDLUtils::init("Mail To Atlantis", 1920, 1080, "recursos/config/mail.resources.json");
 	Config::init("recursos/config/mail.config.json");
 
 	auto& sdl = *SDLUtils::instance();
