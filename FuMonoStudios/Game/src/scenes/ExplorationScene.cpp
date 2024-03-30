@@ -23,7 +23,6 @@ ecs::ExplorationScene::ExplorationScene() :Scene()
 	initPlacesDefaultMap();
 	initDirectionsDefaultMap();
 	actualPlace_ = &hestia;
-	navigate("Hestia");
 	createObjects("Hestia");
 	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 
@@ -37,52 +36,39 @@ ecs::ExplorationScene::~ExplorationScene()
 void ecs::ExplorationScene::init()
 {
 	std::cout << "Hola Exploracion" << std::endl;
+	setNavegabilityOfPlace("Hermes");
 }
 
 
 void ecs::ExplorationScene::initPlacesDefaultMap()
 {
-	// Inicialización de distritos desbloqueados EN ORDEN
-	// En el caso de que los distritos no esten ordenados, habra que ordenarlos
-	//int numDistritos = generalData().getDistrictsAmount(); // coge el numero de distritos que están desbloqueados
-	int numDistritos = 2;
-	int j = 0;
-	for (int i = 0;i < numDistritos; i++) {
-		navegableDistricts_[i] = true;
-		j++;
-	}
-	//Configuracion de distritos bloqueados
-	for (int z = j; z < 7; z++) { //grande jose la los numeros magicos te la sabes (lo vuelvo a hacer, luego se cambia cuando funcione)
-		navegableDistricts_[z] = false;
-	}
-
 	//Hestia
-	hestia = Lugar(&sdlutils().images().at("hestia"), navegableDistricts_[0]);
-	places["Hestia"] = hestia;
+	hestia = Lugar(&sdlutils().images().at("hestia"), true);
+	places["Hestia"] = &hestia;
 
 	//Hefesto
-	hefesto = Lugar(&sdlutils().images().at("hefesto"), navegableDistricts_[1]);
-	places["Hefesto"] = hefesto;
+	hefesto = Lugar(&sdlutils().images().at("hefesto"), true);
+	places["Hefesto"] = &hefesto;
 
 	//Demeter
-	demeter = Lugar(&sdlutils().images().at("demeter"), navegableDistricts_[2]);
-	places["Hemeter"] = demeter;
+	demeter = Lugar(&sdlutils().images().at("demeter"), true);
+	places["Demeter"] = &demeter;
 
 	//Artemisa
-	artemisa = Lugar(&sdlutils().images().at("artemisa"), navegableDistricts_[3]);
-	places["Artemisa"] = artemisa;
+	artemisa = Lugar(&sdlutils().images().at("artemisa"), true);
+	places["Artemisa"] = &artemisa;
 
 	//Hermes
-	hermes = Lugar(&sdlutils().images().at("hermes"), navegableDistricts_[4]);
-	places["Hermes"] = hermes;
+	hermes = Lugar(&sdlutils().images().at("hermes"), false);
+	places["Hermes"] = &hermes;
 
 	//Apolo
-	apolo = Lugar(&sdlutils().images().at("apolo"), navegableDistricts_[5]);
-	places["Apolo"] = apolo;
+	apolo = Lugar(&sdlutils().images().at("apolo"), false);
+	places["Apolo"] = &apolo;
 
 	//Posidon
-	poseidon = Lugar(&sdlutils().images().at("poseidon"), navegableDistricts_[6]);
-	places["Poseidon"] = poseidon;
+	poseidon = Lugar(&sdlutils().images().at("poseidon"), false);
+	places["Poseidon"] = &poseidon;
 }
 
 void ecs::ExplorationScene::initDirectionsDefaultMap()
@@ -153,7 +139,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	ComonObjectsFactory factory(this);
 	factory.setLayer(ecs::layer::FOREGROUND);
 	Texture* sujetaplazas;
-	if(places.count(placeDir) && places.at(placeDir).isNavegable())
+	if(places.count(placeDir) && places.at(placeDir)->isNavegable())
 		sujetaplazas = &sdlutils().images().at("cartel");
 	else
 		sujetaplazas = &sdlutils().images().at("cruz");
@@ -209,6 +195,14 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, std::string ch
 	ecs::Entity* BotonPress = factory.createImageButton(pos, size, texturaBoton, funcPress);
 	
 	return BotonPress;
+}
+
+void ecs::ExplorationScene::setNavegabilityOfPlace(std::string place, bool value)
+{
+	if(places.count(place))
+	{
+		places.at(place)->setNavegability();
+	}
 }
 
 void ecs::ExplorationScene::createObjects(std::string place) {
@@ -381,6 +375,11 @@ void ecs::Lugar::addObjects(ecs::Entity* e)
 bool ecs::Lugar::isNavegable() const
 {
 	return navegable_;
+}
+
+void ecs::Lugar::setNavegability(bool value)
+{
+	navegable_ = value;
 }
 
 

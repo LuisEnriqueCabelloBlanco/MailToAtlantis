@@ -69,6 +69,12 @@ namespace ecs {
 		/// </summary>
 		bool isNavegable() const;
 
+		/// <summary>
+		/// Método para setear la navegabilidad a true o false en función de value, vale true si no introduces valor
+		/// </summary>
+		/// <param name="value"></param>
+		void setNavegability(bool value = true);
+
 	private:
 		//Puntero a la textura del fondo
 		Texture* backGround_;
@@ -108,6 +114,7 @@ namespace ecs {
 		/// Metodo para renderizar el backGround
 		/// </summary>
 		void renderBackGround() const;
+
     private:
 
 		/// <summary>
@@ -142,6 +149,13 @@ namespace ecs {
 		/// Metodo factoria para characters
 		/// </summary>
 		ecs::Entity* createCharacter(Vector2D pos, std::string character, float scale);
+
+		/// <summary>
+		/// Método para setar la navegabilidad de placeDir lugar, valor por defecto = true
+		/// </summary>
+		/// <param name="placeDir"></param>
+		/// <param name="value"></param>
+		void setNavegabilityOfPlace(std::string place, bool value = true);
         
 		//Puntero al lugar actual
 		Lugar* actualPlace_;
@@ -155,10 +169,6 @@ namespace ecs {
 		Lugar apolo;
 		Lugar poseidon;
 
-		//Cada posición corresponde a si un distrito está o no desbloqueaqdo y se puede navegar
-		//IMPORTANTE QUE ESTÉN ORDENADOS
-		bool navegableDistricts_[7];
-
 		//rect para renderizar el BackGround
 		SDL_Rect rect_;
 
@@ -166,7 +176,7 @@ namespace ecs {
 
 		std::vector<std::string> placeToGo;
 
-		std::unordered_map<string, Lugar> places;
+		std::unordered_map<string, Lugar*> places;
 
     };
 }
