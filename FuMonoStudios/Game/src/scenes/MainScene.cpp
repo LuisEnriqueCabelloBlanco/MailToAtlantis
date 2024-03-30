@@ -89,11 +89,8 @@ void ecs::MainScene::init()
 	createSpaceManual();
 
 	createClock();
-	
-	createPaquete(generalData().getPaqueteLevel());
 
 	createGarbage();
-
 
 	//creacion de las herramientas
 	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
@@ -108,11 +105,7 @@ void ecs::MainScene::init()
 		createTubo((pq::Distrito)z, false);
 	}
 
-	//createSelladores();
-
-	//createInks();
-  
-  	//cinta envolver
+	createPaquete(generalData().getPaqueteLevel());
 
 	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
 
@@ -132,28 +125,6 @@ void ecs::MainScene::init()
 	else if (dia >= 6 && dia < 8) {}
 	else if (dia >= 8 && dia < 10) {}
 
-	/*switch (dia) {
-	case 1: {
-		Texture* texturaSellador1 = &sdlutils().images().at("sellador");
-		Entity* sellador1 = addEntity();
-		Transform* transformSellador1 = sellador1->addComponent<Transform>(460, 0, texturaSellador1->width() / 2, texturaSellador1->height() / 2);
-		RenderImage* renderSellador1 = sellador1->addComponent<RenderImage>(texturaSellador1);
-		sellador1->addComponent<Gravity>();
-		sellador1->addComponent<DragAndDrop>();
-		sellador1->addComponent<Herramientas>();
-		sellador1->getComponent<Herramientas>()->setFunctionality(TipoHerramienta::SelloCalleA);
-		break;
-		}
-	case 2: {
-		Texture* texturaCinta1 = &sdlutils().images().at("cinta");
-		Entity* cinta1 = addEntity();
-		Transform* transformCinta1 = cinta1->addComponent<Transform>(460, 0, texturaCinta1->width() / 2, texturaCinta1->height() / 2);
-		RenderImage* renderCinta1 = cinta1->addComponent<RenderImage>(texturaCinta1);
-		cinta1->addComponent<Gravity>();
-		cinta1->addComponent<DragAndDrop>();
-		break;
-		}
-	}*/
 }
 
 void ecs::MainScene::close() {
@@ -193,63 +164,6 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 		}
 
 	});
-
-	
-
-
-	//// Tinta azul (2)
-	//Entity* inkB = addEntity(layer::INK);
-	//Texture* inkBTex = &sdlutils().images().at("tintaB");
-	//Transform* selloBTR = inkB->addComponent<Transform>(425, 500, inkBTex->width(), inkBTex->height());
-
-	//selloBTR->setScale(0.5);
-
-	//inkB->addComponent<RenderImage>(inkBTex);
-
-	//Trigger* inkBTri = inkB->addComponent<Trigger>();
-
-	//inkBTri->addCallback([this](ecs::Entity* entRec) {
-
-	//	if (entRec->getLayer() == ecs::layer::STAMP) {
-
-	//		Herramientas* stampHerramienta = entRec->getComponent<Herramientas>();
-
-	//		RenderImage* stampRender = entRec->getComponent<RenderImage>();
-
-	//		stampHerramienta->setFunctionality(SelloCalleB);
-
-	//		stampRender->setTexture(&sdlutils().images().at("sellador1"));
-
-	//	}
-
-	//});
-
-	//// Tinta verde (3)
-	//Entity* inkC = addEntity(layer::INK);
-	//Texture* inkCTex = &sdlutils().images().at("tinta" + std::to_string(type));
-	//Transform* selloCTR = inkC->addComponent<Transform>(350 + 125 * (type), 500, inkCTex->width(), inkCTex->height());
-
-	//selloCTR->setScale(0.5);
-
-	//inkC->addComponent<RenderImage>(inkCTex);
-
-	//Trigger* inkCTri = inkC->addComponent<Trigger>();
-
-	//inkCTri->addCallback([this, type](ecs::Entity* entRec) {
-
-	//	if (entRec->getLayer() == ecs::layer::STAMP) {
-
-	//		Herramientas* stampHerramienta = entRec->getComponent<Herramientas>();
-
-	//		RenderImage* stampRender = entRec->getComponent<RenderImage>();
-
-	//		stampHerramienta->setFunctionality(type);
-
-	//		stampRender->setTexture(&sdlutils().images().at("sellador2"));
-
-	//	}
-
-	//});
 
 }
 
