@@ -39,6 +39,7 @@ void ecs::ExplorationScene::init()
 	std::cout << "Hola Exploracion" << std::endl;
 }
 
+
 void ecs::ExplorationScene::initPlacesDefaultMap()
 {
 	// Inicialización de distritos desbloqueados EN ORDEN
@@ -57,31 +58,31 @@ void ecs::ExplorationScene::initPlacesDefaultMap()
 
 	//Hestia
 	hestia = Lugar(&sdlutils().images().at("hestia"), navegableDistricts_[0]);
-	places["hestia"] = hestia;
+	places["Hestia"] = hestia;
 
 	//Hefesto
 	hefesto = Lugar(&sdlutils().images().at("hefesto"), navegableDistricts_[1]);
-	places["hefesto"] = hefesto;
+	places["Hefesto"] = hefesto;
 
 	//Demeter
 	demeter = Lugar(&sdlutils().images().at("demeter"), navegableDistricts_[2]);
-	places["demeter"] = demeter;
+	places["Hemeter"] = demeter;
 
 	//Artemisa
 	artemisa = Lugar(&sdlutils().images().at("artemisa"), navegableDistricts_[3]);
-	places["artemisa"] = artemisa;
+	places["Artemisa"] = artemisa;
 
 	//Hermes
 	hermes = Lugar(&sdlutils().images().at("hermes"), navegableDistricts_[4]);
-	places["hermes"] = hermes;
+	places["Hermes"] = hermes;
 
 	//Apolo
 	apolo = Lugar(&sdlutils().images().at("apolo"), navegableDistricts_[5]);
-	places["apolo"] = apolo;
+	places["Apolo"] = apolo;
 
 	//Posidon
 	poseidon = Lugar(&sdlutils().images().at("poseidon"), navegableDistricts_[6]);
-	places["poseidon"] = poseidon;
+	places["Poseidon"] = poseidon;
 }
 
 void ecs::ExplorationScene::initDirectionsDefaultMap()
@@ -151,7 +152,12 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 
 	ComonObjectsFactory factory(this);
 	factory.setLayer(ecs::layer::FOREGROUND);
-	Texture* sujetaplazas = &sdlutils().images().at("cartel");
+	Texture* sujetaplazas;
+	if(places.count(placeDir) && places.at(placeDir).isNavegable())
+		sujetaplazas = &sdlutils().images().at("cartel");
+	else
+		sujetaplazas = &sdlutils().images().at("cruz");
+
 	Vector2D size{ sujetaplazas->width() * scale, sujetaplazas->height() * scale };
 	
 	CallbackClickeable cosa = [this, placeDir]() {
@@ -249,14 +255,6 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 	}
 	else if (place == "Hestia") {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
-			
-			/*if (Lugar::getPlaceFromDirection("Artemisa") == nullptr) {
-				std::cout << "estoy bloqueado" << std::endl;
-			}
-			else {
-				hestia.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-					pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
-			}*/
 			hestia.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
 				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
 
@@ -378,6 +376,11 @@ void ecs::Lugar::killObjects()
 void ecs::Lugar::addObjects(ecs::Entity* e)
 {
 	ents_.push_back(e);
+}
+
+bool ecs::Lugar::isNavegable() const
+{
+	return navegable_;
 }
 
 

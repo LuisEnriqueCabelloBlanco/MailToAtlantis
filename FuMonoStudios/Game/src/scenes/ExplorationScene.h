@@ -62,6 +62,13 @@ namespace ecs {
 		/// </summary>
 		void addObjects(ecs::Entity* e);
 
+
+
+		/// <summary>
+		/// método para comprobar la propia navegabilidad de un lugar
+		/// </summary>
+		bool isNavegable() const;
+
 	private:
 		//Puntero a la textura del fondo
 		Texture* backGround_;
@@ -101,7 +108,6 @@ namespace ecs {
 		/// Metodo para renderizar el backGround
 		/// </summary>
 		void renderBackGround() const;
-
     private:
 
 		/// <summary>
