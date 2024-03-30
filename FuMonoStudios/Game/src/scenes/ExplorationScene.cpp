@@ -36,7 +36,7 @@ ecs::ExplorationScene::~ExplorationScene()
 void ecs::ExplorationScene::init()
 {
 	std::cout << "Hola Exploracion" << std::endl;
-	setNavegabilityOfPlace("Hermes");
+	//setNavegabilityOfPlace("Hermes"); // Esto es para probar si funciona el seteo.
 }
 
 
