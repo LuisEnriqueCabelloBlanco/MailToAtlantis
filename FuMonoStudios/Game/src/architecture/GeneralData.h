@@ -108,12 +108,10 @@ public:
 	int getCorrects() { return corrects_; }
 
 	void resetFailsCorrects() { fails_ = 0; corrects_ = 0; }
-
-	void addPaqueteNPC(Paquete p) { paquetesNPCs.push_back(p); }
+	void addPaqueteNPC(Paquete* p) { paquetesNPCs.push_back(p); }
 	bool areTherePaquetesNPC() { return paquetesNPCs.size() != 0; }
 	void resetPaquetesNPC() { while (areTherePaquetesNPC()) paquetesNPCs.pop_back(); }
-
-	Paquete getPaqueteNPC() { Paquete p = paquetesNPCs.back(); paquetesNPCs.pop_back(); return p; }
+	Paquete* getPaqueteNPC() { Paquete* p = paquetesNPCs.back(); paquetesNPCs.pop_back(); return p; }
 	int getPaqueteLevel(); // Devuelve el lvl del paquete correspondiente al d�a
 	void setPaqueteLevel(int lvl);
 
@@ -131,6 +129,8 @@ public:
 	void writeNPCData();
 
 	NPCdata* getNPCData(Personaje personaje);
+	inline int getCurrentDay() { return dia_; };
+
 private:
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }
@@ -147,7 +147,7 @@ private:
 	int dia_;
 	int paqueteLvl_ = 0; // de momento es 0
 	int numTubos_; // Numero de tubos que habrán en el minijuego de paquetes
-	std::vector<Paquete> paquetesNPCs;
+	std::vector<Paquete*> paquetesNPCs;
 };
 
 inline GeneralData& generalData() {
