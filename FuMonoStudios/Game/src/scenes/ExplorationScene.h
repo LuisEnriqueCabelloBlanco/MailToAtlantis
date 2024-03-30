@@ -160,6 +160,8 @@ namespace ecs {
 
 		std::vector<std::string> placeToGo;
 
+		std::unordered_map<string, Lugar> places;
+
     };
 }
 

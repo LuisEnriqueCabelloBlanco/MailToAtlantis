@@ -57,53 +57,47 @@ void ecs::ExplorationScene::initPlacesDefaultMap()
 
 	//Hestia
 	hestia = Lugar(&sdlutils().images().at("hestia"), navegableDistricts_[0]);
+	places["hestia"] = hestia;
 
 	//Hefesto
 	hefesto = Lugar(&sdlutils().images().at("hefesto"), navegableDistricts_[1]);
+	places["hefesto"] = hefesto;
 
 	//Demeter
 	demeter = Lugar(&sdlutils().images().at("demeter"), navegableDistricts_[2]);
+	places["demeter"] = demeter;
 
 	//Artemisa
 	artemisa = Lugar(&sdlutils().images().at("artemisa"), navegableDistricts_[3]);
+	places["artemisa"] = artemisa;
 
 	//Hermes
 	hermes = Lugar(&sdlutils().images().at("hermes"), navegableDistricts_[4]);
+	places["hermes"] = hermes;
 
 	//Apolo
 	apolo = Lugar(&sdlutils().images().at("apolo"), navegableDistricts_[5]);
+	places["apolo"] = apolo;
 
 	//Posidon
 	poseidon = Lugar(&sdlutils().images().at("poseidon"), navegableDistricts_[6]);
+	places["poseidon"] = poseidon;
 }
 
 void ecs::ExplorationScene::initDirectionsDefaultMap()
 {
 	//Hestia
-	if (navegableDistricts_[1]) {
-		hestia.addDirections("Hefesto", &hefesto);
-	}
-	if (navegableDistricts_[3]) {
-		hestia.addDirections("Artemisa", &artemisa);
-	}
-	else {
-		hestia.addDirections("Artemisa", nullptr);
-	}
+	hestia.addDirections("Hefesto", &hefesto);
+	hestia.addDirections("Artemisa", &artemisa);
 	//Hefesto
-	if (navegableDistricts_[2]) {
-		hefesto.addDirections("Demeter", &demeter);
-	}
+	hefesto.addDirections("Demeter", &demeter);
 	hefesto.addDirections("Hestia", &hestia);
-	if (navegableDistricts_[4]) {
-		hefesto.addDirections("Hermes", &hermes);
-	}
+	hefesto.addDirections("Hermes", &hermes);
 
 	//Demeter
 	demeter.addDirections("Hermes", &hermes);
 	demeter.addDirections("Hefesto", &hefesto);
-	if (navegableDistricts_[3]) {
-		demeter.addDirections("Artemisa", &artemisa);
-	}
+	demeter.addDirections("Artemisa", &artemisa);
 
 	//Artemisa
 	artemisa.addDirections("Demeter", &demeter);
@@ -112,16 +106,11 @@ void ecs::ExplorationScene::initDirectionsDefaultMap()
 	//Hermes
 	hermes.addDirections("Demeter", &demeter);
 	hermes.addDirections("Hefesto", &hefesto);
-	if (navegableDistricts_[5]) {
-		hermes.addDirections("Apolo", &apolo);
-	}
+	hermes.addDirections("Apolo", &apolo);
 
 	//Apolo
 	apolo.addDirections("Hermes", &hermes);
-	if (navegableDistricts_[6]) {
-		apolo.addDirections("Poseidon", &poseidon);
-	}
-
+	apolo.addDirections("Poseidon", &poseidon);
 	//Poseidon
 	poseidon.addDirections("Apolo", &apolo);
 }
