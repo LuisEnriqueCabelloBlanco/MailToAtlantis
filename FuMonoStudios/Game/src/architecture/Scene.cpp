@@ -9,9 +9,6 @@ using objListIt = std::array<std::vector<Entity*>, ecs::layer::maxLayerId>::iter
 namespace ecs {
 	Scene::Scene() :objs_() {
 		factory_ = new ComonObjectsFactory(this);
-		for (auto& v : objs_) {
-			v.reserve(10);
-		}
 	}
 	Scene::~Scene() {
 		clearScene();
@@ -29,21 +26,25 @@ namespace ecs {
 	void Scene::update() {
 		//std::cout << "Hola" << std::endl;
 		
-
-		for (auto& ly : objs_)
-			for (auto& e : ly) {
-
+		//for (auto& ly : objs_) {
+		for (int i = 0; i < objs_.size();i++ ) {
+			for (int j = 0; j < objs_[i].size();j++) {
+				auto e = objs_[i][j];
 				if (e->isActive() && e->isEnable())
 					e->update();
 
 			}	
+		}
 	}
 	void Scene::render() {
-		for (auto& ly : objs_)
-			for (auto& e : ly)
-				if(e->isActive())
+		for (int i = 0; i < objs_.size(); i++) {
+			for (int j = 0; j < objs_[i].size(); j++) {
+				auto e = objs_[i][j];
+				if (e->isActive())
 					e->render();
-	}
+				}
+			}
+		}
 
 	void Scene::deleteQueueEntities()
 	{
