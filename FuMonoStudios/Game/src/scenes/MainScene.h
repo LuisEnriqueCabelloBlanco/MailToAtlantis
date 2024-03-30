@@ -20,6 +20,7 @@ namespace ecs {
         void init() override;
         void switchTimer() { timerPaused_ = !timerPaused_; }
         void setTimer(float time) { timer_ = time; }
+        void createPaquete(int lv);
     private:
         void createManual();
         void createMiniManual();
@@ -31,12 +32,14 @@ namespace ecs {
 
         void createErrorMessage(Paquete* paqComp, bool, bool);
 
-        void createTubo(pq::Distrito dist);
-        void createSelladores();
+        //void createSelladores();
+        void createGarbage();
+        void createCinta();
+        void createTubo(pq::Distrito dist, bool);
         void createStamp(TipoHerramienta type);
-        void createPaquete(int lv);
-
+        
         void createInks();
+        void createOneInk(TipoHerramienta type);
 
         int fails_;
         int correct_;
@@ -56,7 +59,6 @@ namespace ecs {
         void makeControlsWindow();
 #endif // DEV_TOOLS
 
-        // objects
         Entity* timerEnt_;
         Texture* timerTexture_;
 

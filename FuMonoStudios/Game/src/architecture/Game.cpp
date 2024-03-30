@@ -16,7 +16,7 @@
 #include <QATools/DataCollector.h>
 
 Game::Game() :exit_(false) {
-	SDLUtils::init("Mail To Atlantis", 1920, 1080, "recursos/config/mail.resources.json");
+	SDLUtils::init("Mail To Atlantis", 1152, 648, "recursos/config/mail.resources.json");
 	Config::init("recursos/config/mail.config.json");
 
 	auto& sdl = *SDLUtils::instance();
@@ -25,7 +25,9 @@ Game::Game() :exit_(false) {
 	window_ = sdl.window();
 	renderer_ = sdl.renderer();
 
-	SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
+	SDL_RenderSetLogicalSize(renderer_,LOGICAL_RENDER_WIDTH , LOGICAL_RENDER_HEITH);
+
+	//SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
 	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),new EndWorkScene(),new ecs::MainMenu() };
 
 	loadScene(ecs::sc::MENU_SCENE);
@@ -44,8 +46,7 @@ void Game::run()
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.DisplaySize = ImVec2(1920, 1080);
-
+	io.DisplaySize = ImVec2(sdlutils().width(), sdlutils().height());
 	ImGui_ImplSDL2_InitForSDLRenderer(sdlutils().window(), sdlutils().renderer());
 	ImGui_ImplSDLRenderer2_Init(sdlutils().renderer());
 
@@ -113,14 +114,6 @@ void Game::run()
 /// Se ejecutara la ultima de la cadena de proceso
 /// </summary>
 /// <param name="scene"></param>
-
-//void Game::loadScene(ecs::sc::sceneId scene)
-//{
-//	//llamar al init de la escena a cargar????
-//	gameScenes[scene]->init();
-//	//cargamos la escena
-//	loadedScenes.push_back(gameScenes[scene]);
-//}
 
 void Game::loadScene(ecs::sc::sceneId scene)
 {

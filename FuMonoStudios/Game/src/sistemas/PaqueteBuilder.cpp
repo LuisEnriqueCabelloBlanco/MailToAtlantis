@@ -28,56 +28,13 @@ PaqueteBuilder::~PaqueteBuilder() {
 }
 
 
-ecs::Entity* PaqueteBuilder::paqueteRND(int level, ecs::Scene* mScene) {
+ecs::Entity* PaqueteBuilder::buildPackage(int level, ecs::Scene* mScene) {
 	
 	auto packageBase = buildBasePackage(mScene);
-
-
-	packageBase->getComponent<Trigger>()->addCallback([packageBase](ecs::Entity* entRec) {
-		Herramientas* herrEnt = entRec->getComponent<Herramientas>();
-		if (herrEnt != nullptr)
-		{
-			herrEnt->interact(packageBase);
-		}
-	});
-
-	bool continuar = true;
-	if (generalData().areTherePaquetesNPC()) {
-		int rnd = sdlutils().rand().nextInt(0, 4);
-		if (rnd == 0) continuar = false;
-	}
-	//se puede quedar como atributo de la clase si vemos que hace falta mayor velocidad en el juego
-	DifficultySettings lvl1 = getLevelSetings(level);
-	int peso;
-
-	pq::NivelPeso Nv;
-	if (continuar) {
-		Nv = pesoRND(lvl1.weithChance,lvl1.weightErrorChance, peso);
-
-		pq::Distrito toDist = distritoRND();
-		pq::Calle toDir = calleRND(lvl1.streetErrorChance);
-		std::string dir;
-		if (toDir == Erronea || toDist == Erroneo)
-			//Cambiarlo por el sistema de calles erróneas una vez esté
-			//Simplemente sería meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
-			//Y meterle un randomizador para que de esas pille la que más le guste
-			//Tipo, haces distritoCalle_[Erroneo][rand]
-			dir = "(CALLE INVENTADA)";
-		else
-			dir = distritoCalle_[toDist][(int)toDir];
-
-		/*
-		TODO hacer que la creacion del paquete vaya en funcion de la necsidad de los dias
-		*/
-
-		Paquete* pq = packageBase->addComponent<Paquete>(toDist, toDir,dir, remitenteRND(), tipoRND(), boolRND(lvl1.stampErrorChance), Nv, peso,
-			boolRND(lvl1.notFragileChance), false);
-		addVisualElements(packageBase);
-		if (pq->getFragil()) {
-			//Wrap debe ir despues del Transform, Trigger y Multitextures
-			std::list<int> route{ pointRoute::LeftUp, pointRoute::MiddleUp, pointRoute::MiddleMid, pointRoute::MiddleDown, pointRoute::RightDown };
-			packageBase->addComponent<Wrap>(20, 0, route);
-		}
+	
+	//decision de si el paquete que saldrï¿½ es de NPC
+	if (!shouldBuildNPCPackage()) {
+		stdRandPackage(packageBase, level);
 	}
 	else {
 		paqueteNPC(packageBase);
@@ -93,9 +50,9 @@ ecs::Entity* PaqueteBuilder::cartaRND(ecs::Scene* mScene) {
 	pq::Calle toDir = calleRND(10);
 	std::string dir;
 	if (toDir == Erronea)
-		//Cambiarlo por el sistema de calles erróneas una vez esté
-		//Simplemente sería meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
-		//Y meterle un randomizador para que de esas pille la que más le guste
+		//Cambiarlo por el sistema de calles errï¿½neas una vez estï¿½
+		//Simplemente serï¿½a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
+		//Y meterle un randomizador para que de esas pille la que mï¿½s le guste
 		//Tipo, haces distritoCalle_[Erroneo][rand]
 		dir = "(CALLE INVENTADA)";
 	else
@@ -111,10 +68,20 @@ void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
 	//else addVisualElementsCarta(ent);
 }
 
+bool PaqueteBuilder::shouldBuildNPCPackage()
+{
+	int rnd = sdlutils().rand().nextInt(0, 4);
+	return generalData().areTherePaquetesNPC() && rnd > 0;
+}
+
 ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle calle, const std::string& remitente, pq::TipoPaquete tipo, bool correcto, pq::NivelPeso nivPeso, int peso, bool fragil, bool carta)
 {
 	auto base = buildBasePackage(mScene_);
-	base->addComponent<Paquete>(distrito,calle,"Tu vieja", remitente, tipo, correcto, nivPeso, peso, fragil, carta);
+	std::string dir = "";
+	if (distrito != Erroneo && calle != Erronea) {
+		dir = distritoCalle_[distrito][calle];
+	}
+	base->addComponent<Paquete>(distrito,calle,dir, remitente, tipo, correcto, nivPeso, peso, fragil, carta);
 	addVisualElements(base);
 	return base;
 }
@@ -134,25 +101,73 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene)
 		&sdlutils().images().at("caja100")
 	};
 	auto packageBase = factory->createMultiTextureImage(Vector2D(1600.0f, 600.0f), Vector2D(320.5f, 245.5), textures);
-
+	//interaccion y fisicas
 	packageBase->addComponent<Depth>();
 	packageBase->addComponent<Gravity>();
 	DragAndDrop* drgPq = packageBase->addComponent<DragAndDrop>(true);
+	//herramientas
+	packageBase->getComponent<Trigger>()->addCallback([packageBase](ecs::Entity* entRec) {
+		Herramientas* herrEnt = entRec->getComponent<Herramientas>();
+		if (herrEnt != nullptr)
+		{
+			herrEnt->interact(packageBase);
+		}
+		});
+
+	packageBase->addComponent<MoverTransform>(packageBase->getComponent<Transform>()->getPos() - Vector2D(200, 0),
+		1, Easing::EaseOutBack)->disable();
 	return packageBase;
 }
 
-pq::Distrito PaqueteBuilder::distritoRND() {	//Este método devuelve un Distrito aleatorio entre todas las posibilidades
+void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
+{
+	//se puede quedar como atributo de la clase si vemos que hace falta mayor velocidad en el juego
+	DifficultySettings lvl1 = getLevelSetings(level);
+	pq::NivelPeso Nv;
+	int peso;
+	Nv = pesoRND(lvl1.weithChance, lvl1.weightErrorChance, peso);
+	pq::Distrito toDist = distritoRND();
+	pq::Calle toDir = calleRND(lvl1.streetErrorChance);
+	std::string dir;
+
+	if (toDir == Erronea || toDist == Erroneo)
+		//Cambiarlo por el sistema de calles errï¿½neas una vez estï¿½
+		//Simplemente serï¿½a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
+		//Y meterle un randomizador para que de esas pille la que mï¿½s le guste
+		//Tipo, haces distritoCalle_[Erroneo][rand]
+		dir = "(CALLE INVENTADA)";
+	else
+		dir = distritoCalle_[toDist][(int)toDir];
+
+	/*
+	TODO hacer que la creacion del paquete vaya en funcion de la necsidad de los dias
+	*/
+
+	Paquete* pq = packageBase->addComponent<Paquete>(toDist, toDir, dir, remitenteRND(), 
+		tipoRND(), boolRND(lvl1.stampErrorChance), 
+		Nv, peso,
+		boolRND(lvl1.notFragileChance), false);
+	addVisualElements(packageBase);
+	if (pq->getFragil()) {
+		//Wrap debe ir despues del Transform, Trigger y Multitextures
+		//Luis: hay que hacer que las rutas se saquen de un json
+		std::list<int> route{ pointRoute::LeftUp, pointRoute::MiddleUp, pointRoute::MiddleMid, pointRoute::MiddleDown, pointRoute::RightDown };
+		packageBase->addComponent<Wrap>(20, 0, route);
+	}
+}
+
+pq::Distrito PaqueteBuilder::distritoRND() {	//Este mï¿½todo devuelve un Distrito aleatorio entre todas las posibilidades
 	//TO DO: Cambiarlo para que solo salgan distritos desbloqueados
 	int rnd = sdlutils().rand().nextInt(0, 8);
 	return (pq::Distrito)rnd;
 }
 
-pq::TipoPaquete PaqueteBuilder::tipoRND() {	//Este método devuelve un Tipo de paquete aleatorio entre todas las posibilidades
+pq::TipoPaquete PaqueteBuilder::tipoRND() {	//Este mï¿½todo devuelve un Tipo de paquete aleatorio entre todas las posibilidades
 	int rnd = sdlutils().rand().nextInt(0, 5);
 	return (pq::TipoPaquete)rnd;
 }
 
-pq::Calle PaqueteBuilder::calleRND(int probError) {	//Este método devuelve una calle aleatoria de las posibilidades, con probabilidad de que salga un resultado erróneo
+pq::Calle PaqueteBuilder::calleRND(int probError) {	//Este mï¿½todo devuelve una calle aleatoria de las posibilidades, con probabilidad de que salga un resultado errï¿½neo
 	int rnd = sdlutils().rand().nextInt(0, 101);
 	if (rnd > probError) {
 		rnd = sdlutils().rand().nextInt(0, 3);
@@ -163,7 +178,7 @@ pq::Calle PaqueteBuilder::calleRND(int probError) {	//Este método devuelve una c
 	}
 }
 
-bool PaqueteBuilder::boolRND(int probFalse) { //Este método devuelve una valor aleatorio entre treu y false para un bool según una probabilidad
+bool PaqueteBuilder::boolRND(int probFalse) { //Este mï¿½todo devuelve una valor aleatorio entre treu y false para un bool segï¿½n una probabilidad
 	int rnd = sdlutils().rand().nextInt(0, 101);
 	if (rnd > probFalse) {
 		return true;
@@ -173,7 +188,7 @@ bool PaqueteBuilder::boolRND(int probFalse) { //Este método devuelve una valor a
 	}
 }
 
-pq::NivelPeso PaqueteBuilder::pesoRND(int probPeso, int probError, int& peso) {	//Este método elige aleatoriamente si colocar un sello de peso o no en el paquete y, en caso positivo,
+pq::NivelPeso PaqueteBuilder::pesoRND(int probPeso, int probError, int& peso) {	//Este mï¿½todo elige aleatoriamente si colocar un sello de peso o no en el paquete y, en caso positivo,
 	int rnd = sdlutils().rand().nextInt(0, 101);										//elige aleatoriamente si el resultado es correcto o incorrecto, devolviendo un peso para el paquete
 	if (rnd <= probPeso) {
 		pq::NivelPeso pes;
@@ -288,7 +303,7 @@ PaqueteBuilder::DifficultySettings PaqueteBuilder::getLevelSetings(int lvl)
 void PaqueteBuilder::addVisualElements(ecs::Entity* paq) {
 	Paquete* paqComp = paq->getComponent<Paquete>();
 
-	//Creamos la entidad de dirección y remitente
+	//Creamos la entidad de direcciï¿½n y remitente
 	createVisualDirections(paq, paqComp);
 
 	//Creamos la entidad Tipo sello 
@@ -298,6 +313,10 @@ void PaqueteBuilder::addVisualElements(ecs::Entity* paq) {
 		miTipo == pq::Joyas ? "selloJoyas" :
 		miTipo == pq::Materiales ? "selloMateriales" :
 		miTipo == pq::Armamento ? "selloArmamento" : "Desconocido");
+	if (!paqComp->getSelloCorrecto()) {
+		std::string rnd = std::to_string(sdlutils().rand().nextInt(0, 3));		
+		tipoString += "F" + rnd;		
+	}
 	crearSello(paq, tipoString, TIPO_SELLO_POS_X, TIPO_SELLO_POS_Y, TIPO_SELLO_SIZE, TIPO_SELLO_SIZE);
 
 	//Creamos la entidad Peso sello 
@@ -321,8 +340,7 @@ void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) 
 	Texture* distritoTex = new Texture(sdlutils().renderer(), paqComp->getDirecction(), *directionsFont, build_sdlcolor(0x000000ff), 500);
 	createdTextures.push_back(distritoTex);
 	Transform* distritoTr = distritoEnt->addComponent<Transform>(10, 165, 200, 50);
-	RenderImage* distritoRender = distritoEnt->addComponent<RenderImage>();
-	distritoRender->setTexture(distritoTex);
+	RenderImage* distritoRender = distritoEnt->addComponent<RenderImage>(distritoTex);
 	distritoTr->setParent(paq->getComponent<Transform>());
 
 	// Texto remitente
@@ -330,8 +348,7 @@ void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) 
 	Texture* remitenteTex = new Texture(sdlutils().renderer(), "Rte: " + paqComp->getRemitente(), *directionsFont, build_sdlcolor(0x000000ff), 500);
 	createdTextures.push_back(remitenteTex);
 	Transform* remitenteTr = remitenteEnt->addComponent<Transform>(10, 215, 150, 25);
-	RenderImage* remitenteRender = remitenteEnt->addComponent<RenderImage>();
-	remitenteRender->setTexture(remitenteTex);
+	RenderImage* remitenteRender = remitenteEnt->addComponent<RenderImage>(remitenteTex);
 	remitenteTr->setParent(paq->getComponent<Transform>());
 }
 

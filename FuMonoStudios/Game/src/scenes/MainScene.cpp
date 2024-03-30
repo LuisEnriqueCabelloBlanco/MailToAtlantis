@@ -11,14 +11,10 @@
 #include "../components/Clickeable.h"
 #include "../components/DragAndDrop.h"
 #include "../components/Trigger.h"
-#include "../components/Wrap.h"
-#include "../architecture/Game.h"
 #include <string>
 #include <list>
 #include "../sdlutils/Texture.h"
 #include "../components/PackageChecker.h"
-#include "../components/Herramientas.h"
-#include "../components/MultipleTextures.h"
 #include "../components/Gravity.h"
 #include "../components/MoverTransform.h"
 #include "../architecture/Time.h"
@@ -27,12 +23,9 @@
 #include "../architecture/GeneralData.h"
 #include "../sistemas/ComonObjectsFactory.h"
 #include "../components/Depth.h"
+#include <QATools/DataCollector.h>
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
-#include <QATools/DataCollector.h>
-
-
-
 
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 {
@@ -81,83 +74,59 @@ void ecs::MainScene::init()
 {
 	std::cout << "Hola Main" << std::endl;
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
-	//crear objetos
 	timer_ = MINIGAME_TIME;
 	// Fondo
-	Entity* Fondo = addEntity(ecs::layer::BACKGROUND);
-	Fondo->addComponent<Transform>(0, 0, sdlutils().width() / 1.25, sdlutils().height() / 1.25);
-	Fondo->addComponent<RenderImage>(&sdlutils().images().at("fondoOficina"));
+	factory_->setLayer(layer::BACKGROUND);
+	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
+		&sdlutils().images().at("fondoOficina"));
+
+	//for (int i = 0; i < 7; i++) {
+	//	createTubo((pq::Distrito)i);
+	//}
 
 	createManual();
 	createMiniManual();
 	createSpaceManual();
 
 	createClock();
-
+	
 	createPaquete(generalData().getPaqueteLevel());
 
-	for (int i = 0; i < 7; i++) {
-		createTubo((pq::Distrito)i);
+	createGarbage();
+
+
+	//creacion de las herramientas
+	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
+	int numTubos = generalData().getTubesAmount(); // coge el numero de tubos que están desbloqueados
+	int j = 0;
+	for (int i = 0;i < numTubos; i++) {
+		createTubo((pq::Distrito)i, true);
+		j++;
+	}
+	//Creación de paquetes bloqueados
+	for (int z = j; z < 7; z++) { //grande jose la los numeros magicos te la sabes
+		createTubo((pq::Distrito)z, false);
 	}
 
 	//createSelladores();
 
-	createInks();
+	//createInks();
   
   	//cinta envolver
-	factory_->setLayer(ecs::layer::TAPE);
-	Entity* cinta = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("cinta"));
-	cinta->addComponent<Gravity>();
-	cinta->addComponent<DragAndDrop>();
-	factory_->setLayer(ecs::layer::DEFAULT);
 
-	// papelera
-	Entity* papelera = addEntity(ecs::layer::BIN);
-	papelera->addComponent<Transform>(50, 650, 100, 150);
-	papelera->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
-	Trigger* papTrig = papelera->addComponent<Trigger>();
-	papTrig->addCallback([this](ecs::Entity* entRec) {
-		Paquete* paqComp = entRec->getComponent<Paquete>();
-		if (paqComp != nullptr)
-		{
-			if (paqComp->correcto())
-			{
-				createErrorMessage(paqComp, true, false);
-			}
-				
-			else
-			{ 
-				generalData().correctPackage();
-				correct_++;
-			}
-			
-			entRec->setAlive(false);
-			createPaquete(generalData().getPaqueteLevel());
-		}
-		});
+	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
 
 	// A medida que se vaya avanzando en el desarrollo, se tendra que expandir esto de apajo para que en X dia suceda algo o aparezcan nuevas herramientas
 	// Me gustaría que todo lo relacionado con los eventos de los dias y los paquetes y herramientas correspondientes estuviera documentado
 	// En el miro había un esquema, pero este estaba con poco detalle, lo suyo es en gdd ver estas cosas, pero se va trabajando en ello
+
 	int dia = generalData().getDia();
 	if (dia > 0 && dia < 2) {
-		Texture* texturaSellador = &sdlutils().images().at("sellador1");
-		Entity* sellador = addEntity(ecs::layer::STAMP);
-		Transform* transformSellador = sellador->addComponent<Transform>(560, 0, texturaSellador->width(), texturaSellador->height());
-		transformSellador->setScale(0.4);
-		RenderImage* renderSellador = sellador->addComponent<RenderImage>(texturaSellador);
-		sellador->addComponent<Gravity>();
-		sellador->addComponent<DragAndDrop>();
-		sellador->addComponent<Herramientas>();
-		sellador->getComponent<Herramientas>()->setFunctionality(TipoHerramienta::SelloCalleA);
+		createStamp(SelloCalleA);
+		createInks();
 	}
 	else if (dia >= 2 && dia < 4) {
-		Texture* texturaCinta = &sdlutils().images().at("cinta");
-		Entity* cinta = addEntity();
-		Transform* transformCinta = cinta->addComponent<Transform>(560, 0, texturaCinta->width() / 2, texturaCinta->height() / 2);
-		RenderImage* renderCinta = cinta->addComponent<RenderImage>(texturaCinta);
-		cinta->addComponent<Gravity>();
-		cinta->addComponent<DragAndDrop>();
+		createCinta();
 	}
 	else if (dia >= 4 && dia < 6) {}
 	else if (dia >= 6 && dia < 8) {}
@@ -199,18 +168,17 @@ void ecs::MainScene::createClock() {
 
 void ecs::MainScene::createInks() {
 
-	// Tinta rojo (1)
-	Entity* inkA = addEntity(layer::INK);
-	Texture* inkATex = &sdlutils().images().at("tintaA");
-	Transform* selloATR = inkA->addComponent<Transform>(300, 500, inkATex->width(), inkATex->height());
+	createOneInk(SelloCalleA);
+	createOneInk(SelloCalleB);
+	createOneInk(SelloCalleC);
 
-	selloATR->setScale(0.5);
+}
 
-	inkA->addComponent<RenderImage>(inkATex);
+void ecs::MainScene::createOneInk(TipoHerramienta type) {
+	Entity* ink = factory_->createImage(Vector2D(70 + 150 * type, 950), Vector2D(125, 73), &sdlutils().images().at("tinta"+std::to_string(type)));
+	Trigger* inkATri = ink->addComponent<Trigger>();
 
-	Trigger* inkATri = inkA->addComponent<Trigger>();
-
-	inkATri->addCallback([this](ecs::Entity* entRec) {
+	inkATri->addCallback([this, type](ecs::Entity* entRec) {
 
 		if (entRec->getLayer() == ecs::layer::STAMP) {
 
@@ -220,7 +188,7 @@ void ecs::MainScene::createInks() {
 
 			stampHerramienta->setFunctionality(SelloCalleA);
 
-			stampRender->setTexture(&sdlutils().images().at("sellador0"));
+			stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
 
 		}
 
@@ -229,59 +197,59 @@ void ecs::MainScene::createInks() {
 	
 
 
-	// Tinta azul (2)
-	Entity* inkB = addEntity(layer::INK);
-	Texture* inkBTex = &sdlutils().images().at("tintaB");
-	Transform* selloBTR = inkB->addComponent<Transform>(425, 500, inkBTex->width(), inkBTex->height());
+	//// Tinta azul (2)
+	//Entity* inkB = addEntity(layer::INK);
+	//Texture* inkBTex = &sdlutils().images().at("tintaB");
+	//Transform* selloBTR = inkB->addComponent<Transform>(425, 500, inkBTex->width(), inkBTex->height());
 
-	selloBTR->setScale(0.5);
+	//selloBTR->setScale(0.5);
 
-	inkB->addComponent<RenderImage>(inkBTex);
+	//inkB->addComponent<RenderImage>(inkBTex);
 
-	Trigger* inkBTri = inkB->addComponent<Trigger>();
+	//Trigger* inkBTri = inkB->addComponent<Trigger>();
 
-	inkBTri->addCallback([this](ecs::Entity* entRec) {
+	//inkBTri->addCallback([this](ecs::Entity* entRec) {
 
-		if (entRec->getLayer() == ecs::layer::STAMP) {
+	//	if (entRec->getLayer() == ecs::layer::STAMP) {
 
-			Herramientas* stampHerramienta = entRec->getComponent<Herramientas>();
+	//		Herramientas* stampHerramienta = entRec->getComponent<Herramientas>();
 
-			RenderImage* stampRender = entRec->getComponent<RenderImage>();
+	//		RenderImage* stampRender = entRec->getComponent<RenderImage>();
 
-			stampHerramienta->setFunctionality(SelloCalleB);
+	//		stampHerramienta->setFunctionality(SelloCalleB);
 
-			stampRender->setTexture(&sdlutils().images().at("sellador1"));
+	//		stampRender->setTexture(&sdlutils().images().at("sellador1"));
 
-		}
+	//	}
 
-	});
+	//});
 
-	// Tinta verde (3)
-	Entity* inkC = addEntity(layer::INK);
-	Texture* inkCTex = &sdlutils().images().at("tintaC");
-	Transform* selloCTR = inkC->addComponent<Transform>(550, 500, inkCTex->width(), inkCTex->height());
+	//// Tinta verde (3)
+	//Entity* inkC = addEntity(layer::INK);
+	//Texture* inkCTex = &sdlutils().images().at("tinta" + std::to_string(type));
+	//Transform* selloCTR = inkC->addComponent<Transform>(350 + 125 * (type), 500, inkCTex->width(), inkCTex->height());
 
-	selloCTR->setScale(0.5);
+	//selloCTR->setScale(0.5);
 
-	inkC->addComponent<RenderImage>(inkCTex);
+	//inkC->addComponent<RenderImage>(inkCTex);
 
-	Trigger* inkCTri = inkC->addComponent<Trigger>();
+	//Trigger* inkCTri = inkC->addComponent<Trigger>();
 
-	inkCTri->addCallback([this](ecs::Entity* entRec) {
+	//inkCTri->addCallback([this, type](ecs::Entity* entRec) {
 
-		if (entRec->getLayer() == ecs::layer::STAMP) {
+	//	if (entRec->getLayer() == ecs::layer::STAMP) {
 
-			Herramientas* stampHerramienta = entRec->getComponent<Herramientas>();
+	//		Herramientas* stampHerramienta = entRec->getComponent<Herramientas>();
 
-			RenderImage* stampRender = entRec->getComponent<RenderImage>();
+	//		RenderImage* stampRender = entRec->getComponent<RenderImage>();
 
-			stampHerramienta->setFunctionality(SelloCalleC);
+	//		stampHerramienta->setFunctionality(type);
 
-			stampRender->setTexture(&sdlutils().images().at("sellador2"));
+	//		stampRender->setTexture(&sdlutils().images().at("sellador2"));
 
-		}
+	//	}
 
-		});
+	//});
 
 }
 
@@ -312,101 +280,67 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 
 }
 
-void ecs::MainScene::createSelladores() {
-	createStamp(SelloCalleA);
-	createStamp(SelloCalleB);
-	createStamp(SelloCalleC);
-}
-
 void ecs::MainScene::createStamp(TipoHerramienta type)
 {
-	constexpr float STAMPSIZE = 102.4f;
+	if (type > 2) return;
+	constexpr float STAMPSIZE = 1;
 
-	factory_->setLayer(layer::OFFICEELEMENTS);
+	factory_->setLayer(layer::STAMP);
 
-	auto stamp = factory_->createImage(Vector2D(100,300+(int)type * 110),Vector2D(STAMPSIZE,STAMPSIZE), 
+	auto stamp = factory_->createImage(Vector2D(300, 300),
+		Vector2D(sdlutils().images().at("sellador" + std::to_string(type)).width() * STAMPSIZE, sdlutils().images().at("sellador" + std::to_string(type)).height() * STAMPSIZE),
 		& sdlutils().images().at("sellador" + std::to_string(type)));
 
-	stamp->addComponent<MoverTransform>(
-		stamp->getComponent<Transform>()->getPos(), 
-		0.5, 
-		Easing::EaseOutCubic)->disable();
-
-	stamp->addComponent<DragAndDrop>(true, [stamp]() {
-		stamp->getComponent<MoverTransform>()->enable();
-		});
+	stamp->addComponent<Gravity>();
+	stamp->addComponent<Depth>();
+	stamp->addComponent<DragAndDrop>();
 
 	Herramientas* herrSelladorA = stamp->addComponent<Herramientas>();
 	herrSelladorA->setFunctionality(type);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
 }
 
-void ecs::MainScene::createTubo(pq::Distrito dist) {
-	float scaleTubos = 0.3f;
-	Entity* tuboEnt = addEntity(ecs::layer::BACKGROUND);
-	Texture* texTubo = &sdlutils().images().at("tubo" + std::to_string(dist + 1));
+void ecs::MainScene::createCinta() {
 
-	Transform* tuboTr = tuboEnt->addComponent<Transform>(75 + (220 * dist), -40, texTubo->width(), texTubo->height());
-	tuboTr->setScale(scaleTubos);
-	tuboEnt->addComponent<RenderImage>(texTubo);
+	factory_->setLayer(ecs::layer::TAPE);
+	Entity* cinta = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("cinta"));
+	cinta->addComponent<Gravity>();
+	cinta->addComponent<DragAndDrop>();
+	cinta->addComponent<Depth>();
+	factory_->setLayer(ecs::layer::DEFAULT);
 
-	//if (desbloqueado) {
+}
+
+void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
+	constexpr float TUBE_WIDTH = 138;
+	constexpr float TUBE_HEITH = 282;
+	constexpr float TUBES_X_OFFSET = 200;
+	constexpr float DISTANCE_BETWEEN_TUBES = 220;
+	factory_->setLayer(ecs::layer::BACKGROUND);
+
+	Entity* tuboEnt = factory_->createImage(
+		Vector2D(TUBES_X_OFFSET + (DISTANCE_BETWEEN_TUBES * dist), -40),
+		Vector2D(TUBE_WIDTH, TUBE_HEITH),
+		&sdlutils().images().at("tubo" + std::to_string(dist + 1)));
+	if (unlock) {
+
 		Trigger* tuboTri = tuboEnt->addComponent<Trigger>();
-		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist);
-		tuboTri->addCallback([this, dist, tuboCheck](ecs::Entity* entRec) {
-			//comprobamos si es un paquete
-			Transform* entTr = entRec->getComponent<Transform>();
-		if (entRec->getComponent<Paquete>() != nullptr) {
-			entRec->removeComponent<Gravity>();
-			//entRec->addComponent<MoverTransform>( // animación básica del paquete llendose
-			//	entTr->getPos() + Vector2D(0, -600), 1.5, Easing::EaseOutCubic);
-			auto mover = entRec->getComponent<MoverTransform>();
-			mover->setEasing(Easing::EaseOutCubic);
-			mover->setFinalPos(entTr->getPos() + Vector2D(0, -600));
-			//mover->setMoveTime(1.7f);
-			mover->enable();
-
-			entRec->addComponent<SelfDestruct>(1, [this]() {
-				generalData().correctPackage();
-			createPaquete(generalData().getPaqueteLevel());
-				});
-			if (tuboCheck->checkPackage(entRec->getComponent<Paquete>())) {
-				correct_++;
-			}
-			else {
-				fails_++;
-				Entity* NotaErronea = addEntity(ecs::layer::BACKGROUND);
-				NotaErronea->addComponent<ErrorNote>(entRec->getComponent<Paquete>(), false, dist != entRec->getComponent<Paquete>()->getDistrito());
-			}
-			/*
-			Recogida de datos del paquete enviado (no esta implementado el revisar si era correcto o no
-			*/
-#ifdef QA_TOOLS
-			dataCollector().recordPacage(entRec->getComponent<Paquete>());
-#endif // QA_TOOLS
-			std::cout << "crazy! " << dist << std::endl;
-		}
-
-			});
-		tuboCheck->addCondition([dist](Paquete* paqRec) -> bool {
-			return paqRec->getDistrito() == dist;
-			});
-	//}
-	/*
-	else {
-		Entity* cruzEnt = addEntity(ecs::layer::UI);
-		Texture* texCruz = &sdlutils().images().at("cruz");
-
-		Transform* cruzTr = cruzEnt->addComponent<Transform>(75 + (220 * dist), 120, texCruz->width(), texCruz->height());
-		cruzTr->setScale(0.2f);
-		cruzEnt->addComponent<RenderImage>(texCruz);
+		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this);
 	}
-	*/
+	else {
+		factory_->setLayer(layer::UI);
+		auto tubeTr = tuboEnt->getComponent<Transform>();
 
-#ifdef _DEBUG
-	std::cout << "Creado el tubo  " << dist << std::endl;
-#endif // _DEBUG
+		auto cross = factory_->createImage(Vector2D(0, 120),
+			Vector2D(tubeTr->getWidth(), tubeTr->getWidth()),
+			&sdlutils().images().at("cruz"));
 
+		cross->getComponent<Transform>()->setParent(tubeTr);
+
+	}
 }
+
 
 void ecs::MainScene::createManual()
 {
@@ -439,9 +373,8 @@ void ecs::MainScene::createManual()
 	right->getComponent<Transform>()->setParent(manualTransform);
 
 	auto previous = [manualRender]() {manualRender->previousTexture();};
-	auto left = factory_->createImageButton(Vector2D(75, 250), buttonSize, buttonTexture, previous);
+	auto left = factory_->createImageButton(Vector2D(75, 280), buttonSize, buttonTexture, previous);
 	left->getComponent<Transform>()->setParent(manualTransform);
-	left->getComponent<Transform>()->setScale(-1);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
@@ -482,14 +415,14 @@ void ecs::MainScene::createMiniManual() {
 
 				Vector2D pos{ manualTransform->getPos().getX() - manualTR->getWidth() / 2, manualTransform->getPos().getY() - manualTR->getHeigth() / 2 };
 
-				manualTR->setPos(pos);
 
 				manualTransform->setPos(minimanualX, minimanualY);
 
 				miniManualEnt_->setActive(false);
 
 				manualEnt_->setActive(true);
-
+				manualTR->setPos(pos);
+				manualEnt_->getComponent<Depth>()->updateChildPos();
 			}
 			else {
 
@@ -501,11 +434,12 @@ void ecs::MainScene::createMiniManual() {
 
 				if (it == entTouchingID.end()) {
 
-					manualTransform->setPos(minimanualX, minimanualY);
 
+					manualTransform->setPos(minimanualX, minimanualY);
 					miniManualEnt_->setActive(false);
 
 					manualEnt_->setActive(true);
+
 
 				}
 
@@ -561,6 +495,16 @@ void ecs::MainScene::createSpaceManual() {
 }
 
 
+void ecs::MainScene::createGarbage()
+{
+	/*TDOO Meter en un metdo */
+	// papelera
+	Entity* papelera = addEntity(ecs::layer::FOREGROUND);
+	papelera->addComponent<Transform>(50, 650, 100, 150);
+	papelera->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
+	Trigger* papTrig = papelera->addComponent<Trigger>();
+	papelera->addComponent<PackageChecker>(Erroneo, this);
+}
 #ifdef DEV_TOOLS
 
 
@@ -571,10 +515,10 @@ void ecs::MainScene::makeDataWindow()
 	std::string time = "Current Game Time: " + std::to_string(timer_);
 	ImGui::Text(time.c_str());
 	//Contador de aciertos
-	std::string data = "Aciertos: " + std::to_string(correct_);
+	std::string data = "Aciertos: " + std::to_string(generalData().getCorrects());
 	ImGui::Text(data.c_str());
 	//contador de Fallos
-	data = "Fallos: " + std::to_string(fails_);
+	data = "Fallos: " + std::to_string(generalData().getFails());
 	ImGui::Text(data.c_str());
 	//Nivel de los paquetes
 	data = "Pacage Level: " + std::to_string(generalData().getPaqueteLevel());
@@ -596,21 +540,24 @@ void ecs::MainScene::makeControlsWindow()
 		static bool correcto,fragil, carta = false;
 		ImGui::Checkbox("Custom Package", &customPackage);
 		if (customPackage) {
+			//Los valores pueden ser de 0 a 7
 			ImGui::InputInt("Distrito", &dist);
+			//Los valores pueden ser de 0 a 3
 			ImGui::InputInt("Calle",&calle);
+			//Los valores son de 0 a 4
 			ImGui::InputInt("Tipo",&tipo);
-			ImGui::Checkbox("Correcto", &correcto);
+			ImGui::Checkbox("SelloCorrecto", &correcto);
 			ImGui::InputInt("NivPeso",&nivPeso);
 			ImGui::InputInt("Peso", &peso);
 			ImGui::Checkbox("Fragil", &fragil);
 			ImGui::Checkbox("Carta", &carta);
-			ImGui::InputInt("Peso",&peso);
 		}
-		ImGui::Checkbox("Next Pacage Correct", &nextPacageCorrect_);
+		//ImGui::Checkbox("Next Pacage Correct", &nextPacageCorrect_);
 		if (ImGui::Button("Create pacage")) {
 			if (customPackage) {
-				mPaqBuild_->customPackage((pq::Distrito)dist,(pq::Calle)calle,"Sujeto de Pruebas", (pq::TipoPaquete)tipo, 
+				auto custom = mPaqBuild_->customPackage((pq::Distrito)dist,(pq::Calle)calle,"Sujeto de Pruebas", (pq::TipoPaquete)tipo, 
 					correcto, (pq::NivelPeso)nivPeso, peso, fragil, carta);
+				custom->getComponent<MoverTransform>()->enable();
 			}
 			else {
 				createPaquete(generalData().getPaqueteLevel());
@@ -623,9 +570,6 @@ void ecs::MainScene::makeControlsWindow()
 		int lvl = generalData().getPaqueteLevel();
 		ImGui::InputInt("Nivel del Paquete", &lvl);
 		generalData().setPaqueteLevel(lvl);
-		//ImGui::Checkbox("Sellos",&stampsUnloked_);
-		//ImGui::Checkbox("Peso",&weightUnloked_);
-		//ImGui::Checkbox("Cinta", &cintaUnloked_);
 	}
 	if (ImGui::CollapsingHeader("Tiempo")) {
 		if (ImGui::Button("Reset Timer")) {
@@ -641,11 +585,9 @@ void ecs::MainScene::makeControlsWindow()
 }
 #endif // DEV_TOOLS
 
+
+
 void ecs::MainScene::createPaquete (int lv) {
-	/*podriamos hacer que lo que le pases al paquete builder sean las estadisticas o un json 
-	con las configuraciones de los niveles de dificultad y tener un constructora a parte que nos permita crear paquetes con configuraciones
-	personalizadas*/
-	auto pac = mPaqBuild_->paqueteRND(lv, this);
-	pac->addComponent<MoverTransform>(pac->getComponent<Transform>()->getPos()-Vector2D(200,0),
-		1,Easing::EaseOutBack)->enable();
+	auto pac = mPaqBuild_->buildPackage(lv, this);
+	pac->getComponent<MoverTransform>()->enable();
 }
