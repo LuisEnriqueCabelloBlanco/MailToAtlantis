@@ -54,8 +54,6 @@ private:
 	//Comprueba si ha chocado con el punto especificado por última vez
 	void checkPointTouch(int point);
 
-	//Metodo para leer todas las rutas del JSON
-	void getRoutesFromJSON();
 
 	Transform* tr_ = nullptr;
 
@@ -65,6 +63,7 @@ private:
 
 	//Ruta con los distintos puntos por los que debe pasar el ratón
 	std::list<int> route;
+
 
 	//ultimo punto por el que se a pasado de la ruta
 	std::list<int>::iterator lastPoint;

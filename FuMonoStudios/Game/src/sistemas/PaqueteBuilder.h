@@ -94,6 +94,12 @@ private:
 	void getStreetsFromJSON(const std::string& filename, Distrito dist,const std::string& distString);
 	void getNamesFromJSON();
 
+	//Metodo para leer todos los patrones de empaquetado del JSON
+	void getRoutesFromJSON();
+
+	//Elije una ruta random del JSON
+	void selectRandomRoute();
+
 	DifficultySettings getLevelSetings(int lvl);
 
 	// Se llama a este después de crear el paquete
@@ -109,6 +115,14 @@ private:
 	std::vector<Texture*> createdTextures;
 
 	ecs::Scene* mScene_;
+
+	//Ruta con los distintos puntos por los que debe pasar el ratón
+	std::list<int> route;
+
+	//Vector para almacenar las rutas leídas del JSON
+	std::vector<std::list<int>> allRoutes;
+
+
 
 	/*
 	*TODO: Meter estos datos en el paquete builder
