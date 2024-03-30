@@ -15,6 +15,9 @@
 
 
 
+
+
+
 class Game : public Singleton<Game> {
 
 	friend Singleton<Game>;

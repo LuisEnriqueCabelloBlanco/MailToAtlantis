@@ -68,12 +68,12 @@ namespace ecs {
 
 		ComonObjectsFactory* getFactory() { return factory_; }
 	protected:
-    /// <summary>
-		/// Vector de los objetos que pertenecen a la escena
-		/// </summary>
-		std::array<std::vector<Entity*>,ecs::layer::maxLayerId> objs_;
-    
-		std::list<Entity* > colisionEntities_;
+		/// <summary>
+			/// Vector de los objetos que pertenecen a la escena
+			/// </summary>
+		std::array<std::vector<Entity*>, ecs::layer::maxLayerId> objs_;
+
+		std::list<Entity*> colisionEntities_;
 
 		std::queue<std::pair<ecs::layer::layerId, std::vector<Entity*>::iterator>> del_;
 
