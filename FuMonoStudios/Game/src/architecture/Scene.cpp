@@ -9,6 +9,9 @@ using objListIt = std::array<std::vector<Entity*>, ecs::layer::maxLayerId>::iter
 namespace ecs {
 	Scene::Scene() :objs_() {
 		factory_ = new ComonObjectsFactory(this);
+		for (auto& v : objs_) {
+			v.reserve(10);
+		}
 	}
 	Scene::~Scene() {
 		clearScene();

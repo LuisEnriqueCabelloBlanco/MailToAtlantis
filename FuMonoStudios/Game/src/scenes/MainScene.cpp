@@ -91,6 +91,7 @@ void ecs::MainScene::init()
 	createClock();
 
 	createGarbage();
+	createPaquete(generalData().getPaqueteLevel());
 
 	//creacion de las herramientas
 	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
@@ -105,7 +106,6 @@ void ecs::MainScene::init()
 		createTubo((pq::Distrito)z, false);
 	}
 
-	createPaquete(generalData().getPaqueteLevel());
 
 	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
 
@@ -157,7 +157,7 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 			RenderImage* stampRender = entRec->getComponent<RenderImage>();
 
-			stampHerramienta->setFunctionality(SelloCalleA);
+			stampHerramienta->setFunctionality(type);
 
 			stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
 
