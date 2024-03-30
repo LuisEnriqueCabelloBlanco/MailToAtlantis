@@ -61,6 +61,11 @@ namespace ecs {
 		/// USAR DESPUES DE HABER NAVEGADO
 		/// </summary>
 		void addObjects(ecs::Entity* e);
+
+	/// <summary>
+	/// Setea la navegabilidad a true de este lugar
+	/// </summary>
+		void setNavegable(bool value);
 	private:
 		//Puntero a la textura del fondo
 		Texture* backGround_;

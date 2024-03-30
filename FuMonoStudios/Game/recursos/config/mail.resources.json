@@ -100,7 +100,8 @@
     {"id": "reloj","file": "recursos/images/Reloj.png"},
     {"id": "reloj2","file": "recursos/images/Reloj2.png"},
     {"id": "manecillaL","file": "recursos/images/manecillaL.png"},
-    {"id": "manecillaS","file": "recursos/images/manecillaS.png"}
+    {"id": "manecillaS","file": "recursos/images/manecillaS.png"},
+    {"id": "luz","file": "recursos/images/luz.png"}
   ],
   "fonts": [
     {
@@ -128,5 +129,30 @@
       "file": "recursos/fonts/Roboto-Thin.ttf",
       "size": 50
     }
-  ]
+  ],
+  "sounds": [
+    {
+        "id": "click",
+        "file": "recursos/sounds/click.wav"
+    },
+    {
+      "id": "arrastrar",
+      "file": "recursos/sounds/arrastrar.wav"
+  },
+  {
+    "id": "choque",
+    "file": "recursos/sounds/choque.wav"
+}
+],
+"musics":[
+    {
+        "id": "trabajo",
+        "file": "recursos/sounds/imperial_march.wav"
+    },
+    {
+        "id": "mainMenu",
+        "file": "recursos/sounds/DQOverture.wav"
+    }
+
+]
 }

@@ -26,6 +26,7 @@ namespace ecs {
 			SELFDESTRUCT,
 			DEPTH,
 			ERROR_NOTE,
+			IMAGEWITHLIGHT,
 			DELAYEDCALLBACK,
 			CLOCKAUX,
 			// do not remove this
