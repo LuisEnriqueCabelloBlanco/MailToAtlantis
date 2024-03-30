@@ -87,13 +87,15 @@
     {"id": "cartel","file": "recursos/images/CartelCompleto.png"},
     {"id": "cuadroDialogo","file": "recursos/images/CuadroDialogo.png"},
     {"id": "miniManual","file": "recursos/images/ManualMini.png"},
-    {"id": "abigail","file": "recursos/images/Abigail Ampoure.png"},
-    {"id": "gargafiel","file": "recursos/images/Gargafiel Mustaki.png"},
-    {"id": "glover","file": "recursos/images/Glover Globus.png"},
-    {"id": "pancracio","file": "recursos/images/Pancracio Warawa.png"},
-    {"id": "paulino","file": "recursos/images/Paulino Tinteiros.png"},
-    {"id": "anemos","file": "recursos/images/Anemos Tokugawa.png"},
-    {"id": "abakand","file": "recursos/images/Abakand Istacoz.png"},
+
+
+    {"id": "Tarotisa","file": "recursos/images/Abigail Ampoure.png"},
+    {"id": "Secretario","file": "recursos/images/Gargafiel Mustaki.png"},
+    {"id": "Contable","file": "recursos/images/Glover Globus.png"},
+    {"id": "Campesino","file": "recursos/images/Pancracio Warawa.png"},
+    {"id": "Artesano","file": "recursos/images/Paulino Tinteiros.png"},
+    {"id": "Vagabundo","file": "recursos/images/Anemos Tokugawa.png"},
+    {"id": "Soldado","file": "recursos/images/Abakand Istacoz.png"},
     
     {"id": "reloj","file": "recursos/images/Reloj.png"},
     {"id": "reloj2","file": "recursos/images/Reloj2.png"},

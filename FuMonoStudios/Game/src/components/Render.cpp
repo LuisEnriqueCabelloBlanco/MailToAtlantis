@@ -37,11 +37,6 @@ void RenderImage::render() const {
 
 }
 
-void RenderImage::setTexture(Texture* texture)
-{
-	mTexture_ = texture;
-}
-
 const Texture* RenderImage::getTexture() {
 	return texturesVector_[currentTextureIndx_];
 }
