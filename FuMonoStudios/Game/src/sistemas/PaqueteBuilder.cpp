@@ -20,6 +20,7 @@ PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
 	getStreetsFromJSON(filename, Apolo, "Apolo");
 	getStreetsFromJSON(filename, Poseidon, "Poseidon");
 	getStreetsFromJSON(filename, Erroneo, "Erroneo");
+	getNamesFromJSON();
 }
 
 PaqueteBuilder::~PaqueteBuilder() {
@@ -242,13 +243,68 @@ pq::NivelPeso PaqueteBuilder::pesoRND(int probPeso, int probError, int& peso) {	
 		return pq::NivelPeso::Ninguno;
 	}
 }
+void PaqueteBuilder::getNamesFromJSON() {
+	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(REMITENT_SETTINGS_PATH));
 
-std::string PaqueteBuilder::remitenteRND() {
-	
-	// Falta crear un json/txt con todos los posibles nombres random
-	// y asignar uno random
+	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
+		throw "Something went wrong while load/parsing '" + REMITENT_SETTINGS_PATH + "'";
+	}
 
-	return "Nombre Random";
+	// we know the root is JSONObject
+	JSONObject root = jValueRoot->AsObject();
+	JSONValue* jValue = nullptr;
+
+	jValue = root["Name"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {			
+			for (auto v : jValue->AsArray()) {
+				if (v->IsString()) {
+					std::string aux = v->AsString();
+#ifdef _DEBUG
+					std::cout << "Loading name with id: " << aux << std::endl;
+#endif
+					names.push_back(aux);
+				}
+				else {
+					throw "'Name' array in '" + REMITENT_SETTINGS_PATH
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'Name' is not an array in '" + REMITENT_SETTINGS_PATH + "'";
+		}
+	}	
+	jValue = root["Surname"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			for (auto v : jValue->AsArray()) {
+				if (v->IsString()) {
+					std::string aux = v->AsString();
+#ifdef _DEBUG
+					std::cout << "Loading name with id: " << aux << std::endl;
+#endif
+					surnames.push_back(aux);
+				}
+				else {
+					throw "'Surname' array in '" + REMITENT_SETTINGS_PATH
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'Surname' is not an array in '" + REMITENT_SETTINGS_PATH + "'";
+		}
+	}
+}
+
+std::string PaqueteBuilder::remitenteRND() {			
+	std::string sol;
+	sol = names[sdlutils().rand().nextInt(0, names.size())];
+	sol += " ";
+	sol += surnames[sdlutils().rand().nextInt(0, surnames.size())];
+
+	return sol;	
 }
 
 void PaqueteBuilder::getStreetsFromJSON(const std::string& filename, Distrito dist, const std::string& distString)

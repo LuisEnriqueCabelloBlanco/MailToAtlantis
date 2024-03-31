@@ -277,6 +277,7 @@
   <ItemGroup>
     <None Include="Properties.props" />
     <None Include="recursos\config\mail.direcctions.json" />
+    <None Include="recursos\config\mail.destinatarios.json" />
     <None Include="recursos\config\mail.resources.json" />
     <None Include="recursos\data\dialogos.json" />
     <None Include="recursos\data\npcData.json" />
