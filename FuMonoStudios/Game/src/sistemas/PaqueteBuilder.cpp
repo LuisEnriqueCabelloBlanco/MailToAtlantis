@@ -19,6 +19,7 @@ PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
 	getStreetsFromJSON(filename, Hermes, "Hermes");
 	getStreetsFromJSON(filename, Apolo, "Apolo");
 	getStreetsFromJSON(filename, Poseidon, "Poseidon");
+	getStreetsFromJSON(filename, Erroneo, "Erroneo");
 }
 
 PaqueteBuilder::~PaqueteBuilder() {
@@ -50,11 +51,15 @@ ecs::Entity* PaqueteBuilder::cartaRND(ecs::Scene* mScene) {
 	pq::Calle toDir = calleRND(10);
 	std::string dir;
 	if (toDir == Erronea)
+	{
 		//Cambiarlo por el sistema de calles err�neas una vez est�
 		//Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
 		//Y meterle un randomizador para que de esas pille la que m�s le guste
 		//Tipo, haces distritoCalle_[Erroneo][rand]
-		dir = "(CALLE INVENTADA)";
+		//dir = "(CALLE INVENTADA)";
+		int rnd = sdlutils().rand().nextInt(0, distritoCalle_[Erroneo].size());
+		dir = distritoCalle_[Erroneo][rnd];
+	}
 	else
 		dir = distritoCalle_[toDist][toDir];
 	ent->addComponent<Paquete>(distritoRND(), calleRND(20),dir, remitenteRND(), tipoRND(), true, pq::NivelPeso::Ninguno, PESO_CARTA, false, true);
@@ -130,12 +135,18 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 	pq::Calle toDir = calleRND(lvl1.streetErrorChance);
 	std::string dir;
 
+
+
 	if (toDir == Erronea || toDist == Erroneo)
+	{
 		//Cambiarlo por el sistema de calles err�neas una vez est�
-		//Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
-		//Y meterle un randomizador para que de esas pille la que m�s le guste
-		//Tipo, haces distritoCalle_[Erroneo][rand]
-		dir = "(CALLE INVENTADA)";
+        //Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
+        //Y meterle un randomizador para que de esas pille la que m�s le guste
+        //Tipo, haces distritoCalle_[Erroneo][rand]
+        //dir = "(CALLE INVENTADA)";
+		int rnd = sdlutils().rand().nextInt(0, distritoCalle_[Erroneo].size());
+		dir = distritoCalle_[Erroneo][rnd];
+	}
 	else
 		dir = distritoCalle_[toDist][(int)toDir];
 
