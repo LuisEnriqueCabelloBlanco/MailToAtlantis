@@ -115,9 +115,11 @@ void ecs::MainScene::init()
 
 	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
 
+	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	int dia = generalData().getDia();
 	if (dia > 0) {
 		createStamp(SelloCalleA);
+		createPaquete(generalData().getPaqueteLevel());
 	}
 	else if (dia >= 2) {
 		createCinta();
