@@ -45,7 +45,6 @@
     <ClCompile Include="src\utils\Vector2D.cpp">
       <Filter>utilsSource</Filter>
     </ClCompile>
-    <ClCompile Include="src\scenes\ExplorationScene2.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
     <ClCompile Include="ImGui\imgui_demo.cpp" />
     <ClCompile Include="ImGui\imgui_draw.cpp" />
@@ -59,7 +58,7 @@
     <ClCompile Include="src\architecture\Config.cpp" />
     <ClCompile Include="src\components\DelayedCallback.cpp" />
     <ClCompile Include="src\entities\ClockAux.cpp" />
-    <ClCompile Include="src\scenes\PauseScene.cpp" />
+    <ClCompile Include="src\components\RenderWithLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -133,13 +132,12 @@
     <ClInclude Include="src\utils\Vector2D.h">
       <Filter>utilsHeader</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\Dialog_Manager.h">
+    <ClInclude Include="src\components\DialogManager.h">
       <Filter>componetsHeader</Filter>
     </ClInclude>
     <ClInclude Include="src\components\DragAndDrop.h">
       <Filter>componetsHeader</Filter>
     </ClInclude>
-    <ClInclude Include="src\scenes\ExplorationScene2.h" />
     <ClInclude Include="src\utils\checkML.h" />
     <ClInclude Include="ImGui\imconfig.h" />
     <ClInclude Include="ImGui\imgui.h" />
@@ -156,11 +154,11 @@
     <ClInclude Include="src\architecture\Config.h" />
     <ClInclude Include="src\components\DelayedCallback.h" />
     <ClInclude Include="src\entities\ClockAux.h" />
-    <ClInclude Include="src\scenes\PauseScene.h" />
+    <ClInclude Include="src\components\RenderWithLight.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\MultipleTextures.h" />
-    <ClCompile Include="src\components\Dialog_Manager.cpp" />
+    <ClCompile Include="src\components\DialogManager.cpp" />
     <ClCompile Include="src\components\DialogComponent.cpp" />
     <ClInclude Include="src\components\DialogComponent.h" />
     <ClInclude Include="src\components\PackageChecker.h" />
@@ -175,6 +173,11 @@
     <None Include="Properties.props" />
     <None Include="recursos\config\mail.direcctions.json" />
     <None Include="recursos\config\mail.resources.json" />
+    <None Include="recursos\dialogos\dialogosNPC.json" />
+    <None Include="recursos\dialogos\dialogos.json" />
+    <None Include="recursos\data\npcData.json" />
+    <None Include="recursos\data\dialogos.json" />
+    <None Include="recursos\config\mail.destinatarios.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="recursos\images\Alimentos.png" />

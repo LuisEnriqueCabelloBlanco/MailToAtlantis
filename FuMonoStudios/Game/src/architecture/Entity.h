@@ -5,6 +5,7 @@
 #include "Component.h"
 #include "Scene.h"
 #include "../components/Trigger.h"
+#include "../components/Transform.h"
 #include "../components/DragAndDrop.h"
 //class Manager;
 
@@ -13,7 +14,7 @@ namespace ecs {
 	{
 	public:
 
-		Entity(Scene* scene, ecs::layer::layerId ly) : scene_(scene), cmps_(), currCmps_(), alive_(), myLayer(ly),enable_(true),active_(true) {
+		Entity(Scene* scene, ecs::layer::layerId ly) : scene_(scene), cmps_(), currCmps_(), alive_(), myLayer(ly), mySpecifyLayer(ly), enable_(true),active_(true) {
 			currCmps_.reserve(cmp::maxComponentId);
 		};
 
@@ -32,7 +33,22 @@ namespace ecs {
 
 		inline void setAlive(bool alive) { alive_ = alive; };
 
-		inline void setActive(bool active) { active_ = active; };
+		inline void setActive(bool active) { 
+
+			Transform* myTR = getComponent<Transform>();
+
+			if (myTR != nullptr) {
+				myTR->setActiveChildren(active);
+			}
+
+			active_ = active; 
+			if (active) {
+				myLayer = mySpecifyLayer;
+			}
+			else {
+				myLayer = ecs::layer::INACTIVE;
+			}
+		};
 
 		inline void setEnable(bool enable) { enable_ =enable; };
 
@@ -135,6 +151,8 @@ namespace ecs {
 
 		std::vector<Entity*>::iterator mIt_;
 		ecs::layer::layerId myLayer = ecs::layer::DEFAULT;
+		//La layer que se especifico al principio para la entidad, esta no se cambia nunca y es una referencia para poder volver a ella
+		ecs::layer::layerId mySpecifyLayer = ecs::layer::DEFAULT;
 		std::vector<Component*> currCmps_;
 		std::array<Component*, cmp::maxComponentId> cmps_;
 

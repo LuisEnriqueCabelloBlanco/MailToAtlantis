@@ -14,18 +14,19 @@
 #include "../sdlutils/Texture.h"
 #include "../components/DialogComponent.h"
 #include "../sistemas/ComonObjectsFactory.h"
+#include "../architecture/GeneralData.h"
+#include "../components/DelayedCallback.h"
 #include <architecture/GameConstants.h>
 
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
-
-	dialogMngr_.setDialogues("recursos/dialogos/dialogo.txt");
 	initPlacesDefaultMap();
 	initDirectionsDefaultMap();
 	actualPlace_ = &hestia;
 	createObjects("Hestia");
 	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
-
+	canStartConversation = true;
+	generalData().setDayData();
 }
 
 ecs::ExplorationScene::~ExplorationScene()
@@ -134,7 +135,7 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 		actualPlace_ = actualPlace_->getPlaceFromDirection(placeDir);
 }
 
-ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string placeDir, float scale)
+ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string placeDir, float scale, int flip)
 {
 	//para crear la flecha a hefesto
 
@@ -150,6 +151,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	
 	CallbackClickeable cosa = [this, placeDir]() {
 		if (actualPlace_->navigate(placeDir)) {
+			closeConversation();
 			actualPlace_->killObjects();
 			placeToGo.push_back(placeDir);
 			
@@ -158,40 +160,48 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 
 	ecs::Entity* Arrow = factory.createImageButton(pos, size, sujetaplazas, cosa);
 
+	Transform* arrowTR = Arrow->getComponent<Transform>();
+
+	if (flip == 1) {
+		arrowTR->setFlip(SDL_FLIP_VERTICAL);
+	}
+	else if (flip == 2) {
+		arrowTR->setFlip(SDL_FLIP_HORIZONTAL);
+	}
+	else {
+		arrowTR->setFlip(SDL_FLIP_NONE);
+	}
+
 	factory.setLayer(ecs::layer::DEFAULT);
 	
 	return Arrow;
 
 }
 
-ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, std::string character, float scale) {
-
-	// Para Dani: El Personaje PlaceHolder que te he creado se compone del bot�n de press que al pulsarse te crea
-// la caja de fondo y te empieza a renderizar el texto (ojo: si lo pulsas varias veces creas varias, esto lo puedes 
-// solucionar sacando las entidades de box al h y comprobando si punteros a entidad son null o con un booleano que
-// haga de flag)
-
-// Para Dani: Aqu� le hacemos clickable y le ponemos como callback el m�todo funcPress
+ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
 
 	ComonObjectsFactory factory(this);
 
 	Texture* texturaBoton = &sdlutils().images().at(character);
 	Vector2D size{ texturaBoton->width() * scale, texturaBoton->height() * scale };
 	
-	CallbackClickeable funcPress = [this]() {
-		//Esto ser�a la caja del fondo (lo de SDL que se ve)
-		ecs::Entity* boxBg = addEntity();
-		auto bgTr = boxBg->addComponent<Transform>(100, sdlutils().height() - 250, sdlutils().width() - 200, 200);
-		boxBg->addComponent<RenderImage>(&sdlutils().images().at("cuadroDialogo"));
-		actualPlace_->addObjects(boxBg);
+	// al pulsar sale el dialogo
+	CallbackClickeable funcPress = [this, character]() {
 
-		//Aqu� pillar�a el di�logo con el manager y crear�a la entidad que lo renderiza
-		ecs::Entity* dialogoBox = addEntity();
-		auto textTr = dialogoBox->addComponent<Transform>(80, 55, 100, 100);
-		textTr->setParent(bgTr);
-		dialogoBox->addComponent<RenderImage>();
-		dialogoBox->addComponent<DialogComponent>(&dialogMngr_);
-		actualPlace_->addObjects(dialogoBox);
+		if (canStartConversation)
+		{
+			canStartConversation = false;
+
+			boxBackground->getComponent<RenderImage>()->setTexture(&sdlutils().images().at("cuadroDialogo"));
+
+			// activamos los dialogos correspondientes
+			std::pair<const std::string, int> aux = generalData().getNPCData(
+				generalData().stringToPersonaje(character))->getDialogueInfo();
+
+			dialogMngr_.setDialogues(generalData().stringToPersonaje(character), aux.first, aux.second);
+
+			textDialogue->addComponent<DialogComponent>(&dialogMngr_, this);
+		}
 	};
 
 	ecs::Entity* BotonPress = factory.createImageButton(pos, size, texturaBoton, funcPress);
@@ -222,7 +232,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 			
 			demeter.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 
 		}
@@ -234,15 +244,13 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 
 
 		}
-		
-
 	}
 	else if (place == "Hefesto")
 	{
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 
 			hefesto.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 
 		}
@@ -258,7 +266,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 	else if (place == "Hestia") {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 			hestia.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 		}
 
@@ -269,6 +277,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 
 
 		}
+
 
 		//boton ir a trabajar
 		ecs::Entity* botonTrabajar = addEntity();
@@ -284,7 +293,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 
 			artemisa.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 
 		}
@@ -301,7 +310,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 
 			hermes.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 
 		}
@@ -318,7 +327,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 
 			apolo.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 
 		}
@@ -335,7 +344,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
 
 			poseidon.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_));
+				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
 
 		}
@@ -348,6 +357,26 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 
 		}
 	}
+
+	// creamos la entidad caja dialogo
+	boxBackground = addEntity(ecs::layer::UI);
+	auto bgTr = boxBackground->addComponent<Transform>(100, LOGICAL_RENDER_HEITH - 250, LOGICAL_RENDER_WIDTH - 100, 200);
+	boxBackground->addComponent<RenderImage>(nullptr);
+
+	// entidad del texto
+	textDialogue = addEntity(ecs::layer::UI);
+	auto textTr = textDialogue->addComponent<Transform>(100, 100, 80, 100);
+	textTr->setParent(bgTr);
+	textDialogue->addComponent<RenderImage>();
+}
+
+void ecs::ExplorationScene::closeConversation() {
+	textDialogue->getComponent<RenderImage>()->setTexture(nullptr);
+	textDialogue->removeComponent<DialogComponent>();
+	boxBackground->getComponent<RenderImage>()->setTexture(nullptr);
+	textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
+		canStartConversation = true;
+		});
 }
 
 //LUGAR__________________________________________________________________________________________

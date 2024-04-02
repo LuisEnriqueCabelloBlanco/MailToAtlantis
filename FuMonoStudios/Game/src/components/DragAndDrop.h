@@ -22,6 +22,7 @@ public:
 	__CMP_DECL__(ecs::cmp::DRAGANDDROP)
 	DragAndDrop();
 	DragAndDrop(bool usingClosestEnt);
+	DragAndDrop(bool usingClosestEnt, bool usingOwnCallback);
 	DragAndDrop(bool usingClosestEnt, SimpleCallback func);
 
 	~DragAndDrop();
@@ -48,5 +49,7 @@ private:
 
 	bool usingOnlyClosestEnt_ = false;
 	bool usingCallback_ = false;
+	bool usingOwnCallback_ = false;
 	SimpleCallback func_;
+	std::pair<int,int> latestPoint_;
 };

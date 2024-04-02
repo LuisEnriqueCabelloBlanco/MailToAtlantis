@@ -38,6 +38,7 @@ constexpr int PESO_SELLO_SIZE = 80;
 constexpr float PAQUETE_SIZE = 0.25f;
 
 const std::string DIFF_SETTINGS_PATH = "recursos/config/mail.dificulty.json";
+const std::string REMITENT_SETTINGS_PATH = "recursos/config/mail.destinatarios.json";
 
 class PaqueteBuilder
 {
@@ -91,6 +92,7 @@ private:
 	/// <param name="dist">valor enum del distritio al que pertenece</param>
 	/// <param name="distString">valor string del distrito al que pertenece</param>
 	void getStreetsFromJSON(const std::string& filename, Distrito dist,const std::string& distString);
+	void getNamesFromJSON();
 
 	DifficultySettings getLevelSetings(int lvl);
 
@@ -116,4 +118,9 @@ private:
 	/// usado para la generacion del string de la direccion
 	/// </summary>
 	std::unordered_map<Distrito, std::vector<std::string>> distritoCalle_;
+	/// <summary>
+	/// vectores con nombres y apellidos para generar nombres de remitentes
+	/// </summary>	
+	std::vector<std::string> names;
+	std::vector<std::string> surnames;
 };

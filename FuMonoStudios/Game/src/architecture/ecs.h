@@ -26,6 +26,7 @@ namespace ecs {
 			SELFDESTRUCT,
 			DEPTH,
 			ERROR_NOTE,
+			IMAGEWITHLIGHT,
 			DELAYEDCALLBACK,
 			CLOCKAUX,
 			// do not remove this
@@ -58,9 +59,12 @@ namespace ecs {
 	namespace layer {
 		enum layerId : lyId_t
 		{
+			INACTIVE,
 			BACKGROUND,
 			DEFAULT,
 			BIN,
+			MANUALSPACE,
+			MINIMANUAL,
 			PACKAGE,
 			INK,
 			STAMP,

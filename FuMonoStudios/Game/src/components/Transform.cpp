@@ -26,6 +26,11 @@ position_(x, y), width_(w), height_(h), scale_(1), trueScale_(1), parentTr_(null
 
 }
 
+Transform::Transform(float x, float y, float w, float h, float rot, SDL_RendererFlip flip) : Component(),
+position_(x, y), width_(w), height_(h), scale_(1), trueScale_(1), parentTr_(nullptr), rotation_(rot), flip_(flip){
+
+}
+
 Transform::~Transform() {
 	/// <summary>
 	/// destruimos la referencia que esta en su padre
@@ -60,7 +65,9 @@ ecs::Entity* Transform::getParentEnt() const {
 	return parentTr_->ent_;
 }
 
-// Los objetos solo pueden tener un �nico padre
+
+
+// Los objetos solo pueden tener un unico padre
 void Transform::setParent(Transform* newParent) {
 	if (parentTr_ != newParent) {
 		parentTr_ = newParent;
@@ -103,7 +110,7 @@ Vector2D Transform::getPos() const
 	//Bucle que itera hasta llegar al primer padre para tener la posici�n en el mundo
 	while (aux != nullptr) {
 		pos = pos + aux->position_;
-		aux = parentTr_->parentTr_;
+		aux = aux->parentTr_;
 	}
 	return pos;
 }
@@ -130,4 +137,18 @@ bool Transform::getIfPointerIn() const {
 	SDL_Point point{ ihdlr.getMousePos().first, ihdlr.getMousePos().second };
 
 	return SDL_PointInRect(&point, &getRect());
+}
+
+void Transform::setActiveChildren(bool act) {
+
+	if (!childsTr_.empty()) {
+
+		for (auto it = childsTr_.begin(); it != childsTr_.end(); ++it) {
+
+			(*it)->ent_->setActive(act);
+
+		}
+
+	}
+
 }

@@ -64,6 +64,17 @@ public:
 		SDL_RenderCopyEx(renderer_, texture_, &src, &dest, angle, p, flip);
 	}
 
+	inline void render(const SDL_Rect& dest, double angle,
+		const SDL_Point* p = nullptr,
+		SDL_RendererFlip flip = SDL_FLIP_NONE) {
+
+		SDL_Rect src = { 0, 0, width_, height_ };
+
+		assert(texture_ != nullptr);
+		SDL_RenderCopyEx(renderer_, texture_, &src, &dest, angle, p, flip);
+
+	}
+
 	// This rendering method corresponds to method SDL_RenderCopy.
 	//
 	// Renders part of the texture (src) to a destination rectangle (dest).

@@ -85,13 +85,13 @@ void ecs::MainScene::init()
 	//}
 
 	createManual();
+	createMiniManual();
+	createSpaceManual();
 
 	createClock();
-	
-	createPaquete(generalData().getPaqueteLevel());
 
 	createGarbage();
-
+	createPaquete(generalData().getPaqueteLevel());
 
 	//creacion de las herramientas
 	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
@@ -106,17 +106,14 @@ void ecs::MainScene::init()
 		createTubo((pq::Distrito)z, false);
 	}
 
-	//createSelladores();
-
-	createInks();
-  
-  	//cinta envolver
-	createCinta();
+	sdlutils().musics().at("trabajo").play();
+	sdlutils().musics().at("trabajo").setMusicVolume(30);
 
 	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	int dia = generalData().getDia();
+
 	if (dia > 0) {
 		createStamp(SelloCalleA);
 		createPaquete(generalData().getPaqueteLevel());
@@ -132,6 +129,8 @@ void ecs::MainScene::init()
 void ecs::MainScene::close() {
 	ecs::Scene::close();
 	generalData().updateMoney(correct_,fails_);
+
+	sdlutils().musics().at("trabajo").haltMusic();
 }
 
 void ecs::MainScene::createClock() {
@@ -148,18 +147,10 @@ void ecs::MainScene::createInks() {
 }
 
 void ecs::MainScene::createOneInk(TipoHerramienta type) {
+	Entity* ink = factory_->createImage(Vector2D(70 + 150 * type, 950), Vector2D(125, 73), &sdlutils().images().at("tinta"+std::to_string(type)));
+	Trigger* inkATri = ink->addComponent<Trigger>();
 
-	Entity* inkC = addEntity(layer::INK);
-	Texture* inkCTex = &sdlutils().images().at("tinta" + std::to_string(type));
-	Transform* selloCTR = inkC->addComponent<Transform>(350 + 125 * (type), 500, inkCTex->width(), inkCTex->height());
-
-	selloCTR->setScale(0.5);
-
-	inkC->addComponent<RenderImage>(inkCTex);
-
-	Trigger* inkCTri = inkC->addComponent<Trigger>();
-
-	inkCTri->addCallback([this, type](ecs::Entity* entRec) {
+	inkATri->addCallback([this, type](ecs::Entity* entRec) {
 
 		if (entRec->getLayer() == ecs::layer::STAMP) {
 
@@ -207,7 +198,7 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 void ecs::MainScene::createStamp(TipoHerramienta type)
 {
 	if (type > 2) return;
-	constexpr float STAMPSIZE = 0.5f;
+	constexpr float STAMPSIZE = 1;
 
 	factory_->setLayer(layer::STAMP);
 
@@ -268,41 +259,157 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 
 void ecs::MainScene::createManual()
 {
-	constexpr int MANUALNUMPAGES = 5;
-	constexpr float MANUAL_WIDTH = 670;
-	constexpr float MANUAL_HEITH = 459;
+	constexpr int MANUALNUMPAGES = 8;
+	constexpr float MANUAL_WIDTH = 570;
+	constexpr float MANUAL_HEITH = 359;
 
-	Texture* buttonTexture = &sdlutils().images().at("flechaTest");
+	Texture* buttonTexture = &sdlutils().images().at("cambioPag");
 	//creado array de texturas par el libro
 	std::vector<Texture*> bookTextures;
 	bookTextures.reserve(MANUALNUMPAGES);
-	for (int i = 1; i <= 5; i++) {
+	for (int i = 1; i <= MANUALNUMPAGES; i++) {
 		bookTextures.emplace_back(&sdlutils().images().at("book"+std::to_string(i)));
 	}
 	factory_->setLayer(ecs::layer::MANUAL);
 
-	auto baseManual = factory_->createMultiTextureImage(Vector2D(500, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH),bookTextures);
-	Transform* manualTransform = baseManual->getComponent<Transform>();
-	RenderImage* manualRender = baseManual->getComponent<RenderImage>();
+	manualEnt_ = factory_->createMultiTextureImage(Vector2D(500, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH),bookTextures);
+	Transform* manualTransform = manualEnt_->getComponent<Transform>();
+	RenderImage* manualRender = manualEnt_->getComponent<RenderImage>();
 	manualRender->setVector(bookTextures);
-	baseManual->addComponent<Gravity>();
-	baseManual->addComponent<DragAndDrop>(true);
-	baseManual->addComponent<Depth>();
+	manualEnt_->addComponent<Gravity>();
+	manualEnt_->addComponent<DragAndDrop>(false);
+	manualEnt_->addComponent<Depth>();
 
 
-	Vector2D buttonSize(100, 40);
+	Vector2D buttonSize(40, 40);
 	factory_->setLayer(ecs::layer::FOREGROUND);
 	auto next = [manualRender]() {manualRender->nextTexture();};
-	auto right = factory_->createImageButton(Vector2D(400, 300), buttonSize, buttonTexture, next);
+	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
 	right->getComponent<Transform>()->setParent(manualTransform);
 
 	auto previous = [manualRender]() {manualRender->previousTexture();};
-	auto left = factory_->createImageButton(Vector2D(100, 300), buttonSize, buttonTexture, previous);
+	auto left = factory_->createImageButton(Vector2D(75, 280), buttonSize, buttonTexture, previous);
 	left->getComponent<Transform>()->setParent(manualTransform);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
 }
+
+void ecs::MainScene::createMiniManual() {
+
+	constexpr float MANUAL_WIDTH = 70;
+	constexpr float MANUAL_HEITH = 118;
+
+	float minimanualX = 1200;
+	float minimanualY = 500;
+
+	factory_->setLayer(ecs::layer::MINIMANUAL);
+
+	Texture* bookTextures = &sdlutils().images().at("miniManual");
+
+	miniManualEnt_ = factory_->createImage(Vector2D(minimanualX, minimanualY), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
+
+	Transform* manualTransform = miniManualEnt_->getComponent<Transform>();
+	RenderImage* manualRender = miniManualEnt_->getComponent<RenderImage>();
+
+	miniManualEnt_->addComponent<DragAndDrop>(false, true);
+
+	Trigger* mmTri = miniManualEnt_->getComponent<Trigger>();
+
+
+	mmTri->addCallback([this, mmTri, manualTransform, minimanualX, minimanualY](ecs::Entity* entRec) {
+
+		if (miniManualEnt_->isActive()) {
+
+
+			std::list<ecs::layer::layerId> entTouchingID = mmTri->getEntitiesTouching();
+
+			if (entTouchingID.empty()) {
+
+				Transform* manualTR = manualEnt_->getComponent<Transform>();
+
+				Vector2D pos{ manualTransform->getPos().getX() - manualTR->getWidth() / 2, manualTransform->getPos().getY() - manualTR->getHeigth() / 2 };
+
+
+				manualTransform->setPos(minimanualX, minimanualY);
+
+				miniManualEnt_->setActive(false);
+
+				manualEnt_->setActive(true);
+				manualTR->setPos(pos);
+				manualEnt_->getComponent<Depth>()->updateChildPos();
+			}
+			else {
+
+				auto it = entTouchingID.begin();
+
+				while (it != entTouchingID.end() && (*it) != ecs::layer::MANUALSPACE) {
+					++it;
+				}
+
+				if (it == entTouchingID.end()) {
+
+
+					manualTransform->setPos(minimanualX, minimanualY);
+					miniManualEnt_->setActive(false);
+
+					manualEnt_->setActive(true);
+
+
+				}
+
+			}
+			
+		}
+
+	});
+
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+
+	miniManualEnt_->setActive(false);
+
+}
+
+void ecs::MainScene::createSpaceManual() {
+
+	constexpr float MANUAL_WIDTH = 70;
+	constexpr float MANUAL_HEITH = 118;
+
+	factory_->setLayer(ecs::layer::MANUALSPACE);
+
+	Texture* bookTextures = &sdlutils().images().at("cartel");
+	
+	auto baseManual = factory_->createImage(Vector2D(1200, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
+	
+	Transform* manualTransform = baseManual->getComponent<Transform>();
+	RenderImage* manualRender = baseManual->getComponent<RenderImage>();
+	
+	Trigger* mmTri = baseManual->addComponent<Trigger>();
+	
+	mmTri->addCallback([this, manualTransform](ecs::Entity* entRec) {
+
+
+		if (entRec->getLayer() == ecs::layer::MANUAL && manualEnt_->isActive()) {
+
+			Transform* manualTR = manualEnt_->getComponent<Transform>();
+
+			manualTR->setPos(0, 0);
+
+			manualEnt_->setActive(false);
+
+			miniManualEnt_->setActive(true);
+
+		}
+
+	});
+	
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+	
+}
+
+
 void ecs::MainScene::createGarbage()
 {
 	/*TDOO Meter en un metdo */

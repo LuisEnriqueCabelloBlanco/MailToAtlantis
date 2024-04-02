@@ -12,6 +12,7 @@ public:
 	__CMP_DECL__(ecs::cmp::TRANSFORM)
 		Transform(float x, float y, float w, float h);
 		Transform(float x, float y, float w, float h, float rot);
+		Transform(float x, float y, float w, float h, float rot, SDL_RendererFlip flip);
 	~Transform();
 
 	/// <summary>
@@ -84,6 +85,8 @@ public:
 	float getScale() { return scale_; }
 	float getTrueScale() { return trueScale_; }
 
+	void setActiveChildren(bool act);
+
 	void activateDepth();
 
 	std::list<Transform*> GetChildren() { return childsTr_; }
@@ -100,6 +103,10 @@ public:
 
 	void setRotation(float newRot) { rotation_ = newRot; }
 	float getRotation() { return rotation_; }
+
+	void setFlip(SDL_RendererFlip flip) { flip_ = flip; }
+	SDL_RendererFlip getFlip() { return flip_; }
+
 private:
 	/// <summary>
 	/// Posicion relativa (al padre) del objeto
@@ -124,6 +131,8 @@ private:
 	Depth* depthComp_ = nullptr;
 
 	float rotation_;
+
+	SDL_RendererFlip flip_ = SDL_FLIP_NONE;
 
 	/// <summary>
 	/// Padre del objeto

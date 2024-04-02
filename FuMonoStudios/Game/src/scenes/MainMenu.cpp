@@ -7,6 +7,7 @@
 #include "../components/Clickeable.h"
 #include "../architecture/Game.h"
 #include "../architecture/GeneralData.h"
+#include "../components/RenderWithLight.h"
 #include <sistemas/ComonObjectsFactory.h>
 
 //ecs::MainMenu::MainMenu()
@@ -38,7 +39,7 @@ void ecs::MainMenu::init()
 	Entity* BotonPress = addEntity();
 	
 	Transform* transformBoton = BotonPress->addComponent<Transform>(400, 600, texturaBoton->width(), texturaBoton->height());
-	RenderImage* renderBoton = BotonPress->addComponent<RenderImage>(texturaBoton);
+	RenderWithLight* renderBoton = BotonPress->addComponent<RenderWithLight>(texturaBoton);
 
 	auto clickerPress = BotonPress->addComponent<Clickeable>();
 
@@ -57,10 +58,12 @@ void ecs::MainMenu::init()
 
 	}*/
 	CallbackClickeable funcPress = [this]() {
+		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
 
 	};
 	clickerPress->addEvent(funcPress);
+	sdlutils().musics().at("mainMenu").play();
 }
 
 void ecs::MainMenu::changeToMainScene() {

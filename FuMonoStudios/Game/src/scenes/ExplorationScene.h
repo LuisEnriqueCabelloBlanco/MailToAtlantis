@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "../architecture/Scene.h"
-#include "../components/Dialog_Manager.h"
+#include "../components/DialogManager.h"
 #include "../sistemas/ComonObjectsFactory.h"
 #include <list>
 
@@ -62,8 +62,6 @@ namespace ecs {
 		/// </summary>
 		void addObjects(ecs::Entity* e);
 
-
-
 		/// <summary>
 		/// método para comprobar la propia navegabilidad de un lugar
 		/// </summary>
@@ -115,6 +113,8 @@ namespace ecs {
 		/// </summary>
 		void renderBackGround() const;
 
+		// cierra la conversacion
+		void closeConversation();
     private:
 		
 		/// <summary>
@@ -143,12 +143,11 @@ namespace ecs {
 		/// <summary>
 		/// Metodo factoria para las flechas de navegacion
 		/// </summary>
-		ecs::Entity* createNavegationsArrows(Vector2D pos, std::string placeDir, float scale);
+		ecs::Entity* createNavegationsArrows(Vector2D pos, std::string placeDir, float scale, int flip);
 
 		/// <summary>
 		/// Metodo factoria para characters
 		/// </summary>
-		ecs::Entity* createCharacter(Vector2D pos, std::string character, float scale);
 
 		/// <summary>
 		/// Método para setar la navegabilidad de placeDir lugar, valor por defecto = true
@@ -161,6 +160,7 @@ namespace ecs {
 		/// Método para actualizar la navegabilidad según el día
 		/// </summary>
 		void updateNavegavility();
+		ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
         
 		//Puntero al lugar actual
 		Lugar* actualPlace_;
@@ -180,9 +180,15 @@ namespace ecs {
 		DialogManager dialogMngr_;
 
 		std::vector<std::string> placeToGo;
+	
+		// entidades del dialogo
+		ecs::Entity* boxBackground;
+		ecs::Entity* textDialogue;
 
-		std::unordered_map<string, Lugar*> places;
+		std::unordered_map<std::string, Lugar*> places;
 
+		// flag para saber si podemos entablar dialogo
+		bool canStartConversation;
     };
 }
 

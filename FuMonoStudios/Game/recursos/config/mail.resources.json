@@ -4,12 +4,19 @@
     {"id": "boxTest","file": "recursos/images/Box.png"},
     {"id": "selloTest","file": "recursos/images/Sello.png"},
     {"id": "bookTest","file": "recursos/images/Book.png"},
-    {"id": "book1","file": "recursos/images/Book1.png"},
-    {"id": "book2","file": "recursos/images/Book2.png"},
-    {"id": "book3","file": "recursos/images/Book3.png"},
-    {"id": "book4","file": "recursos/images/Book4.png"},
-    {"id": "book5","file": "recursos/images/Book5.png"},
+    {"id": "book1","file": "recursos/images/Book_Index.png"},
+    {"id": "book2","file": "recursos/images/Book_InfoCalles_0.png"},
+    {"id": "book3","file": "recursos/images/Book_InfoCalles_1.png"},
+    {"id": "book4","file": "recursos/images/Book_InfoCalles_2.png"},
+    {"id": "book5","file": "recursos/images/Book_InfoCalles_3.png"},
+    {"id": "book6","file": "recursos/images/Book_InfoCodigos.png"},
+    {"id": "book7","file": "recursos/images/Book_InfoGeneral.png"},
+    {"id": "book8","file": "recursos/images/Book_InfoSellos.png"},
+
+
+
     {"id": "flechaTest","file": "recursos/images/flecha.png"},
+    {"id": "cambioPag","file": "recursos/images/NextPage.png"},
     {"id": "botonTrabajar","file": "recursos/images/placeholderTrabajar.png"},
     {"id": "demeter","file": "recursos/images/Demeter.png"},
     {"id": "hefesto","file": "recursos/images/Hefesto.png"},
@@ -80,18 +87,21 @@
     {"id": "cartel","file": "recursos/images/CartelCompleto.png"},
     {"id": "cuadroDialogo","file": "recursos/images/CuadroDialogo.png"},
     {"id": "miniManual","file": "recursos/images/ManualMini.png"},
-    {"id": "abigail","file": "recursos/images/Abigail Ampoure.png"},
-    {"id": "gargafiel","file": "recursos/images/Gargafiel Mustaki.png"},
-    {"id": "glover","file": "recursos/images/Glover Globus.png"},
-    {"id": "pancracio","file": "recursos/images/Pancracio Warawa.png"},
-    {"id": "paulino","file": "recursos/images/Paulino Tinteiros.png"},
-    {"id": "anemos","file": "recursos/images/Anemos Tokugawa.png"},
-    {"id": "abakand","file": "recursos/images/Abakand Istacoz.png"},
+
+
+    {"id": "Tarotisa","file": "recursos/images/Abigail Ampoure.png"},
+    {"id": "Secretario","file": "recursos/images/Gargafiel Mustaki.png"},
+    {"id": "Contable","file": "recursos/images/Glover Globus.png"},
+    {"id": "Campesino","file": "recursos/images/Pancracio Warawa.png"},
+    {"id": "Artesano","file": "recursos/images/Paulino Tinteiros.png"},
+    {"id": "Vagabundo","file": "recursos/images/Anemos Tokugawa.png"},
+    {"id": "Soldado","file": "recursos/images/Abakand Istacoz.png"},
     
     {"id": "reloj","file": "recursos/images/Reloj.png"},
     {"id": "reloj2","file": "recursos/images/Reloj2.png"},
     {"id": "manecillaL","file": "recursos/images/manecillaL.png"},
-    {"id": "manecillaS","file": "recursos/images/manecillaS.png"}
+    {"id": "manecillaS","file": "recursos/images/manecillaS.png"},
+    {"id": "luz","file": "recursos/images/luz.png"}
   ],
   "fonts": [
     {
@@ -119,5 +129,30 @@
       "file": "recursos/fonts/Roboto-Thin.ttf",
       "size": 50
     }
-  ]
+  ],
+  "sounds": [
+    {
+        "id": "click",
+        "file": "recursos/sounds/click.wav"
+    },
+    {
+      "id": "arrastrar",
+      "file": "recursos/sounds/arrastrar.wav"
+  },
+  {
+    "id": "choque",
+    "file": "recursos/sounds/choque.wav"
+}
+],
+"musics":[
+    {
+        "id": "trabajo",
+        "file": "recursos/sounds/imperial_march.wav"
+    },
+    {
+        "id": "mainMenu",
+        "file": "recursos/sounds/DQOverture.wav"
+    }
+
+]
 }
