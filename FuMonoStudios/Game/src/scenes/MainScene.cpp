@@ -102,8 +102,11 @@ void ecs::MainScene::init()
 		j++;
 	}
 	//Creación de paquetes bloqueados
-	for (int z = j; z < 7; z++) { //grande jose la los numeros magicos te la sabes
-		createTubo((pq::Distrito)z, false);
+	for (int z = j; z < 7 ; ++z) { //grande jose la los numeros magicos te la sabes
+		if(j==6)
+			createTubo((pq::Distrito)z, true);
+		else
+			createTubo((pq::Distrito)z , false);
 	}
 
 	sdlutils().musics().at("trabajo").play();

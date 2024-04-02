@@ -113,13 +113,6 @@ public:
 														  // desde setDia modificado). Que jose lo haga cuando se sepan los días en los que un distrito y su tubo se desbloquean
 	int getTubesAmount() { return numTubos_; }
 
-	// Aumenta el numero de distritos desbloqueados
-	void setDistrictsAmount(int distritos) {
-		if (distritos >= 7) numDistritos_ = 7;
-		else numDistritos_ = distritos;
-	}
-	int getDistrictsAmount() { return numDistritos_; }
-
 	void correctPackage() { corrects_++; }
 	void wrongPackage() { fails_++; }
 
@@ -186,8 +179,7 @@ private:
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
 	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo
 	int numTubos_; // Numero de tubos que habrán en el minijuego de paquetes
-	int numDistritos_; // Numero de distritos que habrán sido desbloqueados
-	//Quien borre lo de abajo le castro
+	//Quien borre lo de abajo le castro Julian: A bocaos bebé
 	DatosPersonajes charactersData_[7]; // Recoge la felicidad de cada personaje
 	int charactersEvents_[7]; // Recoge los eventos de paquete de cada personaje
 	std::vector<Paquete*> paquetesNPCs;

@@ -67,6 +67,8 @@ int GeneralData::getEventoID() {
 
 void GeneralData::updateDia()
 {
+
+	placesToActive_.clear();
 	updateDistrictsPerDay(dia_);
 }
 
@@ -74,7 +76,6 @@ void GeneralData::updateDistrictsPerDay(int dia)
 {
 	if(dia == 0)
 		return;
-
 	switch (dia)
 	{
 	case 1:

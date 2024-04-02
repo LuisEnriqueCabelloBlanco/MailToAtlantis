@@ -176,6 +176,7 @@ void Game::changeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2) {
 		generalData().setFinalID(2);
 		generalData().setEventoID(2);
 		generalData().setDia(generalData().getDia() + 1);
+		generalData().setTubesAmount(generalData().getPlacesToActive().size() - 1);
 	}
 	else if (scene1 == ecs::sc::MAIN_SCENE) {
 		generalData().setFinalID(3);

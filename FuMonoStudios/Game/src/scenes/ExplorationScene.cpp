@@ -43,6 +43,15 @@ void ecs::ExplorationScene::init()
 	//setNavegabilityOfPlace("Hermes"); // Esto es para probar si funciona el seteo.
 	generalData().updateDia();
 	updateNavegavility();
+
+	for (auto& e : objs_) {
+		for (auto en : e){
+				en->setAlive(false);
+
+		}
+	}
+	actualPlace_ = &hestia;
+	createObjects("Hestia");
 }
 
 
