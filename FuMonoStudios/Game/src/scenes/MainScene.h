@@ -41,6 +41,8 @@ namespace ecs {
         void createInks();
         void createOneInk(TipoHerramienta type);
 
+        void updateToolsPerDay(int dia);
+
         int fails_;
         int correct_;
 

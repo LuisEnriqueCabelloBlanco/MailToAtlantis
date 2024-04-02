@@ -118,17 +118,8 @@ void ecs::MainScene::init()
 	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
-	int dia = generalData().getDia();
+	updateToolsPerDay(generalData().getDia());
 
-	if (dia > 0) {
-		createStamp(SelloCalleA);
-	}
-	else if (dia >= 2) {
-		createCinta();
-	}
-	else if (dia >= 4) {
-		createInks();
-	}
 }
 
 void ecs::MainScene::close() {
@@ -171,6 +162,27 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 	});
 
+}
+
+void ecs::MainScene::updateToolsPerDay(int dia)
+{
+	if(dia == 0)
+		return;
+	switch (dia)
+	{case 1:
+		createStamp(SelloCalleA);
+		break;
+	case 3:
+		createCinta();
+		break;
+	case 4:
+		createInks();
+		break;
+	default:
+		break;
+	}
+
+	updateToolsPerDay(dia - 1);
 }
 
 
