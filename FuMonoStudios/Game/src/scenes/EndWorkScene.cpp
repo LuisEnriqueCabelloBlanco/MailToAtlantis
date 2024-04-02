@@ -29,19 +29,25 @@ void EndWorkScene::init() {
 	factory_->createLabel(pos, msg, 50);
 	factory_->createLabel(pos + dist, "Fails: " + std::to_string(generalData().getFails()), 50);
 	factory_->createLabel(pos + Vector2D(0, 400), "Corrects: " + std::to_string(generalData().getFails()), 50);
-	auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
-	factory_->createTextuButton(pos + Vector2D(0, 70), "Return To menu", 50, call);
-	generalData().resetFailsCorrects();
+	
 
 
 	if (money >= 100) {
 		std::string msgPass = "Felicidades, la de chambear de la sabes! ";
 		factory_->createLabel(Vector2D(500, 800), msgPass, 50);
+		auto call1 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
+		factory_->createTextuButton(pos + Vector2D(0, 70), "Next Day", 50, call1);
+		generalData().resetFailsCorrects();
+		int currentDay = generalData().getDia();
+		generalData().setDia(currentDay++);
 	}
 	else
 	{
 		std::string msgPass = "Veo que la de chambear no te la sabes, estas deportado. ";
 		factory_->createLabel(Vector2D(300, 800), msgPass, 50);
+		auto call2 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
+		factory_->createTextuButton(pos + Vector2D(0, 70), "Return To Menu", 50, call2);
+		generalData().resetFailsCorrects();
 	}
 
 }
