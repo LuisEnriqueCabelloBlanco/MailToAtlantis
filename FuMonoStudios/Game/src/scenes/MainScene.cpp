@@ -90,6 +90,9 @@ void ecs::MainScene::init()
 
 	createClock();
 
+	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
+	createCinta();
+
 	createGarbage();
 	createPaquete(generalData().getPaqueteLevel());
 

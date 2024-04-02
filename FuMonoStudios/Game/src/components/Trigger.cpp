@@ -102,11 +102,15 @@ bool Trigger::activateEventFromClosestEntity() {
 //Activa las funciones asociadas a esta entidad
 bool Trigger::activateCallbacks(ecs::Entity* Ent) {
 
+	if(Ent != ent_){
+	
+		for (Callback call : eventList_) {
 
-	for (Callback call : eventList_) {
+			call(Ent);
+		}
 
-		call(Ent);
 	}
+	
 
 	return eventList_.empty();
 
