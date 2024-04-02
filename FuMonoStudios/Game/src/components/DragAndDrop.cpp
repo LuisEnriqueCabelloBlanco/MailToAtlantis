@@ -77,31 +77,36 @@ void DragAndDrop::update() {
 		}
 		//Deteccion al soltar el objeto
 		else if (ihdlr.mouseButtonUpEvent()) {
+			
+			if (dragging_) {
+				// reactivamos la gravedad
+				if (grav_ != nullptr) {
+					grav_->setActive(true);
+				}
+
+				//Al soltar el objeto activa los callback de todas las entidades que este tocando el objeto
+				// si no tenemos activado el activar solo al mas cercano
+
+				if (usingOwnCallback_) {
+					tri_->activateCallbacks(nullptr);
+				}
+				else {
+
+					if (!usingOnlyClosestEnt_)
+						tri_->activateEventsFromEntities();
+					else
+						tri_->activateEventFromClosestEntity();
+
+				}
+
+				sdlutils().soundEffects().at("arrastrar").haltChannel();
+				// si has asignado callback se activa
+				if (usingCallback_)
+					func_();
+			}
+			
+
 			dragging_ = false;
-			// reactivamos la gravedad
-			if (grav_ != nullptr) {
-				grav_->setActive(true);
-			}
-
-			//Al soltar el objeto activa los callback de todas las entidades que este tocando el objeto
-			// si no tenemos activado el activar solo al mas cercano
-
-			if (usingOwnCallback_) {
-				tri_->activateCallbacks(nullptr);
-			}
-			else {
-
-				if (!usingOnlyClosestEnt_)
-					tri_->activateEventsFromEntities();
-				else
-					tri_->activateEventFromClosestEntity();
-
-			}
-
-			sdlutils().soundEffects().at("arrastrar").haltChannel();
-			// si has asignado callback se activa
-			if (usingCallback_)
-				func_();
 		}
 
 		//Arrastre del objeto
