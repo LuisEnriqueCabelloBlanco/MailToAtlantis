@@ -91,7 +91,7 @@ void ecs::MainScene::init()
 	createClock();
 
 	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
-	createCinta();
+	//createCinta();
 
 	createGarbage();
 	createPaquete(generalData().getPaqueteLevel());
@@ -122,7 +122,6 @@ void ecs::MainScene::init()
 
 	if (dia > 0) {
 		createStamp(SelloCalleA);
-		createPaquete(generalData().getPaqueteLevel());
 	}
 	else if (dia >= 2) {
 		createCinta();
