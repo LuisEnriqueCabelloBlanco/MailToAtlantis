@@ -65,6 +65,41 @@ int GeneralData::getEventoID() {
 	return eventoID_;
 }
 
+void GeneralData::updateDia()
+{
+
+	placesToActive_.clear();
+	updateDistrictsPerDay(dia_);
+}
+
+void GeneralData::updateDistrictsPerDay(int dia)
+{
+	if(dia == 0)
+		return;
+	switch (dia)
+	{
+	case 1:
+		//tutorial
+		placesToActive_.push_back("Hestia");
+		placesToActive_.push_back("Hefesto");
+		placesToActive_.push_back("Demeter");
+		placesToActive_.push_back("Artemisa");
+		break;
+	case 2:
+		placesToActive_.push_back("Hermes");
+		break;
+	case 3: 
+		placesToActive_.push_back("Apolo");
+		break;
+	case 4:
+		placesToActive_.push_back("Poseidon");
+		break;
+	default:
+		break;
+	}
+	updateDistrictsPerDay(dia - 1);
+}
+
 int GeneralData::getPaqueteLevel() {
 	//Aqui habra que decidir el paquete level en funci�n del d�a
 	return paqueteLvl_;

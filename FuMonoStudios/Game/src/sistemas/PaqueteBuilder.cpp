@@ -83,6 +83,9 @@ bool PaqueteBuilder::shouldBuildNPCPackage()
 
 ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle calle, const std::string& remitente, pq::TipoPaquete tipo, bool correcto, pq::NivelPeso nivPeso, int peso, bool fragil, bool carta)
 {
+	//Idea para el que lea esto, usamos este metodo para crear los paquetes de npcs y luego añadirlos al vector que hay en el GeneralData.h
+	//En cuyo caso sería buena idea añadirle una variable al método que sea un identificador de cual personaje vamos a añadirle o no felicidad con su paquete
+
 	auto base = buildBasePackage(mScene_);
 	std::string dir = "";
 	if (distrito != Erroneo && calle != Erronea) {
