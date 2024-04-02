@@ -10,7 +10,7 @@
 #include <functional>
 
 #define DEV_TOOLS
-//#define QA_TOOLS
+#define QA_TOOLS
 
 
 

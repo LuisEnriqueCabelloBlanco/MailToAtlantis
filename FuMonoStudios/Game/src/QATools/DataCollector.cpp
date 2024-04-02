@@ -1,8 +1,8 @@
-#ifdef QA_TOOLS
 #include "DataCollector.h"
 #include <architecture/Time.h>
 #include <architecture/GeneralData.h>
 #include <SDL.h>
+#ifdef QA_TOOLS
 //NECESARIO c++ 17
 //#include <cpr/cpr.h>
 /*
@@ -21,7 +21,9 @@ DataCollector::DataCollector() : currentRow_(0), dataArray_(),clicks_(0) {
 	doc_.Load("QAdata/myData.csv");
 	doc_.Clear();
 	std::vector<std::string> Labels = { 
-		"Escena","Marca de Tiempo (ms)","Clicks","Dia de Juego","Distrito","Calle","Tipo","Peso","Envoltura","NPC"
+		"Escena","Marca de Tiempo (ms)","Clicks","Dia de Juego",
+		"Distrito","Calle","Tipo","Peso","Envoltura","Envio Correcto",
+		"NPC","NumeroDialogo","Felicidad","UbicacionDistrito"
 	};
 
 	for (int i = 0; i < Labels.size(); i++) {
@@ -29,12 +31,13 @@ DataCollector::DataCollector() : currentRow_(0), dataArray_(),clicks_(0) {
 	}
 };
 
-void DataCollector::recordPacage(Paquete* pacage) {
+void DataCollector::recordPacage(Paquete* pacage, bool correct) {
 	dataArray_[doc_.GetColumnIdx("Distrito")] = pacage->getDistrito();
 	dataArray_[doc_.GetColumnIdx("Calle")] = pacage->getCalle();
 	dataArray_[doc_.GetColumnIdx("Tipo")] = pacage->getTipo();
 	dataArray_[doc_.GetColumnIdx("Peso")] = pacage->getPeso();
 	dataArray_[doc_.GetColumnIdx("Envoltura")] = pacage->getFragil();
+	dataArray_[doc_.GetColumnIdx("Envio Correcto")] = correct;
 	record();
 }
 

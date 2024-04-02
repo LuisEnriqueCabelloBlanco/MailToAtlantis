@@ -10,6 +10,7 @@
 #include <list>
 #include <functional>
 #include <components/ErrorNote.h>
+#include <QATools/DataCollector.h>
 
 PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc) : toDis_(dis), extraCond_(),mainSc_(sc)
 {
@@ -64,8 +65,8 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 		ent->addComponent<SelfDestruct>(1,[this](){
 			if (mainSc_ != nullptr) mainSc_->createPaquete(generalData().getPaqueteLevel());
 			});
-
-		if (checkPackage(ent->getComponent<Paquete>())) {
+		bool correct = checkPackage(ent->getComponent<Paquete>());
+		if (correct) {
 
 			GeneralData::instance()->correctPackage();
 		}
@@ -76,7 +77,7 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 				toDis_ != ent->getComponent<Paquete>()->getDistrito());
 		}
 #ifdef QA_TOOLS
-		dataCollector().recordPacage(entRec->getComponent<Paquete>());
+		dataCollector().recordPacage(ent->getComponent<Paquete>(), correct);
 #endif // QA_TOOLS
 	}
 }

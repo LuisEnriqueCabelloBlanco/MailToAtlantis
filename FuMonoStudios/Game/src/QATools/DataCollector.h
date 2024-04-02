@@ -1,5 +1,4 @@
 #pragma once
-#ifdef QA_TOOLS
 
 
 #include <iostream>
@@ -8,8 +7,9 @@
 #include <utils/Singleton.h>
 #include <vector>
 #include <components/Paquete.h>
+#ifdef QA_TOOLS
 
-constexpr int NUMBER_OF_METRICS = 10;
+constexpr int NUMBER_OF_METRICS = 14;
 
 /// <summary>
 /// Clase abstracta de la que heredar para generar distintos csv en funcion de los datos a recopilar
@@ -25,7 +25,7 @@ public:
 
 	inline std::vector<float>& dataArray() { return dataArray_; }
 	inline int& clicks() { return clicks_; }
-	void recordPacage(Paquete*);
+	void recordPacage(Paquete*,bool);
 
 private:
 	DataCollector();

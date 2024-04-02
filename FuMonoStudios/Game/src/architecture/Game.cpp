@@ -118,7 +118,7 @@ void Game::run()
 void Game::loadScene(ecs::sc::sceneId scene)
 {
 #ifdef QA_TOOLS
-	sdataCollector().dataArray()[0] = (int)scene;
+	dataCollector().dataArray()[0] = (int)scene;
 #endif // QA_TOOLS
 
 	auto it = std::find(loadedScenes_.begin(), loadedScenes_.end(), gameScenes_[scene]);
