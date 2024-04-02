@@ -12,18 +12,17 @@
 #include <assert.h>
 
 DragAndDrop::DragAndDrop() : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
-usingCallback_(false), usingOnlyClosestEnt_(false), usingOwnCallback_(false) {
+usingCallback_(false), usingOnlyClosestEnt_(false), usingOwnCallback_(false){
 }
 
 
 DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt) : 
 	tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0), 
-	usingCallback_(false), usingOnlyClosestEnt_(UsingOnlyClosestEnt), usingOwnCallback_(false) {
+	usingCallback_(false), usingOnlyClosestEnt_(UsingOnlyClosestEnt), usingOwnCallback_(false){
 }
 
 DragAndDrop::DragAndDrop(bool usingClosestEnt, bool usingOwnCallback) : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
-usingCallback_(false), usingOnlyClosestEnt_(usingClosestEnt), usingOwnCallback_(usingOwnCallback) {
-
+usingCallback_(false), usingOnlyClosestEnt_(usingClosestEnt), usingOwnCallback_(usingOwnCallback){
 }
 
 DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt, SimpleCallback Func) : 
@@ -48,6 +47,7 @@ void DragAndDrop::initComponent() {
 
 	assert(tr_ != nullptr);
 
+	latestPoint_ = std::pair<int,int>(0,0);
 }
 
 void DragAndDrop::update() {
@@ -60,6 +60,8 @@ void DragAndDrop::update() {
 		//Deteccion al clicar sobre el objeto
 		if (ihdlr.mouseButtonDownEvent()) {
 			if (tr_->getIfPointerIn() && tri_->checkIfClosest()) {
+				if(!dragging_)
+					sdlutils().soundEffects().at("arrastrar").play();
 
 				dragging_ = true;
 				// desactivamos gravedad al draggear
@@ -68,14 +70,13 @@ void DragAndDrop::update() {
 				}
 
 				//Para que funcione sin ir al centro, con margen
-				differenceX_ = point.x - tr_->getPos().getX();;
-				differenceY_ = point.y - tr_->getPos().getY();;
+				differenceX_ = point.x - tr_->getPos().getX();
+				differenceY_ = point.y - tr_->getPos().getY();
 				porcentajeStart = tr_->getPorcentajeScale();
 			}
 		}
 		//Deteccion al soltar el objeto
 		else if (ihdlr.mouseButtonUpEvent()) {
-
 			dragging_ = false;
 			// reactivamos la gravedad
 			if (grav_ != nullptr) {
@@ -97,8 +98,7 @@ void DragAndDrop::update() {
 
 			}
 
-			
-
+			sdlutils().soundEffects().at("arrastrar").haltChannel();
 			// si has asignado callback se activa
 			if (usingCallback_)
 				func_();
@@ -106,6 +106,15 @@ void DragAndDrop::update() {
 
 		//Arrastre del objeto
 		if (dragging_) {
+
+			if (latestPoint_.first != point.x || latestPoint_.second != point.y)
+				sdlutils().soundEffects().at("arrastrar").setVolume(100);
+			else
+				sdlutils().soundEffects().at("arrastrar").setVolume(0);
+
+
+			latestPoint_.first = point.x;
+			latestPoint_.second = point.y;
 			//Para que vaya en el medio
 			//tr_->setPos(point.x - (tr_->getWidth() / 2), point.y - (tr_->getHeigth() / 2));
 

@@ -110,7 +110,7 @@ Vector2D Transform::getPos() const
 	//Bucle que itera hasta llegar al primer padre para tener la posici�n en el mundo
 	while (aux != nullptr) {
 		pos = pos + aux->position_;
-		aux = parentTr_->parentTr_;
+		aux = aux->parentTr_;
 	}
 	return pos;
 }

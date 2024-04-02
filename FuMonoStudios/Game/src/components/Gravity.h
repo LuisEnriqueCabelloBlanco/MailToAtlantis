@@ -27,5 +27,6 @@ private:
 	float gravityForce_;
 	float velocity_;
 	bool active_;
+	bool latestcontactGround_;
 };
 

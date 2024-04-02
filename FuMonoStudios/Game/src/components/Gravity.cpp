@@ -18,12 +18,19 @@ void Gravity::initComponent() {
     tr_ = ent_->getComponent<Transform>();
 
     assert(tr_ != nullptr);
+
+    latestcontactGround_ = (tr_->getCenter().getY() >= GRAVITY_LIMIT);
 }
 
 void Gravity::update() {
 
     if (active_) {
         bool contactGround = (tr_->getCenter().getY() >= GRAVITY_LIMIT);
+
+        if (latestcontactGround_ != contactGround) {
+            sdlutils().soundEffects().at("choque").play();
+            latestcontactGround_ = contactGround;
+        }
 
         if (!contactGround) {
             velocity_ += gravityForce_ * Time::getDeltaTime();
@@ -43,4 +50,6 @@ void Gravity::update() {
 void Gravity::setActive(bool value) {
     active_ = value;
     velocity_ = 0.0f;
+    if(!value)
+        latestcontactGround_ = false;
 }

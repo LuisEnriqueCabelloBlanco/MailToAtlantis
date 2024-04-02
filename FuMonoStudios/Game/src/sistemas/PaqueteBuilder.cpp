@@ -19,6 +19,8 @@ PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
 	getStreetsFromJSON(filename, Hermes, "Hermes");
 	getStreetsFromJSON(filename, Apolo, "Apolo");
 	getStreetsFromJSON(filename, Poseidon, "Poseidon");
+	getStreetsFromJSON(filename, Erroneo, "Erroneo");
+	getNamesFromJSON();
 }
 
 PaqueteBuilder::~PaqueteBuilder() {
@@ -50,11 +52,15 @@ ecs::Entity* PaqueteBuilder::cartaRND(ecs::Scene* mScene) {
 	pq::Calle toDir = calleRND(10);
 	std::string dir;
 	if (toDir == Erronea)
+	{
 		//Cambiarlo por el sistema de calles err�neas una vez est�
 		//Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
 		//Y meterle un randomizador para que de esas pille la que m�s le guste
 		//Tipo, haces distritoCalle_[Erroneo][rand]
-		dir = "(CALLE INVENTADA)";
+		//dir = "(CALLE INVENTADA)";
+		int rnd = sdlutils().rand().nextInt(0, distritoCalle_[Erroneo].size());
+		dir = distritoCalle_[Erroneo][rnd];
+	}
 	else
 		dir = distritoCalle_[toDist][toDir];
 	ent->addComponent<Paquete>(distritoRND(), calleRND(20),dir, remitenteRND(), tipoRND(), true, pq::NivelPeso::Ninguno, PESO_CARTA, false, true);
@@ -130,12 +136,18 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 	pq::Calle toDir = calleRND(lvl1.streetErrorChance);
 	std::string dir;
 
+
+
 	if (toDir == Erronea || toDist == Erroneo)
+	{
 		//Cambiarlo por el sistema de calles err�neas una vez est�
-		//Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
-		//Y meterle un randomizador para que de esas pille la que m�s le guste
-		//Tipo, haces distritoCalle_[Erroneo][rand]
-		dir = "(CALLE INVENTADA)";
+        //Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
+        //Y meterle un randomizador para que de esas pille la que m�s le guste
+        //Tipo, haces distritoCalle_[Erroneo][rand]
+        //dir = "(CALLE INVENTADA)";
+		int rnd = sdlutils().rand().nextInt(0, distritoCalle_[Erroneo].size());
+		dir = distritoCalle_[Erroneo][rnd];
+	}
 	else
 		dir = distritoCalle_[toDist][(int)toDir];
 
@@ -231,13 +243,68 @@ pq::NivelPeso PaqueteBuilder::pesoRND(int probPeso, int probError, int& peso) {	
 		return pq::NivelPeso::Ninguno;
 	}
 }
+void PaqueteBuilder::getNamesFromJSON() {
+	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(REMITENT_SETTINGS_PATH));
 
-std::string PaqueteBuilder::remitenteRND() {
-	
-	// Falta crear un json/txt con todos los posibles nombres random
-	// y asignar uno random
+	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
+		throw "Something went wrong while load/parsing '" + REMITENT_SETTINGS_PATH + "'";
+	}
 
-	return "Nombre Random";
+	// we know the root is JSONObject
+	JSONObject root = jValueRoot->AsObject();
+	JSONValue* jValue = nullptr;
+
+	jValue = root["Name"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {			
+			for (auto v : jValue->AsArray()) {
+				if (v->IsString()) {
+					std::string aux = v->AsString();
+#ifdef _DEBUG
+					std::cout << "Loading name with id: " << aux << std::endl;
+#endif
+					names.push_back(aux);
+				}
+				else {
+					throw "'Name' array in '" + REMITENT_SETTINGS_PATH
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'Name' is not an array in '" + REMITENT_SETTINGS_PATH + "'";
+		}
+	}	
+	jValue = root["Surname"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			for (auto v : jValue->AsArray()) {
+				if (v->IsString()) {
+					std::string aux = v->AsString();
+#ifdef _DEBUG
+					std::cout << "Loading name with id: " << aux << std::endl;
+#endif
+					surnames.push_back(aux);
+				}
+				else {
+					throw "'Surname' array in '" + REMITENT_SETTINGS_PATH
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'Surname' is not an array in '" + REMITENT_SETTINGS_PATH + "'";
+		}
+	}
+}
+
+std::string PaqueteBuilder::remitenteRND() {			
+	std::string sol;
+	sol = names[sdlutils().rand().nextInt(0, names.size())];
+	sol += " ";
+	sol += surnames[sdlutils().rand().nextInt(0, surnames.size())];
+
+	return sol;	
 }
 
 void PaqueteBuilder::getStreetsFromJSON(const std::string& filename, Distrito dist, const std::string& distString)
