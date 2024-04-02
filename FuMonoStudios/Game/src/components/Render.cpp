@@ -34,7 +34,7 @@ void RenderImage::render() const {
 
 	assert(texturesVector_.size() > 0);
 	if (texturesVector_[currentTextureIndx_] != nullptr)
-		texturesVector_[currentTextureIndx_]->render(mTr_->getRect(), mTr_->getRotation());
+		texturesVector_[currentTextureIndx_]->render(mTr_->getRect(), mTr_->getRotation(), nullptr, mTr_->getFlip());
 
 }
 

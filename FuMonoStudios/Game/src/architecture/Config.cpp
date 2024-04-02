@@ -75,7 +75,9 @@ void Config::loadReasources(std::string filename) {
 
 							bool dir = aObj["dir"]->AsBool();
 
-							Arrows arrow{ x, y, dest, scale, dir };
+							int flip = aObj["flip"]->AsNumber();
+
+							Arrows arrow{ x, y, dest, scale, dir, flip };
 
 							placeArrows.push_back(arrow);
 
