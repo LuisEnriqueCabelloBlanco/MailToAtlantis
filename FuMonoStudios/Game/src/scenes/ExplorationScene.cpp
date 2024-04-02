@@ -333,12 +333,12 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 	}
 
 	// creamos la entidad caja dialogo
-	boxBackground = addEntity();
-	auto bgTr = boxBackground->addComponent<Transform>(100, sdlutils().height() - 250, sdlutils().width() - 200, 200);
+	boxBackground = addEntity(ecs::layer::UI);
+	auto bgTr = boxBackground->addComponent<Transform>(100, LOGICAL_RENDER_HEITH - 250, LOGICAL_RENDER_WIDTH - 100, 200);
 	boxBackground->addComponent<RenderImage>(nullptr);
 
 	// entidad del texto
-	textDialogue = addEntity();
+	textDialogue = addEntity(ecs::layer::UI);
 	auto textTr = textDialogue->addComponent<Transform>(100, 100, 80, 100);
 	textTr->setParent(bgTr);
 	textDialogue->addComponent<RenderImage>();
