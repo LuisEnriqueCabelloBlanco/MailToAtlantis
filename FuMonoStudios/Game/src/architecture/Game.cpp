@@ -173,14 +173,13 @@ void Game::changeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2) {
 		generalData().setEventoID(1);
 	}
 	else if (scene1 == ecs::sc::EXPLORE_SCENE) {
-		//generalData().setFinalID(2);
+		generalData().setFinalID(2);
 		generalData().setEventoID(2);
 		generalData().setDia(generalData().getDia() + 1);
 	}
 	else if (scene1 == ecs::sc::MAIN_SCENE) {
 		generalData().setFinalID(3);
 		generalData().setEventoID(3);
-		generalData().setDia(generalData().getDia() + 1);
 	}
 	killScene(scene1);
 	loadScene(scene2);
