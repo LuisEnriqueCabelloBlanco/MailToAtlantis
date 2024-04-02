@@ -513,6 +513,14 @@ void ecs::MainScene::makeControlsWindow()
 			timer_ += timeToAdd_;
 		}
 	}
+
+	//Todavia no es funcinal ya que no hay forma actual de limitar las mecánicas
+	if (ImGui::CollapsingHeader("Días"))
+	{
+		int day = generalData().getDia();
+		ImGui::InputInt("Día", &day);
+		generalData().setDia(day);
+	}
 	ImGui::End();
 }
 #endif // DEV_TOOLS
