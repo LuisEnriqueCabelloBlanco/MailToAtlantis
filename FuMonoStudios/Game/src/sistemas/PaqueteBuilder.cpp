@@ -4,6 +4,7 @@
 #include "../components/Render.h"
 #include "../architecture/GameConstants.h"
 #include <sistemas/ComonObjectsFactory.h>
+#include "../sdlutils/InputHandler.h"
 #include "../json/JSON.h"
 
 
@@ -112,9 +113,20 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene)
 	packageBase->addComponent<Gravity>();
 	DragAndDrop* drgPq = packageBase->addComponent<DragAndDrop>(true);
 	//herramientas
-	packageBase->getComponent<Trigger>()->addCallback([packageBase](ecs::Entity* entRec) {
+
+	Trigger* packTRI_ = packageBase->getComponent<Trigger>();
+
+	packageBase->getComponent<Trigger>()->addCallback([packageBase, packTRI_](ecs::Entity* entRec) {
+
+		auto& ihdlr = ih();
+
+		SDL_Point point{ ihdlr.getMousePos().first, ihdlr.getMousePos().second };
+
 		Herramientas* herrEnt = entRec->getComponent<Herramientas>();
-		if (herrEnt != nullptr)
+
+		SDL_Rect stampRect = entRec->getComponent<Transform>()->getRect();
+
+		if (herrEnt != nullptr && SDL_PointInRect(&point, &stampRect))
 		{
 			herrEnt->interact(packageBase);
 		}
@@ -160,12 +172,12 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 		Nv, peso,
 		boolRND(lvl1.notFragileChance), false);
 	addVisualElements(packageBase);
-	if (pq->getFragil()) {
+	//if (pq->getFragil()) {
 		//Wrap debe ir despues del Transform, Trigger y Multitextures
 		//Luis: hay que hacer que las rutas se saquen de un json
 		std::list<int> route{ pointRoute::LeftUp, pointRoute::MiddleUp, pointRoute::MiddleMid, pointRoute::MiddleDown, pointRoute::RightDown };
 		packageBase->addComponent<Wrap>(20, 0, route);
-	}
+	//}
 }
 
 pq::Distrito PaqueteBuilder::distritoRND() {	//Este m�todo devuelve un Distrito aleatorio entre todas las posibilidades
