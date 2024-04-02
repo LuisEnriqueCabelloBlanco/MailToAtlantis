@@ -256,7 +256,8 @@ void PaqueteBuilder::getNamesFromJSON() {
 
 	jValue = root["Name"];
 	if (jValue != nullptr) {
-		if (jValue->IsArray()) {			
+		if (jValue->IsArray()) {
+			names.reserve(jValue->AsArray().size());
 			for (auto v : jValue->AsArray()) {
 				if (v->IsString()) {
 					std::string aux = v->AsString();
@@ -278,6 +279,7 @@ void PaqueteBuilder::getNamesFromJSON() {
 	jValue = root["Surname"];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
+			surnames.reserve(jValue->AsArray().size());
 			for (auto v : jValue->AsArray()) {
 				if (v->IsString()) {
 					std::string aux = v->AsString();
