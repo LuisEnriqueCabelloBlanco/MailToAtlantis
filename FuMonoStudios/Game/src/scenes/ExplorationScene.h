@@ -116,7 +116,7 @@ namespace ecs {
 		void renderBackGround() const;
 
     private:
-
+		
 		/// <summary>
 		/// Metodo para inicializar los lugares del mapa
 		/// </summary>
@@ -156,6 +156,11 @@ namespace ecs {
 		/// <param name="placeDir"></param>
 		/// <param name="value"></param>
 		void setNavegabilityOfPlace(std::string place, bool value = true);
+
+		/// <summary>
+		/// Método para actualizar la navegabilidad según el día
+		/// </summary>
+		void updateNavegavility();
         
 		//Puntero al lugar actual
 		Lugar* actualPlace_;

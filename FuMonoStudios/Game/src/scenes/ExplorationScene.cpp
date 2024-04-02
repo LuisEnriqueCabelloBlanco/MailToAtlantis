@@ -37,25 +37,27 @@ void ecs::ExplorationScene::init()
 {
 	std::cout << "Hola Exploracion" << std::endl;
 	//setNavegabilityOfPlace("Hermes"); // Esto es para probar si funciona el seteo.
+	generalData().updateDia();
+	updateNavegavility();
 }
 
 
 void ecs::ExplorationScene::initPlacesDefaultMap()
 {
 	//Hestia
-	hestia = Lugar(&sdlutils().images().at("hestia"), true);
+	hestia = Lugar(&sdlutils().images().at("hestia"), false);
 	places["Hestia"] = &hestia;
 
 	//Hefesto
-	hefesto = Lugar(&sdlutils().images().at("hefesto"), true);
+	hefesto = Lugar(&sdlutils().images().at("hefesto"), false);
 	places["Hefesto"] = &hefesto;
 
 	//Demeter
-	demeter = Lugar(&sdlutils().images().at("demeter"), true);
+	demeter = Lugar(&sdlutils().images().at("demeter"), false);
 	places["Demeter"] = &demeter;
 
 	//Artemisa
-	artemisa = Lugar(&sdlutils().images().at("artemisa"), true);
+	artemisa = Lugar(&sdlutils().images().at("artemisa"), false);
 	places["Artemisa"] = &artemisa;
 
 	//Hermes
@@ -203,6 +205,13 @@ void ecs::ExplorationScene::setNavegabilityOfPlace(std::string place, bool value
 	{
 		places.at(place)->setNavegability();
 	}
+}
+
+void ecs::ExplorationScene::updateNavegavility()
+{
+
+	for (std::string g : generalData().getPlacesToActive())
+		setNavegabilityOfPlace(g);
 }
 
 void ecs::ExplorationScene::createObjects(std::string place) {

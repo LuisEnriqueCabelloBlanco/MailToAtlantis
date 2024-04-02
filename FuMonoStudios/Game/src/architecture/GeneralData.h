@@ -15,7 +15,7 @@ class GeneralData : public Singleton<GeneralData>
 	friend Singleton<GeneralData>;
 public:
 	GeneralData() :dinero_(INITIAL_MONEY), finalID_(INITIAL_FINAL), eventoID_(INITIAL_EVENT),failsMargin_(INITIAL_FAILS_MARGIN),
-		corrects_(0), fails_(0), dia_(1), numTubos_(INITIAL_TUBE_AMOUNT) {
+		corrects_(0), fails_(0), dia_(4), numTubos_(INITIAL_TUBE_AMOUNT) {
 		updateFelicidadPersonajes();
 	};
 	~GeneralData(){};
@@ -35,7 +35,11 @@ public:
 	int getEventoID(); //Devuelve el id del evento que ocurrir� en el juego
 
 	int getDia() { return dia_; }
-	void setDia(int dia) { dia_ = dia; }
+	void setDia(int dia) { dia_ = dia; updateDia(); }
+
+	void updateDia();
+	void updateDistrictsPerDay(int dia);
+	std::vector<std::string> getPlacesToActive() { return placesToActive_; }
 
 	void setTubesAmount(int tubos) { 
 		if (tubos >= 7) numTubos_ = 7;
@@ -105,6 +109,7 @@ private:
 	DatosPersonajes charactersData_[7]; // Recoge la felicidad de cada personaje
 	int charactersEvents_[7]; // Recoge los eventos de paquete de cada personaje
 	std::vector<Paquete*> paquetesNPCs;
+	std::vector<std::string> placesToActive_;
 };
 
 inline GeneralData& generalData() {
