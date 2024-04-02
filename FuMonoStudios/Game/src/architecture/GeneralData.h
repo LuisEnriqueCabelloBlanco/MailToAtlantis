@@ -15,7 +15,7 @@ class GeneralData : public Singleton<GeneralData>
 	friend Singleton<GeneralData>;
 public:
 	GeneralData() :dinero_(INITIAL_MONEY), finalID_(INITIAL_FINAL), eventoID_(INITIAL_EVENT),failsMargin_(INITIAL_FAILS_MARGIN),
-		corrects_(0), fails_(0), dia_(4), numTubos_(INITIAL_TUBE_AMOUNT) {
+		corrects_(0), fails_(0), dia_(1), numTubos_(INITIAL_TUBE_AMOUNT) {
 		updateFelicidadPersonajes();
 	};
 	~GeneralData(){};

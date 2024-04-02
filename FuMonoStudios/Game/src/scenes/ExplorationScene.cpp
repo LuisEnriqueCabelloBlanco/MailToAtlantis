@@ -209,7 +209,6 @@ void ecs::ExplorationScene::setNavegabilityOfPlace(std::string place, bool value
 
 void ecs::ExplorationScene::updateNavegavility()
 {
-
 	for (std::string g : generalData().getPlacesToActive())
 		setNavegabilityOfPlace(g);
 }
