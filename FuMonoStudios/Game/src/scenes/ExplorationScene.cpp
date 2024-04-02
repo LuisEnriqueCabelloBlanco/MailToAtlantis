@@ -20,13 +20,16 @@
 
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
+
+	generalData().setDayData();
 	initPlacesDefaultMap();
+	generalData().updateDia();
+	updateNavegavility();
 	initDirectionsDefaultMap();
 	actualPlace_ = &hestia;
 	createObjects("Hestia");
 	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 	canStartConversation = true;
-	generalData().setDayData();
 }
 
 ecs::ExplorationScene::~ExplorationScene()
