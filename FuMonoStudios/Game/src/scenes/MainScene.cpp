@@ -431,7 +431,7 @@ void ecs::MainScene::createGarbage()
 {
 	/*TDOO Meter en un metdo */
 	// papelera
-	Entity* papelera = addEntity(ecs::layer::FOREGROUND);
+	Entity* papelera = addEntity(ecs::layer::BIN);
 	papelera->addComponent<Transform>(50, 650, 100, 150);
 	papelera->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
 	Trigger* papTrig = papelera->addComponent<Trigger>();
