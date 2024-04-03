@@ -30,15 +30,20 @@ void ecs::MainMenu::init()
 	sdlutils().clearRenderer();
 
 	//Font* fuente = new Font("recursos/fonts/ARIAL.ttf", 50);
+	Entity* fondo = addEntity();
+	Texture* texturaFondo = &sdlutils().images().at("fondoMainMenu");
+	Transform* transformFondo = fondo->addComponent<Transform>(0.0f, 0.0f, texturaFondo->width()* 1.6f, texturaFondo->height()* 1.6f);
+	RenderImage* renderFondo = fondo->addComponent<RenderImage>(texturaFondo);
+
 	Entity* titulo = addEntity();
 	Texture* texturaTitulo = &sdlutils().images().at("title");
-	Transform* transformTitulo = titulo->addComponent<Transform>(0.0f, 0.0f, texturaTitulo->width(), texturaTitulo->height());
+	Transform* transformTitulo = titulo->addComponent<Transform>(350.0f, 50.0f, texturaTitulo->width()*1.5f, texturaTitulo->height()* 1.5f);
 	RenderImage* renderTitulo = titulo->addComponent<RenderImage>(texturaTitulo);
 
 	Texture* texturaBoton = new Texture(sdlutils().renderer(), "Pulsa para empezar", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
 	Entity* BotonPress = addEntity();
 	
-	Transform* transformBoton = BotonPress->addComponent<Transform>(400, 600, texturaBoton->width(), texturaBoton->height());
+	Transform* transformBoton = BotonPress->addComponent<Transform>(600, 600, texturaBoton->width(), texturaBoton->height());
 	RenderWithLight* renderBoton = BotonPress->addComponent<RenderWithLight>(texturaBoton);
 
 	auto clickerPress = BotonPress->addComponent<Clickeable>();
