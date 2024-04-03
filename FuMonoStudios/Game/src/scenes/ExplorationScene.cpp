@@ -296,7 +296,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 		botonTrabajar->addComponent<Transform>(525, 300, 100, 300);
 		auto clickableBotonTrabajar = botonTrabajar->addComponent<Clickeable>();
 		CallbackClickeable funcPress = [this]() {
-			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
 		};
 		clickableBotonTrabajar->addEvent(funcPress);
 		demeter.addObjects(botonTrabajar);

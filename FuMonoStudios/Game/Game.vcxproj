@@ -202,6 +202,7 @@
     <ClCompile Include="src\utils\Vector2D.cpp" />
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\architecture\Time.cpp" />
+    <ClCompile Include="src\scenes\TutorialScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\RenderWithLight.h" />
@@ -273,6 +274,7 @@
     <ClInclude Include="src\utils\Vector2D.h" />
     <ClInclude Include="src\components\Transform.h" />
     <ClInclude Include="src\architecture\Time.h" />
+    <ClInclude Include="src\scenes\TutorialScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties.props" />

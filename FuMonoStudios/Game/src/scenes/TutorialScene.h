@@ -1,0 +1,35 @@
+#pragma once
+#include "../architecture/Game.h"
+#include "../architecture/Scene.h"
+#include "../components/Transform.h"
+#include "../components/Paquete.h"
+#include <components/Herramientas.h>
+#include "../sistemas/PaqueteBuilder.h"
+
+namespace ecs {
+	class TutorialScene : public Scene
+	{
+	public:
+		TutorialScene();
+		virtual ~TutorialScene();
+
+		virtual void update() override;
+		virtual void render() override;
+		void close() override;
+		void init() override;
+	private:
+		void createManual();
+		void createMiniManual();
+		void createSpaceManual();
+
+		void createClock();
+		void createInks();
+		void createOneInk(TipoHerramienta type);
+		void createCharacter();
+
+		Entity* manualEnt_;
+		Entity* miniManualEnt_;
+
+		PaqueteBuilder* mPaqBuild_;
+	};
+}
