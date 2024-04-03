@@ -25,6 +25,7 @@
     {"id": "hermes","file": "recursos/images/Hermes.png"},
     {"id": "apolo","file": "recursos/images/Apolo.png"},
     {"id": "poseidon","file": "recursos/images/Poseidon.png"},
+    {"id": "fondoMainMenu","file": "recursos/images/main_menu.jpg"},
 
     {"id": "sellador0","file": "recursos/images/selladorRojo.png"},
     {"id": "sellador1","file": "recursos/images/selladorAzul.png"},
