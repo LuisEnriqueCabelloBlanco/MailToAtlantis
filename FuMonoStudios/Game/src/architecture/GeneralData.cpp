@@ -256,9 +256,21 @@ std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
 	std::string tipo;
 	int iterationNum = -1;
 
-	if (felicidad == Minima || felicidad == Maxima)
+	if (felicidad == Minima || felicidad == Maxima || felicidad == NoHabladoAun)
 	{
-		tipo = felicidad == Minima ? "FelicidadMinimo" : "FelicidadMaximo";
+		switch (felicidad)
+		{
+		case NoHabladoAun:
+			tipo = "Presentacion";
+			felicidad = Normal;
+			break;
+		case Minima:
+			tipo = "FelicidadMinimo";
+			break;
+		case Maxima:
+			tipo = "FelicidadMaximo";
+			break;
+		}
 	}
 	else if (giveEvent)
 	{
@@ -283,10 +295,6 @@ std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
 				tipo = "GenericoBueno";
 				iterateDialogues();
 				iterationNum = iteration;
-				break;
-			case NoHabladoAun:
-				tipo =  "Presentacion";
-				felicidad = Normal;
 				break;
 		}
 	}

@@ -11,7 +11,7 @@
 
 DialogComponent::DialogComponent(DialogManager* manager, ecs::ExplorationScene* Scene): 
 	mTr_(nullptr), mRend_(nullptr),
-	dialogueWidth_(sdlutils().width() - 400),dialogueIndex_(1),mTexture_(nullptr),
+	dialogueWidth_(sdlutils().width() + 500),dialogueIndex_(1),mTexture_(nullptr),
 	canSkip(true), endDialogue(false)
 {
 	mDialogMngr_ = manager;

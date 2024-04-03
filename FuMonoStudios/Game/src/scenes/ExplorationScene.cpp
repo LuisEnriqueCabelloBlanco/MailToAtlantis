@@ -377,7 +377,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 
 	// entidad del texto
 	textDialogue = addEntity(ecs::layer::UI);
-	auto textTr = textDialogue->addComponent<Transform>(100, 100, 80, 100);
+	auto textTr = textDialogue->addComponent<Transform>(100, 40, 80, 100);
 	textTr->setParent(bgTr);
 	textDialogue->addComponent<RenderImage>();
 }

@@ -2,8 +2,8 @@
   "Vagabundo": {
     "Presentacion": [
       "Ey perdona! Tienes alguna monedilla de sobra para alguien que est$a pasando un mal d$ia?",
-      "No tienes nada verdad… Ah si t$u eres el notas ese que ha salido corriendo de la oficina de correos!",
-      "Vaya liada has hecho, ha llegado tu jefe y est$a que hecha humo contigo… Si es que tendr$ia que ser yo el que te ayude a ti !",
+      "No tienes nada verdad... Ah si t$u eres el notas ese que ha salido corriendo de la oficina de correos!",
+      "Vaya liada has hecho, ha llegado tu jefe y est$a que hecha humo contigo... Si es que tendr$ia que ser yo el que te ayude a ti !",
       "Oye amigo perdona por los modales, que llevo mucho tiempo sin que nadie se pare conmigo a hablar y se me est$a olvidando comportarme.",
       "Me llamo Anemos, un placer conocerte.",
       "Bueno, va siendo hora de dejarte que tu coleguita te est$a esperando en la puerta para darte la chapa."
@@ -204,11 +204,11 @@
     "Presentacion": [
       "Yyyyyy, pos como es que saliste corriendo el otro dia macho...",
       "Buena la has liado, contento tienes a tu jefe...",
-      "Anda toma esto, que es de mi cosecha, a ver si te ayuda un poco hoy que tienes cara de muerto. Aunque no me extraña despu$es de todo el jaleo del otro d$ia.",
-      "Pruebas algo, sabe raro",
+      "Anda toma esto, que es de mi cosecha, a ver si te ayuda un poco hoy que tienes cara de muerto. Aunque no me extranya despu$es de todo el jaleo del otro d$ia.",
+      "*Pruebas algo, sabe raro*",
       "Por cierto que no me hab$ia presentado, soy Pancracio Warawa. Un gusto hijo.",
       "Venga a pasar buena noche, y espabila que la vida te va ha comer!",
-      "$Ultimamente me la l$ias cada 2 por 3 con mi mercanc$ia!"
+      " $Ultimamente me la l$ias cada 2 por 3 con mi mercanc$ia!"
     ],
     "FelicidadMinima": [
       "Felicidad minima Campesino"
@@ -270,7 +270,7 @@
   "Artesano": {
     "Presentacion": [
       "Hola querido! Bienvenido a mi humilde taller! En qu$e puedo ayudarte hoy?",
-      "Espera… Tu debes de ser el nuevo verdad? Soy Paulino Tinteiros, el maestro de estos mares.",
+      "Espera... Tu debes de ser el nuevo verdad? Soy Paulino Tinteiros, el maestro de estos mares.",
       "Mis tent$aculos son como pinceles y mis obras ser$an el patrimonio de Atlantis al paso de los anyos!"
     ],
     "FelicidadMinima": [
