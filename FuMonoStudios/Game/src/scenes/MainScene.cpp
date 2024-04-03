@@ -198,7 +198,7 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 			});
 		});
 	NotaErronea->addComponent<RenderImage>(NotaTex);
-	
+	//std::cout<<"A\n";
 	//El texto de la nota
 	Entity* texto_ = addEntity(ecs::layer::STAMP);
 	Font* textFont = new Font("recursos/fonts/ARIAL.ttf", 40);

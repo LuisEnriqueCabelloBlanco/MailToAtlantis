@@ -71,8 +71,7 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 		}
 		else {
 			GeneralData::instance()->wrongPackage();
-			auto note = mainSc_->addEntity(ecs::layer::BACKGROUND);
-			note->addComponent<ErrorNote>(ent->getComponent<Paquete>(), toDis_==Erroneo, 
+			mainSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo,
 				toDis_ != ent->getComponent<Paquete>()->getDistrito());
 		}
 #ifdef QA_TOOLS
