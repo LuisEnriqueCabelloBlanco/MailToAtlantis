@@ -210,7 +210,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 			std::pair<const std::string, int> aux = generalData().getNPCData(
 				generalData().stringToPersonaje(character))->getDialogueInfo();
 
-			dialogMngr_.setDialogues(generalData().stringToPersonaje(character), aux.first, aux.second);
+			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
 
 			textDialogue->addComponent<DialogComponent>(&dialogMngr_, this);
 		}

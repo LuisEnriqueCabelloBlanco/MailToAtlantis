@@ -17,6 +17,8 @@ namespace ecs {
 		virtual void render() override;
 		void close() override;
 		void init() override;
+
+		void closeConversation();
 	private:
 		void createManual();
 		void createMiniManual();
@@ -31,5 +33,10 @@ namespace ecs {
 		Entity* miniManualEnt_;
 
 		PaqueteBuilder* mPaqBuild_;
+
+		// entidades de dialogo
+		Entity* boxBackground;
+		Entity* textDialogue;
+		void createDialogueBox();
 	};
 }

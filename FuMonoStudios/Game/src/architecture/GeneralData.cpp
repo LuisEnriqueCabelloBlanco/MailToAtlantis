@@ -179,9 +179,6 @@ const std::string GeneralData::personajeToString(Personaje pers) {
 		case Contable:
 			aux = "Contable";
 			break;
-		case JefeOficina:
-			aux = "JefeOficina";
-			break;
 	}
 	return aux;
 }

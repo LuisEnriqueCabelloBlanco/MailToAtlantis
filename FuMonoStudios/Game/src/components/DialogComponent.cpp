@@ -8,6 +8,7 @@
 #include "Render.h"
 #include "DelayedCallback.h"
 #include "../scenes/ExplorationScene.h"
+#include "../scenes/TutorialScene.h"
 
 DialogComponent::DialogComponent(DialogManager* manager, ecs::ExplorationScene* Scene): 
 	mTr_(nullptr), mRend_(nullptr),
@@ -15,7 +16,19 @@ DialogComponent::DialogComponent(DialogManager* manager, ecs::ExplorationScene* 
 	canSkip(true), endDialogue(false)
 {
 	mDialogMngr_ = manager;
-	scene_ = Scene;
+	scene2_ = nullptr;
+	scene1_ = Scene;
+	mFont_ = new Font("recursos/fonts/ARIAL.ttf", 40);
+}
+
+DialogComponent::DialogComponent(DialogManager* manager, ecs::TutorialScene* Scene) :
+	mTr_(nullptr), mRend_(nullptr),
+	dialogueWidth_(sdlutils().width() + 500), dialogueIndex_(1), mTexture_(nullptr),
+	canSkip(true), endDialogue(false)
+{
+	mDialogMngr_ = manager;
+	scene1_ = nullptr;
+	scene2_ = Scene;
 	mFont_ = new Font("recursos/fonts/ARIAL.ttf", 40);
 }
 
@@ -66,7 +79,10 @@ void DialogComponent::update()
 			{
 				if (mTexture_ != nullptr)
 				{
-					scene_->closeConversation();
+					if (scene1_ != nullptr)
+						scene1_->closeConversation();
+					else
+						scene2_->closeConversation();
 				}
 			}
 		}

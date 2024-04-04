@@ -3,6 +3,7 @@
 #include "../sistemas/ComonObjectsFactory.h"
 #include "../components/Transform.h"
 #include "../entities/ClockAux.h"
+#include "../components/DialogComponent.h"
 
 ecs::TutorialScene::TutorialScene() : Scene() {
 	mPaqBuild_ = new PaqueteBuilder(this);
@@ -37,6 +38,8 @@ void ecs::TutorialScene::init() {
 	createInks();
 
 	createCharacter();
+
+	createDialogueBox();
 }
 
 void ecs::TutorialScene::close() {
@@ -203,11 +206,29 @@ void ecs::TutorialScene::createOneInk(TipoHerramienta type) {
 			stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
 
 		}
-
 		});
-
 }
 
 void ecs::TutorialScene::createCharacter() {
 
+}
+
+void ecs::TutorialScene::createDialogueBox() {
+
+	// creamos la entidad caja dialogo
+	boxBackground = addEntity(ecs::layer::UI);
+	auto bgTr = boxBackground->addComponent<Transform>(100, LOGICAL_RENDER_HEITH - 250, LOGICAL_RENDER_WIDTH - 100, 200);
+	boxBackground->addComponent<RenderImage>(nullptr);
+
+	// entidad del texto
+	textDialogue = addEntity(ecs::layer::UI);
+	auto textTr = textDialogue->addComponent<Transform>(100, 40, 80, 100);
+	textTr->setParent(bgTr);
+	textDialogue->addComponent<RenderImage>();
+}
+
+void ecs::TutorialScene::closeConversation() {
+	textDialogue->getComponent<RenderImage>()->setTexture(nullptr);
+	textDialogue->removeComponent<DialogComponent>();
+	boxBackground->getComponent<RenderImage>()->setTexture(nullptr);
 }
