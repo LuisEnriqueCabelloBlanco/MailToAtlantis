@@ -1,8 +1,12 @@
 {
   "Vagabundo": {
     "Presentacion": [
-      " $a$A$e$E$i$I EL DIABL$O",
-      "presentacion Vagabundo"
+      "Ey perdona! Tienes alguna monedilla de sobra para alguien que est$a pasando un mal d$ia?",
+      "No tienes nada verdad... Ah si t$u eres el notas ese que ha salido corriendo de la oficina de correos!",
+      "Vaya liada has hecho, ha llegado tu jefe y est$a que hecha humo contigo... Si es que tendr$ia que ser yo el que te ayude a ti !",
+      "Oye amigo perdona por los modales, que llevo mucho tiempo sin que nadie se pare conmigo a hablar y se me est$a olvidando comportarme.",
+      "Me llamo Anemos, un placer conocerte.",
+      "Bueno, va siendo hora de dejarte que tu coleguita te est$a esperando en la puerta para darte la chapa."
     ],
     "FelicidadMinima": [
       "felicidadMinima vagabundo"
@@ -95,12 +99,15 @@
       "postConvDia14"
     ]
   },
-
-
-
   "Secretario": {
     "Presentacion": [
-      "Presentacion Secretario"
+      "Buenos d$ias Jones. Supongo que ya sabr$as quien soy.",
+      "Dado que tienes una buena cara de confusi$on tendr$e que presentarme. Soy Gargafiel Mustaki, secretario del rey.",
+      "El rey precisa de tus servicios, pero de forma especial y extraordinaria. Es por eso que se ha tomado la molestia de llamarte hasta aqu$i.",
+      "Que d$onde est$a el rey dices? El rey no se va a salir de su gran palacio por t$i. No eres tan importante. Adem$as, el rey nunca sale de su palacio por riesgos de atentado terrorista.",
+      "Es una persona demasiado importante como para que sea asesinada.",
+      "Tengo entendido que recientemente huiste de tu trabajo y estabas teniendo un rendimiento sub$optimo. Que no se repita. Si te portas bien, el rey se portar$a bien contigo.",
+      "Este reinado valora mucho a sus ciudadanos, pero m$as que eso, valora la lealtad. La lealtad y la fidelidad al rey por encima de todo. Espero que lo tengas en cuenta."
     ],
     "FelicidadMinima": [
       "FelicidadMinima"
@@ -193,12 +200,15 @@
       "postConvDia14"
     ]
   },
-
-
-
   "Campesino": {
     "Presentacion": [
-      "Presentacion Cmampesino"
+      "Yyyyyy, pos como es que saliste corriendo el otro dia macho...",
+      "Buena la has liado, contento tienes a tu jefe...",
+      "Anda toma esto, que es de mi cosecha, a ver si te ayuda un poco hoy que tienes cara de muerto. Aunque no me extranya despu$es de todo el jaleo del otro d$ia.",
+      "*Pruebas algo, sabe raro*",
+      "Por cierto que no me hab$ia presentado, soy Pancracio Warawa. Un gusto hijo.",
+      "Venga a pasar buena noche, y espabila que la vida te va ha comer!",
+      " $Ultimamente me la l$ias cada 2 por 3 con mi mercanc$ia!"
     ],
     "FelicidadMinima": [
       "Felicidad minima Campesino"
@@ -257,12 +267,11 @@
       ]
     }
   },
-
-
-
   "Artesano": {
     "Presentacion": [
-      "Presentacion Artesano"
+      "Hola querido! Bienvenido a mi humilde taller! En qu$e puedo ayudarte hoy?",
+      "Espera... Tu debes de ser el nuevo verdad? Soy Paulino Tinteiros, el maestro de estos mares.",
+      "Mis tent$aculos son como pinceles y mis obras ser$an el patrimonio de Atlantis al paso de los anyos!"
     ],
     "FelicidadMinima": [
       "Felicidad minima Artesano"
@@ -321,11 +330,13 @@
       ]
     }
   },
-
-
   "Tarotisa": {
     "Presentacion": [
-      "Presentacion Tarotisa"
+      "Bendita la carne fresca, que tenemos por aqu$i. Joven tu debes ser nuevo en el reino, o me equivoco?",
+      "No hace falta que respondas. Yo nunca me equivoco. Sabes porque?, por que puedo ver el futuro.",
+      "Mi nombre es Abigail Ampoule y soy una reconocida tarotista.",
+      "Secretos, enganyos, enfermedades y todo lo dem$as, nada puede escapar de mi conocimiento, la luz de mi cabeza me muestra cualquier cosa.",
+      "Ven a verme siempre que te preocupe algo, yo siempre estoy aqu$i para las pobres almas sin rumbo ni ambiciones."
     ],
     "FelicidadMinima": [
       "Felicidad minima Tarotisa"
@@ -384,13 +395,12 @@
       ]
     }
   },
-
-
-
-
   "Soldado": {
     "Presentacion": [
-      "Presentacion Soldado"
+      "Saludos! Me llamo Abakand Istacoz, soldado del glorioso ej$ercito de Atlantis.",
+      "Eres nuevo por aqu$i? Debo decirte que el deber me ha llevado a servir en el distrito de Apolo",
+      "Aunque mi coraz$on anhelaba proteger los distritos exteriores, como Hestia, donde crec$i.",
+      "Mi pasado es tan resistente como mi armadura, y mi deber es velar por la paz, incluso cuando la tarea me resulta desalentadora."
     ],
     "FelicidadMinima": [
       "Felicidad minima Soldado"
@@ -449,11 +459,13 @@
       ]
     }
   },
-
-
   "Contable": {
     "Presentacion": [
-      "Presentacion Artesano"
+      "Anda hola, debes ser nuevo por aqui, mi nombre es Glover Globus, CEO principal de la empresa Globinterprise.",
+      "Principalmente nos encargamos de mediar entre la compra y venta de los anillos exteriores e interiores a cambio de una comisi$on.",
+      "Basicamente les compramos los productos a los campesinos y los artesanos y se los vendemos a los nobles.",
+      "La verdad que no nos podemos quejar jiji.",
+      "Bueno espero verte por aqui m$as de seguido, un placer pimpollo."
     ],
     "FelicidadMinima": [
       "Felicidad minima Artesano"
@@ -512,7 +524,6 @@
       ]
     }
   },
-
   "EsclavaRemix": [
     "Bryant myers",
     "Hoy de nuevo te voy a veeer",

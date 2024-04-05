@@ -8,6 +8,7 @@
 #include "../sdlutils/InputHandler.h"
 #include "../scenes/MainScene.h"
 #include "../scenes/MainMenu.h"
+#include "../scenes/PauseScene.h"
 #include "../scenes/ExplorationScene.h"
 #include "../scenes/EndWorkScene.h"
 #include "Time.h"
@@ -71,6 +72,12 @@ void Game::run()
 		if (ih().isKeyDown(SDL_SCANCODE_F)) {
 			sdlutils().toggleFullScreen();
 		}
+		if (ih().isKeyDown(SDL_SCANCODE_P)) {
+			loadScene(ecs::sc::PAUSE_SCENE);
+		}
+		if (ih().isKeyDown(SDL_SCANCODE_L)) {
+			killScene(ecs::sc::PAUSE_SCENE);
+		}
 		if (ih().isKeyDown(SDL_SCANCODE_E)) {
 			changeScene(ecs::sc::MENU_SCENE, ecs::sc::MAIN_SCENE);
 		}
@@ -127,6 +134,7 @@ void Game::loadScene(ecs::sc::sceneId scene)
 		gameScenes_[scene]->init();
 		//cargamos la escena
 		loadedScenes_.push_back(gameScenes_[scene]);
+		std::cout << "Scene Loaded" << std::endl;
 	}
 #ifdef QA_TOOLS
 	dataCollector().record();
@@ -167,6 +175,8 @@ void Game::changeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2) {
 	else if (scene1 == ecs::sc::EXPLORE_SCENE) {
 		generalData().setFinalID(2);
 		generalData().setEventoID(2);
+		generalData().setDia(generalData().getDia() + 1);
+		generalData().setTubesAmount(generalData().getPlacesToActive().size() - 1);
 	}
 	else if (scene1 == ecs::sc::MAIN_SCENE) {
 		generalData().setFinalID(3);
