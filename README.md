@@ -157,7 +157,9 @@ Tras saber cuanto recibe el jugador se le quitará lo correspondiente para pagar
 #### Finales
 Cada personaje tiene asociado un parámetro de felicidad, dicho valor va aumentando o reduciendose dependiendo de si se envia **correctamente un paquete** (+1/-1), se redirige un paquete para **beneficiar** lo que ha pedido uno de los NPC (+5), o se a **extraviado** el paquete que se dirigía a su distrito (-3). 
 
-La felicidad puede ir desde el -X hasta el Y, teniendo diferentes puntos que actuan como flags. 
+La felicidad puede ir desde el -X hasta el Y, teniendo diferentes puntos que actuan como flags.
+
+Tras el día final se pasará a una escena donde se irá exponiendo en un texto / imagen donde se vea el final del NPC en función de la felicidad con la que acaba. En el caso de felicidad mínima no se mostrará el final del personaje.
 
 Condiciones del comportamiento de la felicidad:
 
