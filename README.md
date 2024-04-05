@@ -66,7 +66,7 @@
 ## Ficha Técnica
 |Genero|Publico Objetivo|
 |--|---|
-|Simulación|Jugadores interesados en los Indies|
+|Simulación|Jugadores interesados en la narrativa|
 
 [UML](https://lucid.app/lucidchart/29f6e8d3-db3a-4b3c-98d9-a0ec94f8a0d4/edit?view_items=jGC~qOX6U6pG&invitationId=inv_555ab00b-17ce-4af3-80db-82f253f680ba)
 
@@ -75,14 +75,14 @@
 ## Mecanicas
 
 ### Movimiento en la exploracion
-Para explorar la Atlántida se mostrarán imágenes de las calles donde podrá seleccionar hacia donde ir clicando en las direcciones de las calles, estilo *Profesor Layton*. Cada vez que se clickea una flecha se cambia de un distrito a otro. En cada distrito siempre habrá un **NPC** con el cual se podra hablar. Este podra dejarte **encargos** en algunas ocasiones mientras que te contara un poco de su vida en otras. No es podible acceder a todos los distritos desde todos los distritos, estando conectados: todos los distritos en un mismo anillo, los distritos de Demeter y Hefesto con el de Hermes y el distrito de Apolo con el de Poseidón. Según pasen los días se iran desbloqueando el acceso a los distintos anillos, pudiendo al principio solo acceder a los **exteriores**, despues al **interior** y por último al **castillo real**.
+Para explorar la Atlántida se mostrarán imágenes de los distritos donde podrá seleccionar hacia donde ir clicando en las direcciones de las calles, estilo *Profesor Layton*. Cada vez que se clickea una flecha se cambia de un distrito a otro. En cada distrito siempre habrá un **NPC** con el cual se podra hablar. Este podra dejarte **encargos** en algunas ocasiones mientras que te contara un poco de su vida en otras. No es podible acceder a todos los distritos desde todos los distritos, estando conectados: todos los distritos en un mismo anillo, los distritos de Demeter y Hefesto con el de Hermes y el distrito de Apolo con el de Poseidón. Según pasen los días se iran desbloqueando el acceso a los distintos anillos, pudiendo al principio solo acceder a los **exteriores**, despues al **interior** y por último al **castillo real**. En el mapa también será posible clickear en elementos de los distritos para recibir información extra del lugar.
 
 ![Imagen de como va atlantis](Imagenes/Mapa1Nombres.png)
 
 ### Dialogos con los NPC
 Al hacer clic sobre un NPC mientras se está en la fase de exploración se mostrará en pantalla un cuadro de diálogo con lo que te dice dicho NPC, dicho dialogo puede ser tanto un encargo de correo como simplemente algo de información sobre la historia de ese NPC y su entorno. Si un jugador vuelve a hablar con el NPC aparecera un dialogo predeterminado con el cual el jugador en el que le indicara que deje de molestarlo o que esta ocupado, cortando asi la conversación. 
 
-En total hay 4 tipos de dialogos, primero los dialogos de favores en donde le explicaran los NPC al jugador una adversidad y le pediran su ayuda mediante la desviación del correo. El segundo tipo son los dialogos de contexto, los cuales varían según el nivel de felicidad de los NPC y estos sirven tanto para informarte de la situación personal del NPC como su entorno. Después hay un dialogo Maxifeliz el cual te dice el NPC una vez alcanzas la felicidad máxima con él, haciendote entrega de un regalo con ello. Y por último esta el dialogo de perdida, que es un dialogo que aparece cuando haces totalmente infeliz al NPC, lo que supone en una perdida completa de la progresión de este. 
+En total hay 5 tipos de dialogos, primero los dialogos de favores en donde le explicaran los NPC al jugador una adversidad y le pediran su ayuda mediante la desviación del correo. El segundo tipo son los dialogos de contexto, los cuales varían según el nivel de felicidad de los NPC y estos sirven tanto para informarte de la situación personal del NPC como su entorno. Luego un dialogo de presentación que le dirán al jugador la primera vez que hablen con ellos. Después hay un dialogo Maxifeliz el cual te dice el NPC una vez alcanzas la felicidad máxima con él, haciendote entrega de un regalo con ello. Y por último esta el dialogo de perdida, que es un dialogo que aparece cuando haces totalmente infeliz al NPC, lo que supone en una perdida completa de la progresión de este. 
 
 ### Gestión de paquetes
 
@@ -90,12 +90,12 @@ La fase de gestión de **paquetes** consta de varias mecánicas que se irán apl
 
 ![Diagrama de flujo de paquetes](Imagenes/image.png)
 
-Al envíar un paqute de forma incorrecta el jugador recibirá una **amonestación**, con varias **amonestaciones** el jugador recibirá menos dinero al final de la *jornada*.
+Al envíar un paqute de forma incorrecta el jugador recibirá una **amonestación** lo que provoca que se le reste dinero al final de la *jornada*, incluso pudiendo acabar una jornada habiendo perdido más dinero que ganado.
 
 #### Direcciones
-Cada paquete tendrá un bloque de texto donde se podrá leer: **nombre**, **cógido postal** y **barrio + calle**.
+Cada paquete tendrá un bloque de texto donde se podrá leer: **nombre**, **cógido postal** y **calle**.
 
-El jugador deberá comprobar que el **código postal** y el barrio son validos. Esto es que el **código postal** exista y que el **barrio** pertenezca al distrito al que va asociado el **codigo postal**. Para comprobar estas cosas el jugador cuenta con un **manual de trabajo** donde están enlistados los distritos con sus barrios.
+El jugador deberá comprobar que el **código postal** y la calle son validos. Esto es que el **código postal** exista y que la **calle** pertenezca al distrito al que va asociado el **codigo postal**. Para comprobar estas cosas el jugador cuenta con un **manual de trabajo** donde están enlistados los distritos con sus calles.
 
 |Codigo|Distrito|Calles|
 |---|---|---|
@@ -110,7 +110,8 @@ El jugador deberá comprobar que el **código postal** y el barrio son validos. 
 
 ##### Manual de trabajo
 El jugador contará con una libreta que podrá abrir (situada en la zona inferior derecha). En esta se podrán ver distintas páginas que explicarán en cada una de ellas las mecánicas sobre los paquetes que el jugador tenga disponibles. Por tanto debe haber las siguientes páginas al final de juego:
- - [Direcciones y cintas de colores](#direcciones)
+ - [Introduccion e indice]
+ - [Direcciones y sellos de colores](#direcciones)
  - [Sellos](#sello-de-tipo-de-paquete)
  - [Pesos](#pesado)
  - [Explicación de envoltura](#envoltura)
@@ -122,10 +123,10 @@ El jugador contará con una libreta que podrá abrir (situada en la zona inferio
 ![alt text](Imagenes/Book4.png)|![alt text](Imagenes/Book5.png)|
 
 #### Etiquetado por barrio
-En el caso de que la **dirección** sea correcta el jugador deberá emplear un sello del color correspondiente al barrio (ver en el **manual de trabajo**). Poner el color incorrecto o envíar el paquete teniendo la dirección incorrecta conllevará a una **amonestación**
+En el caso de que la **dirección** sea correcta el jugador deberá emplear un sello del color correspondiente a la calle (ver en el **manual de trabajo**). Poner el color incorrecto o envíar el paquete teniendo la dirección incorrecta conllevará a una **amonestación**
 
 #### Sello de tipo de paquete
-Llegado cierto punto se exigirá al jugador detectar la falsificación de **sellos**. En el **manual de trabajo** se añadirá una entrada para ver los **sellos** auténticos. 
+Llegado cierto punto se exigirá al jugador detectar la falsificación de **sellos**. En el **manual de trabajo** se podra ver los **sellos** autenticos y el cargamento que marcan estos.
 
 Existen 5 tipos de sellos:
 |Alimento|Medicinas|Joyas|Materiales|Armamento
@@ -135,13 +136,12 @@ Existen 5 tipos de sellos:
 Enviar un paquete con un **sello** falso implica una **amonestación**
 
 #### Pesado
-Un paquete con un **sello de pesado** deberá ser pesado y comprobado respecto a el peso que le asigna el **sello** por tanto un paquete con este **sello** solo debe ser enviado si su **peso** medido en la **balanza** coincide con las métricas que indica el **sello** (referirse al **manual de trabajo**). Una vez presentada esta mecánica aparecerá una balanza en la oficina de trabajao donde se podrán pesar los **paquetes** colocándolos encima de estos.
+Un paquete con un **sello de pesado** deberá ser pesado y comprobado respecto a el peso que le asigna el **sello** por tanto un paquete con este **sello** solo debe ser enviado si su **peso** medido en la **balanza** coincide con las métricas que indica el **sello** (referirse al **manual de trabajo**). Una vez presentada esta mecánica aparecerá una balanza en la oficina de trabajao donde se podrán pesar los **paquetes** colocándolos encima de estos. Al colocar los **paquetes** una flecha comenzara a moverse en una región, lo que indicara el peso del **paquete** una vez se pare.
 
 #### Envoltura
 <img src=Imagenes/Fragil.png width=200>
 
-Un paquete con un **sello de fragil** deberá ser envuelto con **cinta de embalaje**. Para ello el jugador deberá realizar un movimiento de *arriba abajo* sobre el **paquete** mientras sostiene el objeto de cinta de embalaje.
-
+Un paquete con un **sello de fragil** deberá ser envuelto con **cinta de embalaje**. Cada paquete tendra una ruta de embalaje diferente, siendo estos los distintos puntos ordenados por los que debe pasar la cinta para que el embalado sea correcto. Los patrones de cada **paquete** serán reflejados por medio de puntos y rectas en el paquete una vez tomada la **cinta**. Enviar un **paquete fragil** sin envalar supone una **amonestación**.
 
 
 #### Cálculo del dinero al final de la jornada
@@ -149,7 +149,7 @@ Al final de la jornada se abonará al jugador cierta cantidad de dinero siguiend
 
 > Envíos correctos * 20 - Envíos Erroneos * 50
 
-Tras saber cuanto recibe el jugador se le quitará lo correspondiente para pagar el alquier. Si el jugador se queda sin dinero implica fin de partida.
+Tras saber cuanto recibe el jugador se le quitará lo correspondiente para pagar el alquier. Si el jugador se queda sin dinero implica fin de partida, saliendo el final de deportado y sin la posibilidad de saber cual son el resto de finales de los NPC.
 
 
 ### Calculo de Finales y Felicidad
@@ -177,7 +177,7 @@ Además las misiones siguen una historia lineal que es la principal historia del
 #### Mejoras de los NPC
 Los NPCs te entregaran un regalo que te hará la labor más fácil en el trabajo. Estos regalos una vez recibidos ya no se pueden perder, siendo una mejora permanente para el jugador, aunque si es posible que la felicidad del NPC reduzca después de eso. Estas mejoras son:
 
-- **Vagabundo**: te da una cinta multicolor que se puede poner a los paquetes y vale para todas las calles
+- **Vagabundo**: te da un sello multicolor que se puede poner a los paquetes y vale para todas las calles
 - **Tarotisa**: te entrega una bola de cristal que tiene 1/x posibilidad de lanzar un brillo cuando el paquete actual es erroneo
 - **Artesano**: te permite envolver rapidamente un paquete tan solo pulsando E
 - **Campesino**: te permite conocer el peso del paquete sin necesidad de usar la balanza
