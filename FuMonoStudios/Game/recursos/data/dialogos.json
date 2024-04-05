@@ -525,11 +525,12 @@
     }
   },
   "Tutorial": {
-    "1": [
-
+    "0": [
+      "Bienvenido a tu oficina de trabajo. Aqu$i es donde vigilamos que todos los paquetes salgan bien.",
+      "Por si se te ha olvidado, te recordar$e como se trabaja. Ver$as que es muy sencillo."
     ],
-    "2": [
-
+    "1": [
+      "El manual es tu mejor amigo. S$acalo de su atril y arrastralo hasta encima de la mesa."
     ]
   },
   "EsclavaRemix": [

@@ -6,6 +6,7 @@
 #include <components/Herramientas.h>
 #include "../sistemas/PaqueteBuilder.h"
 #include "../components/DialogManager.h"
+#include "../sistemas/TutorialSystem.h"
 
 namespace ecs {
 	class TutorialScene : public Scene
@@ -35,14 +36,29 @@ namespace ecs {
 
 		PaqueteBuilder* mPaqBuild_;
 
-		// entidades de dialogo
-		Entity* boxBackground;
-		Entity* textDialogue;
-		void createDialogueBox();
-		DialogManager dialogMngr_;
+		TutorialSystem* tutorialSys_;
 
-		Entity* sistemaFuturo;
 
-		void activateDialogue();
+		// lo mismo que el drag and drop pero funciona unicamente 
+		// si el canDrag esta activo
+		class DragAndDropTutorial : public DragAndDrop
+		{
+		public:
+			DragAndDropTutorial(bool usingNearest, TutorialSystem* tutSys_) 
+				: DragAndDrop(usingNearest) {
+				tutorialSys_ = tutSys_;
+			}
+			DragAndDropTutorial(bool usingNearest, bool usingOwnCallback, TutorialSystem* tutSys_)
+				: DragAndDrop(usingNearest, usingOwnCallback) {
+				tutorialSys_ = tutSys_;
+			}
+			void update() {
+				if (tutorialSys_->canDrag)
+					DragAndDrop::update();
+
+			}
+		private:
+			TutorialSystem* tutorialSys_;
+		};
 	};
 }

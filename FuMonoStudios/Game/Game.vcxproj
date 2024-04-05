@@ -203,6 +203,7 @@
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\architecture\Time.cpp" />
     <ClCompile Include="src\scenes\TutorialScene.cpp" />
+    <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\RenderWithLight.h" />
@@ -275,6 +276,7 @@
     <ClInclude Include="src\components\Transform.h" />
     <ClInclude Include="src\architecture\Time.h" />
     <ClInclude Include="src\scenes\TutorialScene.h" />
+    <ClInclude Include="src\sistemas\TutorialSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties.props" />

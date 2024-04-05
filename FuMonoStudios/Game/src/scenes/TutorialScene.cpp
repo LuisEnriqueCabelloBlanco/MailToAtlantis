@@ -8,6 +8,7 @@
 
 ecs::TutorialScene::TutorialScene() : Scene() {
 	mPaqBuild_ = new PaqueteBuilder(this);
+	tutorialSys_ = new TutorialSystem(this);
 }
 
 ecs::TutorialScene::~TutorialScene() {
@@ -16,6 +17,7 @@ ecs::TutorialScene::~TutorialScene() {
 
 void ecs::TutorialScene::update() {
 	Scene::update();
+	tutorialSys_->update();
 }
 
 void ecs::TutorialScene::render() {
@@ -40,15 +42,7 @@ void ecs::TutorialScene::init() {
 
 	createCharacter();
 
-	createDialogueBox();
-
-	sistemaFuturo = addEntity();
-
-	sistemaFuturo->addComponent<DelayedCallback>(1, [this]() {
-		activateDialogue();
-		dialogMngr_.setDialogues(DialogManager::BryantMyers);
-		textDialogue->addComponent<DialogComponent>(&dialogMngr_, this);
-		});
+	tutorialSys_->activateEvent(TutorialSystem::Introduction);
 }
 
 void ecs::TutorialScene::close() {
@@ -74,7 +68,7 @@ void ecs::TutorialScene::createManual() {
 	RenderImage* manualRender = manualEnt_->getComponent<RenderImage>();
 	manualRender->setVector(bookTextures);
 	manualEnt_->addComponent<Gravity>();
-	manualEnt_->addComponent<DragAndDrop>(false);
+	manualEnt_->addComponent<DragAndDropTutorial>(false, tutorialSys_);
 	manualEnt_->addComponent<Depth>();
 
 
@@ -89,6 +83,8 @@ void ecs::TutorialScene::createManual() {
 	left->getComponent<Transform>()->setParent(manualTransform);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
+
+	manualEnt_->setActive(false);
 }
 
 void ecs::TutorialScene::createMiniManual() {
@@ -107,7 +103,7 @@ void ecs::TutorialScene::createMiniManual() {
 	Transform* manualTransform = miniManualEnt_->getComponent<Transform>();
 	RenderImage* manualRender = miniManualEnt_->getComponent<RenderImage>();
 
-	miniManualEnt_->addComponent<DragAndDrop>(false, true);
+	miniManualEnt_->addComponent<DragAndDropTutorial>(false, true, tutorialSys_);
 
 	Trigger* mmTri = miniManualEnt_->getComponent<Trigger>();
 
@@ -155,8 +151,6 @@ void ecs::TutorialScene::createMiniManual() {
 
 
 	factory_->setLayer(ecs::layer::DEFAULT);
-
-	miniManualEnt_->setActive(false);
 }
 
 void ecs::TutorialScene::createSpaceManual() {
@@ -165,7 +159,7 @@ void ecs::TutorialScene::createSpaceManual() {
 
 	factory_->setLayer(ecs::layer::MANUALSPACE);
 
-	Texture* bookTextures = &sdlutils().images().at("cartel");
+	Texture* bookTextures = &sdlutils().images().at("atrilManual");
 
 	auto baseManual = factory_->createImage(Vector2D(1200, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
 
@@ -222,28 +216,6 @@ void ecs::TutorialScene::createCharacter() {
 
 }
 
-void ecs::TutorialScene::createDialogueBox() {
-
-	// creamos la entidad caja dialogo
-	boxBackground = addEntity(ecs::layer::UI);
-	auto bgTr = boxBackground->addComponent<Transform>(100, LOGICAL_RENDER_HEITH - 250, LOGICAL_RENDER_WIDTH - 100, 200);
-	boxBackground->addComponent<RenderImage>(&sdlutils().images().at("cuadroDialogo"));
-
-	// entidad del texto
-	textDialogue = addEntity(ecs::layer::UI);
-	auto textTr = textDialogue->addComponent<Transform>(100, 40, 80, 100);
-	textTr->setParent(bgTr);
-	textDialogue->addComponent<RenderImage>();
-
-	boxBackground->setActive(false);
-}
-
 void ecs::TutorialScene::closeConversation() {
-	textDialogue->getComponent<RenderImage>()->setTexture(nullptr);
-	textDialogue->removeComponent<DialogComponent>();
-	boxBackground->getComponent<RenderImage>()->setTexture(nullptr);
-}
-
-void ecs::TutorialScene::activateDialogue() {
-	boxBackground->setActive(true);
+	tutorialSys_->closeConversation();
 }
