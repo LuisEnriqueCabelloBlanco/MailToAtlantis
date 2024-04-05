@@ -155,7 +155,7 @@ Tras saber cuanto recibe el jugador se le quitará lo correspondiente para pagar
 ### Calculo de Finales y Felicidad
 
 #### Finales
-Cada personaje tiene asociado un parámetro de felicidad, dicho valor va aumentando o reduciendose dependiendo de si se envia **correctamente un paquete** (+1/-1), se redirige un paquete para **beneficiar** lo que ha pedido uno de los NPC (+5), o se a **extraviado** el paquete que se dirigía a su distrito (-3). 
+Cada personaje tiene asociado un parámetro de felicidad, dicho valor va aumentando o reduciendose. 
 
 La felicidad puede ir desde el -X hasta el Y, teniendo diferentes puntos que actuan como flags. 
 
@@ -169,13 +169,13 @@ Condiciones del comportamiento de la felicidad:
 Este comprobación del nivel de barras se hace al final de los 14 días de trabajo, en donde se analizarán y se iran poniendo los distintos finales de cada NPC mediante un texto. 
 
 #### NPCs especiales
-A parte de esto hay dos NPC especiales los cuales son el vagabundo y el secretario real. Al ayudar a uno de estos si o si se reduce la felicidad de los otros siempre que sea mediante paquetes extraviados. Al llegar a la maxifelicidad de uno de ellos el día 14 incluira un día extra en el que el jugador deberá cumplir ciertos mandados para desbloquear su verdadero final, el cual afectara a toda la Atlantida y no solo a esos personajes personalmente. Si no se cumple el mandado saldra el final bueno por defecto. 
+A parte de esto hay dos NPC especiales los cuales son el vagabundo y el secretario real. Al ayudar a uno de estos si o si se reduce la felicidad de los otros siempre que sea mediante paquetes extraviados. Al llegar a la maxifelicidad de uno de ellos el día 14 incluira un evento extra en el que el jugador deberá cumplir ciertos mandados para desbloquear su verdadero final, el cual afectara a toda la Atlantida y no solo a esos personajes personalmente. Si no se cumple el mandado saldra el final bueno por defecto. 
 Además las misiones siguen una historia lineal que es la principal historia del juego, de manera que si haces la misión del día 1, la del día 3 la ignoras y el día 5 si que hablas con él, tendrás la misión correspondiente al día 3 en vez del día 5, y en el día 6 tendrás la del día 4 y así. Es decir, que debes hacer misiones todos los días o el juego cortará la historia a la mitad ya que sí o sí al acabar el día 14 se acaba el juego ya que te pillan y eres deportado.
- Esto hará que si ignoras por mucho tiempo a los NPC no podrás rellenar por completo su barra de felicidad, así que es importante cumplir misiones todos los días.
+Esto hará que si ignoras por mucho tiempo a los NPC no podrás rellenar por completo su barra de felicidad, así que es importante cumplir misiones todos los días.
 
 
 #### Mejoras de los NPC
-Los NPCs te entregaran un regalo que te hará la labor más fácil en el trabajo. Estos regalos una vez recibidos ya no se pueden perder, siendo una mejora permanente para el jugador, aunque si es posible que la felicidad del NPC reduzca después de eso. Estas mejoras son:
+Los NPCs te entregaran un regalo que te hará la labor más fácil en el trabajo. Estos regalos una vez recibidos ya no se pueden perder, siendo una mejora permanente para el jugador, aunque si es posible que la felicidad del NPC reduzca después de eso. Cabe recalcar que las mejoras del secretario y el vagabundo se obtienen en el día 7 si se llega a x felicidad, siendo esta menor a la maxifeliz. Estas mejoras son:
 
 - **Vagabundo**: te da un sello multicolor que se puede poner a los paquetes y vale para todas las calles
 - **Tarotisa**: te entrega una bola de cristal que tiene 1/x posibilidad de lanzar un brillo cuando el paquete actual es erroneo
@@ -188,18 +188,18 @@ Los NPCs te entregaran un regalo que te hará la labor más fácil en el trabajo
 #### Hablar con personajes
 Al hacer click sobre un NPC durante la **fase de exploración**, se abrirá una pantalla donde el NPC hablará con el jugador diciendo sus lineas de diálogo. El jugador podrá pasar los bloques de texto con un botón (todavía por determinar).
 
-Si el jugador vuelve a hablar con un NPC este dirá un diálogo reducido.
+Si el jugador vuelve a hablar con un NPC este dirá un diálogo reducido, como contestacion repetida y contante.
 
-Tras el trascurso de varios días el jugador vera **limitado** el número de personajes con los que puede hablar. En el momento que exceda ese número acabará la **fase de exploración** y se irá a la **fase de revisión de paquetes**.
+Tras el trascurso de varios días el jugador vera **limitado** el número de personajes con los que puede hablar. En el momento que exceda ese número acabará la **fase de exploración** y se irá a la **fase de revisión de paquetes**. (Esto puede descartarse)
 
 #### Funcionamiento de eventos/sidequest de los NPC
 Cada NPC tendrá misiones que asignar al jugador. En estas misiones habrá una condicion concreta que tendrá que cumplir sobre un tipo de paquetes que va en contra de lo legal, por lo que será amonestado por ella, por lo que el jugador debe controlar cuanto quiere ayudar a los NPC mientras mantiene un nivel de dinero alto.
-F
+Estos eventos pueden ir desde dejar pasar un paquete especial con el nombre del NPC hasta desviar paquetes a donde el NPC te diga.
 
 ---
 
 ## Diseño
-El juego constará de varias jornadas (todavía por decidir) donde el jugador tendrá que ir manteniendo su vida en Atlantis pagando el alquiler al final de varias jornadas y aprendiendo sobre sus habitantes. Cada fase constará de dos fases:
+El juego constará de varias jornadas (14) donde el jugador tendrá que ir manteniendo su vida en Atlantis pagando el alquiler al final de varias jornadas y aprendiendo sobre sus habitantes. Cada jornada constará de dos fases:
 
 ### Fase de exploracion
 
@@ -211,10 +211,10 @@ En esta fase el jugador podra recorrer el mapa en primera persona moviendose por
 Durante la fase de gestíon el jugador deberá comprobar la validez de los **paquetes** esto llevará a distintos minijuegos que se irán añadiendo con el transcurso de los días. Cada nueva capa añadidida le irá obligando a estar más atento a los detalles en cada paquete.
 
 *Amonestaciones*
-: El **número de paquetes** que se puede **fallar** sin penalizar en el ingreso al final del día irá **bajando** conforme avanzan los días. Se *avisará* al jugador cuando le falte 1 fallo para penalizar. Una vez penalizado, el **ingreso** del día del jugador se **dividirá por 2** y por cada **paquete fallado más** allá se irá bajando un **5 por ciento a lo que queda**, es decir, si queda por cobrar 100 y se falla uno, se restará un 5 por ciento de 100 que son 5, luego 5 por ciento de 95 y así.
+: El **número de paquetes** que se puede **fallar** sin penalizar en el ingreso al final del día irá **bajando** conforme avanzan los días. Se *avisará* al jugador cuando le falte 1 fallo para penalizar. Una vez penalizado, el **ingreso** del día del jugador se restara por una cantidad fija de dinero multiplicado por el numero de fallos cometidos.
 
 *Condiciones especiales del jefe Oficina*
-: El *día después de añadir una mecánica*, es decir, los **días impares** salvo el 1, el jefe te esperará en la oficina para decirte una **condición extra** que debes cumplir para **todos los paquetes**. Esto afectará a todos, sean de NPC o no. Un ejemplo sería "*Ha habido obras en el transporte de paquetes a Demeter, todos los paquetes dirigidos a Demeter deben ser descartados*". Si incumples esto, **contará como fallo**.
+: Cada tres días comenzando por el día 2 el jefe de la oficina comentara un problema en el lugar de trabajo lo que provocara un cambio en la dinámica normal de la fase de gestión. Estos cambios iran desde mezclar tubos hasta invertir los sellos de pesado, simepre cosas que confundan al jugador pero que no impidan usar alguna de las mecanicas ya desbloqueadas.
 
 *Paquetes especiales de NPC*
 : Los NPC podrán **asignar eventos** que spawneen paquetes especiales a lo largo de la jornada. Estos paquetes compondrán una lista que poco a poco irán saliendo intentando salir todos antes de acabar el tiempo. Si el jugador promedio consiguiese 30 paquetes en ese día se enseñarán todos los paquetes de evento hasta antes del paquete 20. Estos paquetes serán completamente idénticos a los que pueden salir en ese día, salvo las cualidades especiales que lleve el evento.
@@ -241,7 +241,7 @@ Una vez terminado la fase de trabajo, saldrá una pantalla con texto que expliqu
 En caso de quedarte sin dinero, saldrá el game over de quedarse sin dinero (te deportan de Atlantis)
 
 ## Arte
-Al irnos moviendo por los diferentes distritos, lo haremos a través de diferentes pantallas con fondos estáticos en primera persona. Los fondos tendrán un estilo artístico simple inspirado e juegos como profesor Layton, con una paleta de colores sencilla estilo acuarela donde los objetos lejanos tendrán menos detalle o estarán más difuminados mientras que los objetos mas cercanos tendrán mas detalle, aunque como es una paleta de colores tirando a acuarela a veces los colores se pueden salir de las líneas como pasa en la película de 101 Dalmatas de Disney (la animación antigua, no el remake live action). En los escenarios de exploración encontraremos algunos personajes con los que poder interactuar teniendo una forma física en su diseño inspirada en juegos como profesor Layton por su estilo caricaturesco. Sin embargo, los personajes con los que interactuaremos tendrán más detalle que el resto dando igual las distancias, es decir, siempre estarán enfocados.
+Al irnos moviendo por los diferentes distritos, lo haremos a través de diferentes pantallas con fondos estáticos en primera persona. Los fondos tendrán un estilo artístico simple inspirado e juegos como profesor Layton, con una paleta de colores sencilla estilo acuarela donde los objetos lejanos tendrán menos detalle o estarán más difuminados mientras que los objetos mas cercanos tendrán mas detalle, aunque como es una paleta de colores tirando a acuarela a veces los colores se pueden salir de las líneas como pasa en la película de 101 Dalmatas de Disney (la animación antigua, no el remake live action). En los escenarios de exploración encontraremos algunos personajes con los que poder interactuar teniendo una forma física en su diseño inspirada en juegos como profesor Layton por su estilo caricaturesco. Sin embargo, los personajes con los que interactuaremos tendrán más detalle que el resto dando igual las distancias, es decir, siempre estarán enfocados. También habra decorado con el que pueda interactuar el jugador para asi recibir información extra de la atlantida.
 
 La parte estética de los escenarios se basará en una arquitectura griega antigua, teniendo como referencia a juegos como Assassin's Creed Odyssey.
 
