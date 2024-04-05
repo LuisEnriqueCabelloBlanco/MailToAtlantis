@@ -5,6 +5,7 @@
 #include "../components/Paquete.h"
 #include <components/Herramientas.h>
 #include "../sistemas/PaqueteBuilder.h"
+#include "../components/DialogManager.h"
 
 namespace ecs {
 	class TutorialScene : public Scene
@@ -38,5 +39,10 @@ namespace ecs {
 		Entity* boxBackground;
 		Entity* textDialogue;
 		void createDialogueBox();
+		DialogManager dialogMngr_;
+
+		Entity* sistemaFuturo;
+
+		void activateDialogue();
 	};
 }

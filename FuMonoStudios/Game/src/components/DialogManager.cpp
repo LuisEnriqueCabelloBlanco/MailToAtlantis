@@ -53,7 +53,7 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     const std::string& stringDialogSel = dialogSelectionToString(ds);
 
     jsonEntry = root[stringDialogSel];
-    if (jsonEntry != nullptr && jsonEntry->IsObject())
+    if (jsonEntry != nullptr)
     {
         std::string strDialogo = tipoDialogo;
 

@@ -4,6 +4,7 @@
 #include "../components/Transform.h"
 #include "../entities/ClockAux.h"
 #include "../components/DialogComponent.h"
+#include "../components/DelayedCallback.h"
 
 ecs::TutorialScene::TutorialScene() : Scene() {
 	mPaqBuild_ = new PaqueteBuilder(this);
@@ -40,6 +41,14 @@ void ecs::TutorialScene::init() {
 	createCharacter();
 
 	createDialogueBox();
+
+	sistemaFuturo = addEntity();
+
+	sistemaFuturo->addComponent<DelayedCallback>(1, [this]() {
+		activateDialogue();
+		dialogMngr_.setDialogues(DialogManager::BryantMyers);
+		textDialogue->addComponent<DialogComponent>(&dialogMngr_, this);
+		});
 }
 
 void ecs::TutorialScene::close() {
@@ -218,17 +227,23 @@ void ecs::TutorialScene::createDialogueBox() {
 	// creamos la entidad caja dialogo
 	boxBackground = addEntity(ecs::layer::UI);
 	auto bgTr = boxBackground->addComponent<Transform>(100, LOGICAL_RENDER_HEITH - 250, LOGICAL_RENDER_WIDTH - 100, 200);
-	boxBackground->addComponent<RenderImage>(nullptr);
+	boxBackground->addComponent<RenderImage>(&sdlutils().images().at("cuadroDialogo"));
 
 	// entidad del texto
 	textDialogue = addEntity(ecs::layer::UI);
 	auto textTr = textDialogue->addComponent<Transform>(100, 40, 80, 100);
 	textTr->setParent(bgTr);
 	textDialogue->addComponent<RenderImage>();
+
+	boxBackground->setActive(false);
 }
 
 void ecs::TutorialScene::closeConversation() {
 	textDialogue->getComponent<RenderImage>()->setTexture(nullptr);
 	textDialogue->removeComponent<DialogComponent>();
 	boxBackground->getComponent<RenderImage>()->setTexture(nullptr);
+}
+
+void ecs::TutorialScene::activateDialogue() {
+	boxBackground->setActive(true);
 }
