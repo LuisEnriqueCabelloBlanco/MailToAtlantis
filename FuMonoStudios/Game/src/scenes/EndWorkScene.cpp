@@ -27,7 +27,13 @@ void EndWorkScene::init() {
 	factory_->createLabel(pos, msg, 50);
 	factory_->createLabel(pos + dist, "Fails: " + std::to_string(generalData().getFails()), 50);
 	factory_->createLabel(pos + Vector2D(0, -400), "Corrects: " + std::to_string(generalData().getFails()), 50);
-	auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
+	CallbackClickeable call;
+	if (generalData().getDia()) {
+		call = []() {};
+	}
+	else {
+		call= []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
+	}
 	factory_->createTextuButton(pos + Vector2D(0, 70), "Return To menu", 50,call);
 	generalData().resetFailsCorrects();
 }

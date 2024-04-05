@@ -59,6 +59,8 @@
     <ClCompile Include="src\components\DelayedCallback.cpp" />
     <ClCompile Include="src\entities\ClockAux.cpp" />
     <ClCompile Include="src\components\RenderWithLight.cpp" />
+    <ClCompile Include="src\scenes\PauseScene.cpp" />
+    <ClCompile Include="src\scenes\EndGameScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -155,6 +157,8 @@
     <ClInclude Include="src\components\DelayedCallback.h" />
     <ClInclude Include="src\entities\ClockAux.h" />
     <ClInclude Include="src\components\RenderWithLight.h" />
+    <ClInclude Include="src\scenes\PauseScene.h" />
+    <ClInclude Include="src\scenes\EndGameScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\MultipleTextures.h" />
