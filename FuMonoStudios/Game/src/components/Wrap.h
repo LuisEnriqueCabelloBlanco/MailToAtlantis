@@ -4,6 +4,7 @@
 #include <components/Render.h>
 
 #include <list>
+#include <SDL.h>
 
 class Transform;
 
@@ -54,6 +55,14 @@ private:
 	//Comprueba si ha chocado con el punto especificado por última vez
 	void checkPointTouch(int point);
 
+	void drawLines();
+
+	void addLine(const SDL_Point& start, const SDL_Point& end);
+
+	struct Line {
+		SDL_Point start;
+		SDL_Point end;
+	};
 
 	Transform* tr_ = nullptr;
 
@@ -61,9 +70,13 @@ private:
 
 	RenderImage* mul_ = nullptr;
 
+	RenderImage* renderImage_ = nullptr;
+
+	std::vector<Line> linesDrawn; // Almacena las líneas dibujadas
+	SDL_Renderer* renderer; 
+
 	//Ruta con los distintos puntos por los que debe pasar el ratón
 	std::list<int> route;
-
 
 	//ultimo punto por el que se a pasado de la ruta
 	std::list<int>::iterator lastPoint;
@@ -90,5 +103,8 @@ private:
 
 	//debug para futuras implementaciones
 	bool debug = true;
+
+	// Textura de punto rojo
+	Texture* puntoRojoTex = nullptr;
 
 };

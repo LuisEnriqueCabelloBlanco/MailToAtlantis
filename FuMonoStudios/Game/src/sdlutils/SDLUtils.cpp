@@ -283,3 +283,8 @@ void SDLUtils::closeSDLExtensions() {
 	TTF_Quit(); // quit SDL_ttf
 }
 
+void SDLUtils::drawLine(int x1, int y1, int x2, int y2, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
+	SDL_SetRenderDrawColor(renderer_, r, g, b, a);
+	SDL_RenderDrawLine(renderer_, x1, y1, x2, y2);
+}
+
