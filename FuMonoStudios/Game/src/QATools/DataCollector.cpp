@@ -1,4 +1,3 @@
-#ifdef QA_TOOLS
 #include "DataCollector.h"
 #include <architecture/Time.h>
 #include <architecture/GeneralData.h>
@@ -13,6 +12,7 @@ al cliente de forma correcta
 //#include "restclient-cpp/restclient.h"
 
 
+#ifdef QA_TOOLS
 DataCollector::DataCollector() : currentRow_(0), dataArray_(),clicks_(0) {
 	dataArray_.resize(NUMBER_OF_METRICS);
 	rapidcsv::LabelParams(-1, 0);

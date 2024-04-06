@@ -10,6 +10,7 @@
 #include <list>
 #include <functional>
 #include <components/ErrorNote.h>
+#include <QATools/DataCollector.h>
 
 PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc) : toDis_(dis), extraCond_(),mainSc_(sc)
 {
@@ -75,7 +76,7 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 				toDis_ != ent->getComponent<Paquete>()->getDistrito());
 		}
 #ifdef QA_TOOLS
-		dataCollector().recordPacage(entRec->getComponent<Paquete>());
+		dataCollector().recordPacage(ent->getComponent<Paquete>());
 #endif // QA_TOOLS
 	}
 }
