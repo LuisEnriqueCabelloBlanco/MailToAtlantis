@@ -143,6 +143,10 @@ void ecs::ExplorationScene::update() {
 
 void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin const
 {
+
+	//QA: ALMACENAR EN ORDEN LOS LUGARES QUE HA RECORRIDO EN CADA FASE DE EXPLORACION EL JUGADOR
+	//QA: ALMACENAR CUANTO TIEMPO SE QUEDA CADA JUGADOR EN UN LUGAR DEL MAPA
+
 	if (actualPlace_->navigate(placeDir))
 		actualPlace_ = actualPlace_->getPlaceFromDirection(placeDir);
 }
@@ -197,6 +201,8 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	Texture* texturaBoton = &sdlutils().images().at(character);
 	Vector2D size{ texturaBoton->width() * scale, texturaBoton->height() * scale };
 	
+	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
+
 	// al pulsar sale el dialogo
 	CallbackClickeable funcPress = [this, character]() {
 
