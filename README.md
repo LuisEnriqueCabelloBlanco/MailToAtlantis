@@ -36,30 +36,14 @@
       - [Jefe oficina](#jefe-oficina)
     - [NPC Grandes](#npc-grandes)
       - [Vagabundo](#vagabundo)
-    - [Finales](#finales-1)
       - [Secretario del rey](#secretario-del-rey)
-        - [Finales](#finales-2)
+        - [Finales](#finales-1)
     - [NPC Menores](#npc-menores)
       - [Campesino](#campesino)
-        - [Finales](#finales-3)
       - [Artesano](#artesano)
-        - [Finales](#finales-4)
       - [Tarotisa](#tarotisa)
-        - [Finales](#finales-5)
       - [Soldado](#soldado)
       - [Contable](#contable)
-        - [Finales](#finales-6)
-    - [Dialogos](#dialogos)
-      - [Contable](#contable-1)
-      - [Tarotista](#tarotista)
-      - [Artesano](#artesano-1)
-      - [Campesino](#campesino-1)
-  - [1º](#1º)
-  - [2º](#2º)
-  - [3º](#3º)
-  - [4º](#4º)
-  - [5º](#5º)
-      - [Tarotista](#tarotista-1)
 
 ---
 
@@ -119,9 +103,10 @@ El jugador contará con una libreta que podrá abrir (situada en la zona inferio
 
 |Ejemplos|a|
 |-|-|
-|![alt text](Imagenes/Book2.png)|![alt text](Imagenes/Book3.png)|
-![alt text](Imagenes/Book4.png)|![alt text](Imagenes/Book5.png)|
-
+![alt text](Book_Index.png) |![alt text](Book_InfoCalles_0.png) |![alt text](Book_InfoCalles_1.png) |
+![alt text](Book_InfoCalles_2.png) |![alt text](Book_InfoCalles_3.png) |
+![alt text](Book_InfoCodigos.png) |![alt text](Book_InfoGeneral.png) |
+![alt text](Book_InfoSellos.png)|
 #### Etiquetado por barrio
 En el caso de que la **dirección** sea correcta el jugador deberá emplear un sello del color correspondiente a la calle (ver en el **manual de trabajo**). Poner el color incorrecto o envíar el paquete teniendo la dirección incorrecta conllevará a una **amonestación**
 
