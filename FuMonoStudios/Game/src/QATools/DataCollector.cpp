@@ -23,7 +23,8 @@ DataCollector::DataCollector() : currentRow_(0), dataArray_(),clicks_(0) {
 	std::vector<std::string> Labels = { 
 		"Escena","Marca de Tiempo (ms)","Clicks","Dia de Juego",
 		"Distrito","Calle","Tipo","Peso","Envoltura","Envio Correcto",
-		"NPC","NumeroDialogo","Felicidad","UbicacionDistrito"
+		"NPC","NumeroDialogo","Felicidad",
+		"UbicacionDistrito", ""
 	};
 
 	for (int i = 0; i < Labels.size(); i++) {
@@ -32,12 +33,18 @@ DataCollector::DataCollector() : currentRow_(0), dataArray_(),clicks_(0) {
 };
 
 void DataCollector::recordPacage(Paquete* pacage, bool correct) {
-	dataArray_[doc_.GetColumnIdx("Distrito")] = pacage->getDistrito();
-	dataArray_[doc_.GetColumnIdx("Calle")] = pacage->getCalle();
-	dataArray_[doc_.GetColumnIdx("Tipo")] = pacage->getTipo();
+	dataArray_[doc_.GetColumnIdx("Distrito")] = pacage->getDistrito() + 1;
+	dataArray_[doc_.GetColumnIdx("Calle")] = pacage->getCalle() + 1;
+	dataArray_[doc_.GetColumnIdx("Tipo")] = pacage->getTipo() + 1;
 	dataArray_[doc_.GetColumnIdx("Peso")] = pacage->getPeso();
-	dataArray_[doc_.GetColumnIdx("Envoltura")] = pacage->getFragil();
-	dataArray_[doc_.GetColumnIdx("Envio Correcto")] = correct;
+	dataArray_[doc_.GetColumnIdx("Envoltura")] = pacage->getFragil() + 1;
+	dataArray_[doc_.GetColumnIdx("Envio Correcto")] = correct + 1;
+	record();
+}
+
+void DataCollector::recordNavigation(const std::string& destDistrict)
+{
+	dataArray_[doc_.GetColumnIdx("UbicacionDistrito")] = distIndx[destDistrict];
 	record();
 }
 

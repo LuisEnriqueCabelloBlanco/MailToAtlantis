@@ -17,7 +17,7 @@
 #include "../architecture/GeneralData.h"
 #include "../components/DelayedCallback.h"
 #include <architecture/GameConstants.h>
-
+#include <QATools/DataCollector.h>
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
 
@@ -122,6 +122,11 @@ void ecs::ExplorationScene::render()
 
 	actualPlace_->getTexture()->render(rect_);
 	Scene::render();
+
+#ifdef DEV_
+
+#endif // DEV_
+
 }
 
 void ecs::ExplorationScene::update() {
@@ -146,9 +151,14 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 
 	//QA: ALMACENAR EN ORDEN LOS LUGARES QUE HA RECORRIDO EN CADA FASE DE EXPLORACION EL JUGADOR
 	//QA: ALMACENAR CUANTO TIEMPO SE QUEDA CADA JUGADOR EN UN LUGAR DEL MAPA
-
-	if (actualPlace_->navigate(placeDir))
+	
+	if (actualPlace_->navigate(placeDir)) {
 		actualPlace_ = actualPlace_->getPlaceFromDirection(placeDir);
+#ifdef QA_TOOLS
+		dataCollector().recordNavigation(placeDir);
+#endif // QA_TOOLS
+
+	}
 }
 
 ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string placeDir, float scale, int flip)
@@ -202,6 +212,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	Vector2D size{ texturaBoton->width() * scale, texturaBoton->height() * scale };
 	
 	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
+	//Actualmente los personajes no tienen memoria, si queremos esto haría falta añadrile un parametro
 
 	// al pulsar sale el dialogo
 	CallbackClickeable funcPress = [this, character]() {

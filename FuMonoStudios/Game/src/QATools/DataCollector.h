@@ -7,6 +7,8 @@
 #include <utils/Singleton.h>
 #include <vector>
 #include <components/Paquete.h>
+#include <architecture/Game.h>
+#include <unordered_map>
 #ifdef QA_TOOLS
 
 constexpr int NUMBER_OF_METRICS = 14;
@@ -26,7 +28,7 @@ public:
 	inline std::vector<float>& dataArray() { return dataArray_; }
 	inline int& clicks() { return clicks_; }
 	void recordPacage(Paquete*,bool);
-
+	void recordNavigation(const std::string&);
 private:
 	DataCollector();
 
@@ -37,6 +39,17 @@ private:
 	std::vector<float> dataArray_;
 	int currentRow_;
 	int clicks_;
+
+	std::unordered_map<std::string, int> distIndx = {
+		{"Hestia", 1},
+		{"Hefesto", 2 },
+		{"Demeter", 3 },
+		{"Artemisa", 4 },
+		{"Hermes", 5 },
+		{"Aplo", 6 },
+		{"Poseidon", 7 }
+
+	};
 
 };
 
