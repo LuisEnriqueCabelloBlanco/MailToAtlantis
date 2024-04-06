@@ -66,7 +66,13 @@ Para explorar la Atlántida se mostrarán imágenes de los distritos donde podr�
 ### Dialogos con los NPC
 Al hacer clic sobre un NPC mientras se está en la fase de exploración se mostrará en pantalla un cuadro de diálogo con lo que te dice dicho NPC, dicho dialogo puede ser tanto un encargo de correo como simplemente algo de información sobre la historia de ese NPC y su entorno. Si un jugador vuelve a hablar con el NPC aparecera un dialogo predeterminado con el cual el jugador en el que le indicara que deje de molestarlo o que esta ocupado, cortando asi la conversación. 
 
-En total hay 5 tipos de dialogos, primero los dialogos de favores en donde le explicaran los NPC al jugador una adversidad y le pediran su ayuda mediante la desviación del correo. El segundo tipo son los dialogos de contexto, los cuales varían según el nivel de felicidad de los NPC y estos sirven tanto para informarte de la situación personal del NPC como su entorno. Luego un dialogo de presentación que le dirán al jugador la primera vez que hablen con ellos. Después hay un dialogo Maxifeliz el cual te dice el NPC una vez alcanzas la felicidad máxima con él, haciendote entrega de un regalo con ello. Y por último esta el dialogo de perdida, que es un dialogo que aparece cuando haces totalmente infeliz al NPC, lo que supone en una perdida completa de la progresión de este. 
+En total hay 6 tipos de dialogos: 
+ - Dialogos de favores en donde le explicaran los NPC al jugador una adversidad y le pediran su ayuda mediante la desviación del correo. 
+ - Dialogos de contexto, los cuales varían según el nivel de felicidad de los NPC y estos sirven tanto para informarte de la situación personal del NPC como su entorno. 
+ - Dialogo de presentación que le dirán al jugador la primera vez que hablen con ellos. 
+ - Dialogo de no volver a hablar con el NPC.
+ - Dialogo Maxifeliz el cual te dice el NPC una vez alcanzas la felicidad máxima con él, haciendote entrega de un regalo con ello. 
+ - Dialogo de perdida, que es un dialogo que aparece cuando haces totalmente infeliz al NPC, lo que supone en una perdida completa de la progresión de este. 
 
 ### Gestión de paquetes
 
@@ -74,7 +80,7 @@ La fase de gestión de **paquetes** consta de varias mecánicas que se irán apl
 
 ![Diagrama de flujo de paquetes](Imagenes/image.png)
 
-Al envíar un paqute de forma incorrecta el jugador recibirá una **amonestación** lo que provoca que se le reste dinero al final de la *jornada*, incluso pudiendo acabar una jornada habiendo perdido más dinero que ganado.
+Al envíar un paquete de forma incorrecta el jugador recibirá una **amonestación** lo que provoca que se le reste dinero al final de la *jornada*, incluso pudiendo acabar una jornada habiendo perdido más dinero que ganado.
 
 #### Direcciones
 Cada paquete tendrá un bloque de texto donde se podrá leer: **nombre**, **cógido postal** y **calle**.
@@ -84,9 +90,9 @@ El jugador deberá comprobar que el **código postal** y la calle son validos. E
 |Codigo|Distrito|Calles|
 |---|---|---|
 |001|Hestia|"Avenida del Besugo real"<br>"Calle Medusia la santa"<br>"Calle Gambon III"|
-|010|Hefesto|"Calle Caballito de tierra"<br>"Calle Lubina, La Sabia"<br>"Calle de la trucha dorada"|
+|010|Artemisa|"Avenida Mantarraya"<br>"Calle de la ballena tiburona"<br>"Calle Rodaballo"|
 |011|Demeter|"Gran ruta de las algas"<br> "Camino del calamar"<br> "Camino de la morena"|
-|101|Artemisa|"Avenida Mantarraya"<br>"Calle de la ballena tiburona"<br>"Calle Rodaballo"|
+|100|Hefesto|"Calle Caballito de tierra"<br>"Calle Lubina, La Sabia"<br>"Calle de la trucha dorada"|
 |101|Hermes|"Gran Avenida del Arrecife"<br>"Calle del Coral"<br>"Calle Boqueronio XXVIII"|
 |110|Apolo|"Calle Ajolote"<br>"Calle Arlequin"<br>"Avenida del Anfiteatro"|
 |111|Poseidon|"Calle de los nobles"<br>"Calle del trono"<br>"Calle de los Jardines"|
@@ -118,28 +124,33 @@ Existen 5 tipos de sellos:
 |-|-|-|-|-|
 |<img src=Imagenes/Alimentos.png alt="a" width="90">|<img src=Imagenes/Medicina.png alt="a" width="90">|<img src=Imagenes/Joyas.png alt="a" width="90">|<img src=Imagenes/Materiales.png alt="a" width="90">|<img src=Imagenes/Armas.png alt="a" width="90">|
 
-Enviar un paquete con un **sello** falso implica una **amonestación**
+Enviar un paquete con un **sello** falso implica una **amonestación**. Hay un total de 3 **sellos falsos** por cada tipo.
 
 #### Pesado
 Un paquete con un **sello de pesado** deberá ser pesado y comprobado respecto a el peso que le asigna el **sello** por tanto un paquete con este **sello** solo debe ser enviado si su **peso** medido en la **balanza** coincide con las métricas que indica el **sello** (referirse al **manual de trabajo**). Una vez presentada esta mecánica aparecerá una balanza en la oficina de trabajao donde se podrán pesar los **paquetes** colocándolos encima de estos. Al colocar los **paquetes** una flecha comenzara a moverse en una región, lo que indicara el peso del **paquete** una vez se pare.
 
 #### Envoltura
-<img src=Imagenes/Fragil.png width=200>
+<img src=Imagenes/Fragil.png width=100>
 
-Un paquete con un **sello de fragil** deberá ser envuelto con **cinta de embalaje**. Cada paquete tendra una ruta de embalaje diferente, siendo estos los distintos puntos ordenados por los que debe pasar la cinta para que el embalado sea correcto. Los patrones de cada **paquete** serán reflejados por medio de puntos y rectas en el paquete una vez tomada la **cinta**. Enviar un **paquete fragil** sin envalar supone una **amonestación**.
+Un paquete con un **sello de fragil** deberá ser envuelto con **cinta de embalaje**. Cada paquete tendra una ruta de embalaje diferente, siendo estos los distintos puntos ordenados por los que debe pasar la cinta para que el embalado sea correcto. Los patrones de cada **paquete** serán reflejados por medio de puntos y rectas en el paquete una vez tomada la **cinta**. Enviar un **paquete fragil** sin envalar supone una **amonestación**. De primeras, solo podra ser posible usar la **cinta** con los **paquetes** con sello de envoltura.
 
 
 #### Cálculo del dinero al final de la jornada
 Al final de la jornada se abonará al jugador cierta cantidad de dinero siguiendo el siguiente cálculo
 
-> Envíos correctos * 20 - Envíos Erroneos * 50
+> Envíos correctos * 20 - Envíos Erroneos * (30 + 2 por número de fallo)
 
 Tras saber cuanto recibe el jugador se le quitará lo correspondiente para pagar el alquier. Si el jugador se queda sin dinero implica fin de partida, saliendo el final de deportado y sin la posibilidad de saber cual son el resto de finales de los NPC.
+
+#### Fallo envio paquete
+Cada vez que el jugador falle en el envio de un **paquete**, aparece un **ticket** que le dice el fallo cometido y la sanción puesta por este. Dicho **ticket** se puede guardar en un espacio que funciona como una pila en la cual se pueden ir guardando los distintos **fallos** para que ocupen menos espacio. Para sacar los fallos estos saldran en forma de pila.
+
+El **taco de fallos** ira cambiando de sprites según el numero de **fallos** almacenados en el.
 
 
 ### Calculo de Finales y Felicidad
 
-#### Finales
+#### Felicidad
 Cada personaje tiene asociado un parámetro de felicidad, dicho valor va aumentando o reduciendose. 
 
 La felicidad puede ir desde el -X hasta el Y, teniendo diferentes puntos que actuan como flags. 
@@ -151,6 +162,8 @@ Condiciones del comportamiento de la felicidad:
 - Si se reduce la felicidad al máximo de un NPC, da igual lo que se haga que esta ya no podrá volver a subir. 
 - Si no se supera cierto umbral, el NPC tendra un final malo, si se llega más o menos a un tercio de la barra el NPC tendra un final neutral, si se llega a dos tercios de la barra, el NPC tendra un final bueno y si se consigue llenar toda la barra el NPC tendra un final Maxi Feliz, el cual implique recibir una mejora de dicho NPC que facilita otra de las mecánicas del juego. 
 
+
+#### Finales
 Este comprobación del nivel de barras se hace al final de los 14 días de trabajo, en donde se analizarán y se iran poniendo los distintos finales de cada NPC mediante un texto. 
 
 #### NPCs especiales
@@ -181,6 +194,17 @@ Tras el trascurso de varios días el jugador vera **limitado** el número de per
 Cada NPC tendrá misiones que asignar al jugador. En estas misiones habrá una condicion concreta que tendrá que cumplir sobre un tipo de paquetes que va en contra de lo legal, por lo que será amonestado por ella, por lo que el jugador debe controlar cuanto quiere ayudar a los NPC mientras mantiene un nivel de dinero alto.
 Estos eventos pueden ir desde dejar pasar un paquete especial con el nombre del NPC hasta desviar paquetes a donde el NPC te diga.
 
+Los NPC te dan misiones cada 3 días, teniendo cada día un NPC distinto que te dan dichas misiones. Es decir un dia te dan mision 2 y al otro te dan mision otros 2 distintos.
+
+
+Los **paquetes de eventos** se deben definir de antemano en un JSON, de forma que los **paquetes de eventos** nunca sean random.
+
+Ejemplos tipicos de eventos:
+
+- NPC te pide que trates su paquete de una forma especial: ignorar una de las mecanicas como el peso, enviar a un sitio incorrecto, desecharlo aunque este bien...
+- NPC te pide enviar x paquetes de un tipo a otro distinto a pesar de que estos sean correctos de su ubicacion normal. Todos los paquetes añadidos a la pool de esta condicion serán correctos para que no sean desechados.
+
+
 ---
 
 ## Diseño
@@ -195,14 +219,23 @@ En esta fase el jugador podra recorrer el mapa en primera persona moviendose por
 
 Durante la fase de gestíon el jugador deberá comprobar la validez de los **paquetes** esto llevará a distintos minijuegos que se irán añadiendo con el transcurso de los días. Cada nueva capa añadidida le irá obligando a estar más atento a los detalles en cada paquete.
 
-*Amonestaciones*
-: El **número de paquetes** que se puede **fallar** sin penalizar en el ingreso al final del día irá **bajando** conforme avanzan los días. Se *avisará* al jugador cuando le falte 1 fallo para penalizar. Una vez penalizado, el **ingreso** del día del jugador se restara por una cantidad fija de dinero multiplicado por el numero de fallos cometidos.
+#### Amonestaciones
+El **número de paquetes** que se puede **fallar** sin penalizar en el ingreso al final del día irá **bajando** conforme avanzan los días. Se *avisará* al jugador cuando le falte 1 fallo para penalizar. Una vez penalizado, el **ingreso** del día del jugador se restara por una cantidad fija de dinero multiplicado por el numero de fallos cometidos.
 
-*Condiciones especiales del jefe Oficina*
-: Cada tres días comenzando por el día 2 el jefe de la oficina comentara un problema en el lugar de trabajo lo que provocara un cambio en la dinámica normal de la fase de gestión. Estos cambios iran desde mezclar tubos hasta invertir los sellos de pesado, simepre cosas que confundan al jugador pero que no impidan usar alguna de las mecanicas ya desbloqueadas.
+#### Condiciones especiales del jefe Oficina
+Cada tres días comenzando por el día 2 el **jefe** de la oficina comentara un problema en el lugar de trabajo lo que provocara un cambio en la dinámica normal de la fase de gestión. Estos cambios iran desde mezclar tubos hasta invertir los sellos de pesado, simepre cosas que confundan al **jugador** pero que no impidan usar alguna de las mecanicas ya desbloqueadas.
 
-*Paquetes especiales de NPC*
-: Los NPC podrán **asignar eventos** que spawneen paquetes especiales a lo largo de la jornada. Estos paquetes compondrán una lista que poco a poco irán saliendo intentando salir todos antes de acabar el tiempo. Si el jugador promedio consiguiese 30 paquetes en ese día se enseñarán todos los paquetes de evento hasta antes del paquete 20. Estos paquetes serán completamente idénticos a los que pueden salir en ese día, salvo las cualidades especiales que lleve el evento.
+Ejemplos de condiciones:
+
+- **Confusión entre tubos**: los paquetes dirigidos a un distrito van a otro y los del otro al uno. O que los de un distrito deben enviarse por otro distinto.
+
+- **Confusion entre pesos**: los tipos de peso intercambian significado, es decir, que algo de peso pequeño se considera de mucho peso y algo de mucho peso de peso pequeño...
+
+- **Restringir según el tipo del sello el peso que puede tener un paquete**: los paquetes de armas no pueden exceder el peso medio por ejemplo.
+
+
+#### Paquetes especiales de NPC
+Los NPC podrán **asignar eventos** que spawneen paquetes especiales a lo largo de la jornada. Estos paquetes compondrán una lista que poco a poco irán saliendo intentando salir todos antes de acabar el tiempo. Si el jugador promedio consiguiese 30 paquetes en ese día se enseñarán todos los paquetes de evento hasta antes del paquete 20. Estos paquetes serán completamente idénticos a los que pueden salir en ese día, salvo las cualidades especiales que lleve el evento.
 Por ejemplo, la medium pide que los paquetes de medicina que van hacia el distrito hestia vayan hacia el distrito de demeter, y en total serán 3.
 Estos paquetes serán identicos al resto, es decir, si en ese día se ha desbloqueado el sello de pesaje, estos paquetes podrán llevar el sello de pesaje y así. Es de notar que serán correctos, osea que no tendrán nada ilegal ni fuera de lugar, lo único que cambiará será las características del evento, en el caso del medium, será que mandará medicinas y irá a Hestia.
 Si queda **1 minuto de juego**, los paquetes que falten por salir **saldrán 100%** para evitar penalizar a jugadores muy lentos.
