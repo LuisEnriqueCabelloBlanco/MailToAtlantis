@@ -68,6 +68,9 @@ void Wrap::initComponent() {
 
 	mul_ = ent_->getComponent<RenderImage>();
 
+
+	 paqComp = ent_->getComponent<Paquete>();
+
 	restartRoute();
 
 
@@ -113,7 +116,7 @@ void Wrap::update() {
 
 			if (SDL_PointInRect(&point, &tapeRect)) {
 
-
+				drawRedPoints();
 	
 				// Se calculan los puntos centrales tanto del paquete como de la cinta
 				double centerXTR = posXTR + widthTR / 2;
@@ -122,18 +125,6 @@ void Wrap::update() {
 				double centerXTape = tapeRect.x + tapeRect.w / 2;
 				double centerYTape = tapeRect.y + tapeRect.h / 2;
 
-				drawRedPoints();
-	
-
-				//SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-				//SDL_RenderDrawLine(renderer, centerXTR, centerYTR, centerXTR + 200, centerYTR + 200);
-
-				//
-				//Vector2D size{ puntoRojoTex->width() * 0.5f, puntoRojoTex->height() * 0.5f };
-				//Vector2D puntoRojoPos(centerPos.getX() - puntoRojoTex->width() * 0.25f, centerPos.getY() - puntoRojoTex->height() * 0.25f);
-
-				//// Renderiza la textura de punto rojo en las coordenadas calculadas
-				//puntoRojoTex->render(puntoRojoPos.getX(), puntoRojoPos.getY(), nullptr, 0.0, nullptr, SDL_FLIP_NONE);
 
 				std::vector<double> pointsX{ abs(centerXTape - (centerXTR - widthTR / 2)), abs(centerXTape - centerXTR), abs(centerXTape - (centerXTR + widthTR / 2)) };
 
@@ -193,6 +184,7 @@ void Wrap::update() {
 
 		}
 		else {
+			paqComp->eliminarPuntosRojos();
 			restartRoute();
 		}
 		
@@ -241,10 +233,12 @@ void Wrap::checkPointTouch(int point) {
 
 void Wrap::drawRedPoints() {
 
-		Paquete* paqComp = ent_->getComponent<Paquete>();
+	
 		paqComp->puntosRojos();
 	
 }
+
+
 
 //
 //void Wrap::drawLines() {

@@ -117,4 +117,6 @@ private:
 
 	Callback funcion_;
 
+	Paquete* paqComp = nullptr;
+
 };

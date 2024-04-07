@@ -57,6 +57,7 @@ public:
 	//Genera los puntos rojos al envolver
 	void puntosRojos();
 
+	void eliminarPuntosRojos();
 	/// <summary>
 	/// metodo que devuelve el string a implimir en la etiqueta de direccion
 	/// </summary>
@@ -95,5 +96,7 @@ private:
 	//Variables que debe modificar el jugador
 	Calle calleMarcada_;		//Variable que indica para qu� distrito ha sido etiquetado el paquete
 	bool envuelto_;			//Variable que indica si est� envuelto o no el paquete
+
+	Scene* scene_;
 };
 

@@ -158,6 +158,15 @@ void Paquete::puntosRojos() {
 		std::cout << "No se pudo cargar la textura del punto rojo" << std::endl;
 	}
 }
+void Paquete::eliminarPuntosRojos() {
+	// Obtener la escena a la que pertenece la entidad
+	 ecs::Scene* scene_ = ent_->getMngr();
+
+	// Eliminar todas las entidades de la capa WRAP_POINTS
+	scene_->removeEntitiesByLayer(ecs::layer::WRAP_POINTS);
+}
+
+
 
 std::string Paquete::getDirecction()
 {

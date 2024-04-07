@@ -145,5 +145,14 @@ namespace ecs {
 		}
 	}
 
+	void Scene::removeEntitiesByLayer(ecs::layer::layerId layer) {
+		// Recorrer todas las entidades en la capa especificada
+		for (auto it = objs_[layer].begin(); it != objs_[layer].end(); ++it) {
+			// Eliminar la entidad
+			delete* it;
+		}
+		// Limpiar el vector de entidades de la capa
+		objs_[layer].clear();
+	}
 
 }
