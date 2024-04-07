@@ -185,7 +185,7 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 
 pq::Distrito PaqueteBuilder::distritoRND() {	//Este m�todo devuelve un Distrito aleatorio entre todas las posibilidades
 	//TO DO: Cambiarlo para que solo salgan distritos desbloqueados
-	int rnd = sdlutils().rand().nextInt(0, 8);
+	int rnd = sdlutils().rand().nextInt(0, generalData().getTubesAmount() + 1);
 	return (pq::Distrito)rnd;
 }
 
