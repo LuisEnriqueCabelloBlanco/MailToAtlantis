@@ -68,9 +68,8 @@ void Wrap::initComponent() {
 
 	mul_ = ent_->getComponent<RenderImage>();
 
-	puntoRojoTex = &sdlutils().images().at("cruz");
-
 	restartRoute();
+
 
 	assert(tr_ != nullptr);
 
@@ -123,15 +122,8 @@ void Wrap::update() {
 				double centerXTape = tapeRect.x + tapeRect.w / 2;
 				double centerYTape = tapeRect.y + tapeRect.h / 2;
 
-				if (puntoRojoTex != nullptr) {
-					double puntoRojoX = centerXTR - puntoRojoTex->width() / 2;
-					double puntoRojoY = centerYTR - puntoRojoTex->height() / 2;
-
-					puntoRojoTex->render(puntoRojoX, puntoRojoY);
-					std::cout << "punto rojo" << puntoRojoX << std::endl;
-				}
-				else
-					std::cout << "not punnto rojo" << std::endl;
+				drawRedPoints();
+	
 
 				//SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 				//SDL_RenderDrawLine(renderer, centerXTR, centerYTR, centerXTR + 200, centerYTR + 200);
@@ -246,6 +238,14 @@ void Wrap::checkPointTouch(int point) {
 
 	}
 }
+
+void Wrap::drawRedPoints() {
+
+		Paquete* paqComp = ent_->getComponent<Paquete>();
+		paqComp->puntosRojos();
+	
+}
+
 //
 //void Wrap::drawLines() {
 //	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE); // Color blanco

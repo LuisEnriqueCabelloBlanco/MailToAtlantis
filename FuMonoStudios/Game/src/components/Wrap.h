@@ -2,9 +2,15 @@
 
 #include "../architecture/Component.h"
 #include <components/Render.h>
+#include "Paquete.h"
+#include "../architecture/Entity.h"
 
+#include <functional>
 #include <list>
 #include <SDL.h>
+
+using Callback = std::function<void(ecs::Entity*)>;
+
 
 class Transform;
 
@@ -59,6 +65,8 @@ private:
 
 	void addLine(const SDL_Point& start, const SDL_Point& end);
 
+	void drawRedPoints();
+
 	struct Line {
 		SDL_Point start;
 		SDL_Point end;
@@ -106,5 +114,7 @@ private:
 
 	// Textura de punto rojo
 	Texture* puntoRojoTex = nullptr;
+
+	Callback funcion_;
 
 };

@@ -53,6 +53,10 @@ public:
 
 	// Sella la calle una única vez con el sellador
 	void sellarCalle(Calle sello, Transform* trSellador);
+
+	//Genera los puntos rojos al envolver
+	void puntosRojos();
+
 	/// <summary>
 	/// metodo que devuelve el string a implimir en la etiqueta de direccion
 	/// </summary>

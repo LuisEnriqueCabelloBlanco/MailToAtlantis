@@ -70,6 +70,7 @@ namespace ecs {
 			INK,
 			STAMP,
 			OFFICEELEMENTS,
+			WRAP_POINTS,
 			TAPE,
 			MANUAL,
 			FOREGROUND,

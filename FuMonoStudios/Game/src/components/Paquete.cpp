@@ -109,6 +109,56 @@ void Paquete::sellarCalle(Calle sello, Transform* trSellador) {
 	}
 }
 
+void Paquete::puntosRojos() {
+	Transform* paqTr = ent_->getComponent<Transform>();
+
+	// Creamos la entidad para el punto rojo
+	Texture* puntoRojoTex = &sdlutils().images().at("puntoRojo");
+	float scale = 0.2f;
+
+	if (puntoRojoTex != nullptr) {
+		// Obtener las dimensiones del paquete
+		float paqWidth = paqTr->getRect().w;
+		float paqHeight = paqTr->getRect().h;
+
+		// Calcular las nuevas coordenadas relativas de cada punto rojo
+		float offsetX = paqWidth / 24;
+		float offsetY = paqHeight / 24;
+
+		// Definir las posiciones de los puntos rojos con el desplazamiento
+		std::vector<Vector2D> redPoints = {
+			// Esquinas
+			  Vector2D(-offsetX, -offsetY), // Superior izquierda
+			  Vector2D(paqWidth + offsetX, -offsetY), // Superior derecha
+			  Vector2D(-offsetX, paqHeight + offsetY), // Inferior izquierda
+			  Vector2D(paqWidth + offsetX, paqHeight + offsetY), // Inferior derecha
+			  // Mitad entre las esquinas y el centro
+			  Vector2D(paqWidth / 2, -offsetY), // Medio superior
+			  Vector2D(paqWidth / 2, paqHeight + offsetY), // Medio inferior
+			  Vector2D(-offsetX, paqHeight / 2), // Medio izquierda
+			  Vector2D(paqWidth + offsetX, paqHeight / 2), // Medio derecha
+			  // Centro
+			  Vector2D(paqWidth / 2, paqHeight / 2) // Centro
+		};
+
+		// Agregar un punto rojo en cada posición calculada
+		for (const auto& pos : redPoints) {
+			ecs::Entity* puntoRojoEnt = ent_->getMngr()->addEntity(ecs::layer::WRAP_POINTS);
+			Transform* puntoRojoTr = puntoRojoEnt->addComponent<Transform>(
+				pos.getX() - puntoRojoTex->width() * scale / 2,
+				pos.getY() - puntoRojoTex->height() * scale / 2,
+				puntoRojoTex->width() * scale,
+				puntoRojoTex->height() * scale
+				);
+			puntoRojoTr->setParent(paqTr); // Establecer el paquete como padre del punto rojo
+			puntoRojoEnt->addComponent<RenderImage>(puntoRojoTex);
+		}
+	}
+	else {
+		std::cout << "No se pudo cargar la textura del punto rojo" << std::endl;
+	}
+}
+
 std::string Paquete::getDirecction()
 {
 	// vamos a hacer que ponga exterior / interior y luego codigo postal
