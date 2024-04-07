@@ -22,15 +22,20 @@ namespace ecs {
 
 		void closeConversation();
 
-		void createPackage(int level);
+		void packageSent();
+
+		enum PackageTutorial { Primero, Segundo, Random};
+		void createPackage(PackageTutorial pt);
 	private:
 		void createManual();
 		void createMiniManual();
 		void createSpaceManual();
 
+		void createStamp(TipoHerramienta type);
 		void createClock();
 		void createInks();
 		void createOneInk(TipoHerramienta type);
+		void createTubo(pq::Distrito dist, bool);
 
 		Entity* manualEnt_;
 		Entity* miniManualEnt_;

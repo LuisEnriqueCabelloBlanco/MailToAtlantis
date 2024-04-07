@@ -554,7 +554,12 @@
       "Antes de poder mandar el paquete, tenemos que sellar bien el paquete con su calle. Vamos a la pagina de Hestia para saber que color escoger."
     ],
     "7": [
-      "hola"
+      "Para poder sellarlo, tenemos que usar el sello que puedes ver en la parte abajo izquierda de la mesa.",
+      "Adem$as, tenemos los cubos con pintura, donde tenemos que mojar el sello para que coja color.",
+      "En el paquete tenemos la calle 'Gambon III', que tiene el color verde, as$i que vamos a mojar el sello en el cubo verde y estamparlo en el paquete."
+    ],
+    "8": [
+      "Una vez sellado, debemos "
     ]
   },
   "EsclavaRemix": [

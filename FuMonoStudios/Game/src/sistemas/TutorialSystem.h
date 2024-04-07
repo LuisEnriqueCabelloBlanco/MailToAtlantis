@@ -24,9 +24,10 @@ class TutorialSystem
 public:
 	enum TutorialEvent { Introduction, SacaElManual1, SacaElManual2, PaqueteEnseñarRemitente,
 	PaqueteEnseñarCodigoPostal, PaqueteBuscarPaginaCodigosPostales, PaqueteBuscarPaginaHestia,
-	PaqueteEnseñarSellos};
+	PaqueteEnseñarSellos, PaqueteEnseñarTubos};
 
-	enum Action { SacarManual, PaginaCodigosPostales, PaginaDistritoHestia };
+	enum Action { SacarManual, PaginaCodigosPostales, PaginaDistritoHestia, PaqueteEstampado,
+	PaqueteEnviado};
 
 	TutorialSystem(ecs::TutorialScene* scene);
 	~TutorialSystem();
@@ -53,7 +54,7 @@ private:
 	DialogManager dialogMngr_;
 	void createDialogueBox();
 
-	void activateDialogue(DialogManager::DialogSelection ds);
+	void activateDialogue(bool dialogBoxInBottom);
 	int tutorialIteration;
 
 	TutorialEvent currentEvent;

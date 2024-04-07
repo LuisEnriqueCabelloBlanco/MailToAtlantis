@@ -41,11 +41,11 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 		case TutorialEvent::Introduction:
 			canPassPagesManual = false;
 			canDrag = false;
-			activateDialogue(DialogManager::Tutorial);
+			activateDialogue(false);
 			break;
 		case TutorialEvent::SacaElManual1:
 			canDrag = false;
-			activateDialogue(DialogManager::Tutorial);
+			activateDialogue(false);
 			arrow_->setActive(true);
 			
 			// animacion de la flecha
@@ -64,13 +64,13 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			break;
 		case TutorialEvent::SacaElManual2:
 			canDrag = false;
-			activateDialogue(DialogManager::Tutorial);
+			activateDialogue(false);
 			break;
 		case TutorialEvent::PaqueteEnseñarRemitente:
 			canDrag = false;
-			scene_->createPackage(1);
+			scene_->createPackage(ecs::TutorialScene::Primero);
 			delayedCallback(1, [this]() {
-				activateDialogue(DialogManager::Tutorial);
+				activateDialogue(false);
 				delayedCallback(1, [this]() {
 					arrow_->setActive(true);
 					arrow_->getComponent<Transform>()->setPos(1340, 720);
@@ -78,20 +78,32 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::PaqueteEnseñarCodigoPostal:
-			activateDialogue(DialogManager::Tutorial);
+			activateDialogue(false);
 			arrow_->getComponent<Transform>()->setPos(1340, 680);
 			break;
 		case TutorialEvent::PaqueteBuscarPaginaCodigosPostales:
 			canPassPagesManual = true;
-			activateDialogue(DialogManager::Tutorial);
+			activateDialogue(false);
 			break;
 		case TutorialEvent::PaqueteBuscarPaginaHestia:
 			canPassPagesManual = false;
-			activateDialogue(DialogManager::Tutorial);
+			activateDialogue(false);
 			break;
 		case TutorialEvent::PaqueteEnseñarSellos:
 			canPassPagesManual = false;
-			activateDialogue(DialogManager::Tutorial);
+			activateDialogue(true);
+			arrow_->setActive(true);
+			arrow_->getComponent<Transform>()->setPos(350, 850);
+			arrow_->addComponent<MoverTransform>(Vector2D(100, 850), 1, Easing::EaseOutBack);
+			arrow_->getComponent<MoverTransform>()->enable();
+			delayedCallback(1.2, [this]() {
+				arrow_->addComponent<MoverTransform>(Vector2D(350, 850), 1, Easing::EaseOutBack);
+				arrow_->getComponent<MoverTransform>()->enable();
+				});
+			break;
+		case TutorialEvent::PaqueteEnseñarTubos:
+			canDrag = false;
+			activateDialogue(false);
 			break;
 	}
 }
@@ -140,6 +152,15 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 				activateEvent(TutorialEvent::PaqueteEnseñarSellos);
 				});
 			break;
+		case TutorialEvent::PaqueteEnseñarSellos:
+			arrow_->setActive(false);
+			canDrag = true;
+			addActionListener(Action::PaqueteEstampado, [this]() {
+				activateEvent(TutorialEvent::PaqueteEnseñarTubos);
+				});
+			break;
+		case TutorialEvent::PaqueteEnseñarTubos:
+			break;
 	}
 }
 
@@ -176,10 +197,10 @@ void TutorialSystem::createArrow() {
 	arrow_->setActive(false);
 }
 
-void TutorialSystem::activateDialogue(DialogManager::DialogSelection ds) {
+void TutorialSystem::activateDialogue(bool dialogBoxInBottom) {
 	boxBackground_->getComponent<RenderImage>()->setTexture(&sdlutils().images().at("cuadroDialogo"));
-
-	dialogMngr_.setDialogues(ds, std::to_string(tutorialIteration));
+	boxBackground_->getComponent<Transform>()->setPos(100, dialogBoxInBottom ? LOGICAL_RENDER_HEITH * 0.05 : LOGICAL_RENDER_HEITH - 250);
+	dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(tutorialIteration));
 	textDialogue_->addComponent<DialogComponent>(&dialogMngr_, scene_);
 }
 

@@ -5,6 +5,8 @@
 #include "../entities/ClockAux.h"
 #include "../components/DialogComponent.h"
 #include "../components/DelayedCallback.h"
+#include "../sdlutils/InputHandler.h"
+#include "../components/PackageChecker.h"
 
 ecs::TutorialScene::TutorialScene() : Scene() {
 
@@ -41,6 +43,22 @@ void ecs::TutorialScene::init() {
 	createClock();
 
 	createInks();
+
+	createStamp(SelloCalleA);
+
+	int numTubos = generalData().getTubesAmount(); // coge el numero de tubos que están desbloqueados
+	int j = 0;
+	for (int i = 0; i < numTubos; i++) {
+		createTubo((pq::Distrito)i, true);
+		j++;
+	}
+	//Creación de paquetes bloqueados
+	for (int z = j; z < 7; ++z) { //grande jose la los numeros magicos te la sabes
+		if (j == 6)
+			createTubo((pq::Distrito)z, true);
+		else
+			createTubo((pq::Distrito)z, false);
+	}
 
 	tutorialSys_->activateEvent(TutorialSystem::Introduction);
 }
@@ -179,7 +197,7 @@ void ecs::TutorialScene::createSpaceManual() {
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
 
-	factory_->setLayer(ecs::layer::MANUALSPACE);
+	factory_->setLayer(ecs::layer::BACKGROUND);
 
 	Texture* bookTextures = &sdlutils().images().at("atrilManual");
 
@@ -201,6 +219,35 @@ void ecs::TutorialScene::createSpaceManual() {
 		});
 
 	factory_->setLayer(ecs::layer::DEFAULT);
+}
+
+void ecs::TutorialScene::createTubo(pq::Distrito dist, bool unlock) {
+	constexpr float TUBE_WIDTH = 138;
+	constexpr float TUBE_HEITH = 282;
+	constexpr float TUBES_X_OFFSET = 200;
+	constexpr float DISTANCE_BETWEEN_TUBES = 220;
+	factory_->setLayer(ecs::layer::BACKGROUND);
+
+	Entity* tuboEnt = factory_->createImage(
+		Vector2D(TUBES_X_OFFSET + (DISTANCE_BETWEEN_TUBES * dist), -40),
+		Vector2D(TUBE_WIDTH, TUBE_HEITH),
+		&sdlutils().images().at("tubo" + std::to_string(dist + 1)));
+	if (unlock) {
+
+		Trigger* tuboTri = tuboEnt->addComponent<Trigger>();
+		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this);
+	}
+	else {
+		factory_->setLayer(layer::UI);
+		auto tubeTr = tuboEnt->getComponent<Transform>();
+
+		auto cross = factory_->createImage(Vector2D(0, 120),
+			Vector2D(tubeTr->getWidth(), tubeTr->getWidth()),
+			&sdlutils().images().at("cruz"));
+
+		cross->getComponent<Transform>()->setParent(tubeTr);
+
+	}
 }
 
 void ecs::TutorialScene::createClock() {
@@ -234,15 +281,63 @@ void ecs::TutorialScene::createOneInk(TipoHerramienta type) {
 		});
 }
 
+void ecs::TutorialScene::createStamp(TipoHerramienta type)
+{
+	if (type > 2) return;
+	constexpr float STAMPSIZE = 1;
+
+	factory_->setLayer(layer::STAMP);
+
+	auto stamp = factory_->createImage(Vector2D(230, 800),
+		Vector2D(sdlutils().images().at("sellador" + std::to_string(type)).width() * STAMPSIZE, sdlutils().images().at("sellador" + std::to_string(type)).height() * STAMPSIZE),
+		&sdlutils().images().at("sellador" + std::to_string(type)));
+
+	stamp->addComponent<Gravity>();
+	stamp->addComponent<Depth>();
+	stamp->addComponent<DragAndDropTutorial>(true, tutorialSys_);
+
+	Herramientas* herrSelladorA = stamp->addComponent<Herramientas>();
+	herrSelladorA->setFunctionality(type);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+}
+
 void ecs::TutorialScene::closeConversation() {
 	tutorialSys_->closeConversation();
 }
 
-void ecs::TutorialScene::createPackage(int level) {
-	auto paquete = mPaqBuild_->buildPackage(1, this);
+void ecs::TutorialScene::createPackage(PackageTutorial pt) {
+
+	ecs::Entity* paquete;
+	if (pt == Primero)
+		paquete = mPaqBuild_->customPackage(Hestia, C3, "Fernando Lubina", Alimento);
+	else if (pt == Segundo)
+		paquete = mPaqBuild_->customPackage(Demeter, Erronea, "Globo Torres", Armamento, false);
+	else
+		paquete = mPaqBuild_->buildPackage(1, this);
+
 	paquete->removeComponent<DragAndDrop>();
 	paquete->removeComponent<Trigger>();
 	paquete->addComponent<DragAndDropTutorial>(true, tutorialSys_);
-	paquete->getComponent<Wrap>()->initComponent();
+	paquete->getComponent<Trigger>()->addCallback([paquete, this](ecs::Entity* entRec) {
+
+		auto& ihdlr = ih();
+
+		SDL_Point point{ ihdlr.getMousePos().first, ihdlr.getMousePos().second };
+
+		Herramientas* herrEnt = entRec->getComponent<Herramientas>();
+
+		SDL_Rect stampRect = entRec->getComponent<Transform>()->getRect();
+
+		if (herrEnt != nullptr && SDL_PointInRect(&point, &stampRect))
+		{
+			tutorialSys_->registerAction(TutorialSystem::PaqueteEstampado);
+			herrEnt->interact(paquete);
+		}
+		});
 	paquete->getComponent<MoverTransform>()->enable();
+}
+
+void ecs::TutorialScene::packageSent() {
+	tutorialSys_->registerAction(TutorialSystem::PaqueteEnviado);
 }
