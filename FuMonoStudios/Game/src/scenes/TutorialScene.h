@@ -21,6 +21,8 @@ namespace ecs {
 		void init() override;
 
 		void closeConversation();
+
+		void createPackage(int level);
 	private:
 		void createManual();
 		void createMiniManual();
@@ -29,15 +31,13 @@ namespace ecs {
 		void createClock();
 		void createInks();
 		void createOneInk(TipoHerramienta type);
-		void createCharacter();
 
 		Entity* manualEnt_;
 		Entity* miniManualEnt_;
 
-		PaqueteBuilder* mPaqBuild_;
-
 		TutorialSystem* tutorialSys_;
 
+		PaqueteBuilder* mPaqBuild_;
 
 		// lo mismo que el drag and drop pero funciona unicamente 
 		// si el canDrag esta activo

@@ -3,12 +3,14 @@
 #include "../scenes/TutorialScene.h"
 #include "../components/DialogManager.h"
 #include "../components/DialogComponent.h"
+#include "../components/MoverTransform.h"
 
 TutorialSystem::TutorialSystem(ecs::TutorialScene* scene) {
 	scene_ = scene;
 	tutorialIteration = 0;
 	canDrag = true;
 	waitingCallback = false;
+
 
 	createDialogueBox();
 	createArrow();
@@ -24,8 +26,8 @@ void TutorialSystem::update() {
 		timer_ = sdlutils().virtualTimer().currTime();
 		if (timer_ > timeToCall_)
 		{
-			call_();
 			waitingCallback = false;
+			call_();
 		}
 	}
 }
@@ -37,15 +39,59 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 	switch (event)
 	{
 		case TutorialEvent::Introduction:
+			canPassPagesManual = false;
 			canDrag = false;
 			activateDialogue(DialogManager::Tutorial);
 			break;
-		case TutorialEvent::SacaElManual:
+		case TutorialEvent::SacaElManual1:
 			canDrag = false;
 			activateDialogue(DialogManager::Tutorial);
 			arrow_->setActive(true);
-			arrow_->getComponent<Transform>()->setPos(600,600);
+			
+			// animacion de la flecha
+			arrow_->getComponent<Transform>()->setPos(1150,410);
 			arrow_->getComponent<Transform>()->setRotation(130);
+			arrow_->addComponent<MoverTransform>(Vector2D(800, 700), 1, Easing::EaseOutBack);
+			arrow_->getComponent<MoverTransform>()->enable();
+
+			delayedCallback(1.2, [this]() {
+				arrow_->getComponent<Transform>()->setPos(1150, 410);
+				arrow_->addComponent<MoverTransform>(Vector2D(800, 700), 1, Easing::EaseOutBack, [this]() {
+					arrow_->getComponent<Transform>()->setPos(1150, 410);
+					});
+				arrow_->getComponent<MoverTransform>()->enable();
+				});
+			break;
+		case TutorialEvent::SacaElManual2:
+			canDrag = false;
+			activateDialogue(DialogManager::Tutorial);
+			break;
+		case TutorialEvent::PaqueteEnseñarRemitente:
+			canDrag = false;
+			scene_->createPackage(1);
+			delayedCallback(1, [this]() {
+				activateDialogue(DialogManager::Tutorial);
+				delayedCallback(1, [this]() {
+					arrow_->setActive(true);
+					arrow_->getComponent<Transform>()->setPos(1340, 720);
+					});
+				});
+			break;
+		case TutorialEvent::PaqueteEnseñarCodigoPostal:
+			activateDialogue(DialogManager::Tutorial);
+			arrow_->getComponent<Transform>()->setPos(1340, 680);
+			break;
+		case TutorialEvent::PaqueteBuscarPaginaCodigosPostales:
+			canPassPagesManual = true;
+			activateDialogue(DialogManager::Tutorial);
+			break;
+		case TutorialEvent::PaqueteBuscarPaginaHestia:
+			canPassPagesManual = false;
+			activateDialogue(DialogManager::Tutorial);
+			break;
+		case TutorialEvent::PaqueteEnseñarSellos:
+			canPassPagesManual = false;
+			activateDialogue(DialogManager::Tutorial);
 			break;
 	}
 }
@@ -55,12 +101,44 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 	switch (event) {
 		case TutorialEvent::Introduction:
 			delayedCallback(1, [this]() {
-				activateEvent(TutorialEvent::SacaElManual);
+				activateEvent(TutorialEvent::SacaElManual1);
 				});
 			break;
-		case TutorialEvent::SacaElManual:
+		case TutorialEvent::SacaElManual1:
 			canDrag = true;
+			
+			addActionListener(Action::SacarManual, [this]() {
+				activateEvent(TutorialEvent::SacaElManual2);
+				arrow_->removeComponent<MoverTransform>();
+				arrow_->setActive(false);
+				});
+			break;
+		case TutorialEvent::SacaElManual2:
+				activateEvent(TutorialEvent::PaqueteEnseñarRemitente);
+			break;
+		case TutorialEvent::PaqueteEnseñarRemitente:
+			delayedCallback(0.5, [this]() {
+				activateEvent(TutorialEvent::PaqueteEnseñarCodigoPostal);
+				});
+			break;
+		case TutorialEvent::PaqueteEnseñarCodigoPostal:
+			delayedCallback(0.5, [this]() {
+					activateEvent(TutorialEvent::PaqueteBuscarPaginaCodigosPostales);
+				});
+			break;
+		case TutorialEvent::PaqueteBuscarPaginaCodigosPostales:
 			arrow_->setActive(false);
+			addActionListener(Action::PaginaCodigosPostales, [this]() {
+				canDrag = false;
+				canPassPagesManual = false;
+				activateEvent(TutorialEvent::PaqueteBuscarPaginaHestia);
+				});
+			break;
+		case TutorialEvent::PaqueteBuscarPaginaHestia:
+			canPassPagesManual = true;
+			addActionListener(Action::PaginaDistritoHestia, [this]() {
+				activateEvent(TutorialEvent::PaqueteEnseñarSellos);
+				});
 			break;
 	}
 }
@@ -110,4 +188,31 @@ void TutorialSystem::delayedCallback(float time, SimpleCallback call) {
 
 	waitingCallback = true;
 	timeToCall_ = sdlutils().virtualTimer().currTime() + (time * 1000);
+}
+
+void TutorialSystem::registerAction(Action a)
+{
+	std::vector<std::vector<std::pair<Action, SimpleCallback>>::iterator> deleteUsedActionListeners;
+	
+	std::cout << a << std::endl;
+	
+	if (actionListeners.size() > 0)
+	{
+		for (auto it = actionListeners.begin(); it < actionListeners.end(); ++it)
+		{
+			if ((*it).first == a)
+			{
+				(*it).second();
+				deleteUsedActionListeners.push_back(it);
+			}
+		}
+	}
+
+	for (auto it : deleteUsedActionListeners)
+		actionListeners.erase(it);
+}
+
+void TutorialSystem::addActionListener(Action a, SimpleCallback call)
+{
+	actionListeners.push_back(std::make_pair(a, call));
 }

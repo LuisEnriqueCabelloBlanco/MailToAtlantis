@@ -7,8 +7,10 @@
 #include "../components/DelayedCallback.h"
 
 ecs::TutorialScene::TutorialScene() : Scene() {
-	mPaqBuild_ = new PaqueteBuilder(this);
+
 	tutorialSys_ = new TutorialSystem(this);
+	mPaqBuild_ = new PaqueteBuilder(this);
+
 }
 
 ecs::TutorialScene::~TutorialScene() {
@@ -39,8 +41,6 @@ void ecs::TutorialScene::init() {
 	createClock();
 
 	createInks();
-
-	createCharacter();
 
 	tutorialSys_->activateEvent(TutorialSystem::Introduction);
 }
@@ -74,11 +74,29 @@ void ecs::TutorialScene::createManual() {
 
 	Vector2D buttonSize(40, 40);
 	factory_->setLayer(ecs::layer::FOREGROUND);
-	auto next = [manualRender]() {manualRender->nextTexture(); };
+	auto next = [manualRender, this]() {
+		if (tutorialSys_->canPassPagesManual)
+		{
+			manualRender->nextTexture();
+			if (manualRender->getTexture() == &sdlutils().images().at("book6"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
+			else if (manualRender->getTexture() == &sdlutils().images().at("book2"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
+		}
+		};
 	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
 	right->getComponent<Transform>()->setParent(manualTransform);
 
-	auto previous = [manualRender]() {manualRender->previousTexture(); };
+	auto previous = [manualRender, this]() {
+		if (tutorialSys_->canPassPagesManual)
+		{
+			manualRender->previousTexture();
+			if (manualRender->getTexture() == &sdlutils().images().at("book6"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
+			else if (manualRender->getTexture() == &sdlutils().images().at("book2"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
+		}
+		};
 	auto left = factory_->createImageButton(Vector2D(75, 280), buttonSize, buttonTexture, previous);
 	left->getComponent<Transform>()->setParent(manualTransform);
 
@@ -127,6 +145,8 @@ void ecs::TutorialScene::createMiniManual() {
 				miniManualEnt_->setActive(false);
 
 				manualEnt_->setActive(true);
+				tutorialSys_->registerAction(TutorialSystem::SacarManual);
+
 				manualTR->setPos(pos);
 				manualEnt_->getComponent<Depth>()->updateChildPos();
 			}
@@ -144,6 +164,8 @@ void ecs::TutorialScene::createMiniManual() {
 					miniManualEnt_->setActive(false);
 
 					manualEnt_->setActive(true);
+
+					tutorialSys_->registerAction(TutorialSystem::SacarManual);
 				}
 			}
 		}
@@ -212,10 +234,15 @@ void ecs::TutorialScene::createOneInk(TipoHerramienta type) {
 		});
 }
 
-void ecs::TutorialScene::createCharacter() {
-
-}
-
 void ecs::TutorialScene::closeConversation() {
 	tutorialSys_->closeConversation();
+}
+
+void ecs::TutorialScene::createPackage(int level) {
+	auto paquete = mPaqBuild_->buildPackage(1, this);
+	paquete->removeComponent<DragAndDrop>();
+	paquete->removeComponent<Trigger>();
+	paquete->addComponent<DragAndDropTutorial>(true, tutorialSys_);
+	paquete->getComponent<Wrap>()->initComponent();
+	paquete->getComponent<MoverTransform>()->enable();
 }

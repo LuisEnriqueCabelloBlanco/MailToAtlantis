@@ -531,6 +531,30 @@
     ],
     "1": [
       "El manual es tu mejor amigo. S$acalo de su atril y arrastralo hasta encima de la mesa."
+    ],
+    "2": [
+      "En este manual est$a todo lo que necesitas saber sobre los paquetes que te ir$an llegando.",
+      "Es imprescindible que lo uses para saber por que tubo mandarlo.",
+      "Vamos a hacer un ejemplo con un paquete que esta al caer"
+    ],
+    "3": [
+      "Como puedes ver, en el paquete tenemos varias zonas de informaci$on",
+      "Abajo a la izquierda podemos ver el remitente, es decir, quien ha mandado el paquete."
+    ],
+    "4": [
+      "Justo arriba podemos ver el c$odigo postal y la calle. Esta parte es fundamental para saber a donde mandar el paquete.",
+      "Antes del c$odigo postal, pone la zona de la ciudad de donde proviene, puede ser interior o exterior."
+    ],
+    "5": [
+      "Debemos primero saber a que distrito debemos mandar este paquete. Vamos a buscar el codigo postal en la pagina del manual sobre codigos postales"
+    ],
+    "6": [
+      "En la p$agina izquierda se ven los c$odigos postales y sus distritos correspondientes.",
+      "Este paquete tiene el c$odigo 001, por lo que ir$a al distrito de Hestia",
+      "Antes de poder mandar el paquete, tenemos que sellar bien el paquete con su calle. Vamos a la pagina de Hestia para saber que color escoger."
+    ],
+    "7": [
+      "hola"
     ]
   },
   "EsclavaRemix": [

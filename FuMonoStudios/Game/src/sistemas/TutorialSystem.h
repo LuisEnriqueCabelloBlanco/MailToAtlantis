@@ -9,19 +9,31 @@ namespace ecs {
 class RenderImage;
 class DialogManager;
 class DialogComponent;
+class MoverTransform;
 
 using SimpleCallback = std::function<void()>;
 
 // Almacena el sistema de dialogo y además tiene un sistema de eventos
-// que al pasarle un Enum TutorialEvent activa el evento y prohibe
+// que al pasarle un Enum TutorialEvent activa el evento, prohibe
 // ciertas acciones y spawnea ciertos objetos para demostrar una mecánica
+//
+// El registerAction registra las acciones que va haciendo el jugador para poder
+// pasar de un evento a otro
 class TutorialSystem
 {
 public:
-	enum TutorialEvent { Introduction, SacaElManual };
+	enum TutorialEvent { Introduction, SacaElManual1, SacaElManual2, PaqueteEnseñarRemitente,
+	PaqueteEnseñarCodigoPostal, PaqueteBuscarPaginaCodigosPostales, PaqueteBuscarPaginaHestia,
+	PaqueteEnseñarSellos};
+
+	enum Action { SacarManual, PaginaCodigosPostales, PaginaDistritoHestia };
 
 	TutorialSystem(ecs::TutorialScene* scene);
 	~TutorialSystem();
+
+	void registerAction(Action a);
+
+	void addActionListener(Action a, SimpleCallback call);
 
 	void activateEvent(TutorialEvent event);
 	void stopEvent(TutorialEvent event);
@@ -31,6 +43,7 @@ public:
 	void update();
 
 	bool canDrag;
+	bool canPassPagesManual;
 private:
 	ecs::TutorialScene* scene_;
 
@@ -44,6 +57,8 @@ private:
 	int tutorialIteration;
 
 	TutorialEvent currentEvent;
+
+	std::vector<std::pair<Action, SimpleCallback>> actionListeners;
 
 	// objetos de evento
 	void createArrow();
