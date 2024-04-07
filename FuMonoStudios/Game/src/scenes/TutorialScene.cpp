@@ -309,6 +309,7 @@ void ecs::TutorialScene::closeConversation() {
 void ecs::TutorialScene::createPackage(PackageTutorial pt) {
 
 	ecs::Entity* paquete;
+	factory_->setLayer(ecs::layer::PACKAGE);
 	if (pt == Primero)
 		paquete = mPaqBuild_->customPackage(Hestia, C3, "Fernando Lubina", Alimento);
 	else if (pt == Segundo)
@@ -335,7 +336,9 @@ void ecs::TutorialScene::createPackage(PackageTutorial pt) {
 			herrEnt->interact(paquete);
 		}
 		});
+	paquete->getComponent<Wrap>()->initComponent();
 	paquete->getComponent<MoverTransform>()->enable();
+	factory_->setLayer(ecs::layer::DEFAULT);
 }
 
 void ecs::TutorialScene::packageSent() {

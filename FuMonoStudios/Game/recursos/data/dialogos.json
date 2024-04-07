@@ -533,33 +533,30 @@
       "El manual es tu mejor amigo. S$acalo de su atril y arrastralo hasta encima de la mesa."
     ],
     "2": [
-      "En este manual est$a todo lo que necesitas saber sobre los paquetes que te ir$an llegando.",
-      "Es imprescindible que lo uses para saber por que tubo mandarlo.",
-      "Vamos a hacer un ejemplo con un paquete que esta al caer"
+      "En el manual est$a todo lo que necesitas saber sobre los paquetes que te ir$an llegando.",
+      "Vamos a hacer un ejemplo con un paquete que esta al caer."
+      
     ],
     "3": [
-      "Como puedes ver, en el paquete tenemos varias zonas de informaci$on",
-      "Abajo a la izquierda podemos ver el remitente, es decir, quien ha mandado el paquete."
+      "El paquete est$a repleto de informaci$on $util, abajo a la izquierda est$a el remitente, es decir, quien ha mandado el paquete."
     ],
     "4": [
-      "Justo arriba podemos ver el c$odigo postal y la calle. Esta parte es fundamental para saber a donde mandar el paquete.",
-      "Antes del c$odigo postal, pone la zona de la ciudad de donde proviene, puede ser interior o exterior."
+      "Justo arriba est$a el c$odigo postal y la calle. Estos dos nos sirven para saber a que tubo mandar el paquete"
     ],
     "5": [
-      "Debemos primero saber a que distrito debemos mandar este paquete. Vamos a buscar el codigo postal en la pagina del manual sobre codigos postales"
+      "Debemos primero saber a que tubo debemos mandar este paquete. Los tubos representan cada uno un distrito y su simbolo esta representado en el manual.",
+      "Vamos a buscar el codigo postal del distrito en la pagina del manual sobre codigos postales"
     ],
     "6": [
-      "En la p$agina izquierda se ven los c$odigos postales y sus distritos correspondientes.",
-      "Este paquete tiene el c$odigo 001, por lo que ir$a al distrito de Hestia",
-      "Antes de poder mandar el paquete, tenemos que sellar bien el paquete con su calle. Vamos a la pagina de Hestia para saber que color escoger."
+      "En la p$agina izquierda se ven los c$odigos postales y sus distritos correspondientes. Este paquete tiene el c$odigo 001, por lo que ir$a al distrito de Hestia, el primer tubo",
+      "Antes de poder mandar el paquete, tenemos que sellar con un color el paquete en funcion de su calle. Vamos a la pagina de Hestia para saber que color escoger."
     ],
     "7": [
-      "Para poder sellarlo, tenemos que usar el sello que puedes ver en la parte abajo izquierda de la mesa.",
-      "Adem$as, tenemos los cubos con pintura, donde tenemos que mojar el sello para que coja color.",
+      "Para poder sellarlo, tenemos que usar el sello que puedes ver en la parte abajo izquierda de la mesa y mojarlo en uno de los tres cubos",
       "En el paquete tenemos la calle 'Gambon III', que tiene el color verde, as$i que vamos a mojar el sello en el cubo verde y estamparlo en el paquete."
     ],
     "8": [
-      "Una vez sellado, debemos "
+      "Una vez sellado, ya podemos mandarlo al tubo. Arrastra el paquete hasta el tubo de color rojo, el de Hestia"
     ]
   },
   "EsclavaRemix": [

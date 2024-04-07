@@ -102,7 +102,8 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::PaqueteEnseñarTubos:
-			canDrag = false;
+			canDrag = true;
+			canPassPagesManual = true;
 			activateDialogue(false);
 			break;
 	}

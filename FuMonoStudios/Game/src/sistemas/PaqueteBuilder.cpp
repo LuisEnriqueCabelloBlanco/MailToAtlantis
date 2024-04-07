@@ -93,6 +93,8 @@ ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle call
 	}
 	base->addComponent<Paquete>(distrito,calle,dir, remitente, tipo, correcto, nivPeso, peso, fragil, carta);
 	addVisualElements(base);
+	std::list<int> route{ pointRoute::LeftUp, pointRoute::MiddleUp, pointRoute::MiddleMid, pointRoute::MiddleDown, pointRoute::RightDown };
+	base->addComponent<Wrap>(20, 0, route);
 	return base;
 }
 
