@@ -27,17 +27,15 @@ GeneralData::~GeneralData() {
 }
 
 
-void GeneralData::updateMoney(int correct, int wrong)
+void GeneralData::updateMoney()
 {
-	int rightPackages = correct;
-	corrects_ = correct;
-	int wrongPackages = wrong;
-	fails_ = wrong;
+	int rightPackages = corrects_;
+	int wrongPackages = fails_;
 	//funcion de ejemplo seguramente haya que cambiarlo
-	if (wrong < failsMargin_) {
+	if (fails_ < failsMargin_) {
 		wrongPackages = 0;
 	}
-	if (correct < 0) {
+	if (corrects_ < 0) {
 		rightPackages = 0;
 	}
 	dinero_ += rightPackages * WRITE_PACAGES_VALUE - wrongPackages * WRONG_PACAGES_VALUE;

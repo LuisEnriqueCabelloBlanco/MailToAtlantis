@@ -69,7 +69,7 @@ void Game::run()
 		if (ih().isKeyDown(SDL_SCANCODE_ESCAPE) || ih().closeWindowEvent()) {
 			exit_ = true;
 		}
-		if (ih().isKeyDown(SDL_SCANCODE_F)) {
+		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_F)) {
 			sdlutils().toggleFullScreen();
 		}
 		if (ih().isKeyDown(SDL_SCANCODE_P)) {
