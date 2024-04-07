@@ -169,14 +169,28 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 	if(dia == 0)
 		return;
 	switch (dia)
-	{case 1:
+	{
+	case 1:
+
 		createStamp(SelloCalleA);
+
+		createInks();
+
+		generalData().setPaqueteLevel(0);
+
 		break;
+
+	case 2:
+		
+		generalData().setPaqueteLevel(1);
+
+		break;
+
 	case 3:
 		createCinta();
-		break;
-	case 4:
-		createInks();
+
+		generalData().setPaqueteLevel(2);
+
 		break;
 	default:
 		break;
