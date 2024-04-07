@@ -124,7 +124,7 @@ void ecs::MainScene::init()
 
 void ecs::MainScene::close() {
 	ecs::Scene::close();
-	generalData().updateMoney(correct_,fails_);
+	generalData().updateMoney();
 
 	sdlutils().musics().at("trabajo").haltMusic();
 }
