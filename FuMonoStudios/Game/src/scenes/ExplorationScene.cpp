@@ -55,7 +55,7 @@ void ecs::ExplorationScene::init()
 
 	//boton ir a trabajar
 	BotonTrabajo = addEntity();
-	BotonTrabajo->addComponent<Transform>(525, 300, 100, 300);
+	BotonTrabajo->addComponent<Transform>(650, 400, 100, 300);
 	auto clickableBotonTrabajar = BotonTrabajo->addComponent<Clickeable>();
 	CallbackClickeable funcPress = [this]() {
 		gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);

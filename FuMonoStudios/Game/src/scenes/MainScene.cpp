@@ -124,7 +124,6 @@ void ecs::MainScene::init()
 
 void ecs::MainScene::close() {
 	ecs::Scene::close();
-	generalData().setDia(generalData().getDia() + 1);
 	generalData().updateMoney();
 
 	sdlutils().musics().at("trabajo").haltMusic();
