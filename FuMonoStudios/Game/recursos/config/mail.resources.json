@@ -85,9 +85,16 @@
     {"id": "caja100","file": "recursos/images/Caja_Envuelta_100.png"},
 
     {"id": "papelera","file": "recursos/images/papelera.png"},
-    {"id": "cartel","file": "recursos/images/CartelCompleto.png"},
     {"id": "cuadroDialogo","file": "recursos/images/CuadroDialogo.png"},
     {"id": "miniManual","file": "recursos/images/ManualMini.png"},
+
+    {"id": "cartelHestia","file": "recursos/images/CartelHestia.png"},
+    {"id": "cartelArtemisa","file": "recursos/images/CartelArtemisa.png"},
+    {"id": "cartelDemeter","file": "recursos/images/CartelDemeter.png"},
+    {"id": "cartelHefesto","file": "recursos/images/CartelHefesto.png"},
+    {"id": "cartelHermes","file": "recursos/images/CartelHermes.png"},
+    {"id": "cartelApolo","file": "recursos/images/CartelApolo.png"},
+    {"id": "cartelPoseidon","file": "recursos/images/CartelPoseidon.png"},
 
 
     {"id": "Tarotisa","file": "recursos/images/Abigail Ampoure.png"},

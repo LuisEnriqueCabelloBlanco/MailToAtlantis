@@ -183,7 +183,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	factory.setLayer(ecs::layer::FOREGROUND);
 	Texture* sujetaplazas;
 	if(places.count(placeDir) && places.at(placeDir)->isNavegable())
-		sujetaplazas = &sdlutils().images().at("cartel");
+		sujetaplazas = &sdlutils().images().at("cartel" + placeDir);
 	else
 		sujetaplazas = &sdlutils().images().at("cruz");
 
