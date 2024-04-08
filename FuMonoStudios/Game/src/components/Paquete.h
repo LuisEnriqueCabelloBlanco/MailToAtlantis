@@ -57,6 +57,9 @@ public:
 	//Genera los puntos rojos al envolver
 	void puntosRojos();
 
+	//Genera las linea rojas entre los puntos rojos
+	void drawLines();
+
 	void eliminarPuntosRojos();
 	/// <summary>
 	/// metodo que devuelve el string a implimir en la etiqueta de direccion

@@ -6,6 +6,7 @@
 #include "../architecture/Entity.h"
 #include "Render.h"
 #include "../architecture/Scene.h"
+#include "../sdlutils/InputHandler.h"
 #include <bitset>
 
 
@@ -121,9 +122,9 @@ void Paquete::puntosRojos() {
 		float paqWidth = paqTr->getRect().w;
 		float paqHeight = paqTr->getRect().h;
 
-		// Calcular las nuevas coordenadas relativas de cada punto rojo
-		float offsetX = paqWidth / 24;
-		float offsetY = paqHeight / 24;
+		// Calcular las nuevas coordenadas relativas de cada punto rojo (/60 un poco raro, habria q revisarlo)
+		float offsetX = paqWidth / 60;
+		float offsetY = paqHeight / 60;
 
 		// Definir las posiciones de los puntos rojos con el desplazamiento
 		std::vector<Vector2D> redPoints = {
@@ -164,6 +165,30 @@ void Paquete::eliminarPuntosRojos() {
 
 	// Eliminar todas las entidades de la capa WRAP_POINTS
 	scene_->removeEntitiesByLayer(ecs::layer::WRAP_POINTS);
+}
+
+
+void Paquete::drawLines() {
+
+	Transform* paqTr = ent_->getComponent<Transform>();
+
+	auto& ihdlr = ih();
+
+	SDL_Point point{ ihdlr.getMousePos().first, ihdlr.getMousePos().second };
+
+	// Creamos la entidad para el punto rojo
+	Texture* lineaRojaTex = &sdlutils().images().at("lineaRoja");
+	float scale = 0.2f;
+
+	ecs::Entity* lineaRojaEnt = ent_->getMngr()->addEntity(ecs::layer::RED_LINES);
+	Transform* lineaRojaTr = lineaRojaEnt->addComponent<Transform>(
+		20,
+		-40,
+		lineaRojaTex->width() * scale + 20,
+		lineaRojaTex->height() * scale
+	);
+	lineaRojaTr->setParent(paqTr); // Establecer el paquete como padre del punto rojo
+	lineaRojaEnt->addComponent<RenderImage>(lineaRojaTex);
 }
 
 

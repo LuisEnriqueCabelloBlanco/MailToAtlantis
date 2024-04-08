@@ -182,6 +182,9 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 		//std::list<int> route{ pointRoute::LeftUp, pointRoute::MiddleUp, pointRoute::MiddleMid, pointRoute::MiddleDown, pointRoute::RightDown };
 	selectRandomRoute();
 	packageBase->addComponent<Wrap>(20, 0, route);
+	if (allRoutes[0] == route) {
+		pq->drawLines();
+	}
 	//}
 }
 

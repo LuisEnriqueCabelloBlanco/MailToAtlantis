@@ -84,6 +84,8 @@
     {"id": "caja75","file": "recursos/images/Caja_Envuelta_75.png"},
     {"id": "caja100","file": "recursos/images/Caja_Envuelta_100.png"},
     {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
+    {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
+
 
     {"id": "papelera","file": "recursos/images/papelera.png"},
     {"id": "atrilManual","file": "recursos/images/ReposaLibros.png"},

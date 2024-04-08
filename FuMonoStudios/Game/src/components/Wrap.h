@@ -9,8 +9,6 @@
 #include <list>
 #include <SDL.h>
 
-using Callback = std::function<void(ecs::Entity*)>;
-
 
 class Transform;
 
@@ -65,7 +63,6 @@ private:
 
 	void addLine(const SDL_Point& start, const SDL_Point& end);
 
-	void drawRedPoints();
 
 	struct Line {
 		SDL_Point start;
@@ -117,6 +114,7 @@ private:
 
 	Callback funcion_;
 
-	Paquete* paqComp = nullptr;
+	Paquete* paqComp_ = nullptr;
+
 
 };

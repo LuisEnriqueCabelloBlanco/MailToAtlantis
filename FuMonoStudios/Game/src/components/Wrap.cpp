@@ -69,7 +69,9 @@ void Wrap::initComponent() {
 	mul_ = ent_->getComponent<RenderImage>();
 
 
-	 paqComp = ent_->getComponent<Paquete>();
+	 paqComp_ = ent_->getComponent<Paquete>();
+
+	
 
 	restartRoute();
 
@@ -115,8 +117,9 @@ void Wrap::update() {
 			SDL_Rect tapeRect = tapeEnt->getComponent<Transform>()->getRect();
 
 			if (SDL_PointInRect(&point, &tapeRect)) {
-
-				drawRedPoints();
+				drawLines();
+				paqComp_->puntosRojos();
+				//paqComp_->drawLines();
 	
 				// Se calculan los puntos centrales tanto del paquete como de la cinta
 				double centerXTR = posXTR + widthTR / 2;
@@ -177,6 +180,7 @@ void Wrap::update() {
 
 					}
 
+					paqComp_->eliminarPuntosRojos();
 					restartRoute();
 				}			
 
@@ -184,7 +188,7 @@ void Wrap::update() {
 
 		}
 		else {
-			paqComp->eliminarPuntosRojos();
+			paqComp_->eliminarPuntosRojos();
 			restartRoute();
 		}
 		
@@ -231,22 +235,15 @@ void Wrap::checkPointTouch(int point) {
 	}
 }
 
-void Wrap::drawRedPoints() {
 
-	
-		paqComp->puntosRojos();
-	
+
+
+
+
+void Wrap::drawLines() {
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE); // Color blanco
+		SDL_RenderDrawLine(renderer, 30, 30, 300, 300);
 }
-
-
-
-//
-//void Wrap::drawLines() {
-//	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE); // Color blanco
-//	for (const auto& line : linesDrawn) {
-//		SDL_RenderDrawLine(renderer, line.start.x, line.start.y, line.end.x, line.end.y);
-//	}
-//}
 //
 //void Wrap::addLine(const SDL_Point& start, const SDL_Point& end) {
 //	Line line{ start, end };
