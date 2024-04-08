@@ -17,6 +17,7 @@ GeneralData::GeneralData()
 	corrects_ = 0;
 	fails_ = 0;
 	dia_ = 1;
+	rent_ = 75;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
 
 	readNPCData();
@@ -27,20 +28,18 @@ GeneralData::~GeneralData() {
 }
 
 
-void GeneralData::updateMoney(int correct, int wrong)
+void GeneralData::updateMoney()
 {
-	int rightPackages = correct;
-	corrects_ = correct;
-	int wrongPackages = wrong;
-	fails_ = wrong;
+	int rightPackages = corrects_;
+	int wrongPackages = fails_;
 	//funcion de ejemplo seguramente haya que cambiarlo
-	if (wrong < failsMargin_) {
+	if (fails_ < failsMargin_) {
 		wrongPackages = 0;
 	}
-	if (correct < 0) {
+	if (corrects_ < 0) {
 		rightPackages = 0;
 	}
-	dinero_ += rightPackages * WRITE_PACAGES_VALUE - wrongPackages * WRONG_PACAGES_VALUE;
+	dinero_ += (rightPackages * WRITE_PACAGES_VALUE) - (wrongPackages * WRONG_PACAGES_VALUE) - rent_;
 }
 
 //A medida que el proyecto avance, la lista de variables deber� de ampliarse, pero por ahora tenemos esto:
@@ -63,6 +62,52 @@ void GeneralData::setEventoID(int evento) {
 int GeneralData::getEventoID() {
 	std::cout << "El ID del evento que quieres obtener es: " << eventoID_ << std::endl;
 	return eventoID_;
+}
+
+void GeneralData::setRent(int rent) {
+	rent_ = rent;
+	std::cout << "el nuevo alquiler es: " << rent_ << std::endl;
+}
+
+int GeneralData::getRent() {
+
+	return rent_;
+
+}
+
+void GeneralData::updateDia()
+{
+
+	placesToActive_.clear();
+	updateDistrictsPerDay(dia_);
+}
+
+void GeneralData::updateDistrictsPerDay(int dia)
+{
+	if(dia == 0)
+		return;
+	switch (dia)
+	{
+	case 1:
+		//tutorial
+		placesToActive_.push_back("Hestia");
+		placesToActive_.push_back("Hefesto");
+		placesToActive_.push_back("Demeter");
+		placesToActive_.push_back("Artemisa");
+		break;
+	case 2:
+		placesToActive_.push_back("Hermes");
+		break;
+	case 3: 
+		placesToActive_.push_back("Apolo");
+		break;
+	case 4:
+		placesToActive_.push_back("Poseidon");
+		break;
+	default:
+		break;
+	}
+	updateDistrictsPerDay(dia - 1);
 }
 
 int GeneralData::getPaqueteLevel() {
@@ -221,9 +266,21 @@ std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
 	std::string tipo;
 	int iterationNum = -1;
 
-	if (felicidad == Minima || felicidad == Maxima)
+	if (felicidad == Minima || felicidad == Maxima || felicidad == NoHabladoAun)
 	{
-		tipo = felicidad == Minima ? "FelicidadMinimo" : "FelicidadMaximo";
+		switch (felicidad)
+		{
+		case NoHabladoAun:
+			tipo = "Presentacion";
+			felicidad = Normal;
+			break;
+		case Minima:
+			tipo = "FelicidadMinimo";
+			break;
+		case Maxima:
+			tipo = "FelicidadMaximo";
+			break;
+		}
 	}
 	else if (giveEvent)
 	{
@@ -248,10 +305,6 @@ std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
 				tipo = "GenericoBueno";
 				iterateDialogues();
 				iterationNum = iteration;
-				break;
-			case NoHabladoAun:
-				tipo =  "Presentacion";
-				felicidad = Normal;
 				break;
 		}
 	}

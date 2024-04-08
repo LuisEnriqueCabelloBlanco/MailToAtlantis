@@ -62,10 +62,17 @@ namespace ecs {
 		/// </summary>
 		void addObjects(ecs::Entity* e);
 
-	/// <summary>
-	/// Setea la navegabilidad a true de este lugar
-	/// </summary>
-		void setNavegable(bool value);
+		/// <summary>
+		/// método para comprobar la propia navegabilidad de un lugar
+		/// </summary>
+		bool isNavegable() const;
+
+		/// <summary>
+		/// Método para setear la navegabilidad a true o false en función de value, vale true si no introduces valor
+		/// </summary>
+		/// <param name="value"></param>
+		void setNavegability(bool value = true);
+
 	private:
 		//Puntero a la textura del fondo
 		Texture* backGround_;
@@ -109,7 +116,7 @@ namespace ecs {
 		// cierra la conversacion
 		void closeConversation();
     private:
-
+		
 		/// <summary>
 		/// Metodo para inicializar los lugares del mapa
 		/// </summary>
@@ -141,6 +148,18 @@ namespace ecs {
 		/// <summary>
 		/// Metodo factoria para characters
 		/// </summary>
+
+		/// <summary>
+		/// Método para setar la navegabilidad de placeDir lugar, valor por defecto = true
+		/// </summary>
+		/// <param name="placeDir"></param>
+		/// <param name="value"></param>
+		void setNavegabilityOfPlace(std::string place, bool value = true);
+
+		/// <summary>
+		/// Método para actualizar la navegabilidad según el día
+		/// </summary>
+		void updateNavegavility();
 		ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
         
 		//Puntero al lugar actual
@@ -166,8 +185,12 @@ namespace ecs {
 		ecs::Entity* boxBackground;
 		ecs::Entity* textDialogue;
 
+		std::unordered_map<std::string, Lugar*> places;
+
 		// flag para saber si podemos entablar dialogo
 		bool canStartConversation;
+
+		ecs::Entity* BotonTrabajo;
     };
 }
 

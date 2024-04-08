@@ -9,6 +9,7 @@
 #include "../components/Trigger.h"
 #include "../architecture/Game.h"
 #include "../architecture/Config.h"
+#include "../architecture/GeneralData.h"
 #include <string>
 #include "../sdlutils/Texture.h"
 #include "../components/DialogComponent.h"
@@ -19,14 +20,16 @@
 
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
+
+	generalData().setDayData();
 	initPlacesDefaultMap();
+	generalData().updateDia();
+	updateNavegavility();
 	initDirectionsDefaultMap();
 	actualPlace_ = &hestia;
-	navigate("Hestia");
 	createObjects("Hestia");
 	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 	canStartConversation = true;
-	generalData().setDayData();
 }
 
 ecs::ExplorationScene::~ExplorationScene()
@@ -37,61 +40,89 @@ ecs::ExplorationScene::~ExplorationScene()
 void ecs::ExplorationScene::init()
 {
 	std::cout << "Hola Exploracion" << std::endl;
+	//setNavegabilityOfPlace("Hermes"); // Esto es para probar si funciona el seteo.
+	generalData().updateDia();
+	updateNavegavility();
+
+	for (auto& e : objs_) {
+		for (auto en : e){
+				en->setAlive(false);
+
+		}
+	}
+	actualPlace_ = &hestia;
+	createObjects("Hestia");
+
+	//boton ir a trabajar
+	BotonTrabajo = addEntity();
+	BotonTrabajo->addComponent<Transform>(650, 400, 100, 300);
+	auto clickableBotonTrabajar = BotonTrabajo->addComponent<Clickeable>();
+	CallbackClickeable funcPress = [this]() {
+		gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+	};
+	clickableBotonTrabajar->addEvent(funcPress);
+	//hestia.addObjects(BotonTrabajo);
 }
+
 
 void ecs::ExplorationScene::initPlacesDefaultMap()
 {
-	//Demeter
-	demeter = Lugar(&sdlutils().images().at("demeter"), true);
+	//Hestia
+	hestia = Lugar(&sdlutils().images().at("hestia"), false);
+	places["Hestia"] = &hestia;
 
 	//Hefesto
-	hefesto = Lugar(&sdlutils().images().at("hefesto"), true);
+	hefesto = Lugar(&sdlutils().images().at("hefesto"), false);
+	places["Hefesto"] = &hefesto;
 
-	//Hestia
-	hestia = Lugar(&sdlutils().images().at("hestia"), true);
+	//Demeter
+	demeter = Lugar(&sdlutils().images().at("demeter"), false);
+	places["Demeter"] = &demeter;
 
 	//Artemisa
-	artemisa = Lugar(&sdlutils().images().at("artemisa"), true);
+	artemisa = Lugar(&sdlutils().images().at("artemisa"), false);
+	places["Artemisa"] = &artemisa;
 
 	//Hermes
-	hermes = Lugar(&sdlutils().images().at("hermes"), true);
+	hermes = Lugar(&sdlutils().images().at("hermes"), false);
+	places["Hermes"] = &hermes;
 
 	//Apolo
-	apolo = Lugar(&sdlutils().images().at("apolo"), true);
+	apolo = Lugar(&sdlutils().images().at("apolo"), false);
+	places["Apolo"] = &apolo;
 
 	//Posidon
-	poseidon = Lugar(&sdlutils().images().at("poseidon"), true);
+	poseidon = Lugar(&sdlutils().images().at("poseidon"), false);
+	places["Poseidon"] = &poseidon;
 }
 
 void ecs::ExplorationScene::initDirectionsDefaultMap()
 {
-	//demeter
-	demeter.addDirections("Hermes", &hermes);
-	demeter.addDirections("Hefesto", &hefesto);
-	demeter.addDirections("Artemisa", &artemisa);
-
+	//Hestia
+	hestia.addDirections("Hefesto", &hefesto);
+	hestia.addDirections("Artemisa", &artemisa);
 	//Hefesto
 	hefesto.addDirections("Demeter", &demeter);
 	hefesto.addDirections("Hestia", &hestia);
 	hefesto.addDirections("Hermes", &hermes);
 
-	//Hestia
-	hestia.addDirections("Hefesto", &hefesto);
-	hestia.addDirections("Artemisa", &artemisa);
+	//Demeter
+	demeter.addDirections("Hermes", &hermes);
+	demeter.addDirections("Hefesto", &hefesto);
+	demeter.addDirections("Artemisa", &artemisa);
 
 	//Artemisa
 	artemisa.addDirections("Demeter", &demeter);
 	artemisa.addDirections("Hestia", &hestia);
 
-	//hermes
+	//Hermes
 	hermes.addDirections("Demeter", &demeter);
 	hermes.addDirections("Hefesto", &hefesto);
 	hermes.addDirections("Apolo", &apolo);
 
-	//apolo
+	//Apolo
 	apolo.addDirections("Hermes", &hermes);
 	apolo.addDirections("Poseidon", &poseidon);
-
 	//Poseidon
 	poseidon.addDirections("Apolo", &apolo);
 }
@@ -122,8 +153,26 @@ void ecs::ExplorationScene::update() {
 
 void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin const
 {
+
+	//QA: ALMACENAR EN ORDEN LOS LUGARES QUE HA RECORRIDO EN CADA FASE DE EXPLORACION EL JUGADOR
+	//QA: ALMACENAR CUANTO TIEMPO SE QUEDA CADA JUGADOR EN UN LUGAR DEL MAPA
+
 	if (actualPlace_->navigate(placeDir))
 		actualPlace_ = actualPlace_->getPlaceFromDirection(placeDir);
+
+	
+	if (placeDir != "Hestia") {
+
+		BotonTrabajo->setActive(false);
+
+	}
+	else {
+
+		BotonTrabajo->setActive(true);
+
+	}
+	
+	
 }
 
 ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string placeDir, float scale, int flip)
@@ -132,7 +181,12 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 
 	ComonObjectsFactory factory(this);
 	factory.setLayer(ecs::layer::FOREGROUND);
-	Texture* sujetaplazas = &sdlutils().images().at("cartel");
+	Texture* sujetaplazas;
+	if(places.count(placeDir) && places.at(placeDir)->isNavegable())
+		sujetaplazas = &sdlutils().images().at("cartel");
+	else
+		sujetaplazas = &sdlutils().images().at("cruz");
+
 	Vector2D size{ sujetaplazas->width() * scale, sujetaplazas->height() * scale };
 	
 	CallbackClickeable cosa = [this, placeDir]() {
@@ -171,6 +225,8 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	Texture* texturaBoton = &sdlutils().images().at(character);
 	Vector2D size{ texturaBoton->width() * scale, texturaBoton->height() * scale };
 	
+	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
+
 	// al pulsar sale el dialogo
 	CallbackClickeable funcPress = [this, character]() {
 
@@ -195,6 +251,20 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	return BotonPress;
 }
 
+void ecs::ExplorationScene::setNavegabilityOfPlace(std::string place, bool value)
+{
+	if(places.count(place))
+	{
+		places.at(place)->setNavegability();
+	}
+}
+
+void ecs::ExplorationScene::updateNavegavility()
+{
+	for (std::string g : generalData().getPlacesToActive())
+		setNavegabilityOfPlace(g);
+}
+
 void ecs::ExplorationScene::createObjects(std::string place) {
 
 	auto& pl = config().places();
@@ -202,7 +272,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 	if (place == "Demeter") {
 
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
-
+			
 			demeter.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
 				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
 
@@ -237,10 +307,8 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 	}
 	else if (place == "Hestia") {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
-
 			hestia.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
 				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
-
 
 		}
 
@@ -252,16 +320,6 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 
 		}
 
-
-		//boton ir a trabajar
-		ecs::Entity* botonTrabajar = addEntity();
-		botonTrabajar->addComponent<Transform>(525, 300, 100, 300);
-		auto clickableBotonTrabajar = botonTrabajar->addComponent<Clickeable>();
-		CallbackClickeable funcPress = [this]() {
-			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
-		};
-		clickableBotonTrabajar->addEvent(funcPress);
-		demeter.addObjects(botonTrabajar);
 	}
 	else if (place == "Artemisa") {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
@@ -333,13 +391,13 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 	}
 
 	// creamos la entidad caja dialogo
-	boxBackground = addEntity();
-	auto bgTr = boxBackground->addComponent<Transform>(100, sdlutils().height() - 250, sdlutils().width() - 200, 200);
+	boxBackground = addEntity(ecs::layer::UI);
+	auto bgTr = boxBackground->addComponent<Transform>(100, LOGICAL_RENDER_HEITH - 250, LOGICAL_RENDER_WIDTH - 100, 200);
 	boxBackground->addComponent<RenderImage>(nullptr);
 
 	// entidad del texto
-	textDialogue = addEntity();
-	auto textTr = textDialogue->addComponent<Transform>(100, 100, 80, 100);
+	textDialogue = addEntity(ecs::layer::UI);
+	auto textTr = textDialogue->addComponent<Transform>(100, 40, 80, 100);
 	textTr->setParent(bgTr);
 	textDialogue->addComponent<RenderImage>();
 }
@@ -383,7 +441,12 @@ void ecs::Lugar::addObjects(ecs::Entity* e)
 	ents_.push_back(e);
 }
 
-void ecs::Lugar::setNavegable(bool value)
+bool ecs::Lugar::isNavegable() const
+{
+	return navegable_;
+}
+
+void ecs::Lugar::setNavegability(bool value)
 {
 	navegable_ = value;
 }

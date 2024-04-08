@@ -90,6 +90,9 @@ void ecs::MainScene::init()
 
 	createClock();
 
+	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
+	//createCinta();
+
 	createGarbage();
 	createPaquete(generalData().getPaqueteLevel());
 
@@ -102,8 +105,11 @@ void ecs::MainScene::init()
 		j++;
 	}
 	//Creación de paquetes bloqueados
-	for (int z = j; z < 7; z++) { //grande jose la los numeros magicos te la sabes
-		createTubo((pq::Distrito)z, false);
+	for (int z = j; z < 7 ; ++z) { //grande jose la los numeros magicos te la sabes
+		if(j==6)
+			createTubo((pq::Distrito)z, true);
+		else
+			createTubo((pq::Distrito)z , false);
 	}
 
 	sdlutils().musics().at("trabajo").play();
@@ -111,26 +117,14 @@ void ecs::MainScene::init()
 
 	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
 
-	// A medida que se vaya avanzando en el desarrollo, se tendra que expandir esto de apajo para que en X dia suceda algo o aparezcan nuevas herramientas
-	// Me gustaría que todo lo relacionado con los eventos de los dias y los paquetes y herramientas correspondientes estuviera documentado
-	// En el miro había un esquema, pero este estaba con poco detalle, lo suyo es en gdd ver estas cosas, pero se va trabajando en ello
+	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
+	updateToolsPerDay(generalData().getDia());
 
-	int dia = generalData().getDia();
-	if (dia > 0 && dia < 2) {
-		createStamp(SelloCalleA);
-		createInks();
-	}
-	else if (dia >= 2 && dia < 4) {
-		createCinta();
-	}
-	else if (dia >= 4 && dia < 6) {}
-	else if (dia >= 6 && dia < 8) {}
-	else if (dia >= 8 && dia < 10) {}
 }
 
 void ecs::MainScene::close() {
 	ecs::Scene::close();
-	generalData().updateMoney(correct_,fails_);
+	generalData().updateMoney();
 
 	sdlutils().musics().at("trabajo").haltMusic();
 }
@@ -170,31 +164,62 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 }
 
+void ecs::MainScene::updateToolsPerDay(int dia)
+{
+	if(dia == 0)
+		return;
+	switch (dia)
+	{
+	case 1:
+
+		createStamp(SelloCalleA);
+
+		createInks();
+
+		generalData().setPaqueteLevel(0);
+
+		break;
+
+	case 2:
+		
+		generalData().setPaqueteLevel(1);
+
+		break;
+
+	case 3:
+		createCinta();
+
+		generalData().setPaqueteLevel(2);
+
+		break;
+	default:
+		break;
+	}
+
+	updateToolsPerDay(dia - 1);
+}
+
 
 void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto) {
-	Entity* NotaErronea = addEntity(ecs::layer::BACKGROUND);	
+	Entity* NotaErronea = addEntity(ecs::layer::FOREGROUND);
 	NotaErronea->addComponent<ErrorNote>(paqComp, basura, tuboIncorrecto);
 	Texture* NotaTex = &sdlutils().images().at("notaError");
-	Transform* selloATR = NotaErronea->addComponent<Transform>(100, 1400, NotaTex->width()*2, NotaTex->height()*2);
-	selloATR->setScale(0.2f);
-	NotaErronea->addComponent<DragAndDrop>(true, [NotaErronea]() {
-		NotaErronea->addComponent<MoverTransform>(Vector2D(100, 1400), 0.5, Easing::EaseOutCubic, [NotaErronea]() {
-			NotaErronea->setAlive(false);
-			});
-		});
+	Transform* NotaTR = NotaErronea->addComponent<Transform>(100, 1400, NotaTex->width() * 2, NotaTex->height() * 2);
+	NotaTR->setScale(0.2f);
+	NotaErronea->addComponent<Depth>();
+	NotaErronea->addComponent<Gravity>();
+	NotaErronea->addComponent<DragAndDrop>(true);
 	NotaErronea->addComponent<RenderImage>(NotaTex);
-	
+	NotaErronea->addComponent<MoverTransform>(NotaErronea->getComponent<Transform>()->getPos() - Vector2D(0, 500),
+		1, Easing::EaseOutBack)->enable();
 	//El texto de la nota
-	Entity* texto_ = addEntity(ecs::layer::STAMP);
+	Entity* texto_ = addEntity(ecs::layer::FOREGROUND);
 	Font* textFont = new Font("recursos/fonts/ARIAL.ttf", 40);
 	Texture* textureText_ = new Texture(sdlutils().renderer(), NotaErronea->getComponent<ErrorNote>()->text_, *textFont, build_sdlcolor(0x000000ff), 500);
 	Transform* distritoTr = texto_->addComponent<Transform>(25, 70, 250, 100);
 	RenderImage* distritoRender = texto_->addComponent<RenderImage>();
 	distritoRender->setTexture(textureText_);
 	distritoTr->setParent(NotaErronea->getComponent<Transform>());
-
-	NotaErronea->addComponent<MoverTransform>(Vector2D(100, 880), 0.5, Easing::EaseOutCubic);
-
 }
 
 void ecs::MainScene::createStamp(TipoHerramienta type)
@@ -416,7 +441,7 @@ void ecs::MainScene::createGarbage()
 {
 	/*TDOO Meter en un metdo */
 	// papelera
-	Entity* papelera = addEntity(ecs::layer::FOREGROUND);
+	Entity* papelera = addEntity(ecs::layer::BIN);
 	papelera->addComponent<Transform>(50, 650, 100, 150);
 	papelera->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
 	Trigger* papTrig = papelera->addComponent<Trigger>();
@@ -497,6 +522,14 @@ void ecs::MainScene::makeControlsWindow()
 		if (ImGui::Button("Add Time")) {
 			timer_ += timeToAdd_;
 		}
+	}
+
+	//Todavia no es funcinal ya que no hay forma actual de limitar las mecánicas
+	if (ImGui::CollapsingHeader("Días"))
+	{
+		int day = generalData().getDia();
+		ImGui::InputInt("Día", &day);
+		generalData().setDia(day);
 	}
 	ImGui::End();
 }

@@ -1,9 +1,14 @@
 #pragma once
 #include "../utils/Singleton.h"
 #include "../components/Paquete.h"
+#include "../sistemas/Felicidad.h"
 #include "GameConstants.h"
 #include <vector>
 
+struct DatosPersonajes {
+	pers::Personajes p;
+	pers::EstadosDeFelicidad f;
+};
 class DialogManager;
 
 class GeneralData : public Singleton<GeneralData>
@@ -85,7 +90,7 @@ public:
 	/// </summary>
 	/// <param name="writePacages"></param>
 	/// <param name="wrongPacages"></param>
-	void updateMoney(int correct, int wrong);
+	void updateMoney();
 	int getMoney() { return dinero_; }
 
 	void setFinalID(int final); //Cambia el ID del final
@@ -95,9 +100,16 @@ public:
 	int getEventoID(); //Devuelve el id del evento que ocurrir� en el juego
 
 	int getDia() { return dia_; }
-	void setDia(int dia) { dia_ = dia; }
+	void setDia(int dia) { dia_ = dia; updateDia(); }
 
-	void setTubesAmount(int tubos) { numTubos_ = tubos; } // Aumenta el numero de tubos en el minijuego cuando se requiera (podría llamarse automáticamente
+	void updateDia();
+	void updateDistrictsPerDay(int dia);
+	std::vector<std::string> getPlacesToActive() { return placesToActive_; }
+
+	void setTubesAmount(int tubos) { 
+		if (tubos >= 7) numTubos_ = 7;
+		else numTubos_ = tubos; 
+	} // Aumenta el numero de tubos en el minijuego cuando se requiera (podría llamarse automáticamente
 														  // desde setDia modificado). Que jose lo haga cuando se sepan los días en los que un distrito y su tubo se desbloquean
 	int getTubesAmount() { return numTubos_; }
 
@@ -107,6 +119,24 @@ public:
 	int getFails() { return fails_; }
 	int getCorrects() { return corrects_; }
 
+	int getCharacterEventID(int p) {
+		return charactersEvents_[p];
+	}
+
+	void setCharacterEventID(int p, int e) {
+		charactersEvents_[p] = e;
+	}
+
+	//Quien borre el metodo de abajo le castro
+	void updateFelicidadPersonajes() {
+		for (int i = 0; i < 7; i++) {
+			charactersData_[i].p = felicidad().getPersonaje(i);
+			charactersData_[i].f = felicidad().interpretaFel(charactersData_[i].p);
+			std::cout << "El personaje es: " << charactersData_[i].p << std::endl;
+			std::cout << "Y su felicidad es: " << charactersData_[i].f << std::endl;
+		}
+	}
+
 	void resetFailsCorrects() { fails_ = 0; corrects_ = 0; }
 	void addPaqueteNPC(Paquete* p) { paquetesNPCs.push_back(p); }
 	bool areTherePaquetesNPC() { return paquetesNPCs.size() != 0; }
@@ -114,6 +144,9 @@ public:
 	Paquete* getPaqueteNPC() { Paquete* p = paquetesNPCs.back(); paquetesNPCs.pop_back(); return p; }
 	int getPaqueteLevel(); // Devuelve el lvl del paquete correspondiente al d�a
 	void setPaqueteLevel(int lvl);
+
+	int getRent();
+	void setRent(int rent);
 
 	// convierte Personaje a string
 	const std::string personajeToString(Personaje pers);
@@ -140,14 +173,21 @@ private:
 
 	int fails_;
 	int corrects_;
+	int rent_;
 	int dinero_;
 	int failsMargin_;
 	int finalID_; //Variable int que define en la �ltima escena cu�l final se va a reproducir
 	int eventoID_; //Variable int que define cual evento especial de la historia deber� de ejecutarse
 	int dia_;
 	int paqueteLvl_ = 0; // de momento es 0
+	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
+	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo
 	int numTubos_; // Numero de tubos que habrán en el minijuego de paquetes
+	//Quien borre lo de abajo le castro Julian: A bocaos bebé
+	DatosPersonajes charactersData_[7]; // Recoge la felicidad de cada personaje
+	int charactersEvents_[7]; // Recoge los eventos de paquete de cada personaje
 	std::vector<Paquete*> paquetesNPCs;
+	std::vector<std::string> placesToActive_;
 };
 
 inline GeneralData& generalData() {
