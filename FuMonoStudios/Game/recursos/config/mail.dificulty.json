@@ -16,9 +16,9 @@
     "lvl2" : {
         "streetErrorChance": 15,
         "stampErrorChance": 20,
-        "weightChance" : 25,
+        "weightChance" : 0,
         "weightErrorChance" : 30,
-        "notFragileChance" : 100
+        "notFragileChance" : 80
     },
     "lvl3" : {
         "streetErrorChance": 20,

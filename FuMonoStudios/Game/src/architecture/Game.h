@@ -9,9 +9,12 @@
 #include <architecture/Scene.h>
 #include <functional>
 
-#define DEV_TOOLS
-//#define QA_TOOLS
 
+
+#ifdef _DEBUG
+#define DEV_TOOLS
+#endif // _DEBUG
+#define QA_TOOLS
 
 
 
