@@ -60,7 +60,7 @@
     <ClCompile Include="src\entities\ClockAux.cpp" />
     <ClCompile Include="src\components\RenderWithLight.cpp" />
     <ClCompile Include="src\scenes\PauseScene.cpp" />
-    <ClCompile Include="src\components\SoundEmiter.cpp" />
+    <ClCompile Include="src\sistemas\SoundEmiter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -158,7 +158,7 @@
     <ClInclude Include="src\entities\ClockAux.h" />
     <ClInclude Include="src\components\RenderWithLight.h" />
     <ClInclude Include="src\scenes\PauseScene.h" />
-    <ClInclude Include="src\components\SoundEmiter.h" />
+    <ClInclude Include="src\sistemas\SoundEmiter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\MultipleTextures.h" />
@@ -182,6 +182,7 @@
     <None Include="recursos\data\npcData.json" />
     <None Include="recursos\data\dialogos.json" />
     <None Include="recursos\config\mail.destinatarios.json" />
+    <None Include="recursos\config\sounds.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="recursos\images\Alimentos.png" />

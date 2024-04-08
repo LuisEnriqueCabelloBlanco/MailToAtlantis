@@ -2,6 +2,7 @@
 
 #include "../architecture/Component.h"
 #include <functional>
+#include <string>
 
 class Transform;
 class Gravity;
@@ -52,4 +53,6 @@ private:
 	bool usingOwnCallback_ = false;
 	SimpleCallback func_;
 	std::pair<int,int> latestPoint_;
+
+	std::string draggingSound_;
 };

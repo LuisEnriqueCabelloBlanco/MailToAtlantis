@@ -137,11 +137,11 @@
         "file": "recursos/sounds/click.wav"
     },
     {
-      "id": "arrastrar",
+      "id": "arrastrar0",
       "file": "recursos/sounds/arrastrar.wav"
   },
   {
-    "id": "choque",
+    "id": "choque0",
     "file": "recursos/sounds/choque.wav"
 }
 ],

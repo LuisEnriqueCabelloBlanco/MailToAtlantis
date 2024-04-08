@@ -33,7 +33,7 @@ DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt, SimpleCallback Func) :
 }
 
 DragAndDrop::~DragAndDrop() {
-
+	sdlutils().soundEffects().at("arrastrar0").haltChannel();
 }
 
 void DragAndDrop::initComponent() {
@@ -61,7 +61,7 @@ void DragAndDrop::update() {
 		if (ihdlr.mouseButtonDownEvent()) {
 			if (tr_->getIfPointerIn() && tri_->checkIfClosest()) {
 				if(!dragging_)
-					sdlutils().soundEffects().at("arrastrar").play();
+					sdlutils().soundEffects().at("arrastrar0").play();
 
 				dragging_ = true;
 				// desactivamos gravedad al draggear
@@ -99,7 +99,7 @@ void DragAndDrop::update() {
 
 				}
 
-				sdlutils().soundEffects().at("arrastrar").haltChannel();
+				sdlutils().soundEffects().at("arrastrar0").haltChannel();
 				// si has asignado callback se activa
 				if (usingCallback_)
 					func_();
@@ -113,9 +113,9 @@ void DragAndDrop::update() {
 		if (dragging_) {
 
 			if (latestPoint_.first != point.x || latestPoint_.second != point.y)
-				sdlutils().soundEffects().at("arrastrar").setVolume(100);
+				sdlutils().soundEffects().at("arrastrar0").setVolume(100);
 			else
-				sdlutils().soundEffects().at("arrastrar").setVolume(0);
+				sdlutils().soundEffects().at("arrastrar0").setVolume(0);
 
 
 			latestPoint_.first = point.x;
