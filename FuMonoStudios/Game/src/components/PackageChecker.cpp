@@ -79,6 +79,17 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 		dataCollector().recordPacage(ent->getComponent<Paquete>());
 #endif // QA_TOOLS
 	}
+	else
+	{
+		if (ent->getComponent<ErrorNote>() != nullptr) {
+			auto mover = ent->getComponent<MoverTransform>();
+			mover->setEasing(Easing::EaseOutCubic);
+			mover->setFinalPos(ent->getComponent<Transform>()->getPos() + Vector2D(-600, 0));
+			mover->setMoveTime(1);
+			mover->enable();
+			ent->addComponent<SelfDestruct>(1);
+		}
+	}
 }
 
 bool PackageChecker::checkAdditionalConditions(Paquete* package)
