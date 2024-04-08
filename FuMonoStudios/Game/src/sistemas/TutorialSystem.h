@@ -13,22 +13,28 @@ class MoverTransform;
 
 using SimpleCallback = std::function<void()>;
 
-// Almacena el sistema de dialogo y además tiene un sistema de eventos
-// que al pasarle un Enum TutorialEvent activa el evento, prohibe
-// ciertas acciones y spawnea ciertos objetos para demostrar una mecánica
+// Este sistema se divide en dos partes:
+// El activateEvent y el stopEvent: El activateEvent activa el evento y llama
+// a activateDialogue, que muestra un texto y al terminar, llama a su correspondiente
+// stopEvent.
+// Para poder ir avanzando y saber que el jugador ha hecho acciones, se ha modificado
+// los elementos de la oficina para que al hacer acciones llamen a 'registerAction'
+// que en caso de tener un metodo de listener, recibira la accion.
 //
-// El registerAction registra las acciones que va haciendo el jugador para poder
-// pasar de un evento a otro
+// La forma de funcionar de un evento es: Ser llamado en activateEvent y sacar su 
+// dialogo, luego al acabar el dialogo, se llama al stopEvent y alli se coloca una
+// condicion para avanzar al siguiente evento, que puede ser delayedCallback o 
+// eventListener.
 class TutorialSystem
 {
 public:
 	enum TutorialEvent { Introduction, SacaElManual1, SacaElManual2, PaqueteEnseñarRemitente,
 	PaqueteEnseñarCodigoPostal, PaqueteBuscarPaginaCodigosPostales, BuscarPaginaHestia,
 	EnseñarSellos, EnseñarTubos, EntraSegundoPaquete, SegundoBuscarPaginaDistritos, 
-		SellarSegundoPaquete, EnviarSegundoPaquete};
+	SellarSegundoPaquete, EnviarSegundoPaquete, EntraTercerPaquete, EnPaginaInfoSellos};
 
 	enum Action { SacarManual, PaginaCodigosPostales, PaginaDistritoHestia, PaqueteEstampado,
-	PaqueteEnviado, PaginaDistritoDemeter};
+	PaqueteEnviado, PaginaDistritoDemeter, PaginaSellos, Basura};
 
 	TutorialSystem(ecs::TutorialScene* scene);
 	~TutorialSystem();

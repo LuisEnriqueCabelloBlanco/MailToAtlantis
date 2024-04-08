@@ -38,6 +38,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 	tutorialIteration = (int)event;
 	switch (event)
 	{
+		#pragma region Manual
 		case TutorialEvent::Introduction:
 			canPassPagesManual = false;
 			canDrag = false;
@@ -66,12 +67,16 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			canDrag = false;
 			activateDialogue(false);
 			break;
+
+#pragma endregion
+
+		#pragma region Primer Paquete
 		case TutorialEvent::PaqueteEnseñarRemitente:
 			canDrag = false;
 			scene_->createPackage(ecs::TutorialScene::Primero);
 			delayedCallback(1, [this]() {
 				activateDialogue(false);
-				delayedCallback(1, [this]() {
+				delayedCallback(0.2, [this]() {
 					arrow_->setActive(true);
 					arrow_->getComponent<Transform>()->setPos(1340, 720);
 					});
@@ -82,18 +87,12 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			arrow_->getComponent<Transform>()->setPos(1340, 680);
 			break;
 		case TutorialEvent::PaqueteBuscarPaginaCodigosPostales:
-			arrow_->setActive(true);
-			arrow_->getComponent<Transform>()->setRotation(200);
-
-			arrow_->getComponent<Transform>()->setPos(
-				scene_->getManualTransform()->getPos().getX() + scene_->getManualTransform()->getWidth(),
-				scene_->getManualTransform()->getPos().getY() + scene_->getManualTransform()->getHeigth());
-
 			canPassPagesManual = true;
 			activateDialogue(false);
 			break;
 		case TutorialEvent::BuscarPaginaHestia:
 			arrow_->setActive(false);
+			arrow_->getComponent<Transform>()->setRotation(130);
 			canPassPagesManual = false;
 			activateDialogue(false);
 			break;
@@ -114,6 +113,9 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			canPassPagesManual = true;
 			activateDialogue(false);
 			break;
+#pragma endregion
+
+		#pragma region Segundo Paquete
 		case TutorialEvent::EntraSegundoPaquete:
 			canDrag = false;
 			scene_->createPackage(ecs::TutorialScene::Segundo);
@@ -128,12 +130,37 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			canPassPagesManual = false;
 			activateDialogue(false);
 			break;
+		case TutorialEvent::EnviarSegundoPaquete:
+			activateDialogue(false);
+			break;
+#pragma endregion
+
+		#pragma region Tercer Paquete
+		case TutorialEvent::EntraTercerPaquete:
+			canDrag = false; // CAMBAIR A TRUE PARA EMPEZAR DESDE MAS ADELATNE
+			canPassPagesManual = false;
+			scene_->createPackage(ecs::TutorialScene::Tercero);
+			delayedCallback(0.5, [this]() {
+				activateDialogue(false);
+				arrow_->setActive(true);
+				arrow_->getComponent<Transform>()->setRotation(130);
+				arrow_->getComponent<Transform>()->setPos(1355, 620);
+				});
+			break;
+		case TutorialEvent::EnPaginaInfoSellos:
+			arrow_->setActive(false);
+			canPassPagesManual = false;
+			activateDialogue(false);
+			break;
+#pragma endregion
 	}
 }
 
 void TutorialSystem::stopEvent(TutorialEvent event) {
 
-	switch (event) {
+	switch (event) 
+	{
+		#pragma region Manual
 		case TutorialEvent::Introduction:
 			delayedCallback(1, [this]() {
 				activateEvent(TutorialEvent::SacaElManual1);
@@ -151,6 +178,9 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 		case TutorialEvent::SacaElManual2:
 				activateEvent(TutorialEvent::PaqueteEnseñarRemitente);
 			break;
+#pragma endregion
+
+		#pragma region Primer Paquete
 		case TutorialEvent::PaqueteEnseñarRemitente:
 			delayedCallback(0.5, [this]() {
 				activateEvent(TutorialEvent::PaqueteEnseñarCodigoPostal);
@@ -162,7 +192,13 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::PaqueteBuscarPaginaCodigosPostales:
-			arrow_->setActive(false);
+			arrow_->setActive(true);
+			arrow_->getComponent<Transform>()->setRotation(320);
+
+			arrow_->getComponent<Transform>()->setPos(
+				scene_->getManualTransform()->getPos().getX() + (scene_->getManualTransform()->getWidth() * 0.93),
+				scene_->getManualTransform()->getPos().getY() + (scene_->getManualTransform()->getHeigth() * 0.85));
+			
 			addActionListener(Action::PaginaCodigosPostales, [this]() {
 				canDrag = false;
 				canPassPagesManual = false;
@@ -187,6 +223,9 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 				activateEvent(TutorialEvent::EntraSegundoPaquete);
 				});
 			break;
+#pragma endregion
+
+		#pragma region Segundo Paquete
 		case TutorialEvent::EntraSegundoPaquete:
 			addActionListener(Action::PaginaCodigosPostales, [this]() {
 				activateEvent(TutorialEvent::SegundoBuscarPaginaDistritos);
@@ -201,7 +240,30 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			addActionListener(Action::PaqueteEstampado, [this]() {
 				activateEvent(TutorialEvent::EnviarSegundoPaquete);
 				});
+			canDrag = true;
 			break;
+		case TutorialEvent::EnviarSegundoPaquete:
+			addActionListener(Action::PaqueteEnviado, [this]() {
+				activateEvent(TutorialEvent::EntraTercerPaquete);
+				});
+			break;
+#pragma endregion
+
+		#pragma region Tercer Paquete
+		case TutorialEvent::EntraTercerPaquete:
+			canPassPagesManual = true;
+			addActionListener(Action::PaginaSellos, [this] {
+				activateEvent(TutorialEvent::EnPaginaInfoSellos);
+				});
+			break;
+		case TutorialEvent::EnPaginaInfoSellos:
+			canDrag = true;
+			scene_->activateGarbage();
+			addActionListener(Action::Basura, [this] {
+				// FRAGIL TODO
+				});
+			break;
+#pragma endregion
 	}
 }
 

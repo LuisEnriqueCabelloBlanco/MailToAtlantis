@@ -42,6 +42,8 @@ void ecs::TutorialScene::init() {
 
 	createClock();
 
+	createGarbage();
+
 	createInks();
 
 	createStamp(SelloCalleA);
@@ -54,10 +56,7 @@ void ecs::TutorialScene::init() {
 	}
 	//Creación de paquetes bloqueados
 	for (int z = j; z < 7; ++z) { //grande jose la los numeros magicos te la sabes
-		if (j == 6)
-			createTubo((pq::Distrito)z, true);
-		else
-			createTubo((pq::Distrito)z, false);
+		createTubo((pq::Distrito)z, true);
 	}
 
 	tutorialSys_->activateEvent(TutorialSystem::Introduction);
@@ -96,10 +95,15 @@ void ecs::TutorialScene::createManual() {
 		if (tutorialSys_->canPassPagesManual)
 		{
 			manualRender->nextTexture();
-			if (manualRender->getTexture() == &sdlutils().images().at("book6"))
+			const Texture* tex = manualRender->getTexture();
+			if (tex == &sdlutils().images().at("book6"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
-			else if (manualRender->getTexture() == &sdlutils().images().at("book2"))
+			else if (tex == &sdlutils().images().at("book2"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
+			else if (tex == &sdlutils().images().at("book3"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
+			else if (tex == &sdlutils().images().at("book8"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
 		}
 		};
 	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
@@ -109,12 +113,15 @@ void ecs::TutorialScene::createManual() {
 		if (tutorialSys_->canPassPagesManual)
 		{
 			manualRender->previousTexture();
-			if (manualRender->getTexture() == &sdlutils().images().at("book6"))
+			const Texture* tex = manualRender->getTexture();
+			if (tex == &sdlutils().images().at("book6"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
-			else if (manualRender->getTexture() == &sdlutils().images().at("book2"))
+			else if (tex == &sdlutils().images().at("book2"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
-			else if (manualRender->getTexture() == &sdlutils().images().at("book3"))
+			else if (tex == &sdlutils().images().at("book3"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
+			else if (tex == &sdlutils().images().at("book8"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
 		}
 		};
 	auto left = factory_->createImageButton(Vector2D(75, 280), buttonSize, buttonTexture, previous);
@@ -252,9 +259,29 @@ void ecs::TutorialScene::createTubo(pq::Distrito dist, bool unlock) {
 	}
 }
 
+void ecs::TutorialScene::createGarbage()
+{
+	garbage_ = addEntity(ecs::layer::BIN);
+	garbage_->addComponent<Transform>(50, 650, 100, 150);
+	garbage_->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
+}
+
+void ecs::TutorialScene::activateGarbage() {
+	Trigger* papTrig = garbage_->addComponent<Trigger>();
+	papTrig->addCallback([this](ecs::Entity* e) {
+		tutorialSys_->registerAction(TutorialSystem::Basura);
+		});
+	garbage_->addComponent<PackageChecker>(Erroneo, this);
+}
+
+void ecs::TutorialScene::deactivateGarbage() {
+	garbage_->removeComponent<PackageChecker>();
+	garbage_->removeComponent<Trigger>();
+}
+
 void ecs::TutorialScene::createClock() {
 	Entity* clock = addEntity(ecs::layer::BACKGROUND);
-	clock->addComponent<ClockAux>(MINIGAME_TIME);
+	clock->addComponent<ClockAux>(1000);
 }
 
 void ecs::TutorialScene::createInks() {
@@ -315,7 +342,10 @@ void ecs::TutorialScene::createPackage(PackageTutorial pt) {
 	if (pt == Primero)
 		paquete = mPaqBuild_->customPackage(Hestia, C3, "Fernando Lubina", Alimento);
 	else if (pt == Segundo)
-		paquete = mPaqBuild_->customPackage(Demeter, Erronea, "Globo Torres", Armamento, false);
+		paquete = mPaqBuild_->customPackage(Demeter, C2, "Miguel Torres", Medicinas);
+	else if (pt == Tercero)
+		paquete = mPaqBuild_->customPackage(Artemisa, C1, "Francis Ngannou", Armamento, false);
+
 	else
 		paquete = mPaqBuild_->buildPackage(1, this);
 

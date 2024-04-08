@@ -565,7 +565,19 @@
       "Es del distrito de Demeter. Vamos a su p$agina."
     ],
     "11":[
-      "PIZA"
+      "Como vemos, es de la calle Camino del Calamar, as$i que sellaremos con el color azul."
+    ],
+    "12":[
+      "Ahora lo metemos al tubo con su mismo s$imbolo, el de color verde."
+    ],
+    "13":[
+      "Hemos probado ya con los paquetes simples. Sin embargo, la gente en esta ciudad no lo hacen todo bien.",
+      "Tenemos que comprobar que los paquetes son legales, que tengan el sello reglamentario y la calle est$e bien puesta.",
+      "Fijate que este paquete que acaba de llegar tiene un sello raro. Vamos a buscarlo en la p$agina de los sellos."
+    ],
+    "14":[
+      "Parece que el sello rojo de Armamento del paquete no coincide con el del manual. Este paquete entonces va directo a la basura.",
+      "Arrastralo hasta la basura para eliminarlo. Es importante que elimines los ilegales, sino te penalizaremos."
     ]
   },
   "EsclavaRemix": [

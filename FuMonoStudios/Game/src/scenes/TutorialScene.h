@@ -8,9 +8,16 @@
 #include "../components/DialogManager.h"
 #include "../sistemas/TutorialSystem.h"
 
+
+
+
+// Esta escena tiene los mismos objetos que la escena principal a excepcion
+// del tutorialSystem, que va poniendo textos y permitiendo acciones en funcion
+// del punto del tutorial en el que estamos
 namespace ecs {
 	class TutorialScene : public Scene
 	{
+		friend TutorialSystem;
 	public:
 		TutorialScene();
 		virtual ~TutorialScene();
@@ -24,7 +31,7 @@ namespace ecs {
 
 		void packageSent();
 
-		enum PackageTutorial { Primero, Segundo, Random};
+		enum PackageTutorial { Primero, Segundo, Tercero, Random};
 		void createPackage(PackageTutorial pt);
 
 		// getters
@@ -39,6 +46,12 @@ namespace ecs {
 		void createInks();
 		void createOneInk(TipoHerramienta type);
 		void createTubo(pq::Distrito dist, bool);
+
+		void createGarbage(); // empieza desactivada
+		void activateGarbage();
+		void deactivateGarbage();
+		ecs::Entity* garbage_;
+
 
 		Entity* manualEnt_;
 		Entity* miniManualEnt_;
