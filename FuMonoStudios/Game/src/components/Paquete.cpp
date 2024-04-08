@@ -159,34 +159,29 @@ void Paquete::puntosRojos() {
 		std::cout << "No se pudo cargar la textura del punto rojo" << std::endl;
 	}
 }
-void Paquete::eliminarPuntosRojos() {
+void Paquete::clearLayer(ecs::layer::layerId lyId) {
 	// Obtener la escena a la que pertenece la entidad
 	 ecs::Scene* scene_ = ent_->getMngr();
 
 	// Eliminar todas las entidades de la capa WRAP_POINTS
-	scene_->removeEntitiesByLayer(ecs::layer::WRAP_POINTS);
+	scene_->removeEntitiesByLayer(lyId);
 }
 
 
-void Paquete::drawLines() {
+void Paquete::drawLines(int routeID, std::string routeName) {
 
 	Transform* paqTr = ent_->getComponent<Transform>();
 
-	auto& ihdlr = ih();
-
-	SDL_Point point{ ihdlr.getMousePos().first, ihdlr.getMousePos().second };
 
 	// Creamos la entidad para el punto rojo
-	Texture* lineaRojaTex = &sdlutils().images().at("lineaRoja");
-	float scale = 0.2f;
-
+	Texture* lineaRojaTex = &sdlutils().images().at(routeName);
+	float scale = 0.95f;
+	int lineaRojaPosX = -35;
+	int lineaRojaPosY = -35;
 	ecs::Entity* lineaRojaEnt = ent_->getMngr()->addEntity(ecs::layer::RED_LINES);
-	Transform* lineaRojaTr = lineaRojaEnt->addComponent<Transform>(
-		20,
-		-40,
-		lineaRojaTex->width() * scale + 20,
-		lineaRojaTex->height() * scale
-	);
+	Transform* lineaRojaTr = lineaRojaEnt->addComponent<Transform>(lineaRojaPosX, lineaRojaPosY,
+		lineaRojaTex->width() * scale,
+		lineaRojaTex->height() * scale);
 	lineaRojaTr->setParent(paqTr); // Establecer el paquete como padre del punto rojo
 	lineaRojaEnt->addComponent<RenderImage>(lineaRojaTex);
 }

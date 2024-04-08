@@ -15,10 +15,11 @@
 #include <cmath>
 
 //Constructora dada una ruta especifica
-Wrap::Wrap(float spaceAux, int repTimesAux, std::list<int> routeAux) : space(spaceAux), repTimes(repTimesAux) {
+Wrap::Wrap(float spaceAux, int repTimesAux, std::list<int> routeAux, int routeIndex) : space(spaceAux), repTimes(repTimesAux) {
 
 	route = routeAux;
 
+	routeSelectedID = routeIndex;
 	totalPointsRoute = route.size() * (repTimes + 1);
 
 
@@ -117,9 +118,25 @@ void Wrap::update() {
 			SDL_Rect tapeRect = tapeEnt->getComponent<Transform>()->getRect();
 
 			if (SDL_PointInRect(&point, &tapeRect)) {
-				drawLines();
+			
 				paqComp_->puntosRojos();
-				//paqComp_->drawLines();
+				switch (routeSelectedID) {
+				case 0:
+					paqComp_->drawLines(0, "ruta1");
+					break;
+				case 1:
+					paqComp_->drawLines(0, "ruta2");
+					break;
+				case 2:
+					paqComp_->drawLines(0, "ruta3");
+					break;
+				case 3:
+					paqComp_->drawLines(0, "ruta4");
+					break;
+				default:
+					std::cout << "Ruta no encontrada" << std::endl;
+					break;
+				}
 	
 				// Se calculan los puntos centrales tanto del paquete como de la cinta
 				double centerXTR = posXTR + widthTR / 2;
@@ -180,7 +197,8 @@ void Wrap::update() {
 
 					}
 
-					paqComp_->eliminarPuntosRojos();
+					paqComp_->clearLayer(ecs::layer::WRAP_POINTS);
+					paqComp_->clearLayer(ecs::layer::RED_LINES);
 					restartRoute();
 				}			
 
@@ -188,7 +206,8 @@ void Wrap::update() {
 
 		}
 		else {
-			paqComp_->eliminarPuntosRojos();
+			paqComp_->clearLayer(ecs::layer::WRAP_POINTS);
+			paqComp_->clearLayer(ecs::layer::RED_LINES);
 			restartRoute();
 		}
 		
@@ -234,20 +253,5 @@ void Wrap::checkPointTouch(int point) {
 
 	}
 }
-
-
-
-
-
-
-void Wrap::drawLines() {
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE); // Color blanco
-		SDL_RenderDrawLine(renderer, 30, 30, 300, 300);
-}
-//
-//void Wrap::addLine(const SDL_Point& start, const SDL_Point& end) {
-//	Line line{ start, end };
-//	linesDrawn.push_back(line);
-//}
 
 

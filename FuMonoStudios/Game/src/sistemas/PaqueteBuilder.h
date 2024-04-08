@@ -122,6 +122,8 @@ private:
 	//Vector para almacenar las rutas leídas del JSON
 	std::vector<std::list<int>> allRoutes;
 
+	//Indice de la ruta en el array de allRoutes
+	int selectedRouteIndex;
 
 	/*
 	*TODO: Meter estos datos en el paquete builder

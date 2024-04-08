@@ -181,10 +181,8 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 		//Luis: hay que hacer que las rutas se saquen de un json
 		//std::list<int> route{ pointRoute::LeftUp, pointRoute::MiddleUp, pointRoute::MiddleMid, pointRoute::MiddleDown, pointRoute::RightDown };
 	selectRandomRoute();
-	packageBase->addComponent<Wrap>(20, 0, route);
-	if (allRoutes[0] == route) {
-		pq->drawLines();
-	}
+	packageBase->addComponent<Wrap>(20, 0, route, selectedRouteIndex);
+	
 	//}
 }
 
@@ -504,6 +502,7 @@ void PaqueteBuilder::selectRandomRoute() {
 	if (!allRoutes.empty()) {
 		int rd = sdlutils().rand().nextInt(0, allRoutes.size());
 		route = allRoutes[rd];
+		selectedRouteIndex = rd;
 	}
 	else {
 		std::cerr << "No routes available to select from." << std::endl;

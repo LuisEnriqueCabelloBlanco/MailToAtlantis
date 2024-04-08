@@ -58,9 +58,10 @@ public:
 	void puntosRojos();
 
 	//Genera las linea rojas entre los puntos rojos
-	void drawLines();
+	void drawLines(int routeID, std::string routeName);
+	//Limpia las entidades de una layer que le pases
+	void clearLayer(ecs::layer::layerId lyId);
 
-	void eliminarPuntosRojos();
 	/// <summary>
 	/// metodo que devuelve el string a implimir en la etiqueta de direccion
 	/// </summary>
@@ -99,6 +100,7 @@ private:
 	//Variables que debe modificar el jugador
 	Calle calleMarcada_;		//Variable que indica para qu� distrito ha sido etiquetado el paquete
 	bool envuelto_;			//Variable que indica si est� envuelto o no el paquete
+	int routeID; //ID de la ruta de la caja creada
 
 	Scene* scene_;
 };

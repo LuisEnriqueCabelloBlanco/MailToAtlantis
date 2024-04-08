@@ -36,7 +36,7 @@ class Wrap : public ecs::Component {
 public:
 	__CMP_DECL__(ecs::cmp::WRAP);
 
-	Wrap(float spaceAux, int repTimesAux, std::list<int> routeAux);
+	Wrap(float spaceAux, int repTimesAux, std::list<int> routeAux, int routeIndex);
 
 	Wrap(float spaceAux, int repTimesAux);
 
@@ -108,6 +108,8 @@ private:
 
 	//debug para futuras implementaciones
 	bool debug = true;
+
+	int routeSelectedID;
 
 	// Textura de punto rojo
 	Texture* puntoRojoTex = nullptr;
