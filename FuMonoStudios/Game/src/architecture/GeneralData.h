@@ -90,7 +90,7 @@ public:
 	/// </summary>
 	/// <param name="writePacages"></param>
 	/// <param name="wrongPacages"></param>
-	void updateMoney(int correct, int wrong);
+	void updateMoney();
 	int getMoney() { return dinero_; }
 
 	void setFinalID(int final); //Cambia el ID del final

@@ -18,7 +18,7 @@ namespace pq {
 	/// <summary>
 	/// enum con todos los distritos posibles que pueden tener los paquetes
 	/// </summary>
-	enum Distrito {Hestia, Hefesto, Demeter, Artemisa, Hermes, Apolo, Poseidon, Erroneo };
+	enum Distrito {Hestia, Artemisa, Demeter, Hefesto, Hermes, Apolo, Poseidon, Erroneo };
 	/// <summary>
 	/// enum con todas las calles posibles que pueden tener los paquetes
 	/// </summary>

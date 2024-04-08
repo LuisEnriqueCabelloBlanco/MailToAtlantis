@@ -152,7 +152,6 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 	std::string dir;
 
 
-
 	if (toDir == Erronea || toDist == Erroneo)
 	{
 		//Cambiarlo por el sistema de calles err�neas una vez est�
@@ -185,7 +184,12 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 
 pq::Distrito PaqueteBuilder::distritoRND() {	//Este m�todo devuelve un Distrito aleatorio entre todas las posibilidades
 	//TO DO: Cambiarlo para que solo salgan distritos desbloqueados
-	int rnd = sdlutils().rand().nextInt(0, 8);
+	int rnd = sdlutils().rand().nextInt(0, generalData().getTubesAmount());
+
+	if (generalData().getTubesAmount() == rnd) {
+		rnd = 8;
+	}
+
 	return (pq::Distrito)rnd;
 }
 
