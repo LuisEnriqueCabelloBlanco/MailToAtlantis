@@ -41,7 +41,6 @@ void EndWorkScene::init() {
 		std::string msgPass = "Felicidades, la de chambear de la sabes! ";
 		factory_->createLabel(Vector2D(500, 800), msgPass, 50);
 		auto call1 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
-		factory_->createTextuButton(pos + Vector2D(0, 70), "Next Day", 50, call1);
 		generalData().resetFailsCorrects();
 		int currentDay = generalData().getDia();
 	}
