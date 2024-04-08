@@ -181,12 +181,19 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		break;
 
 	case 2:
-		
+		createStamp (SelloCalleA);
+
+		createInks ();
+
 		generalData().setPaqueteLevel(1);
 
 		break;
 
 	case 3:
+		createStamp (SelloCalleA);
+
+		createInks ();
+
 		createCinta();
 
 		generalData().setPaqueteLevel(2);
@@ -194,9 +201,7 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		break;
 	default:
 		break;
-	}
-
-	updateToolsPerDay(dia - 1);
+	}	
 }
 
 
