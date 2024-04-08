@@ -65,6 +65,7 @@ public:
 	NivelPeso getPeso() const { return miPeso_; }
 	int getCantidadPeso() const { return peso_; }
 	bool getFragil() const { return fragil_; }
+	bool getEnvuelto() const { return envuelto_; }
 	bool getSelloCorrecto() const { return selloCorrecto_; }
 	bool isCarta() const { return carta_; }
 	bool pesoCorrecto() const;

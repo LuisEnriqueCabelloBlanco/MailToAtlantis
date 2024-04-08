@@ -36,9 +36,9 @@ void PackageChecker::addCondition(Condition newCond)
 }
 
 bool PackageChecker::checkPackage(Paquete* package)
-{
-	bool correctPack = package->correcto() && checkAdditionalConditions(package);
-	return  correctPack && package->bienSellado() || (!correctPack && toDis_ == pq::Erroneo);
+{	
+	bool correctPack = package->correcto() && checkAdditionalConditions(package);		
+	return  (correctPack && package->bienSellado()) || (!correctPack && toDis_ == pq::Erroneo);
 }
 
 void PackageChecker::checkEntity(ecs::Entity* ent)
@@ -66,11 +66,10 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 			if (mainSc_ != nullptr) mainSc_->createPaquete(generalData().getPaqueteLevel());
 			});
 
-		if (checkPackage(ent->getComponent<Paquete>())) {
-
+		if (checkPackage(ent->getComponent<Paquete>())) {			
 			GeneralData::instance()->correctPackage();
 		}
-		else {
+		else {			
 			GeneralData::instance()->wrongPackage();
 			mainSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo,
 				toDis_ != ent->getComponent<Paquete>()->getDistrito());

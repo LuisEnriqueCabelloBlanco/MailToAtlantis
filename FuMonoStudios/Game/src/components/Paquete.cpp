@@ -49,7 +49,8 @@ void Paquete::initComponent() {
 }
 
 bool Paquete::bienSellado() const{
-	return calleMarcada_ != Erronea && calleMarcada_ == miCalle_;
+	bool bienSellado_ = calleMarcada_ != Erronea && calleMarcada_ == miCalle_;
+	return bienSellado_ && correctFragile();
 }
 bool Paquete::pesoCorrecto() const {
 	bool result = true;
@@ -75,10 +76,8 @@ bool Paquete::correcto() const{
 	bool correcto = miCalle_ != Erronea&&
 		miDistrito_ != Erroneo&&
 		selloCorrecto_&&
-		pesoCorrecto()&&
-		correctFragile()
+		pesoCorrecto()
 		;
-
 	return correcto;	//Si ha superdado todas las pruebas exitosamente, el paquete ser� correcto y devolver� true. Si en alg�n momento ha fallado, devolver� false
 }
 
