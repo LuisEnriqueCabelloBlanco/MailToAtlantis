@@ -14,6 +14,8 @@ public:
 	SoundEmiter();
 	~SoundEmiter();
 
+	void init();
+
 	void setAllVolumes(int volume);
 
 	void muteSingleSound(std::string sound, bool mute);

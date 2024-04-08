@@ -114,7 +114,7 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene)
 	//interaccion y fisicas
 	packageBase->addComponent<Depth>();
 	packageBase->addComponent<Gravity>();
-	DragAndDrop* drgPq = packageBase->addComponent<DragAndDrop>(true);
+	DragAndDrop* drgPq = packageBase->addComponent<DragAndDrop>(true, "arrastrar");
 	//herramientas
 
 	Trigger* packTRI_ = packageBase->getComponent<Trigger>();

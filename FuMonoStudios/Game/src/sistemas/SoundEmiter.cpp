@@ -12,6 +12,11 @@ SoundEmiter::~SoundEmiter()
 
 }
 
+void SoundEmiter::init()
+{
+	processSoundListJSON();
+}
+
 void SoundEmiter::setAllVolumes(int volume)
 {
 	volume_ = volume;
@@ -38,7 +43,7 @@ void SoundEmiter::playSound(std::string sound)
 	int rnd = sdlutils().rand().nextInt(0, it);
 	std::string fileName = sound + std::to_string(rnd);
 	std::cout << fileName;
-	//sdlutils().soundEffects().at(filename).play();
+	sdlutils().soundEffects().at(fileName).play();
 }
 
 void SoundEmiter::haltSound(std::string sound)
@@ -69,8 +74,19 @@ void SoundEmiter::processSoundListJSON()
 
 	jValue = root["sounds"];
 
-	for each (object var in jValue)
-	{
+			
+	//recorrido de los sonidos
+	for (auto& v : jValue->AsArray()) {
+		if (v->IsObject()) {
+			JSONObject vObj = v->AsObject();
+			std::string key = vObj["key"]->AsString();
+			int ammount = vObj["amount"]->AsNumber();
+			soundPulls_.insert({ key, ammount });
+		}
+		else {
 
+			throw "Error uwu";
+
+		}
 	}
 }

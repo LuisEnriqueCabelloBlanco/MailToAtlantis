@@ -15,6 +15,7 @@
 #include "GeneralData.h"
 #include <iostream>
 #include <QATools/DataCollector.h>
+#include "../sistemas/SoundEmiter.h"
 
 Game::Game() :exit_(false) {
 	SDLUtils::init("Mail To Atlantis", 1152, 648, "recursos/config/mail.resources.json");
@@ -50,6 +51,7 @@ void Game::run()
 	io.DisplaySize = ImGui::GetMainViewport()->Size;
 	ImGui_ImplSDL2_InitForSDLRenderer(sdlutils().window(), sdlutils().renderer());
 	ImGui_ImplSDLRenderer2_Init(sdlutils().renderer());
+	SoundEmiter::instance()->init();
 
 	while (!exit_)
 	{

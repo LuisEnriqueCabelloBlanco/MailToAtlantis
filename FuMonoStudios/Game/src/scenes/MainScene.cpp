@@ -209,7 +209,7 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 	NotaTR->setScale(0.2f);
 	NotaErronea->addComponent<Depth>();
 	NotaErronea->addComponent<Gravity>();
-	NotaErronea->addComponent<DragAndDrop>(true);
+	NotaErronea->addComponent<DragAndDrop>(true, "arrastrar");
 	NotaErronea->addComponent<RenderImage>(NotaTex);
 	NotaErronea->addComponent<MoverTransform>(NotaErronea->getComponent<Transform>()->getPos() - Vector2D(0, 500),
 		1, Easing::EaseOutBack)->enable();
@@ -236,7 +236,7 @@ void ecs::MainScene::createStamp(TipoHerramienta type)
 
 	stamp->addComponent<Gravity>();
 	stamp->addComponent<Depth>();
-	stamp->addComponent<DragAndDrop>();
+	stamp->addComponent<DragAndDrop>("arrastrar");
 
 	Herramientas* herrSelladorA = stamp->addComponent<Herramientas>();
 	herrSelladorA->setFunctionality(type);
@@ -249,7 +249,7 @@ void ecs::MainScene::createCinta() {
 	factory_->setLayer(ecs::layer::TAPE);
 	Entity* cinta = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("cinta"));
 	cinta->addComponent<Gravity>();
-	cinta->addComponent<DragAndDrop>();
+	cinta->addComponent<DragAndDrop>("arrastrar");
 	cinta->addComponent<Depth>();
 	factory_->setLayer(ecs::layer::DEFAULT);
 
@@ -305,7 +305,7 @@ void ecs::MainScene::createManual()
 	RenderImage* manualRender = manualEnt_->getComponent<RenderImage>();
 	manualRender->setVector(bookTextures);
 	manualEnt_->addComponent<Gravity>();
-	manualEnt_->addComponent<DragAndDrop>(false);
+	manualEnt_->addComponent<DragAndDrop>(false, "arrastrar");
 	manualEnt_->addComponent<Depth>();
 
 
@@ -340,7 +340,7 @@ void ecs::MainScene::createMiniManual() {
 	Transform* manualTransform = miniManualEnt_->getComponent<Transform>();
 	RenderImage* manualRender = miniManualEnt_->getComponent<RenderImage>();
 
-	miniManualEnt_->addComponent<DragAndDrop>(false, true);
+	miniManualEnt_->addComponent<DragAndDrop>(false, true, "arrastrar");
 
 	Trigger* mmTri = miniManualEnt_->getComponent<Trigger>();
 

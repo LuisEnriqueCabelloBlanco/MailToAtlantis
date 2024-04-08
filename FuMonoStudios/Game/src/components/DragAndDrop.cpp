@@ -7,33 +7,43 @@
 #include "../architecture/Entity.h"
 #include "../sdlutils/InputHandler.h"
 #include <architecture/GameConstants.h>
+#include "../sistemas/SoundEmiter.h"
 
 #include <SDL.h>
 #include <assert.h>
 
 DragAndDrop::DragAndDrop() : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
-usingCallback_(false), usingOnlyClosestEnt_(false), usingOwnCallback_(false){
+usingCallback_(false), usingOnlyClosestEnt_(false), usingOwnCallback_(false)
+{
+}
+
+DragAndDrop::DragAndDrop(std::string sound) : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
+usingCallback_(false), usingOnlyClosestEnt_(false), usingOwnCallback_(false), draggingSound_(sound)
+{
 }
 
 
-DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt) : 
+DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt, std::string sound) :
 	tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0), 
-	usingCallback_(false), usingOnlyClosestEnt_(UsingOnlyClosestEnt), usingOwnCallback_(false){
+	usingCallback_(false), usingOnlyClosestEnt_(UsingOnlyClosestEnt), usingOwnCallback_(false), 
+	draggingSound_(sound){
 }
 
-DragAndDrop::DragAndDrop(bool usingClosestEnt, bool usingOwnCallback) : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
-usingCallback_(false), usingOnlyClosestEnt_(usingClosestEnt), usingOwnCallback_(usingOwnCallback){
+DragAndDrop::DragAndDrop(bool usingClosestEnt, bool usingOwnCallback, std::string sound) : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
+usingCallback_(false), usingOnlyClosestEnt_(usingClosestEnt), usingOwnCallback_(usingOwnCallback),
+draggingSound_(sound) {
 }
 
-DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt, SimpleCallback Func) : 
+DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt, SimpleCallback Func, std::string sound) :
 	tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
-	usingCallback_(true), usingOnlyClosestEnt_(UsingOnlyClosestEnt), usingOwnCallback_(false)
+	usingCallback_(true), usingOnlyClosestEnt_(UsingOnlyClosestEnt), usingOwnCallback_(false),
+	draggingSound_(sound)
 {
 	func_ = Func;
 }
 
 DragAndDrop::~DragAndDrop() {
-	sdlutils().soundEffects().at("arrastrar0").haltChannel();
+	sdlutils().soundEffects().at(draggingSound_).haltChannel();
 }
 
 void DragAndDrop::initComponent() {
@@ -60,8 +70,8 @@ void DragAndDrop::update() {
 		//Deteccion al clicar sobre el objeto
 		if (ihdlr.mouseButtonDownEvent()) {
 			if (tr_->getIfPointerIn() && tri_->checkIfClosest()) {
-				if(!dragging_)
-					sdlutils().soundEffects().at("arrastrar0").play();
+				if (!dragging_)
+					SoundEmiter::instance()->playSound(draggingSound_);
 
 				dragging_ = true;
 				// desactivamos gravedad al draggear
@@ -99,7 +109,7 @@ void DragAndDrop::update() {
 
 				}
 
-				sdlutils().soundEffects().at("arrastrar0").haltChannel();
+				SoundEmiter::instance()->haltSound(draggingSound_);
 				// si has asignado callback se activa
 				if (usingCallback_)
 					func_();
@@ -113,9 +123,9 @@ void DragAndDrop::update() {
 		if (dragging_) {
 
 			if (latestPoint_.first != point.x || latestPoint_.second != point.y)
-				sdlutils().soundEffects().at("arrastrar0").setVolume(100);
+				SoundEmiter::instance()->muteSingleSound(draggingSound_, false);
 			else
-				sdlutils().soundEffects().at("arrastrar0").setVolume(0);
+				SoundEmiter::instance()->muteSingleSound(draggingSound_, true);
 
 
 			latestPoint_.first = point.x;
