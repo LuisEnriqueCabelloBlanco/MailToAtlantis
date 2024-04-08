@@ -12,14 +12,20 @@ ErrorNote::ErrorNote(Paquete* p, bool basura, bool tuboIncorrecto) {
 		if (!p->getSelloCorrecto()) {
 			text_ = "Ese paquete tiene un sello incorrecto \n";
 		}
-		if (p->getCalle() == pq::Erronea) {
+		else if (p->getCalle() == pq::Erronea) {
 			text_ = "Ese paquete no tenia una calle existente\n";
 		}
-		if (!p->bienSellado()) {
+		else if (!p->bienSellado()) {
 			text_ = "Ese paquete no ha sido bien sellado \n";
 		}
-		if (!p->pesoCorrecto()) {
+		else if (!p->pesoCorrecto ()) {
 			text_ = "Ese paquete no ha sido bien sellado segun el peso\n";
+		}
+		else if (p->getFragil() && !p->getEnvuelto()) {
+			text_ = "Ese paquete debería haber sido envuelto\n";
+		}
+		else if (!p->getFragil () && p->getEnvuelto ()) {
+			text_ = "Ese paquete no debería haber sido envuelto\n";
 		}
 	}	
 }

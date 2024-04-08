@@ -124,7 +124,7 @@ void ecs::MainScene::init()
 
 void ecs::MainScene::close() {
 	ecs::Scene::close();
-	generalData().updateMoney(correct_,fails_);
+	generalData().updateMoney();
 
 	sdlutils().musics().at("trabajo").haltMusic();
 }
@@ -169,47 +169,62 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 	if(dia == 0)
 		return;
 	switch (dia)
-	{case 1:
+	{
+	case 1:
+
 		createStamp(SelloCalleA);
-		break;
-	case 3:
-		createCinta();
-		break;
-	case 4:
+
 		createInks();
+
+		generalData().setPaqueteLevel(0);
+
+		break;
+
+	case 2:
+		createStamp (SelloCalleA);
+
+		createInks ();
+
+		generalData().setPaqueteLevel(1);
+
+		break;
+
+	case 3:
+		createStamp (SelloCalleA);
+
+		createInks ();
+
+		createCinta();
+
+		generalData().setPaqueteLevel(2);
+
 		break;
 	default:
 		break;
-	}
-
-	updateToolsPerDay(dia - 1);
+	}	
 }
 
 
 void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto) {
-	Entity* NotaErronea = addEntity(ecs::layer::BACKGROUND);	
+	Entity* NotaErronea = addEntity(ecs::layer::FOREGROUND);
 	NotaErronea->addComponent<ErrorNote>(paqComp, basura, tuboIncorrecto);
 	Texture* NotaTex = &sdlutils().images().at("notaError");
-	Transform* selloATR = NotaErronea->addComponent<Transform>(100, 1400, NotaTex->width()*2, NotaTex->height()*2);
-	selloATR->setScale(0.2f);
-	NotaErronea->addComponent<DragAndDrop>(true, [NotaErronea]() {
-		NotaErronea->addComponent<MoverTransform>(Vector2D(100, 1400), 0.5, Easing::EaseOutCubic, [NotaErronea]() {
-			NotaErronea->setAlive(false);
-			});
-		});
+	Transform* NotaTR = NotaErronea->addComponent<Transform>(100, 1400, NotaTex->width() * 2, NotaTex->height() * 2);
+	NotaTR->setScale(0.2f);
+	NotaErronea->addComponent<Depth>();
+	NotaErronea->addComponent<Gravity>();
+	NotaErronea->addComponent<DragAndDrop>(true);
 	NotaErronea->addComponent<RenderImage>(NotaTex);
-	//std::cout<<"A\n";
+	NotaErronea->addComponent<MoverTransform>(NotaErronea->getComponent<Transform>()->getPos() - Vector2D(0, 500),
+		1, Easing::EaseOutBack)->enable();
 	//El texto de la nota
-	Entity* texto_ = addEntity(ecs::layer::STAMP);
+	Entity* texto_ = addEntity(ecs::layer::FOREGROUND);
 	Font* textFont = new Font("recursos/fonts/ARIAL.ttf", 40);
 	Texture* textureText_ = new Texture(sdlutils().renderer(), NotaErronea->getComponent<ErrorNote>()->text_, *textFont, build_sdlcolor(0x000000ff), 500);
 	Transform* distritoTr = texto_->addComponent<Transform>(25, 70, 250, 100);
 	RenderImage* distritoRender = texto_->addComponent<RenderImage>();
 	distritoRender->setTexture(textureText_);
 	distritoTr->setParent(NotaErronea->getComponent<Transform>());
-
-	NotaErronea->addComponent<MoverTransform>(Vector2D(100, 880), 0.5, Easing::EaseOutCubic);
-
 }
 
 void ecs::MainScene::createStamp(TipoHerramienta type)
@@ -395,7 +410,7 @@ void ecs::MainScene::createSpaceManual() {
 
 	factory_->setLayer(ecs::layer::MANUALSPACE);
 
-	Texture* bookTextures = &sdlutils().images().at("cartel");
+	Texture* bookTextures = &sdlutils().images().at("cartelArtemisa");
 	
 	auto baseManual = factory_->createImage(Vector2D(1200, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
 	

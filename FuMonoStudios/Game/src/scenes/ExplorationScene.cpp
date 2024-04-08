@@ -52,6 +52,16 @@ void ecs::ExplorationScene::init()
 	}
 	actualPlace_ = &hestia;
 	createObjects("Hestia");
+
+	//boton ir a trabajar
+	BotonTrabajo = addEntity();
+	BotonTrabajo->addComponent<Transform>(650, 400, 100, 300);
+	auto clickableBotonTrabajar = BotonTrabajo->addComponent<Clickeable>();
+	CallbackClickeable funcPress = [this]() {
+		gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+	};
+	clickableBotonTrabajar->addEvent(funcPress);
+	//hestia.addObjects(BotonTrabajo);
 }
 
 
@@ -159,6 +169,20 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 #endif // QA_TOOLS
 
 	}
+
+	
+	if (placeDir != "Hestia") {
+
+		BotonTrabajo->setActive(false);
+
+	}
+	else {
+
+		BotonTrabajo->setActive(true);
+
+	}
+	
+	
 }
 
 ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string placeDir, float scale, int flip)
@@ -169,7 +193,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	factory.setLayer(ecs::layer::FOREGROUND);
 	Texture* sujetaplazas;
 	if(places.count(placeDir) && places.at(placeDir)->isNavegable())
-		sujetaplazas = &sdlutils().images().at("cartel");
+		sujetaplazas = &sdlutils().images().at("cartel" + placeDir);
 	else
 		sujetaplazas = &sdlutils().images().at("cruz");
 
@@ -212,7 +236,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	Vector2D size{ texturaBoton->width() * scale, texturaBoton->height() * scale };
 	
 	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
-	//Actualmente los personajes no tienen memoria, si queremos esto haría falta añadrile un parametro
+	//Actualmente los personajes no tienen memoria, si queremos esto harï¿½a falta aï¿½adrile un parametro
 
 	// al pulsar sale el dialogo
 	CallbackClickeable funcPress = [this, character]() {
@@ -307,16 +331,6 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 
 		}
 
-
-		//boton ir a trabajar
-		ecs::Entity* botonTrabajar = addEntity();
-		botonTrabajar->addComponent<Transform>(525, 300, 100, 300);
-		auto clickableBotonTrabajar = botonTrabajar->addComponent<Clickeable>();
-		CallbackClickeable funcPress = [this]() {
-			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
-		};
-		clickableBotonTrabajar->addEvent(funcPress);
-		demeter.addObjects(botonTrabajar);
 	}
 	else if (place == "Artemisa") {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {

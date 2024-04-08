@@ -69,7 +69,7 @@ void Game::run()
 		if (ih().isKeyDown(SDL_SCANCODE_ESCAPE) || ih().closeWindowEvent()) {
 			exit_ = true;
 		}
-		if (ih().isKeyDown(SDL_SCANCODE_F)) {
+		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_F)) {
 			sdlutils().toggleFullScreen();
 		}
 		if (ih().isKeyDown(SDL_SCANCODE_P)) {
@@ -175,7 +175,6 @@ void Game::changeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2) {
 	else if (scene1 == ecs::sc::EXPLORE_SCENE) {
 		generalData().setFinalID(2);
 		generalData().setEventoID(2);
-		generalData().setDia(generalData().getDia() + 1);
 		generalData().setTubesAmount(generalData().getPlacesToActive().size() - 1);
 	}
 	else if (scene1 == ecs::sc::MAIN_SCENE) {
