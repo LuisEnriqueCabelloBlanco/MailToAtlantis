@@ -26,6 +26,9 @@ namespace ecs {
 
 		enum PackageTutorial { Primero, Segundo, Random};
 		void createPackage(PackageTutorial pt);
+
+		// getters
+		Transform* getManualTransform() { return manualEnt_->getComponent<Transform>(); }
 	private:
 		void createManual();
 		void createMiniManual();

@@ -541,11 +541,11 @@
       "El paquete est$a repleto de informaci$on $util, abajo a la izquierda est$a el remitente, es decir, quien ha mandado el paquete."
     ],
     "4": [
-      "Justo arriba est$a el c$odigo postal y la calle. Estos dos nos sirven para saber a que tubo mandar el paquete"
+      "Justo arriba est$a el c$odigo postal y la calle. Estos dos nos sirven para saber a que tubo mandar el paquete."
     ],
     "5": [
       "Debemos primero saber a que tubo debemos mandar este paquete. Los tubos representan cada uno un distrito y su simbolo esta representado en el manual.",
-      "Vamos a buscar el codigo postal del distrito en la pagina del manual sobre codigos postales"
+      "Vamos a buscar el codigo postal del distrito en la pagina del manual sobre codigos postales."
     ],
     "6": [
       "En la p$agina izquierda se ven los c$odigos postales y sus distritos correspondientes. Este paquete tiene el c$odigo 001, por lo que ir$a al distrito de Hestia, el primer tubo",
@@ -556,7 +556,16 @@
       "En el paquete tenemos la calle 'Gambon III', que tiene el color verde, as$i que vamos a mojar el sello en el cubo verde y estamparlo en el paquete."
     ],
     "8": [
-      "Una vez sellado, ya podemos mandarlo al tubo. Arrastra el paquete hasta el tubo de color rojo, el de Hestia"
+      "Una vez sellado, ya podemos mandarlo al tubo. Arrastra el paquete hasta el tubo de color rojo, el de Hestia."
+    ],
+    "9": [
+      "Ahora toca volver a hacerlo con este otro paquete. Este tiene el codigo 011. Vamos a buscar su distrito en el manual."
+    ],
+    "10":[
+      "Es del distrito de Demeter. Vamos a su p$agina."
+    ],
+    "11":[
+      "PIZA"
     ]
   },
   "EsclavaRemix": [

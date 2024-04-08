@@ -113,6 +113,8 @@ void ecs::TutorialScene::createManual() {
 				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
 			else if (manualRender->getTexture() == &sdlutils().images().at("book2"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
+			else if (manualRender->getTexture() == &sdlutils().images().at("book3"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
 		}
 		};
 	auto left = factory_->createImageButton(Vector2D(75, 280), buttonSize, buttonTexture, previous);

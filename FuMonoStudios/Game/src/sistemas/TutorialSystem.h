@@ -23,11 +23,12 @@ class TutorialSystem
 {
 public:
 	enum TutorialEvent { Introduction, SacaElManual1, SacaElManual2, PaqueteEnseñarRemitente,
-	PaqueteEnseñarCodigoPostal, PaqueteBuscarPaginaCodigosPostales, PaqueteBuscarPaginaHestia,
-	PaqueteEnseñarSellos, PaqueteEnseñarTubos};
+	PaqueteEnseñarCodigoPostal, PaqueteBuscarPaginaCodigosPostales, BuscarPaginaHestia,
+	EnseñarSellos, EnseñarTubos, EntraSegundoPaquete, SegundoBuscarPaginaDistritos, 
+		SellarSegundoPaquete, EnviarSegundoPaquete};
 
 	enum Action { SacarManual, PaginaCodigosPostales, PaginaDistritoHestia, PaqueteEstampado,
-	PaqueteEnviado};
+	PaqueteEnviado, PaginaDistritoDemeter};
 
 	TutorialSystem(ecs::TutorialScene* scene);
 	~TutorialSystem();

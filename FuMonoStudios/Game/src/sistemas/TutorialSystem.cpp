@@ -82,14 +82,22 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			arrow_->getComponent<Transform>()->setPos(1340, 680);
 			break;
 		case TutorialEvent::PaqueteBuscarPaginaCodigosPostales:
+			arrow_->setActive(true);
+			arrow_->getComponent<Transform>()->setRotation(200);
+
+			arrow_->getComponent<Transform>()->setPos(
+				scene_->getManualTransform()->getPos().getX() + scene_->getManualTransform()->getWidth(),
+				scene_->getManualTransform()->getPos().getY() + scene_->getManualTransform()->getHeigth());
+
 			canPassPagesManual = true;
 			activateDialogue(false);
 			break;
-		case TutorialEvent::PaqueteBuscarPaginaHestia:
+		case TutorialEvent::BuscarPaginaHestia:
+			arrow_->setActive(false);
 			canPassPagesManual = false;
 			activateDialogue(false);
 			break;
-		case TutorialEvent::PaqueteEnseñarSellos:
+		case TutorialEvent::EnseñarSellos:
 			canPassPagesManual = false;
 			activateDialogue(true);
 			arrow_->setActive(true);
@@ -101,9 +109,23 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 				arrow_->getComponent<MoverTransform>()->enable();
 				});
 			break;
-		case TutorialEvent::PaqueteEnseñarTubos:
+		case TutorialEvent::EnseñarTubos:
 			canDrag = true;
 			canPassPagesManual = true;
+			activateDialogue(false);
+			break;
+		case TutorialEvent::EntraSegundoPaquete:
+			canDrag = false;
+			scene_->createPackage(ecs::TutorialScene::Segundo);
+			delayedCallback(1, [this]() {
+				activateDialogue(false);
+				});
+			break;
+		case TutorialEvent::SegundoBuscarPaginaDistritos:
+			activateDialogue(false);
+			break;
+		case TutorialEvent::SellarSegundoPaquete:
+			canPassPagesManual = false;
 			activateDialogue(false);
 			break;
 	}
@@ -144,23 +166,41 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			addActionListener(Action::PaginaCodigosPostales, [this]() {
 				canDrag = false;
 				canPassPagesManual = false;
-				activateEvent(TutorialEvent::PaqueteBuscarPaginaHestia);
+				activateEvent(TutorialEvent::BuscarPaginaHestia);
 				});
 			break;
-		case TutorialEvent::PaqueteBuscarPaginaHestia:
+		case TutorialEvent::BuscarPaginaHestia:
 			canPassPagesManual = true;
 			addActionListener(Action::PaginaDistritoHestia, [this]() {
-				activateEvent(TutorialEvent::PaqueteEnseñarSellos);
+				activateEvent(TutorialEvent::EnseñarSellos);
 				});
 			break;
-		case TutorialEvent::PaqueteEnseñarSellos:
+		case TutorialEvent::EnseñarSellos:
 			arrow_->setActive(false);
 			canDrag = true;
 			addActionListener(Action::PaqueteEstampado, [this]() {
-				activateEvent(TutorialEvent::PaqueteEnseñarTubos);
+				activateEvent(TutorialEvent::EnseñarTubos);
 				});
 			break;
-		case TutorialEvent::PaqueteEnseñarTubos:
+		case TutorialEvent::EnseñarTubos:
+			addActionListener(Action::PaqueteEnviado, [this]() {
+				activateEvent(TutorialEvent::EntraSegundoPaquete);
+				});
+			break;
+		case TutorialEvent::EntraSegundoPaquete:
+			addActionListener(Action::PaginaCodigosPostales, [this]() {
+				activateEvent(TutorialEvent::SegundoBuscarPaginaDistritos);
+				});
+			break;
+		case TutorialEvent::SegundoBuscarPaginaDistritos:
+			addActionListener(Action::PaginaDistritoDemeter, [this]() {
+				activateEvent(TutorialEvent::SellarSegundoPaquete);
+				});
+			break;
+		case TutorialEvent::SellarSegundoPaquete:
+			addActionListener(Action::PaqueteEstampado, [this]() {
+				activateEvent(TutorialEvent::EnviarSegundoPaquete);
+				});
 			break;
 	}
 }
