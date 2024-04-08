@@ -1,4 +1,12 @@
 {
-  "arrastrar": 1,
-  "choque":  1
+  "sounds": [
+    {
+      "key": "arrastrar",
+      "amount": 1
+    },
+    {
+      "key": "choque",
+      "amount": 1
+    }
+  ]
 }

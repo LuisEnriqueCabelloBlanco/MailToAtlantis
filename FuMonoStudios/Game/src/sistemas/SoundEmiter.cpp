@@ -1,5 +1,6 @@
 #include "SoundEmiter.h"
 #include "../sdlutils/SDLUtils.h"
+#include "../json/JSON.h"
 
 SoundEmiter::SoundEmiter() : volume_(100)
 {
@@ -55,5 +56,21 @@ void SoundEmiter::playMusic(std::string song)
 
 void SoundEmiter::processSoundListJSON()
 {
+	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile("recursos/config/sounds.json"));
 
+	// check it was loaded correctly
+	// the root must be a JSON object
+	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
+		throw "Something went wrong while loading sound pulls";
+	}
+
+	JSONObject root = jValueRoot->AsObject();
+	JSONValue* jValue = nullptr;
+
+	jValue = root["sounds"];
+
+	for each (object var in jValue)
+	{
+
+	}
 }
