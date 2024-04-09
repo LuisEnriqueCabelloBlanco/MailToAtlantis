@@ -75,6 +75,8 @@
     {"id": "tubo7","file": "recursos/images/tubo7.png"},
     {"id": "cruz","file": "recursos/images/cruz.png"},
 
+    {"id": "fondoFinalTrabajo","file": "recursos/images/FondoEndWork.png"},
+
     {"id": "title","file": "recursos/images/titulo.png"},
     {"id": "fondoOficina","file": "recursos/images/OficinaProyectosDesenfocada.png"},
     {"id": "cinta","file": "recursos/images/Cinta.png"},

@@ -21,9 +21,12 @@ EndWorkScene::~EndWorkScene() {
 void EndWorkScene::init() {
 	//generalData().updateMoney();
 
+	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
+		&sdlutils().images().at("fondoFinalTrabajo"));
+
 	std::string msg = "Money: ";
 	msg += std::to_string(generalData().getMoney());
-	Vector2D pos(LOGICAL_RENDER_WIDTH/2, LOGICAL_RENDER_HEITH-400);
+	Vector2D pos(LOGICAL_RENDER_WIDTH/2 + 200, LOGICAL_RENDER_HEITH-400);
 	Vector2D dist(0, -300);
 	factory_->setLayer(ecs::layer::UI); 
 	factory_->createLabel(pos, msg, 50);
@@ -38,16 +41,16 @@ void EndWorkScene::init() {
 	int money = generalData().getMoney();
 
 	if (money >= 0) {
-		std::string msgPass = "Felicidades, la de chambear de la sabes! ";
-		factory_->createLabel(Vector2D(500, 800), msgPass, 50);
+		std::string msgPass = "Pasate el dia ";
+		factory_->createLabel(Vector2D(pos.getX(), 800), msgPass, 50);
 		auto call1 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
 		generalData().resetFailsCorrects();
 		int currentDay = generalData().getDia();
 	}
 	else
 	{
-		std::string msgPass = "Veo que la de chambear no te la sabes, estas deportado. ";
-		factory_->createLabel(Vector2D(300, 800), msgPass, 50);
+		std::string msgPass = "No has pagado, deportado ";
+		factory_->createLabel(Vector2D(pos.getX(), 800), msgPass, 50);
 		auto call2 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
 		factory_->createTextuButton(pos + Vector2D(0, 70), "Return To Menu", 50, call2);
 		generalData().resetFailsCorrects();
