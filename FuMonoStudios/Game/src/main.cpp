@@ -11,7 +11,6 @@
 
 
 int main(int argc, char* argv[]) {
-	std::cout << "Hola Buenas Tardes";
 	/*rapidcsv::Document doc ("src/prueba.csv");
 	std::vector<float> row = { 1,2,3,4,5,6,7,8 };
 	doc.InsertRow<float>(0,row);*/
@@ -20,7 +19,7 @@ int main(int argc, char* argv[]) {
 		_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	}
 	catch (std::string e) {
-		std::cout <<"ERROR: " << e << std::endl;
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", e.c_str(), sdlutils().window());
 	}
 
 	return 0;
