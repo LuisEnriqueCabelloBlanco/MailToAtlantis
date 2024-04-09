@@ -163,12 +163,18 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 	
 	if (placeDir != "Hestia") {
 
-		BotonTrabajo->setActive(false);
+		if (BotonTrabajo->isActive()) {
+			BotonTrabajo->setActive(false);
+		}
+		
 
 	}
 	else {
 
-		BotonTrabajo->setActive(true);
+		if (!BotonTrabajo->isActive()) {
+			BotonTrabajo->setActive(true);
+		}
+		
 
 	}
 	
@@ -319,17 +325,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 
 
 		}
-
-
-		//boton ir a trabajar
-		ecs::Entity* botonTrabajar = addEntity();
-		botonTrabajar->addComponent<Transform>(630, 400, 140, 320);
-		auto clickableBotonTrabajar = botonTrabajar->addComponent<Clickeable>();
-		CallbackClickeable funcPress = [this]() {
-			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
-		};
-		clickableBotonTrabajar->addEvent(funcPress);
-		demeter.addObjects(botonTrabajar);
+		
 	}
 	else if (place == "Artemisa") {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
