@@ -54,14 +54,14 @@ void ecs::ExplorationScene::init()
 	createObjects("Hestia");
 
 	//boton ir a trabajar
-	BotonTrabajo = addEntity();
-	BotonTrabajo->addComponent<Transform>(650, 400, 100, 300);
-	auto clickableBotonTrabajar = BotonTrabajo->addComponent<Clickeable>();
+	boton_Trabajo = addEntity();
+	boton_Trabajo->addComponent<Transform>(650, 400, 100, 300);
+	auto clickableBotonTrabajar = boton_Trabajo->addComponent<Clickeable>();
 	CallbackClickeable funcPress = [this]() {
 		gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
-	hestia.addObjects(BotonTrabajo);
+	hestia.addObjects(boton_Trabajo);
 }
 
 
@@ -163,16 +163,16 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 	
 	if (placeDir != "Hestia") {
 
-		if (BotonTrabajo->isActive()) {
-			BotonTrabajo->setActive(false);
+		if (boton_Trabajo->isActive()) {
+			boton_Trabajo->setActive(false);
 		}
 		
 
 	}
 	else {
 
-		if (!BotonTrabajo->isActive()) {
-			BotonTrabajo->setActive(true);
+		if (!boton_Trabajo->isActive()) {
+			boton_Trabajo->setActive(true);
 		}
 		
 
