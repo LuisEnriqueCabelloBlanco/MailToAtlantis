@@ -102,6 +102,7 @@ ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle call
 ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene)
 {
 	ComonObjectsFactory* factory = mScene->getFactory();
+	factory->setLayer(ecs::layer::PACKAGE);
 
 	Texture* texturaPaquet = &sdlutils().images().at("boxTest");
 	//ENVOLTURA
@@ -140,6 +141,7 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene)
 
 	packageBase->addComponent<MoverTransform>(packageBase->getComponent<Transform>()->getPos() - Vector2D(200, 0),
 		1, Easing::EaseOutBack)->disable();
+	factory->setLayer(ecs::layer::DEFAULT);
 	return packageBase;
 }
 
@@ -429,7 +431,7 @@ void PaqueteBuilder::addVisualElements(ecs::Entity* paq) {
 
 void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) {
 	// Texto distrito y calle
-	ecs::Entity* distritoEnt = paq->getMngr()->addEntity(ecs::layer::PACKAGE);
+	ecs::Entity* distritoEnt = paq->getMngr()->addEntity(ecs::layer::INFO_PACKAGE);
 	Texture* distritoTex = new Texture(sdlutils().renderer(), paqComp->getDirecction(), *directionsFont, build_sdlcolor(0x000000ff), 500);
 	createdTextures.push_back(distritoTex);
 	Transform* distritoTr = distritoEnt->addComponent<Transform>(10, 165, 200, 50);
@@ -437,7 +439,7 @@ void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) 
 	distritoTr->setParent(paq->getComponent<Transform>());
 
 	// Texto remitente
-	ecs::Entity* remitenteEnt = paq->getMngr()->addEntity(ecs::layer::PACKAGE);
+	ecs::Entity* remitenteEnt = paq->getMngr()->addEntity(ecs::layer::INFO_PACKAGE);
 	Texture* remitenteTex = new Texture(sdlutils().renderer(), "Rte: " + paqComp->getRemitente(), *directionsFont, build_sdlcolor(0x000000ff), 500);
 	createdTextures.push_back(remitenteTex);
 	Transform* remitenteTr = remitenteEnt->addComponent<Transform>(10, 215, 150, 25);
@@ -446,7 +448,7 @@ void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) 
 }
 
 void PaqueteBuilder::crearSello(ecs::Entity* paq,const std::string& texKey, int x, int y, int width, int height) {
-	ecs::Entity* SelloEnt = paq->getMngr()->addEntity(ecs::layer::PACKAGE);
+	ecs::Entity* SelloEnt = paq->getMngr()->addEntity(ecs::layer::INFO_PACKAGE);
 	Texture* SelloTex = &sdlutils().images().at(texKey);
 	Transform* SelloTr = SelloEnt->addComponent<Transform>(x, y, width, height);
 	SelloEnt->addComponent<RenderImage>(SelloTex);

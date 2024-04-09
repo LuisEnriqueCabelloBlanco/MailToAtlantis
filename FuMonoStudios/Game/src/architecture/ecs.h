@@ -67,6 +67,7 @@ namespace ecs {
 			MANUALSPACE,
 			MINIMANUAL,
 			PACKAGE,
+			INFO_PACKAGE,
 			INK,
 			STAMP,
 			OFFICEELEMENTS,
