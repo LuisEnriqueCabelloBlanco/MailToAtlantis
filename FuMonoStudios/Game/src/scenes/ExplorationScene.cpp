@@ -243,17 +243,19 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 		if (canStartConversation)
 		{
+			auto charac = generalData().stringToPersonaje(character);
+			auto data = generalData().getNPCData(charac);
 			canStartConversation = false;
 
 			boxBackground->getComponent<RenderImage>()->setTexture(&sdlutils().images().at("cuadroDialogo"));
-
 			// activamos los dialogos correspondientes
-			std::pair<const std::string, int> aux = generalData().getNPCData(
-				generalData().stringToPersonaje(character))->getDialogueInfo();
+			std::pair<const std::string, int> aux = data->getDialogueInfo();
 
 			dialogMngr_.setDialogues(generalData().stringToPersonaje(character), aux.first, aux.second);
 
 			textDialogue->addComponent<DialogComponent>(&dialogMngr_, this);
+
+			dataCollector().recordNPC(charac +1,aux.second, generalData().getNPCData(charac)->felicidad);
 		}
 	};
 

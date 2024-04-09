@@ -2,7 +2,6 @@
 #include <architecture/Time.h>
 #include <architecture/GeneralData.h>
 #include <SDL.h>
-#ifdef QA_TOOLS
 //NECESARIO c++ 17
 //#include <cpr/cpr.h>
 /*
@@ -46,6 +45,14 @@ void DataCollector::recordPacage(Paquete* pacage, bool correct) {
 void DataCollector::recordNavigation(const std::string& destDistrict)
 {
 	dataArray_[doc_.GetColumnIdx("UbicacionDistrito")] = distIndx[destDistrict];
+	record();
+}
+
+void DataCollector::recordNPC(int NPCid, int numDialog,int fel)
+{
+	dataArray_[doc_.GetColumnIdx("NPC")] = NPCid;
+	dataArray_[doc_.GetColumnIdx("NumeroDialogo")] = numDialog;
+	dataArray_[doc_.GetColumnIdx("Felicidad")] = fel;
 	record();
 }
 

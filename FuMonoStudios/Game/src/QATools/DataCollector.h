@@ -29,6 +29,7 @@ public:
 	inline int& clicks() { return clicks_; }
 	void recordPacage(Paquete*,bool);
 	void recordNavigation(const std::string&);
+	void recordNPC(int NPCid, int numDialog, int fel);
 private:
 	DataCollector();
 
