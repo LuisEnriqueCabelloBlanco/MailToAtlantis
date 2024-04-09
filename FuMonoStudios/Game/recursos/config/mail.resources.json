@@ -161,23 +161,38 @@
         "file": "recursos/sounds/click.wav"
     },
     {
-      "id": "arrastrar",
+      "id": "arrastrar0",
       "file": "recursos/sounds/arrastrar.wav"
   },
-  {
-    "id": "choque",
-    "file": "recursos/sounds/choque.wav"
-}
-],
-"musics":[
     {
-        "id": "trabajo",
-        "file": "recursos/sounds/imperial_march.wav"
+      "id": "choque2",
+      "file": "recursos/sounds/choque.wav"
     },
     {
-        "id": "mainMenu",
-        "file": "recursos/sounds/DQOverture.wav"
+      "id": "choque0",
+      "file": "recursos/sounds/thud0.wav"
+    },
+    {
+      "id": "choque1",
+      "file": "recursos/sounds/cardboardDrop.wav"
     }
-
-]
+  ],
+  "musics": [
+    {
+      "id": "trabajo",
+      "file": "recursos/sounds/imperial_march.wav"
+    },
+    {
+      "id": "mainMenu",
+      "file": "recursos/sounds/DQOverture.wav"
+    },
+    {
+      "id": "office",
+      "file": "recursos/sounds/office.wav"
+    },
+    {
+      "id": "printer",
+      "file": "recursos/sounds/printer.wav"
+    }
+  ]
 }

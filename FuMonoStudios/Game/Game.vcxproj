@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\sistemas\SoundEmiter.cpp" />
     <ClCompile Include="src\components\RenderWithLight.cpp" />
     <ClCompile Include="src\QATools\DataCollector.cpp" />
     <ClCompile Include="src\entities\ClockAux.cpp" />
@@ -207,6 +208,7 @@
     <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\sistemas\SoundEmiter.h" />
     <ClInclude Include="src\components\RenderWithLight.h" />
     <ClInclude Include="src\QATools\DataCollector.h" />
     <ClInclude Include="src\entities\ClockAux.h" />
@@ -284,6 +286,7 @@
     <None Include="recursos\config\mail.direcctions.json" />
     <None Include="recursos\config\mail.destinatarios.json" />
     <None Include="recursos\config\mail.resources.json" />
+    <None Include="recursos\config\sounds.json" />
     <None Include="recursos\data\dialogos.json" />
     <None Include="recursos\data\npcData.json" />
     <None Include="recursos\dialogos\dialogos.json" />
@@ -301,6 +304,10 @@
     <Image Include="recursos\images\PesoBajo.png" />
     <Image Include="recursos\images\PesoMedio.png" />
     <Image Include="recursos\images\placeholderTrabajar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="recursos\sounds\office.wav" />
+    <Media Include="recursos\sounds\printer.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
