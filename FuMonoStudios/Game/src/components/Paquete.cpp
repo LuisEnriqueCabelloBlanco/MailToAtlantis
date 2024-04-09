@@ -50,7 +50,8 @@ void Paquete::initComponent() {
 }
 
 bool Paquete::bienSellado() const{
-	return calleMarcada_ != Erronea && calleMarcada_ == miCalle_;
+	bool bienSellado_ = calleMarcada_ != Erronea && calleMarcada_ == miCalle_;
+	return bienSellado_ && correctFragile();
 }
 bool Paquete::pesoCorrecto() const {
 	bool result = true;
@@ -76,10 +77,8 @@ bool Paquete::correcto() const{
 	bool correcto = miCalle_ != Erronea&&
 		miDistrito_ != Erroneo&&
 		selloCorrecto_&&
-		pesoCorrecto()&&
-		correctFragile()
+		pesoCorrecto()
 		;
-
 	return correcto;	//Si ha superdado todas las pruebas exitosamente, el paquete ser� correcto y devolver� true. Si en alg�n momento ha fallado, devolver� false
 }
 
@@ -93,7 +92,7 @@ void Paquete::sellarCalle(Calle sello, Transform* trSellador) {
 		Transform* paqTr = ent_->getComponent<Transform>();
 
 		//Creamos la entidad sello
-		ecs::Entity* selloEnt = ent_->getMngr()->addEntity(ecs::layer::STAMP);
+		ecs::Entity* selloEnt = ent_->getMngr()->addEntity(ecs::layer::PACKAGE);
 		//Textura en funcion de tipo calle
 		Texture* selloEntTex = &sdlutils().images().at(
 			(std::string)"sello" += 

@@ -43,15 +43,17 @@ void PackageChecker::addCondition(Condition newCond)
 }
 
 bool PackageChecker::checkPackage(Paquete* package)
-{
-	bool correctPack = package->correcto() && checkAdditionalConditions(package);
-	return  correctPack && package->bienSellado() || (!correctPack && toDis_ == pq::Erroneo);
+{	
+	bool correctPack = package->correcto() && checkAdditionalConditions(package);		
+	return  (correctPack && package->bienSellado()) || (!correctPack && toDis_ == pq::Erroneo);
 }
 
 void PackageChecker::checkEntity(ecs::Entity* ent)
 {
 	//comprobamos si es un paquete
 	if (ent->getComponent<Paquete>() != nullptr) {
+		ent->getComponent<DragAndDrop>()->disableInteraction();
+
 		Vector2D entPos = ent->getComponent<Transform>()->getPos();
 		ent->removeComponent<Gravity>();
 
@@ -76,11 +78,10 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 				tutSc_->packageSent();
 			});
 
-		if (checkPackage(ent->getComponent<Paquete>())) {
-
+		if (checkPackage(ent->getComponent<Paquete>())) {			
 			GeneralData::instance()->correctPackage();
 		}
-		else {
+		else {			
 			GeneralData::instance()->wrongPackage();
 			if (mainSc_ != nullptr)
 				mainSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo,toDis_ != ent->getComponent<Paquete>()->getDistrito());

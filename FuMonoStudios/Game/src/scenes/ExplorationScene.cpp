@@ -55,7 +55,7 @@ void ecs::ExplorationScene::init()
 
 	//boton ir a trabajar
 	BotonTrabajo = addEntity();
-	BotonTrabajo->addComponent<Transform>(525, 300, 100, 300);
+	BotonTrabajo->addComponent<Transform>(650, 400, 100, 300);
 	auto clickableBotonTrabajar = BotonTrabajo->addComponent<Clickeable>();
 	CallbackClickeable funcPress = [this]() {
 		gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
@@ -183,7 +183,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	factory.setLayer(ecs::layer::FOREGROUND);
 	Texture* sujetaplazas;
 	if(places.count(placeDir) && places.at(placeDir)->isNavegable())
-		sujetaplazas = &sdlutils().images().at("cartel");
+		sujetaplazas = &sdlutils().images().at("cartel" + placeDir);
 	else
 		sujetaplazas = &sdlutils().images().at("cruz");
 

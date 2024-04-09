@@ -126,7 +126,6 @@ void ecs::MainScene::init()
 
 void ecs::MainScene::close() {
 	ecs::Scene::close();
-	generalData().setDia(generalData().getDia() + 1);
 	generalData().updateMoney();
 
 	sdlutils().musics().at("trabajo").haltMusic();
@@ -184,12 +183,19 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		break;
 
 	case 2:
-		
+		createStamp (SelloCalleA);
+
+		createInks ();
+
 		generalData().setPaqueteLevel(1);
 
 		break;
 
 	case 3:
+		createStamp (SelloCalleA);
+
+		createInks ();
+
 		createCinta();
 
 		generalData().setPaqueteLevel(2);
@@ -197,9 +203,7 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		break;
 	default:
 		break;
-	}
-
-	updateToolsPerDay(dia - 1);
+	}	
 }
 
 
@@ -406,9 +410,9 @@ void ecs::MainScene::createSpaceManual() {
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
 
-	factory_->setLayer(ecs::layer::MANUALSPACE);
+	factory_->setLayer(ecs::layer::BACKGROUND);
 
-	Texture* bookTextures = &sdlutils().images().at("cartel");
+	Texture* bookTextures = &sdlutils().images().at("cartelArtemisa");
 	
 	auto baseManual = factory_->createImage(Vector2D(1200, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
 	
