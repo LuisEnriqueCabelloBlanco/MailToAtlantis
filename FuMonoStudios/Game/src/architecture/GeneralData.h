@@ -21,10 +21,9 @@ public:
 	
 	Felicidad stringToFelicidad(const std::string& str);
 
-	// enum con el nombre de todas las cosas interactuables
+	// enum con el nombre de todos los NPC
 	enum Personaje {
-		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable,
-		JefeOficina
+		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable
 	};
 
 	#pragma region NPCdata

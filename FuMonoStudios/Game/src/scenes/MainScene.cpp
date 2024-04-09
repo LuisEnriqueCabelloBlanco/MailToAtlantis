@@ -90,6 +90,8 @@ void ecs::MainScene::init()
 
 	createClock();
 
+	createInks();
+
 	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
 	//createCinta();
 

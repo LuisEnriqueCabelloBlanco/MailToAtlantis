@@ -240,7 +240,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 			std::pair<const std::string, int> aux = generalData().getNPCData(
 				generalData().stringToPersonaje(character))->getDialogueInfo();
 
-			dialogMngr_.setDialogues(generalData().stringToPersonaje(character), aux.first, aux.second);
+			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
 
 			textDialogue->addComponent<DialogComponent>(&dialogMngr_, this);
 		}
@@ -320,6 +320,16 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 
 		}
 
+
+		//boton ir a trabajar
+		ecs::Entity* botonTrabajar = addEntity();
+		botonTrabajar->addComponent<Transform>(525, 300, 100, 300);
+		auto clickableBotonTrabajar = botonTrabajar->addComponent<Clickeable>();
+		CallbackClickeable funcPress = [this]() {
+			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+		};
+		clickableBotonTrabajar->addEvent(funcPress);
+		demeter.addObjects(botonTrabajar);
 	}
 	else if (place == "Artemisa") {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {

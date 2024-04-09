@@ -12,7 +12,14 @@
 #include <components/ErrorNote.h>
 #include <QATools/DataCollector.h>
 
-PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc) : toDis_(dis), extraCond_(),mainSc_(sc)
+PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc) : 
+	toDis_(dis), extraCond_(),mainSc_(sc), tutSc_(nullptr)
+{
+
+}
+
+PackageChecker::PackageChecker(pq::Distrito dis, ecs::TutorialScene* sc) :
+	toDis_(dis), extraCond_(), tutSc_(sc), mainSc_(nullptr)
 {
 
 }
@@ -65,7 +72,10 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 		mover->enable();
 
 		ent->addComponent<SelfDestruct>(1,[this](){
-			if (mainSc_ != nullptr) mainSc_->createPaquete(generalData().getPaqueteLevel());
+			if (mainSc_ != nullptr)
+				mainSc_->createPaquete(generalData().getPaqueteLevel());
+			else if (tutSc_ != nullptr)
+				tutSc_->packageSent();
 			});
 
 		if (checkPackage(ent->getComponent<Paquete>())) {			
@@ -73,8 +83,11 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 		}
 		else {			
 			GeneralData::instance()->wrongPackage();
-			mainSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo,
-				toDis_ != ent->getComponent<Paquete>()->getDistrito());
+			if (mainSc_ != nullptr)
+				mainSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo,toDis_ != ent->getComponent<Paquete>()->getDistrito());
+			else if (tutSc_ != nullptr)
+				tutSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo, toDis_ != ent->getComponent<Paquete>()->getDistrito());
+				
 		}
 #ifdef QA_TOOLS
 		dataCollector().recordPacage(ent->getComponent<Paquete>());

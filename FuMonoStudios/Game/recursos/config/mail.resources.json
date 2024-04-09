@@ -75,6 +75,14 @@
     {"id": "tubo7","file": "recursos/images/tubo7.png"},
     {"id": "cruz","file": "recursos/images/cruz.png"},
 
+    {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
+    {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
+    
+    {"id": "ruta1","file": "recursos/images/route1.png"},
+    {"id": "ruta2","file": "recursos/images/route2.png"},
+    {"id": "ruta3","file": "recursos/images/route3.png"},
+    {"id": "ruta4","file": "recursos/images/route4.png"},
+    
     {"id": "fondoFinalTrabajo","file": "recursos/images/FondoEndWork.png"},
 
     {"id": "title","file": "recursos/images/titulo.png"},
@@ -85,8 +93,15 @@
     {"id": "caja50","file": "recursos/images/Caja_Envuelta_50.png"},
     {"id": "caja75","file": "recursos/images/Caja_Envuelta_75.png"},
     {"id": "caja100","file": "recursos/images/Caja_Envuelta_100.png"},
+    {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
+    {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
+
 
     {"id": "papelera","file": "recursos/images/papelera.png"},
+
+    {"id": "atrilManual","file": "recursos/images/ReposaLibros.png"},
+    {"id": "cartel","file": "recursos/images/CartelCompleto.png"},
+
     {"id": "cuadroDialogo","file": "recursos/images/CuadroDialogo.png"},
     {"id": "miniManual","file": "recursos/images/ManualMini.png"},
 
