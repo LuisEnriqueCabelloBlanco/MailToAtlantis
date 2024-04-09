@@ -91,7 +91,7 @@ void Paquete::sellarCalle(Calle sello, Transform* trSellador) {
 		Transform* paqTr = ent_->getComponent<Transform>();
 
 		//Creamos la entidad sello
-		ecs::Entity* selloEnt = ent_->getMngr()->addEntity(ecs::layer::STAMP);
+		ecs::Entity* selloEnt = ent_->getMngr()->addEntity(ecs::layer::PACKAGE);
 		//Textura en funcion de tipo calle
 		Texture* selloEntTex = &sdlutils().images().at(
 			(std::string)"sello" += 

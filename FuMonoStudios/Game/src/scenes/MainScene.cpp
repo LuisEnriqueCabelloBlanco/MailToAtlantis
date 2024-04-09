@@ -408,7 +408,7 @@ void ecs::MainScene::createSpaceManual() {
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
 
-	factory_->setLayer(ecs::layer::MANUALSPACE);
+	factory_->setLayer(ecs::layer::BACKGROUND);
 
 	Texture* bookTextures = &sdlutils().images().at("cartelArtemisa");
 	
