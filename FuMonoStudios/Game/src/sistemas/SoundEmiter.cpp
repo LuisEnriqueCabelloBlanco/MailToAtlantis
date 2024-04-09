@@ -2,7 +2,7 @@
 #include "../sdlutils/SDLUtils.h"
 #include "../json/JSON.h"
 
-SoundEmiter::SoundEmiter() : volume_(100)
+SoundEmiter::SoundEmiter() : soundVolume_(100)
 {
 
 }
@@ -17,41 +17,58 @@ void SoundEmiter::init()
 	processSoundListJSON();
 }
 
-void SoundEmiter::setAllVolumes(int volume)
+void SoundEmiter::setSoundVolumes(int volume)
 {
-	volume_ = volume;
+	soundVolume_ = volume;
+	/*
+	for (auto& it : soundPulls_) {
+		for (int i = 0; i < it.second.first; i++) {
+			sdlutils().soundEffects().at(it.first + std::to_string(i)).setVolume(soundVolume_);
+		}
+	}
+	*/
 }
 
 void SoundEmiter::muteSingleSound(std::string sound, bool mute)
 {
-	int it = soundPulls_.at(sound);
-	if (mute) {
-		for (int i = 0; i < it; i++) {
-			sdlutils().soundEffects().at(sound + std::to_string(i)).setVolume(0);
-		}
-	}
-	else {
-		for (int i = 0; i < it; i++) {
-			sdlutils().soundEffects().at(sound + std::to_string(i)).setVolume(volume_);
-		}
-	}
+	soundPulls_.at(sound).second = mute;
 }
 
 void SoundEmiter::playSound(std::string sound)
 {
-	int it = soundPulls_.at(sound);
-	int rnd = sdlutils().rand().nextInt(0, it);
-	std::string fileName = sound + std::to_string(rnd);
-	std::cout << fileName;
-	sdlutils().soundEffects().at(fileName).play();
+	auto it = soundPulls_.at(sound);
+	if (!it.second) {
+		int am = it.first;
+		int rnd = sdlutils().rand().nextInt(0, am);
+		std::string fileName = sound + std::to_string(rnd);
+		sdlutils().soundEffects().at(fileName).setVolume(soundVolume_);
+		sdlutils().soundEffects().at(fileName).play();
+	}
+}
+
+void SoundEmiter::playSound(std::string sound, float modifier)
+{
+	auto it = soundPulls_.at(sound);
+	if (!it.second) {
+		int am = it.first;
+		int rnd = sdlutils().rand().nextInt(0, am);
+		std::string fileName = sound + std::to_string(rnd);
+		sdlutils().soundEffects().at(fileName).setVolume(soundVolume_ * modifier);
+		sdlutils().soundEffects().at(fileName).play();
+	}
 }
 
 void SoundEmiter::haltSound(std::string sound)
 {
-	int it = soundPulls_.at(sound);
+	int it = soundPulls_.at(sound).first;
 	for (int i = 0; i < it; i++) {
 		sdlutils().soundEffects().at(sound + std::to_string(i)).haltChannel();
 	}
+}
+
+void SoundEmiter::setMusicVolume(int volume)
+{
+
 }
 
 void SoundEmiter::playMusic(std::string song)
@@ -81,7 +98,7 @@ void SoundEmiter::processSoundListJSON()
 			JSONObject vObj = v->AsObject();
 			std::string key = vObj["key"]->AsString();
 			int ammount = vObj["amount"]->AsNumber();
-			soundPulls_.insert({ key, ammount });
+			soundPulls_.insert({ key, {ammount, false} });
 		}
 		else {
 

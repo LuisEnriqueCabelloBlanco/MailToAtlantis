@@ -16,21 +16,25 @@ public:
 
 	void init();
 
-	void setAllVolumes(int volume);
-
+	void setSoundVolumes(int volume);
 	void muteSingleSound(std::string sound, bool mute);
 
 	void playSound(std::string sound);
+	void playSound(std::string sound, float modifier);
 	void haltSound(std::string sound);
+
+	void setMusicVolume(int volume);
+
 	void playMusic(std::string song);
 private:
 	void processSoundListJSON();
 
-	int volume_;
+	int soundVolume_;
+	int musicVolume_;
 	
 	/// <summary>
 	/// Mapa de los soundPulls. La clave es el nombre del sonido y el int es cuántos sonidos hay en esa pull.
 	/// </summary>
-	std::unordered_map<std::string, int> soundPulls_;
+	std::unordered_map<std::string, std::pair<int, bool>> soundPulls_;
 };
 
