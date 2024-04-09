@@ -112,8 +112,10 @@ void ecs::MainScene::init()
 			createTubo((pq::Distrito)z , false);
 	}
 
-	sdlutils().musics().at("trabajo").play();
-	sdlutils().musics().at("trabajo").setMusicVolume(30);
+	sdlutils().musics().at("office").play();
+	sdlutils().musics().at("office").setMusicVolume(50);
+	sdlutils().musics().at("printer").play();
+	sdlutils().musics().at("printer").setMusicVolume(50);
 
 	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
 
@@ -127,7 +129,8 @@ void ecs::MainScene::close() {
 	generalData().setDia(generalData().getDia() + 1);
 	generalData().updateMoney();
 
-	sdlutils().musics().at("trabajo").haltMusic();
+	sdlutils().musics().at("office").haltMusic();
+	sdlutils().musics().at("printer").haltMusic();
 }
 
 void ecs::MainScene::createClock() {

@@ -43,7 +43,7 @@ DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt, SimpleCallback Func, std::str
 }
 
 DragAndDrop::~DragAndDrop() {
-	sdlutils().soundEffects().at(draggingSound_).haltChannel();
+	sdlutils().soundEffects().at(draggingSound_ + std::to_string(0)).haltChannel();
 }
 
 void DragAndDrop::initComponent() {

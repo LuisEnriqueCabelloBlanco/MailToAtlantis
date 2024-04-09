@@ -145,15 +145,22 @@
     "file": "recursos/sounds/choque.wav"
 }
 ],
-"musics":[
+  "musics": [
     {
-        "id": "trabajo",
-        "file": "recursos/sounds/imperial_march.wav"
+      "id": "trabajo",
+      "file": "recursos/sounds/imperial_march.wav"
     },
     {
-        "id": "mainMenu",
-        "file": "recursos/sounds/DQOverture.wav"
+      "id": "mainMenu",
+      "file": "recursos/sounds/DQOverture.wav"
+    },
+    {
+      "id": "office",
+      "file": "recursos/sounds/office.wav"
+    },
+    {
+      "id": "printer",
+      "file": "recursos/sounds/printer.wav"
     }
-
-]
+  ]
 }

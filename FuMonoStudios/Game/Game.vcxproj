@@ -300,6 +300,10 @@
     <Image Include="recursos\images\PesoMedio.png" />
     <Image Include="recursos\images\placeholderTrabajar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="recursos\sounds\office.wav" />
+    <Media Include="recursos\sounds\printer.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

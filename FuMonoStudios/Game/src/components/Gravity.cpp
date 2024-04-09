@@ -5,6 +5,7 @@
 #include "../sistemas/SoundEmiter.h"
 
 const float Gravity::GRAVITY_LIMIT = 625.0f;
+const float MIN_SPEED_SOUND = 10.0f;
 const float Gravity::DEFAUTL_FORCE = 9.8f * 4;
 const float Gravity::MAX_VELOCITY = 30.0f;
 const std::string DEFAULT_SOUND = "choque";
@@ -36,7 +37,9 @@ void Gravity::update() {
 
         if (latestcontactGround_ != contactGround) {
             //sdlutils().soundEffects().at("choque0").play();
-            SoundEmiter::instance()->playSound(thumpSound_);
+            if (velocity_ > MIN_SPEED_SOUND) {
+                SoundEmiter::instance()->playSound(thumpSound_);
+            }
             latestcontactGround_ = contactGround;
         }
 

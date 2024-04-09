@@ -207,4 +207,8 @@
       <UniqueIdentifier>{70ea59ee-a0af-4a3c-ac21-0874f74e9201}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="recursos\sounds\office.wav" />
+    <Media Include="recursos\sounds\printer.wav" />
+  </ItemGroup>
 </Project>
