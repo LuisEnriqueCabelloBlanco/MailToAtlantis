@@ -61,7 +61,7 @@ void ecs::ExplorationScene::init()
 		gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
-	//hestia.addObjects(BotonTrabajo);
+	hestia.addObjects(BotonTrabajo);
 }
 
 
@@ -323,10 +323,10 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 
 		//boton ir a trabajar
 		ecs::Entity* botonTrabajar = addEntity();
-		botonTrabajar->addComponent<Transform>(525, 300, 100, 300);
+		botonTrabajar->addComponent<Transform>(630, 400, 140, 320);
 		auto clickableBotonTrabajar = botonTrabajar->addComponent<Clickeable>();
 		CallbackClickeable funcPress = [this]() {
-			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
 		};
 		clickableBotonTrabajar->addEvent(funcPress);
 		demeter.addObjects(botonTrabajar);

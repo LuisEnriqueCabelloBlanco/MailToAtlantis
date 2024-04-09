@@ -76,7 +76,7 @@ void Game::run()
 		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_F)) {
 			sdlutils().toggleFullScreen();
 		}
-		if (ih().isKeyDown(SDL_SCANCODE_P)) {
+		/*if (ih().isKeyDown(SDL_SCANCODE_P)) {
 			loadScene(ecs::sc::PAUSE_SCENE);
 		}
 		if (ih().isKeyDown(SDL_SCANCODE_L)) {
@@ -87,7 +87,7 @@ void Game::run()
 		}
 		if (ih().isKeyDown(SDL_SCANCODE_W)) {
 			changeScene(ecs::sc::MAIN_SCENE, ecs::sc::MENU_SCENE);
-		}
+		}*/
 #ifdef QA_TOOLS
 		if (ih().mouseButtonDownEvent()&&ih().getMouseButtonState(0)) {
 			dataCollector().clicks()++;

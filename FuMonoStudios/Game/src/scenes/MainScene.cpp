@@ -201,7 +201,15 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		generalData().setPaqueteLevel(2);
 
 		break;
+		//si estamos en un dia mayor que el indicado se desbloquean todas las mecánicas
 	default:
+		createStamp(SelloCalleA);
+
+		createInks();
+
+		createCinta();
+
+		generalData().setPaqueteLevel(2);
 		break;
 	}	
 }
@@ -220,13 +228,9 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 	NotaErronea->addComponent<MoverTransform>(NotaErronea->getComponent<Transform>()->getPos() - Vector2D(0, 500),
 		1, Easing::EaseOutBack)->enable();
 	//El texto de la nota
-	Entity* texto_ = addEntity(ecs::layer::FOREGROUND);
-	Font* textFont = new Font("recursos/fonts/ARIAL.ttf", 40);
-	Texture* textureText_ = new Texture(sdlutils().renderer(), NotaErronea->getComponent<ErrorNote>()->text_, *textFont, build_sdlcolor(0x000000ff), 500);
-	Transform* distritoTr = texto_->addComponent<Transform>(25, 70, 250, 100);
-	RenderImage* distritoRender = texto_->addComponent<RenderImage>();
-	distritoRender->setTexture(textureText_);
-	distritoTr->setParent(NotaErronea->getComponent<Transform>());
+	factory_->setLayer(layer::FOREGROUND);
+	Entity* texto = factory_->createLabel(Vector2D(25, 70), Vector2D(250, 100), NotaErronea->getComponent<ErrorNote>()->text_, 40);
+	texto->getComponent<Transform>()->setParent(NotaErronea->getComponent<Transform>());
 }
 
 void ecs::MainScene::createStamp(TipoHerramienta type)
@@ -349,7 +353,7 @@ void ecs::MainScene::createMiniManual() {
 	miniManualEnt_->addComponent<DragAndDrop>(false, true);
 
 	Trigger* mmTri = miniManualEnt_->getComponent<Trigger>();
-
+	//Luis: TODO refactorizacion del codigo -> seguramente meter en un componente 
 
 	mmTri->addCallback([this, mmTri, manualTransform, minimanualX, minimanualY](ecs::Entity* entRec) {
 
@@ -532,12 +536,12 @@ void ecs::MainScene::makeControlsWindow()
 	}
 
 	//Todavia no es funcinal ya que no hay forma actual de limitar las mecánicas
-	if (ImGui::CollapsingHeader("Días"))
+	/*if (ImGui::CollapsingHeader("Días"))
 	{
 		int day = generalData().getDia();
 		ImGui::InputInt("Día", &day);
 		generalData().setDia(day);
-	}
+	}*/
 	ImGui::End();
 }
 #endif // DEV_TOOLS

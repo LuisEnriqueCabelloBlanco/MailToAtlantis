@@ -32,7 +32,7 @@ void ecs::MainMenu::init()
 	//Font* fuente = new Font("recursos/fonts/ARIAL.ttf", 50);
 	Entity* fondo = addEntity();
 	Texture* texturaFondo = &sdlutils().images().at("fondoMainMenu");
-	Transform* transformFondo = fondo->addComponent<Transform>(0.0f, 0.0f, texturaFondo->width()* 1.6f, texturaFondo->height()* 1.6f);
+	Transform* transformFondo = fondo->addComponent<Transform>(0.0f, 0.0f, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 	RenderImage* renderFondo = fondo->addComponent<RenderImage>(texturaFondo);
 
 	Entity* titulo = addEntity();
@@ -40,16 +40,22 @@ void ecs::MainMenu::init()
 	Transform* transformTitulo = titulo->addComponent<Transform>(350.0f, 50.0f, texturaTitulo->width()*1.5f, texturaTitulo->height()* 1.5f);
 	RenderImage* renderTitulo = titulo->addComponent<RenderImage>(texturaTitulo);
 
+	auto textColor = build_sdlcolor(0xffffffff);
 
-	factory_->createTextuButton(Vector2D(600, 600), "Pulsa para empezar", 50, [this]() {
-		sdlutils().musics().at("mainMenu").haltMusic();
-		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
-		});
-
-	factory_->createTextuButton(Vector2D(600, 500), "Tutorial", 50, [this]() {
+	factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH- 700, 400), "Tutorial", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::TUTORIAL_SCENE);
-		});
+		},textColor);
+
+	factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Pulsa para empezar", 50, [this]() {
+		sdlutils().musics().at("mainMenu").haltMusic();
+		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
+		},textColor);
+
+	factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Salir", 50, [this]() {
+		sdlutils().musics().at("mainMenu").haltMusic();
+		gm().endGame();
+		},textColor);
 }
 
 void ecs::MainMenu::changeToMainScene() {
