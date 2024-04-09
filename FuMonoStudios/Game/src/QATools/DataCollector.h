@@ -43,11 +43,11 @@ private:
 
 	std::unordered_map<std::string, int> distIndx = {
 		{"Hestia", 1},
-		{"Hefesto", 2 },
+		{"Artemisa", 2 },
 		{"Demeter", 3 },
-		{"Artemisa", 4 },
+		{"Hefesto", 4 },
 		{"Hermes", 5 },
-		{"Aplo", 6 },
+		{"Apolo", 6 },
 		{"Poseidon", 7 }
 
 	};

@@ -24,7 +24,7 @@ DataCollector::DataCollector() : currentRow_(0), dataArray_(),clicks_(0) {
 		"Escena","Marca de Tiempo (ms)","Clicks","Dia de Juego",
 		"Distrito","Calle","Tipo","Peso","Envoltura","Envio Correcto",
 		"NPC","NumeroDialogo","Felicidad",
-		"UbicacionDistrito", ""
+		"UbicacionDistrito"
 	};
 
 	for (int i = 0; i < Labels.size(); i++) {
