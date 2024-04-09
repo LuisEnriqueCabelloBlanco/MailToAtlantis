@@ -41,7 +41,7 @@ void EndWorkScene::init() {
 	int money = generalData().getMoney();
 
 	if (money >= 0) {
-		std::string msgPass = "Pasate el dia ";
+		std::string msgPass = "Pasaste el dia ";
 		factory_->createLabel(Vector2D(pos.getX(), 800), msgPass, 50);
 		auto call1 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
 		generalData().resetFailsCorrects();
