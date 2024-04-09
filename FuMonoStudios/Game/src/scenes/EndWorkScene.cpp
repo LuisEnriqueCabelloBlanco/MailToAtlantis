@@ -52,7 +52,6 @@ void EndWorkScene::init() {
 		std::string msgPass = "No has pagado, deportado ";
 		factory_->createLabel(Vector2D(pos.getX(), 800), msgPass, 50);
 		auto call2 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
-		factory_->createTextuButton(pos + Vector2D(0, 70), "Return To Menu", 50, call2);
 		generalData().resetFailsCorrects();
 		generalData().setDia(1);
 	}

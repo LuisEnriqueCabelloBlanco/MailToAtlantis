@@ -177,14 +177,14 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 		Nv, peso,
 		boolRND(lvl1.notFragileChance), false);
 	addVisualElements(packageBase);
-	//if (pq->getFragil()) {
+	if (pq->getFragil()) {
 		//Wrap debe ir despues del Transform, Trigger y Multitextures
 		//Luis: hay que hacer que las rutas se saquen de un json
 		//std::list<int> route{ pointRoute::LeftUp, pointRoute::MiddleUp, pointRoute::MiddleMid, pointRoute::MiddleDown, pointRoute::RightDown };
-	selectRandomRoute();
-	packageBase->addComponent<Wrap>(20, 0, route, selectedRouteIndex);
+		selectRandomRoute();
+		packageBase->addComponent<Wrap>(20, 0, route, selectedRouteIndex);
 	
-	//}
+	}
 }
 
 pq::Distrito PaqueteBuilder::distritoRND() {	//Este m�todo devuelve un Distrito aleatorio entre todas las posibilidades

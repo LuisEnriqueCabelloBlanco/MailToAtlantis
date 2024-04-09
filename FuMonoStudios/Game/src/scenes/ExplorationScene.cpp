@@ -122,7 +122,7 @@ void ecs::ExplorationScene::initDirectionsDefaultMap()
 
 	//Apolo
 	apolo.addDirections("Hermes", &hermes);
-	apolo.addDirections("Poseidon", &poseidon);
+	//apolo.addDirections("Poseidon", &poseidon);
 	//Poseidon
 	poseidon.addDirections("Apolo", &apolo);
 }
