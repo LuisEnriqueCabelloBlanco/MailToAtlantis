@@ -140,11 +140,19 @@
       "id": "arrastrar0",
       "file": "recursos/sounds/arrastrar.wav"
   },
-  {
-    "id": "choque0",
-    "file": "recursos/sounds/choque.wav"
-}
-],
+    {
+      "id": "choque2",
+      "file": "recursos/sounds/choque.wav"
+    },
+    {
+      "id": "choque0",
+      "file": "recursos/sounds/thud0.wav"
+    },
+    {
+      "id": "choque1",
+      "file": "recursos/sounds/cardboardDrop.wav"
+    }
+  ],
   "musics": [
     {
       "id": "trabajo",
