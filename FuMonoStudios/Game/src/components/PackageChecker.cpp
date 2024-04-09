@@ -45,6 +45,8 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 {
 	//comprobamos si es un paquete
 	if (ent->getComponent<Paquete>() != nullptr) {
+		ent->getComponent<DragAndDrop>()->disableInteraction();
+
 		Vector2D entPos = ent->getComponent<Transform>()->getPos();
 		ent->removeComponent<Gravity>();
 
