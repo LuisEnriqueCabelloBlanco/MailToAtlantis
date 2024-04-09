@@ -349,7 +349,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			break;
 #pragma endregion
 		case TutorialEvent::Fin:
-
+			gm().requestChangeScene(ecs::sc::TUTORIAL_SCENE, ecs::sc::MENU_SCENE);
 			// MANDAR A OTRA ESCENA O LO QUE QUERAMOS HACER
 
 			break;

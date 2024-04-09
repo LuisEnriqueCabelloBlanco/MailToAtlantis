@@ -35,7 +35,7 @@ Game::Game() :exit_(false) {
 	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),
 		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new ecs::TutorialScene()};
 
-	loadScene(ecs::sc::TUTORIAL_SCENE);
+	loadScene(ecs::sc::MENU_SCENE);
 }
 
 Game::~Game()

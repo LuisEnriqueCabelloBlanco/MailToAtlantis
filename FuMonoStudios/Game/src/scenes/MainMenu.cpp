@@ -42,11 +42,20 @@ void ecs::MainMenu::init()
 
 	Texture* texturaBoton = new Texture(sdlutils().renderer(), "Pulsa para empezar", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
 	Entity* BotonPress = addEntity();
-	
+
 	Transform* transformBoton = BotonPress->addComponent<Transform>(600, 600, texturaBoton->width(), texturaBoton->height());
 	RenderWithLight* renderBoton = BotonPress->addComponent<RenderWithLight>(texturaBoton);
 
 	auto clickerPress = BotonPress->addComponent<Clickeable>();
+
+
+	Texture* texturaBoton2 = new Texture(sdlutils().renderer(), "Tutorial", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+	Entity* BotonPress2 = addEntity();
+
+	Transform* transformBoton2 = BotonPress2->addComponent<Transform>(600, 500, texturaBoton2->width(), texturaBoton2->height());
+	RenderWithLight* renderBoton2 = BotonPress2->addComponent<RenderWithLight>(texturaBoton2);
+
+	auto clickerPress2 = BotonPress2->addComponent<Clickeable>();
 
 	/*Boton->addComponent<Trigger>();
 	Boton->getComponent<Trigger>()->addCallback([]() {
@@ -55,20 +64,26 @@ void ecs::MainMenu::init()
 
 		});*/
 
-	/*void Aux(Game * game) {
+		/*void Aux(Game * game) {
 
-		
 
-		(*game).loadScene(ecs::sc::MAIN_SCENE);
 
-	}*/
+			(*game).loadScene(ecs::sc::MAIN_SCENE);
+
+		}*/
 	CallbackClickeable funcPress = [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
 
-	};
+		};
+
+	CallbackClickeable funcPresstuto = [this]() {
+		sdlutils().musics().at("mainMenu").haltMusic();
+		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::TUTORIAL_SCENE);
+
+		};
 	clickerPress->addEvent(funcPress);
-	sdlutils().musics().at("mainMenu").play();
+	clickerPress2->addEvent(funcPresstuto);
 }
 
 void ecs::MainMenu::changeToMainScene() {
