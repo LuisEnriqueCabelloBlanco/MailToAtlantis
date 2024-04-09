@@ -5,12 +5,12 @@
     {"id": "selloTest","file": "recursos/images/Sello.png"},
     {"id": "bookTest","file": "recursos/images/Book.png"},
     {"id": "book1","file": "recursos/images/Book_Index.png"},
-    {"id": "book2","file": "recursos/images/Book_InfoCalles_0.png"},
-    {"id": "book3","file": "recursos/images/Book_InfoCalles_1.png"},
-    {"id": "book4","file": "recursos/images/Book_InfoCalles_2.png"},
-    {"id": "book5","file": "recursos/images/Book_InfoCalles_3.png"},
-    {"id": "book6","file": "recursos/images/Book_InfoCodigos.png"},
-    {"id": "book7","file": "recursos/images/Book_InfoGeneral.png"},
+    {"id": "book2","file": "recursos/images/Book_InfoGeneral.png"},
+    {"id": "book3","file": "recursos/images/Book_InfoCodigos.png"},
+    {"id": "book4","file": "recursos/images/Book_InfoCalles_0.png"},
+    {"id": "book5","file": "recursos/images/Book_InfoCalles_1.png"},
+    {"id": "book6","file": "recursos/images/Book_InfoCalles_2.png"},
+    {"id": "book7","file": "recursos/images/Book_InfoCalles_3.png"},
     {"id": "book8","file": "recursos/images/Book_InfoSellos.png"},
 
 

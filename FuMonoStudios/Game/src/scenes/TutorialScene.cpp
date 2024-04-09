@@ -94,11 +94,11 @@ void ecs::TutorialScene::createManual() {
 		{
 			manualRender->nextTexture();
 			const Texture* tex = manualRender->getTexture();
-			if (tex == &sdlutils().images().at("book6"))
+			if (tex == &sdlutils().images().at("book3"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
-			else if (tex == &sdlutils().images().at("book2"))
+			else if (tex == &sdlutils().images().at("book4"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
-			else if (tex == &sdlutils().images().at("book3"))
+			else if (tex == &sdlutils().images().at("book5"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
 			else if (tex == &sdlutils().images().at("book8"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
@@ -112,11 +112,11 @@ void ecs::TutorialScene::createManual() {
 		{
 			manualRender->previousTexture();
 			const Texture* tex = manualRender->getTexture();
-			if (tex == &sdlutils().images().at("book6"))
+			if (tex == &sdlutils().images().at("book3"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
-			else if (tex == &sdlutils().images().at("book2"))
+			else if (tex == &sdlutils().images().at("book4"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
-			else if (tex == &sdlutils().images().at("book3"))
+			else if (tex == &sdlutils().images().at("book5"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
 			else if (tex == &sdlutils().images().at("book8"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
