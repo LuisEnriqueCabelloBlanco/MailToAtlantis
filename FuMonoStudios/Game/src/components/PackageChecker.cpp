@@ -10,6 +10,7 @@
 #include <list>
 #include <functional>
 #include <components/ErrorNote.h>
+#include <QATools/DataCollector.h>
 
 PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc) : toDis_(dis), extraCond_(),mainSc_(sc)
 {
@@ -35,15 +36,17 @@ void PackageChecker::addCondition(Condition newCond)
 }
 
 bool PackageChecker::checkPackage(Paquete* package)
-{
-	bool correctPack = package->correcto() && checkAdditionalConditions(package);
-	return  correctPack && package->bienSellado() || (!correctPack && toDis_ == pq::Erroneo);
+{	
+	bool correctPack = package->correcto() && checkAdditionalConditions(package);		
+	return  (correctPack && package->bienSellado()) || (!correctPack && toDis_ == pq::Erroneo);
 }
 
 void PackageChecker::checkEntity(ecs::Entity* ent)
 {
 	//comprobamos si es un paquete
 	if (ent->getComponent<Paquete>() != nullptr) {
+		ent->getComponent<DragAndDrop>()->disableInteraction();
+
 		Vector2D entPos = ent->getComponent<Transform>()->getPos();
 		ent->removeComponent<Gravity>();
 
@@ -65,18 +68,28 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 			if (mainSc_ != nullptr) mainSc_->createPaquete(generalData().getPaqueteLevel());
 			});
 
-		if (checkPackage(ent->getComponent<Paquete>())) {
-
+		if (checkPackage(ent->getComponent<Paquete>())) {			
 			GeneralData::instance()->correctPackage();
 		}
-		else {
+		else {			
 			GeneralData::instance()->wrongPackage();
 			mainSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo,
 				toDis_ != ent->getComponent<Paquete>()->getDistrito());
 		}
 #ifdef QA_TOOLS
-		dataCollector().recordPacage(entRec->getComponent<Paquete>());
+		dataCollector().recordPacage(ent->getComponent<Paquete>());
 #endif // QA_TOOLS
+	}
+	else
+	{
+		if (ent->getComponent<ErrorNote>() != nullptr) {
+			auto mover = ent->getComponent<MoverTransform>();
+			mover->setEasing(Easing::EaseOutCubic);
+			mover->setFinalPos(ent->getComponent<Transform>()->getPos() + Vector2D(-600, 0));
+			mover->setMoveTime(1);
+			mover->enable();
+			ent->addComponent<SelfDestruct>(1);
+		}
 	}
 }
 

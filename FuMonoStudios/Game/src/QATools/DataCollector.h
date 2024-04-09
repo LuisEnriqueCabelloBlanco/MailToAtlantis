@@ -1,5 +1,4 @@
 #pragma once
-#ifdef QA_TOOLS
 
 
 #include <iostream>
@@ -8,7 +7,9 @@
 #include <utils/Singleton.h>
 #include <vector>
 #include <components/Paquete.h>
+#include <architecture/Game.h>
 
+#ifdef QA_TOOLS
 constexpr int NUMBER_OF_METRICS = 10;
 
 /// <summary>

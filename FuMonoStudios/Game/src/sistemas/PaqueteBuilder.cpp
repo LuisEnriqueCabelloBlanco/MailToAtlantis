@@ -152,7 +152,6 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 	std::string dir;
 
 
-
 	if (toDir == Erronea || toDist == Erroneo)
 	{
 		//Cambiarlo por el sistema de calles err�neas una vez est�
@@ -185,7 +184,12 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 
 pq::Distrito PaqueteBuilder::distritoRND() {	//Este m�todo devuelve un Distrito aleatorio entre todas las posibilidades
 	//TO DO: Cambiarlo para que solo salgan distritos desbloqueados
-	int rnd = sdlutils().rand().nextInt(0, 8);
+	int rnd = sdlutils().rand().nextInt(0, generalData().getTubesAmount());
+
+	if (generalData().getTubesAmount() == rnd) {
+		rnd = 8;
+	}
+
 	return (pq::Distrito)rnd;
 }
 
@@ -420,7 +424,7 @@ void PaqueteBuilder::addVisualElements(ecs::Entity* paq) {
 
 void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) {
 	// Texto distrito y calle
-	ecs::Entity* distritoEnt = paq->getMngr()->addEntity(ecs::layer::STAMP);
+	ecs::Entity* distritoEnt = paq->getMngr()->addEntity(ecs::layer::PACKAGE);
 	Texture* distritoTex = new Texture(sdlutils().renderer(), paqComp->getDirecction(), *directionsFont, build_sdlcolor(0x000000ff), 500);
 	createdTextures.push_back(distritoTex);
 	Transform* distritoTr = distritoEnt->addComponent<Transform>(10, 165, 200, 50);
@@ -428,7 +432,7 @@ void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) 
 	distritoTr->setParent(paq->getComponent<Transform>());
 
 	// Texto remitente
-	ecs::Entity* remitenteEnt = paq->getMngr()->addEntity(ecs::layer::STAMP);
+	ecs::Entity* remitenteEnt = paq->getMngr()->addEntity(ecs::layer::PACKAGE);
 	Texture* remitenteTex = new Texture(sdlutils().renderer(), "Rte: " + paqComp->getRemitente(), *directionsFont, build_sdlcolor(0x000000ff), 500);
 	createdTextures.push_back(remitenteTex);
 	Transform* remitenteTr = remitenteEnt->addComponent<Transform>(10, 215, 150, 25);
@@ -437,7 +441,7 @@ void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) 
 }
 
 void PaqueteBuilder::crearSello(ecs::Entity* paq,const std::string& texKey, int x, int y, int width, int height) {
-	ecs::Entity* SelloEnt = paq->getMngr()->addEntity(ecs::layer::STAMP);
+	ecs::Entity* SelloEnt = paq->getMngr()->addEntity(ecs::layer::PACKAGE);
 	Texture* SelloTex = &sdlutils().images().at(texKey);
 	Transform* SelloTr = SelloEnt->addComponent<Transform>(x, y, width, height);
 	SelloEnt->addComponent<RenderImage>(SelloTex);
