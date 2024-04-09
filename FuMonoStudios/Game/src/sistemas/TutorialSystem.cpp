@@ -109,7 +109,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::EnseñarTubos:
-			canDrag = true;
+			canDrag = false;
 			canPassPagesManual = true;
 			activateDialogue(false);
 			break;
@@ -120,6 +120,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			canDrag = false;
 			scene_->createPackage(ecs::TutorialScene::Segundo);
 			delayedCallback(1, [this]() {
+				scene_->deactivateTubos();
 				activateDialogue(false);
 				});
 			break;
@@ -137,8 +138,9 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		#pragma region Tercer Paquete
 		case TutorialEvent::EntraTercerPaquete:
-			canDrag = false; // CAMBAIR A TRUE PARA EMPEZAR DESDE MAS ADELATNE
+			canDrag = true; // CAMBAIR A TRUE PARA EMPEZAR DESDE MAS ADELATNE
 			canPassPagesManual = false;
+			scene_->deactivateTubos();
 			scene_->createPackage(ecs::TutorialScene::Tercero);
 			delayedCallback(0.5, [this]() {
 				activateDialogue(false);
@@ -153,6 +155,34 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			activateDialogue(false);
 			break;
 #pragma endregion
+
+		#pragma region Paquete Fallar Aposta
+		case TutorialEvent::EntraCuartoPaquete:
+			canDrag = false;
+			activateDialogue(false);
+			delayedCallback(1.5, [this] {
+				scene_->createPackage(ecs::TutorialScene::FallarAposta);
+				});
+			break;
+		case TutorialEvent::ExplicacionFalloAposta:
+			activateDialogue(true);
+			break;
+#pragma endregion
+
+		#pragma region Paquete fragil
+		case TutorialEvent::EntraPaqueteFragil:
+			canDrag = false;
+			scene_->createPackage(ecs::TutorialScene::FallarAposta);
+			delayedCallback(1, [this] {
+				activateDialogue(false);
+				delayedCallback(1, [this] {
+					scene_->createFragilTool();
+					});
+				});
+			break;
+#pragma endregion
+
+
 	}
 }
 
@@ -219,6 +249,8 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::EnseñarTubos:
+			canDrag = true;
+			scene_->activateTubos();
 			addActionListener(Action::PaqueteEnviado, [this]() {
 				activateEvent(TutorialEvent::EntraSegundoPaquete);
 				});
@@ -243,6 +275,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			canDrag = true;
 			break;
 		case TutorialEvent::EnviarSegundoPaquete:
+			scene_->activateTubos();
 			addActionListener(Action::PaqueteEnviado, [this]() {
 				activateEvent(TutorialEvent::EntraTercerPaquete);
 				});
@@ -260,10 +293,29 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			canDrag = true;
 			scene_->activateGarbage();
 			addActionListener(Action::Basura, [this] {
-				// FRAGIL TODO
+				activateEvent(TutorialEvent::EntraCuartoPaquete);
 				});
 			break;
 #pragma endregion
+
+		#pragma region Paquete Fallar Aposta
+		case TutorialEvent::EntraCuartoPaquete:
+			canDrag = true;
+			addActionListener(Action::Basura, [this] {
+				activateEvent(TutorialEvent::ExplicacionFalloAposta);
+				});
+			break;
+		case TutorialEvent::ExplicacionFalloAposta:
+			delayedCallback(1, [this] {
+				activateEvent(TutorialEvent::EntraPaqueteFragil);
+				});
+			break;
+#pragma endregion
+		#pragma region Paquete Fragil
+		case TutorialEvent::EntraPaqueteFragil:
+			break;
+#pragma endregion
+
 	}
 }
 

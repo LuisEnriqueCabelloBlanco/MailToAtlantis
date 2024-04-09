@@ -7,6 +7,7 @@
 #include "../components/DelayedCallback.h"
 #include "../sdlutils/InputHandler.h"
 #include "../components/PackageChecker.h"
+#include "../components/ErrorNote.h"
 
 ecs::TutorialScene::TutorialScene() : Scene() {
 
@@ -48,18 +49,16 @@ void ecs::TutorialScene::init() {
 
 	createStamp(SelloCalleA);
 
-	int numTubos = generalData().getTubesAmount(); // coge el numero de tubos que están desbloqueados
-	int j = 0;
-	for (int i = 0; i < numTubos; i++) {
-		createTubo((pq::Distrito)i, true);
-		j++;
-	}
-	//Creación de paquetes bloqueados
-	for (int z = j; z < 7; ++z) { //grande jose la los numeros magicos te la sabes
-		createTubo((pq::Distrito)z, true);
+	//tubos
+	for (int z = 0; z < 7; ++z) { //grande jose la los numeros magicos te la sabes
+		// bien jose buenos numerazos magicos ahi estamos chaval a funcionar
+		// jose
+		// bien jose
+		// padreas
+		tubos.push_back(createTubo((pq::Distrito)z, true));
 	}
 
-	tutorialSys_->activateEvent(TutorialSystem::Introduction);
+	tutorialSys_->activateEvent(TutorialSystem::EntraTercerPaquete);
 }
 
 void ecs::TutorialScene::close() {
@@ -230,7 +229,7 @@ void ecs::TutorialScene::createSpaceManual() {
 	factory_->setLayer(ecs::layer::DEFAULT);
 }
 
-void ecs::TutorialScene::createTubo(pq::Distrito dist, bool unlock) {
+ecs::Entity* ecs::TutorialScene::createTubo(pq::Distrito dist, bool unlock) {
 	constexpr float TUBE_WIDTH = 138;
 	constexpr float TUBE_HEITH = 282;
 	constexpr float TUBES_X_OFFSET = 200;
@@ -243,8 +242,7 @@ void ecs::TutorialScene::createTubo(pq::Distrito dist, bool unlock) {
 		&sdlutils().images().at("tubo" + std::to_string(dist + 1)));
 	if (unlock) {
 
-		Trigger* tuboTri = tuboEnt->addComponent<Trigger>();
-		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this);
+		// EMPIEZA DESACTIVADO EL TUBO YES YES
 	}
 	else {
 		factory_->setLayer(layer::UI);
@@ -256,6 +254,24 @@ void ecs::TutorialScene::createTubo(pq::Distrito dist, bool unlock) {
 
 		cross->getComponent<Transform>()->setParent(tubeTr);
 
+	}
+	return tuboEnt;
+}
+
+void ecs::TutorialScene::activateTubos() {
+
+	for (int i = 0; i < 7; i++)
+	{
+		Trigger* tuboTri = tubos[i]->addComponent<Trigger>();
+		PackageChecker* tuboCheck = tubos[i]->addComponent<PackageChecker>(Distrito(i), this);
+	}
+}
+
+void ecs::TutorialScene::deactivateTubos() {
+	for (int i = 0; i < 7; i++)
+	{
+		tubos[i]->removeComponent<Trigger>();
+		tubos[i]->removeComponent<PackageChecker>();
 	}
 }
 
@@ -345,7 +361,8 @@ void ecs::TutorialScene::createPackage(PackageTutorial pt) {
 		paquete = mPaqBuild_->customPackage(Demeter, C2, "Miguel Torres", Medicinas);
 	else if (pt == Tercero)
 		paquete = mPaqBuild_->customPackage(Artemisa, C1, "Francis Ngannou", Armamento, false);
-
+	else if (pt == FallarAposta)
+		paquete = mPaqBuild_->customPackage(Demeter, C3, "Jhonny Huesos", Medicinas);
 	else
 		paquete = mPaqBuild_->buildPackage(1, this);
 
@@ -370,6 +387,37 @@ void ecs::TutorialScene::createPackage(PackageTutorial pt) {
 		});
 	paquete->getComponent<Wrap>()->initComponent();
 	paquete->getComponent<MoverTransform>()->enable();
+	factory_->setLayer(ecs::layer::DEFAULT);
+}
+
+void ecs::TutorialScene::createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto) {
+	Entity* NotaErronea = addEntity(ecs::layer::FOREGROUND);
+	NotaErronea->addComponent<ErrorNote>(paqComp, basura, tuboIncorrecto);
+	Texture* NotaTex = &sdlutils().images().at("notaError");
+	Transform* NotaTR = NotaErronea->addComponent<Transform>(100, 1400, NotaTex->width() * 2, NotaTex->height() * 2);
+	NotaTR->setScale(0.2f);
+	NotaErronea->addComponent<Depth>();
+	NotaErronea->addComponent<Gravity>();
+	NotaErronea->addComponent<DragAndDrop>(true);
+	NotaErronea->addComponent<RenderImage>(NotaTex);
+	NotaErronea->addComponent<MoverTransform>(NotaErronea->getComponent<Transform>()->getPos() - Vector2D(0, 500),
+		1, Easing::EaseOutBack)->enable();
+	//El texto de la nota
+	Entity* texto_ = addEntity(ecs::layer::FOREGROUND);
+	Font* textFont = new Font("recursos/fonts/ARIAL.ttf", 40);
+	Texture* textureText_ = new Texture(sdlutils().renderer(), NotaErronea->getComponent<ErrorNote>()->text_, *textFont, build_sdlcolor(0x000000ff), 500);
+	Transform* distritoTr = texto_->addComponent<Transform>(25, 70, 250, 100);
+	RenderImage* distritoRender = texto_->addComponent<RenderImage>();
+	distritoRender->setTexture(textureText_);
+	distritoTr->setParent(NotaErronea->getComponent<Transform>());
+}
+
+void ecs::TutorialScene::createFragilTool() {
+	factory_->setLayer(ecs::layer::TAPE);
+	Entity* cinta = factory_->createImage(Vector2D(250, 0), Vector2D(100, 150), &sdlutils().images().at("cinta"));
+	cinta->addComponent<Gravity>();
+	cinta->addComponent<DragAndDrop>();
+	cinta->addComponent<Depth>();
 	factory_->setLayer(ecs::layer::DEFAULT);
 }
 

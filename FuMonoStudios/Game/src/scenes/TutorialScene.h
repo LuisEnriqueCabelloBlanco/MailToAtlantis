@@ -31,8 +31,10 @@ namespace ecs {
 
 		void packageSent();
 
-		enum PackageTutorial { Primero, Segundo, Tercero, Random};
+		enum PackageTutorial { Primero, Segundo, Tercero, FallarAposta, Fragil, Random};
 		void createPackage(PackageTutorial pt);
+
+		void createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto);
 
 		// getters
 		Transform* getManualTransform() { return manualEnt_->getComponent<Transform>(); }
@@ -45,13 +47,18 @@ namespace ecs {
 		void createClock();
 		void createInks();
 		void createOneInk(TipoHerramienta type);
-		void createTubo(pq::Distrito dist, bool);
+
+		ecs::Entity* createTubo(pq::Distrito dist, bool); // empiezan desactivados
+		std::vector<ecs::Entity*> tubos;
+		void deactivateTubos();
+		void activateTubos();
 
 		void createGarbage(); // empieza desactivada
 		void activateGarbage();
 		void deactivateGarbage();
 		ecs::Entity* garbage_;
 
+		void createFragilTool();
 
 		Entity* manualEnt_;
 		Entity* miniManualEnt_;

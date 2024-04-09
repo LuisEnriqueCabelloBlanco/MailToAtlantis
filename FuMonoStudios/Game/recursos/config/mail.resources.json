@@ -75,6 +75,20 @@
     {"id": "tubo7","file": "recursos/images/tubo7.png"},
     {"id": "cruz","file": "recursos/images/cruz.png"},
 
+    {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
+    {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
+    {"id": "ruta1","file": "recursos/images/route1.png"},
+    {"id": "ruta2",
+      "file": "recursos/images/route2.png"
+    },
+    {
+      "id": "ruta3",
+      "file": "recursos/images/route3.png"
+    },
+    {
+      "id": "ruta4",
+      "file": "recursos/images/route4.png"
+    },
     {"id": "title","file": "recursos/images/titulo.png"},
     {"id": "fondoOficina","file": "recursos/images/OficinaProyectosDesenfocada.png"},
     {"id": "cinta","file": "recursos/images/Cinta.png"},

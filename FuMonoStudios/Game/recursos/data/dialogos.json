@@ -578,6 +578,19 @@
     "14":[
       "Parece que el sello rojo de Armamento del paquete no coincide con el del manual. Este paquete entonces va directo a la basura.",
       "Arrastralo hasta la basura para eliminarlo. Es importante que elimines los ilegales, sino te penalizaremos."
+    ],
+    "15":[
+      "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
+      "No te preocupes que no te voy a penalizar... Tranquilo...",
+      "Coge este paquete, que en principio est$a bien reglamentado, y mandalo a la basura."
+    ],
+    "16":[
+      "Fijate que te ha salido una notita explicando tu error. Cada paquete correcto son 20 dolares, y cada paquete err$oneo son 30 dolares, que van subiendo seg$un tus fallos.",
+      "Espero no ver muchas notitas cuando trabajes... El anterior a ti le hacia demasiados favores a la gente de la ciudad y acababa no ganando nada..."
+    ],
+    "17":[
+      "Vale esta es la $ultima cosa que tengo que explicarte. Para ello vas a necesitar la herramienta que te acabo se soltar en la mesa",
+      "Algunos paquetes pueden contener cosas muy delicadas, y sus propietarios les ponen un sello de fr$agil para que nosotros lo embalemos bien."
     ]
   },
   "EsclavaRemix": [

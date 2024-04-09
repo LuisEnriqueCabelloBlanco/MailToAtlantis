@@ -85,9 +85,7 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 			if (mainSc_ != nullptr)
 				mainSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo,toDis_ != ent->getComponent<Paquete>()->getDistrito());
 			else if (tutSc_ != nullptr)
-			{
-				// nose
-			}
+				tutSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo, toDis_ != ent->getComponent<Paquete>()->getDistrito());
 				
 		}
 #ifdef QA_TOOLS
