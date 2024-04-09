@@ -53,6 +53,18 @@ public:
 
 	// Sella la calle una única vez con el sellador
 	void sellarCalle(Calle sello, Transform* trSellador);
+
+	// envuelve el paquete
+	void envolver() { envuelto_ = true; }
+
+	//Genera los puntos rojos al envolver
+	void puntosRojos();
+
+	//Genera las linea rojas entre los puntos rojos
+	void drawLines(int routeID, std::string routeName);
+	//Limpia las entidades de una layer que le pases
+	void clearLayer(ecs::layer::layerId lyId);
+
 	/// <summary>
 	/// metodo que devuelve el string a implimir en la etiqueta de direccion
 	/// </summary>
@@ -65,6 +77,7 @@ public:
 	NivelPeso getPeso() const { return miPeso_; }
 	int getCantidadPeso() const { return peso_; }
 	bool getFragil() const { return fragil_; }
+	bool getEnvuelto() const { return envuelto_; }
 	bool getSelloCorrecto() const { return selloCorrecto_; }
 	bool isCarta() const { return carta_; }
 	bool pesoCorrecto() const;
@@ -91,5 +104,8 @@ private:
 	//Variables que debe modificar el jugador
 	Calle calleMarcada_;		//Variable que indica para qu� distrito ha sido etiquetado el paquete
 	bool envuelto_;			//Variable que indica si est� envuelto o no el paquete
+	int routeID; //ID de la ruta de la caja creada
+
+	Scene* scene_;
 };
 

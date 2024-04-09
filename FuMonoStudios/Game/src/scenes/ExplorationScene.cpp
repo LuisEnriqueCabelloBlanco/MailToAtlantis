@@ -54,14 +54,14 @@ void ecs::ExplorationScene::init()
 	createObjects("Hestia");
 
 	//boton ir a trabajar
-	BotonTrabajo = addEntity();
-	BotonTrabajo->addComponent<Transform>(525, 300, 100, 300);
-	auto clickableBotonTrabajar = BotonTrabajo->addComponent<Clickeable>();
+	boton_Trabajo = addEntity();
+	boton_Trabajo->addComponent<Transform>(650, 400, 100, 300);
+	auto clickableBotonTrabajar = boton_Trabajo->addComponent<Clickeable>();
 	CallbackClickeable funcPress = [this]() {
 		gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
-	//hestia.addObjects(BotonTrabajo);
+	hestia.addObjects(boton_Trabajo);
 }
 
 
@@ -163,12 +163,18 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 	
 	if (placeDir != "Hestia") {
 
-		BotonTrabajo->setActive(false);
+		if (boton_Trabajo->isActive()) {
+			boton_Trabajo->setActive(false);
+		}
+		
 
 	}
 	else {
 
-		BotonTrabajo->setActive(true);
+		if (!boton_Trabajo->isActive()) {
+			boton_Trabajo->setActive(true);
+		}
+		
 
 	}
 	
@@ -183,7 +189,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	factory.setLayer(ecs::layer::FOREGROUND);
 	Texture* sujetaplazas;
 	if(places.count(placeDir) && places.at(placeDir)->isNavegable())
-		sujetaplazas = &sdlutils().images().at("cartel");
+		sujetaplazas = &sdlutils().images().at("cartel" + placeDir);
 	else
 		sujetaplazas = &sdlutils().images().at("cruz");
 
@@ -240,7 +246,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 			std::pair<const std::string, int> aux = generalData().getNPCData(
 				generalData().stringToPersonaje(character))->getDialogueInfo();
 
-			dialogMngr_.setDialogues(generalData().stringToPersonaje(character), aux.first, aux.second);
+			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
 
 			textDialogue->addComponent<DialogComponent>(&dialogMngr_, this);
 		}
@@ -319,7 +325,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 
 
 		}
-
+		
 	}
 	else if (place == "Artemisa") {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {

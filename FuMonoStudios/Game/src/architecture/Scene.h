@@ -61,6 +61,8 @@ namespace ecs {
 
 		void refresh();
 
+		void removeEntitiesByLayer(ecs::layer::layerId layer);
+
 		/// <summary>
 		/// Elimina todas las entidades que estuvieran en la escena
 		/// </summary>

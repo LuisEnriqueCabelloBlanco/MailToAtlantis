@@ -21,10 +21,9 @@ public:
 	
 	Felicidad stringToFelicidad(const std::string& str);
 
-	// enum con el nombre de todas las cosas interactuables
+	// enum con el nombre de todos los NPC
 	enum Personaje {
-		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable,
-		JefeOficina
+		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable
 	};
 
 	#pragma region NPCdata
@@ -145,6 +144,9 @@ public:
 	int getPaqueteLevel(); // Devuelve el lvl del paquete correspondiente al d�a
 	void setPaqueteLevel(int lvl);
 
+	int getRent();
+	void setRent(int rent);
+
 	// convierte Personaje a string
 	const std::string personajeToString(Personaje pers);
 	// convierte string a Personaje
@@ -170,6 +172,7 @@ private:
 
 	int fails_;
 	int corrects_;
+	int rent_;
 	int dinero_;
 	int failsMargin_;
 	int finalID_; //Variable int que define en la �ltima escena cu�l final se va a reproducir

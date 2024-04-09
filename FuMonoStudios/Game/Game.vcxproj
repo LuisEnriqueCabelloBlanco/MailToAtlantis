@@ -44,6 +44,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -203,6 +204,8 @@
     <ClCompile Include="src\utils\Vector2D.cpp" />
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\architecture\Time.cpp" />
+    <ClCompile Include="src\scenes\TutorialScene.cpp" />
+    <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\sistemas\SoundEmiter.h" />
@@ -275,6 +278,8 @@
     <ClInclude Include="src\utils\Vector2D.h" />
     <ClInclude Include="src\components\Transform.h" />
     <ClInclude Include="src\architecture\Time.h" />
+    <ClInclude Include="src\scenes\TutorialScene.h" />
+    <ClInclude Include="src\sistemas\TutorialSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties.props" />

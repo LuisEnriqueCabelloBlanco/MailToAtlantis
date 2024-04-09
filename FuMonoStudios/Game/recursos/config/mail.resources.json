@@ -5,12 +5,12 @@
     {"id": "selloTest","file": "recursos/images/Sello.png"},
     {"id": "bookTest","file": "recursos/images/Book.png"},
     {"id": "book1","file": "recursos/images/Book_Index.png"},
-    {"id": "book2","file": "recursos/images/Book_InfoCalles_0.png"},
-    {"id": "book3","file": "recursos/images/Book_InfoCalles_1.png"},
-    {"id": "book4","file": "recursos/images/Book_InfoCalles_2.png"},
-    {"id": "book5","file": "recursos/images/Book_InfoCalles_3.png"},
-    {"id": "book6","file": "recursos/images/Book_InfoCodigos.png"},
-    {"id": "book7","file": "recursos/images/Book_InfoGeneral.png"},
+    {"id": "book2","file": "recursos/images/Book_InfoGeneral.png"},
+    {"id": "book3","file": "recursos/images/Book_InfoCodigos.png"},
+    {"id": "book4","file": "recursos/images/Book_InfoCalles_0.png"},
+    {"id": "book5","file": "recursos/images/Book_InfoCalles_1.png"},
+    {"id": "book6","file": "recursos/images/Book_InfoCalles_2.png"},
+    {"id": "book7","file": "recursos/images/Book_InfoCalles_3.png"},
     {"id": "book8","file": "recursos/images/Book_InfoSellos.png"},
 
 
@@ -25,7 +25,7 @@
     {"id": "hermes","file": "recursos/images/Hermes.png"},
     {"id": "apolo","file": "recursos/images/Apolo.png"},
     {"id": "poseidon","file": "recursos/images/Poseidon.png"},
-    {"id": "fondoMainMenu","file": "recursos/images/main_menu.jpg"},
+    {"id": "fondoMainMenu","file": "recursos/images/FONDO_MENU_INICIO_v2.png"},
 
     {"id": "sellador0","file": "recursos/images/selladorRojo.png"},
     {"id": "sellador1","file": "recursos/images/selladorAzul.png"},
@@ -75,6 +75,16 @@
     {"id": "tubo7","file": "recursos/images/tubo7.png"},
     {"id": "cruz","file": "recursos/images/cruz.png"},
 
+    {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
+    {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
+    
+    {"id": "ruta1","file": "recursos/images/route1.png"},
+    {"id": "ruta2","file": "recursos/images/route2.png"},
+    {"id": "ruta3","file": "recursos/images/route3.png"},
+    {"id": "ruta4","file": "recursos/images/route4.png"},
+    
+    {"id": "fondoFinalTrabajo","file": "recursos/images/FondoEndWork.png"},
+
     {"id": "title","file": "recursos/images/titulo.png"},
     {"id": "fondoOficina","file": "recursos/images/OficinaProyectosDesenfocada.png"},
     {"id": "cinta","file": "recursos/images/Cinta.png"},
@@ -83,11 +93,25 @@
     {"id": "caja50","file": "recursos/images/Caja_Envuelta_50.png"},
     {"id": "caja75","file": "recursos/images/Caja_Envuelta_75.png"},
     {"id": "caja100","file": "recursos/images/Caja_Envuelta_100.png"},
+    {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
+    {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
+
 
     {"id": "papelera","file": "recursos/images/papelera.png"},
-    {"id": "cartel","file": "recursos/images/CartelCompleto.png"},
+
+    {"id": "atrilManual","file": "recursos/images/ReposaLibros.png"},
+
+
     {"id": "cuadroDialogo","file": "recursos/images/CuadroDialogo.png"},
     {"id": "miniManual","file": "recursos/images/ManualMini.png"},
+
+    {"id": "cartelHestia","file": "recursos/images/CartelHestia.png"},
+    {"id": "cartelArtemisa","file": "recursos/images/CartelArtemisa.png"},
+    {"id": "cartelDemeter","file": "recursos/images/CartelDemeter.png"},
+    {"id": "cartelHefesto","file": "recursos/images/CartelHefesto.png"},
+    {"id": "cartelHermes","file": "recursos/images/CartelHermes.png"},
+    {"id": "cartelApolo","file": "recursos/images/CartelApolo.png"},
+    {"id": "cartelPoseidon","file": "recursos/images/CartelPoseidon.png"},
 
 
     {"id": "Tarotisa","file": "recursos/images/Abigail Ampoure.png"},

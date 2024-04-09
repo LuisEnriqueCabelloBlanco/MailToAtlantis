@@ -11,6 +11,8 @@
 #include "../scenes/PauseScene.h"
 #include "../scenes/ExplorationScene.h"
 #include "../scenes/EndWorkScene.h"
+#include "../scenes/PauseScene.h"
+#include "../scenes/TutorialScene.h"
 #include "Time.h"
 #include "GeneralData.h"
 #include <iostream>
@@ -30,7 +32,9 @@ Game::Game() :exit_(false) {
 	SDL_RenderSetLogicalSize(renderer_,LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 
 	SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
-	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),new EndWorkScene(),new ecs::MainMenu() };
+
+	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),
+		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new ecs::TutorialScene()};
 
 	loadScene(ecs::sc::MENU_SCENE);
 }
@@ -74,7 +78,7 @@ void Game::run()
 		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_F)) {
 			sdlutils().toggleFullScreen();
 		}
-		if (ih().isKeyDown(SDL_SCANCODE_P)) {
+		/*if (ih().isKeyDown(SDL_SCANCODE_P)) {
 			loadScene(ecs::sc::PAUSE_SCENE);
 		}
 		if (ih().isKeyDown(SDL_SCANCODE_L)) {
@@ -85,7 +89,7 @@ void Game::run()
 		}
 		if (ih().isKeyDown(SDL_SCANCODE_W)) {
 			changeScene(ecs::sc::MAIN_SCENE, ecs::sc::MENU_SCENE);
-		}
+		}*/
 #ifdef QA_TOOLS
 		if (ih().mouseButtonDownEvent()&&ih().getMouseButtonState(0)) {
 			dataCollector().clicks()++;

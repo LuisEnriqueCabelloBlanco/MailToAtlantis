@@ -61,6 +61,8 @@
     <ClCompile Include="src\components\RenderWithLight.cpp" />
     <ClCompile Include="src\scenes\PauseScene.cpp" />
     <ClCompile Include="src\sistemas\SoundEmiter.cpp" />
+    <ClCompile Include="src\scenes\TutorialScene.cpp" />
+    <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -159,6 +161,8 @@
     <ClInclude Include="src\components\RenderWithLight.h" />
     <ClInclude Include="src\scenes\PauseScene.h" />
     <ClInclude Include="src\sistemas\SoundEmiter.h" />
+    <ClInclude Include="src\scenes\TutorialScene.h" />
+    <ClInclude Include="src\sistemas\TutorialSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\MultipleTextures.h" />
