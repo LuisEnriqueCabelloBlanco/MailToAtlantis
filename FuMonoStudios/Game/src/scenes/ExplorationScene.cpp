@@ -61,7 +61,7 @@ void ecs::ExplorationScene::init()
 		gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
-	hestia.addObjects(boton_Trabajo);
+
 }
 
 

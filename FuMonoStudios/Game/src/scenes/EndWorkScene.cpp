@@ -31,10 +31,10 @@ void EndWorkScene::init() {
 	factory_->setLayer(ecs::layer::UI); 
 	factory_->createLabel(pos, msg, 50);
 	factory_->createLabel(pos + Vector2D(0, -300), "Alquiler: -" + std::to_string(generalData().getRent()), 50);
-	factory_->createLabel(pos + Vector2D(0, -400), "Fails: " + std::to_string(generalData().getFails()), 50);
-	factory_->createLabel(pos + Vector2D(0, -500), "Corrects: " + std::to_string(generalData().getCorrects()), 50);
+	factory_->createLabel(pos + Vector2D(0, -400), "Fallos: " + std::to_string(generalData().getFails()), 50);
+	factory_->createLabel(pos + Vector2D(0, -500), "Correctos: " + std::to_string(generalData().getCorrects()), 50);
 	auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
-	factory_->createTextuButton(pos + Vector2D(0, 70), "Return To menu", 50,call);
+	factory_->createTextuButton(pos + Vector2D(0, 70), "Nuevo dia", 50,call);
 	//generalData().resetFailsCorrects();
 	generalData().setDia(generalData().getDia() + 1);
   
