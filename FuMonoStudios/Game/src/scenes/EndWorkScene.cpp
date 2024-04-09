@@ -30,8 +30,14 @@ void EndWorkScene::init() {
 	factory_->createLabel(pos + Vector2D(0, -300), "Alquiler: -" + std::to_string(generalData().getRent()), 50);
 	factory_->createLabel(pos + Vector2D(0, -400), "Fails: " + std::to_string(generalData().getFails()), 50);
 	factory_->createLabel(pos + Vector2D(0, -500), "Corrects: " + std::to_string(generalData().getCorrects()), 50);
-	auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
-	factory_->createTextuButton(pos + Vector2D(0, 70), "Return To menu", 50,call);
+	if (generalData().getDia() > 14) {
+		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::END_SCENE); };
+		factory_->createTextuButton(pos + Vector2D(0, 70), "Ver finales", 50, call);
+	}
+	else {
+		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
+		factory_->createTextuButton(pos + Vector2D(0, 70), "Return To menu", 50,call);
+	}
 	//generalData().resetFailsCorrects();
 	generalData().setDia(generalData().getDia() + 1);
   
