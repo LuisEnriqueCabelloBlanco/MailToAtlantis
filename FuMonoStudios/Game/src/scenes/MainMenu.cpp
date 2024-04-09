@@ -40,50 +40,16 @@ void ecs::MainMenu::init()
 	Transform* transformTitulo = titulo->addComponent<Transform>(350.0f, 50.0f, texturaTitulo->width()*1.5f, texturaTitulo->height()* 1.5f);
 	RenderImage* renderTitulo = titulo->addComponent<RenderImage>(texturaTitulo);
 
-	Texture* texturaBoton = new Texture(sdlutils().renderer(), "Pulsa para empezar", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
-	Entity* BotonPress = addEntity();
 
-	Transform* transformBoton = BotonPress->addComponent<Transform>(600, 600, texturaBoton->width(), texturaBoton->height());
-	RenderWithLight* renderBoton = BotonPress->addComponent<RenderWithLight>(texturaBoton);
-
-	auto clickerPress = BotonPress->addComponent<Clickeable>();
-
-
-	Texture* texturaBoton2 = new Texture(sdlutils().renderer(), "Tutorial", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
-	Entity* BotonPress2 = addEntity();
-
-	Transform* transformBoton2 = BotonPress2->addComponent<Transform>(600, 500, texturaBoton2->width(), texturaBoton2->height());
-	RenderWithLight* renderBoton2 = BotonPress2->addComponent<RenderWithLight>(texturaBoton2);
-
-	auto clickerPress2 = BotonPress2->addComponent<Clickeable>();
-
-	/*Boton->addComponent<Trigger>();
-	Boton->getComponent<Trigger>()->addCallback([]() {
-
-		std::cout << "Tocando" << std::endl;
-
-		});*/
-
-		/*void Aux(Game * game) {
-
-
-
-			(*game).loadScene(ecs::sc::MAIN_SCENE);
-
-		}*/
-	CallbackClickeable funcPress = [this]() {
+	factory_->createTextuButton(Vector2D(600, 600), "Pulsa para empezar", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
+		});
 
-		};
-
-	CallbackClickeable funcPresstuto = [this]() {
+	factory_->createTextuButton(Vector2D(600, 500), "Tutorial", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::TUTORIAL_SCENE);
-
-		};
-	clickerPress->addEvent(funcPress);
-	clickerPress2->addEvent(funcPresstuto);
+		});
 }
 
 void ecs::MainMenu::changeToMainScene() {
