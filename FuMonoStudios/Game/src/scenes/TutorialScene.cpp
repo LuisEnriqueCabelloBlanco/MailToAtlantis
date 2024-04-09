@@ -13,7 +13,6 @@ ecs::TutorialScene::TutorialScene() : Scene() {
 
 	tutorialSys_ = new TutorialSystem(this);
 	mPaqBuild_ = new PaqueteBuilder(this);
-
 }
 
 ecs::TutorialScene::~TutorialScene() {
@@ -58,7 +57,7 @@ void ecs::TutorialScene::init() {
 		tubos.push_back(createTubo((pq::Distrito)z, true));
 	}
 
-	tutorialSys_->activateEvent(TutorialSystem::EntraTercerPaquete);
+	tutorialSys_->activateEvent(TutorialSystem::Introduction);
 }
 
 void ecs::TutorialScene::close() {
@@ -242,7 +241,7 @@ ecs::Entity* ecs::TutorialScene::createTubo(pq::Distrito dist, bool unlock) {
 		&sdlutils().images().at("tubo" + std::to_string(dist + 1)));
 	if (unlock) {
 
-		// EMPIEZA DESACTIVADO EL TUBO YES YES
+		// EMPIEZA DESACTIVADO EL TUBO
 	}
 	else {
 		factory_->setLayer(layer::UI);
@@ -351,7 +350,7 @@ void ecs::TutorialScene::closeConversation() {
 	tutorialSys_->closeConversation();
 }
 
-void ecs::TutorialScene::createPackage(PackageTutorial pt) {
+ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 
 	ecs::Entity* paquete;
 	factory_->setLayer(ecs::layer::PACKAGE);
@@ -363,6 +362,8 @@ void ecs::TutorialScene::createPackage(PackageTutorial pt) {
 		paquete = mPaqBuild_->customPackage(Artemisa, C1, "Francis Ngannou", Armamento, false);
 	else if (pt == FallarAposta)
 		paquete = mPaqBuild_->customPackage(Demeter, C3, "Jhonny Huesos", Medicinas);
+	else if (pt == Fragil)
+		paquete = mPaqBuild_->customPackage(Hestia, C3, "Travis Lubin", Alimento,true, pq::Ninguno,0,true);
 	else
 		paquete = mPaqBuild_->buildPackage(1, this);
 
@@ -388,6 +389,8 @@ void ecs::TutorialScene::createPackage(PackageTutorial pt) {
 	paquete->getComponent<Wrap>()->initComponent();
 	paquete->getComponent<MoverTransform>()->enable();
 	factory_->setLayer(ecs::layer::DEFAULT);
+
+	return paquete;
 }
 
 void ecs::TutorialScene::createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto) {
@@ -416,7 +419,7 @@ void ecs::TutorialScene::createFragilTool() {
 	factory_->setLayer(ecs::layer::TAPE);
 	Entity* cinta = factory_->createImage(Vector2D(250, 0), Vector2D(100, 150), &sdlutils().images().at("cinta"));
 	cinta->addComponent<Gravity>();
-	cinta->addComponent<DragAndDrop>();
+	cinta->addComponent<DragAndDropTutorial>(true, tutorialSys_);
 	cinta->addComponent<Depth>();
 	factory_->setLayer(ecs::layer::DEFAULT);
 }

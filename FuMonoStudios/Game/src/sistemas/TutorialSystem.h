@@ -10,6 +10,7 @@ class RenderImage;
 class DialogManager;
 class DialogComponent;
 class MoverTransform;
+class Wrap;
 
 using SimpleCallback = std::function<void()>;
 
@@ -32,10 +33,11 @@ public:
 	PaqueteEnseñarCodigoPostal, PaqueteBuscarPaginaCodigosPostales, BuscarPaginaHestia,
 	EnseñarSellos, EnseñarTubos, EntraSegundoPaquete, SegundoBuscarPaginaDistritos, 
 	SellarSegundoPaquete, EnviarSegundoPaquete, EntraTercerPaquete, EnPaginaInfoSellos,
-	EntraCuartoPaquete, ExplicacionFalloAposta, EntraPaqueteFragil };
+	EntraCuartoPaquete, ExplicacionFalloAposta, EntraPaqueteFragil, SellarYEnviarFragil,
+	Fin};
 
 	enum Action { SacarManual, PaginaCodigosPostales, PaginaDistritoHestia, PaqueteEstampado,
-	PaqueteEnviado, PaginaDistritoDemeter, PaginaSellos, Basura};
+	PaqueteEnviado, PaginaDistritoDemeter, PaginaSellos, Basura, Embalado};
 
 	TutorialSystem(ecs::TutorialScene* scene);
 	~TutorialSystem();
@@ -79,5 +81,8 @@ private:
 	Uint32 timer_;
 	Uint32 timeToCall_;
 	bool waitingCallback;
+
+	Wrap* waitingWrapComp;
+	bool waitingEmbalaje;
 };
 

@@ -54,6 +54,9 @@ public:
 	// Sella la calle una única vez con el sellador
 	void sellarCalle(Calle sello, Transform* trSellador);
 
+	// envuelve el paquete
+	void envolver() { envuelto_ = true; }
+
 	//Genera los puntos rojos al envolver
 	void puntosRojos();
 

@@ -4,13 +4,14 @@
 #include "../components/DialogManager.h"
 #include "../components/DialogComponent.h"
 #include "../components/MoverTransform.h"
+#include "../components/Wrap.h"
 
 TutorialSystem::TutorialSystem(ecs::TutorialScene* scene) {
 	scene_ = scene;
 	tutorialIteration = 0;
 	canDrag = true;
 	waitingCallback = false;
-
+	waitingEmbalaje = false;
 
 	createDialogueBox();
 	createArrow();
@@ -28,6 +29,14 @@ void TutorialSystem::update() {
 		{
 			waitingCallback = false;
 			call_();
+		}
+	}
+
+	if (waitingEmbalaje) {
+		if (waitingWrapComp->isWrapped())
+		{
+			waitingEmbalaje = false;
+			registerAction(Action::Embalado);
 		}
 	}
 }
@@ -172,7 +181,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 		#pragma region Paquete fragil
 		case TutorialEvent::EntraPaqueteFragil:
 			canDrag = false;
-			scene_->createPackage(ecs::TutorialScene::FallarAposta);
+			waitingWrapComp = scene_->createPackage(ecs::TutorialScene::Fragil)->getComponent<Wrap>();
 			delayedCallback(1, [this] {
 				activateDialogue(false);
 				delayedCallback(1, [this] {
@@ -180,8 +189,14 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 					});
 				});
 			break;
+		case TutorialEvent::SellarYEnviarFragil:
+			canDrag = false;
+			activateDialogue(false);
+			break;
 #pragma endregion
-
+		case TutorialEvent::Fin:
+			activateDialogue(false);
+			break;
 
 	}
 }
@@ -311,11 +326,33 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 				});
 			break;
 #pragma endregion
+
 		#pragma region Paquete Fragil
 		case TutorialEvent::EntraPaqueteFragil:
+			canDrag = true;
+			waitingEmbalaje = true;
+			addActionListener(Action::Embalado, [this]() {
+				delayedCallback(1, [this] {
+					activateEvent(TutorialSystem::SellarYEnviarFragil);
+					});
+				});
+			break;
+		case TutorialEvent::SellarYEnviarFragil:
+			canDrag = true;
+			canPassPagesManual = true;
+			scene_->activateTubos();
+			addActionListener(Action::PaqueteEnviado, [this] {
+				delayedCallback(1, [this] {
+					activateEvent(TutorialSystem::Fin);
+					});				
+				});
 			break;
 #pragma endregion
+		case TutorialEvent::Fin:
 
+			// MANDAR A OTRA ESCENA O LO QUE QUERAMOS HACER
+
+			break;
 	}
 }
 

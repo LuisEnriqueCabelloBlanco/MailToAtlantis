@@ -49,7 +49,7 @@ public:
 	void update() override;
 
 	//devuelve si el paquete esta envuelto
-	bool isWrapped() { return totalPointsRoute == routePointsDone; }
+	bool isWrapped() { return wrapped; }
 
 private:
 
@@ -78,7 +78,7 @@ private:
 	RenderImage* renderImage_ = nullptr;
 
 	std::vector<Line> linesDrawn; // Almacena las líneas dibujadas
-	SDL_Renderer* renderer; 
+	SDL_Renderer* renderer;
 
 	//Ruta con los distintos puntos por los que debe pasar el ratón
 	std::list<int> route;

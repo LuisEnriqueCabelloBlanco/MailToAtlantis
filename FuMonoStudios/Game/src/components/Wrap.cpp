@@ -1,4 +1,3 @@
-
 #include "Wrap.h"
 #include "Transform.h"
 #include "MultipleTextures.h"
@@ -15,7 +14,8 @@
 #include <cmath>
 
 //Constructora dada una ruta especifica
-Wrap::Wrap(float spaceAux, int repTimesAux, std::list<int> routeAux, int routeIndex) : space(spaceAux), repTimes(repTimesAux) {
+Wrap::Wrap(float spaceAux, int repTimesAux, std::list<int> routeAux, int routeIndex) : 
+	space(spaceAux), repTimes(repTimesAux) {
 
 	route = routeAux;
 
@@ -70,9 +70,9 @@ void Wrap::initComponent() {
 	mul_ = ent_->getComponent<RenderImage>();
 
 
-	 paqComp_ = ent_->getComponent<Paquete>();
+	paqComp_ = ent_->getComponent<Paquete>();
 
-	
+
 
 	restartRoute();
 
@@ -96,7 +96,7 @@ void Wrap::update() {
 
 		Vector2D posTR = tr_->getPos();
 
-	
+
 		//Se inicializan las posiciones del paquete para no acceder al transform y coordenadas constantemente
 		double posXTR = posTR.getX();
 
@@ -105,7 +105,7 @@ void Wrap::update() {
 		float widthTR = tr_->getWidth();
 
 		float heightTR = tr_->getHeigth();
-		
+
 		auto tapeEnt = tri_->getSpecificEntity(ecs::layer::TAPE);
 
 
@@ -118,7 +118,7 @@ void Wrap::update() {
 			SDL_Rect tapeRect = tapeEnt->getComponent<Transform>()->getRect();
 
 			if (SDL_PointInRect(&point, &tapeRect)) {
-			
+
 				paqComp_->puntosRojos();
 				switch (routeSelectedID) {
 				case 0:
@@ -137,7 +137,7 @@ void Wrap::update() {
 					std::cout << "Ruta no encontrada" << std::endl;
 					break;
 				}
-	
+
 				// Se calculan los puntos centrales tanto del paquete como de la cinta
 				double centerXTR = posXTR + widthTR / 2;
 				double centerYTR = posYTR + heightTR / 2;
@@ -194,13 +194,13 @@ void Wrap::update() {
 					if (repTimes < 0) {
 
 						wrapped = true;
-
+						ent_->getComponent<Paquete>()->envolver();
 					}
 
 					paqComp_->clearLayer(ecs::layer::WRAP_POINTS);
 					paqComp_->clearLayer(ecs::layer::RED_LINES);
 					restartRoute();
-				}			
+				}
 
 			}
 
@@ -210,9 +210,9 @@ void Wrap::update() {
 			paqComp_->clearLayer(ecs::layer::RED_LINES);
 			restartRoute();
 		}
-		
+
 	}
-	
+
 
 }
 
@@ -230,7 +230,7 @@ void Wrap::restartRoute() {
 	if (!wrapped) {
 		mul_->setTexture(0);
 	}
-	
+
 
 }
 
@@ -253,5 +253,3 @@ void Wrap::checkPointTouch(int point) {
 
 	}
 }
-
-

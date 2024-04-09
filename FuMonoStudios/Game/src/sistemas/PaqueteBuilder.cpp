@@ -22,6 +22,7 @@ PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
 	getStreetsFromJSON(filename, Poseidon, "Poseidon");
 	getStreetsFromJSON(filename, Erroneo, "Erroneo");
 	getNamesFromJSON();
+	getRoutesFromJSON();
 }
 
 PaqueteBuilder::~PaqueteBuilder() {

@@ -32,7 +32,7 @@ namespace ecs {
 		void packageSent();
 
 		enum PackageTutorial { Primero, Segundo, Tercero, FallarAposta, Fragil, Random};
-		void createPackage(PackageTutorial pt);
+		ecs::Entity* createPackage(PackageTutorial pt);
 
 		void createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto);
 

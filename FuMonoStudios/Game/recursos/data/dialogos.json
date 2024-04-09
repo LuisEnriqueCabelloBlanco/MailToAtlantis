@@ -589,8 +589,15 @@
       "Espero no ver muchas notitas cuando trabajes... El anterior a ti le hacia demasiados favores a la gente de la ciudad y acababa no ganando nada..."
     ],
     "17":[
-      "Vale esta es la $ultima cosa que tengo que explicarte. Para ello vas a necesitar la herramienta que te acabo se soltar en la mesa",
-      "Algunos paquetes pueden contener cosas muy delicadas, y sus propietarios les ponen un sello de fr$agil para que nosotros lo embalemos bien."
+      "Vale esta es la $ultima cosa que tengo que explicarte. Para ello vas a necesitar la herramienta que te acabo de soltar en la mesa",
+      "Algunos paquetes pueden contener cosas muy delicadas, y sus propietarios les ponen un sello de fr$agil para que nosotros lo embalemos bien.",
+      "Para poder embalarlo, coge la herramienta de embalar, y sigue la ruta de puntos que ver$as al ponerlo por encima del paquete. Sigue la ruta y se quedar$a niquelado."
+    ],
+    "18":[
+      "Muy bien hecho. Ahora aplica lo que hemos aprendido, ponle su sello y mandalo por su tubo correspondiente."
+    ],
+    "19": [
+      "Muy bien, veo que ya te vas acordando. Ya estas listo para poder trabajar."
     ]
   },
   "EsclavaRemix": [
