@@ -83,7 +83,7 @@ void ecs::TutorialScene::createManual() {
 	RenderImage* manualRender = manualEnt_->getComponent<RenderImage>();
 	manualRender->setVector(bookTextures);
 	manualEnt_->addComponent<Gravity>();
-	manualEnt_->addComponent<DragAndDropTutorial>(false, tutorialSys_);
+	manualEnt_->addComponent<DragAndDropTutorial>(false, tutorialSys_, "arrastrar");
 	manualEnt_->addComponent<Depth>();
 
 
@@ -146,7 +146,7 @@ void ecs::TutorialScene::createMiniManual() {
 	Transform* manualTransform = miniManualEnt_->getComponent<Transform>();
 	RenderImage* manualRender = miniManualEnt_->getComponent<RenderImage>();
 
-	miniManualEnt_->addComponent<DragAndDropTutorial>(false, true, tutorialSys_);
+	miniManualEnt_->addComponent<DragAndDropTutorial>(false, true, tutorialSys_,"arrastrar");
 
 	Trigger* mmTri = miniManualEnt_->getComponent<Trigger>();
 
@@ -338,7 +338,7 @@ void ecs::TutorialScene::createStamp(TipoHerramienta type)
 
 	stamp->addComponent<Gravity>();
 	stamp->addComponent<Depth>();
-	stamp->addComponent<DragAndDropTutorial>(true, tutorialSys_);
+	stamp->addComponent<DragAndDropTutorial>(true, tutorialSys_,"arrastrar");
 
 	Herramientas* herrSelladorA = stamp->addComponent<Herramientas>();
 	herrSelladorA->setFunctionality(type);
@@ -369,7 +369,7 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 
 	paquete->removeComponent<DragAndDrop>();
 	paquete->removeComponent<Trigger>();
-	paquete->addComponent<DragAndDropTutorial>(true, tutorialSys_);
+	paquete->addComponent<DragAndDropTutorial>(true, tutorialSys_,"arrastrar");
 	paquete->getComponent<Trigger>()->addCallback([paquete, this](ecs::Entity* entRec) {
 
 		auto& ihdlr = ih();
@@ -401,7 +401,7 @@ void ecs::TutorialScene::createErrorMessage(Paquete* paqComp, bool basura, bool 
 	NotaTR->setScale(0.2f);
 	NotaErronea->addComponent<Depth>();
 	NotaErronea->addComponent<Gravity>();
-	NotaErronea->addComponent<DragAndDrop>(true);
+	NotaErronea->addComponent<DragAndDrop>(true,"arrastrar");
 	NotaErronea->addComponent<RenderImage>(NotaTex);
 	NotaErronea->addComponent<MoverTransform>(NotaErronea->getComponent<Transform>()->getPos() - Vector2D(0, 500),
 		1, Easing::EaseOutBack)->enable();
@@ -419,7 +419,7 @@ void ecs::TutorialScene::createFragilTool() {
 	factory_->setLayer(ecs::layer::TAPE);
 	Entity* cinta = factory_->createImage(Vector2D(250, 0), Vector2D(100, 150), &sdlutils().images().at("cinta"));
 	cinta->addComponent<Gravity>();
-	cinta->addComponent<DragAndDropTutorial>(true, tutorialSys_);
+	cinta->addComponent<DragAndDropTutorial>(true, tutorialSys_,"arrastrar");
 	cinta->addComponent<Depth>();
 	factory_->setLayer(ecs::layer::DEFAULT);
 }

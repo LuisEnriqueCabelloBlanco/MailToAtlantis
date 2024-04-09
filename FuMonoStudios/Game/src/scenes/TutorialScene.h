@@ -72,12 +72,12 @@ namespace ecs {
 		class DragAndDropTutorial : public DragAndDrop
 		{
 		public:
-			DragAndDropTutorial(bool usingNearest, TutorialSystem* tutSys_) 
-				: DragAndDrop(usingNearest) {
+			DragAndDropTutorial(bool usingNearest, TutorialSystem* tutSys_,const std::string& sound) 
+				: DragAndDrop(usingNearest,sound) {
 				tutorialSys_ = tutSys_;
 			}
-			DragAndDropTutorial(bool usingNearest, bool usingOwnCallback, TutorialSystem* tutSys_)
-				: DragAndDrop(usingNearest, usingOwnCallback) {
+			DragAndDropTutorial(bool usingNearest, bool usingOwnCallback, TutorialSystem* tutSys_, const std::string& sound)
+				: DragAndDrop(usingNearest, usingOwnCallback,sound) {
 				tutorialSys_ = tutSys_;
 			}
 			void update() {
