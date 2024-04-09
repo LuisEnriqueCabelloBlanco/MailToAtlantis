@@ -420,7 +420,7 @@ void ecs::MainScene::createSpaceManual() {
 
 	factory_->setLayer(ecs::layer::BACKGROUND);
 
-	Texture* bookTextures = &sdlutils().images().at("cartelArtemisa");
+	Texture* bookTextures = &sdlutils().images().at("atrilManual");
 	
 	auto baseManual = factory_->createImage(Vector2D(1200, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
 	
