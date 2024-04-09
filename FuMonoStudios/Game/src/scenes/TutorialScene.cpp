@@ -122,8 +122,9 @@ void ecs::TutorialScene::createManual() {
 				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
 		}
 		};
-	auto left = factory_->createImageButton(Vector2D(75, 280), buttonSize, buttonTexture, previous);
+	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous);
 	left->getComponent<Transform>()->setParent(manualTransform);
+	left->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
