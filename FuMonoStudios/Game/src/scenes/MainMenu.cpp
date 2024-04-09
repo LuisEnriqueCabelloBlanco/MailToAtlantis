@@ -32,7 +32,7 @@ void ecs::MainMenu::init()
 	//Font* fuente = new Font("recursos/fonts/ARIAL.ttf", 50);
 	Entity* fondo = addEntity();
 	Texture* texturaFondo = &sdlutils().images().at("fondoMainMenu");
-	Transform* transformFondo = fondo->addComponent<Transform>(0.0f, 0.0f, texturaFondo->width()* 1.6f, texturaFondo->height()* 1.6f);
+	Transform* transformFondo = fondo->addComponent<Transform>(0.0f, 0.0f, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 	RenderImage* renderFondo = fondo->addComponent<RenderImage>(texturaFondo);
 
 	Entity* titulo = addEntity();
@@ -40,35 +40,22 @@ void ecs::MainMenu::init()
 	Transform* transformTitulo = titulo->addComponent<Transform>(350.0f, 50.0f, texturaTitulo->width()*1.5f, texturaTitulo->height()* 1.5f);
 	RenderImage* renderTitulo = titulo->addComponent<RenderImage>(texturaTitulo);
 
-	Texture* texturaBoton = new Texture(sdlutils().renderer(), "Pulsa para empezar", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
-	Entity* BotonPress = addEntity();
-	
-	Transform* transformBoton = BotonPress->addComponent<Transform>(600, 600, texturaBoton->width(), texturaBoton->height());
-	RenderWithLight* renderBoton = BotonPress->addComponent<RenderWithLight>(texturaBoton);
+	auto textColor = build_sdlcolor(0xffffffff);
 
-	auto clickerPress = BotonPress->addComponent<Clickeable>();
+	factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH- 700, 400), "Tutorial", 50, [this]() {
+		sdlutils().musics().at("mainMenu").haltMusic();
+		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::TUTORIAL_SCENE);
+		},textColor);
 
-	/*Boton->addComponent<Trigger>();
-	Boton->getComponent<Trigger>()->addCallback([]() {
-
-		std::cout << "Tocando" << std::endl;
-
-		});*/
-
-	/*void Aux(Game * game) {
-
-		
-
-		(*game).loadScene(ecs::sc::MAIN_SCENE);
-
-	}*/
-	CallbackClickeable funcPress = [this]() {
+	factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Pulsa para empezar", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
+		},textColor);
 
-	};
-	clickerPress->addEvent(funcPress);
-	sdlutils().musics().at("mainMenu").play();
+	factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Salir", 50, [this]() {
+		sdlutils().musics().at("mainMenu").haltMusic();
+		gm().endGame();
+		},textColor);
 }
 
 void ecs::MainMenu::changeToMainScene() {

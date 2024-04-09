@@ -32,7 +32,7 @@ bool DialogManager::nextDialog() {
     return isEndOfConversation;
 }
 
-void DialogManager::setDialogues(const GeneralData::Personaje personaje, const std::string& tipoDialogo, int dialogueSelection)
+void DialogManager::setDialogues(const DialogSelection ds, const std::string& tipoDialogo, int dialogueIteration)
 {
     //eliminamos los dialogos anteriores
     dialogs_.clear();
@@ -48,58 +48,102 @@ void DialogManager::setDialogues(const GeneralData::Personaje personaje, const s
     }
     // we know the root is JSONObject
     JSONObject root = jValueRoot->AsObject();
-    JSONValue* jValue = nullptr;
+    JSONValue* jsonEntry = nullptr;
 
-    const std::string& charName = generalData().personajeToString(personaje);
+    const std::string& stringDialogSel = dialogSelectionToString(ds);
 
-    jValue = root[charName];
-    if (jValue != nullptr && jValue->IsObject())
+    jsonEntry = root[stringDialogSel];
+    if (jsonEntry != nullptr)
     {
         std::string strDialogo = tipoDialogo;
-        JSONObject charObj = jValue->AsObject();
 
-            
-        if (strDialogo != "NOTYPE")
-            jValue = charObj[strDialogo]; // Accede al tipo de diálogo específico
-
-        if (dialogueSelection != -1)
+        // Si hemos elegido un setDialogue tipo 3
+        if (strDialogo == "NULL")
         {
-            charObj = jValue->AsObject();
-            jValue = charObj[std::to_string(dialogueSelection)];
-        }
+            if (!jsonEntry->IsArray())
+                throw std::runtime_error("No es array el dialogo: " + stringDialogSel);
 
-        if (jValue != nullptr && jValue->IsArray())
-        {
-            for (auto& dialogValue : jValue->AsArray())
+            for (auto& value : jsonEntry->AsArray())
             {
-                if (dialogValue->IsString())
-                {
-                    std::string dialogText = dialogValue->AsString();
-#ifdef _DEBUG
-                    std::cout << "Cargando diálogo: " << dialogText << std::endl;
-#endif
-                    dialogText = crearTildes(dialogText);
-                    dialogs_.push_back(dialogText);
+                if (value->IsString()) {
+                    std::string valueText = value->AsString();
 
-                    if (dialogueSelection != -1)
-                    {
-                        generalData().getNPCData(personaje)->iterateDialogues();
-                        if (dialogueSelection > 3)
-                            dialogueSelection = 0;
-                    }
-                        
-                        
+                    fixText(valueText);
+
+                    dialogs_.push_back(valueText);
                 }
-                else
-                {
-                    throw std::runtime_error("Valor inválido en el arreglo de dialogos");
+                else {
+                    throw std::runtime_error("Valor no string en el array: " + stringDialogSel);
                 }
             }
         }
+        // si hemos elegido un setDialogue tipo 2
+        else if (dialogueIteration == -1)
+        {
+            JSONObject jsonEntryObj = jsonEntry->AsObject();
+            // Accede al tipo de diálogo específico
+            jsonEntry = jsonEntryObj[strDialogo];
+
+            if (!jsonEntry->IsArray())
+                throw std::runtime_error("No es array el dialogo: " + stringDialogSel);
+
+            for (auto& value : jsonEntry->AsArray())
+            {
+                if (value->IsString()) {
+                    std::string valueText = value->AsString();
+
+                    fixText(valueText);
+
+                    dialogs_.push_back(valueText);
+                }
+                else {
+                    throw std::runtime_error("Valor no string en el array: " + stringDialogSel);
+                }
+            }
+        }
+        // si hemos elegido setDialogue tipo 3 (como tipo 2 pero iterable)
+        else
+        {
+            JSONObject jsonEntryObj = jsonEntry->AsObject();
+            // Accede al tipo de diálogo específico
+            jsonEntry = jsonEntryObj[strDialogo];
+
+            jsonEntryObj = jsonEntry->AsObject();
+
+            jsonEntry = jsonEntryObj[std::to_string(dialogueIteration)];
+
+            for (auto& value : jsonEntry->AsArray())
+            {
+                if (value->IsString()) {
+                    std::string valueText = value->AsString();
+
+                    fixText(valueText);
+
+                    dialogs_.push_back(valueText);
+                }
+                else {
+                    throw std::runtime_error("Valor no string en el array: " + stringDialogSel);
+                }
+            }
+
+            if (isNPC(ds))
+            {
+                generalData().getNPCData(generalData().stringToPersonaje(dialogSelectionToString(ds)))->iterateDialogues();
+            }
+        }
+    }
+    else
+    {
+        throw std::runtime_error("Fallo en la carga de dialogo: " + stringDialogSel);
     }
 }
 
-std::string DialogManager::crearTildes(std::string aux)
+void DialogManager::fixText(std::string& text)
+{
+    crearTildes(text);
+}
+
+void DialogManager::crearTildes(std::string& aux)
 {
     size_t pos = 0;
     while ((pos = aux.find('$', pos)) != std::string::npos) {
@@ -141,5 +185,48 @@ std::string DialogManager::crearTildes(std::string aux)
         }
         pos++;  // Avanzar la posición de búsqueda para evitar un bucle infinito si se encuentra un $
     }
+}
+
+std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
+{
+    std::string aux;
+    switch (ds)
+    {
+    case Vagabundo:
+        aux = "Vagabundo";
+        break;
+    case Secretario:
+        aux = "Secretario";
+        break;
+    case Campesino:
+        aux = "Campesino";
+        break;
+    case Artesano:
+        aux = "Artesano";
+        break;
+    case Tarotisa:
+        aux = "Tarotisa";
+        break;
+    case Soldado:
+        aux = "Soldado";
+        break;
+    case Contable:
+        aux = "Contable";
+        break;
+    case JefeOficina:
+        aux = "JefeOficina";
+        break;
+    case Tutorial:
+        aux = "Tutorial";
+        break;
+    case BryantMyers:
+        aux = "EsclavaRemix";
+        break;
+    }
     return aux;
+}
+
+bool DialogManager::isNPC(const DialogSelection ds)
+{
+    return ds < 7;
 }

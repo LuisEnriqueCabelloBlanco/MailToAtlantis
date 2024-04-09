@@ -25,7 +25,7 @@
     {"id": "hermes","file": "recursos/images/Hermes.png"},
     {"id": "apolo","file": "recursos/images/Apolo.png"},
     {"id": "poseidon","file": "recursos/images/Poseidon.png"},
-    {"id": "fondoMainMenu","file": "recursos/images/main_menu.jpg"},
+    {"id": "fondoMainMenu","file": "recursos/images/FONDO_MENU_INICIO_v2.png"},
 
     {"id": "sellador0","file": "recursos/images/selladorRojo.png"},
     {"id": "sellador1","file": "recursos/images/selladorAzul.png"},
@@ -75,6 +75,16 @@
     {"id": "tubo7","file": "recursos/images/tubo7.png"},
     {"id": "cruz","file": "recursos/images/cruz.png"},
 
+    {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
+    {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
+    
+    {"id": "ruta1","file": "recursos/images/route1.png"},
+    {"id": "ruta2","file": "recursos/images/route2.png"},
+    {"id": "ruta3","file": "recursos/images/route3.png"},
+    {"id": "ruta4","file": "recursos/images/route4.png"},
+    
+    {"id": "fondoFinalTrabajo","file": "recursos/images/FondoEndWork.png"},
+
     {"id": "title","file": "recursos/images/titulo.png"},
     {"id": "fondoOficina","file": "recursos/images/OficinaProyectosDesenfocada.png"},
     {"id": "cinta","file": "recursos/images/Cinta.png"},
@@ -83,8 +93,15 @@
     {"id": "caja50","file": "recursos/images/Caja_Envuelta_50.png"},
     {"id": "caja75","file": "recursos/images/Caja_Envuelta_75.png"},
     {"id": "caja100","file": "recursos/images/Caja_Envuelta_100.png"},
+    {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
+    {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
+
 
     {"id": "papelera","file": "recursos/images/papelera.png"},
+
+    {"id": "atrilManual","file": "recursos/images/ReposaLibros.png"},
+
+
     {"id": "cuadroDialogo","file": "recursos/images/CuadroDialogo.png"},
     {"id": "miniManual","file": "recursos/images/ManualMini.png"},
 
@@ -144,23 +161,38 @@
         "file": "recursos/sounds/click.wav"
     },
     {
-      "id": "arrastrar",
+      "id": "arrastrar0",
       "file": "recursos/sounds/arrastrar.wav"
   },
-  {
-    "id": "choque",
-    "file": "recursos/sounds/choque.wav"
-}
-],
-"musics":[
     {
-        "id": "trabajo",
-        "file": "recursos/sounds/imperial_march.wav"
+      "id": "choque2",
+      "file": "recursos/sounds/choque.wav"
     },
     {
-        "id": "mainMenu",
-        "file": "recursos/sounds/DQOverture.wav"
+      "id": "choque0",
+      "file": "recursos/sounds/thud0.wav"
+    },
+    {
+      "id": "choque1",
+      "file": "recursos/sounds/cardboardDrop.wav"
     }
-
-]
+  ],
+  "musics": [
+    {
+      "id": "trabajo",
+      "file": "recursos/sounds/imperial_march.wav"
+    },
+    {
+      "id": "mainMenu",
+      "file": "recursos/sounds/DQOverture.wav"
+    },
+    {
+      "id": "office",
+      "file": "recursos/sounds/office.wav"
+    },
+    {
+      "id": "printer",
+      "file": "recursos/sounds/printer.wav"
+    }
+  ]
 }

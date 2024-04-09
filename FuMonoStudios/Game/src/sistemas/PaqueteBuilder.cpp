@@ -22,6 +22,7 @@ PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
 	getStreetsFromJSON(filename, Poseidon, "Poseidon");
 	getStreetsFromJSON(filename, Erroneo, "Erroneo");
 	getNamesFromJSON();
+	getRoutesFromJSON();
 }
 
 PaqueteBuilder::~PaqueteBuilder() {
@@ -93,12 +94,15 @@ ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle call
 	}
 	base->addComponent<Paquete>(distrito,calle,dir, remitente, tipo, correcto, nivPeso, peso, fragil, carta);
 	addVisualElements(base);
+	selectRandomRoute();
+	base->addComponent<Wrap>(20, 0, route, selectedRouteIndex);
 	return base;
 }
 
 ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene)
 {
 	ComonObjectsFactory* factory = mScene->getFactory();
+	factory->setLayer(ecs::layer::PACKAGE);
 
 	Texture* texturaPaquet = &sdlutils().images().at("boxTest");
 	//ENVOLTURA
@@ -114,7 +118,7 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene)
 	//interaccion y fisicas
 	packageBase->addComponent<Depth>();
 	packageBase->addComponent<Gravity>();
-	DragAndDrop* drgPq = packageBase->addComponent<DragAndDrop>(true);
+	DragAndDrop* drgPq = packageBase->addComponent<DragAndDrop>(true, "arrastrar");
 	//herramientas
 
 	Trigger* packTRI_ = packageBase->getComponent<Trigger>();
@@ -137,6 +141,7 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene)
 
 	packageBase->addComponent<MoverTransform>(packageBase->getComponent<Transform>()->getPos() - Vector2D(200, 0),
 		1, Easing::EaseOutBack)->disable();
+	factory->setLayer(ecs::layer::DEFAULT);
 	return packageBase;
 }
 
@@ -174,12 +179,14 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 		Nv, peso,
 		boolRND(lvl1.notFragileChance), false);
 	addVisualElements(packageBase);
-	//if (pq->getFragil()) {
+	if (pq->getFragil()) {
 		//Wrap debe ir despues del Transform, Trigger y Multitextures
 		//Luis: hay que hacer que las rutas se saquen de un json
-		std::list<int> route{ pointRoute::LeftUp, pointRoute::MiddleUp, pointRoute::MiddleMid, pointRoute::MiddleDown, pointRoute::RightDown };
-		packageBase->addComponent<Wrap>(20, 0, route);
-	//}
+		//std::list<int> route{ pointRoute::LeftUp, pointRoute::MiddleUp, pointRoute::MiddleMid, pointRoute::MiddleDown, pointRoute::RightDown };
+		selectRandomRoute();
+		packageBase->addComponent<Wrap>(20, 0, route, selectedRouteIndex);
+	
+	}
 }
 
 pq::Distrito PaqueteBuilder::distritoRND() {	//Este m�todo devuelve un Distrito aleatorio entre todas las posibilidades
@@ -424,7 +431,7 @@ void PaqueteBuilder::addVisualElements(ecs::Entity* paq) {
 
 void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) {
 	// Texto distrito y calle
-	ecs::Entity* distritoEnt = paq->getMngr()->addEntity(ecs::layer::STAMP);
+	ecs::Entity* distritoEnt = paq->getMngr()->addEntity(ecs::layer::INFO_PACKAGE);
 	Texture* distritoTex = new Texture(sdlutils().renderer(), paqComp->getDirecction(), *directionsFont, build_sdlcolor(0x000000ff), 500);
 	createdTextures.push_back(distritoTex);
 	Transform* distritoTr = distritoEnt->addComponent<Transform>(10, 165, 200, 50);
@@ -432,7 +439,7 @@ void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) 
 	distritoTr->setParent(paq->getComponent<Transform>());
 
 	// Texto remitente
-	ecs::Entity* remitenteEnt = paq->getMngr()->addEntity(ecs::layer::STAMP);
+	ecs::Entity* remitenteEnt = paq->getMngr()->addEntity(ecs::layer::INFO_PACKAGE);
 	Texture* remitenteTex = new Texture(sdlutils().renderer(), "Rte: " + paqComp->getRemitente(), *directionsFont, build_sdlcolor(0x000000ff), 500);
 	createdTextures.push_back(remitenteTex);
 	Transform* remitenteTr = remitenteEnt->addComponent<Transform>(10, 215, 150, 25);
@@ -441,9 +448,66 @@ void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) 
 }
 
 void PaqueteBuilder::crearSello(ecs::Entity* paq,const std::string& texKey, int x, int y, int width, int height) {
-	ecs::Entity* SelloEnt = paq->getMngr()->addEntity(ecs::layer::STAMP);
+	ecs::Entity* SelloEnt = paq->getMngr()->addEntity(ecs::layer::INFO_PACKAGE);
 	Texture* SelloTex = &sdlutils().images().at(texKey);
 	Transform* SelloTr = SelloEnt->addComponent<Transform>(x, y, width, height);
 	SelloEnt->addComponent<RenderImage>(SelloTex);
 	SelloTr->setParent(paq->getComponent<Transform>());
+}
+
+void PaqueteBuilder::getRoutesFromJSON() {
+
+	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile("recursos/rutas.JSON"));
+
+	// check it was loaded correctly
+	// the root must be a JSON object
+	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
+		throw "Something went wrong while load/parsing ' rutas.JSON ' ";
+	}
+
+	// we know the root is JSONObject
+	JSONObject root = jValueRoot->AsObject();
+	JSONValue* jValue = nullptr;
+
+	jValue = root["rutas"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			for (auto& routeValue : jValue->AsArray()) {
+				if (routeValue->IsObject()) {
+					JSONObject routeObj = routeValue->AsObject();
+					std::string routeID = routeObj["routeID"]->AsString();
+					JSONArray pointsArray = routeObj["points"]->AsArray();
+
+					std::list<int> routePoints;
+					for (auto& pointValue : pointsArray) {
+						if (pointValue->IsNumber()) {
+							routePoints.push_back(static_cast<int>(pointValue->AsNumber()));
+						}
+						else {
+							throw "'points' array in 'rutas.JSON' includes an invalid value";
+						}
+					}
+
+					allRoutes.push_back(routePoints);
+				}
+				else {
+					throw "'rutas' array in 'rutas.JSON' includes an invalid value";
+				}
+			}
+		}
+		else {
+			throw "'rutas' is not an array in 'rutas.JSON'";
+		}
+	}
+}
+
+void PaqueteBuilder::selectRandomRoute() {
+	if (!allRoutes.empty()) {
+		int rd = sdlutils().rand().nextInt(0, allRoutes.size());
+		route = allRoutes[rd];
+		selectedRouteIndex = rd;
+	}
+	else {
+		std::cerr << "No routes available to select from." << std::endl;
+	}
 }

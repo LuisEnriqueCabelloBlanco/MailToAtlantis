@@ -17,6 +17,7 @@ class DialogManager;
 class Texture;
 namespace ecs {
     class ExplorationScene;
+    class TutorialScene;
 }
 
 /*
@@ -32,9 +33,10 @@ public:
 
     //mas adelante hacer que la fuente se inicie solaz
     DialogComponent(DialogManager* manager, ecs::ExplorationScene* scene);
+    DialogComponent(DialogManager* manager, ecs::TutorialScene* scene);
     ~DialogComponent();
-    void initComponent()override;
-    void update()override;
+    void initComponent() override;
+    void update() override;
 private:
     /// <summary>
     /// Metodo para actualizar la textura de di�logo
@@ -45,7 +47,8 @@ private:
     RenderImage* mRend_;
     DialogManager* mDialogMngr_;
 
-    ecs::ExplorationScene* scene_;
+    ecs::ExplorationScene* scene1_;
+    ecs::TutorialScene* scene2_;
 
     Font* mFont_;
     Texture* mTexture_;

@@ -39,7 +39,7 @@ private:
     //
 
     // feedback parpadeo
-    float timeBetweenLowTime = 1000;
+    float timeBetweenLowTime = 1500;
     bool lowTimeFlag;
     float timerLowTime;
     float timeToUpdateLowTime;

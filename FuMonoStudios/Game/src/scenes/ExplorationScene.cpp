@@ -54,14 +54,14 @@ void ecs::ExplorationScene::init()
 	createObjects("Hestia");
 
 	//boton ir a trabajar
-	BotonTrabajo = addEntity();
-	BotonTrabajo->addComponent<Transform>(650, 400, 100, 300);
-	auto clickableBotonTrabajar = BotonTrabajo->addComponent<Clickeable>();
+	boton_Trabajo = addEntity();
+	boton_Trabajo->addComponent<Transform>(650, 400, 100, 300);
+	auto clickableBotonTrabajar = boton_Trabajo->addComponent<Clickeable>();
 	CallbackClickeable funcPress = [this]() {
 		gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
-	//hestia.addObjects(BotonTrabajo);
+
 }
 
 
@@ -122,7 +122,7 @@ void ecs::ExplorationScene::initDirectionsDefaultMap()
 
 	//Apolo
 	apolo.addDirections("Hermes", &hermes);
-	apolo.addDirections("Poseidon", &poseidon);
+	//apolo.addDirections("Poseidon", &poseidon);
 	//Poseidon
 	poseidon.addDirections("Apolo", &apolo);
 }
@@ -173,12 +173,18 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 	
 	if (placeDir != "Hestia") {
 
-		BotonTrabajo->setActive(false);
+		if (boton_Trabajo->isActive()) {
+			boton_Trabajo->setActive(false);
+		}
+		
 
 	}
 	else {
 
-		BotonTrabajo->setActive(true);
+		if (!boton_Trabajo->isActive()) {
+			boton_Trabajo->setActive(true);
+		}
+		
 
 	}
 	
@@ -251,7 +257,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 			// activamos los dialogos correspondientes
 			std::pair<const std::string, int> aux = data->getDialogueInfo();
 
-			dialogMngr_.setDialogues(generalData().stringToPersonaje(character), aux.first, aux.second);
+			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
 
 			textDialogue->addComponent<DialogComponent>(&dialogMngr_, this);
 
@@ -332,7 +338,7 @@ void ecs::ExplorationScene::createObjects(std::string place) {
 
 
 		}
-
+		
 	}
 	else if (place == "Artemisa") {
 		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
