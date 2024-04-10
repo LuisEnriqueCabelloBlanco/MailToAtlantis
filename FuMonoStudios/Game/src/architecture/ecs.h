@@ -29,6 +29,7 @@ namespace ecs {
 			IMAGEWITHLIGHT,
 			DELAYEDCALLBACK,
 			CLOCKAUX,
+			HOVERSENSOR,
 			// do not remove this
 			_LAST_CMP_ID
 		};

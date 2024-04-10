@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HoverSensorComponent.cpp" />
     <ClCompile Include="src\sistemas\SoundEmiter.cpp" />
     <ClCompile Include="src\components\RenderWithLight.cpp" />
     <ClCompile Include="src\QATools\DataCollector.cpp" />
@@ -208,6 +209,7 @@
     <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HoverSensorComponent.h" />
     <ClInclude Include="src\sistemas\SoundEmiter.h" />
     <ClInclude Include="src\components\RenderWithLight.h" />
     <ClInclude Include="src\QATools\DataCollector.h" />
