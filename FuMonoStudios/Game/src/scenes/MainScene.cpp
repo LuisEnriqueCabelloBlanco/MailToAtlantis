@@ -120,8 +120,6 @@ void ecs::MainScene::init()
 	sdlutils().musics().at("printer").play();
 	sdlutils().musics().at("printer").setMusicVolume(50);
 
-	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
-
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(generalData().getDia());
 
@@ -277,25 +275,27 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 	constexpr float DISTANCE_BETWEEN_TUBES = 220;
 	factory_->setLayer(ecs::layer::BACKGROUND);
 
+	auto tubeTexture = &sdlutils().images().at("tubo" + std::to_string(dist + 1));
 	Entity* tuboEnt = factory_->createImage(
 		Vector2D(TUBES_X_OFFSET + (DISTANCE_BETWEEN_TUBES * dist), -40),
 		Vector2D(TUBE_WIDTH, TUBE_HEITH),
-		&sdlutils().images().at("tubo" + std::to_string(dist + 1)));
+		tubeTexture);
 	if (unlock) {
-
+		tubeTexture->modColor(255, 255, 255);
+		tuboEnt->addComponent<HoverSensorComponent>();
 		Trigger* tuboTri = tuboEnt->addComponent<Trigger>();
 		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this);
-		tuboEnt->addComponent<HoverSensorComponent>();
 	}
 	else {
-		factory_->setLayer(layer::UI);
-		auto tubeTr = tuboEnt->getComponent<Transform>();
+		//factory_->setLayer(layer::UI);
+		/*auto tubeTr = tuboEnt->getComponent<Transform>();
 
 		auto cross = factory_->createImage(Vector2D(0, 120),
 			Vector2D(tubeTr->getWidth(), tubeTr->getWidth()),
 			&sdlutils().images().at("cruz"));
 
-		cross->getComponent<Transform>()->setParent(tubeTr);
+		cross->getComponent<Transform>()->setParent(tubeTr);*/
+		tubeTexture->modColor(100, 100, 100);
 
 	}
 }
@@ -330,11 +330,13 @@ void ecs::MainScene::createManual()
 	auto next = [manualRender]() {manualRender->nextTexture();};
 	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
 	right->getComponent<Transform>()->setParent(manualTransform);
+	factory_->addHoverColorMod(right);
 
 	auto previous = [manualRender]() {manualRender->previousTexture();};
 	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous);
 	left->getComponent<Transform>()->setParent(manualTransform);
 	left->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
+	factory_->addHoverColorMod(left);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 

@@ -11,6 +11,7 @@ namespace ecs {
 		enum cmpId : cmpId_t {
 			TRANSFORM = 0,
 			IMAGE,
+			HOVERSENSOR,
 			CTRL,
 			CLICKEABLE,
 			DRAGANDDROP,
@@ -29,7 +30,6 @@ namespace ecs {
 			IMAGEWITHLIGHT,
 			DELAYEDCALLBACK,
 			CLOCKAUX,
-			HOVERSENSOR,
 			// do not remove this
 			_LAST_CMP_ID
 		};
@@ -63,6 +63,7 @@ namespace ecs {
 		{
 			INACTIVE,
 			BACKGROUND,
+			LIGHT,
 			DEFAULT,
 			BIN,
 			MANUALSPACE,

@@ -2,8 +2,8 @@
 #include "../components/Transform.h"
 #include "../components/Render.h"
 #include "../components/Clickeable.h"
-
-
+#include <components/HoverSensorComponent.h>
+#include <components/RenderWithLight.h>
 
 ComonObjectsFactory::ComonObjectsFactory(ecs::Scene* sc):scene_(sc), destLayer_(ecs::layer::DEFAULT),fontName_("arial"){}
 ComonObjectsFactory::~ComonObjectsFactory()
@@ -47,7 +47,6 @@ ecs::Entity* ComonObjectsFactory::createLabel(const Vector2D& pos, const Vector2
 {
 	Texture* labelText = new Texture(sdlutils().renderer(), text, sdlutils().fonts().at(fontName_ + std::to_string(fontSize)), textColor, size.getX());
 	createdTextures.push_back(labelText);
-	
 	return createImage(pos, size, labelText);
 }
 
@@ -67,16 +66,46 @@ ecs::Entity* ComonObjectsFactory::createImage(const Vector2D& pos, Texture* text
 ecs::Entity* ComonObjectsFactory::createImageButton(const Vector2D& pos, const Vector2D& size, Texture* texture, CallbackClickeable call)
 {
 	auto entity = createImage(pos,size,texture);
-	auto click = entity->addComponent<Clickeable>();
-	click->addEvent(call);
+	makeButton(entity, call);
 	return entity;
 }
 
-ecs::Entity* ComonObjectsFactory::createTextuButton(const Vector2D& pos, const std::string text, int fontSize, CallbackClickeable call, SDL_Color textColor)
+ecs::Entity* ComonObjectsFactory::createTextuButton(const Vector2D& pos, const std::string text, int fontSize, CallbackClickeable call, 
+	SDL_Color textColor)
 {
 	auto entity = createLabel(pos, text, fontSize,textColor);
+	makeButton(entity, call);
+	return entity;
+}
+
+void ComonObjectsFactory::addHoverColorMod(ecs::Entity* entity, SDL_Color c)
+{
+	HoverSensorComponent* hover = entity->getComponent<HoverSensorComponent>();
+	if (hover== nullptr) {
+		hover = entity->addComponent<HoverSensorComponent>();
+	}
+	//posiblemente meter en un metodo que agregue esta propiedad
+	auto texture = entity->getComponent<RenderImage>()->getTexture();
+	hover->addInCall([texture, c]() {texture->modColor(c.r, c.g, c.b); });
+	hover->addOutCall([texture]() {texture->modColor(255, 255, 255); });
+}
+
+void ComonObjectsFactory::addHilghtOnHover(ecs::Entity* entity)
+{
+	//añade feeback al pasar el raton por encima
+	auto light = entity->addComponent<RenderWithLight>();
+	auto hover = entity->addComponent<HoverSensorComponent>();
+	hover->addInCall([light]() {light->lightOn(); });
+	hover->addOutCall([light]() {light->lightOff(); });
+
+	Clickeable* click = entity->getComponent<Clickeable>();
+	if(click != nullptr)
+		click->addEvent([light]() {light->lightOff(); });
+}
+
+void ComonObjectsFactory::makeButton(ecs::Entity* entity, CallbackClickeable call)
+{
 	auto click = entity->addComponent<Clickeable>();
 	click->addEvent(call);
-	return entity;
 }
 
