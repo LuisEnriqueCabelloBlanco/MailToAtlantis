@@ -92,6 +92,10 @@ void ComonObjectsFactory::addHoverColorMod(ecs::Entity* entity, SDL_Color c)
 
 void ComonObjectsFactory::addHilghtOnHover(ecs::Entity* entity)
 {
+	HoverSensorComponent* hover = entity->getComponent<HoverSensorComponent>();
+	if (hover == nullptr) {
+		hover = entity->addComponent<HoverSensorComponent>();
+	}
 	//añade feeback al pasar el raton por encima
 	auto light = entity->addComponent<RenderWithLight>();
 	auto hover = entity->addComponent<HoverSensorComponent>();
