@@ -20,6 +20,6 @@ public:
 
 private:
 	Transform* mTr_;
-	std::list<std::function<void()>> hoverCall_;
+	std::list<std::function<void()>> hoverCalls_;
 };
 
