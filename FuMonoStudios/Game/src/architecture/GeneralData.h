@@ -89,20 +89,15 @@ public:
 	/// </summary>
 	/// <param name="writePacages"></param>
 	/// <param name="wrongPacages"></param>
-	void updateMoney();
 	int getMoney() { return dinero_; }
 
 	void setFinalID(int final); //Cambia el ID del final
 	int getFinalID(); //Devuelve el id del final del juego
 
-	void setEventoID(int evento); //Cambia el ID del evento a ocurrir
-	int getEventoID(); //Devuelve el id del evento que ocurrir� en el juego
-
 	int getDia() { return dia_; }
 	void setDia(int dia) { dia_ = dia; updateDia(); }
-
 	void updateDia();
-	void updateDistrictsPerDay(int dia);
+
 	std::vector<std::string> getPlacesToActive() { return placesToActive_; }
 
 	void setTubesAmount(int tubos) { 
@@ -118,14 +113,6 @@ public:
 	int getFails() { return fails_; }
 	int getCorrects() { return corrects_; }
 
-	int getCharacterEventID(int p) {
-		return charactersEvents_[p];
-	}
-
-	void setCharacterEventID(int p, int e) {
-		charactersEvents_[p] = e;
-	}
-
 	//Quien borre el metodo de abajo le castro
 	void updateFelicidadPersonajes() {
 		for (int i = 0; i < 7; i++) {
@@ -137,10 +124,12 @@ public:
 	}
 
 	void resetFailsCorrects() { fails_ = 0; corrects_ = 0; }
+
 	void addPaqueteNPC(Paquete* p) { paquetesNPCs.push_back(p); }
 	bool areTherePaquetesNPC() { return paquetesNPCs.size() != 0; }
 	void resetPaquetesNPC() { while (areTherePaquetesNPC()) paquetesNPCs.pop_back(); }
 	Paquete* getPaqueteNPC() { Paquete* p = paquetesNPCs.back(); paquetesNPCs.pop_back(); return p; }
+
 	int getPaqueteLevel(); // Devuelve el lvl del paquete correspondiente al d�a
 	void setPaqueteLevel(int lvl);
 
@@ -151,9 +140,6 @@ public:
 	const std::string personajeToString(Personaje pers);
 	// convierte string a Personaje
 	Personaje stringToPersonaje(const std::string& pers);
-
-	// establece los datos del día a todos los npc
-	void setDayData();
 
 	// lee los datos de NPCs desde su JSON
 	void readNPCData();
@@ -166,6 +152,9 @@ public:
 private:
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }
+	void updateMoney();
+
+	void updateDistrictsPerDay(int dia);
 
 	// vector que contiene los datos de todos los 7 npc
 	std::vector<NPCdata*> npcData;
@@ -176,7 +165,6 @@ private:
 	int dinero_;
 	int failsMargin_;
 	int finalID_; //Variable int que define en la �ltima escena cu�l final se va a reproducir
-	int eventoID_; //Variable int que define cual evento especial de la historia deber� de ejecutarse
 	int dia_;
 	int paqueteLvl_ = 0; // de momento es 0
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,

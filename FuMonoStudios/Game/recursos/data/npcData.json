@@ -2,12 +2,14 @@
   "Vagabundo": {
     "Felicidad": "NoHabladoAun",
     "numMisionesAceptadas": 0,
-    "numMisionesParaMisionFinal": 13
+    "numMisionesParaMisionFinal": 13,
+    "numMisionesParaDarMejora": 4
   },
   "Secretario": {
     "Felicidad": "NoHabladoAun",
     "numMisionesAceptadas": 0,
-    "numMisionesParaMisionFinal": 7
+    "numMisionesParaMisionFinal": 7,
+    "numMisionesParaDarMejora": 4
   },
   "Campesino": {
     "Felicidad": "NoHabladoAun",

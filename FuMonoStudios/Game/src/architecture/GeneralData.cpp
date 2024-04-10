@@ -12,7 +12,6 @@ GeneralData::GeneralData()
 	// Esto habra que cargarlo desde un archivo de guardado
 	dinero_ = INITIAL_MONEY;
 	finalID_ = INITIAL_FINAL;
-	eventoID_ = INITIAL_EVENT; 
 	failsMargin_ = INITIAL_FAILS_MARGIN;
 	corrects_ = 0;
 	fails_ = 0;
@@ -54,16 +53,6 @@ int GeneralData::getFinalID() {
 	return finalID_;
 }
 
-void GeneralData::setEventoID(int evento) {
-	eventoID_ = evento;
-	std::cout << "El ID del evento es: " << eventoID_ << std::endl;
-}
-
-int GeneralData::getEventoID() {
-	std::cout << "El ID del evento que quieres obtener es: " << eventoID_ << std::endl;
-	return eventoID_;
-}
-
 void GeneralData::setRent(int rent) {
 	rent_ = rent;
 	std::cout << "el nuevo alquiler es: " << rent_ << std::endl;
@@ -77,9 +66,13 @@ int GeneralData::getRent() {
 
 void GeneralData::updateDia()
 {
-
 	placesToActive_.clear();
 	updateDistrictsPerDay(dia_);
+	// actualizar los datos para todos los npc
+	for (int i = 0; i < 7; i++)
+	{
+		npcData[i]->setupDayData();
+	}
 }
 
 void GeneralData::updateDistrictsPerDay(int dia)
@@ -155,7 +148,8 @@ void GeneralData::readNPCData() {
 			}
 			npcData.push_back(new NPCMenorData(stringToFelicidad(felicidadStr),diasDanEventos));
 		}
-		
+		delete jValueRoot;
+		jValueRoot = nullptr;
 	}
 	
 }
@@ -231,13 +225,6 @@ GeneralData::Felicidad GeneralData::stringToFelicidad(const std::string& str)
 		aux = Felicidad::NoHabladoAun;
 
 	return aux;
-}
-
-void GeneralData::setDayData() {
-	for (int i = 0; i < 7; i++)
-	{
-		npcData[i]->setupDayData();
-	}
 }
 
 // Struct NPCdata

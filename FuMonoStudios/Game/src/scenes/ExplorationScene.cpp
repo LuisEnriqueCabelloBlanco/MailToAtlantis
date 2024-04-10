@@ -20,8 +20,6 @@
 #include <QATools/DataCollector.h>
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
-
-	generalData().setDayData();
 	initPlacesDefaultMap();
 	generalData().updateDia();
 	updateNavegavility();

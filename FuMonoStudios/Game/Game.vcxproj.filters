@@ -187,6 +187,7 @@
     <None Include="recursos\data\dialogos.json" />
     <None Include="recursos\config\mail.destinatarios.json" />
     <None Include="recursos\config\sounds.json" />
+    <None Include="recursos\data\saveFile.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="recursos\images\Alimentos.png" />
