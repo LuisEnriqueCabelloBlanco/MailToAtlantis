@@ -119,7 +119,7 @@ void Wrap::update() {
 
 			if (SDL_PointInRect(&point, &tapeRect)) {
 
-				paqComp_->puntosRojos();
+				paqComp_->puntosRojos(0);
 				switch (routeSelectedID) {
 				case 0:
 					paqComp_->drawLines(0, "ruta1");

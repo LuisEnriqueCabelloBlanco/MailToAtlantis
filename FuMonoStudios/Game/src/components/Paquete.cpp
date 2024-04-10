@@ -109,11 +109,11 @@ void Paquete::sellarCalle(Calle sello, Transform* trSellador) {
 	}
 }
 
-void Paquete::puntosRojos() {
+void Paquete::puntosRojos(int routeID) {
 	Transform* paqTr = ent_->getComponent<Transform>();
 
 	// Creamos la entidad para el punto rojo
-	Texture* puntoRojoTex = &sdlutils().images().at("puntoRojo");
+	Texture* puntoRojoTex = &sdlutils().images().at("puntoVerde");
 	float scale = 0.2f;
 
 	if (puntoRojoTex != nullptr) {
