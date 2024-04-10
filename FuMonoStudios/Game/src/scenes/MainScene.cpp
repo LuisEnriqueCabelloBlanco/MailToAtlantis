@@ -26,6 +26,7 @@
 #include <QATools/DataCollector.h>
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
+#include <components/HoverSensorComponent.h>
 
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 {
@@ -284,6 +285,7 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 
 		Trigger* tuboTri = tuboEnt->addComponent<Trigger>();
 		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this);
+		tuboEnt->addComponent<HoverSensorComponent>();
 	}
 	else {
 		factory_->setLayer(layer::UI);

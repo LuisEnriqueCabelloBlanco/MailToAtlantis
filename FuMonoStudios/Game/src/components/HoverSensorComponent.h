@@ -11,15 +11,21 @@ public:
 	__CMP_DECL__(ecs::cmp::HOVERSENSOR)
 
 	HoverSensorComponent();
-	HoverSensorComponent(std::function<void()> hoverCall);
-	~HoverSensorComponent();
+	~HoverSensorComponent(); 
 
 	virtual void update() override;
 
-	void addCall(std::function<void()> hoverCall);
+	void initComponent() override;
+	void addInCall(std::function<void()> hoverCall);
+	void addOutCall(std::function<void()> hoverCall);
 
 private:
+	void activateInCalls();
+	void activateOutCalls();
+
+	bool inside_;
 	Transform* mTr_;
-	std::list<std::function<void()>> hoverCalls_;
+	std::list<std::function<void()>> inCalls_;
+	std::list<std::function<void()>> outCalls_;
 };
 
