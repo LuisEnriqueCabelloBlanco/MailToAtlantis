@@ -45,10 +45,10 @@ bool PipeManager::checkPackage(Paquete* pqt, pq::Distrito toDis)
 		//correct = pqt->bienSellado() && pqt->correctFragile() && checkConditions(pqt, toDis);
 		if (pqt->bienSellado() && pqt->correctFragile()) {
 			if (toDis == returnPipe_) {
-				correct = !checkConditions(pqt, toDis);
+				//correct = !checkConditions(pqt, toDis);
 			}
 			else {
-				correct = checkConditions(pqt, toDis);
+				correct = checkPipeConditions(pqt, toDis);
 			}
 		}
 		else {
@@ -62,6 +62,110 @@ bool PipeManager::checkPackage(Paquete* pqt, pq::Distrito toDis)
 		else {
 
 		}
+	}
+
+	return correct;
+}
+
+bool PipeManager::checkPipeConditions(Paquete* pqt, pq::Distrito toDis)
+{
+	bool correct;
+	SwappedPipe it = swappedPipes_[toDis];
+
+	/*
+	if (!blockedPipes_[toDis]) {
+		if (it.swapActive) {
+			if (it.changedDis == pqt->getDistrito()) {
+				correct = checkPipeRestrictions(pqt, it.changedDis);
+			}
+			else if (it.originalDis && toDis == pqt->getDistrito()) {
+				correct = checkPipeRestrictions(pqt, toDis);
+			}
+			else {
+				correct = false;
+			}
+		}
+		else {
+			if (toDis == pqt->getDistrito()) {
+				correct = checkPipeRestrictions(pqt, toDis);
+			}
+			else {
+				correct = false;
+			}
+		}
+	}
+	else {
+		correct = false;
+	}*/
+
+	return (!blockedPipes_[toDis] && ((it.swapActive && 
+			((it.changedDis == pqt->getDistrito() && checkPipeRestrictions(pqt, it.changedDis)) || 
+			(it.originalDis && toDis == pqt->getDistrito() && checkPipeRestrictions(pqt, toDis)))) || 
+			(!it.swapActive && toDis == pqt->getDistrito() && checkPipeRestrictions(pqt, toDis))));
+}
+
+bool PipeManager::checkPipeRestrictions(Paquete* pqt, pq::Distrito toDis)
+{
+	/*
+	if (bannedTypePipes_[toDis].first && pqt->getTipo() == bannedTypePipes_[toDis].second) {
+		correct = false;
+	}
+	else {
+		correct = checkWeightRestrictions(pqt, toDis);
+	}*/
+
+	return (!(bannedTypePipes_[toDis].first && pqt->getTipo() == bannedTypePipes_[toDis].second) && checkWeightRestrictions);
+}
+
+bool PipeManager::checkWeightRestrictions(Paquete* pqt, pq::Distrito toDis)
+{
+	bool correct;
+	WeightRestriction it = weightRestrictionTypes_[toDis];
+	pq::NivelPeso peso = pqt->getPeso();
+	
+	if (it.weightRestricted && peso != pq::Ninguno) {
+		if (it.singleType) {
+			if (pqt->getTipo() != it.typeToWeight) {
+				correct = true;
+			}
+			else {
+				if (it.minOrMax == 0 && it.x < peso) {
+					correct = true;
+				}
+				else if (it.minOrMax == 1 && it.x == peso) {
+					correct = true;
+				}
+				else if (it.minOrMax == 2 && it.x > peso) {
+					correct = true;
+				}
+				else if (it.minOrMax == 3 && it.x != peso) {
+					correct = true;
+				}
+				else {
+					correct = false;
+				}
+			}
+		}
+		else {
+			if (it.minOrMax == 0 && it.x < peso) {
+				correct = true;
+			}
+			else if (it.minOrMax == 1 && it.x == peso) {
+				correct = true;
+			}
+			else if (it.minOrMax == 2 && it.x > peso) {
+				correct = true;
+			}
+			else if (it.minOrMax == 3 && it.x != peso) {
+				correct = true;
+			}
+			else {
+				correct = false;
+			}
+		}
+	}
+	else {
+		correct = true;
 	}
 
 	return correct;

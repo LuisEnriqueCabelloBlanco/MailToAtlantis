@@ -38,7 +38,12 @@ public:
 	bool checkPackage(Paquete*, pq::Distrito);
 
 private:
-	bool checkConditions(Paquete*, pq::Distrito);
+	//Comprueba si la tubería está bloqueada o cambiada
+	bool checkPipeConditions(Paquete*, pq::Distrito);
+	//Comprueba restricciones de peso y tipo
+	bool checkPipeRestrictions(Paquete*, pq::Distrito);
+	//Comprueba las restriciones de peso
+	bool checkWeightRestrictions(Paquete*, pq::Distrito);
 
 	pq::Distrito returnPipe_;
 	std::vector<bool> blockedPipes_;
