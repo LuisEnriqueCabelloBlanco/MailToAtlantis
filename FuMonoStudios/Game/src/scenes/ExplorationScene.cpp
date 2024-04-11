@@ -26,8 +26,6 @@ ecs::ExplorationScene::ExplorationScene() :Scene(), numLugares(7)
 	generalData().updateDia();
 	updateNavegavility();
 	initDirectionsDefaultMap();
-	actualPlace_ = &lugares[pq::Distrito::Hestia];
-	createObjects(pq::Distrito::Hestia);
 	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 	canStartConversation = true;
 }
@@ -51,7 +49,9 @@ void ecs::ExplorationScene::init()
 		}
 	}
 	actualPlace_ = &lugares[pq::Distrito::Hestia];
-	createObjects(pq::Distrito::Hestia);
+	createPlaces();
+
+	lugares[pq::Distrito::Hestia].changeActivationObjects(true);
 
 	//boton ir a trabajar
 	boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
@@ -69,50 +69,6 @@ void ecs::ExplorationScene::initPlacesDefaultMap()
 		lugares.emplace_back(aux);
 
 	}
-
-	/*
-	//Hestia
-	hestia = Lugar(&sdlutils().images().at("hestia"), false);
-	places["Hestia"] = &hestia;
-
-	lugares.emplace_back(&hestia);
-
-	//Artemisa
-	artemisa = Lugar(&sdlutils().images().at("artemisa"), false);
-	places["Artemisa"] = &artemisa;
-
-	lugares.emplace_back(&artemisa);
-
-	//Hefesto
-	hefesto = Lugar(&sdlutils().images().at("hefesto"), false);
-	places["Hefesto"] = &hefesto;
-
-	lugares.emplace_back(&hefesto);
-
-	//Demeter
-	demeter = Lugar(&sdlutils().images().at("demeter"), false);
-	places["Demeter"] = &demeter;
-
-	lugares.emplace_back(&demeter);
-
-	//Hermes
-	hermes = Lugar(&sdlutils().images().at("hermes"), false);
-	places["Hermes"] = &hermes;
-
-	lugares.emplace_back(&hermes);
-
-	//Apolo
-	apolo = Lugar(&sdlutils().images().at("apolo"), false);
-	places["Apolo"] = &apolo;
-
-	lugares.emplace_back(&apolo);
-
-	//Posidon
-	poseidon = Lugar(&sdlutils().images().at("poseidon"), false);
-	places["Poseidon"] = &poseidon;
-
-	lugares.emplace_back(&poseidon);
-	*/
 	
 }
 
@@ -170,7 +126,7 @@ void ecs::ExplorationScene::update() {
 
 		for (int i = 0; i < size; ++i) {
 			navigate(generalData().fromDistritoToString(placeToGo[i]));
-			createObjects(placeToGo[i]);
+			lugares[placeToGo[i]].changeActivationObjects(true);
 			placeToGo.clear();
 		}
 		
@@ -186,6 +142,7 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 	
 	if (actualPlace_->navigate(placeDir)) {
 		actualPlace_ = actualPlace_->getPlaceFromDirection(placeDir);
+
 #ifdef QA_TOOLS
 		dataCollector().recordNavigation(placeDir);
 #endif // QA_TOOLS
@@ -233,7 +190,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	CallbackClickeable cosa = [this, place, placeID]() {
 		if (actualPlace_->navigate(place)) {
 			closeConversation();
-			actualPlace_->killObjects();
+			actualPlace_->changeActivationObjects(false);
 			placeToGo.push_back(placeID);
 			
 		}
@@ -323,6 +280,15 @@ void ecs::ExplorationScene::updateNavegavility()
 		setNavegabilityOfPlace(generalData().fromStringToDistrito(g));
 }
 
+void ecs::ExplorationScene::createPlaces() {
+	int prueba = 0;
+
+	for (int i = 0; i < numLugares; ++i) {
+		createObjects(i);
+	}
+
+}
+
 void ecs::ExplorationScene::createObjects(int place) {
 
 	auto& pl = config().places();
@@ -345,130 +311,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 
 	}
 
-	
-	
-	/*
-	if (place == "Demeter") {
-
-		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
-			
-			demeter.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
-
-
-		}
-
-		for (int i = 0; i < pl.at(place).myCharacters.size(); ++i) {
-
-			demeter.addObjects(createCharacter(pl.at(place).myCharacters[i].pos,
-				pl.at(place).myCharacters[i].name_, pl.at(place).myCharacters[i].scale_));
-
-
-		}
-	}
-	else if (place == "Hefesto")
-	{
-		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
-
-			hefesto.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
-
-
-		}
-
-		for (int i = 0; i < pl.at(place).myCharacters.size(); ++i) {
-
-			hefesto.addObjects(createCharacter(pl.at(place).myCharacters[i].pos,
-				pl.at(place).myCharacters[i].name_, pl.at(place).myCharacters[i].scale_));
-
-
-		}
-	}
-	else if (place == "Hestia") {
-		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
-			hestia.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
-
-		}
-
-		for (int i = 0; i < pl.at(place).myCharacters.size(); ++i) {
-
-			hestia.addObjects(createCharacter(pl.at(place).myCharacters[i].pos,
-				pl.at(place).myCharacters[i].name_, pl.at(place).myCharacters[i].scale_));
-
-
-		}
-		
-	}
-	else if (place == "Artemisa") {
-		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
-
-			artemisa.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
-
-
-		}
-
-		for (int i = 0; i < pl.at(place).myCharacters.size(); ++i) {
-
-			artemisa.addObjects(createCharacter(pl.at(place).myCharacters[i].pos,
-				pl.at(place).myCharacters[i].name_, pl.at(place).myCharacters[i].scale_));
-
-
-		}
-	}
-	else if (place == "Hermes") {
-		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
-
-			hermes.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
-
-
-		}
-
-		for (int i = 0; i < pl.at(place).myCharacters.size(); ++i) {
-
-			hermes.addObjects(createCharacter(pl.at(place).myCharacters[i].pos,
-				pl.at(place).myCharacters[i].name_, pl.at(place).myCharacters[i].scale_));
-
-
-		}
-	}
-	else if (place == "Apolo") {
-		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
-
-			apolo.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
-
-
-		}
-
-		for (int i = 0; i < pl.at(place).myCharacters.size(); ++i) {
-
-			apolo.addObjects(createCharacter(pl.at(place).myCharacters[i].pos,
-				pl.at(place).myCharacters[i].name_, pl.at(place).myCharacters[i].scale_));
-
-
-		}
-	}
-	else if (place == "Poseidon") {
-		for (int i = 0; i < pl.at(place).myArrows.size(); ++i) {
-
-			poseidon.addObjects(createNavegationsArrows(pl.at(place).myArrows[i].pos,
-				pl.at(place).myArrows[i].destination_, pl.at(place).myArrows[i].scale_, pl.at(place).myArrows[i].flip_));
-
-
-		}
-
-		for (int i = 0; i < pl.at(place).myCharacters.size(); ++i) {
-
-			poseidon.addObjects(createCharacter(pl.at(place).myCharacters[i].pos,
-				pl.at(place).myCharacters[i].name_, pl.at(place).myCharacters[i].scale_));
-
-
-		}
-	}
-	*/
+	lugares[place].changeActivationObjects(false);
 
 	// creamos la entidad caja dialogo
 	boxBackground = addEntity(ecs::layer::UI);
@@ -508,12 +351,12 @@ ecs::Lugar* ecs::Lugar::getPlaceFromDirection(std::string placeDir)
 	return directions_[placeDir];
 }
 
-void ecs::Lugar::killObjects()
+void ecs::Lugar::changeActivationObjects(bool state)
 {
 	for (auto& e : ents_) {
-		e->setAlive(false);
+		e->setActive(state);
 	}
-	ents_.clear();
+
 }
 
 void ecs::Lugar::addObjects(ecs::Entity* e)

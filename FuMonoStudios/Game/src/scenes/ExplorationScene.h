@@ -50,12 +50,7 @@ namespace ecs {
 		/// <returns></returns>
 		Texture* getTexture() const { return backGround_; };
 
-		/// <summary>
-		/// Mata (setAlive(false) los objetos del lugar para que se borren de la escena y los borra del vector
-		/// del lugar.
-		/// USAR ANTES DE NAVEGAR SI ES QUE SE PUEDE NAVEGAR
-		/// </summary>
-		void killObjects();
+		void changeActivationObjects(bool state);
 
 		/// <summary>
 		/// Crea los objetos del lugar actual al que te acabas de mover.
@@ -143,6 +138,8 @@ namespace ecs {
 		/// </summary>
 		void createObjects(int place);
 
+		void createPlaces();
+
 		/// <summary>
 		/// Metodo factoria para las flechas de navegacion
 		/// </summary>
@@ -172,19 +169,7 @@ namespace ecs {
 		std::vector<Lugar> lugares;
 
 		//Puntero al lugar actual
-		Lugar* actualPlace_;
-
-		//Luego hara un vector y un enum, son los lugares
-		/*
-		* Lugar hestia;
-		Lugar artemisa;
-		Lugar demeter;
-		Lugar hefesto;
-		Lugar hermes;
-		Lugar apolo;
-		Lugar poseidon;
-		*/
-		
+		Lugar* actualPlace_;	
 
 		int numLugares;
 
@@ -198,8 +183,6 @@ namespace ecs {
 		// entidades del dialogo
 		ecs::Entity* boxBackground;
 		ecs::Entity* textDialogue;
-
-		//std::unordered_map<std::string, Lugar*> places;
 
 		// flag para saber si podemos entablar dialogo
 		bool canStartConversation;
