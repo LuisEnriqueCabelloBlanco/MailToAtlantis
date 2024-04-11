@@ -177,6 +177,8 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 	{
 	case 1:
 
+		//if(GeneralData::instance()->getSelloMulticolor()) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina		
+
 		createStamp(SelloCalleA);
 
 		createInks();
@@ -254,6 +256,26 @@ void ecs::MainScene::createStamp(TipoHerramienta type)
 
 	Herramientas* herrSelladorA = stamp->addComponent<Herramientas>();
 	herrSelladorA->setFunctionality(type);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+}
+
+void ecs::MainScene::createMultipleStamp()
+{	
+	constexpr float STAMPSIZE = 1;
+
+	factory_->setLayer(layer::STAMP);
+	int type = 1;
+	auto stamp = factory_->createImage(Vector2D(600, 600),
+		Vector2D(sdlutils().images().at("sellador" + std::to_string(type)).width() * STAMPSIZE, sdlutils().images().at("sellador" + std::to_string(type)).height() * STAMPSIZE),
+		&sdlutils().images().at("sellador" + std::to_string(type)));
+
+	stamp->addComponent<Gravity>();
+	stamp->addComponent<Depth>();
+	stamp->addComponent<DragAndDrop>("arrastrar");
+
+	Herramientas* herrSelladorA = stamp->addComponent<Herramientas>();
+	herrSelladorA->setFunctionality(SelloMultiColor);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 }

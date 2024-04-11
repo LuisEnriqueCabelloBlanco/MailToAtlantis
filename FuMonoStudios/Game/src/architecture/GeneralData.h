@@ -163,6 +163,10 @@ public:
 	NPCdata* getNPCData(Personaje personaje);
 	inline int getCurrentDay() { return dia_; };
 
+	//Los métodos para acceder a las herramientas que te pueden dar los NPCs
+	void aquireSelloMulticolor() { selloMulticolor = true; }
+	bool getSelloMulticolor() { return selloMulticolor; }
+
 private:
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }
@@ -187,6 +191,10 @@ private:
 	int charactersEvents_[7]; // Recoge los eventos de paquete de cada personaje
 	std::vector<Paquete*> paquetesNPCs;
 	std::vector<std::string> placesToActive_;
+
+	//Aqui van las variables que indican si se han conseguido las herramientas especiales de los NPCs
+	bool selloMulticolor = false;
+
 };
 
 inline GeneralData& generalData() {
