@@ -18,6 +18,7 @@ namespace ecs {
 	/// moverte por el mapa) y un getTexture (se usa para renderizar el background en el mapa).
 	/// No hay destructora porque no se genera nueva memoria din�mica.
 	/// </summary>
+	/// 
 	struct Lugar {
 	public:
 		//constructoras
@@ -72,6 +73,8 @@ namespace ecs {
 		/// </summary>
 		/// <param name="value"></param>
 		void setNavegability(bool value = true);
+
+
 
 	private:
 		//Puntero a la textura del fondo
@@ -138,12 +141,14 @@ namespace ecs {
 		/// Crea los objetos del lugar actual al que te acabas de mover.
 		/// USAR DESPUES DE HABER NAVEGADO
 		/// </summary>
-		void createObjects(std::string place);
+		void createObjects(int place);
 
 		/// <summary>
 		/// Metodo factoria para las flechas de navegacion
 		/// </summary>
-		ecs::Entity* createNavegationsArrows(Vector2D pos, std::string placeDir, float scale, int flip);
+		ecs::Entity* createNavegationsArrows(Vector2D pos, std::string place, float scale, int flip);
+
+		ecs::Entity* createWorkButton(Vector2D pos, Vector2D scale);
 
 		/// <summary>
 		/// Metodo factoria para characters
@@ -154,7 +159,7 @@ namespace ecs {
 		/// </summary>
 		/// <param name="placeDir"></param>
 		/// <param name="value"></param>
-		void setNavegabilityOfPlace(std::string place, bool value = true);
+		void setNavegabilityOfPlace(int place, bool value = true);
 
 		/// <summary>
 		/// Método para actualizar la navegabilidad según el día
@@ -162,30 +167,39 @@ namespace ecs {
 		void updateNavegavility();
 		ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
         
+		//VARIABLES
+
+		std::vector<Lugar> lugares;
+
 		//Puntero al lugar actual
 		Lugar* actualPlace_;
 
 		//Luego hara un vector y un enum, son los lugares
+		/*
+		* Lugar hestia;
+		Lugar artemisa;
 		Lugar demeter;
 		Lugar hefesto;
-		Lugar hestia;
-		Lugar artemisa;
 		Lugar hermes;
 		Lugar apolo;
 		Lugar poseidon;
+		*/
+		
+
+		int numLugares;
 
 		//rect para renderizar el BackGround
 		SDL_Rect rect_;
 
 		DialogManager dialogMngr_;
 
-		std::vector<std::string> placeToGo;
+		std::vector<int> placeToGo;
 	
 		// entidades del dialogo
 		ecs::Entity* boxBackground;
 		ecs::Entity* textDialogue;
 
-		std::unordered_map<std::string, Lugar*> places;
+		//std::unordered_map<std::string, Lugar*> places;
 
 		// flag para saber si podemos entablar dialogo
 		bool canStartConversation;
