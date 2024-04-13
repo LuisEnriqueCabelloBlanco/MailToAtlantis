@@ -285,6 +285,7 @@ void ecs::TutorialScene::createGarbage()
 void ecs::TutorialScene::activateGarbage() {
 	Trigger* papTrig = garbage_->addComponent<Trigger>();
 	papTrig->addCallback([this](ecs::Entity* e) {
+		if(e->getComponent<Paquete>() != nullptr)
 		tutorialSys_->registerAction(TutorialSystem::Basura);
 		});
 	garbage_->addComponent<PackageChecker>(Erroneo, this);

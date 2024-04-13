@@ -38,6 +38,15 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 			ent_->getComponent<MoverTransform>()->enable();
 			};
 		break;
+	case SelloMultiColor:
+		funcion_ = [this](ecs::Entity* paq) {
+			Paquete* paqComp = paq->getComponent<Paquete>();
+			paqComp->sellarCalle(paq->getComponent<Paquete>()->getCalle(), ent_->getComponent<Transform>());
+			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
+			ent_->getComponent<MoverTransform>()->enable();
+			};
+		break;
+	
 	}
 	std::cout << "El tipo de herramienta es: " << tipo << std::endl;
 }

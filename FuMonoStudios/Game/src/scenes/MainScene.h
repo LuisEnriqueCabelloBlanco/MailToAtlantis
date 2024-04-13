@@ -26,6 +26,7 @@ namespace ecs {
         void createManual();
         void createMiniManual();
         void createSpaceManual();
+        void createMultipleStamp();
 
         //void createTubo(Paquete::Distrito dist, bool desbloqueado);
 
