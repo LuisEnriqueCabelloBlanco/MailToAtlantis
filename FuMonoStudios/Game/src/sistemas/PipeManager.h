@@ -44,6 +44,10 @@ private:
 	bool checkPipeRestrictions(Paquete*, pq::Distrito);
 	//Comprueba las restriciones de peso
 	bool checkWeightRestrictions(Paquete*, pq::Distrito);
+	//Comprueba si es imposible mandar un paquete correcto (por ejemplo, si su destino está bloqueado)
+	bool checkReturningConditions(Paquete*);
+	//Comprueba si alguna tuberia de las cambiadas es la del distrito del paquete
+	bool checkSwappedPipes(Paquete*);
 
 	pq::Distrito returnPipe_;
 	std::vector<bool> blockedPipes_;

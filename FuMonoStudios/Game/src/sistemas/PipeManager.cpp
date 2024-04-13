@@ -39,13 +39,12 @@ bool PipeManager::checkPackage(Paquete* pqt, pq::Distrito toDis)
 		//Si el paquete es incorrecto comprueba que esté en la papelera
 			//Si lo está, devuelve true
 			//Si no, es un buen paquete en la basura y devuelve false D:
-	bool correct = pqt->correcto();
 
+	/*
 	if (correct) {
-		//correct = pqt->bienSellado() && pqt->correctFragile() && checkConditions(pqt, toDis);
 		if (pqt->bienSellado() && pqt->correctFragile()) {
 			if (toDis == returnPipe_) {
-				//correct = !checkConditions(pqt, toDis);
+				correct = checkReturningConditions(pqt);
 			}
 			else {
 				correct = checkPipeConditions(pqt, toDis);
@@ -60,11 +59,14 @@ bool PipeManager::checkPackage(Paquete* pqt, pq::Distrito toDis)
 			correct = true;
 		}
 		else {
-
+			correct = false;
 		}
-	}
+	} */
 
-	return correct;
+	return ((!pqt->correcto() && toDis == returnPipe_) || //Si el paquete es incorrecto que se envie a la tubería que actua de papelera
+		pqt->correcto() && (pqt->bienSellado() && pqt->correctFragile() &&	//Si es correcto si comprueba si está sellado y protegido si fragil
+		((toDis == returnPipe_ && checkReturningConditions(pqt)) ||		//Si es correcto pero se ha devuelto, comprueba si estaba bloqueado
+		(toDis != returnPipe_ && checkPipeConditions(pqt, toDis)))));	//Si es correcto, comprueba que se haya mandado correctamente
 }
 
 bool PipeManager::checkPipeConditions(Paquete* pqt, pq::Distrito toDis)
@@ -98,10 +100,11 @@ bool PipeManager::checkPipeConditions(Paquete* pqt, pq::Distrito toDis)
 		correct = false;
 	}*/
 
-	return (!blockedPipes_[toDis] && ((it.swapActive && 
-			((it.changedDis == pqt->getDistrito() && checkPipeRestrictions(pqt, it.changedDis)) || 
-			(it.originalDis && toDis == pqt->getDistrito() && checkPipeRestrictions(pqt, toDis)))) || 
-			(!it.swapActive && toDis == pqt->getDistrito() && checkPipeRestrictions(pqt, toDis))));
+	return (!blockedPipes_[toDis] && //Comprueba si la tubería está bloqueada
+			((it.swapActive &&		 //"" "" "" "" está cambiada 	
+			((it.changedDis == pqt->getDistrito() && checkPipeRestrictions(pqt, it.changedDis)) ||		//Comprueba si la tubería cambiada es correcta
+			(it.originalDis && toDis == pqt->getDistrito() && checkPipeRestrictions(pqt, toDis)))) ||	//Comprueba si el destino original es correcto
+			(!it.swapActive && toDis == pqt->getDistrito() && checkPipeRestrictions(pqt, toDis))));		//Comprueba si no está cambiada si es correcto
 }
 
 bool PipeManager::checkPipeRestrictions(Paquete* pqt, pq::Distrito toDis)
@@ -123,6 +126,7 @@ bool PipeManager::checkWeightRestrictions(Paquete* pqt, pq::Distrito toDis)
 	WeightRestriction it = weightRestrictionTypes_[toDis];
 	pq::NivelPeso peso = pqt->getPeso();
 	
+	/*
 	if (it.weightRestricted && peso != pq::Ninguno) {
 		if (it.singleType) {
 			if (pqt->getTipo() != it.typeToWeight) {
@@ -166,7 +170,42 @@ bool PipeManager::checkWeightRestrictions(Paquete* pqt, pq::Distrito toDis)
 	}
 	else {
 		correct = true;
+	}*/
+
+	return (!it.weightRestricted || peso == pq::Ninguno || 
+		((it.singleType && pqt->getTipo() != it.typeToWeight) ||
+		((it.minOrMax == 0 && it.x < peso) || (it.minOrMax == 1 && it.x == peso) ||
+		(it.minOrMax == 2 && it.x > peso) || (it.minOrMax == 3 && it.x != peso))));
+}
+
+bool PipeManager::checkReturningConditions(Paquete* pqt)
+{
+	bool blocked;
+	pq::Distrito objDis = pqt->getDistrito();
+	SwappedPipe it = swappedPipes_[objDis];
+
+	if (blockedPipes_[objDis] || (it.swapActive && !it.originalDis)) {
+		if (checkSwappedPipes(pqt)) {
+			blocked = !checkPipeRestrictions(pqt, objDis);
+		}
+		else {
+			blocked = true;
+		}
+	}
+	else {
+		blocked = !checkPipeRestrictions(pqt, objDis);
 	}
 
-	return correct;
+	return blocked;
+}
+
+bool PipeManager::checkSwappedPipes(Paquete* pqt)
+{
+	int i = 0;
+	pq::Distrito objDis = pqt->getDistrito();
+
+	while (i < 7 && (!swappedPipes_[i].swapActive || (swappedPipes_[i].swapActive && swappedPipes_[i].changedDis != objDis))) {
+		i++;
+	}
+	return i == 7;
 }
