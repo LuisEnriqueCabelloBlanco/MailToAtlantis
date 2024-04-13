@@ -165,7 +165,7 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 		}
 
-	});
+	}, generalData().DropIn);
 
 }
 
@@ -427,7 +427,7 @@ void ecs::MainScene::createMiniManual() {
 			
 		}
 
-	});
+	}, generalData().DropIn);
 
 
 	factory_->setLayer(ecs::layer::DEFAULT);
@@ -467,7 +467,7 @@ void ecs::MainScene::createSpaceManual() {
 
 		}
 
-	});
+	}, generalData().DropIn);
 	
 
 	factory_->setLayer(ecs::layer::DEFAULT);

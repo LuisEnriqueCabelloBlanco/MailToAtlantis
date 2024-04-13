@@ -7,6 +7,7 @@
 #include "../architecture/Entity.h"
 #include "../sdlutils/InputHandler.h"
 #include <architecture/GameConstants.h>
+#include "../architecture/GeneralData.h"
 #include "../sistemas/SoundEmiter.h"
 
 #include <SDL.h>
@@ -76,14 +77,14 @@ void DragAndDrop::update() {
 				dragging_ = true;
 
 				if (usingOwnCallback_) {
-					tri_->activateCallbacksPickUp(nullptr);
+					tri_->activateCallbacks(nullptr, generalData().PickUp);
 				}
 				else {
 
 					if (!usingOnlyClosestEnt_)
-						tri_->activateEventsFromEntities();
+						tri_->activateEventsFromEntities(generalData().PickUp);
 					else
-						tri_->activateEventFromClosestEntity();
+						tri_->activateEventFromClosestEntity(generalData().PickUp);
 
 				}
 
@@ -111,14 +112,14 @@ void DragAndDrop::update() {
 				// si no tenemos activado el activar solo al mas cercano
 
 				if (usingOwnCallback_) {
-					tri_->activateCallbacks(nullptr);
+					tri_->activateCallbacks(nullptr, generalData().DropIn);
 				}
 				else {
 
 					if (!usingOnlyClosestEnt_)
-						tri_->activateEventsFromEntities();
+						tri_->activateEventsFromEntities(generalData().DropIn);
 					else
-						tri_->activateEventFromClosestEntity();
+						tri_->activateEventFromClosestEntity(generalData().DropIn);
 
 				}
 
