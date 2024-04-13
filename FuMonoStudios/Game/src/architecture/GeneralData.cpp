@@ -22,6 +22,14 @@ GeneralData::GeneralData()
 	for (auto upg : upgrades_) {
 		upg = false;
 	}
+	//upgrades_[ecs::upg::MONEY_UPGRADE] = true;
+
+	/*if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
+		std::cout << "Mejora de dinero desbloqueada" << std::endl;
+	}
+	else {
+		std::cout << "Mejora de dinero NO desbloqueada" << std::endl;
+	}*/
 
 	readNPCData();
 }
@@ -44,7 +52,13 @@ void GeneralData::updateMoney(int correct, int wrong)
 	if (correct < 0) {
 		rightPackages = 0;
 	}
-	dinero_ += rightPackages * WRITE_PACAGES_VALUE - wrongPackages * WRONG_PACAGES_VALUE;
+
+	if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
+		dinero_ += rightPackages * (WRITE_PACAGES_VALUE + 10) - wrongPackages * WRONG_PACAGES_VALUE;
+	}
+	else {
+		dinero_ += rightPackages * WRITE_PACAGES_VALUE - wrongPackages * WRONG_PACAGES_VALUE;
+	}
 }
 
 //A medida que el proyecto avance, la lista de variables deber� de ampliarse, pero por ahora tenemos esto:
