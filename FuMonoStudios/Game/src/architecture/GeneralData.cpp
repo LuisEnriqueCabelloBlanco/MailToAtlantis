@@ -30,7 +30,7 @@ GeneralData::GeneralData()
 	else {
 		std::cout << "Mejora de dinero NO desbloqueada" << std::endl;
 	}*/
-
+	std::cout << "Tamanyo vector de mejoras: " << upgrades_.size() << std::endl;
 	readNPCData();
 }
 

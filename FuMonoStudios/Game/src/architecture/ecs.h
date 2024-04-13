@@ -58,6 +58,7 @@ namespace ecs {
 	namespace upg {
 		enum upgradeId : scUpg_t {
 			MONEY_UPGRADE,
+			SELLO_UPGRADE,
 			_LAST_UPGRADE
 		};
 		constexpr upgradeId maxUpgradeId = _LAST_UPGRADE;
