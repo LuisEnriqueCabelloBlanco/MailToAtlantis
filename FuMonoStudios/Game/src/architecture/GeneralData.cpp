@@ -6,6 +6,8 @@
 #include "../json/JSON.h"
 #include "../json/JSONValue.h"
 #include "../sdlutils/RandomNumberGenerator.h"
+#include "../sistemas/PaqueteBuilder.h"
+#include "Game.h"
 
 GeneralData::GeneralData()
 {
@@ -135,6 +137,87 @@ void GeneralData::readNPCData() {
 		if (i < 2) // npc grandes
 		{
 			npcData.push_back(new NPCMayorData(stringToFelicidad(felicidadStr)));
+
+			// leemos los eventos
+			JSONObject eventObject = jObject["Eventos"]->AsObject();
+			allEventsNPCs.emplace((Personaje)i, std::vector<NPCevent*>());
+
+			// Hay 3 tipos de eventos. 
+			// 1- Los especiales, que necesitan sus propias lineas
+			// de codigo y se marcan poniendo un "special" y luego el numero de special.
+			// Este tipo es util para paquetes con sprites especiales o los del dia 14.
+			// 2- El que tiene los paquetes prehechos, marcado por un array "paquetes" que
+			// hace los paquetes tal cual estan puestos. Este es util cuando los paquetes
+			// son muy distintos.
+			// 3- Y el condiciones, que hace que todos sus paquetes sean random, pero luego
+			// añade sus condicones especiales. Esto es util cuando quieres que sean muy
+			// similares los paquetes
+			for (int j = 0; j < 3; j++)
+			{
+				NPCevent* auxEvent = new NPCevent();
+
+				JSONObject currentEvent = eventObject.find(std::to_string(j + 1))->second->AsObject();
+				auto isSpecial = currentEvent.find("special");
+				if (isSpecial != currentEvent.end())
+				{
+					JSONObject obj = isSpecial->second->AsObject();
+					// ES ESPECIAL
+					int numSpecial = obj.find("special")->second->AsNumber();
+					switch (numSpecial) {
+					case 1:
+						break;
+					}
+				}
+				auto isPremadePaquete = currentEvent.find("paquetes");
+				if (isPremadePaquete != currentEvent.end())
+				{
+					JSONObject obj = isPremadePaquete->second->AsObject();
+					
+					for (auto paq : obj) {
+						JSONObject paqueteConditions = paq.second->AsObject();
+						PaqueteBuilder paqBuild(Game::instance()->getScene(ecs::sc::MAIN_SCENE));
+						
+						std::string rem = paqBuild.remitenteRND();
+						auto hasRemitente = paqueteConditions.find("remitente");
+						if (hasRemitente != paqueteConditions.end())
+							rem = hasRemitente->second->AsString();
+
+						Distrito dist = (Distrito)sdlutils().rand().nextInt(0,getTubesAmount());
+						auto hasDistrito = paqueteConditions.find("distrito");
+						if (hasDistrito != paqueteConditions.end())
+						{
+							std::string aux = hasDistrito->second->AsString();
+							if (aux == "Hestia")
+								dist == Hestia;
+							else if (aux == "Artemisa")
+								dist == Artemisa;
+							else if (aux == "Demeter")
+								dist == Demeter;
+							else if (aux == "Hefesto")
+								dist == Hefesto;
+							else if (aux == "Hermes")
+								dist == Hermes;
+							else if (aux == "Apolo")
+								dist == Apolo;
+							else if (aux == "Poseidon")
+								dist == Poseidon;
+							else if (aux == "Erroneo")
+								dist == Erroneo;
+						}
+
+						Calle calle = (Calle)sdlutils().rand().nextInt(0, 3);
+						auto hasCalle = paqueteConditions.find("calle");
+						if (hasCalle != paqueteConditions.end())
+						{
+
+						}
+
+
+						//Paquete* paquete = new Paquete();
+					}
+				}
+			}
+
 		}
 		else
 		{
@@ -151,7 +234,6 @@ void GeneralData::readNPCData() {
 		delete jValueRoot;
 		jValueRoot = nullptr;
 	}
-	
 }
 
 void GeneralData::writeNPCData() {
@@ -297,7 +379,7 @@ std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
 
 void GeneralData::NPCMenorData::setupDayData() {
 	iteration = 1;
-	giveEvent = diasDanEvento[generalData().getDia() - 1];
+	giveEvent = diasDanEvento[generalData().getDay() - 1];
 }
 
 void GeneralData::NPCMenorData::activateEvent(){
@@ -336,7 +418,7 @@ std::pair<const std::string, int> GeneralData::NPCMayorData::getDialogueInfo() {
 		default:
 			aux = postConversation ?
 				"PostConversacionDia" : "Dia";
-			aux = aux + std::to_string(generalData().getDia());
+			aux = aux + std::to_string(generalData().getDay());
 			postConversation = true;
 			break;
 	}

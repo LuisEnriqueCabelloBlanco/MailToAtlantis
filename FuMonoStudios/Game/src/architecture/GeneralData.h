@@ -5,11 +5,9 @@
 #include "GameConstants.h"
 #include <vector>
 
-struct DatosPersonajes {
-	pers::Personajes p;
-	pers::EstadosDeFelicidad f;
-};
 class DialogManager;
+class PaqueteBuilder;
+class Game;
 
 class GeneralData : public Singleton<GeneralData>
 {
@@ -79,8 +77,39 @@ public:
 	private:
 		bool postConversation;
 	};
-#pragma endregion
 
+	struct NPCevent {
+		bool completed = false;
+		int numPaquetes;
+		int numPaquetesToComplete;
+		std::vector<Paquete*> paquetes;
+
+		void paqueteSuccesful() {
+			paquetesDone++;
+			completed = paquetesDone >= numPaquetesToComplete;
+		};
+	private:
+		int paquetesDone = 0;
+	};
+	// METODOS DE NPCdata
+
+	void readNPCData();
+	void writeNPCData();
+
+	NPCdata* getNPCData(Personaje personaje);
+
+	void addPaqueteNPC(Paquete* p) { paquetesNPCs.push_back(p); }
+	bool areTherePaquetesNPC() { return paquetesNPCs.size() != 0; }
+	void resetPaquetesNPC() { while (areTherePaquetesNPC()) paquetesNPCs.pop_back(); }
+	Paquete* getPaqueteNPC() { Paquete* p = paquetesNPCs.back(); paquetesNPCs.pop_back(); return p; }
+private:
+	std::vector<NPCevent*> activeEventsNPCs;
+	std::unordered_map<Personaje, std::vector<NPCevent*>> allEventsNPCs;
+	std::vector<Paquete*> paquetesNPCs;
+	// vector que contiene los datos de todos los 7 npc
+	std::vector<NPCdata*> npcData;
+#pragma endregion
+public:
 	GeneralData();
 	~GeneralData();
 
@@ -94,8 +123,8 @@ public:
 	void setFinalID(int final); //Cambia el ID del final
 	int getFinalID(); //Devuelve el id del final del juego
 
-	int getDia() { return dia_; }
-	void setDia(int dia) { dia_ = dia; updateDia(); }
+	int getDay() { return dia_; }
+	void setDay(int dia) { dia_ = dia; updateDia(); }
 	void updateDia();
 
 	std::vector<std::string> getPlacesToActive() { return placesToActive_; }
@@ -104,31 +133,13 @@ public:
 		if (tubos >= 7) numTubos_ = 7;
 		else numTubos_ = tubos; 
 	} // Aumenta el numero de tubos en el minijuego cuando se requiera (podría llamarse automáticamente
-														  // desde setDia modificado). Que jose lo haga cuando se sepan los días en los que un distrito y su tubo se desbloquean
+	// desde setDia modificado). Que jose lo haga cuando se sepan los días en los que un distrito y su tubo se desbloquean
 	int getTubesAmount() { return numTubos_; }
-
 	void correctPackage() { corrects_++; }
 	void wrongPackage() { fails_++; }
-
 	int getFails() { return fails_; }
 	int getCorrects() { return corrects_; }
-
-	//Quien borre el metodo de abajo le castro
-	void updateFelicidadPersonajes() {
-		for (int i = 0; i < 7; i++) {
-			charactersData_[i].p = felicidad().getPersonaje(i);
-			charactersData_[i].f = felicidad().interpretaFel(charactersData_[i].p);
-			std::cout << "El personaje es: " << charactersData_[i].p << std::endl;
-			std::cout << "Y su felicidad es: " << charactersData_[i].f << std::endl;
-		}
-	}
-
 	void resetFailsCorrects() { fails_ = 0; corrects_ = 0; }
-
-	void addPaqueteNPC(Paquete* p) { paquetesNPCs.push_back(p); }
-	bool areTherePaquetesNPC() { return paquetesNPCs.size() != 0; }
-	void resetPaquetesNPC() { while (areTherePaquetesNPC()) paquetesNPCs.pop_back(); }
-	Paquete* getPaqueteNPC() { Paquete* p = paquetesNPCs.back(); paquetesNPCs.pop_back(); return p; }
 
 	int getPaqueteLevel(); // Devuelve el lvl del paquete correspondiente al d�a
 	void setPaqueteLevel(int lvl);
@@ -136,28 +147,15 @@ public:
 	int getRent();
 	void setRent(int rent);
 
-	// convierte Personaje a string
 	const std::string personajeToString(Personaje pers);
-	// convierte string a Personaje
 	Personaje stringToPersonaje(const std::string& pers);
 
-	// lee los datos de NPCs desde su JSON
-	void readNPCData();
-	// escribe los datos de NPCs a su JSON
-	void writeNPCData();
-
-	NPCdata* getNPCData(Personaje personaje);
-	inline int getCurrentDay() { return dia_; };
-
+	void updateMoney();
 private:
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }
-	void updateMoney();
 
 	void updateDistrictsPerDay(int dia);
-
-	// vector que contiene los datos de todos los 7 npc
-	std::vector<NPCdata*> npcData;
 
 	int fails_;
 	int corrects_;
@@ -170,10 +168,6 @@ private:
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
 	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo
 	int numTubos_; // Numero de tubos que habrán en el minijuego de paquetes
-	//Quien borre lo de abajo le castro Julian: A bocaos bebé
-	DatosPersonajes charactersData_[7]; // Recoge la felicidad de cada personaje
-	int charactersEvents_[7]; // Recoge los eventos de paquete de cada personaje
-	std::vector<Paquete*> paquetesNPCs;
 	std::vector<std::string> placesToActive_;
 };
 

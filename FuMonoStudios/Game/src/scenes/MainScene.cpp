@@ -122,7 +122,7 @@ void ecs::MainScene::init()
 	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
-	updateToolsPerDay(generalData().getDia());
+	updateToolsPerDay(generalData().getDay());
 
 }
 
@@ -482,7 +482,7 @@ void ecs::MainScene::makeDataWindow()
 	data = "Pacage Level: " + std::to_string(generalData().getPaqueteLevel());
 	ImGui::Text(data.c_str());
 	//Dia acutual del juego
-	data = "Current day: " + std::to_string(GeneralData::instance()->getCurrentDay());
+	data = "Current day: " + std::to_string(GeneralData::instance()->getDay());
 	ImGui::Text(data.c_str());
 	ImGui::End();
 }

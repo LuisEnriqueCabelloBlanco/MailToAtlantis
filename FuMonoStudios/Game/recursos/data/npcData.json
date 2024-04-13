@@ -3,13 +3,116 @@
     "Felicidad": "NoHabladoAun",
     "numMisionesAceptadas": 0,
     "numMisionesParaMisionFinal": 13,
-    "numMisionesParaDarMejora": 4
+    "numMisionesParaDarMejora": 4,
+    "Eventos":{
+      "1":{
+        "numPaquetes": 3,
+        "paquetes":{
+          "1":{
+            "remitente": "nashe",
+            "distrito": "Hestia",
+            "calle": "C1",
+            "tipoPaquete": "Armamento",
+            "peso": "Bajo",
+            "pesoKG": 5,
+            "fragil": "true"
+          }
+        }
+      },
+      "2":{
+        "numPaquetes": 3,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "3":{
+        "numPaquetes": 1,
+        "special" : 1
+      },
+      "4":{
+        "numPaquetes": 1
+      },
+      "5":{
+        "numPaquetes": 1
+      },
+      "6":{
+        "numPaquetes": 1
+      },
+      "7":{
+        "numPaquetes": 1
+      },
+      "8":{
+        "numPaquetes": 1
+      },
+      "9":{
+        "numPaquetes": 1
+      },
+      "10":{
+        "numPaquetes": 1
+      },
+      "11":{
+        "numPaquetes": 1
+      },
+      "12":{
+        "numPaquetes": 1
+      },
+      "13":{
+        "numPaquetes": 1
+      },
+      "14":{
+        "numPaquetes": 1
+      }
+    }
   },
   "Secretario": {
     "Felicidad": "NoHabladoAun",
     "numMisionesAceptadas": 0,
     "numMisionesParaMisionFinal": 7,
-    "numMisionesParaDarMejora": 4
+    "numMisionesParaDarMejora": 4,
+    "Eventos":{
+      "1":{
+        "numPaquetes": 1
+      },
+      "2":{
+        "numPaquetes": 1
+      },
+      "3":{
+        "numPaquetes": 1
+      },
+      "4":{
+        "numPaquetes": 1
+      },
+      "5":{
+        "numPaquetes": 1
+      },
+      "6":{
+        "numPaquetes": 1
+      },
+      "7":{
+        "numPaquetes": 1
+      },
+      "8":{
+        "numPaquetes": 1
+      },
+      "9":{
+        "numPaquetes": 1
+      },
+      "10":{
+        "numPaquetes": 1
+      },
+      "11":{
+        "numPaquetes": 1
+      },
+      "12":{
+        "numPaquetes": 1
+      },
+      "13":{
+        "numPaquetes": 1
+      },
+      "14":{
+        "numPaquetes": 1
+      }
+    }
   },
   "Campesino": {
     "Felicidad": "NoHabladoAun",
