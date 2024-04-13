@@ -117,7 +117,7 @@ bool PipeManager::checkPipeRestrictions(Paquete* pqt, pq::Distrito toDis)
 		correct = checkWeightRestrictions(pqt, toDis);
 	}*/
 
-	return (!(bannedTypePipes_[toDis].first && pqt->getTipo() == bannedTypePipes_[toDis].second) && checkWeightRestrictions);
+	return (!(bannedTypePipes_[toDis].first && pqt->getTipo() == bannedTypePipes_[toDis].second) && checkWeightRestrictions(pqt, toDis));
 }
 
 bool PipeManager::checkWeightRestrictions(Paquete* pqt, pq::Distrito toDis)
