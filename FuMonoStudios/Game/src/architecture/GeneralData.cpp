@@ -18,6 +18,10 @@ GeneralData::GeneralData()
 	fails_ = 0;
 	dia_ = 1;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
+	upgrades_.resize(ecs::upg::_LAST_UPGRADE);
+	for (auto upg : upgrades_) {
+		upg = false;
+	}
 
 	readNPCData();
 }

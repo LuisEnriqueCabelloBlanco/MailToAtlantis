@@ -53,6 +53,16 @@ namespace ecs {
 		constexpr sceneId maxSceneId = _LAST_SCENE;
 	}
 
+	using scUpg_t = uint8_t;
+	//Namespace para etiquetar las mejoras
+	namespace upg {
+		enum upgradeId : scUpg_t {
+			MONEY_UPGRADE,
+			_LAST_UPGRADE
+		};
+		constexpr upgradeId maxUpgradeId = _LAST_UPGRADE;
+	}
+
 	using lyId_t = uint8_t;
 	//Namespace de las capas
 	//El orden de las capas es de atr�s hacia adelante;

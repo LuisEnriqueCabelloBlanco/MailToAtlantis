@@ -93,6 +93,10 @@ public:
 	void updateMoney(int correct, int wrong);
 	int getMoney() { return dinero_; }
 
+	void setUpgradeValue(int upgrade, bool value) {
+		upgrades_[upgrade] = value;
+	}
+
 	void setFinalID(int final); //Cambia el ID del final
 	int getFinalID(); //Devuelve el id del final del juego
 
@@ -184,6 +188,7 @@ private:
 	int charactersEvents_[7]; // Recoge los eventos de paquete de cada personaje
 	std::vector<Paquete*> paquetesNPCs;
 	std::vector<std::string> placesToActive_;
+	std::vector<bool> upgrades_;
 };
 
 inline GeneralData& generalData() {
