@@ -30,7 +30,10 @@ public:
 	void setFunctionality(TipoHerramienta tipo);
 
 	void interact(ecs::Entity* paquete);
+
+	bool getMulticolorStamp() { return multicolorStamp; }
 private:
+	bool multicolorStamp;
 	Callback funcion_;
 };
 

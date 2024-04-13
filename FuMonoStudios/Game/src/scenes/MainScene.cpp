@@ -159,9 +159,12 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 			RenderImage* stampRender = entRec->getComponent<RenderImage>();
 
-			stampHerramienta->setFunctionality(type);
+			if (!stampHerramienta->getMulticolorStamp()) { //Si el sello no es multicolor
+				stampHerramienta->setFunctionality(type);
 
-			stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
+				stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
+
+			}
 
 		}
 
@@ -177,7 +180,7 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 	{
 	case 1:
 
-		//if(GeneralData::instance()->getSelloMulticolor()) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina		
+		//if(GeneralData::instance()->getSelloMulticolor()) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
 
 		createStamp(SelloCalleA);
 
@@ -243,9 +246,8 @@ void ecs::MainScene::createStamp(TipoHerramienta type)
 {
 	if (type > 2) return;
 	constexpr float STAMPSIZE = 1;
-
+	
 	factory_->setLayer(layer::STAMP);
-
 	auto stamp = factory_->createImage(Vector2D(300, 300),
 		Vector2D(sdlutils().images().at("sellador" + std::to_string(type)).width() * STAMPSIZE, sdlutils().images().at("sellador" + std::to_string(type)).height() * STAMPSIZE),
 		& sdlutils().images().at("sellador" + std::to_string(type)));
@@ -264,12 +266,10 @@ void ecs::MainScene::createMultipleStamp()
 {	
 	constexpr float STAMPSIZE = 1;
 
-	factory_->setLayer(layer::STAMP);
-	int type = 1;
-	auto stamp = factory_->createImage(Vector2D(600, 600),
-		Vector2D(sdlutils().images().at("sellador" + std::to_string(type)).width() * STAMPSIZE, sdlutils().images().at("sellador" + std::to_string(type)).height() * STAMPSIZE),
-		&sdlutils().images().at("sellador" + std::to_string(type)));
-
+	Entity* stamp = addEntity(ecs::layer::STAMP);
+	Texture* StampTex = &sdlutils().images().at("selladorM");			
+	Transform* tr_ = stamp->addComponent<Transform>(500, 300, StampTex->width(), StampTex->height());	
+	stamp->addComponent<RenderImage>(StampTex);
 	stamp->addComponent<Gravity>();
 	stamp->addComponent<Depth>();
 	stamp->addComponent<DragAndDrop>("arrastrar");
