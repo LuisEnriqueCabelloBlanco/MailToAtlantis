@@ -77,9 +77,90 @@ int GeneralData::getRent() {
 
 void GeneralData::updateDia()
 {
-
 	placesToActive_.clear();
 	updateDistrictsPerDay(dia_);
+}
+
+std::string GeneralData::fromDistritoToString(int i) {
+
+	std::string sol;
+
+	switch (i) {
+		case Distrito::Hestia:
+			sol = "Hestia";
+			break;
+		case Distrito::Artemisa:
+			sol = "Artemisa";
+			break;
+		case Distrito::Demeter:
+			sol = "Demeter";
+			break;
+		case Distrito::Hefesto:
+			sol = "Hefesto";
+			break;
+		case Distrito::Hermes:
+			sol = "Hermes";
+			break;
+		case Distrito::Apolo:
+			sol = "Apolo";
+			break;
+		case Distrito::Poseidon:
+			sol = "Poseidon";
+			break;
+		default:
+			sol = "Erroneo";
+			break;
+	}
+
+	return sol;
+
+}
+
+int GeneralData::fromStringToDistrito(std::string place) {
+
+	int sol;
+
+	if (place == "Hestia") {
+
+		return Distrito::Hestia;
+
+	}
+	else if (place == "Artemisa") {
+
+		return Distrito::Artemisa;
+
+	}
+	else if (place == "Demeter") {
+
+		return Distrito::Demeter;
+
+	}
+	else if (place == "Hefesto") {
+
+		return Distrito::Hefesto;
+
+	}
+	else if (place == "Hermes") {
+
+		return Distrito::Hermes;
+
+	}
+	else if (place == "Apolo") {
+
+		return Distrito::Apolo;
+
+	}
+	else if (place == "Poseidon") {
+
+		return Distrito::Poseidon;
+
+	}
+	else {
+
+		return Distrito::Erroneo;
+
+	}
+
 }
 
 void GeneralData::updateDistrictsPerDay(int dia)
