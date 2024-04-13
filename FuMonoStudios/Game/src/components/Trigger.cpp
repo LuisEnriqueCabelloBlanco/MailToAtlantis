@@ -50,10 +50,17 @@ void Trigger::touchEntity(ecs::Entity* ent) {
 
 }
 
-//Aï¿½ade funcionalidad a la entidad si algo se posa sobre ella
+//Aï¿½ade funcionalidad a la entidad si algo se levanta sobre ella
 void Trigger::addCallback(Callback event) {
 
 	eventList_.push_back(event);
+
+}
+
+//Anyade funcionalidad a la entidad si algo se levanta sobre ella
+void Trigger::addCallbackPickUp(Callback event) {
+
+	eventListPickUp_.push_back(event);
 
 }
 
@@ -111,6 +118,23 @@ bool Trigger::activateCallbacks(ecs::Entity* Ent) {
 
 	}
 	
+
+	return eventList_.empty();
+
+}
+
+//Activa las funciones asociadas a esta entidad al levantar algo sobre ella
+bool Trigger::activateCallbacksPickUp(ecs::Entity* Ent) {
+
+	if (Ent != ent_) {
+
+		for (Callback call : eventListPickUp_) {
+
+			call(Ent);
+		}
+
+	}
+
 
 	return eventList_.empty();
 

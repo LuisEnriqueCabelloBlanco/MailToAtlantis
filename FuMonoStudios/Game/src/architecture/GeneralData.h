@@ -26,6 +26,8 @@ public:
 		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable
 	};
 
+	enum MoveType{DropIn, PickUp};
+
 	#pragma region NPCdata
 
 	// Los datos de los NPC deben actualizarse al acabar cada día.

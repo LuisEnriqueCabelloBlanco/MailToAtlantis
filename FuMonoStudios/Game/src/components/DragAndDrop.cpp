@@ -74,6 +74,19 @@ void DragAndDrop::update() {
 					SoundEmiter::instance()->playSound(draggingSound_);
 
 				dragging_ = true;
+
+				if (usingOwnCallback_) {
+					tri_->activateCallbacksPickUp(nullptr);
+				}
+				else {
+
+					if (!usingOnlyClosestEnt_)
+						tri_->activateEventsFromEntities();
+					else
+						tri_->activateEventFromClosestEntity();
+
+				}
+
 				// desactivamos gravedad al draggear
 				if (grav_ != nullptr) {
 					grav_->setActive(false);

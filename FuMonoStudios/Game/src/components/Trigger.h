@@ -9,6 +9,10 @@ class Transform;
 
 using Callback = std::function<void(ecs::Entity*)>;
 
+///
+/// MoveTypes
+/// 0
+///
 
 // Trigger permite interactuar con objetos que tengan dragAndDrop
 // si se le arrastra encima un objeto con dragAndDrop se activarán los
@@ -33,11 +37,15 @@ public:
 
 	void addCallback(Callback event);
 
-	bool activateEventsFromEntities();
+	void addCallbackPickUp(Callback event);
 
-	bool activateEventFromClosestEntity();
+	bool activateEventsFromEntities(int moveType);
+
+	bool activateEventFromClosestEntity(int moveType);
 
 	bool activateCallbacks(ecs::Entity*);
+
+	bool activateCallbacksPickUp(ecs::Entity*);
 
 	bool checkIfClosest();
 
@@ -52,6 +60,8 @@ private:
 	std::list <ecs::Entity*> entTouching_;
 
 	std::list <Callback> eventList_;
+
+	std::list <Callback> eventListPickUp_;
 
 	std::list<ecs::Entity*>::iterator collisionIterator_;
 
