@@ -1,16 +1,41 @@
 #pragma once
 #include "../utils/Singleton.h"
-#include "../components/Paquete.h"
 #include "../sistemas/Felicidad.h"
 #include "GameConstants.h"
 #include <vector>
+#include <string>
+#include <iostream>
 
 struct DatosPersonajes {
 	pers::Personajes p;
 	pers::EstadosDeFelicidad f;
 };
 class DialogManager;
+class Paquete;
 
+namespace pq {
+	/*
+	De locos pero y si lo metemos en un espacio de nombres
+	*/
+	/// <summary>
+	/// enum con todos los distritos posibles que pueden tener los paquetes
+	/// </summary>
+	enum Distrito { Hestia, Artemisa, Demeter, Hefesto, Hermes, Apolo, Poseidon, Erroneo };
+	/// <summary>
+	/// enum con todas las calles posibles que pueden tener los paquetes
+	/// </summary>
+	enum Calle { C1, C2, C3, Erronea };
+	/// <summary>
+	/// enum con todoos los tipos de cargamento que pueden tener los paquetes
+	/// </summary>
+	enum TipoPaquete { Alimento, Medicinas, Joyas, Materiales, Armamento };
+	/// <summary>
+	/// enum con todas los tipos de medici�n de peso que pueden tener los paquetes
+	/// </summary>
+	enum NivelPeso { Ninguno, Bajo, Medio, Alto };
+}
+
+using namespace pq;
 class GeneralData : public Singleton<GeneralData>
 {
 public:
@@ -25,6 +50,8 @@ public:
 	enum Personaje {
 		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable
 	};
+
+
 
 	#pragma region NPCdata
 
@@ -100,6 +127,9 @@ public:
 
 	int getDia() { return dia_; }
 	void setDia(int dia) { dia_ = dia; updateDia(); }
+
+	std::string fromDistritoToString(int i);
+	int fromStringToDistrito(std::string place);
 
 	void updateDia();
 	void updateDistrictsPerDay(int dia);
