@@ -29,7 +29,7 @@ public:
 	bool bienSellado() const;
 
 	// Sella la calle una única vez con el sellador
-	void sellarCalle(pq::Calle sello, Transform* trSellador);
+	void sellarCalle(pq::Calle sello, Transform* trSellador, bool);
 
 	// envuelve el paquete
 	void envolver() { envuelto_ = true; }
