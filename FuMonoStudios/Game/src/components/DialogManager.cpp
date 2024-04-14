@@ -26,14 +26,16 @@ void DialogManager::init(ecs::Scene* scene)
     auto textTr = textDialogue->addComponent<Transform>(100, 40, 80, 100);
     textTr->setParent(boxBackground->getComponent<Transform>());
     textDialogue->addComponent<RenderImage>();
+    textDialogue->addComponent<DialogComponent>(this);
 }
 
 std::string DialogManager::getCurrentDialog() {
     if (currentDialogIndex_ < dialogs_.size()) {
+        boxBackground->setActive(true);
         return dialogs_[currentDialogIndex_];
     }
     else {
-        return ""; // No hay m�s di�logos. cleon: ultramegamaxi MAL
+        return " "; // No hay m�s di�logos. cleon: ultramegamaxi MAL
     }
 }
 
@@ -160,18 +162,18 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
 
 void DialogManager::closeConversation()
 {
-    //boxBackground->setActive(false);
-    //textDialogue->setActive(false);
-    //textDialogue->removeComponent<DialogComponent>();
-    //textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
-    //    canStartConversation = true;
-    //    });
-    textDialogue->getComponent<RenderImage>()->setTexture(nullptr);
+    boxBackground->setActive(false);
+    textDialogue->setActive(false);
+    textDialogue->removeComponent<DialogComponent>();
+    textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
+        canStartConversation = true;
+        });
+   /* textDialogue->getComponent<RenderImage>()->setTexture(nullptr);
     textDialogue->removeComponent<DialogComponent>();
     boxBackground->getComponent<RenderImage>()->setTexture(nullptr);
     textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
         canStartConversation = true;
-        });
+        });*/
 }
 
 void DialogManager::fixText(std::string& text)

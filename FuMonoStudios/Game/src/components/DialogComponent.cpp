@@ -86,9 +86,13 @@ void DialogComponent::setCurrentDialogue()
 		delete mTexture_;
 		mTexture_ = nullptr;
 	}
-	mTexture_ = new Texture(sdlutils().renderer(), mDialogMngr_->getCurrentDialog().substr(0,dialogueIndex_),
-		*mFont_, build_sdlcolor(0xffffffffff), dialogueWidth_);
-	mRend_->setTexture(mTexture_);
-	mTr_->setWidth(mTexture_->width());
-	mTr_->setHeith(mTexture_->height());
+	if(mDialogMngr_->getCurrentDialog().substr(0, dialogueIndex_) != "")
+	{
+		mTexture_ = new Texture(sdlutils().renderer(), mDialogMngr_->getCurrentDialog().substr(0, dialogueIndex_),
+			*mFont_, build_sdlcolor(0xffffffffff), dialogueWidth_);
+		mRend_->setTexture(mTexture_);
+		mTr_->setWidth(mTexture_->width());
+		mTr_->setHeith(mTexture_->height());
+	}
+
 }

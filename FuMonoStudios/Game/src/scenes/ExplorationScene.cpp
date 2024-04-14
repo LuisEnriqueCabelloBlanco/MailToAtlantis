@@ -256,8 +256,9 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
 
-			dialogMngr_.textDialogue->addComponent<DialogComponent>(&dialogMngr_);
-
+			//dialogMngr_.textDialogue->addComponent<DialogComponent>(&dialogMngr_);
+			dialogMngr_.textDialogue->setActive(true);
+			std::cout << "jefe otro dialogo que este tenia un agujero\n";
 			dataCollector().recordNPC(charac +1,aux.second, generalData().getNPCData(charac)->felicidad);
 		}
 	};
