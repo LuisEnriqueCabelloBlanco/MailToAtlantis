@@ -311,7 +311,7 @@ void ecs::MainScene::createBalanza() {
 
 	// BalanzaBase
 	factory_->setLayer(ecs::layer::BALANZABASE);
-	Entity* baseBalanza = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
+	Entity* baseBalanza = factory_->createImage(Vector2D(400, 400), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
 	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
 	balanzaBaseTr->setScale(0.5);
 	baseBalanza->addComponent<Gravity>();
@@ -319,7 +319,7 @@ void ecs::MainScene::createBalanza() {
 
 	// BalanzaFlecha
 	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanzaFlecha = factory_->createImage(Vector2D(70, 120), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(70, 20), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
 	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
 	balanzaFlechaTr->setScale(0.5);
 	RotarTransform* rotComp = balanzaFlecha->addComponent<RotarTransform>();

@@ -12,7 +12,7 @@ public:
 	virtual ~RotarTransform();
 
 	virtual void initComponent();
-	virtual void update() override;
+	virtual void update();
 
 	void setDesiredGrades(float desiredGrades) { desiredGrades_ = desiredGrades; }
 
