@@ -14,7 +14,9 @@ void RotarTransform::initComponent()
 {
 	myTransform = ent_->getComponent<Transform>();
 
-	assert(myTransform == nullptr);
+	assert(myTransform != nullptr);
+
+	myGrades_ = 0;
 }
 
 void RotarTransform::update()
