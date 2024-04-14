@@ -34,7 +34,7 @@ void PackageChecker::initComponent()
 	std::function<void(ecs::Entity*)> call = [this](ecs::Entity* ent) {checkEntity(ent); };
 	Trigger* tri = ent_->getComponent<Trigger>();
 	assert(tri != nullptr);
-	tri->addCallback(call);
+	tri->addCallback(call, generalData().DropIn);
 }
 
 void PackageChecker::addCondition(Condition newCond)

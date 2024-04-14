@@ -227,9 +227,11 @@ Cada tres días comenzando por el día 2 el **jefe** de la oficina comentara un 
 
 Ejemplos de condiciones:
 
-- **Confusión entre tubos**: los paquetes dirigidos a un distrito van a otro y los del otro al uno. O que los de un distrito deben enviarse por otro distinto.
+- **Confusión entre tubos**: los paquetes dirigidos a un distrito van a otro y los del otro al uno. O que los de un distrito deben enviarse por otro distinto. Algunos tubos pueden incluso estar bloqueados, y la papelera también puede verse afectada.
 
 - **Confusion entre pesos**: los tipos de peso intercambian significado, es decir, que algo de peso pequeño se considera de mucho peso y algo de mucho peso de peso pequeño...
+
+- **Restringir según el tipo de sello los distritos a los que pueden ir los paquetes**: Los paquetes de armas no pueden ir a Demeter, por ejemplo.
 
 - **Restringir según el tipo del sello el peso que puede tener un paquete**: los paquetes de armas no pueden exceder el peso medio por ejemplo.
 

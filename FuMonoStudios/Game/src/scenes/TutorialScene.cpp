@@ -195,7 +195,7 @@ void ecs::TutorialScene::createMiniManual() {
 				}
 			}
 		}
-		});
+		}, generalData().DropIn);
 
 
 	factory_->setLayer(ecs::layer::DEFAULT);
@@ -224,7 +224,7 @@ void ecs::TutorialScene::createSpaceManual() {
 			manualEnt_->setActive(false);
 			miniManualEnt_->setActive(true);
 		}
-		});
+		}, generalData().DropIn);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 }
@@ -285,8 +285,9 @@ void ecs::TutorialScene::createGarbage()
 void ecs::TutorialScene::activateGarbage() {
 	Trigger* papTrig = garbage_->addComponent<Trigger>();
 	papTrig->addCallback([this](ecs::Entity* e) {
+		if(e->getComponent<Paquete>() != nullptr)
 		tutorialSys_->registerAction(TutorialSystem::Basura);
-		});
+		}, generalData().DropIn);
 	garbage_->addComponent<PackageChecker>(Erroneo, this);
 }
 
@@ -323,7 +324,7 @@ void ecs::TutorialScene::createOneInk(TipoHerramienta type) {
 			stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
 
 		}
-		});
+		}, generalData().DropIn);
 }
 
 void ecs::TutorialScene::createStamp(TipoHerramienta type)
@@ -386,7 +387,7 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 			tutorialSys_->registerAction(TutorialSystem::PaqueteEstampado);
 			herrEnt->interact(paquete);
 		}
-		});
+		}, generalData().DropIn);
 	paquete->getComponent<Wrap>()->initComponent();
 	paquete->getComponent<MoverTransform>()->enable();
 	factory_->setLayer(ecs::layer::DEFAULT);
