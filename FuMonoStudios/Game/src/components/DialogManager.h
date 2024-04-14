@@ -77,7 +77,6 @@ public:
 
     inline bool getCanStartConversation() { return canStartConversation; }
 
-    void setDialogueEntitiesActive(bool onoff);
 
 private:
     void fixText(std::string& text);
@@ -86,6 +85,8 @@ private:
     std::string dialogSelectionToString(const DialogSelection ds);
 
     bool isNPC(const DialogSelection ds);
+
+    void setDialogueEntitiesActive(bool onoff);
 
     /// <summary>
     /// Vector donde se almacenan todos los diálogos que se van a soltar

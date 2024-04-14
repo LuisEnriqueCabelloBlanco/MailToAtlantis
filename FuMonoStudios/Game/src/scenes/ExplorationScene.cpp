@@ -193,7 +193,6 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 			dialogMngr_.closeDialogue();
 			actualPlace_->changeActivationObjects(false);
 			placeToGo.push_back(placeID);
-			
 		}
 	};
 
@@ -297,6 +296,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 	}
 
 	lugares[place].changeActivationObjects(false);
+
 
 }
 

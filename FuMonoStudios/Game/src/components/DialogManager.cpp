@@ -207,7 +207,7 @@ void DialogManager::closeDialogue()
     setDialogueEntitiesActive(false);
 
     timer_ = sdlutils().virtualTimer().currTime();
-    dialogueCooldown = sdlutils().virtualTimer().currTime() + 1000;
+    dialogueCooldown = sdlutils().virtualTimer().currTime() + dialogueCooldownTime;
     controlTimer = true;
    /*textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
         canStartConversation = true;
