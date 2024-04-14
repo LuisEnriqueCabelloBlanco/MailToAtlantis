@@ -27,6 +27,8 @@
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
 #include <components/HoverSensorComponent.h>
+#include <components/HoverLayerComponent.h>
+#include <components/RenderWithLight.h>
 
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 {
@@ -273,7 +275,7 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 	constexpr float TUBE_HEITH = 282;
 	constexpr float TUBES_X_OFFSET = 200;
 	constexpr float DISTANCE_BETWEEN_TUBES = 220;
-	factory_->setLayer(ecs::layer::BACKGROUND);
+	factory_->setLayer(ecs::layer::DEFAULT);
 
 	auto tubeTexture = &sdlutils().images().at("tubo" + std::to_string(dist + 1));
 	Entity* tuboEnt = factory_->createImage(
@@ -282,7 +284,11 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 		tubeTexture);
 	if (unlock) {
 		tubeTexture->modColor(255, 255, 255);
-		tuboEnt->addComponent<HoverSensorComponent>();
+		auto layerHover = tuboEnt->addComponent<HoverLayerComponent>(ecs::layer::PACKAGE);
+		auto hilight = tuboEnt->addComponent<RenderWithLight>();
+		layerHover->addInCall([hilight]() {hilight->lightOn(); });
+		layerHover->addOutCall([hilight]() {hilight->lightOff(); });
+
 		Trigger* tuboTri = tuboEnt->addComponent<Trigger>();
 		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this);
 	}

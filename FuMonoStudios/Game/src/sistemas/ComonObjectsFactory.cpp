@@ -98,7 +98,7 @@ void ComonObjectsFactory::addHilghtOnHover(ecs::Entity* entity)
 	}
 	//añade feeback al pasar el raton por encima
 	auto light = entity->addComponent<RenderWithLight>();
-	auto hover = entity->addComponent<HoverSensorComponent>();
+	hover = entity->addComponent<HoverSensorComponent>();
 	hover->addInCall([light]() {light->lightOn(); });
 	hover->addOutCall([light]() {light->lightOff(); });
 

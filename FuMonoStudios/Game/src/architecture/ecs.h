@@ -12,6 +12,7 @@ namespace ecs {
 			TRANSFORM = 0,
 			IMAGE,
 			HOVERSENSOR,
+			HOVERLAYER,
 			CTRL,
 			CLICKEABLE,
 			DRAGANDDROP,

@@ -64,6 +64,7 @@
     <ClCompile Include="src\scenes\TutorialScene.cpp" />
     <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
     <ClCompile Include="src\components\HoverSensorComponent.cpp" />
+    <ClCompile Include="src\components\HoverLayerComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="src\scenes\TutorialScene.h" />
     <ClInclude Include="src\sistemas\TutorialSystem.h" />
     <ClInclude Include="src\components\HoverSensorComponent.h" />
+    <ClInclude Include="src\components\HoverLayerComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\MultipleTextures.h" />
