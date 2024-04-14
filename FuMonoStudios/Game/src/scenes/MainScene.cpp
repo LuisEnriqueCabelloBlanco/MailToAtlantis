@@ -300,6 +300,7 @@ void ecs::MainScene::createBalanza() {
 	Entity* balanza = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
 	Transform* balanzaTr = balanza->getComponent<Transform>();
 	balanzaTr->setScale(0.5);
+	Trigger* balanzaTri = balanza->addComponent<Trigger>();
 
 	// BalanzaB
 	factory_->setLayer(ecs::layer::BALANZAB);
