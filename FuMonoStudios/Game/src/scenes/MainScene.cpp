@@ -26,6 +26,7 @@
 #include <QATools/DataCollector.h>
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
+#include "../sistemas/SoundEmiter.h"
 
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 {
@@ -114,10 +115,12 @@ void ecs::MainScene::init()
 			createTubo((pq::Distrito)z , false);
 	}
 
-	sdlutils().musics().at("office").play();
+	/*sdlutils().musics().at("office").play();
 	sdlutils().musics().at("office").setMusicVolume(50);
 	sdlutils().musics().at("printer").play();
-	sdlutils().musics().at("printer").setMusicVolume(50);
+	sdlutils().musics().at("printer").setMusicVolume(50);*/
+	SoundEmiter::instance()->playMusic("office");
+	SoundEmiter::instance()->playMusic("printer");
 
 	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
 
