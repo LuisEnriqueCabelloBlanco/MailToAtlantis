@@ -7,7 +7,7 @@
 #include "../sistemas/PaqueteBuilder.h"
 #include "../components/DialogManager.h"
 #include "../sistemas/TutorialSystem.h"
-
+#include "../sistemas/PipeManager.h" 
 
 
 
@@ -66,6 +66,7 @@ namespace ecs {
 		TutorialSystem* tutorialSys_;
 
 		PaqueteBuilder* mPaqBuild_;
+		PipeManager* mPipeMngr_;
 
 		// lo mismo que el drag and drop pero funciona unicamente 
 		// si el canDrag esta activo

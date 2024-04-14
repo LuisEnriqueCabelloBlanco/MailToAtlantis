@@ -1,8 +1,8 @@
 #include "PipeManager.h"
 
-PipeManager::PipeManager()
+PipeManager::PipeManager() : returnPipe_(Erroneo)
 {
-
+	
 }
 
 PipeManager::~PipeManager()
@@ -12,7 +12,19 @@ PipeManager::~PipeManager()
 
 void PipeManager::init()
 {
+	returnPipe_ = pq::Erroneo;
+	for (int i = 0; i < 8; i++) {
+		std::cout << i;
+		blockedPipes_.push_back(false);
+		swappedPipes_.push_back({ false, false, Erroneo });
+		bannedTypePipes_.push_back({false, Alimento});
+		weightRestrictionTypes_.push_back({false, false, 4, Ninguno, Alimento});
+	}
+}
 
+void PipeManager::setReturnPipe(pq::Distrito trash)
+{
+	returnPipe_ = trash;
 }
 
 void PipeManager::updateConditions()

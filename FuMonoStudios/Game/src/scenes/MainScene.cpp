@@ -26,6 +26,7 @@
 #include <QATools/DataCollector.h>
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
+#include "../sistemas/PipeManager.h"
 
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 {
@@ -35,6 +36,7 @@ ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 	timeToAdd_ = 5;
 #endif // DEV_TOOLS
 	mPaqBuild_ = new PaqueteBuilder(this);
+	mPipeMngr_ = new PipeManager();
 }
 
 ecs::MainScene::~MainScene()
@@ -83,6 +85,7 @@ void ecs::MainScene::init()
 	//for (int i = 0; i < 7; i++) {
 	//	createTubo((pq::Distrito)i);
 	//}
+	mPipeMngr_->init();
 
 	createManual();
 	createMiniManual();
@@ -283,7 +286,7 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 	if (unlock) {
 
 		Trigger* tuboTri = tuboEnt->addComponent<Trigger>();
-		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this);
+		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this, mPipeMngr_);
 	}
 	else {
 		factory_->setLayer(layer::UI);
@@ -461,7 +464,7 @@ void ecs::MainScene::createGarbage()
 	papelera->addComponent<Transform>(50, 650, 100, 150);
 	papelera->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
 	Trigger* papTrig = papelera->addComponent<Trigger>();
-	papelera->addComponent<PackageChecker>(Erroneo, this);
+	papelera->addComponent<PackageChecker>(Erroneo, this, mPipeMngr_);
 }
 #ifdef DEV_TOOLS
 

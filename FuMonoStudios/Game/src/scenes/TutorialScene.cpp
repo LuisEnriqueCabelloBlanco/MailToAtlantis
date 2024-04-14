@@ -36,6 +36,8 @@ void ecs::TutorialScene::init() {
 	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
 		&sdlutils().images().at("fondoOficina"));
 
+	mPipeMngr_->init();
+
 	createManual();
 	createMiniManual();
 	createSpaceManual();
@@ -263,7 +265,7 @@ void ecs::TutorialScene::activateTubos() {
 	for (int i = 0; i < 7; i++)
 	{
 		Trigger* tuboTri = tubos[i]->addComponent<Trigger>();
-		PackageChecker* tuboCheck = tubos[i]->addComponent<PackageChecker>(Distrito(i), this);
+		PackageChecker* tuboCheck = tubos[i]->addComponent<PackageChecker>(Distrito(i), this, mPipeMngr_);
 	}
 }
 
@@ -287,7 +289,7 @@ void ecs::TutorialScene::activateGarbage() {
 	papTrig->addCallback([this](ecs::Entity* e) {
 		tutorialSys_->registerAction(TutorialSystem::Basura);
 		});
-	garbage_->addComponent<PackageChecker>(Erroneo, this);
+	garbage_->addComponent<PackageChecker>(Erroneo, this, mPipeMngr_);
 }
 
 void ecs::TutorialScene::deactivateGarbage() {

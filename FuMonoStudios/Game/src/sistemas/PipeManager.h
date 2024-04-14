@@ -32,6 +32,7 @@ public:
 	~PipeManager();
 
 	void init();
+	void setReturnPipe(pq::Distrito);
 
 	void updateConditions();
 
