@@ -36,12 +36,11 @@ void ecs::PauseScene::init()
 	
 	CallbackClickeable funcPress = [this, BotonPress]() {
 		try {
-			//sdlutils().musics().at("pauseMenu").haltMusic();
-			std::cout << "salimos de la pausa" << std::endl;
 			BotonPress->setAlive(false);
 			std::cout << "eliminamos el boton" << std::endl;
+			gm().unpauseGame();
 			gm().requestChangeScene(ecs::sc::PAUSE_SCENE, ecs::sc::NULL_SCENE);
-			//leaveMenu();
+			std::cout << "salimos de la pausa" << std::endl;
 		}
 		catch (const std::exception& e) {
 			std::cerr << "Error in funcPress callback: " << e.what() << std::endl;
@@ -53,8 +52,4 @@ void ecs::PauseScene::init()
 	else {
 		std::cerr << "clickerPress is nullptr!" << std::endl;
 	}
-}
-
-void ecs::PauseScene::leaveMenu() {
-	gm().killScene(ecs::sc::PAUSE_SCENE);
 }

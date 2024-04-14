@@ -31,6 +31,8 @@ Game::Game() :exit_(false) {
 	SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
 	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),new EndWorkScene(),new ecs::MainMenu(), new ecs::PauseScene()};
 
+	gamePaused_ = false;
+
 	loadScene(ecs::sc::MENU_SCENE);
 }
 
@@ -74,9 +76,7 @@ void Game::run()
 		}
 		if (ih().isKeyDown(SDL_SCANCODE_P)) {
 			loadScene(ecs::sc::PAUSE_SCENE);
-		}
-		if (ih().isKeyDown(SDL_SCANCODE_L)) {
-			killScene(ecs::sc::PAUSE_SCENE);
+			gamePaused_ = true;
 		}
 		if (ih().isKeyDown(SDL_SCANCODE_E)) {
 			changeScene(ecs::sc::MENU_SCENE, ecs::sc::MAIN_SCENE);

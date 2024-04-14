@@ -46,6 +46,12 @@ ecs::MainScene::~MainScene()
 void ecs::MainScene::update()
 {
 	Scene::update();
+	if (gm().gamePaused()) {
+		timerPaused_ = true;
+	}
+	else {
+		timerPaused_ = false;
+	}
 	if (!timerPaused_)
 	{
 		if (timer_ > 0) {
