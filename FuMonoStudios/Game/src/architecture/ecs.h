@@ -29,6 +29,7 @@ namespace ecs {
 			IMAGEWITHLIGHT,
 			DELAYEDCALLBACK,
 			CLOCKAUX,
+			BALANZA,
 			// do not remove this
 			_LAST_CMP_ID
 		};
@@ -66,10 +67,13 @@ namespace ecs {
 			BIN,
 			MANUALSPACE,
 			MINIMANUAL,
+			BALANZABASE,
+			BALANZA,
 			PACKAGE,
 			INFO_PACKAGE,
 			INK,
 			STAMP,
+			BALANZAB,
 			OFFICEELEMENTS,
 			RED_LINES,
 			WRAP_POINTS,

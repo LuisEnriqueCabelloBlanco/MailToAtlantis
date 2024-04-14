@@ -295,36 +295,38 @@ void ecs::MainScene::createCinta() {
 
 void ecs::MainScene::createBalanza() {
 
-	factory_->setLayer(ecs::layer::DEFAULT);
-
 	// Balanza
-	factory_->setLayer(ecs::layer::TAPE);
-	Entity* balanza = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("balanzaA"));
+	factory_->setLayer(ecs::layer::BALANZABASE);
+	Entity* balanza = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
 	Transform* balanzaTr = balanza->getComponent<Transform>();
 	balanzaTr->setScale(0.5);
 
 	// BalanzaB
-	Entity* balanzaB = factory_->createImage(Vector2D(560, 500), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaB"));
+	factory_->setLayer(ecs::layer::BALANZAB);
+	Entity* balanzaB = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaB").width(), sdlutils().images().at("balanzaB").height()), &sdlutils().images().at("balanzaB"));
 	Transform* balanzaBTr = balanzaB->getComponent<Transform>();
 	balanzaBTr->setScale(0.5);
+	factory_->setLayer(ecs::layer::BALANZA);
 
 	// BalanzaBase
-	Entity* baseBalanza = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("baseBalanza"));
+	Entity* baseBalanza = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
 	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
 	balanzaBaseTr->setScale(0.5);
 	baseBalanza->addComponent<Gravity>();
 	baseBalanza->addComponent<DragAndDrop>("arrastrar");
-	baseBalanza->addComponent<Depth>();
+	//baseBalanza->addComponent<Depth>();
 
 	// BalanzaFlecha
-	Entity* balanzaFlecha = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("balanzaFlecha"));
-	Transform* balanzaFlechaTr = baseBalanza->getComponent<Transform>();
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(70, 120), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
+	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
 	balanzaFlechaTr->setScale(0.5);
 
 	// Seteamos padres
 	balanzaTr->setParent(balanzaBaseTr);
 	balanzaBTr->setParent(balanzaTr);
 	balanzaFlechaTr->setParent(balanzaBaseTr);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
 }
 
 void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
