@@ -295,16 +295,36 @@ void ecs::MainScene::createCinta() {
 
 void ecs::MainScene::createBalanza() {
 
-	factory_->setLayer(ecs::layer::TAPE);
-	Entity* balanza = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("balanzaA"));
-	balanza->addComponent<Gravity>();
-	balanza->addComponent<DragAndDrop>("arrastrar");
-	balanza->addComponent<Depth>();
-	Entity* balanzaB = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("balanzaB"));
-	Entity* baseBalanza = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("baseBalanza"));
-	Entity* balanzaFlecha = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("balanzaFlecha"));
 	factory_->setLayer(ecs::layer::DEFAULT);
 
+	// Balanza
+	factory_->setLayer(ecs::layer::TAPE);
+	Entity* balanza = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("balanzaA"));
+	Transform* balanzaTr = balanza->getComponent<Transform>();
+	balanzaTr->setScale(0.5);
+
+	// BalanzaB
+	Entity* balanzaB = factory_->createImage(Vector2D(560, 500), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaB"));
+	Transform* balanzaBTr = balanzaB->getComponent<Transform>();
+	balanzaBTr->setScale(0.5);
+
+	// BalanzaBase
+	Entity* baseBalanza = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("baseBalanza"));
+	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
+	balanzaBaseTr->setScale(0.5);
+	baseBalanza->addComponent<Gravity>();
+	baseBalanza->addComponent<DragAndDrop>("arrastrar");
+	baseBalanza->addComponent<Depth>();
+
+	// BalanzaFlecha
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("balanzaFlecha"));
+	Transform* balanzaFlechaTr = baseBalanza->getComponent<Transform>();
+	balanzaFlechaTr->setScale(0.5);
+
+	// Seteamos padres
+	balanzaTr->setParent(balanzaBaseTr);
+	balanzaBTr->setParent(balanzaTr);
+	balanzaFlechaTr->setParent(balanzaBaseTr);
 }
 
 void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
