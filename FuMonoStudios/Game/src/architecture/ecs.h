@@ -24,6 +24,11 @@ namespace ecs {
 			MOVERTRANSFORM,
 			WRAP,
 			SELFDESTRUCT,
+			DEPTH,
+			ERROR_NOTE,
+			IMAGEWITHLIGHT,
+			DELAYEDCALLBACK,
+			CLOCKAUX,
 			// do not remove this
 			_LAST_CMP_ID
 		};
@@ -42,6 +47,8 @@ namespace ecs {
 			EXPLORE_SCENE,
 			END_WORK_SCENE,
 			MENU_SCENE,
+			PAUSE_SCENE,
+			TUTORIAL_SCENE,
 			CONFIG_SCENE,
 			_LAST_SCENE
 		};
@@ -54,11 +61,19 @@ namespace ecs {
 	namespace layer {
 		enum layerId : lyId_t
 		{
+			INACTIVE,
 			BACKGROUND,
 			DEFAULT,
+			BIN,
+			MANUALSPACE,
+			MINIMANUAL,
 			PACKAGE,
+			INFO_PACKAGE,
+			INK,
 			STAMP,
 			OFFICEELEMENTS,
+			RED_LINES,
+			WRAP_POINTS,
 			TAPE,
 			MANUAL,
 			FOREGROUND,

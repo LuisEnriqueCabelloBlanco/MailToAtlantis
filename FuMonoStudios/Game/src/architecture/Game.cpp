@@ -1,25 +1,41 @@
 #include "Game.h"
 #include <list>
+#include <imgui.h>
+#include <imgui_impl_sdl2.h>
+#include <imgui_impl_sdlrenderer2.h>
 #include <SDL.h>
 #include <algorithm>
 #include "../sdlutils/InputHandler.h"
 #include "../scenes/MainScene.h"
 #include "../scenes/ConfigScene.h"
 #include "../scenes/MainMenu.h"
+#include "../scenes/PauseScene.h"
 #include "../scenes/ExplorationScene.h"
 #include "../scenes/EndWorkScene.h"
+#include "../scenes/PauseScene.h"
+#include "../scenes/TutorialScene.h"
 #include "Time.h"
 #include "GeneralData.h"
+#include <iostream>
+#include <QATools/DataCollector.h>
+#include "../sistemas/SoundEmiter.h"
 
 Game::Game() :exit_(false) {
-	SDLUtils::init("Mail To Atlantis", 1600, 900, "recursos/config/mail.resources.json");
+	SDLUtils::init("Mail To Atlantis", 1152, 648, "recursos/config/mail.resources.json");
+	Config::init("recursos/config/mail.config.json");
 
 	auto& sdl = *SDLUtils::instance();
 
 	sdl.showCursor();
 	window_ = sdl.window();
 	renderer_ = sdl.renderer();
-	gameScenes_ = { new ecs::MainScene(), new ecs::ExplorationScene(),new EndWorkScene(),new ecs::MainMenu(), new ecs::ConfigScene() };
+
+	SDL_RenderSetLogicalSize(renderer_,LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
+
+	SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
+
+	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),
+		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new ecs::TutorialScene(), new ecs::ConfigScene()};
 
 	loadScene(ecs::sc::MENU_SCENE);
 }
@@ -34,6 +50,14 @@ Game::~Game()
 
 void Game::run()
 {
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	io.DisplaySize = ImGui::GetMainViewport()->Size;
+	ImGui_ImplSDL2_InitForSDLRenderer(sdlutils().window(), sdlutils().renderer());
+	ImGui_ImplSDLRenderer2_Init(sdlutils().renderer());
+	SoundEmiter::instance()->init();
+
 	while (!exit_)
 	{
 		if (sceneChange_)
@@ -41,7 +65,10 @@ void Game::run()
 			changeScene(scene1_, scene2_);
 			sceneChange_ = false;
 		}
-
+		//SDL_Event e;
+		//while (SDL_PollEvent(&e)) {
+		//	ImGui_ImplSDL2_ProcessEvent(&e);
+		//}
 		refresh();
 		ih().refresh();
 		Uint32 startTime = sdlutils().virtualTimer().currTime();
@@ -49,23 +76,46 @@ void Game::run()
 		if (ih().isKeyDown(SDL_SCANCODE_ESCAPE) || ih().closeWindowEvent()) {
 			exit_ = true;
 		}
-		if (ih().isKeyDown(SDL_SCANCODE_F)) {
+		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_F)) {
 			sdlutils().toggleFullScreen();
+		}
+		/*if (ih().isKeyDown(SDL_SCANCODE_P)) {
+			loadScene(ecs::sc::PAUSE_SCENE);
+		}
+		if (ih().isKeyDown(SDL_SCANCODE_L)) {
+			killScene(ecs::sc::PAUSE_SCENE);
 		}
 		if (ih().isKeyDown(SDL_SCANCODE_E)) {
 			changeScene(ecs::sc::MENU_SCENE, ecs::sc::MAIN_SCENE);
 		}
 		if (ih().isKeyDown(SDL_SCANCODE_W)) {
 			changeScene(ecs::sc::MAIN_SCENE, ecs::sc::MENU_SCENE);
+		}*/
+#ifdef QA_TOOLS
+		if (ih().mouseButtonDownEvent()&&ih().getMouseButtonState(0)) {
+			dataCollector().clicks()++;
 		}
+#endif // QA_TOOLS
 
 		update();
 		sdlutils().clearRenderer();
+
+		ImGui_ImplSDLRenderer2_NewFrame();
+		ImGui_ImplSDL2_NewFrame();
+		/**/
 		render();
+
 		sdlutils().presentRenderer();
 
 		Time::deltaTime_ = (sdlutils().virtualTimer().currTime() - startTime) / 1000.0;
+		/*if (sdlutils().virtualTimer().currTime()/1000 > autoRecodTime) {
+			dataCollector().record();
+			autoRecodTime++;
+		}*/
 	}
+	ImGui_ImplSDLRenderer2_Shutdown();
+	ImGui_ImplSDL2_Shutdown();
+	ImGui::DestroyContext();
 }
 
 //void Game::writeMessage() {
@@ -79,23 +129,24 @@ void Game::run()
 /// </summary>
 /// <param name="scene"></param>
 
-//void Game::loadScene(ecs::sc::sceneId scene)
-//{
-//	//llamar al init de la escena a cargar????
-//	gameScenes[scene]->init();
-//	//cargamos la escena
-//	loadedScenes.push_back(gameScenes[scene]);
-//}
-
 void Game::loadScene(ecs::sc::sceneId scene)
 {
+#ifdef QA_TOOLS
+	dataCollector().dataArray()[0] = (int)scene;
+#endif // QA_TOOLS
+
 	auto it = std::find(loadedScenes_.begin(), loadedScenes_.end(), gameScenes_[scene]);
 	if (it == loadedScenes_.end()) {
 		//llamar al init de la escena a cargar????
 		gameScenes_[scene]->init();
 		//cargamos la escena
 		loadedScenes_.push_back(gameScenes_[scene]);
+		std::cout << "Scene Loaded" << std::endl;
 	}
+#ifdef QA_TOOLS
+	dataCollector().record();
+#endif // QA_TOOLS
+
 }
 
 /// <summary>
@@ -131,6 +182,7 @@ void Game::changeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2) {
 	else if (scene1 == ecs::sc::EXPLORE_SCENE) {
 		generalData().setFinalID(2);
 		generalData().setEventoID(2);
+		generalData().setTubesAmount(generalData().getPlacesToActive().size());
 	}
 	else if (scene1 == ecs::sc::MAIN_SCENE) {
 		generalData().setFinalID(3);

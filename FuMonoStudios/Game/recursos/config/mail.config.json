@@ -1,0 +1,319 @@
+{
+
+    "places": [
+
+        {"id": "Demeter",
+         "data":  [
+
+            {"arrows": [
+
+                {"id" : 0,
+                "x" : 896.2,
+                "y" : 816.6,
+                "dest" : "Hefesto",
+                "scale" : 0.64,
+                "dir" : false,
+                "flip" : 2              
+                },
+
+                {"id" : 1,
+                "x" : 1565.2,
+                "y" : 583.6,
+                "dest" : "Hermes",
+                "scale" : 0.46,
+                "dir" : true,
+                "flip" : 0              
+                },
+
+                {"id" : 2,
+                "x" : 713.5,
+                "y" : 616.5,
+                "dest" : "Artemisa",
+                "scale" : 0.29,
+                "dir" : true,
+                "flip" : 0              
+                }
+
+            ]}
+
+        ],
+        "dataChar": [
+
+            {"character" : [
+
+                {"id" : 0,
+                "x" : 108,
+                "y" : 478.5,
+                "name" : "Campesino",
+                "scale" : 0.42,
+                "dir" : true              
+                }
+
+            ]}
+        ]
+        },
+
+        {"id": "Hefesto",
+        "data": [
+
+            {"arrows": [
+
+                {"id" : 0,
+                "x" : 37.3,
+                "y" : 627.5,
+                "dest" : "Hestia",
+                "scale" : 0.61,
+                "dir" : false,
+                "flip" : 2              
+                },
+
+                {"id" : 1,
+                "x" : 1331.7,
+                "y" : 250.9,
+                "dest" : "Hermes",
+                "scale" : 0.22,
+                "dir" : true,
+                "flip" : 2              
+                },
+
+                {"id" : 2,
+                "x" : 1664.6,
+                "y" : 612,
+                "dest" : "Demeter",
+                "scale" : 0.61,
+                "dir" : true,
+                "flip" : 0              
+                }
+
+            ]}
+
+        ],
+        "dataChar": [
+
+            {"character" : [
+
+                {"id" : 0,
+                "x" : 553.6,
+                "y" : 307,
+                "name" : "Artesano",
+                "scale" : 0.26,
+                "dir" : true              
+                }
+
+            ]}
+        ]},
+
+        {"id": "Hestia",
+        "data": [
+
+            {"arrows": [
+
+                {"id" : 0,
+                "x" : 308.2,
+                "y" : 846.9,
+                "dest" : "Artemisa",
+                "scale" : 0.55,
+                "dir" : false,
+                "flip" : 2              
+                },
+
+                {"id" : 1,
+                "x" : 1706.9,
+                "y" : 627,
+                "dest" : "Hefesto",
+                "scale" : 0.41,
+                "dir" : true,
+                "flip" : 0              
+                }
+
+            ]}
+
+        ],
+        "dataChar": [
+
+            {"character" : [
+
+                {"id" : 0,
+                "x" : 919.7,
+                "y" : 555.3,
+                "name" : "Vagabundo",
+                "scale" : 0.38,
+                "dir" : true              
+                }
+
+            ]}
+        ]},
+
+        {"id": "Artemisa",
+        "data": [
+
+            {"arrows": [
+
+                {"id" : 0,
+                "x" : 364.9,
+                "y" : 467.2,
+                "dest" : "Demeter",
+                "scale" : 0.45,
+                "dir" : false,
+                "flip" : 2              
+                },
+
+                {"id" : 1,
+                "x" : 1271.2,
+                "y" : 409.1,
+                "dest" : "Hestia",
+                "scale" : 0.35,
+                "dir" : true,
+                "flip" : 0              
+                }
+
+            ]}
+
+        ],
+        "dataChar": [
+
+            {"character" : [
+
+                {"id" : 0,
+                "x" : 902.5,
+                "y" : 348.4,
+                "name" : "Tarotisa",
+                "scale" : 0.23,
+                "dir" : true              
+                }
+
+            ]}
+        ]},
+
+        {"id": "Hermes",
+        "data": [
+
+            {"arrows": [
+
+                {"id" : 0,
+                "x" : 611.8,
+                "y" : 398,
+                "dest" : "Hefesto",
+                "scale" : 0.18,
+                "dir" : false,
+                "flip" : 2              
+                },
+
+                {"id" : 1,
+                "x" : 1051.8,
+                "y" : 433.1,
+                "dest" : "Apolo",
+                "scale" : 0.26,
+                "dir" : true,
+                "flip" : 0             
+                },
+
+                {"id" : 2,
+                "x" : 1462.2,
+                "y" : 745.6,
+                "dest" : "Demeter",
+                "scale" : 0.74,
+                "dir" : true,
+                "flip" : 2              
+                }
+
+            ]}
+
+        ],
+        "dataChar": [
+
+            {"character" : [
+
+                {"id" : 0,
+                "x" : 0,
+                "y" : 341,
+                "name" : "Contable",
+                "scale" : 0.36,
+                "dir" : true              
+                }
+
+            ]}
+        ]},
+
+        {"id": "Apolo",
+        "data": [
+
+            {"arrows": [
+
+                {"id" : 0,
+                "x" : 21.6,
+                "y" : 465.1,
+                "dest" : "Hermes",
+                "scale" : 0.19,
+                "dir" : false,
+                "flip" : 2              
+                },
+
+                {"id" : 1,
+                "x" : 1709.3,
+                "y" : 465.1,
+                "dest" : "Poseidon",
+                "scale" : 0.46,
+                "dir" : true,
+                "flip" : 0              
+                }
+
+            ]}
+
+        ],
+        "dataChar": [
+
+            {"character" : [
+
+                {"id" : 0,
+                "x" : 744.4,
+                "y" : 402.2,
+                "name" : "Soldado",
+                "scale" : 0.37,
+                "dir" : true              
+                }
+
+            ]}
+        ]},
+
+        {"id": "Poseidon",
+        "data": [
+
+            {"arrows": [
+
+                {"id" : 0,
+                "x" : 100,
+                "y" : 100,
+                "dest" : "Apolo",
+                "scale" : 0.5,
+                "dir" : false,
+                "flip" : 0              
+                }
+
+            ]}
+
+
+        ],
+        "dataChar": [
+
+            {"character" : [
+
+                {"id" : 0,
+                "x" : 300,
+                "y" : 300,
+                "name" : "Secretario",
+                "scale" : 0.25,
+                "dir" : true              
+                }
+
+            ]}
+        ]}
+
+    ]
+
+
+
+
+
+
+}

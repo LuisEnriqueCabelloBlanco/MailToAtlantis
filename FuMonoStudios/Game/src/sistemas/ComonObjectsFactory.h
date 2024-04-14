@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "../architecture/Scene.h"
+#include <architecture/Scene.h>
 #include "../architecture/Entity.h"
 #include "../components/Clickeable.h"
 
@@ -10,16 +10,32 @@ a lo tonto)
 
 Los metodos devuelven un puntero a la entidad por si se le quiere aplicar mas operaciones en tras crearlo
 */
+
 class ComonObjectsFactory
 {
 public:
-	ComonObjectsFactory(ecs::Scene* sc):scene_(sc), destLayer_(ecs::layer::DEFAULT){};
-	~ComonObjectsFactory(){};
+	ComonObjectsFactory(ecs::Scene* sc);
+	virtual ~ComonObjectsFactory();
 	/// <summary>
 	/// establece la capa donde se crearan los objetos usando esta factory
 	/// </summary>
 	/// <param name="lay"></param>
 	void setLayer(ecs::layer::layerId lay) { destLayer_ = lay; }
+	/// <summary>
+	/// establece que fuente se usara al crear textos con esta factory
+	/// </summary>
+	/// <param name="name"></param>
+	void setFont(const std::string& name) { fontName_ = name; }
+	/// <summary>
+	/// Crea un objeto que contiene varias imágenes si no se le añade tamaño 
+	/// se asume el tamaño de la primera textura pasada
+	/// </summary>
+	/// <param name="pos"></param>
+	/// <param name="size"></param>
+	/// <param name="textures"></param>
+	/// <returns></returns>
+	ecs::Entity* createMultiTextureImage(const Vector2D& pos, const Vector2D& size, const std::vector<Texture*>& textures);
+	ecs::Entity* createMultiTextureImage(const Vector2D& pos, const std::vector<Texture*>& textures);
 	/// <summary>
 	/// crea un objeto que contiene texto
 	/// </summary>
@@ -29,6 +45,8 @@ public:
 	/// <param name="pos"></param>
 	/// <returns></returns>
 	ecs::Entity* createLabel(const Vector2D& pos,const std::string& text, int fontSize, SDL_Color textColor = build_sdlcolor(0x000000ff));
+	ecs::Entity* createLabel(const Vector2D& pos, Uint32 width, const std::string& text, int fontSize, SDL_Color textColor = build_sdlcolor(0x000000ff));
+	ecs::Entity* createLabel(const Vector2D& pos, const Vector2D& size, const std::string& text, int fontSize, SDL_Color textColor= build_sdlcolor(0x000000ff));
 	/// <summary>
 	/// Crea un objeto que es una imagen
 	/// </summary>
@@ -58,6 +76,8 @@ public:
 	/// <returns></returns>
 	ecs::Entity* createTextuButton(const Vector2D& pos, const std::string text,
 		int fontSize, CallbackClickeable call,SDL_Color textColor = build_sdlcolor(0x000000ff));
+	
+
 private:
 	/// <summary>
 	/// Scene to create the objects
@@ -67,5 +87,11 @@ private:
 	/// capa donde se van a crear los objetos
 	/// </summary>
 	ecs::layer::layerId destLayer_;
+	/// <summary>
+	/// nombre de la fuente que se usara al crear texturas de texto
+	/// </summary>
+	std::string fontName_;
+
+	std::vector<Texture*> createdTextures;
 };
 

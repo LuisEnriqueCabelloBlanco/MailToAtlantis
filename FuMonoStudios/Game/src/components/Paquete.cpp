@@ -1,3 +1,4 @@
+
 #include "Paquete.h"
 #include "../json/JSON.h"
 #include <memory>
@@ -5,6 +6,7 @@
 #include "../architecture/Entity.h"
 #include "Render.h"
 #include "../architecture/Scene.h"
+#include "../sdlutils/InputHandler.h"
 #include <bitset>
 
 
@@ -18,18 +20,25 @@ const int ligeroMax = 25;
 const int medioMax = 50;
 const int pesadoMax = 75;
 
-Paquete::Paquete(Distrito dis, Calle c, std::string remitente, TipoPaquete Tp, bool corr, NivelPeso Np, int p, bool f, bool cart) : 
+Paquete::Paquete(Paquete& otherPckg)
+{
+	miDistrito_ = otherPckg.miDistrito_;
+	miCalle_ = otherPckg.miCalle_;
+	miRemitente_ = otherPckg.miRemitente_;
+	miTipo_ = otherPckg.miTipo_;
+	selloCorrecto_ = otherPckg.selloCorrecto_;
+	miPeso_ = otherPckg.miPeso_;
+	peso_ = otherPckg.peso_;
+	fragil_ = otherPckg.fragil_;
+	carta_ = otherPckg.carta_;
+	envuelto_ = otherPckg.envuelto_;
+	calleMarcada_ = otherPckg.calleMarcada_;
+	nombreCalle_ = otherPckg.nombreCalle_;
+}
+
+Paquete::Paquete(Distrito dis, Calle c, const std::string& nombreCalle, const std::string& remitente, TipoPaquete Tp, bool corr, NivelPeso Np, int p, bool f, bool cart) :
 	miDistrito_(dis), miCalle_(c), miRemitente_(remitente),miTipo_(Tp),selloCorrecto_(corr), 
-	miPeso_(Np), peso_(p), fragil_(f), carta_(cart),envuelto_(false), calleMarcada_(Erronea){
-	
-	std::string filename = "recursos/config/mail.direcctions.json";
-	getStreetsFromJSON(filename, Demeter, "Demeter");
-	getStreetsFromJSON(filename, Hefesto, "Hefesto");
-	getStreetsFromJSON(filename, Hestia, "Hestia");
-	getStreetsFromJSON(filename, Artemisa, "Artemisa");
-	getStreetsFromJSON(filename, Hermes, "Hermes");
-	getStreetsFromJSON(filename, Apolo, "Apolo");
-	getStreetsFromJSON(filename, Poseidon, "Poseidon");
+	miPeso_(Np), peso_(p), fragil_(f), carta_(cart),envuelto_(false), calleMarcada_(Erronea), nombreCalle_(nombreCalle) {
 
 }
 
@@ -38,40 +47,42 @@ Paquete::~Paquete() {
 }
 
 void Paquete::initComponent() {
-
 }
 
 bool Paquete::bienSellado() const{
-	return calleMarcada_ == miCalle_;
+	bool bienSellado_ = calleMarcada_ != Erronea && calleMarcada_ == miCalle_;
+	return bienSellado_ && correctFragile();
 }
-
-bool Paquete::correcto() const{ 
-	//M�todo que comprueba si el paquete habia sido generado sin errores (AKA: Si da false, eso significa que se tendr�a que devolver al remitente)
-	bool resul = true;
-	if (miCalle_ == Erronea) { //Si la calle es err0nea, el paquete no es correcto
-		resul = false;
-	}
-	if (miDistrito_ == Erroneo) { //Si el distrito es err�neo, el paquete no es correcto
-		resul = false;
-	}
-	else if (!selloCorrecto_) {	//Si el sello de tipo no es correcto, el paquete no es correcto
-		resul = false;
-	}
-	else if (miPeso_ != Ninguno){	//Si tiene un sello de pesado y su peso no est� entre los valores indicados, el paquete no es correcto
+bool Paquete::pesoCorrecto() const {
+	bool result = true;
+	if (miPeso_ != Ninguno) {	//Si tiene un sello de pesado y su peso no est� entre los valores indicados, el paquete no es correcto
 		if (miPeso_ == Bajo) {
-			if (peso_ > ligeroMax) resul = false;
+			if (peso_ > ligeroMax) result = false;
 		}
 		else if (miPeso_ == Medio) {
-			if (peso_ < ligeroMax || peso_ > medioMax) resul = false;
+			if (peso_ < ligeroMax || peso_ > medioMax) result = false;
 		}
 		else if (miPeso_ == Alto) {
-			if (peso_ < medioMax) resul = false;
-		}		
+			if (peso_ < medioMax) result = false;
+		}
 	}
-	return resul;	//Si ha superdado todas las pruebas exitosamente, el paquete ser� correcto y devolver� true. Si en alg�n momento ha fallado, devolver� false
+	return result;
+}
+bool Paquete::correctFragile() const
+{
+	return (!fragil_ && !envuelto_) || (fragil_ && envuelto_);
+}
+bool Paquete::correcto() const{ 
+	//M�todo que comprueba si el paquete habia sido generado sin errores (AKA: Si da false, eso significa que se tendr�a que devolver al remitente)
+	bool correcto = miCalle_ != Erronea&&
+		miDistrito_ != Erroneo&&
+		selloCorrecto_&&
+		pesoCorrecto()
+		;
+	return correcto;	//Si ha superdado todas las pruebas exitosamente, el paquete ser� correcto y devolver� true. Si en alg�n momento ha fallado, devolver� false
 }
 
-void Paquete::sellarCalle(Calle sello, Transform* trSellador) {
+void Paquete::sellarCalle(Calle sello, Transform* trSellador, bool multicolor) {
 
 	Vector2D posSellador = trSellador->getPos();
 	// solo puedes sellar una vez 
@@ -81,12 +92,18 @@ void Paquete::sellarCalle(Calle sello, Transform* trSellador) {
 		Transform* paqTr = ent_->getComponent<Transform>();
 
 		//Creamos la entidad sello
-		ecs::Entity* selloEnt = ent_->getMngr()->addEntity(ecs::layer::STAMP);
+		ecs::Entity* selloEnt = ent_->getMngr()->addEntity(ecs::layer::PACKAGE);
 		//Textura en funcion de tipo calle
-		Texture* selloEntTex = &sdlutils().images().at(
-			(std::string)"sello" += 
-			(std::string)(sello == C1 ? "A" : sello == C2 ? "B" : "C"));
-
+		Texture* selloEntTex;
+		if (multicolor) {
+			selloEntTex = &sdlutils().images().at("selloM");
+		}
+		else {
+			 selloEntTex = &sdlutils().images().at(
+				(std::string)"sello" +=
+				(std::string)(sello == C1 ? "0" : sello == C2 ? "1" : "2"));
+		}
+		
 		//creamos transform y colocamos el sello en el centro del sellador
 		float scale = 0.2f;
 		Transform* selloEntTr = selloEnt->addComponent<Transform>
@@ -98,6 +115,84 @@ void Paquete::sellarCalle(Calle sello, Transform* trSellador) {
 	}
 }
 
+void Paquete::puntosRojos() {
+	Transform* paqTr = ent_->getComponent<Transform>();
+
+	// Creamos la entidad para el punto rojo
+	Texture* puntoRojoTex = &sdlutils().images().at("puntoRojo");
+	float scale = 0.2f;
+
+	if (puntoRojoTex != nullptr) {
+		// Obtener las dimensiones del paquete
+		float paqWidth = paqTr->getRect().w;
+		float paqHeight = paqTr->getRect().h;
+
+		// Calcular las nuevas coordenadas relativas de cada punto rojo (/60 un poco raro, habria q revisarlo)
+		float offsetX = paqWidth / 60;
+		float offsetY = paqHeight / 60;
+
+		// Definir las posiciones de los puntos rojos con el desplazamiento
+		std::vector<Vector2D> redPoints = {
+			// Esquinas
+			  Vector2D(-offsetX, -offsetY), // Superior izquierda
+			  Vector2D(paqWidth + offsetX, -offsetY), // Superior derecha
+			  Vector2D(-offsetX, paqHeight + offsetY), // Inferior izquierda
+			  Vector2D(paqWidth + offsetX, paqHeight + offsetY), // Inferior derecha
+			  // Mitad entre las esquinas y el centro
+			  Vector2D(paqWidth / 2, -offsetY), // Medio superior
+			  Vector2D(paqWidth / 2, paqHeight + offsetY), // Medio inferior
+			  Vector2D(-offsetX, paqHeight / 2), // Medio izquierda
+			  Vector2D(paqWidth + offsetX, paqHeight / 2), // Medio derecha
+			  // Centro
+			  Vector2D(paqWidth / 2, paqHeight / 2) // Centro
+		};
+
+		// Agregar un punto rojo en cada posición calculada
+		for (const auto& pos : redPoints) {
+			ecs::Entity* puntoRojoEnt = ent_->getMngr()->addEntity(ecs::layer::WRAP_POINTS);
+			Transform* puntoRojoTr = puntoRojoEnt->addComponent<Transform>(
+				pos.getX() - puntoRojoTex->width() * scale / 2,
+				pos.getY() - puntoRojoTex->height() * scale / 2,
+				puntoRojoTex->width() * scale,
+				puntoRojoTex->height() * scale
+				);
+			puntoRojoTr->setParent(paqTr); // Establecer el paquete como padre del punto rojo
+			puntoRojoEnt->addComponent<RenderImage>(puntoRojoTex);
+		}
+	}
+	else {
+		std::cout << "No se pudo cargar la textura del punto rojo" << std::endl;
+	}
+}
+void Paquete::clearLayer(ecs::layer::layerId lyId) {
+	// Obtener la escena a la que pertenece la entidad
+	 ecs::Scene* scene_ = ent_->getMngr();
+
+	// Eliminar todas las entidades de la capa WRAP_POINTS
+	scene_->removeEntitiesByLayer(lyId);
+}
+
+
+void Paquete::drawLines(int routeID, std::string routeName) {
+
+	Transform* paqTr = ent_->getComponent<Transform>();
+
+
+	// Creamos la entidad para el punto rojo
+	Texture* lineaRojaTex = &sdlutils().images().at(routeName);
+	float scale = 0.95f;
+	int lineaRojaPosX = -35;
+	int lineaRojaPosY = -35;
+	ecs::Entity* lineaRojaEnt = ent_->getMngr()->addEntity(ecs::layer::RED_LINES);
+	Transform* lineaRojaTr = lineaRojaEnt->addComponent<Transform>(lineaRojaPosX, lineaRojaPosY,
+		lineaRojaTex->width() * scale,
+		lineaRojaTex->height() * scale);
+	lineaRojaTr->setParent(paqTr); // Establecer el paquete como padre del punto rojo
+	lineaRojaEnt->addComponent<RenderImage>(lineaRojaTex);
+}
+
+
+
 std::string Paquete::getDirecction()
 {
 	// vamos a hacer que ponga exterior / interior y luego codigo postal
@@ -108,56 +203,20 @@ std::string Paquete::getDirecction()
 		dir = "Interior - ";
 
 	//creacion de codigo postal
-	if (miDistrito_ == Erroneo)
-		dir += "000\n";
+	//se puede mejorar el fallo si se hace que el codigo postal pase a ser un numero aleatorio
+	if (miDistrito_ == Erroneo) {
+		int rand = sdlutils().rand().nextInt(0, 7);
+		dir += std::bitset<3>(rand).to_string() + "\n";
+	}
 	else
 		dir += std::bitset<3>(miDistrito_ + 1).to_string() + "\n";
 
-	//habria que comprobar si la direccion tiene que ser correcta
-	if (miCalle_ == Erronea)
-		dir += "(CALLE INVENTADA)";
-	else if (miDistrito_ == Erroneo)
-		dir += "(CALLE INVENTADA)";
-	else
-		dir += distritoCalle_[miDistrito_][miCalle_];
+	dir += nombreCalle_;
 
 	return dir;
 }
 
-void Paquete::getStreetsFromJSON(std::string filename, Distrito dist, std::string distString)
-{
-	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(filename));
-
-	// check it was loaded correctly
-	// the root must be a JSON object
-	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while load/parsing '" + filename + "'";
-	}
-
-	// we know the root is JSONObject
-	JSONObject root = jValueRoot->AsObject();
-	JSONValue* jValue = nullptr;
-
-	jValue = root[distString];
-	if (jValue != nullptr) {
-		if (jValue->IsArray()) {
-			distritoCalle_[dist].reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
-			for (auto v : jValue->AsArray()) {
-				if (v->IsString()) {
-					std::string aux = v->AsString();
-#ifdef _DEBUG
-					std::cout << "Loading distrito with id: " << aux << std::endl;
-#endif
-					distritoCalle_[dist].emplace_back(aux);
-				}
-				else {
-					throw "'Calles' array in '" + filename
-						+ "' includes and invalid value";
-				}
-			}
-		}
-		else {
-			throw "'Demeter' is not an array in '" + filename + "'";
-		}
-	}
+void Paquete::giveData(std::ofstream& stream) const{
+	stream << (int)miDistrito_ << "," << miRemitente_ << "," << (int)miCalle_<<"\n";
 }
+

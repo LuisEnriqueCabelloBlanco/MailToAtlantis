@@ -3,6 +3,7 @@
 
 #include "Transform.h"
 #include "Clickeable.h"
+#include "../architecture/GeneralData.h"
 #include "../architecture/Entity.h"
 
 #include <assert.h>
@@ -50,28 +51,42 @@ void Trigger::touchEntity(ecs::Entity* ent) {
 
 }
 
-//Aï¿½ade funcionalidad a la entidad si algo se posa sobre ella
-void Trigger::addCallback(Callback event) {
+//Aï¿½ade funcionalidad a la entidad si algo se levanta sobre ella
+void Trigger::addCallback(Callback event, int moveType) {
 
-	eventList_.push_back(event);
+	if (moveType == generalData().DropIn) {
+
+		eventList_.push_back(event);
+
+	}
+	else if (moveType == generalData().PickUp) {
+
+		eventListPickUp_.push_back(event);
+
+	}
+	
 
 }
 
 //activa los eventos de todas las entidades que tenga asociadas (que este tocando)
 //NOTA: en un futuro serï¿½ necesario implementar un sistema de layers para diferenciar que cosa puede tocar a que cosa
-bool Trigger::activateEventsFromEntities() {
+bool Trigger::activateEventsFromEntities(int moveType) {
 
 	for (auto it = entTouching_.begin(); it != entTouching_.end(); ++it) {
 
-		(*it)->getComponent<Trigger>()->activateCallbacks(ent_);
+		if ((*it)->isActive()) {
 
+			(*it)->getComponent<Trigger>()->activateCallbacks(ent_, moveType);
+
+		}
+		
 	}
 
 	return entTouching_.empty();
 
 }
 
-bool Trigger::activateEventFromClosestEntity() {
+bool Trigger::activateEventFromClosestEntity(int moveType) {
 	Trigger* closestEnt = nullptr;
 	float shortestDistance = 9999999;
 	Vector2D entPos = ent_->getComponent<Transform>()->getCenter();
@@ -80,7 +95,7 @@ bool Trigger::activateEventFromClosestEntity() {
 	{
 		Vector2D otherPos = (*it)->getComponent<Transform>()->getCenter();
 		float distance = sqrt(pow(otherPos.getX() - entPos.getX(), 2) + pow(otherPos.getY() - entPos.getY(), 2));
-		if (distance < shortestDistance)
+		if (distance < shortestDistance && (*it)->isActive())
 		{
 			shortestDistance = distance;
 			closestEnt = (*it)->getComponent<Trigger>();
@@ -90,19 +105,36 @@ bool Trigger::activateEventFromClosestEntity() {
 	// si ha encontrado una entidad al menos, despues de haber ciclado
 	// por todas tenemos la mas cercana y llamamos solo a esa
 	if (closestEnt != nullptr)
-		closestEnt->activateCallbacks(ent_);
+		closestEnt->activateCallbacks(ent_, moveType);
 
 	return closestEnt != nullptr;
 }
 
 //Activa las funciones asociadas a esta entidad
-bool Trigger::activateCallbacks(ecs::Entity* Ent) {
+bool Trigger::activateCallbacks(ecs::Entity* Ent, int moveType) {
 
 
-	for (Callback call : eventList_) {
 
-		call(Ent);
+	if(Ent != ent_){
+	
+		if (moveType == generalData().DropIn) {
+
+			for (Callback call : eventList_) {
+
+				call(Ent);
+			}
+
+		}
+		else if (moveType == generalData().PickUp) {
+
+			for (Callback call : eventListPickUp_) {
+
+				call(Ent);
+			}
+		}
+		
 	}
+	
 
 	return eventList_.empty();
 
@@ -146,5 +178,23 @@ ecs::Entity* Trigger::getSpecificEntity(ecs::layer::layerId lay) {
 	}
 	
 	return nullptr;
+
+}
+
+std::list <ecs::layer::layerId> Trigger::getEntitiesTouching() {
+
+	std::list <ecs::layer::layerId> entTouchingID;
+
+	if (!entTouching_.empty()) {
+
+		for (auto i = entTouching_.begin(); i != entTouching_.end(); ++i) {
+
+			entTouchingID.emplace_back((*i)->getLayer());
+
+		}
+
+	}
+
+	return entTouchingID;
 
 }

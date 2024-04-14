@@ -3,20 +3,39 @@
 #include "../sdlutils/InputHandler.h"
 #include "../sdlutils/Font.h"
 #include "../sdlutils/Texture.h"
-#include "Dialog_Manager.h"
+#include "DialogManager.h"
 #include "Transform.h"
 #include "Render.h"
+#include "DelayedCallback.h"
+#include "../scenes/ExplorationScene.h"
+#include "../scenes/TutorialScene.h"
 
-DialogComponent::DialogComponent(DialogManager* manager): mTr_(nullptr), mRend_(nullptr),
-	dialogueWidth_(sdlutils().width() - 300),dialogueIndex_(1),mTexture_(nullptr)
+DialogComponent::DialogComponent(DialogManager* manager, ecs::ExplorationScene* Scene): 
+	mTr_(nullptr), mRend_(nullptr),
+	dialogueWidth_(sdlutils().width() + 500),dialogueIndex_(1),mTexture_(nullptr),
+	canSkip(true), endDialogue(false)
 {
 	mDialogMngr_ = manager;
+	scene2_ = nullptr;
+	scene1_ = Scene;
+	mFont_ = new Font("recursos/fonts/ARIAL.ttf", 40);
+}
+
+DialogComponent::DialogComponent(DialogManager* manager, ecs::TutorialScene* Scene) :
+	mTr_(nullptr), mRend_(nullptr),
+	dialogueWidth_(sdlutils().width() + 500), dialogueIndex_(1), mTexture_(nullptr),
+	canSkip(true), endDialogue(false)
+{
+	mDialogMngr_ = manager;
+	scene1_ = nullptr;
+	scene2_ = Scene;
 	mFont_ = new Font("recursos/fonts/ARIAL.ttf", 40);
 }
 
 DialogComponent::~DialogComponent()
 {
 	delete mFont_;
+	delete mTexture_;
 }
 
 void DialogComponent::initComponent()
@@ -34,16 +53,46 @@ void DialogComponent::update()
 	if (sdlutils().virtualTimer().currTime() > lastTimePaused_ + 40) { // este 40 en mejor sitio
 		setCurrentDialogue();
 		//avance al siguiente caracter
-		if(dialogueIndex_ < mDialogMngr_->getCurrentDialog().size())
+		if (dialogueIndex_ < mDialogMngr_->getCurrentDialog().size())
 			dialogueIndex_++;
+
 		lastTimePaused_ = sdlutils().virtualTimer().currTime();
 	}
-	//Saltar dialogo pasando al siguiente
-	if (ih().isKeyDown(SDL_SCANCODE_SPACE)&&
-		dialogueIndex_ == mDialogMngr_->getCurrentDialog().size()) {
-		mDialogMngr_->nextDialog();
-		dialogueIndex_ = 1;
+
+	//al pulsar espacio o cualquier boton del ratón
+	if (canSkip &&
+		(ih().isKeyDown(SDL_SCANCODE_SPACE) || ih().mouseButtonDownEvent()))
+	{
+		// cooldown
+		canSkip = false;
+		ent_->addComponent<DelayedCallback>(0.2, [this]() {
+			canSkip = true;
+			});
+
+		// Pasar al siguiente dialogo o terminar conversacion
+		if (dialogueIndex_ == mDialogMngr_->getCurrentDialog().size())
+		{
+			endDialogue = mDialogMngr_->nextDialog();
+			dialogueIndex_ = 1;
+
+			if (endDialogue)
+			{
+				if (mTexture_ != nullptr)
+				{
+					if (scene1_ != nullptr)
+						scene1_->closeConversation();
+					else
+						scene2_->closeConversation();
+				}
+			}
+		}
+		//Sacar todo el diálogo antes de que acabe de escribirse
+		else
+		{
+			dialogueIndex_ = mDialogMngr_->getCurrentDialog().size();
+		}
 	}
+
 }
 
 void DialogComponent::setCurrentDialogue()

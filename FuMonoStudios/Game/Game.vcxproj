@@ -44,6 +44,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -74,12 +75,25 @@
     <Import Project="Properties.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir)ImGui;$(ProjectDir)ImGui\backends;$(ProjectDir)ImGui\misc;$(ProjectDir)src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(ProjectDir)ImGui;$(ProjectDir)ImGui\backends;$(ProjectDir)ImGui\misc;$(ProjectDir)src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(ProjectDir)ImGui;$(ProjectDir)ImGui\backends;$(ProjectDir)ImGui\misc;$(ProjectDir)src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir)ImGui;$(ProjectDir)ImGui\backends;$(ProjectDir)ImGui\misc;$(ProjectDir)src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -94,6 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -106,8 +121,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEV_TOOLS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,6 +138,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,6 +149,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\scenes\ConfigScene.cpp" />
+    <ClCompile Include="src\sistemas\SoundEmiter.cpp" />
+    <ClCompile Include="src\components\RenderWithLight.cpp" />
+    <ClCompile Include="src\QATools\DataCollector.cpp" />
+    <ClCompile Include="src\entities\ClockAux.cpp" />
+    <ClCompile Include="src\architecture\Config.cpp" />
+    <ClCompile Include="src\components\DelayedCallback.cpp" />
+    <ClCompile Include="ImGui\backends\imgui_impl_sdl2.cpp" />
+    <ClCompile Include="ImGui\backends\imgui_impl_sdlrenderer2.cpp" />
+    <ClCompile Include="ImGui\imgui.cpp" />
+    <ClCompile Include="ImGui\imgui_demo.cpp" />
+    <ClCompile Include="ImGui\imgui_draw.cpp" />
+    <ClCompile Include="ImGui\imgui_tables.cpp" />
+    <ClCompile Include="ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="src\components\ErrorNote.cpp" />
+    <ClCompile Include="src\components\Depth.cpp" />
+    <ClCompile Include="src\scenes\PauseScene.cpp" />
     <ClCompile Include="src\sistemas\ComonObjectsFactory.cpp" />
     <ClCompile Include="src\components\SelfDestruct.cpp" />
     <ClCompile Include="src\components\PackageChecker.cpp" />
@@ -155,7 +188,7 @@
     <ClCompile Include="src\architecture\Entity.cpp" />
     <ClCompile Include="src\architecture\Game.cpp" />
     <ClCompile Include="src\architecture\Scene.cpp" />
-    <ClCompile Include="src\components\Dialog_Manager.cpp" />
+    <ClCompile Include="src\components\DialogManager.cpp" />
     <ClCompile Include="src\components\Trigger.cpp" />
     <ClCompile Include="src\json\JSON.cpp" />
     <ClCompile Include="src\json\JSONValue.cpp" />
@@ -172,9 +205,29 @@
     <ClCompile Include="src\utils\Vector2D.cpp" />
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\architecture\Time.cpp" />
+    <ClCompile Include="src\scenes\TutorialScene.cpp" />
+    <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\scenes\ConfigScene.h" />
+    <ClInclude Include="src\sistemas\SoundEmiter.h" />
+    <ClInclude Include="src\components\RenderWithLight.h" />
+    <ClInclude Include="src\QATools\DataCollector.h" />
+    <ClInclude Include="src\entities\ClockAux.h" />
+    <ClInclude Include="src\architecture\Config.h" />
+    <ClInclude Include="src\components\DelayedCallback.h" />
+    <ClInclude Include="ImGui\backends\imgui_impl_sdl2.h" />
+    <ClInclude Include="ImGui\backends\imgui_impl_sdlrenderer2.h" />
+    <ClInclude Include="ImGui\imconfig.h" />
+    <ClInclude Include="ImGui\imgui.h" />
+    <ClInclude Include="ImGui\imgui_internal.h" />
+    <ClInclude Include="ImGui\imstb_rectpack.h" />
+    <ClInclude Include="ImGui\imstb_textedit.h" />
+    <ClInclude Include="ImGui\imstb_truetype.h" />
+    <ClInclude Include="rapidCSV\rapidcsv.h" />
+    <ClInclude Include="src\components\ErrorNote.h" />
+    <ClInclude Include="src\components\Depth.h" />
+    <ClInclude Include="src\scenes\PauseScene.h" />
     <ClInclude Include="src\sistemas\ComonObjectsFactory.h" />
     <ClInclude Include="src\scenes\EndWorkScene.h" />
     <ClInclude Include="src\components\SelfDestruct.h" />
@@ -198,7 +251,7 @@
     <ClInclude Include="src\architecture\Entity.h" />
     <ClInclude Include="src\architecture\Game.h" />
     <ClInclude Include="src\architecture\Scene.h" />
-    <ClInclude Include="src\components\Dialog_Manager.h" />
+    <ClInclude Include="src\components\DialogManager.h" />
     <ClInclude Include="src\components\Trigger.h" />
     <ClInclude Include="src\architecture\GameConstants.h" />
     <ClInclude Include="src\json\JSON.h" />
@@ -227,11 +280,19 @@
     <ClInclude Include="src\utils\Vector2D.h" />
     <ClInclude Include="src\components\Transform.h" />
     <ClInclude Include="src\architecture\Time.h" />
+    <ClInclude Include="src\scenes\TutorialScene.h" />
+    <ClInclude Include="src\sistemas\TutorialSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties.props" />
     <None Include="recursos\config\mail.direcctions.json" />
+    <None Include="recursos\config\mail.destinatarios.json" />
     <None Include="recursos\config\mail.resources.json" />
+    <None Include="recursos\config\sounds.json" />
+    <None Include="recursos\data\dialogos.json" />
+    <None Include="recursos\data\npcData.json" />
+    <None Include="recursos\dialogos\dialogos.json" />
+    <None Include="recursos\dialogos\dialogosNPC.json" />
     <None Include="src\sdlutils\RAEDME.md" />
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +306,10 @@
     <Image Include="recursos\images\PesoBajo.png" />
     <Image Include="recursos\images\PesoMedio.png" />
     <Image Include="recursos\images\placeholderTrabajar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="recursos\sounds\office.wav" />
+    <Media Include="recursos\sounds\printer.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

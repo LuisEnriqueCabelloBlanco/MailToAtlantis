@@ -2,6 +2,7 @@
 
 #include "../architecture/Component.h"
 #include <functional>
+#include <string>
 
 class Transform;
 class Gravity;
@@ -21,8 +22,10 @@ class DragAndDrop : public ecs::Component {
 public:
 	__CMP_DECL__(ecs::cmp::DRAGANDDROP)
 	DragAndDrop();
-	DragAndDrop(bool usingClosestEnt);
-	DragAndDrop(bool usingClosestEnt, SimpleCallback func);
+	DragAndDrop(std::string sound);
+	DragAndDrop(bool usingClosestEnt, std::string sound);
+	DragAndDrop(bool usingClosestEnt, bool usingOwnCallback, std::string sound);
+	DragAndDrop(bool usingClosestEnt, SimpleCallback func, std::string sound);
 
 	~DragAndDrop();
 
@@ -30,23 +33,27 @@ public:
 
 	void update() override;
 
+	void disableInteraction() { canInteract = false; }
+	void activateInteraction() { canInteract = true; }
 private:
+	bool canInteract = true;
 
 	Transform* tr_;
-	
 	Gravity* grav_;
-
 	Trigger* tri_;
 
 	bool dragging_;
-
 	float differenceX_;
-
 	float differenceY_;
 
+	// para el escalado al arrastrar objetos
+	float porcentajeStart;
+
 	bool usingOnlyClosestEnt_ = false;
-
 	bool usingCallback_ = false;
-
+	bool usingOwnCallback_ = false;
 	SimpleCallback func_;
+	std::pair<int,int> latestPoint_;
+
+	std::string draggingSound_;
 };

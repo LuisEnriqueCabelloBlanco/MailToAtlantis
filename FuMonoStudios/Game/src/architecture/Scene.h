@@ -4,8 +4,9 @@
 #include <vector>
 #include <array>
 #include <queue>
+//#include <sistemas/ComonObjectsFactory.h>
 //#include "Entity.h"
-
+class ComonObjectsFactory;
 namespace ecs {
 
 
@@ -60,19 +61,25 @@ namespace ecs {
 
 		void refresh();
 
+		void removeEntitiesByLayer(ecs::layer::layerId layer);
+
 		/// <summary>
 		/// Elimina todas las entidades que estuvieran en la escena
 		/// </summary>
 		void clearScene();
+
+		ComonObjectsFactory* getFactory() { return factory_; }
 	protected:
-    /// <summary>
-		/// Vector de los objetos que pertenecen a la escena
-		/// </summary>
-		std::array<std::vector<Entity*>,ecs::layer::maxLayerId> objs_;
-    
-		std::list<Entity* > colisionEntities_;
+		/// <summary>
+			/// Vector de los objetos que pertenecen a la escena
+			/// </summary>
+		std::array<std::vector<Entity*>, ecs::layer::maxLayerId> objs_;
+
+		std::list<Entity*> colisionEntities_;
 
 		std::queue<std::pair<ecs::layer::layerId, std::vector<Entity*>::iterator>> del_;
+
+		ComonObjectsFactory* factory_;
 	};
 }
 

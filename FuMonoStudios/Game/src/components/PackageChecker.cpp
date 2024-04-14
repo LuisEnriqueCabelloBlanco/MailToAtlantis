@@ -9,8 +9,17 @@
 #include "../architecture/GeneralData.h"
 #include <list>
 #include <functional>
+#include <components/ErrorNote.h>
+#include <QATools/DataCollector.h>
 
-PackageChecker::PackageChecker(Paquete::Distrito dis) : toDis_(dis), extraCond_()
+PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc) : 
+	toDis_(dis), extraCond_(),mainSc_(sc), tutSc_(nullptr)
+{
+
+}
+
+PackageChecker::PackageChecker(pq::Distrito dis, ecs::TutorialScene* sc) :
+	toDis_(dis), extraCond_(), tutSc_(sc), mainSc_(nullptr)
 {
 
 }
@@ -21,8 +30,11 @@ PackageChecker::~PackageChecker()
 
 void PackageChecker::initComponent()
 {
-	//std::function<void(ecs::Entity*)> call = [this](ecs::Entity* ent) {checkEntity(ent); };
-	//ent_->getComponent<Trigger>()->addCallback(call);
+
+	std::function<void(ecs::Entity*)> call = [this](ecs::Entity* ent) {checkEntity(ent); };
+	Trigger* tri = ent_->getComponent<Trigger>();
+	assert(tri != nullptr);
+	tri->addCallback(call, generalData().DropIn);
 }
 
 void PackageChecker::addCondition(Condition newCond)
@@ -31,36 +43,68 @@ void PackageChecker::addCondition(Condition newCond)
 }
 
 bool PackageChecker::checkPackage(Paquete* package)
-{
-	bool correctPack = false;
-	if (package->correcto() && package->bienSellado()) {
-		if (toDis_ == package->getDistrito()) {
-			correctPack = checkAdditionalConditions(package);
-		}
-	}
-	else {
-		if (toDis_ == Paquete::Erroneo) {
-			correctPack = checkAdditionalConditions(package);
-		}
-	}
-	return correctPack;
+{	
+	bool correctPack = package->correcto() && checkAdditionalConditions(package);		
+	return  (correctPack && package->bienSellado()) || (!correctPack && toDis_ == pq::Erroneo);
 }
 
 void PackageChecker::checkEntity(ecs::Entity* ent)
 {
 	//comprobamos si es un paquete
-	Transform* entTr = ent->getComponent<Transform>();
 	if (ent->getComponent<Paquete>() != nullptr) {
+		ent->getComponent<DragAndDrop>()->disableInteraction();
+
+		Vector2D entPos = ent->getComponent<Transform>()->getPos();
 		ent->removeComponent<Gravity>();
-		ent->addComponent<MoverTransform>( // animación básica del paquete llendose
-				entTr->getPos() + Vector2D(0,-600), 1.5, Easing::EaseOutCubic);
-		ent->addComponent<SelfDestruct>(1);
-		if (checkPackage(ent->getComponent<Paquete>())) {
+
+		//animacion de salida del paquete dependiaendo de que sea
+		auto mover = ent->getComponent<MoverTransform>();
+		if (toDis_ != Erroneo) {
+			mover->setEasing(Easing::EaseOutCubic);
+			mover->setFinalPos(entPos+ Vector2D(0, -600));
+			mover->setMoveTime(1.7f);
+		}
+		else {
+			mover->setEasing(Easing::EaseOutCubic);
+			mover->setFinalPos(entPos+ Vector2D(-600, 0));
+			mover->setMoveTime(1);
+		}
+		mover->enable();
+
+		ent->addComponent<SelfDestruct>(1,[this](){
+			if (mainSc_ != nullptr)
+				mainSc_->createPaquete(generalData().getPaqueteLevel());
+			else if (tutSc_ != nullptr)
+				tutSc_->packageSent();
+			});
+		bool correct = checkPackage(ent->getComponent<Paquete>());
+		if (correct) {
 
 			GeneralData::instance()->correctPackage();
 		}
-		else {
+		else {			
 			GeneralData::instance()->wrongPackage();
+			if (mainSc_ != nullptr)
+				mainSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo,toDis_ != ent->getComponent<Paquete>()->getDistrito());
+			else if (tutSc_ != nullptr)
+				tutSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo, toDis_ != ent->getComponent<Paquete>()->getDistrito());
+				
+		}
+#ifdef QA_TOOLS
+
+		dataCollector().recordPacage(ent->getComponent<Paquete>(), correct);
+
+#endif // QA_TOOLS
+	}
+	else
+	{
+		if (ent->getComponent<ErrorNote>() != nullptr) {
+			auto mover = ent->getComponent<MoverTransform>();
+			mover->setEasing(Easing::EaseOutCubic);
+			mover->setFinalPos(ent->getComponent<Transform>()->getPos() + Vector2D(-600, 0));
+			mover->setMoveTime(1);
+			mover->enable();
+			ent->addComponent<SelfDestruct>(1);
 		}
 	}
 }
@@ -68,11 +112,11 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 bool PackageChecker::checkAdditionalConditions(Paquete* package)
 {
 	bool aditional = true;
-	/*for (Condition call : extraCond) {
+	for (Condition call : extraCond_) {
 		if (!call(package)) {
 			aditional = false;
 		}
-	}*/
+	}
 	return aditional;
 }
 

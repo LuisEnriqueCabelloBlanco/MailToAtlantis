@@ -1,5 +1,6 @@
 #pragma once
 #include "../architecture/Component.h"
+#include <string>
 
 class Transform;
 
@@ -12,7 +13,8 @@ class Gravity : public ecs::Component
 public:
 	__CMP_DECL__(ecs::cmp::GRAVITY)
 	Gravity();
-	Gravity(float gravityForce);
+	Gravity(std::string);
+	Gravity(float gravityForce, std::string sound);
 	~Gravity();
 
 	void initComponent() override;
@@ -27,5 +29,8 @@ private:
 	float gravityForce_;
 	float velocity_;
 	bool active_;
+	bool latestcontactGround_;
+
+	std::string thumpSound_;
 };
 

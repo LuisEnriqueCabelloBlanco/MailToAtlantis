@@ -107,11 +107,12 @@ public:
 // toggle to full-screen/window mode
 	inline void toggleFullScreen() {
 		auto flags = SDL_GetWindowFlags(window_);
-		if (flags & SDL_WINDOW_FULLSCREEN) {
+		if (flags & SDL_WINDOW_FULLSCREEN_DESKTOP) {
 			SDL_SetWindowFullscreen(window_, 0);
 		} else {
-			SDL_SetWindowFullscreen(window_, SDL_WINDOW_FULLSCREEN);
+			SDL_SetWindowFullscreen(window_, SDL_WINDOW_FULLSCREEN_DESKTOP);
 		}
+		//SDL_GetWindowSize(window_, &width_, &height_);
 	}
 
 // show the cursor when mouse is over the window
@@ -170,6 +171,9 @@ public:
 		return SDL_GetTicks();
 	}
 
+
+	void drawLine(int x1, int y1, int x2, int y2, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
+
 private:
 	SDLUtils();
 	SDLUtils(std::string windowTitle, int width, int height);
@@ -181,6 +185,8 @@ private:
 	void initSDLExtensions(); // initialize resources (fonts, textures, audio, etc.)
 	void closeSDLExtensions(); // free resources the
 	void loadReasources(std::string filename); // load resources from the json file
+
+
 
 	std::string windowTitle_; // window title
 	int width_; // window width

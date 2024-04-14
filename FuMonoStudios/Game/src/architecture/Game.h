@@ -2,11 +2,24 @@
 #include<list>
 #include <SDL.h>
 #include <array>
-#include "../utils/Singleton.h"
-#include "../architecture/ecs.h"
-#include "../sdlutils/SDLUtils.h"
-#include "Scene.h"
+#include <utils/Singleton.h>
+#include <architecture/ecs.h>
+#include <sdlutils/SDLUtils.h>
+#include "Config.h"
+#include <architecture/Scene.h>
 #include <functional>
+
+
+
+#ifdef _DEBUG
+#define DEV_TOOLS
+#endif // _DEBUG
+#define QA_TOOLS
+
+
+
+
+
 
 class Game : public Singleton<Game> {
 
@@ -37,7 +50,7 @@ public:
 	inline void writeMessage() {
 		std::cout << "Funcionaaaaaaaaa" << std::endl;
 	};
-
+	void endGame() { exit_ = true; }
 private:
 	/// <summary>
 	/// Metodo para cambiar de una escena a otra
@@ -67,6 +80,8 @@ private:
 
 
 	std::list<std::function<void(void)>> requets;
+
+	float autoRecodTime = 0;
 };
 
 inline Game& gm() {

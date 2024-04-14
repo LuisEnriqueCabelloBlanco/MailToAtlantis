@@ -1,10 +1,12 @@
-
 #include "Wrap.h"
 #include "Transform.h"
 #include "MultipleTextures.h"
 
 #include "../architecture/Entity.h"
 #include "../sdlutils/InputHandler.h"
+#include "../json/JSON.h"
+#include "../sdlutils/Texture.h"
+#include "../sdlutils/SDLUtils.h"
 
 #include <SDL.h>
 #include <vector>
@@ -12,11 +14,15 @@
 #include <cmath>
 
 //Constructora dada una ruta especifica
-Wrap::Wrap(float spaceAux, int repTimesAux, std::list<int> routeAux) : space(spaceAux), repTimes(repTimesAux) {
+Wrap::Wrap(float spaceAux, int repTimesAux, std::list<int> routeAux, int routeIndex) : 
+	space(spaceAux), repTimes(repTimesAux) {
 
 	route = routeAux;
 
+	routeSelectedID = routeIndex;
 	totalPointsRoute = route.size() * (repTimes + 1);
+
+
 
 }
 
@@ -61,9 +67,15 @@ void Wrap::initComponent() {
 
 	tri_ = ent_->getComponent<Trigger>();
 
-	mul_ = ent_->getComponent<MultipleTextures>();
+	mul_ = ent_->getComponent<RenderImage>();
+
+
+	paqComp_ = ent_->getComponent<Paquete>();
+
+
 
 	restartRoute();
+
 
 	assert(tr_ != nullptr);
 
@@ -81,7 +93,9 @@ void Wrap::update() {
 
 		SDL_Point point{ ihdlr.getMousePos().first, ihdlr.getMousePos().second };
 
+
 		Vector2D posTR = tr_->getPos();
+
 
 		//Se inicializan las posiciones del paquete para no acceder al transform y coordenadas constantemente
 		double posXTR = posTR.getX();
@@ -91,8 +105,10 @@ void Wrap::update() {
 		float widthTR = tr_->getWidth();
 
 		float heightTR = tr_->getHeigth();
-		
+
 		auto tapeEnt = tri_->getSpecificEntity(ecs::layer::TAPE);
+
+
 
 		//primero se comprueba que la caja este tocando con la cinta
 		if (tapeEnt != nullptr) {
@@ -103,10 +119,36 @@ void Wrap::update() {
 
 			if (SDL_PointInRect(&point, &tapeRect)) {
 
-				std::vector<double> pointsX{ abs(tapeRect.x - posXTR), abs(tapeRect.x - (posXTR + widthTR / 2)), abs(tapeRect.x - (posXTR + widthTR))};
+				paqComp_->puntosRojos();
+				switch (routeSelectedID) {
+				case 0:
+					paqComp_->drawLines(0, "ruta1");
+					break;
+				case 1:
+					paqComp_->drawLines(0, "ruta2");
+					break;
+				case 2:
+					paqComp_->drawLines(0, "ruta3");
+					break;
+				case 3:
+					paqComp_->drawLines(0, "ruta4");
+					break;
+				default:
+					std::cout << "Ruta no encontrada" << std::endl;
+					break;
+				}
 
-				std::vector<double> pointsY{ abs(tapeRect.y - posYTR), abs(tapeRect.y - (posYTR + heightTR / 2)), abs(tapeRect.y - (posYTR + heightTR))};
+				// Se calculan los puntos centrales tanto del paquete como de la cinta
+				double centerXTR = posXTR + widthTR / 2;
+				double centerYTR = posYTR + heightTR / 2;
 
+				double centerXTape = tapeRect.x + tapeRect.w / 2;
+				double centerYTape = tapeRect.y + tapeRect.h / 2;
+
+
+				std::vector<double> pointsX{ abs(centerXTape - (centerXTR - widthTR / 2)), abs(centerXTape - centerXTR), abs(centerXTape - (centerXTR + widthTR / 2)) };
+
+				std::vector<double> pointsY{ abs(centerYTape - (centerYTR - heightTR / 2)), abs(centerYTape - centerYTR), abs(centerYTape - (centerYTR + heightTR / 2)) };
 				int nCheckPointRoute = 0;
 
 				for (int i = 0; i < pointsY.size(); ++i) {
@@ -152,21 +194,25 @@ void Wrap::update() {
 					if (repTimes < 0) {
 
 						wrapped = true;
-
+						ent_->getComponent<Paquete>()->envolver();
 					}
 
+					paqComp_->clearLayer(ecs::layer::WRAP_POINTS);
+					paqComp_->clearLayer(ecs::layer::RED_LINES);
 					restartRoute();
-				}			
+				}
 
 			}
 
 		}
 		else {
+			paqComp_->clearLayer(ecs::layer::WRAP_POINTS);
+			paqComp_->clearLayer(ecs::layer::RED_LINES);
 			restartRoute();
 		}
-		
+
 	}
-	
+
 
 }
 
@@ -182,9 +228,9 @@ void Wrap::restartRoute() {
 	wrapFase = 0;
 
 	if (!wrapped) {
-		mul_->restartTexture();
+		mul_->setTexture(0);
 	}
-	
+
 
 }
 
@@ -206,6 +252,4 @@ void Wrap::checkPointTouch(int point) {
 		restartRoute();
 
 	}
-
-
 }
