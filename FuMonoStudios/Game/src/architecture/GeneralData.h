@@ -124,6 +124,10 @@ public:
 		upgrades_[upgrade] = value;
 	}
 
+	bool getUpgradeValue(int upgrade) {
+		return upgrades_[upgrade];
+	}
+
 	void setFinalID(int final); //Cambia el ID del final
 	int getFinalID(); //Devuelve el id del final del juego
 
