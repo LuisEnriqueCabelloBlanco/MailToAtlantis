@@ -6,6 +6,7 @@
 #include "../json/JSON.h"
 #include "../json/JSONValue.h"
 #include "../sdlutils/RandomNumberGenerator.h"
+#include "../architecture/ecs.h"
 
 GeneralData::GeneralData()
 {
