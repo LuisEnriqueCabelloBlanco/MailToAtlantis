@@ -176,7 +176,6 @@
     <ClCompile Include="src\components\Herramientas.cpp" />
     <ClCompile Include="src\components\MultipleTextures.cpp" />
     <ClCompile Include="src\sistemas\Felicidad.cpp" />
-    <ClCompile Include="src\sistemas\Mapa.cpp" />
     <ClCompile Include="src\components\DialogComponent.cpp" />
     <ClCompile Include="src\components\Gravity.cpp" />
     <ClCompile Include="src\components\Clickeable.cpp" />
@@ -238,7 +237,6 @@
     <ClInclude Include="src\components\Herramientas.h" />
     <ClInclude Include="src\components\MultipleTextures.h" />
     <ClInclude Include="src\sistemas\Felicidad.h" />
-    <ClInclude Include="src\sistemas\Mapa.h" />
     <ClInclude Include="src\components\DialogComponent.h" />
     <ClInclude Include="src\components\Gravity.h" />
     <ClInclude Include="src\components\Clickeable.h" />
