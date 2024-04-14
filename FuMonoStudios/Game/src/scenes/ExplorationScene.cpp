@@ -27,7 +27,7 @@ ecs::ExplorationScene::ExplorationScene() :Scene(), numLugares(7)
 	updateNavegavility();
 	initDirectionsDefaultMap();
 	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
-	canStartConversation = true;
+	dialogMngr_.canStartConversation = true;
 }
 
 ecs::ExplorationScene::~ExplorationScene()
@@ -56,6 +56,8 @@ void ecs::ExplorationScene::init()
 	//boton ir a trabajar
 	boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
 
+
+	dialogMngr_.init(this);
 }
 
 
@@ -189,7 +191,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	
 	CallbackClickeable cosa = [this, place, placeID]() {
 		if (actualPlace_->navigate(place)) {
-			closeConversation();
+			dialogMngr_.closeConversation();
 			actualPlace_->changeActivationObjects(false);
 			placeToGo.push_back(placeID);
 			
@@ -243,19 +245,18 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	// al pulsar sale el dialogo
 	CallbackClickeable funcPress = [this, character]() {
 
-		if (canStartConversation)
+		if (dialogMngr_.canStartConversation)
 		{
 			auto charac = generalData().stringToPersonaje(character);
 			auto data = generalData().getNPCData(charac);
-			canStartConversation = false;
+			dialogMngr_.canStartConversation = false;
 
-			boxBackground->getComponent<RenderImage>()->setTexture(&sdlutils().images().at("cuadroDialogo"));
-			// activamos los dialogos correspondientes
+		    // activamos los dialogos correspondientes
 			std::pair<const std::string, int> aux = data->getDialogueInfo();
 
 			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
 
-			textDialogue->addComponent<DialogComponent>(&dialogMngr_, this);
+			dialogMngr_.textDialogue->addComponent<DialogComponent>(&dialogMngr_);
 
 			dataCollector().recordNPC(charac +1,aux.second, generalData().getNPCData(charac)->felicidad);
 		}
@@ -330,7 +331,7 @@ void ecs::ExplorationScene::closeConversation() {
 	textDialogue->removeComponent<DialogComponent>();
 	boxBackground->getComponent<RenderImage>()->setTexture(nullptr);
 	textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
-		canStartConversation = true;
+		//canStartConversation = true;
 		});
 }
 

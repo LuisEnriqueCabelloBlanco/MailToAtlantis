@@ -13,6 +13,7 @@ TutorialSystem::TutorialSystem(ecs::TutorialScene* scene) {
 	waitingCallback = false;
 	waitingEmbalaje = false;
 
+	dialogMngr_.init(scene);
 	createDialogueBox();
 	createArrow();
 }
@@ -393,7 +394,7 @@ void TutorialSystem::activateDialogue(bool dialogBoxInBottom) {
 	boxBackground_->getComponent<RenderImage>()->setTexture(&sdlutils().images().at("cuadroDialogo"));
 	boxBackground_->getComponent<Transform>()->setPos(100, dialogBoxInBottom ? LOGICAL_RENDER_HEITH * 0.05 : LOGICAL_RENDER_HEITH - 250);
 	dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(tutorialIteration));
-	textDialogue_->addComponent<DialogComponent>(&dialogMngr_, scene_);
+	textDialogue_->addComponent<DialogComponent>(&dialogMngr_);
 }
 
 void TutorialSystem::delayedCallback(float time, SimpleCallback call) {

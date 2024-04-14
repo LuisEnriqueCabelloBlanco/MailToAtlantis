@@ -1,13 +1,32 @@
 // dialog_manager.cpp
 #include "DialogManager.h"
 #include <fstream>
+
+#include "DelayedCallback.h"
+#include "DialogComponent.h"
+#include "Render.h"
 #include "../json/JSON.h"
 #include "../json/JSONValue.h"
+#include "sistemas/ComonObjectsFactory.h"
 
-DialogManager::DialogManager() : currentDialogIndex_(0) {
+DialogManager::DialogManager() : currentDialogIndex_(0)
+{
+
 }
 
+void DialogManager::init(ecs::Scene* scene)
+{
+    Vector2D pos = Vector2D(100, LOGICAL_RENDER_HEITH - 250);
+    Vector2D size = Vector2D(LOGICAL_RENDER_WIDTH - 100, 200);
+    scene->getFactory()->setLayer(ecs::layer::UI);
+    boxBackground = scene->getFactory()->createImage(pos, size, &sdlutils().images().at("cuadroDialogo"));
+    boxBackground->setActive(false);
 
+    textDialogue = scene->addEntity(ecs::layer::UI);
+    auto textTr = textDialogue->addComponent<Transform>(100, 40, 80, 100);
+    textTr->setParent(boxBackground->getComponent<Transform>());
+    textDialogue->addComponent<RenderImage>();
+}
 
 std::string DialogManager::getCurrentDialog() {
     if (currentDialogIndex_ < dialogs_.size()) {
@@ -20,6 +39,7 @@ std::string DialogManager::getCurrentDialog() {
 
 
 bool DialogManager::nextDialog() {
+
     bool isEndOfConversation = (currentDialogIndex_ >= dialogs_.size() - 1);
 
     if (isEndOfConversation) {
@@ -136,6 +156,22 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     {
         throw std::runtime_error("Fallo en la carga de dialogo: " + stringDialogSel);
     }
+}
+
+void DialogManager::closeConversation()
+{
+    //boxBackground->setActive(false);
+    //textDialogue->setActive(false);
+    //textDialogue->removeComponent<DialogComponent>();
+    //textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
+    //    canStartConversation = true;
+    //    });
+    textDialogue->getComponent<RenderImage>()->setTexture(nullptr);
+    textDialogue->removeComponent<DialogComponent>();
+    boxBackground->getComponent<RenderImage>()->setTexture(nullptr);
+    textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
+        canStartConversation = true;
+        });
 }
 
 void DialogManager::fixText(std::string& text)

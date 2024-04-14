@@ -185,7 +185,7 @@ namespace ecs {
 		ecs::Entity* textDialogue;
 
 		// flag para saber si podemos entablar dialogo
-		bool canStartConversation;
+		//bool canStartConversation;
 
 		ecs::Entity* boton_Trabajo;
     };

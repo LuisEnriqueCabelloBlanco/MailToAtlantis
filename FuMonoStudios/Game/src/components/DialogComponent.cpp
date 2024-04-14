@@ -10,27 +10,15 @@
 #include "../scenes/ExplorationScene.h"
 #include "../scenes/TutorialScene.h"
 
-DialogComponent::DialogComponent(DialogManager* manager, ecs::ExplorationScene* Scene): 
+DialogComponent::DialogComponent(DialogManager* manager): 
 	mTr_(nullptr), mRend_(nullptr),
 	dialogueWidth_(sdlutils().width() + 500),dialogueIndex_(1),mTexture_(nullptr),
 	canSkip(true), endDialogue(false)
 {
 	mDialogMngr_ = manager;
-	scene2_ = nullptr;
-	scene1_ = Scene;
 	mFont_ = new Font("recursos/fonts/ARIAL.ttf", 40);
 }
 
-DialogComponent::DialogComponent(DialogManager* manager, ecs::TutorialScene* Scene) :
-	mTr_(nullptr), mRend_(nullptr),
-	dialogueWidth_(sdlutils().width() + 500), dialogueIndex_(1), mTexture_(nullptr),
-	canSkip(true), endDialogue(false)
-{
-	mDialogMngr_ = manager;
-	scene1_ = nullptr;
-	scene2_ = Scene;
-	mFont_ = new Font("recursos/fonts/ARIAL.ttf", 40);
-}
 
 DialogComponent::~DialogComponent()
 {
@@ -79,10 +67,7 @@ void DialogComponent::update()
 			{
 				if (mTexture_ != nullptr)
 				{
-					if (scene1_ != nullptr)
-						scene1_->closeConversation();
-					else
-						scene2_->closeConversation();
+					mDialogMngr_->closeConversation();
 				}
 			}
 		}

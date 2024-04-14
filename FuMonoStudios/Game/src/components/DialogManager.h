@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include "../architecture/GeneralData.h"
+#include "../architecture/Scene.h"
 
 /*
 Clase que genera los dialogos que se van a escribir
@@ -49,6 +50,7 @@ public:
 
     DialogManager();
 
+    void init(ecs::Scene* scene);
     /// <summary>
     /// Devuelve el dialogo acutal segun el indice de dialogo
     /// </summary>
@@ -66,6 +68,14 @@ public:
     void setDialogues(const DialogSelection ds, const std::string& tipoDialogo, int dialogueSelection);
     void setDialogues(const DialogSelection ds, const std::string& t) { setDialogues(ds, t, -1); }
     void setDialogues(const DialogSelection ds) { setDialogues(ds, "NULL", -1); }
+
+    void closeConversation();
+
+    bool canStartConversation;
+
+    // entidades del dialogo
+    ecs::Entity* boxBackground;
+    ecs::Entity* textDialogue;
 private:
     void fixText(std::string& text);
     void crearTildes(std::string& aux);
@@ -78,7 +88,9 @@ private:
     /// </summary>
     std::vector<std::string> dialogs_;
     /// <summary>
-    /// Indice que indica en que diálogo nos encontramos
+    /// Indice que indica en que dialogo nos encontramos
     /// </summary>
     size_t currentDialogIndex_;
+
+
 };
