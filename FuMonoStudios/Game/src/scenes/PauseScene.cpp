@@ -25,25 +25,29 @@ void ecs::PauseScene::init()
 
 	//Font* fuente = new Font("recursos/fonts/ARIAL.ttf", 50);
 
-	Texture* texturaBoton = new Texture(sdlutils().renderer(), "Pulsa para volver al juego", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
 	Entity* BotonPress = addEntity();
+	Texture* texturaBoton = new Texture(sdlutils().renderer(), "Pulsa para volver al juego", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
 
 	Transform* transformBoton = BotonPress->addComponent<Transform>(400, 600, texturaBoton->width(), texturaBoton->height());
 	RenderImage* renderBoton = BotonPress->addComponent<RenderImage>(texturaBoton);
 
-	auto clickerPress = BotonPress->addComponent<Clickeable>();
+	Clickeable* clickerPress = BotonPress->addComponent<Clickeable>();
 
 	
-	CallbackClickeable funcPress = [this]() {
+	CallbackClickeable funcPress = [this, BotonPress]() {
 		try {
-			leaveMenu();
-		
+			//sdlutils().musics().at("pauseMenu").haltMusic();
+			std::cout << "salimos de la pausa" << std::endl;
+			BotonPress->setAlive(false);
+			std::cout << "eliminamos el boton" << std::endl;
+			gm().requestChangeScene(ecs::sc::PAUSE_SCENE, ecs::sc::NULL_SCENE);
+			//leaveMenu();
 		}
 		catch (const std::exception& e) {
 			std::cerr << "Error in funcPress callback: " << e.what() << std::endl;
 		}
 	};
-	if (clickerPress) {
+	if (clickerPress != nullptr) {
 		clickerPress->addEvent(funcPress);
 	}
 	else {
@@ -53,5 +57,4 @@ void ecs::PauseScene::init()
 
 void ecs::PauseScene::leaveMenu() {
 	gm().killScene(ecs::sc::PAUSE_SCENE);
-
 }

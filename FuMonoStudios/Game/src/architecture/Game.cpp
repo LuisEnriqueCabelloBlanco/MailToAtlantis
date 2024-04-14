@@ -29,7 +29,7 @@ Game::Game() :exit_(false) {
 	SDL_RenderSetLogicalSize(renderer_,LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 
 	SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
-	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),new EndWorkScene(),new ecs::MainMenu() };
+	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),new EndWorkScene(),new ecs::MainMenu(), new ecs::PauseScene()};
 
 	loadScene(ecs::sc::MENU_SCENE);
 }
@@ -183,7 +183,9 @@ void Game::changeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2) {
 		generalData().setEventoID(3);
 	}
 	killScene(scene1);
-	loadScene(scene2);
+	if (scene2 != ecs::sc::NULL_SCENE) {
+		loadScene(scene2);
+	}
 	/*if (loadedScenes.size() < 1) {
 		loadScene(scene2);
 	}*/
