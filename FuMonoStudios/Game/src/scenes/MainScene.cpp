@@ -186,6 +186,8 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 
 		createInks();
 
+		createBalanza();
+
 		generalData().setPaqueteLevel(0);
 
 		break;
@@ -287,6 +289,20 @@ void ecs::MainScene::createCinta() {
 	cinta->addComponent<Gravity>();
 	cinta->addComponent<DragAndDrop>("arrastrar");
 	cinta->addComponent<Depth>();
+	factory_->setLayer(ecs::layer::DEFAULT);
+
+}
+
+void ecs::MainScene::createBalanza() {
+
+	factory_->setLayer(ecs::layer::TAPE);
+	Entity* balanza = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("balanzaA"));
+	balanza->addComponent<Gravity>();
+	balanza->addComponent<DragAndDrop>("arrastrar");
+	balanza->addComponent<Depth>();
+	Entity* balanzaB = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("balanzaB"));
+	Entity* baseBalanza = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("baseBalanza"));
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("balanzaFlecha"));
 	factory_->setLayer(ecs::layer::DEFAULT);
 
 }

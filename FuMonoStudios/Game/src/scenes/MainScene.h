@@ -36,6 +36,7 @@ namespace ecs {
         //void createSelladores();
         void createGarbage();
         void createCinta();
+        void createBalanza();
         void createTubo(pq::Distrito dist, bool);
         void createStamp(TipoHerramienta type);
         
