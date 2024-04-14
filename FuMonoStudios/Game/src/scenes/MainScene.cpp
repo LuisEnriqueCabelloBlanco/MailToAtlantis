@@ -332,6 +332,7 @@ void ecs::MainScene::createBalanza() {
 
 	Trigger* balanzaTri = balanza->addComponent<Trigger>();
 	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->initAnimations(entRect, rotComp); }, generalData().DropIn);
+	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(rotComp); }, generalData().PickUp);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 }
