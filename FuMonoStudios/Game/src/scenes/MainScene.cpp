@@ -96,6 +96,8 @@ void ecs::MainScene::init()
 
 	createClock();
 
+	createInks();
+
 	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
 	//createCinta();
 
@@ -118,8 +120,10 @@ void ecs::MainScene::init()
 			createTubo((pq::Distrito)z , false);
 	}
 
-	sdlutils().musics().at("trabajo").play();
-	sdlutils().musics().at("trabajo").setMusicVolume(30);
+	sdlutils().musics().at("office").play();
+	sdlutils().musics().at("office").setMusicVolume(50);
+	sdlutils().musics().at("printer").play();
+	sdlutils().musics().at("printer").setMusicVolume(50);
 
 	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
 
@@ -130,9 +134,10 @@ void ecs::MainScene::init()
 
 void ecs::MainScene::close() {
 	ecs::Scene::close();
-	generalData().updateMoney(correct_,fails_);
+	generalData().updateMoney();
 
-	sdlutils().musics().at("trabajo").haltMusic();
+	sdlutils().musics().at("office").haltMusic();
+	sdlutils().musics().at("printer").haltMusic();
 }
 
 void ecs::MainScene::createClock() {
@@ -160,13 +165,16 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 			RenderImage* stampRender = entRec->getComponent<RenderImage>();
 
-			stampHerramienta->setFunctionality(type);
+			if (!stampHerramienta->getMulticolorStamp()) { //Si el sello no es multicolor
+				stampHerramienta->setFunctionality(type);
 
-			stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
+				stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
+
+			}
 
 		}
 
-	});
+	}, generalData().DropIn);
 
 }
 
@@ -175,66 +183,105 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 	if(dia == 0)
 		return;
 	switch (dia)
-	{case 1:
-		createStamp(SelloCalleA);
-		break;
-	case 3:
-		createCinta();
-		break;
-	case 4:
-		createInks();
-		break;
-	default:
-		break;
-	}
+	{
+	case 1:
 
-	updateToolsPerDay(dia - 1);
+		//if(GeneralData::instance()->getSelloMulticolor()) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
+
+		createStamp(SelloCalleA);
+
+		createInks();
+
+		generalData().setPaqueteLevel(0);
+
+		break;
+
+	case 2:
+		createStamp (SelloCalleA);
+
+		createInks ();
+
+		generalData().setPaqueteLevel(1);
+
+		break;
+
+	case 3:
+		createStamp (SelloCalleA);
+
+		createInks ();
+
+		createCinta();
+
+		generalData().setPaqueteLevel(2);
+
+		break;
+		//si estamos en un dia mayor que el indicado se desbloquean todas las mecánicas
+	default:
+		createStamp(SelloCalleA);
+
+		createInks();
+
+		createCinta();
+
+		generalData().setPaqueteLevel(2);
+		break;
+	}	
 }
 
 
 void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto) {
-	Entity* NotaErronea = addEntity(ecs::layer::BACKGROUND);	
+	Entity* NotaErronea = addEntity(ecs::layer::FOREGROUND);
 	NotaErronea->addComponent<ErrorNote>(paqComp, basura, tuboIncorrecto);
 	Texture* NotaTex = &sdlutils().images().at("notaError");
-	Transform* selloATR = NotaErronea->addComponent<Transform>(100, 1400, NotaTex->width()*2, NotaTex->height()*2);
-	selloATR->setScale(0.2f);
-	NotaErronea->addComponent<DragAndDrop>(true, [NotaErronea]() {
-		NotaErronea->addComponent<MoverTransform>(Vector2D(100, 1400), 0.5, Easing::EaseOutCubic, [NotaErronea]() {
-			NotaErronea->setAlive(false);
-			});
-		});
+	Transform* NotaTR = NotaErronea->addComponent<Transform>(100, 1400, NotaTex->width() * 2, NotaTex->height() * 2);
+	NotaTR->setScale(0.2f);
+	NotaErronea->addComponent<Depth>();
+	NotaErronea->addComponent<Gravity>();
+	NotaErronea->addComponent<DragAndDrop>(true, "arrastrar");
 	NotaErronea->addComponent<RenderImage>(NotaTex);
-	
+	NotaErronea->addComponent<MoverTransform>(NotaErronea->getComponent<Transform>()->getPos() - Vector2D(0, 500),
+		1, Easing::EaseOutBack)->enable();
 	//El texto de la nota
-	Entity* texto_ = addEntity(ecs::layer::STAMP);
-	Font* textFont = new Font("recursos/fonts/ARIAL.ttf", 40);
-	Texture* textureText_ = new Texture(sdlutils().renderer(), NotaErronea->getComponent<ErrorNote>()->text_, *textFont, build_sdlcolor(0x000000ff), 500);
-	Transform* distritoTr = texto_->addComponent<Transform>(25, 70, 250, 100);
-	RenderImage* distritoRender = texto_->addComponent<RenderImage>();
-	distritoRender->setTexture(textureText_);
-	distritoTr->setParent(NotaErronea->getComponent<Transform>());
-
-	NotaErronea->addComponent<MoverTransform>(Vector2D(100, 880), 0.5, Easing::EaseOutCubic);
-
+	factory_->setLayer(layer::FOREGROUND);
+	Entity* texto = factory_->createLabel(Vector2D(25, 70), Vector2D(250, 100), NotaErronea->getComponent<ErrorNote>()->text_, 40);
+	texto->getComponent<Transform>()->setParent(NotaErronea->getComponent<Transform>());
+	factory_->setLayer(layer::DEFAULT);
 }
 
 void ecs::MainScene::createStamp(TipoHerramienta type)
 {
 	if (type > 2) return;
 	constexpr float STAMPSIZE = 1;
-
+	
 	factory_->setLayer(layer::STAMP);
-
 	auto stamp = factory_->createImage(Vector2D(300, 300),
 		Vector2D(sdlutils().images().at("sellador" + std::to_string(type)).width() * STAMPSIZE, sdlutils().images().at("sellador" + std::to_string(type)).height() * STAMPSIZE),
 		& sdlutils().images().at("sellador" + std::to_string(type)));
 
 	stamp->addComponent<Gravity>();
 	stamp->addComponent<Depth>();
-	stamp->addComponent<DragAndDrop>();
+	stamp->addComponent<DragAndDrop>("arrastrar");
 
 	Herramientas* herrSelladorA = stamp->addComponent<Herramientas>();
 	herrSelladorA->setFunctionality(type);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+}
+
+void ecs::MainScene::createMultipleStamp()
+{	
+	constexpr float STAMPSIZE = 1;
+
+	Entity* stamp = addEntity(ecs::layer::STAMP);
+	Texture* StampTex = &sdlutils().images().at("selladorM");			
+	Transform* tr_ = stamp->addComponent<Transform>(500, 300, StampTex->width(), StampTex->height());	
+	stamp->addComponent<RenderImage>(StampTex);
+	stamp->addComponent<Gravity>();
+	stamp->addComponent<Depth>();
+	stamp->addComponent<DragAndDrop>("arrastrar");
+
+	Herramientas* herrSelladorA = stamp->addComponent<Herramientas>();
+	herrSelladorA->setFunctionality(SelloMultiColor);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 }
@@ -244,7 +291,7 @@ void ecs::MainScene::createCinta() {
 	factory_->setLayer(ecs::layer::TAPE);
 	Entity* cinta = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("cinta"));
 	cinta->addComponent<Gravity>();
-	cinta->addComponent<DragAndDrop>();
+	cinta->addComponent<DragAndDrop>("arrastrar");
 	cinta->addComponent<Depth>();
 	factory_->setLayer(ecs::layer::DEFAULT);
 
@@ -300,7 +347,7 @@ void ecs::MainScene::createManual()
 	RenderImage* manualRender = manualEnt_->getComponent<RenderImage>();
 	manualRender->setVector(bookTextures);
 	manualEnt_->addComponent<Gravity>();
-	manualEnt_->addComponent<DragAndDrop>(false);
+	manualEnt_->addComponent<DragAndDrop>(false, "arrastrar");
 	manualEnt_->addComponent<Depth>();
 
 
@@ -311,8 +358,9 @@ void ecs::MainScene::createManual()
 	right->getComponent<Transform>()->setParent(manualTransform);
 
 	auto previous = [manualRender]() {manualRender->previousTexture();};
-	auto left = factory_->createImageButton(Vector2D(75, 280), buttonSize, buttonTexture, previous);
+	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous);
 	left->getComponent<Transform>()->setParent(manualTransform);
+	left->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
@@ -335,10 +383,10 @@ void ecs::MainScene::createMiniManual() {
 	Transform* manualTransform = miniManualEnt_->getComponent<Transform>();
 	RenderImage* manualRender = miniManualEnt_->getComponent<RenderImage>();
 
-	miniManualEnt_->addComponent<DragAndDrop>(false, true);
+	miniManualEnt_->addComponent<DragAndDrop>(false, true, "arrastrar");
 
 	Trigger* mmTri = miniManualEnt_->getComponent<Trigger>();
-
+	//Luis: TODO refactorizacion del codigo -> seguramente meter en un componente 
 
 	mmTri->addCallback([this, mmTri, manualTransform, minimanualX, minimanualY](ecs::Entity* entRec) {
 
@@ -385,7 +433,7 @@ void ecs::MainScene::createMiniManual() {
 			
 		}
 
-	});
+	}, generalData().DropIn);
 
 
 	factory_->setLayer(ecs::layer::DEFAULT);
@@ -399,9 +447,9 @@ void ecs::MainScene::createSpaceManual() {
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
 
-	factory_->setLayer(ecs::layer::MANUALSPACE);
+	factory_->setLayer(ecs::layer::BACKGROUND);
 
-	Texture* bookTextures = &sdlutils().images().at("cartel");
+	Texture* bookTextures = &sdlutils().images().at("atrilManual");
 	
 	auto baseManual = factory_->createImage(Vector2D(1200, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
 	
@@ -425,7 +473,7 @@ void ecs::MainScene::createSpaceManual() {
 
 		}
 
-	});
+	}, generalData().DropIn);
 	
 
 	factory_->setLayer(ecs::layer::DEFAULT);
@@ -437,7 +485,7 @@ void ecs::MainScene::createGarbage()
 {
 	/*TDOO Meter en un metdo */
 	// papelera
-	Entity* papelera = addEntity(ecs::layer::FOREGROUND);
+	Entity* papelera = addEntity(ecs::layer::BIN);
 	papelera->addComponent<Transform>(50, 650, 100, 150);
 	papelera->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
 	Trigger* papTrig = papelera->addComponent<Trigger>();
@@ -521,12 +569,12 @@ void ecs::MainScene::makeControlsWindow()
 	}
 
 	//Todavia no es funcinal ya que no hay forma actual de limitar las mecánicas
-	if (ImGui::CollapsingHeader("Días"))
+	/*if (ImGui::CollapsingHeader("Días"))
 	{
 		int day = generalData().getDia();
 		ImGui::InputInt("Día", &day);
 		generalData().setDia(day);
-	}
+	}*/
 	ImGui::End();
 }
 #endif // DEV_TOOLS

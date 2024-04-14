@@ -10,8 +10,16 @@
 #include <list>
 #include <functional>
 #include <components/ErrorNote.h>
+#include <QATools/DataCollector.h>
 
-PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc) : toDis_(dis), extraCond_(),mainSc_(sc)
+PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc) : 
+	toDis_(dis), extraCond_(),mainSc_(sc), tutSc_(nullptr)
+{
+
+}
+
+PackageChecker::PackageChecker(pq::Distrito dis, ecs::TutorialScene* sc) :
+	toDis_(dis), extraCond_(), tutSc_(sc), mainSc_(nullptr)
 {
 
 }
@@ -26,7 +34,7 @@ void PackageChecker::initComponent()
 	std::function<void(ecs::Entity*)> call = [this](ecs::Entity* ent) {checkEntity(ent); };
 	Trigger* tri = ent_->getComponent<Trigger>();
 	assert(tri != nullptr);
-	tri->addCallback(call);
+	tri->addCallback(call, generalData().DropIn);
 }
 
 void PackageChecker::addCondition(Condition newCond)
@@ -35,15 +43,17 @@ void PackageChecker::addCondition(Condition newCond)
 }
 
 bool PackageChecker::checkPackage(Paquete* package)
-{
-	bool correctPack = package->correcto() && checkAdditionalConditions(package);
-	return  correctPack && package->bienSellado() || (!correctPack && toDis_ == pq::Erroneo);
+{	
+	bool correctPack = package->correcto() && checkAdditionalConditions(package);		
+	return  (correctPack && package->bienSellado()) || (!correctPack && toDis_ == pq::Erroneo);
 }
 
 void PackageChecker::checkEntity(ecs::Entity* ent)
 {
 	//comprobamos si es un paquete
 	if (ent->getComponent<Paquete>() != nullptr) {
+		ent->getComponent<DragAndDrop>()->disableInteraction();
+
 		Vector2D entPos = ent->getComponent<Transform>()->getPos();
 		ent->removeComponent<Gravity>();
 
@@ -62,22 +72,40 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 		mover->enable();
 
 		ent->addComponent<SelfDestruct>(1,[this](){
-			if (mainSc_ != nullptr) mainSc_->createPaquete(generalData().getPaqueteLevel());
+			if (mainSc_ != nullptr)
+				mainSc_->createPaquete(generalData().getPaqueteLevel());
+			else if (tutSc_ != nullptr)
+				tutSc_->packageSent();
 			});
-
-		if (checkPackage(ent->getComponent<Paquete>())) {
+		bool correct = checkPackage(ent->getComponent<Paquete>());
+		if (correct) {
 
 			GeneralData::instance()->correctPackage();
 		}
-		else {
+		else {			
 			GeneralData::instance()->wrongPackage();
-			auto note = mainSc_->addEntity(ecs::layer::BACKGROUND);
-			note->addComponent<ErrorNote>(ent->getComponent<Paquete>(), toDis_==Erroneo, 
-				toDis_ != ent->getComponent<Paquete>()->getDistrito());
+			if (mainSc_ != nullptr)
+				mainSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo,toDis_ != ent->getComponent<Paquete>()->getDistrito());
+			else if (tutSc_ != nullptr)
+				tutSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo, toDis_ != ent->getComponent<Paquete>()->getDistrito());
+				
 		}
 #ifdef QA_TOOLS
-		dataCollector().recordPacage(entRec->getComponent<Paquete>());
+
+		dataCollector().recordPacage(ent->getComponent<Paquete>(), correct);
+
 #endif // QA_TOOLS
+	}
+	else
+	{
+		if (ent->getComponent<ErrorNote>() != nullptr) {
+			auto mover = ent->getComponent<MoverTransform>();
+			mover->setEasing(Easing::EaseOutCubic);
+			mover->setFinalPos(ent->getComponent<Transform>()->getPos() + Vector2D(-600, 0));
+			mover->setMoveTime(1);
+			mover->enable();
+			ent->addComponent<SelfDestruct>(1);
+		}
 	}
 }
 

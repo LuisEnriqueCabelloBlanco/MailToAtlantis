@@ -21,16 +21,17 @@ namespace ecs {
         void switchTimer() { timerPaused_ = !timerPaused_; }
         void setTimer(float time) { timer_ = time; }
         void createPaquete(int lv);
+        void createErrorMessage(Paquete* paqComp, bool, bool);
     private:
         void createManual();
         void createMiniManual();
         void createSpaceManual();
+        void createMultipleStamp();
 
         //void createTubo(Paquete::Distrito dist, bool desbloqueado);
 
         void createClock();
 
-        void createErrorMessage(Paquete* paqComp, bool, bool);
 
         //void createSelladores();
         void createGarbage();

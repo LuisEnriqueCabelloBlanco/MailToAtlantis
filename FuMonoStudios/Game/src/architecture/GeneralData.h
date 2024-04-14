@@ -1,16 +1,41 @@
 #pragma once
 #include "../utils/Singleton.h"
-#include "../components/Paquete.h"
 #include "../sistemas/Felicidad.h"
 #include "GameConstants.h"
 #include <vector>
+#include <string>
+#include <iostream>
 
 struct DatosPersonajes {
 	pers::Personajes p;
 	pers::EstadosDeFelicidad f;
 };
 class DialogManager;
+class Paquete;
 
+namespace pq {
+	/*
+	De locos pero y si lo metemos en un espacio de nombres
+	*/
+	/// <summary>
+	/// enum con todos los distritos posibles que pueden tener los paquetes
+	/// </summary>
+	enum Distrito { Hestia, Artemisa, Demeter, Hefesto, Hermes, Apolo, Poseidon, Erroneo };
+	/// <summary>
+	/// enum con todas las calles posibles que pueden tener los paquetes
+	/// </summary>
+	enum Calle { C1, C2, C3, Erronea };
+	/// <summary>
+	/// enum con todoos los tipos de cargamento que pueden tener los paquetes
+	/// </summary>
+	enum TipoPaquete { Alimento, Medicinas, Joyas, Materiales, Armamento };
+	/// <summary>
+	/// enum con todas los tipos de medici�n de peso que pueden tener los paquetes
+	/// </summary>
+	enum NivelPeso { Ninguno, Bajo, Medio, Alto };
+}
+
+using namespace pq;
 class GeneralData : public Singleton<GeneralData>
 {
 public:
@@ -21,11 +46,13 @@ public:
 	
 	Felicidad stringToFelicidad(const std::string& str);
 
-	// enum con el nombre de todas las cosas interactuables
+	// enum con el nombre de todos los NPC
 	enum Personaje {
-		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable,
-		JefeOficina
+		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable
 	};
+
+	enum MoveType{DropIn, PickUp};
+
 
 	#pragma region NPCdata
 
@@ -90,7 +117,7 @@ public:
 	/// </summary>
 	/// <param name="writePacages"></param>
 	/// <param name="wrongPacages"></param>
-	void updateMoney(int correct, int wrong);
+	void updateMoney();
 	int getMoney() { return dinero_; }
 
 	void setUpgradeValue(int upgrade, bool value) {
@@ -105,6 +132,9 @@ public:
 
 	int getDia() { return dia_; }
 	void setDia(int dia) { dia_ = dia; updateDia(); }
+
+	std::string fromDistritoToString(int i);
+	int fromStringToDistrito(std::string place);
 
 	void updateDia();
 	void updateDistrictsPerDay(int dia);
@@ -149,6 +179,9 @@ public:
 	int getPaqueteLevel(); // Devuelve el lvl del paquete correspondiente al d�a
 	void setPaqueteLevel(int lvl);
 
+	int getRent();
+	void setRent(int rent);
+
 	// convierte Personaje a string
 	const std::string personajeToString(Personaje pers);
 	// convierte string a Personaje
@@ -165,6 +198,10 @@ public:
 	NPCdata* getNPCData(Personaje personaje);
 	inline int getCurrentDay() { return dia_; };
 
+	//Los métodos para acceder a las herramientas que te pueden dar los NPCs
+	void aquireSelloMulticolor() { selloMulticolor = true; }
+	bool getSelloMulticolor() { return selloMulticolor; }
+
 private:
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }
@@ -174,6 +211,7 @@ private:
 
 	int fails_;
 	int corrects_;
+	int rent_;
 	int dinero_;
 	int failsMargin_;
 	int finalID_; //Variable int que define en la �ltima escena cu�l final se va a reproducir
@@ -188,7 +226,10 @@ private:
 	int charactersEvents_[7]; // Recoge los eventos de paquete de cada personaje
 	std::vector<Paquete*> paquetesNPCs;
 	std::vector<std::string> placesToActive_;
+	
 	std::vector<bool> upgrades_;
+	//Aqui van las variables que indican si se han conseguido las herramientas especiales de los NPCs
+	bool selloMulticolor = false; //Sello multicolor debe estar debtro de updates
 };
 
 inline GeneralData& generalData() {

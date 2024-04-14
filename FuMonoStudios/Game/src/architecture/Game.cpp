@@ -11,10 +11,13 @@
 #include "../scenes/PauseScene.h"
 #include "../scenes/ExplorationScene.h"
 #include "../scenes/EndWorkScene.h"
+#include "../scenes/PauseScene.h"
+#include "../scenes/TutorialScene.h"
 #include "Time.h"
 #include "GeneralData.h"
 #include <iostream>
 #include <QATools/DataCollector.h>
+#include "../sistemas/SoundEmiter.h"
 
 Game::Game() :exit_(false) {
 	SDLUtils::init("Mail To Atlantis", 1152, 648, "recursos/config/mail.resources.json");
@@ -29,8 +32,10 @@ Game::Game() :exit_(false) {
 	SDL_RenderSetLogicalSize(renderer_,LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 
 	SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
-	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),new EndWorkScene(),new ecs::MainMenu(), new ecs::PauseScene()};
 
+	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),
+		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new ecs::TutorialScene()};
+		
 	gamePaused_ = false;
 
 	loadScene(ecs::sc::MENU_SCENE);
@@ -52,6 +57,7 @@ void Game::run()
 	io.DisplaySize = ImGui::GetMainViewport()->Size;
 	ImGui_ImplSDL2_InitForSDLRenderer(sdlutils().window(), sdlutils().renderer());
 	ImGui_ImplSDLRenderer2_Init(sdlutils().renderer());
+	SoundEmiter::instance()->init();
 
 	while (!exit_)
 	{
@@ -71,10 +77,10 @@ void Game::run()
 		if (ih().isKeyDown(SDL_SCANCODE_ESCAPE) || ih().closeWindowEvent()) {
 			exit_ = true;
 		}
-		if (ih().isKeyDown(SDL_SCANCODE_F)) {
+		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_F)) {
 			sdlutils().toggleFullScreen();
 		}
-		if (ih().isKeyDown(SDL_SCANCODE_P)) {
+		/*if (ih().isKeyDown(SDL_SCANCODE_P)) {
 			loadScene(ecs::sc::PAUSE_SCENE);
 			gamePaused_ = true;
 		}
@@ -83,7 +89,7 @@ void Game::run()
 		}
 		if (ih().isKeyDown(SDL_SCANCODE_W)) {
 			changeScene(ecs::sc::MAIN_SCENE, ecs::sc::MENU_SCENE);
-		}
+		}*/
 #ifdef QA_TOOLS
 		if (ih().mouseButtonDownEvent()&&ih().getMouseButtonState(0)) {
 			dataCollector().clicks()++;
@@ -125,7 +131,7 @@ void Game::run()
 void Game::loadScene(ecs::sc::sceneId scene)
 {
 #ifdef QA_TOOLS
-	sdataCollector().dataArray()[0] = (int)scene;
+	dataCollector().dataArray()[0] = (int)scene;
 #endif // QA_TOOLS
 
 	auto it = std::find(loadedScenes_.begin(), loadedScenes_.end(), gameScenes_[scene]);
@@ -175,8 +181,7 @@ void Game::changeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2) {
 	else if (scene1 == ecs::sc::EXPLORE_SCENE) {
 		generalData().setFinalID(2);
 		generalData().setEventoID(2);
-		generalData().setDia(generalData().getDia() + 1);
-		generalData().setTubesAmount(generalData().getPlacesToActive().size() - 1);
+		generalData().setTubesAmount(generalData().getPlacesToActive().size());
 	}
 	else if (scene1 == ecs::sc::MAIN_SCENE) {
 		generalData().setFinalID(3);

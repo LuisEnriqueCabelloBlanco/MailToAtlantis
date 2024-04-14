@@ -48,6 +48,7 @@ namespace ecs {
 			END_WORK_SCENE,
 			MENU_SCENE,
 			PAUSE_SCENE,
+			TUTORIAL_SCENE,
 			_LAST_SCENE,
 			NULL_SCENE
 		};
@@ -78,9 +79,12 @@ namespace ecs {
 			MANUALSPACE,
 			MINIMANUAL,
 			PACKAGE,
+			INFO_PACKAGE,
 			INK,
 			STAMP,
 			OFFICEELEMENTS,
+			RED_LINES,
+			WRAP_POINTS,
 			TAPE,
 			MANUAL,
 			FOREGROUND,

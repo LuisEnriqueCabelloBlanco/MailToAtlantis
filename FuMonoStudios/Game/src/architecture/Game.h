@@ -9,9 +9,12 @@
 #include <architecture/Scene.h>
 #include <functional>
 
-#define DEV_TOOLS
-//#define QA_TOOLS
 
+
+#ifdef _DEBUG
+#define DEV_TOOLS
+#endif // _DEBUG
+#define QA_TOOLS
 
 
 
@@ -52,7 +55,7 @@ public:
 	inline void writeMessage() {
 		std::cout << "Funcionaaaaaaaaa" << std::endl;
 	};
-
+	void endGame() { exit_ = true; }
 private:
 	/// <summary>
 	/// Metodo para cambiar de una escena a otra

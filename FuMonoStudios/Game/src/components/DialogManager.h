@@ -8,31 +8,46 @@
 
 /*
 Clase que genera los dialogos que se van a escribir
-Carga los dialogos de un fichero te texto que tenemos codificado
+Carga los dialogos del json dialogos.json
 
-PARA LOS TIPOS DE DIALOGOS: Presentacion, FelMinimo, FelMaximo,
-GenericosMalo, GenericosNormal, GenericosBueno,
-Eventos, NPCgrande, NPCgrandePostConversacion, NOTYPE
-Los tipos de Presentación, felicidad, genericos y eventos están dedicados a NPCmenores,
-mientras que los de NPCgrande para los grandes. El NOTYPE se usa para cosas interactuables
-del entorno que usen solo un diálogo.
+Para cargar una entrada en el json, debemos usar el enum DialogSelection.
+Este sistema irá añadiendo los strings al dialogComponent.
+En caso de ser un npc, tambien hara que sus dialogos cambien, en funcion de
+si ya le has hablado etc
+
+Hay 3 tipos de setDialogues en funcion de las necesidades del dialog.json
+ 
+1- Si le pasas un dialogSelection, un tipoDialogo y un int de iteracion
+"Eventos": {
+      "1": [
+        "1evento"
+      ],
+      "2": [
+        "2evento"
+      ]
+2- Si le pasas un dialogSelection y un tipoDialogo
+"Contable": {
+    "Presentacion": [
+      "hola",
+      "hola2"
+    ],
+3- Si le pasas solo el dialogSelection
+"EsclavaRemix": [
+    "Bryant myers",
+    "Hoy de nuevo te voy a veeer",
+  ]
+
 */
+
 class DialogManager {
 public:
-    DialogManager();
+    // aqui se elije que rama de dialogo escojer dentro del json
+    enum DialogSelection {
+        Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable,
+        JefeOficina, Tutorial, BryantMyers
+    };
 
-    /* COMENTADO POR DEPENDENCIA CIRCULAR DE ENUMS (CRAZY)
-    /// <summary>
-    /// enum con todos los tipos de dialogos
-    /// Los tipos de Presentación, felicidad, genericos y eventos están dedicados a NPCmenores,
-    /// mientras que los de NPCgrande para los grandes. El NOTYPE se usa para cosas interactuables
-    /// del entorno que usen solo un diálogo.
-    /// </summary>
-    enum TipoDialog {
-        Presentacion, FelMinimo, FelMaximo,
-        GenericosMalo, GenericosNormal, GenericosBueno,
-        Eventos, NPCgrande, NPCgrandePostConversacion, NOTYPE
-    };*/
+    DialogManager();
 
     /// <summary>
     /// Devuelve el dialogo acutal segun el indice de dialogo
@@ -47,13 +62,17 @@ public:
     /// </summary>
     bool nextDialog();
     
-    // Establece los dialogos del personaje introducido, y busca dentro de su
-    // seccion en el json el tipoDialogo, mas el numero introducido en el 
-    // dialogueSelection. Poner un -1 para no usar el numero de dialogueSelection
-    void setDialogues(const GeneralData::Personaje pers, const std::string& tipoDialogo, int dialogueSelection);
-    void setDialogues(const GeneralData::Personaje a, const std::string& t) { setDialogues(a, t, -1); }
+    // Establece los dialogos del tipo introducido mirar arriba para saber cual usar
+    void setDialogues(const DialogSelection ds, const std::string& tipoDialogo, int dialogueSelection);
+    void setDialogues(const DialogSelection ds, const std::string& t) { setDialogues(ds, t, -1); }
+    void setDialogues(const DialogSelection ds) { setDialogues(ds, "NULL", -1); }
 private:
-    std::string crearTildes(std::string aux);
+    void fixText(std::string& text);
+    void crearTildes(std::string& aux);
+
+    std::string dialogSelectionToString(const DialogSelection ds);
+
+    bool isNPC(const DialogSelection ds);
     /// <summary>
     /// Vector donde se almacenan todos los diálogos que se van a soltar
     /// </summary>

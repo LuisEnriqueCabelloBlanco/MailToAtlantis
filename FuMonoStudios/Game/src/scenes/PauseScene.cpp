@@ -20,6 +20,7 @@ ecs::PauseScene::~PauseScene()
 
 void ecs::PauseScene::init()
 {
+	//TODO revisar esto
 	std::cout << "Hola Pausa" << std::endl;
 	sdlutils().clearRenderer();
 

@@ -1,4 +1,3 @@
-#ifdef QA_TOOLS
 #include "DataCollector.h"
 #include <architecture/Time.h>
 #include <architecture/GeneralData.h>
@@ -13,6 +12,7 @@ al cliente de forma correcta
 //#include "restclient-cpp/restclient.h"
 
 
+#ifdef QA_TOOLS
 DataCollector::DataCollector() : currentRow_(0), dataArray_(),clicks_(0) {
 	dataArray_.resize(NUMBER_OF_METRICS);
 	rapidcsv::LabelParams(-1, 0);
@@ -21,7 +21,10 @@ DataCollector::DataCollector() : currentRow_(0), dataArray_(),clicks_(0) {
 	doc_.Load("QAdata/myData.csv");
 	doc_.Clear();
 	std::vector<std::string> Labels = { 
-		"Escena","Marca de Tiempo (ms)","Clicks","Dia de Juego","Distrito","Calle","Tipo","Peso","Envoltura","NPC"
+		"Escena","Marca de Tiempo (ms)","Clicks","Dia de Juego",
+		"Distrito","Calle","Tipo","Peso","Envoltura","Envio Correcto",
+		"NPC","NumeroDialogo","Felicidad",
+		"UbicacionDistrito"
 	};
 
 	for (int i = 0; i < Labels.size(); i++) {
@@ -29,12 +32,27 @@ DataCollector::DataCollector() : currentRow_(0), dataArray_(),clicks_(0) {
 	}
 };
 
-void DataCollector::recordPacage(Paquete* pacage) {
-	dataArray_[doc_.GetColumnIdx("Distrito")] = pacage->getDistrito();
-	dataArray_[doc_.GetColumnIdx("Calle")] = pacage->getCalle();
-	dataArray_[doc_.GetColumnIdx("Tipo")] = pacage->getTipo();
+void DataCollector::recordPacage(Paquete* pacage, bool correct) {
+	dataArray_[doc_.GetColumnIdx("Distrito")] = pacage->getDistrito() + 1;
+	dataArray_[doc_.GetColumnIdx("Calle")] = pacage->getCalle() + 1;
+	dataArray_[doc_.GetColumnIdx("Tipo")] = pacage->getTipo() + 1;
 	dataArray_[doc_.GetColumnIdx("Peso")] = pacage->getPeso();
-	dataArray_[doc_.GetColumnIdx("Envoltura")] = pacage->getFragil();
+	dataArray_[doc_.GetColumnIdx("Envoltura")] = pacage->getFragil() + 1;
+	dataArray_[doc_.GetColumnIdx("Envio Correcto")] = correct + 1;
+	record();
+}
+
+void DataCollector::recordNavigation(const std::string& destDistrict)
+{
+	dataArray_[doc_.GetColumnIdx("UbicacionDistrito")] = distIndx[destDistrict];
+	record();
+}
+
+void DataCollector::recordNPC(int NPCid, int numDialog,int fel)
+{
+	dataArray_[doc_.GetColumnIdx("NPC")] = NPCid;
+	dataArray_[doc_.GetColumnIdx("NumeroDialogo")] = numDialog;
+	dataArray_[doc_.GetColumnIdx("Felicidad")] = fel;
 	record();
 }
 

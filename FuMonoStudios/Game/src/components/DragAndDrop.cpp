@@ -7,33 +7,44 @@
 #include "../architecture/Entity.h"
 #include "../sdlutils/InputHandler.h"
 #include <architecture/GameConstants.h>
+#include "../architecture/GeneralData.h"
+#include "../sistemas/SoundEmiter.h"
 
 #include <SDL.h>
 #include <assert.h>
 
 DragAndDrop::DragAndDrop() : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
-usingCallback_(false), usingOnlyClosestEnt_(false), usingOwnCallback_(false){
+usingCallback_(false), usingOnlyClosestEnt_(false), usingOwnCallback_(false)
+{
+}
+
+DragAndDrop::DragAndDrop(std::string sound) : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
+usingCallback_(false), usingOnlyClosestEnt_(false), usingOwnCallback_(false), draggingSound_(sound)
+{
 }
 
 
-DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt) : 
+DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt, std::string sound) :
 	tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0), 
-	usingCallback_(false), usingOnlyClosestEnt_(UsingOnlyClosestEnt), usingOwnCallback_(false){
+	usingCallback_(false), usingOnlyClosestEnt_(UsingOnlyClosestEnt), usingOwnCallback_(false), 
+	draggingSound_(sound){
 }
 
-DragAndDrop::DragAndDrop(bool usingClosestEnt, bool usingOwnCallback) : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
-usingCallback_(false), usingOnlyClosestEnt_(usingClosestEnt), usingOwnCallback_(usingOwnCallback){
+DragAndDrop::DragAndDrop(bool usingClosestEnt, bool usingOwnCallback, std::string sound) : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
+usingCallback_(false), usingOnlyClosestEnt_(usingClosestEnt), usingOwnCallback_(usingOwnCallback),
+draggingSound_(sound) {
 }
 
-DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt, SimpleCallback Func) : 
+DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt, SimpleCallback Func, std::string sound) :
 	tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
-	usingCallback_(true), usingOnlyClosestEnt_(UsingOnlyClosestEnt), usingOwnCallback_(false)
+	usingCallback_(true), usingOnlyClosestEnt_(UsingOnlyClosestEnt), usingOwnCallback_(false),
+	draggingSound_(sound)
 {
 	func_ = Func;
 }
 
 DragAndDrop::~DragAndDrop() {
-
+	sdlutils().soundEffects().at(draggingSound_ + std::to_string(0)).haltChannel();
 }
 
 void DragAndDrop::initComponent() {
@@ -60,10 +71,23 @@ void DragAndDrop::update() {
 		//Deteccion al clicar sobre el objeto
 		if (ihdlr.mouseButtonDownEvent()) {
 			if (tr_->getIfPointerIn() && tri_->checkIfClosest()) {
-				if(!dragging_)
-					sdlutils().soundEffects().at("arrastrar").play();
+				if (!dragging_)
+					SoundEmiter::instance()->playSound(draggingSound_);
 
 				dragging_ = true;
+
+				if (usingOwnCallback_) {
+					tri_->activateCallbacks(nullptr, generalData().PickUp);
+				}
+				else {
+
+					if (!usingOnlyClosestEnt_)
+						tri_->activateEventsFromEntities(generalData().PickUp);
+					else
+						tri_->activateEventFromClosestEntity(generalData().PickUp);
+
+				}
+
 				// desactivamos gravedad al draggear
 				if (grav_ != nullptr) {
 					grav_->setActive(false);
@@ -88,18 +112,18 @@ void DragAndDrop::update() {
 				// si no tenemos activado el activar solo al mas cercano
 
 				if (usingOwnCallback_) {
-					tri_->activateCallbacks(nullptr);
+					tri_->activateCallbacks(nullptr, generalData().DropIn);
 				}
 				else {
 
 					if (!usingOnlyClosestEnt_)
-						tri_->activateEventsFromEntities();
+						tri_->activateEventsFromEntities(generalData().DropIn);
 					else
-						tri_->activateEventFromClosestEntity();
+						tri_->activateEventFromClosestEntity(generalData().DropIn);
 
 				}
 
-				sdlutils().soundEffects().at("arrastrar").haltChannel();
+				SoundEmiter::instance()->haltSound(draggingSound_);
 				// si has asignado callback se activa
 				if (usingCallback_)
 					func_();
@@ -113,9 +137,9 @@ void DragAndDrop::update() {
 		if (dragging_) {
 
 			if (latestPoint_.first != point.x || latestPoint_.second != point.y)
-				sdlutils().soundEffects().at("arrastrar").setVolume(100);
+				SoundEmiter::instance()->muteSingleSound(draggingSound_, false);
 			else
-				sdlutils().soundEffects().at("arrastrar").setVolume(0);
+				SoundEmiter::instance()->muteSingleSound(draggingSound_, true);
 
 
 			latestPoint_.first = point.x;

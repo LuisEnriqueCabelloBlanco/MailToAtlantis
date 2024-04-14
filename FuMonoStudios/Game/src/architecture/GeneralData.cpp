@@ -17,6 +17,7 @@ GeneralData::GeneralData()
 	corrects_ = 0;
 	fails_ = 0;
 	dia_ = 1;
+	rent_ = 75;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
 	upgrades_.resize(ecs::upg::_LAST_UPGRADE);
 	for (auto upg : upgrades_) {
@@ -39,17 +40,15 @@ GeneralData::~GeneralData() {
 }
 
 
-void GeneralData::updateMoney(int correct, int wrong)
+void GeneralData::updateMoney()
 {
-	int rightPackages = correct;
-	corrects_ = correct;
-	int wrongPackages = wrong;
-	fails_ = wrong;
+	int rightPackages = corrects_;
+	int wrongPackages = fails_;
 	//funcion de ejemplo seguramente haya que cambiarlo
-	if (wrong < failsMargin_) {
+	if (fails_ < failsMargin_) {
 		wrongPackages = 0;
 	}
-	if (correct < 0) {
+	if (corrects_ < 0) {
 		rightPackages = 0;
 	}
 
@@ -83,11 +82,103 @@ int GeneralData::getEventoID() {
 	return eventoID_;
 }
 
+void GeneralData::setRent(int rent) {
+	rent_ = rent;
+	std::cout << "el nuevo alquiler es: " << rent_ << std::endl;
+}
+
+int GeneralData::getRent() {
+
+	return rent_;
+
+}
+
 void GeneralData::updateDia()
 {
-
 	placesToActive_.clear();
 	updateDistrictsPerDay(dia_);
+}
+
+std::string GeneralData::fromDistritoToString(int i) {
+
+	std::string sol;
+
+	switch (i) {
+		case Distrito::Hestia:
+			sol = "Hestia";
+			break;
+		case Distrito::Artemisa:
+			sol = "Artemisa";
+			break;
+		case Distrito::Demeter:
+			sol = "Demeter";
+			break;
+		case Distrito::Hefesto:
+			sol = "Hefesto";
+			break;
+		case Distrito::Hermes:
+			sol = "Hermes";
+			break;
+		case Distrito::Apolo:
+			sol = "Apolo";
+			break;
+		case Distrito::Poseidon:
+			sol = "Poseidon";
+			break;
+		default:
+			sol = "Erroneo";
+			break;
+	}
+
+	return sol;
+
+}
+
+int GeneralData::fromStringToDistrito(std::string place) {
+
+	int sol;
+
+	if (place == "Hestia") {
+
+		return Distrito::Hestia;
+
+	}
+	else if (place == "Artemisa") {
+
+		return Distrito::Artemisa;
+
+	}
+	else if (place == "Demeter") {
+
+		return Distrito::Demeter;
+
+	}
+	else if (place == "Hefesto") {
+
+		return Distrito::Hefesto;
+
+	}
+	else if (place == "Hermes") {
+
+		return Distrito::Hermes;
+
+	}
+	else if (place == "Apolo") {
+
+		return Distrito::Apolo;
+
+	}
+	else if (place == "Poseidon") {
+
+		return Distrito::Poseidon;
+
+	}
+	else {
+
+		return Distrito::Erroneo;
+
+	}
+
 }
 
 void GeneralData::updateDistrictsPerDay(int dia)
@@ -197,9 +288,6 @@ const std::string GeneralData::personajeToString(Personaje pers) {
 		case Contable:
 			aux = "Contable";
 			break;
-		case JefeOficina:
-			aux = "JefeOficina";
-			break;
 	}
 	return aux;
 }
@@ -274,9 +362,21 @@ std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
 	std::string tipo;
 	int iterationNum = -1;
 
-	if (felicidad == Minima || felicidad == Maxima)
+	if (felicidad == Minima || felicidad == Maxima || felicidad == NoHabladoAun)
 	{
-		tipo = felicidad == Minima ? "FelicidadMinimo" : "FelicidadMaximo";
+		switch (felicidad)
+		{
+		case NoHabladoAun:
+			tipo = "Presentacion";
+			felicidad = Normal;
+			break;
+		case Minima:
+			tipo = "FelicidadMinimo";
+			break;
+		case Maxima:
+			tipo = "FelicidadMaximo";
+			break;
+		}
 	}
 	else if (giveEvent)
 	{
@@ -301,10 +401,6 @@ std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
 				tipo = "GenericoBueno";
 				iterateDialogues();
 				iterationNum = iteration;
-				break;
-			case NoHabladoAun:
-				tipo =  "Presentacion";
-				felicidad = Normal;
 				break;
 		}
 	}
