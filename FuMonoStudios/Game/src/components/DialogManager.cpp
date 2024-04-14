@@ -7,6 +7,7 @@
 #include "Render.h"
 #include "../json/JSON.h"
 #include "../json/JSONValue.h"
+#include "QATools/DataCollector.h"
 #include "sistemas/ComonObjectsFactory.h"
 
 DialogManager::DialogManager() : currentDialogIndex_(0)
@@ -20,7 +21,6 @@ void DialogManager::init(ecs::Scene* scene)
     Vector2D size = Vector2D(LOGICAL_RENDER_WIDTH - 100, 200);
     scene->getFactory()->setLayer(ecs::layer::UI);
     boxBackground = scene->getFactory()->createImage(pos, size, &sdlutils().images().at("cuadroDialogo"));
-    boxBackground->setActive(false);
 
     textDialogue = scene->addEntity(ecs::layer::UI);
     auto textTr = textDialogue->addComponent<Transform>(100, 40, 80, 100);
@@ -28,10 +28,13 @@ void DialogManager::init(ecs::Scene* scene)
     textDialogue->addComponent<RenderImage>();
     textDialogue->addComponent<DialogComponent>(this);
 
+    setDialogueEntitiesActive(false);
+
     canStartConversation = true;
 
+    dialogueCooldownTime = 100;
     timer_ = sdlutils().virtualTimer().currTime();
-    dialogueCooldown = 100 + sdlutils().virtualTimer().currTime();
+    dialogueCooldown = dialogueCooldownTime + sdlutils().virtualTimer().currTime();
     controlTimer = false;
 }
 
@@ -50,7 +53,6 @@ void DialogManager::update()
 
 std::string DialogManager::getCurrentDialog() {
     if (currentDialogIndex_ < dialogs_.size()) {
-        boxBackground->setActive(true);
         return dialogs_[currentDialogIndex_];
     }
     else {
@@ -179,10 +181,30 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     }
 }
 
-void DialogManager::closeConversation()
+void DialogManager::startConversation(const std::string& character)
 {
-    boxBackground->setActive(false);
-    textDialogue->setActive(false);
+    if(canStartConversation)
+    {
+        auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
+        auto data = generalData().getNPCData(charac); //data de dicho personaje
+
+        // activamos los dialogos correspondientes
+        std::pair<const std::string, int> aux = data->getDialogueInfo(); 
+
+
+        setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
+
+        setDialogueEntitiesActive(true);
+
+        std::cout << "jefe otro dialogo que este tenia un agujero\n";
+        dataCollector().recordNPC(charac + 1, aux.second, generalData().getNPCData(charac)->felicidad);
+        canStartConversation = false;
+    }
+}
+
+void DialogManager::closeDialogue()
+{
+    setDialogueEntitiesActive(false);
 
     timer_ = sdlutils().virtualTimer().currTime();
     dialogueCooldown = sdlutils().virtualTimer().currTime() + 1000;
@@ -196,6 +218,12 @@ void DialogManager::closeConversation()
     textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
         canStartConversation = true;
         });*/
+}
+
+void DialogManager::setDialogueEntitiesActive(bool onoff)
+{
+    boxBackground->setActive(onoff);
+    textDialogue->setActive(onoff);
 }
 
 void DialogManager::fixText(std::string& text)

@@ -111,8 +111,7 @@ namespace ecs {
 		/// </summary>
 		void renderBackGround() const;
 
-		// cierra la conversacion
-		void closeConversation();
+
     private:
 		
 		/// <summary>
@@ -179,13 +178,6 @@ namespace ecs {
 		DialogManager dialogMngr_;
 
 		std::vector<int> placeToGo;
-	
-		// entidades del dialogo
-		ecs::Entity* boxBackground;
-		ecs::Entity* textDialogue;
-
-		// flag para saber si podemos entablar dialogo
-		//bool canStartConversation;
 
 		ecs::Entity* boton_Trabajo;
     };

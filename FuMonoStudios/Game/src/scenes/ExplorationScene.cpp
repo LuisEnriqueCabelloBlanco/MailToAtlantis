@@ -190,7 +190,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	
 	CallbackClickeable cosa = [this, place, placeID]() {
 		if (actualPlace_->navigate(place)) {
-			dialogMngr_.closeConversation();
+			dialogMngr_.closeDialogue();
 			actualPlace_->changeActivationObjects(false);
 			placeToGo.push_back(placeID);
 			
@@ -235,36 +235,20 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 	ComonObjectsFactory factory(this);
 
-	Texture* texturaBoton = &sdlutils().images().at(character);
-	Vector2D size{ texturaBoton->width() * scale, texturaBoton->height() * scale };
+	Texture* characterTexture = &sdlutils().images().at(character);
+	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
 	
 	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
 	//Actualmente los personajes no tienen memoria, si queremos esto har�a falta a�adrile un parametro
 
-	// al pulsar sale el dialogo
+	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, character]() {
-
-		if (dialogMngr_.canStartConversation)
-		{
-			auto charac = generalData().stringToPersonaje(character);
-			auto data = generalData().getNPCData(charac);
-			dialogMngr_.canStartConversation = false;
-
-		    // activamos los dialogos correspondientes
-			std::pair<const std::string, int> aux = data->getDialogueInfo();
-
-			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
-
-			//dialogMngr_.textDialogue->addComponent<DialogComponent>(&dialogMngr_);
-			dialogMngr_.textDialogue->setActive(true);
-			std::cout << "jefe otro dialogo que este tenia un agujero\n";
-			dataCollector().recordNPC(charac +1,aux.second, generalData().getNPCData(charac)->felicidad);
-		}
+	    dialogMngr_.startConversation(character);
 	};
 
-	ecs::Entity* BotonPress = factory.createImageButton(pos, size, texturaBoton, funcPress);
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
 	
-	return BotonPress;
+	return characterEnt;
 }
 
 void ecs::ExplorationScene::setNavegabilityOfPlace(int place, bool value)
@@ -314,25 +298,6 @@ void ecs::ExplorationScene::createObjects(int place) {
 
 	lugares[place].changeActivationObjects(false);
 
-	// creamos la entidad caja dialogo
-	boxBackground = addEntity(ecs::layer::UI);
-	auto bgTr = boxBackground->addComponent<Transform>(100, LOGICAL_RENDER_HEITH - 250, LOGICAL_RENDER_WIDTH - 100, 200);
-	boxBackground->addComponent<RenderImage>(nullptr);
-
-	// entidad del texto
-	textDialogue = addEntity(ecs::layer::UI);
-	auto textTr = textDialogue->addComponent<Transform>(100, 40, 80, 100);
-	textTr->setParent(bgTr);
-	textDialogue->addComponent<RenderImage>();
-}
-
-void ecs::ExplorationScene::closeConversation() {
-	textDialogue->getComponent<RenderImage>()->setTexture(nullptr);
-	textDialogue->removeComponent<DialogComponent>();
-	boxBackground->getComponent<RenderImage>()->setTexture(nullptr);
-	textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
-		//canStartConversation = true;
-		});
 }
 
 //LUGAR__________________________________________________________________________________________
@@ -357,7 +322,6 @@ void ecs::Lugar::changeActivationObjects(bool state)
 	for (auto& e : ents_) {
 		e->setActive(state);
 	}
-
 }
 
 void ecs::Lugar::addObjects(ecs::Entity* e)

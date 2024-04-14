@@ -67,7 +67,7 @@ void DialogComponent::update()
 			{
 				if (mTexture_ != nullptr)
 				{
-					mDialogMngr_->closeConversation();
+					mDialogMngr_->closeDialogue();
 				}
 			}
 		}
