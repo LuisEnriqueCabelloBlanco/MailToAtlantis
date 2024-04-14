@@ -126,7 +126,6 @@ public:
 	void setEventoID(int evento); //Cambia el ID del evento a ocurrir
 	int getEventoID(); //Devuelve el id del evento que ocurrir� en el juego
 
-	int getMoney() { return dinero_; }
 	void changeParamID(int i, bool suma); //Modifica un parametro en especifico del array y decide si se suma o no
 	int getParam(int i) {
 		std::cout << "El valor del parametro que quieres es: " << paramAjustes_[i] << std::endl;
@@ -225,7 +224,6 @@ private:
 	int paramAjustes_[10]; //Array de ints en el que cada posicion corresponde al numero de configuracion de un parametro
 						  //dentro de los ajustes del juego. Por ejemplo, la posición 1 puede corresponder al
 	                      //nivel de volumen (maximo 100).
-	std::vector<Paquete> paquetesNPCs;
 
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
 	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo
