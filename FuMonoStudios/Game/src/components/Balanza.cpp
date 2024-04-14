@@ -14,18 +14,20 @@ Balanza::~Balanza()
 
 void Balanza::initComponent()
 {
+
+	//Obtenemos Tr de balanza
+	myTransform_ = ent_->getComponent<Transform>();
+
+	assert(myTransform_ != nullptr);
 }
 
 void Balanza::initAnimations(ecs::Entity* paquete, ecs::Entity* balanzaB, RotarTransform* flechaRotComp)
 {
-	if (paquete->hasComponent(ecs::cmp::PAQUETE) && ent_->hasComponent(ecs::cmp::MOVERTRANSFORM)) {
+	if (paquete->hasComponent(ecs::cmp::PAQUETE)) {
 
 		//Obtenemos cantidad peso
 		int cantidadPeso = paquete->getComponent<Paquete>()->getCantidadPeso();
 		std::cout << cantidadPeso;
-
-		//Obtenemos Tr de balanza
-		Transform* balanzaTr = ent_->getComponent<Transform>();
 
 		//Animamos flecha
 			flechaRotComp->setDesiredGrades(cantidadPeso);
@@ -34,34 +36,35 @@ void Balanza::initAnimations(ecs::Entity* paquete, ecs::Entity* balanzaB, RotarT
 			MoverTransform* paqueteMovComp = paquete->getComponent<MoverTransform>();
 			Transform* paqTr = paquete->getComponent<Transform>();
 			paqueteMovComp->setEasing(Easing::EaseOutCubic);
-			paqueteMovComp->setFinalPos(Vector2D(balanzaTr->getPos().getX() + balanzaTr->getWidth() / 2 - paqTr->getWidth() / 2
-				, balanzaTr->getPos().getY() + 40));
+			paqueteMovComp->setFinalPos(Vector2D(myTransform_->getPos().getX() + myTransform_->getWidth() / 2 - paqTr->getWidth() / 2
+				, myTransform_->getPos().getY() + 40));
 			paqueteMovComp->setMoveTime(1.0f);
 			paqueteMovComp->enable();
 
 		//Animamos balanza
 			/*balanzaB->setLayer(ecs::layer::BALANZAB);*/
 			MoverTransform* balanzaMovComp = ent_->getComponent<MoverTransform>();
-			Transform* paqTr = paquete->getComponent<Transform>();
 			balanzaMovComp->setEasing(Easing::EaseOutCubic);
-			balanzaMovComp->setFinalPos(Vector2D(balanzaTr->getPos().getX() + balanzaTr->getWidth() / 2 - paqTr->getWidth() / 2
-				, balanzaTr->getPos().getY() + 40));
+			balanzaMovComp->setFinalPos(Vector2D(myTransform_->getPos().getX() + myTransform_->getWidth() / 2 - paqTr->getWidth() / 2
+				, myTransform_->getPos().getY() + 40));
 			balanzaMovComp->setMoveTime(1.0f);
 			balanzaMovComp->enable();
 	}
 }
 
-void Balanza::finishAnimatios(RotarTransform* flechaRotComp)
+void Balanza::finishAnimatios(ecs::Entity* paquete, RotarTransform* flechaRotComp)
 {
-	flechaRotComp->setDesiredGrades(0);
+	if (paquete->hasComponent(ecs::cmp::PAQUETE)) {
+		flechaRotComp->setDesiredGrades(0);
 
-	//Animamos balanza
-			/*balanzaB->setLayer(ecs::layer::BALANZAB);*/
-	MoverTransform* balanzaMovComp = ent_->getComponent<MoverTransform>();
-	balanzaMovComp->setEasing(Easing::EaseOutCubic);
-	balanzaMovComp->setFinalPos(Vector2D(balanzaTr->getPos().getX() + balanzaTr->getWidth() / 2 - paqTr->getWidth() / 2
-		, balanzaTr->getPos().getY() - 40));
-	balanzaMovComp->setMoveTime(1.0f);
-	balanzaMovComp->enable();
+		//Animamos balanza
+				/*balanzaB->setLayer(ecs::layer::BALANZAB);*/
+		MoverTransform* balanzaMovComp = ent_->getComponent<MoverTransform>();
+		balanzaMovComp->setEasing(Easing::EaseOutCubic);
+		balanzaMovComp->setFinalPos(Vector2D(myTransform_->getPos().getX() + myTransform_->getWidth() / 2 - myTransform_->getWidth() / 2
+			, myTransform_->getPos().getY() - 40));
+		balanzaMovComp->setMoveTime(1.0f);
+		balanzaMovComp->enable();
+	}
 }
 

@@ -2,7 +2,12 @@
 #include "../architecture/Entity.h"
 #include <architecture/Time.h>
 
-MoverTransform::MoverTransform(Vector2D& newPos, float MovTime, Easing Easing) 
+MoverTransform::MoverTransform(Easing Easing):finalPos_(Vector2D(0,0)), movTime_(0),
+easing_(Easing), timer_(0), mTr_(nullptr), usingCallback(false), call_(), enable_(false)
+{
+}
+
+MoverTransform::MoverTransform(Vector2D& newPos, float MovTime, Easing Easing)
 	: finalPos_(newPos), movTime_(MovTime * 1000), 
 	easing_(Easing), timer_(0), mTr_(nullptr), usingCallback(false),call_(), enable_(false)
 {

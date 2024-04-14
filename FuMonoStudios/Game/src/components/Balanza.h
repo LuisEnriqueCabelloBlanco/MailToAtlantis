@@ -2,6 +2,7 @@
 #include "../architecture/Component.h"
 
 class RotarTransform;
+class Transform;
 
 class Balanza: public ecs::Component
 {
@@ -14,12 +15,10 @@ public:
 	void initComponent() override;
 
 	void initAnimations(ecs::Entity* paquete, ecs::Entity* balanzaB, RotarTransform* flechaRotComp);
-	void finishAnimatios(RotarTransform* flechaRotComp);
-
-	void setFlecha(Entity* flecha) { flecha_ = flecha; }
+	void finishAnimatios(ecs::Entity* paquete, RotarTransform* flechaRotComp);
 
 private:
-	Entity* flecha_;
+	Transform* myTransform_;
 	bool startAnimation;
 };
 
