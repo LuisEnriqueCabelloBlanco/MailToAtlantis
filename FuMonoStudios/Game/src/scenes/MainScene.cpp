@@ -298,7 +298,7 @@ void ecs::MainScene::createCinta() {
 void ecs::MainScene::createBalanza() {
 	// Balanza
 	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanza = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
+	Entity* balanza = factory_->createImage(Vector2D(50, 230), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
 	Transform* balanzaTr = balanza->getComponent<Transform>();
 	balanzaTr->setScale(0.5);
 	Balanza* balanzaComp = balanza->addComponent<Balanza>();
