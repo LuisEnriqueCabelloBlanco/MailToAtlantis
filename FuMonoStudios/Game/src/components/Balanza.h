@@ -13,7 +13,7 @@ public:
 
 	void initComponent() override;
 
-	void initAnimations(ecs::Entity* paquete, RotarTransform* flechaRotComp);
+	void initAnimations(ecs::Entity* paquete, ecs::Entity* balanzaB, RotarTransform* flechaRotComp);
 	void finishAnimatios(RotarTransform* flechaRotComp);
 
 	void setFlecha(Entity* flecha) { flecha_ = flecha; }

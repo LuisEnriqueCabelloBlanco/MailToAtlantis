@@ -304,7 +304,7 @@ void ecs::MainScene::createBalanza() {
 	Balanza* balanzaComp = balanza->addComponent<Balanza>();
 
 	// BalanzaB
-	factory_->setLayer(ecs::layer::BALANZAB);
+	factory_->setLayer(ecs::layer::BALANZA);
 	Entity* balanzaB = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaB").width(), sdlutils().images().at("balanzaB").height()), &sdlutils().images().at("balanzaB"));
 	Transform* balanzaBTr = balanzaB->getComponent<Transform>();
 	balanzaBTr->setScale(0.5);
@@ -331,7 +331,7 @@ void ecs::MainScene::createBalanza() {
 
 
 	Trigger* balanzaTri = balanza->addComponent<Trigger>();
-	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->initAnimations(entRect, rotComp); }, generalData().DropIn);
+	balanzaTri->addCallback([this, rotComp, balanzaComp, balanzaB](ecs::Entity* entRect) {balanzaComp->initAnimations(entRect, balanzaB, rotComp); }, generalData().DropIn);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 }

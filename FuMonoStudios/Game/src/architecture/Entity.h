@@ -103,6 +103,10 @@ namespace ecs {
 			return myLayer;
 		}
 
+		//inline void setLayer(ecs::layer::layerId layer) {
+		//	myLayer = layer;
+		//}
+
 		inline void addIterator(std::vector<Entity*>::iterator it) {
 			mIt_ = it;
 		}
