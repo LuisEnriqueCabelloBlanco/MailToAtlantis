@@ -27,6 +27,25 @@ void DialogManager::init(ecs::Scene* scene)
     textTr->setParent(boxBackground->getComponent<Transform>());
     textDialogue->addComponent<RenderImage>();
     textDialogue->addComponent<DialogComponent>(this);
+
+    canStartConversation = true;
+
+    timer_ = sdlutils().virtualTimer().currTime();
+    dialogueCooldown = 100 + sdlutils().virtualTimer().currTime();
+    putoTimerDeLosCojones = false;
+}
+
+void DialogManager::update()
+{
+    if(putoTimerDeLosCojones)
+    {
+        timer_ = sdlutils().virtualTimer().currTime();
+        if(timer_ > dialogueCooldown)
+        {
+            canStartConversation = true;
+            putoTimerDeLosCojones = false;
+        }
+    }
 }
 
 std::string DialogManager::getCurrentDialog() {
@@ -164,10 +183,13 @@ void DialogManager::closeConversation()
 {
     boxBackground->setActive(false);
     textDialogue->setActive(false);
-    textDialogue->removeComponent<DialogComponent>();
-    textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
+
+    timer_ = sdlutils().virtualTimer().currTime();
+    dialogueCooldown = sdlutils().virtualTimer().currTime() + 1000;
+    putoTimerDeLosCojones = true;
+   /*textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
         canStartConversation = true;
-        });
+        });*/
    /* textDialogue->getComponent<RenderImage>()->setTexture(nullptr);
     textDialogue->removeComponent<DialogComponent>();
     boxBackground->getComponent<RenderImage>()->setTexture(nullptr);

@@ -27,7 +27,6 @@ ecs::ExplorationScene::ExplorationScene() :Scene(), numLugares(7)
 	updateNavegavility();
 	initDirectionsDefaultMap();
 	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
-	dialogMngr_.canStartConversation = true;
 }
 
 ecs::ExplorationScene::~ExplorationScene()
@@ -133,7 +132,7 @@ void ecs::ExplorationScene::update() {
 		}
 		
 	}
-	
+	dialogMngr_.update();
 }
 
 void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin const

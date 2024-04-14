@@ -51,6 +51,8 @@ public:
     DialogManager();
 
     void init(ecs::Scene* scene);
+
+    void update();
     /// <summary>
     /// Devuelve el dialogo acutal segun el indice de dialogo
     /// </summary>
@@ -93,4 +95,8 @@ private:
     size_t currentDialogIndex_;
 
 
+    Uint32 timer_;
+    Uint32 dialogueCooldown;
+
+    bool putoTimerDeLosCojones;
 };
