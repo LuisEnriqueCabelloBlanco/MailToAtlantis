@@ -30,6 +30,7 @@ namespace ecs {
 			DELAYEDCALLBACK,
 			CLOCKAUX,
 			BALANZA,
+			ROTARTRANSFORM,
 			// do not remove this
 			_LAST_CMP_ID
 		};
