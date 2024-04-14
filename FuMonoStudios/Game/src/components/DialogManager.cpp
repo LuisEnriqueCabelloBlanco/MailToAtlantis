@@ -32,18 +32,18 @@ void DialogManager::init(ecs::Scene* scene)
 
     timer_ = sdlutils().virtualTimer().currTime();
     dialogueCooldown = 100 + sdlutils().virtualTimer().currTime();
-    putoTimerDeLosCojones = false;
+    controlTimer = false;
 }
 
 void DialogManager::update()
 {
-    if(putoTimerDeLosCojones)
+    if(controlTimer)
     {
         timer_ = sdlutils().virtualTimer().currTime();
         if(timer_ > dialogueCooldown)
         {
             canStartConversation = true;
-            putoTimerDeLosCojones = false;
+            controlTimer = false;
         }
     }
 }
@@ -186,7 +186,7 @@ void DialogManager::closeConversation()
 
     timer_ = sdlutils().virtualTimer().currTime();
     dialogueCooldown = sdlutils().virtualTimer().currTime() + 1000;
-    putoTimerDeLosCojones = true;
+    controlTimer = true;
    /*textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
         canStartConversation = true;
         });*/
