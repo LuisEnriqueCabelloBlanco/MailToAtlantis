@@ -17,6 +17,8 @@
 #include "../components/PackageChecker.h"
 #include "../components/Gravity.h"
 #include "../components/MoverTransform.h"
+#include "../components/Balanza.h"
+#include "../components/RotarTransform.h"
 #include "../architecture/Time.h"
 #include "../architecture/GameConstants.h"
 #include "../components/SelfDestruct.h"
@@ -295,13 +297,6 @@ void ecs::MainScene::createCinta() {
 
 void ecs::MainScene::createBalanza() {
 
-	// Balanza
-	factory_->setLayer(ecs::layer::BALANZABASE);
-	Entity* balanza = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
-	Transform* balanzaTr = balanza->getComponent<Transform>();
-	balanzaTr->setScale(0.5);
-	Trigger* balanzaTri = balanza->addComponent<Trigger>();
-
 	// BalanzaB
 	factory_->setLayer(ecs::layer::BALANZAB);
 	Entity* balanzaB = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaB").width(), sdlutils().images().at("balanzaB").height()), &sdlutils().images().at("balanzaB"));
@@ -321,6 +316,16 @@ void ecs::MainScene::createBalanza() {
 	Entity* balanzaFlecha = factory_->createImage(Vector2D(70, 120), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
 	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
 	balanzaFlechaTr->setScale(0.5);
+	RotarTransform* rotComp = balanzaFlecha->addComponent<RotarTransform>();
+
+	// Balanza
+	factory_->setLayer(ecs::layer::BALANZABASE);
+	Entity* balanza = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
+	Transform* balanzaTr = balanza->getComponent<Transform>();
+	balanzaTr->setScale(0.5);
+	Balanza* balanzaComp = balanza->addComponent<Balanza>();
+	Trigger* balanzaTri = balanza->addComponent<Trigger>();
+	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->initAnimations(entRect, rotComp); }, generalData().DropIn);
 
 	// Seteamos padres
 	balanzaTr->setParent(balanzaBaseTr);
