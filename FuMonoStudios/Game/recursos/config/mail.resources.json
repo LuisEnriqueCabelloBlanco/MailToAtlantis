@@ -158,14 +158,12 @@
     }
   ],
   "sounds": [
-    {
-        "id": "click",
-        "file": "recursos/sounds/click.wav"
-    },
-    {
-      "id": "arrastrar0",
-      "file": "recursos/sounds/arrastrar.wav"
-  },
+    {"id": "click", "file": "recursos/sounds/click.wav"},
+    {"id": "arrastrar0", "file": "recursos/sounds/arrastrar.wav"},
+    {"id": "choque", "file": "recursos/sounds/choque.wav"},
+    {"id": "MoneyProfits", "file": "recursos/sounds/MoneyProfits.wav"},
+    {"id": "LoseMoney", "file": "recursos/sounds/Lose.wav"},
+    {"id": "GuiImpact", "file": "recursos/sounds/GuiImpact.wav"},
     {
       "id": "choque2",
       "file": "recursos/sounds/choque.wav"
