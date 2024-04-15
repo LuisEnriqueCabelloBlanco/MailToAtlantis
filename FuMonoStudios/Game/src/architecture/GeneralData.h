@@ -120,6 +120,14 @@ public:
 	void updateMoney();
 	int getMoney() { return dinero_; }
 
+	void setUpgradeValue(int upgrade, bool value) {
+		upgrades_[upgrade] = value;
+	}
+
+	bool getUpgradeValue(int upgrade) {
+		return upgrades_[upgrade];
+	}
+
 	void setFinalID(int final); //Cambia el ID del final
 	int getFinalID(); //Devuelve el id del final del juego
 
@@ -233,9 +241,10 @@ private:
 	int charactersEvents_[7]; // Recoge los eventos de paquete de cada personaje
 	std::vector<Paquete*> paquetesNPCs;
 	std::vector<std::string> placesToActive_;
-
+	
+	std::vector<bool> upgrades_;
 	//Aqui van las variables que indican si se han conseguido las herramientas especiales de los NPCs
-	bool selloMulticolor = false;
+	bool selloMulticolor = false; //Sello multicolor debe estar debtro de updates
 };
 
 inline GeneralData& generalData() {

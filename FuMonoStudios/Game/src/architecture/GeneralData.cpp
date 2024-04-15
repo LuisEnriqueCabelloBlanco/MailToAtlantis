@@ -6,6 +6,7 @@
 #include "../json/JSON.h"
 #include "../json/JSONValue.h"
 #include "../sdlutils/RandomNumberGenerator.h"
+#include "../architecture/ecs.h"
 
 GeneralData::GeneralData()
 {
@@ -19,7 +20,19 @@ GeneralData::GeneralData()
 	dia_ = 1;
 	rent_ = 75;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
+	upgrades_.resize(ecs::upg::_LAST_UPGRADE);
+	for (auto upg : upgrades_) {
+		upg = false;
+	}
+	//upgrades_[ecs::upg::MONEY_UPGRADE] = true;
 
+	/*if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
+		std::cout << "Mejora de dinero desbloqueada" << std::endl;
+	}
+	else {
+		std::cout << "Mejora de dinero NO desbloqueada" << std::endl;
+	}*/
+	std::cout << "Tamanyo vector de mejoras: " << upgrades_.size() << std::endl;
 	readNPCData();
 }
 
@@ -39,7 +52,13 @@ void GeneralData::updateMoney()
 	if (corrects_ < 0) {
 		rightPackages = 0;
 	}
-	dinero_ += (rightPackages * WRITE_PACAGES_VALUE) - (wrongPackages * WRONG_PACAGES_VALUE) - rent_;
+
+	if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
+		dinero_ += rightPackages * (WRITE_PACAGES_VALUE + 10) - wrongPackages * WRONG_PACAGES_VALUE;
+	}
+	else {
+		dinero_ += rightPackages * WRITE_PACAGES_VALUE - wrongPackages * WRONG_PACAGES_VALUE;
+	}
 }
 
 //A medida que el proyecto avance, la lista de variables deber� de ampliarse, pero por ahora tenemos esto:
