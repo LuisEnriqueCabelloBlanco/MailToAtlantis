@@ -7,7 +7,7 @@
 #include "Depth.h"
 
 Transform::Transform(float x, float y, float w, float h) : Component(), 
-position_(x, y), width_(w), height_(h), scale_(1), trueScale_(1),parentTr_(nullptr),rotation_(0) {
+position_(x, y), width_(w), height_(h), scale_(1), trueScale_(1),parentTr_(nullptr),rotation_(0), childsTr_() {
 	auto& sdl = *SDLUtils::instance();
 
 #ifdef _DEBUG
@@ -17,7 +17,7 @@ position_(x, y), width_(w), height_(h), scale_(1), trueScale_(1),parentTr_(nullp
 }
 
 Transform::Transform(float x, float y, float w, float h, float rot) : Component(),
-position_(x, y), width_(w), height_(h), scale_(1), trueScale_(1), parentTr_(nullptr), rotation_(rot) {
+position_(x, y), width_(w), height_(h), scale_(1), trueScale_(1), parentTr_(nullptr), rotation_(rot), childsTr_() {
 	auto& sdl = *SDLUtils::instance();
 
 #ifdef _DEBUG
@@ -141,14 +141,22 @@ bool Transform::getIfPointerIn() const {
 
 void Transform::setActiveChildren(bool act) {
 
+
+	
 	if (!childsTr_.empty()) {
 
-		for (auto it = childsTr_.begin(); it != childsTr_.end(); ++it) {
 
-			(*it)->ent_->setActive(act);
+		for (auto it : childsTr_) {
+
+			if (it != nullptr) {
+				it->ent_->setActive(act);
+			}
+			
 
 		}
 
 	}
+	
+	
 
 }
