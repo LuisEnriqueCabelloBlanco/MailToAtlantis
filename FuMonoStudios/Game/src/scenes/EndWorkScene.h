@@ -6,10 +6,10 @@ public:
 	EndWorkScene();
 	virtual ~EndWorkScene();
 	void init() override;
+	void update() override;
 private:
 	void animTextos(ecs::Entity* corrects, ecs::Entity* fails);	  // Efecto que le damos a fallos/aciertos
-	void animNumeros(ecs::Entity* number); // Efecto incremento de numeros
+	void animNumeros(ecs::Entity* nomina, ecs::Entity* totalMoney); // Efecto incremento de numeros
 
-	// Ajustes
 	double animCooldown_ = 1; // Tiempo en segundos entre cada anim
 };

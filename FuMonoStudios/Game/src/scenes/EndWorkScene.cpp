@@ -9,6 +9,7 @@
 #include "../components/Clickeable.h"
 #include "../architecture/Game.h"
 #include "../components/MoverTransform.h"
+#include "../components/DelayedCallback.h"
 
 EndWorkScene::EndWorkScene():Scene() {
 
@@ -35,12 +36,15 @@ void EndWorkScene::init() {
 	ecs::Entity* corrects = factory_->createLabel(pos + Vector2D(0, -500), "Corrects: " + std::to_string(generalData().getCorrects()), 50);
 
 	// Gastos alquiler e ingreos por trabajo
-	factory_->createLabel(pos + Vector2D(0, -300), "Gastos de Alquiler: -" + std::to_string(generalData().getRent()) + "$", 50);
+	factory_->createLabel(pos + Vector2D(0, -200), "Gastos de Alquiler: -" + std::to_string(generalData().getRent()) + "$", 50);
+	std::string msg = "Nómina del día: ";
+	msg += std::to_string(generalData().calcularDineroGanado()) + "$";
+	ecs::Entity* nomina = factory_->createLabel(pos + Vector2D(0, -300), msg, 50);
 
 	// Dinero total
-	std::string msg = "Dinero Total: ";
+	msg = "Dinero Total: ";
 	msg += std::to_string(generalData().getMoney()) + "$";
-	ecs::Entity* total = factory_->createLabel(pos, msg, 50);
+	ecs::Entity* total = factory_->createLabel(pos + Vector2D(0, 100), msg, 50);
 
 	// Dia actual
 	msg = "Dia ";
@@ -53,7 +57,7 @@ void EndWorkScene::init() {
 	if (money >= 0) {
 		// Boton nuevo dia
 		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
-		factory_->createTextuButton(pos + Vector2D(0, 70), "Nuevo dia", 50, call);
+		factory_->createTextuButton(pos + Vector2D(0, 170), "Nuevo dia", 50, call);
 		// Sonido
 		sdlutils().soundEffects().at("MoneyProfits").play();
 		auto call1 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
@@ -77,34 +81,30 @@ void EndWorkScene::init() {
 		generalData().resetMoney();
 	}
 	animTextos(corrects, fails);
-	animNumeros(total);
+	//animNumeros(total);
+}
+
+void EndWorkScene::update()
+{
+	ecs::Scene::update();
+
 }
 
 
 void EndWorkScene::animTextos(ecs::Entity* corrects, ecs::Entity* fails) {
-	// No se puede usar virtual timer pero quizas delayedCallbacks puede servir
 
-	//uint tiempoInicial = SDL_GetTicks();
-	//uint tiempoPasado = 0;
-	//// Anim corrects
-	//corrects->setActive(true);
-	//sdlutils().soundEffects().at("GuiImpact").play();
-	//while (tiempoPasado < animCooldown_ * 1000) {
-	//	tiempoPasado = SDL_GetTicks() - tiempoInicial;
-	//}
-	//tiempoInicial = SDL_GetTicks();
-	//tiempoPasado = 0;
-	//// Anim fails
-	//fails->setActive(true);
-	//sdlutils().soundEffects().at("GuiImpact").play();
-	//while (tiempoPasado < animCooldown_ * 1000) {
-	//	tiempoPasado = SDL_GetTicks() - tiempoInicial;
-	//}
-	//tiempoInicial = SDL_GetTicks();
-	//tiempoPasado = 0;
+	// Anim corrects
+	corrects->addComponent<DelayedCallback>(1.0f, [this, corrects]() {
+		sdlutils().soundEffects().at("GuiImpact").play();
+		corrects->setActive(true);
+	});
+
+	// Anim fails
+	fails->addComponent<DelayedCallback>(1.0f, [this, fails]() {
+		sdlutils().soundEffects().at("GuiImpact").play();
+		fails->setActive(true);
+	});
 }
-void EndWorkScene::animNumeros(ecs::Entity* number) {
-	if (number->hasComponent(ecs::cmp::MULTIPLETEXTURES)) {
+void EndWorkScene::animNumeros(ecs::Entity* nomina, ecs::Entity* totalMoney) {
 
-	}
 }
