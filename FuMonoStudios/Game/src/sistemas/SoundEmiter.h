@@ -44,3 +44,7 @@ private:
 	std::unordered_map<std::string, bool> activeSongs_;
 };
 
+
+inline SoundEmiter& soundEmiter() {
+	return *SoundEmiter::instance();
+}

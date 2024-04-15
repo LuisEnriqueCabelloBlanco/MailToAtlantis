@@ -19,6 +19,7 @@ void SoundEmiter::init()
 
 void SoundEmiter::setSoundVolumes(int volume)
 {
+	std::cout << volume + "\n";
 	soundVolume_ = volume;
 	/*
 	for (auto& it : soundPulls_) {

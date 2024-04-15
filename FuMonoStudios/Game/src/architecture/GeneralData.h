@@ -2,6 +2,7 @@
 #include "../utils/Singleton.h"
 #include "../sistemas/Felicidad.h"
 #include "GameConstants.h"
+#include <architecture/ecs.h>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -120,11 +121,11 @@ public:
 	void updateMoney();
 	int getMoney() { return dinero_; }
 
-	void setUpgradeValue(int upgrade, bool value) {
+	void setUpgradeValue(ecs::upg::upgradeId upgrade, bool value) {
 		upgrades_[upgrade] = value;
 	}
 
-	bool getUpgradeValue(int upgrade) {
+	bool getUpgradeValue(ecs::upg::upgradeId upgrade) {
 		return upgrades_[upgrade];
 	}
 

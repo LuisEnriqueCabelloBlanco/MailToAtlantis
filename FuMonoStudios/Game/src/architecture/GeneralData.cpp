@@ -7,6 +7,7 @@
 #include "../json/JSONValue.h"
 #include "../sdlutils/RandomNumberGenerator.h"
 #include "../architecture/ecs.h"
+#include "../sistemas/SoundEmiter.h"
 
 GeneralData::GeneralData()
 {
@@ -33,6 +34,8 @@ GeneralData::GeneralData()
 		std::cout << "Mejora de dinero NO desbloqueada" << std::endl;
 	}*/
 	std::cout << "Tamanyo vector de mejoras: " << upgrades_.size() << std::endl;
+	paramAjustes_[0] = 50;
+	soundEmiter().setSoundVolumes(paramAjustes_[0]);
 	readNPCData();
 }
 
