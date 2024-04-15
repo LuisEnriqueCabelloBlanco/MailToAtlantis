@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../architecture/Component.h"
+#include "../architecture/GeneralData.h"
 #include <unordered_map>
 #include <iostream>
 #include <fstream>
@@ -9,31 +10,8 @@
 #include "../utils/Vector2D.h"
 #include "Transform.h"
 
+
 class Scene;
-
-namespace pq {
-	/*
-	De locos pero y si lo metemos en un espacio de nombres
-	*/
-	/// <summary>
-	/// enum con todos los distritos posibles que pueden tener los paquetes
-	/// </summary>
-	enum Distrito {Hestia, Artemisa, Demeter, Hefesto, Hermes, Apolo, Poseidon, Erroneo };
-	/// <summary>
-	/// enum con todas las calles posibles que pueden tener los paquetes
-	/// </summary>
-	enum Calle { C1, C2, C3, Erronea };
-	/// <summary>
-	/// enum con todoos los tipos de cargamento que pueden tener los paquetes
-	/// </summary>
-	enum TipoPaquete { Alimento,Medicinas,Joyas,Materiales,Armamento };
-	/// <summary>
-	/// enum con todas los tipos de medici�n de peso que pueden tener los paquetes
-	/// </summary>
-	enum NivelPeso { Ninguno, Bajo, Medio, Alto };
-}
-
-using namespace pq;
 
 class Paquete : public ecs::Component
 {
@@ -41,9 +19,8 @@ public:
 	__CMP_DECL__(ecs::cmp::PAQUETE)
 		
 
-
 	Paquete(Paquete&);
-	Paquete(Distrito, Calle, const std::string& nombreCalle,const std::string& remitente, TipoPaquete, bool correcto = true, NivelPeso nivPeso = Ninguno, int peso = 0,
+	Paquete(pq::Distrito, pq::Calle, const std::string& nombreCalle,const std::string& remitente, TipoPaquete, bool correcto = true, NivelPeso nivPeso = Ninguno, int peso = 0,
 		bool fragil = false, bool carta = false);
 	~Paquete();
 
@@ -52,7 +29,7 @@ public:
 	bool bienSellado() const;
 
 	// Sella la calle una única vez con el sellador
-	void sellarCalle(Calle sello, Transform* trSellador);
+	void sellarCalle(pq::Calle sello, Transform* trSellador, bool);
 
 	// envuelve el paquete
 	void envolver() { envuelto_ = true; }
@@ -71,8 +48,8 @@ public:
 	/// <returns></returns>
 	std::string getDirecction();
 	TipoPaquete getTipo() const { return miTipo_; }
-	Distrito getDistrito() const { return miDistrito_; }
-	Calle getCalle() const { return miCalle_; }
+	pq::Distrito getDistrito() const { return miDistrito_; }
+	pq::Calle getCalle() const { return miCalle_; }
 	std::string getRemitente() const { return miRemitente_; }
 	NivelPeso getPeso() const { return miPeso_; }
 	int getCantidadPeso() const { return peso_; }
@@ -88,9 +65,9 @@ private:
 	//void createSello(std::string texKey, int x, int y, int width, int height); (movido al paqueteBuilder)
 
 	//Variables que se generan automaticamente con informaci�n de los paquetes
-	Distrito miDistrito_;	//Variable con el distrito al que es enviado el paquete	
+	pq::Distrito miDistrito_;	//Variable con el distrito al que es enviado el paquete	
 	std::string miRemitente_;  //Variable con el nombre del remitente
-	Calle miCalle_;			//Variable con la calle a la que es enviada el paquete	
+	pq::Calle miCalle_;			//Variable con la calle a la que es enviada el paquete	
 	std::string nombreCalle_;
 	TipoPaquete miTipo_;		//Variable con el tipo de cargamente que lleva el paquete
 	bool selloCorrecto_;		//Variable que indica si el sello que contiene el paquete es correcto o no
@@ -102,7 +79,7 @@ private:
 	bool carta_;
 
 	//Variables que debe modificar el jugador
-	Calle calleMarcada_;		//Variable que indica para qu� distrito ha sido etiquetado el paquete
+	pq::Calle calleMarcada_;		//Variable que indica para qu� distrito ha sido etiquetado el paquete
 	bool envuelto_;			//Variable que indica si est� envuelto o no el paquete
 	int routeID; //ID de la ruta de la caja creada
 

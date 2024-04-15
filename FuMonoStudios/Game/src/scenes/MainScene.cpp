@@ -27,6 +27,8 @@
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
 
+#include "../components/NPCExclamation.h"
+
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 {
 	timer_ = MINIGAME_TIME;
@@ -159,13 +161,16 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 			RenderImage* stampRender = entRec->getComponent<RenderImage>();
 
-			stampHerramienta->setFunctionality(type);
+			if (!stampHerramienta->getMulticolorStamp()) { //Si el sello no es multicolor
+				stampHerramienta->setFunctionality(type);
 
-			stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
+				stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
+
+			}
 
 		}
 
-	});
+	}, generalData().DropIn);
 
 }
 
@@ -175,8 +180,9 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		return;
 	switch (dia)
 	{
-	case 1:
-
+	case 1:		
+		//if(GeneralData::instance()->getSelloMulticolor()) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
+		//createExclamationPoint();		//Ignorad esto, está aquí para hacer pruebas. Lo quito en cuanto funcione -Javier
 		createStamp(SelloCalleA);
 
 		createInks();
@@ -216,7 +222,10 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		break;
 	}	
 }
-
+void ecs::MainScene::createExclamationPoint() {
+	Entity* xd = addEntity(ecs::layer::FOREGROUND);	
+	xd->addComponent<NPCExclamation>(100,100);
+}
 
 void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto) {
 	Entity* NotaErronea = addEntity(ecs::layer::FOREGROUND);
@@ -241,9 +250,8 @@ void ecs::MainScene::createStamp(TipoHerramienta type)
 {
 	if (type > 2) return;
 	constexpr float STAMPSIZE = 1;
-
+	
 	factory_->setLayer(layer::STAMP);
-
 	auto stamp = factory_->createImage(Vector2D(300, 300),
 		Vector2D(sdlutils().images().at("sellador" + std::to_string(type)).width() * STAMPSIZE, sdlutils().images().at("sellador" + std::to_string(type)).height() * STAMPSIZE),
 		& sdlutils().images().at("sellador" + std::to_string(type)));
@@ -254,6 +262,24 @@ void ecs::MainScene::createStamp(TipoHerramienta type)
 
 	Herramientas* herrSelladorA = stamp->addComponent<Herramientas>();
 	herrSelladorA->setFunctionality(type);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+}
+
+void ecs::MainScene::createMultipleStamp()
+{	
+	constexpr float STAMPSIZE = 1;
+
+	Entity* stamp = addEntity(ecs::layer::STAMP);
+	Texture* StampTex = &sdlutils().images().at("selladorM");			
+	Transform* tr_ = stamp->addComponent<Transform>(500, 300, StampTex->width(), StampTex->height());	
+	stamp->addComponent<RenderImage>(StampTex);
+	stamp->addComponent<Gravity>();
+	stamp->addComponent<Depth>();
+	stamp->addComponent<DragAndDrop>("arrastrar");
+
+	Herramientas* herrSelladorA = stamp->addComponent<Herramientas>();
+	herrSelladorA->setFunctionality(SelloMultiColor);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 }
@@ -301,7 +327,7 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 
 void ecs::MainScene::createManual()
 {
-	constexpr int MANUALNUMPAGES = 8;
+	constexpr int MANUALNUMPAGES = 10;
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 
@@ -405,7 +431,7 @@ void ecs::MainScene::createMiniManual() {
 			
 		}
 
-	});
+	}, generalData().DropIn);
 
 
 	factory_->setLayer(ecs::layer::DEFAULT);
@@ -445,7 +471,7 @@ void ecs::MainScene::createSpaceManual() {
 
 		}
 
-	});
+	}, generalData().DropIn);
 	
 
 	factory_->setLayer(ecs::layer::DEFAULT);
