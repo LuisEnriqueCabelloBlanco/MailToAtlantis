@@ -41,11 +41,6 @@ void ecs::ExplorationScene::init()
 	generalData().updateDia();
 	updateNavegavility();
 
-	for (auto& e : objs_) {
-		for (auto en : e){
-		    en->setAlive(false);
-		}
-	}
 	actualPlace_ = &lugares[pq::Distrito::Hestia];
 	createPlaces();
 
@@ -279,23 +274,16 @@ void ecs::ExplorationScene::createObjects(int place) {
 	std::string placeName = generalData().fromDistritoToString(place);
 
 	for (int i = 0; i < pl.at(placeName).myArrows.size(); ++i) {
-
 		lugares[place].addObjects(createNavegationsArrows(pl.at(placeName).myArrows[i].pos,
 			pl.at(placeName).myArrows[i].destination_, pl.at(placeName).myArrows[i].scale_, pl.at(placeName).myArrows[i].flip_));
-
-
 	}
 
 	for (int i = 0; i < pl.at(placeName).myCharacters.size(); ++i) {
-
 		lugares[place].addObjects(createCharacter(pl.at(placeName).myCharacters[i].pos,
 			pl.at(placeName).myCharacters[i].name_, pl.at(placeName).myCharacters[i].scale_));
-
-
 	}
 
 	lugares[place].changeActivationObjects(false);
-
 
 }
 
