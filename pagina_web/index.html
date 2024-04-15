@@ -7,212 +7,214 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- T韙ulo de la web e icono -->
-    <title>Mail To Atlantis</title>
-    <link rel="icon" type="image/x-icon" href="ruta del icono que aparecera en la pesta馻 del navegador">
+    <!-- T铆tulo de la web e icono -->
+	<title>Mail To Atlantis</title>
+	<link rel="icon" type="image/x-icon" href="web/logoFumono.png">
 
     <!-- Fuentes -->
-    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 
     <!-- Referencias -->
 
     <link rel="stylesheet" href="styles.css">
-
+    <script src="script.js"></script>
+    
 </head>
 
 
-<!-- Cuerpo -->
+ <!-- Cuerpo -->
 <body>
 
     <!-- Cabecera -->
-    <header>
-        <!-- Secci髇 del T韙ulo -->
-        <div style="text-align: center; margin-top: -10px;">
-            <img src="ruta del un cartel del titulo del juego">
-        </div>
-
-        <div>
-            <p>Desarrollo de Videojuegos - Proyectos 2 - UCM</p>
-        </div>
-
-    </header>
-
-
-    <!-- Secci髇 de Descripci髇 -->
-    <div class="descripcion">
-        <div class="cuadro">
-            <h2>DESCRIPCI覰-DEL-JUEGO</h2>
-        </div>
-        <p class="descripcion-txt">
-            "TEXTO DE LA DESCRIPCION DEL JUEGO AQUI"
-        </p>
+	<header>
+		  <!-- Secci贸n del T铆tulo -->
+      <div class="imagen-container" style="text-align: center; margin-top: 20px;">
+        <img src="web/cartelMTA.png" class="cambiar-imagen" style="width: 400px; height: 200px;">
+        <img src="web/manzana.jpg" class="cambiar-imagen" style="width: 400px; height: 200px;">
     </div>
 
-    <!-- Secci髇 de Descarga -->
+		<div>
+			<p>Desarrollo de Videojuegos - Proyectos 2 - UCM</p>
+		</div>
+		
+	</header>
+
+ 
+     <!-- Secci贸n de Descripci贸n -->
+     <div class="descripcion">
+		<div class="cuadro">
+			<h2>Descripci贸n del Juego</h2>
+		</div>
+		<p class="descripcion-txt">
+			"TEXTO DE LA DESCRIPCION DEL JUEGO AQUI"
+		</p>
+	</div>
+
+    <!-- Secci贸n de Descarga -->
     <div class="descarga">
         <a class="boton-descarga" onclick="window.location='link-de-descarga'">Descargar Juego</a>
     </div>
 
-
-    <!-- Secci髇 de Trailer -->
+   
+    <!-- Secci贸n de Trailer -->
     <div class="cuadro">
         <h2>Trailer del Juego</h2>
     </div>
-
-    <!-- Trailer -->
-    <iframe class="video"
-            width="1280" height="720" title="Trailer - Mail To Atlantis"
-            src="link al video"
-            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+       
+        <!-- Trailer -->
+		<iframe class="video"
+		width="1280" height="720" title="Trailer - Mail To Atlantis" 
+		src="link al video"
+		frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+		allowfullscreen></iframe>
     </section>
 
-    <!-- Secci髇 de Capturas -->
-    <div class="capturas">
+    <!-- Secci贸n de Capturas -->
+    <div class="slides">
         <div class="cuadro">
-            <h2>CAPTURAS DEL JUEGO</h2>
+            <h2>Capturas del Juego</h2>
         </div>
-
+   
         <!-- Slides -->
-        <div class="slides">
-            <div class="img">
-                <img src="link.png">
+        <div class="capturas">
+            <div class="imgen visible">
+                <img src="web/artemisa.png" style="width: 900px; height: auto;">
             </div>
-
-            <div class="img">
-                <img src="link.png">
+                    
+            <div class="imgen">
+                <img src="web/apolo.png" style="width: 900px; height: auto;">
             </div>
-
-            <div class="img">
-                <img src="link.png">
+    
+            <div class="imgen">
+                <img src="web/demeter.png" style="width: 900px; height: auto;">
             </div>
-
-            <div class="img">
-                <img src="link.png">
+        
+            <div class="imgen">
+                <img src="web/hestia.png" style="width: 900px; height: auto;">
             </div>
-
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                        
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
         </div>
-        <br>
-    </div>
+      </div>
+                	<!-- Circulitos de las imagenes -->
+	    <div style="text-align:center">
+		    <span class="dot" onclick="currentSlide(1)"></span>
+		    <span class="dot" onclick="currentSlide(2)"></span>
+		    <span class="dot" onclick="currentSlide(3)"></span>
+		    <span class="dot" onclick="currentSlide(4)"></span>
+	    </div>
 
-    <!-- Circulitos de las imagenes -->
-    <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-        <span class="dot" onclick="currentSlide(4)"></span>
-    </div>
-
-    <!-- Secci髇 de Miembros del Grupo -->
+    <!-- Secci贸n de Miembros del Grupo -->
     <div class="miembros">
         <div class="cuadro">
-            <h2>QUIENES SOMOS</h2>
+            <h2>Quienes Somos</h2>
         </div>
 
         <ul class="lista-miembros" style="list-style: none; align-items: center;">
             <li class="miembro">
-                <img src="imagen Personal.png" width="350px" height="350px">
-                <div class="info-miembro">
-                    <h3>Nombre</h3>
-                    <p class="textito">Insertar texto de cada uno</p>
-                </div>
+                <img src="web/manzana.jpg" width="250px" height="250px">
+              <div class="info-miembro">
+                <h3>Daniel Zhu</h3>
+                <p class="textito">Insertar texto de cada uno</p>
+              </div>
             </li>
             <li class="miembro">
-                <img src="imagen Personal.png" width="350px" height="350px">
+                <img src="web/manzana.jpg" width="250px" height="250px">
                 <div class="info-miembro">
-                    <h3>Nombre</h3>
-                    <p class="textito">Insertar texto de cada uno</p>
+                  <h3>Adrian del Pozo Hernandez</h3>
+                  <p class="textito">Insertar texto de cada uno</p>
                 </div>
-            </li>
-            <li class="miembro">
-                <img src="imagen Personal.png" width="350px" height="350px">
+              </li>
+              <li class="miembro">
+                <img src="web/logoFumono.png" width="250px" height="250px">
                 <div class="info-miembro">
-                    <h3>Nombre</h3>
-                    <p class="textito">Insertar texto de cada uno</p>
+                  <h3>Luis Enrique Cabello</h3>
+                  <p class="textito">Insertar texto de cada uno</p>
                 </div>
-            </li>
-            <li class="miembro">
-                <img src="imagen Personal.png" width="350px" height="350px">
+              </li>
+              <li class="miembro">
+                <img src="web/logoFumono.png" width="250px" height="250px">
                 <div class="info-miembro">
-                    <h3>Nombre</h3>
-                    <p class="textito">Insertar texto de cada uno</p>
+                  <h3>David Canelada Velazquez</h3>
+                  <p class="textito">Insertar texto de cada uno</p>
                 </div>
-            </li>
-            <li class="miembro">
-                <img src="imagen Personal.png" width="350px" height="350px">
+              </li>
+              <li class="miembro">
+                <img src="web/manzana.jpg" width="250px" height="250px">
                 <div class="info-miembro">
-                    <h3>Nombre</h3>
-                    <p class="textito">Insertar texto de cada uno</p>
+                  <h3>Pablo Marcos Serrano</h3>
+                  <p class="textito">Insertar texto de cada uno</p>
                 </div>
-            </li>
-            <li class="miembro">
-                <img src="imagen Personal.png" width="350px" height="350px">
+              </li>
+              <li class="miembro">
+                <img src="web/manzana.jpg" width="250px" height="250px">
                 <div class="info-miembro">
-                    <h3>Nombre</h3>
-                    <p class="textito">Insertar texto de cada uno</p>
+                  <h3>Miguel Norberto Perez Ballester</h3>
+                  <p class="textito">Insertar texto de cada uno</p>
                 </div>
-            </li>
-            <li class="miembro">
-                <img src="imagen Personal.png" width="350px" height="350px">
+              </li>
+              <li class="miembro">
+                <img src="web/logoFumono.png" width="250px" height="250px">
                 <div class="info-miembro">
-                    <h3>Nombre</h3>
-                    <p class="textito">Insertar texto de cada uno</p>
+                  <h3>Julian Serrano Chacon</h3>
+                  <p class="textito">Insertar texto de cada uno</p>
                 </div>
-            </li>
-            <li class="miembro">
-                <img src="imagen Personal.png" width="350px" height="350px">
+              </li>
+              <li class="miembro">
+                <img src="web/logoFumono.png" width="250px" height="250px">
                 <div class="info-miembro">
-                    <h3>Nombre</h3>
-                    <p class="textito">Insertar texto de cada uno</p>
+                  <h3>Jose Antonio Carmona Alfonse</h3>
+                  <p class="textito">Insertar texto de cada uno</p>
                 </div>
-            </li>
-            <li class="miembro">
-                <img src="imagen Personal.png" width="350px" height="350px">
+              </li>
+              <li class="miembro">
+                <img src="web/logoFumono.png" width="250px" height="250px">
                 <div class="info-miembro">
-                    <h3>Nombre</h3>
-                    <p class="textito">Insertar texto de cada uno</p>
+                  <h3>Javier Alonso Ruiz</h3>
+                  <p class="textito">Insertar texto de cada uno</p>
                 </div>
-            </li>
-            <li class="miembro">
-                <img src="imagen Personal.png" width="350px" height="350px">
+              </li>
+              <li class="miembro">
+                <img src="web/manzana.jpg" width="250px" height="250px">
                 <div class="info-miembro">
-                    <h3>Nombre</h3>
-                    <p class="textito">Insertar texto de cada uno</p>
+                  <h3>Alvaro Pi帽a Sanchez-Sierra</h3>
+                  <p class="textito">Insertar texto de cada uno</p>
                 </div>
-            </li>
-
+              </li>
+           
         </ul>
     </div>
 
     <!-- Pie de pagina -->
     <footer>
-        <div class="footer">
-            <!-- Logo de la empresa -->
-            <div class="footer-content">
-                <img src="logo Fumonos.png">
-            </div>
+		<div class="footer">
+			<!-- Logo de la empresa -->
+			<div class="footer-content">
+        <img src="web/logoFumono.png"style="width: 50px; height: auto;">
+			</div>
 
-            <!-- Links de las redes sociales -->
-            <div class="footer-content">
-                <!-- Twitter -->
-                <a href="link" target="_blank">
-                    <img src="twitter.png">
-                </a>
-            </div>
-            <div class="footer-content">
-                <!-- GitHub -->
-                <a href="link git" target="_blank">
-                    <img src="git.png">
-                </a>
-            </div>
-        </div>
-        <div>
-            <p style="text-align: center;">Copyright (c) 2023 UCM-FDI - FuMonoStudios</p>
-        </div>
-    </footer>
+			<!-- Links de las redes sociales -->
+			<div class="footer-content">
+				<!-- Twitter -->
+				<a href="link" target="_blank">
+					<img src="twitter.png">
+				</a>
+			</div>
+			<div class="footer-content">
+				<!-- GitHub -->
+				<a href="https://github.com/UCM-FDI-DISIA/FuMonoStudios" target="_blank">
+					<img src="web/github.png" style="width: 50px; height: auto;">
+				</a>
+			</div>
+		</div>
+		<div>
+			<p style="text-align: center;">Copyright (c) 2023 UCM-FDI - FuMonoStudios</p>
+		</div>   
+	</footer>
 
 </body>
 
