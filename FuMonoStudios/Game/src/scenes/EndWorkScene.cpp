@@ -9,7 +9,6 @@
 #include "../components/Clickeable.h"
 #include "../architecture/Game.h"
 #include "../components/MoverTransform.h"
-#include "../components/DelayedCallback.h"
 
 EndWorkScene::EndWorkScene():Scene() {
 
@@ -80,31 +79,48 @@ void EndWorkScene::init() {
 		generalData().setDia(1);
 		generalData().resetMoney();
 	}
-	animTextos(corrects, fails);
-	//animNumeros(total);
 }
 
 void EndWorkScene::update()
 {
 	ecs::Scene::update();
-
+	
+	// cada animCooldown_ y siempre que el numero de anims efectuadas no sea mayor a 4
+	// estaremos reproduciendo anims hasta llegar a las 4 anims que tenemos
+	if (timer_.currTime() > animCooldown_ * 1000 && anim_ <= 4) {
+		nextAnim();
+		anim_++;
+		timer_.reset();
+	}
 }
 
 
-void EndWorkScene::animTextos(ecs::Entity* corrects, ecs::Entity* fails) {
-
-	// Anim corrects
-	corrects->addComponent<DelayedCallback>(1.0f, [this, corrects]() {
-		sdlutils().soundEffects().at("GuiImpact").play();
-		corrects->setActive(true);
-	});
-
-	// Anim fails
-	fails->addComponent<DelayedCallback>(1.0f, [this, fails]() {
-		sdlutils().soundEffects().at("GuiImpact").play();
-		fails->setActive(true);
-	});
+void EndWorkScene::nextAnim()
+{
+	switch (anim_)
+	{
+	case 1:
+		std::cout << "anim 1";
+		// ademas, podemos cambiar el animCooldown_ aqui mismo;
+		break;
+	case 2:
+		std::cout << "anim 2";
+		break;
+	case 3:
+		std::cout << "anim 3";
+		break;
+	case 4:
+		std::cout << "anim 4";
+		break;
+	default:
+		break;
+	}
 }
-void EndWorkScene::animNumeros(ecs::Entity* nomina, ecs::Entity* totalMoney) {
 
+void EndWorkScene::animTextos(ecs::Entity* texto) {
+	sdlutils().soundEffects().at("GuiImpact").play();
+	texto->setActive(true);
+}
+void EndWorkScene::animNumeros(ecs::Entity* number) {
+	// animacion numeros subiendo
 }
