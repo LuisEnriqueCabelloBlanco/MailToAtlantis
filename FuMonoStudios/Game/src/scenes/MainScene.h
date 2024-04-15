@@ -22,6 +22,7 @@ namespace ecs {
         void setTimer(float time) { timer_ = time; }
         void createPaquete(int lv);
         void createErrorMessage(Paquete* paqComp, bool, bool);
+        void createExclamationPoint();
     private:
         void createManual();
         void createMiniManual();

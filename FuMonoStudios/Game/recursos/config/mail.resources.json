@@ -79,6 +79,7 @@
 
     {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
     {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
+    {"id": "exclamacion","file": "recursos/images/Exclamacion.png"},
     
     {"id": "ruta1","file": "recursos/images/route1.png"},
     {"id": "ruta2","file": "recursos/images/route2.png"},
