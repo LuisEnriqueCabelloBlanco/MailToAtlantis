@@ -37,14 +37,13 @@ ecs::ExplorationScene::~ExplorationScene()
 void ecs::ExplorationScene::init()
 {
 	std::cout << "Hola Exploracion" << std::endl;
-	//setNavegabilityOfPlace("Hermes"); // Esto es para probar si funciona el seteo.
+	
 	generalData().updateDia();
 	updateNavegavility();
 
 	for (auto& e : objs_) {
 		for (auto en : e){
-				en->setAlive(false);
-
+		    en->setAlive(false);
 		}
 	}
 	actualPlace_ = &lugares[pq::Distrito::Hestia];

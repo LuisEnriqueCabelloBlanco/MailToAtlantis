@@ -13,7 +13,7 @@ TutorialSystem::TutorialSystem(ecs::TutorialScene* scene) {
 	waitingCallback = false;
 	waitingEmbalaje = false;
 
-	dialogMngr_.init(scene);
+	//dialogMngr_.init(scene);
 	createDialogueBox();
 	createArrow();
 }

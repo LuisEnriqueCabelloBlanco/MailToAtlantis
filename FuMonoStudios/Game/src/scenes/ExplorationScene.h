@@ -97,7 +97,7 @@ namespace ecs {
         ExplorationScene();
         virtual ~ExplorationScene();
         void init() override;
-        virtual void close() override {}
+        //virtual void close() override {}
         void render();
 		void update();
 
@@ -105,12 +105,6 @@ namespace ecs {
 		/// Metodo para navegar a cierto lugar
 		/// </summary>
 		void navigate(std::string placeDir);
-
-		/// <summary>
-		/// Metodo para renderizar el backGround
-		/// </summary>
-		void renderBackGround() const;
-
 
     private:
 		
@@ -123,13 +117,6 @@ namespace ecs {
 		/// Metodo para incializar las direcciones adyacentes a cada lugar del mapa
 		/// </summary>
 		void initDirectionsDefaultMap();
-
-		/// <summary>
-		/// Mata (setAlive(false) los objetos del lugar para que se borren de la escena y los borra del vector
-		/// del lugar.
-		/// USAR ANTES DE NAVEGAR SI ES QUE SE PUEDE NAVEGAR
-		/// </summary>
-		void killObjects();
 
 		/// <summary>
 		/// Crea los objetos del lugar actual al que te acabas de mover.

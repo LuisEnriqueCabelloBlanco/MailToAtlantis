@@ -10,7 +10,7 @@
 #include "QATools/DataCollector.h"
 #include "sistemas/ComonObjectsFactory.h"
 
-DialogManager::DialogManager() : currentDialogIndex_(0)
+DialogManager::DialogManager() : currentDialogIndex_(0),boxBackground(nullptr), textDialogue(nullptr)
 {
 
 }
@@ -27,6 +27,7 @@ void DialogManager::init(ecs::Scene* scene)
     textTr->setParent(boxBackground->getComponent<Transform>());
     textDialogue->addComponent<RenderImage>();
     textDialogue->addComponent<DialogComponent>(this);
+
 
     setDialogueEntitiesActive(false);
 
@@ -207,7 +208,7 @@ void DialogManager::closeDialogue()
     setDialogueEntitiesActive(false);
 
     timer_ = sdlutils().virtualTimer().currTime();
-    dialogueCooldown = sdlutils().virtualTimer().currTime() + dialogueCooldownTime;
+    dialogueCooldown = sdlutils().virtualTimer().currTime() + dialogueCooldownTime  ;
     controlTimer = true;
    /*textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
         canStartConversation = true;
