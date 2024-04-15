@@ -27,7 +27,6 @@ void Balanza::initAnimations(ecs::Entity* paquete, ecs::Entity* balanzaB, RotarT
 
 		//Obtenemos cantidad peso
 		int cantidadPeso = paquete->getComponent<Paquete>()->getCantidadPeso();
-		std::cout << cantidadPeso;
 
 		//Animamos flecha
 			flechaRotComp->setDesiredGrades(cantidadPeso);
@@ -37,7 +36,7 @@ void Balanza::initAnimations(ecs::Entity* paquete, ecs::Entity* balanzaB, RotarT
 			Transform* paqTr = paquete->getComponent<Transform>();
 			paqueteMovComp->setEasing(Easing::EaseOutCubic);
 			paqueteMovComp->setFinalPos(Vector2D(myTransform_->getPos().getX() + myTransform_->getWidth() / 2 - paqTr->getWidth() / 2
-				, myTransform_->getPos().getY() + 40));
+				, myTransform_->getPos().getY() + 70));
 			paqueteMovComp->setMoveTime(1.0f);
 			paqueteMovComp->enable();
 
@@ -45,8 +44,7 @@ void Balanza::initAnimations(ecs::Entity* paquete, ecs::Entity* balanzaB, RotarT
 			/*balanzaB->setLayer(ecs::layer::BALANZAB);*/
 			MoverTransform* balanzaMovComp = ent_->getComponent<MoverTransform>();
 			balanzaMovComp->setEasing(Easing::EaseOutCubic);
-			balanzaMovComp->setFinalPos(Vector2D(myTransform_->getPos().getX() + myTransform_->getWidth() / 2 - paqTr->getWidth() / 2
-				, myTransform_->getPos().getY() + 40));
+			balanzaMovComp->setFinalPos(Vector2D(myTransform_->getRelPos().getX(), myTransform_->getRelPos().getY() + 20));
 			balanzaMovComp->setMoveTime(1.0f);
 			balanzaMovComp->enable();
 	}
@@ -61,8 +59,7 @@ void Balanza::finishAnimatios(ecs::Entity* paquete, RotarTransform* flechaRotCom
 				/*balanzaB->setLayer(ecs::layer::BALANZAB);*/
 		MoverTransform* balanzaMovComp = ent_->getComponent<MoverTransform>();
 		balanzaMovComp->setEasing(Easing::EaseOutCubic);
-		balanzaMovComp->setFinalPos(Vector2D(myTransform_->getPos().getX() + myTransform_->getWidth() / 2 - myTransform_->getWidth() / 2
-			, myTransform_->getPos().getY() - 40));
+		balanzaMovComp->setFinalPos(Vector2D(myTransform_->getRelPos().getX(), myTransform_->getRelPos().getY() - 20));
 		balanzaMovComp->setMoveTime(1.0f);
 		balanzaMovComp->enable();
 	}
