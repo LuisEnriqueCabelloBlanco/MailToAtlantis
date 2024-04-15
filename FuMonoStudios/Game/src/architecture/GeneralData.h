@@ -118,6 +118,13 @@ public:
 	/// <param name="writePacages"></param>
 	/// <param name="wrongPacages"></param>
 	void updateMoney();
+
+	//Calcula el dinero que recibe el jugador en base a los aciertos y fallos.
+	//Ejemplos de uso son en el metodo de arriba o en la endWorkScene
+	int calcularDineroGanado();
+	
+	void resetMoney(); //Pone el dinero a INITIAL_MONEY
+
 	int getMoney() { return dinero_; }
 
 	void setFinalID(int final); //Cambia el ID del final

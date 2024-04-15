@@ -137,6 +137,11 @@
       "size": 50
     },
     {
+      "id": "arial80",
+      "file": "recursos/fonts/ARIAL.ttf",
+      "size": 80
+    },
+    {
       "id": "arial40",
       "file": "recursos/fonts/ARIAL.ttf",
       "size": 40
