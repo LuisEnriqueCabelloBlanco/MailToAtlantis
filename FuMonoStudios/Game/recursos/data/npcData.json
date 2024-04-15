@@ -7,6 +7,7 @@
     "Eventos":{
       "1":{
         "numPaquetes": 3,
+        "numPaquetesParaCompletar": 3,
         "paquetes":{
           "1":{
             "remitente": "nashe",
@@ -15,52 +16,98 @@
             "tipoPaquete": "Armamento",
             "peso": "Bajo",
             "pesoKG": 5,
-            "fragil": "true"
+            "fragil": true
           }
         }
       },
       "2":{
-        "numPaquetes": 3,
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
         "condiciones": {
           "remitente": "Albama Ice"
         }
       },
       "3":{
         "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
         "special" : 1
       },
       "4":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "5":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "6":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "7":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "8":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "9":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "10":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "11":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "12":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "13":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "14":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       }
     }
   },
@@ -71,46 +118,102 @@
     "numMisionesParaDarMejora": 4,
     "Eventos":{
       "1":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "2":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "3":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "4":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "5":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "6":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "7":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "8":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "9":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "10":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "11":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "12":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "13":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       },
       "14":{
-        "numPaquetes": 1
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
       }
     }
   },
@@ -131,6 +234,43 @@
       "12": true,
       "13": true,
       "14": true
+    },
+    "Eventos":{
+      "1":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "2":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "3":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "4":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "5":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      }
     }
   },
   "Artesano": {
@@ -150,6 +290,43 @@
       "12": true,
       "13": true,
       "14": true
+    },
+    "Eventos":{
+      "1":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "2":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "3":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "4":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "5":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      }
     }
   },
   "Tarotisa": {
@@ -169,6 +346,43 @@
       "12": true,
       "13": true,
       "14": true
+    },
+    "Eventos":{
+      "1":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "2":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "3":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "4":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "5":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      }
     }
   },
   "Soldado": {
@@ -188,6 +402,43 @@
       "12": true,
       "13": true,
       "14": true
+    },
+    "Eventos":{
+      "1":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "2":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "3":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "4":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "5":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      }
     }
   },
   "Contable": {
@@ -207,6 +458,43 @@
       "12": true,
       "13": true,
       "14": true
+    },
+    "Eventos":{
+      "1":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "2":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "3":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "4":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      },
+      "5":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "condiciones": {
+          "remitente": "Albama Ice"
+        }
+      }
     }
   }
 }

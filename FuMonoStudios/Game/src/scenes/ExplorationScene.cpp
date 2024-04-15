@@ -20,14 +20,7 @@
 #include <QATools/DataCollector.h>
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
-	initPlacesDefaultMap();
-	generalData().updateDia();
-	updateNavegavility();
-	initDirectionsDefaultMap();
-	actualPlace_ = &hestia;
-	createObjects("Hestia");
-	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
-	canStartConversation = true;
+	
 }
 
 ecs::ExplorationScene::~ExplorationScene()
@@ -37,10 +30,15 @@ ecs::ExplorationScene::~ExplorationScene()
 
 void ecs::ExplorationScene::init()
 {
+	generalData().readNPCData();
+	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
+	canStartConversation = true;
+
 	std::cout << "Hola Exploracion" << std::endl;
-	//setNavegabilityOfPlace("Hermes"); // Esto es para probar si funciona el seteo.
+	initPlacesDefaultMap();
 	generalData().updateDia();
 	updateNavegavility();
+	initDirectionsDefaultMap();
 
 	for (auto& e : objs_) {
 		for (auto en : e){

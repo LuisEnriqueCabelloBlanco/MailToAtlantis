@@ -21,7 +21,7 @@ GeneralData::GeneralData()
 	rent_ = 75;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
 
-	readNPCData();
+	
 }
 
 GeneralData::~GeneralData() {
@@ -140,7 +140,6 @@ void GeneralData::readNPCData() {
 
 			// leemos los eventos
 			JSONObject eventObject = jObject["Eventos"]->AsObject();
-			allEventsNPCs.emplace((Personaje)i, std::vector<NPCevent*>());
 
 			// Hay 3 tipos de eventos. 
 			// 1- Los especiales, que necesitan sus propias lineas
@@ -152,37 +151,45 @@ void GeneralData::readNPCData() {
 			// 3- Y el condiciones, que hace que todos sus paquetes sean random, pero luego
 			// añade sus condicones especiales. Esto es util cuando quieres que sean muy
 			// similares los paquetes
-			for (int j = 0; j < 3; j++)
+			for (int j = 0; j < 14; j++)
 			{
 				NPCevent* auxEvent = new NPCevent();
 
 				JSONObject currentEvent = eventObject.find(std::to_string(j + 1))->second->AsObject();
+				auxEvent->numPaquetes = currentEvent.find("numPaquetes")->second->AsNumber();
+				auxEvent->numPaquetesToComplete = currentEvent.find("numPaquetesParaCompletar")->second->AsNumber();
+
+				#pragma region Tipo 1
 				auto isSpecial = currentEvent.find("special");
 				if (isSpecial != currentEvent.end())
 				{
-					JSONObject obj = isSpecial->second->AsObject();
 					// ES ESPECIAL
-					int numSpecial = obj.find("special")->second->AsNumber();
+					int numSpecial = isSpecial->second->AsNumber();
 					switch (numSpecial) {
 					case 1:
 						break;
 					}
 				}
+				#pragma endregion
+
+				#pragma region Tipo 2
 				auto isPremadePaquete = currentEvent.find("paquetes");
 				if (isPremadePaquete != currentEvent.end())
 				{
 					JSONObject obj = isPremadePaquete->second->AsObject();
-					
+
 					for (auto paq : obj) {
 						JSONObject paqueteConditions = paq.second->AsObject();
-						PaqueteBuilder paqBuild(Game::instance()->getScene(ecs::sc::MAIN_SCENE));
-						
+						PaqueteBuilder paqBuild(gm().getScene(ecs::sc::MAIN_SCENE));
+
+						bool legal = true;
+
 						std::string rem = paqBuild.remitenteRND();
 						auto hasRemitente = paqueteConditions.find("remitente");
 						if (hasRemitente != paqueteConditions.end())
 							rem = hasRemitente->second->AsString();
 
-						Distrito dist = (Distrito)sdlutils().rand().nextInt(0,getTubesAmount());
+						Distrito dist = (Distrito)sdlutils().rand().nextInt(0, getTubesAmount());
 						auto hasDistrito = paqueteConditions.find("distrito");
 						if (hasDistrito != paqueteConditions.end())
 						{
@@ -202,22 +209,243 @@ void GeneralData::readNPCData() {
 							else if (aux == "Poseidon")
 								dist == Poseidon;
 							else if (aux == "Erroneo")
+							{
 								dist == Erroneo;
+								legal = false;
+							}
+
 						}
 
 						Calle calle = (Calle)sdlutils().rand().nextInt(0, 3);
 						auto hasCalle = paqueteConditions.find("calle");
 						if (hasCalle != paqueteConditions.end())
 						{
-
+							std::string aux = hasCalle->second->AsString();
+							if (aux == "C1")
+								calle = C1;
+							else if (aux == "C2")
+								calle = C2;
+							else if (aux == "C3")
+								calle = C3;
+							else if (aux == "Erroneo")
+							{
+								calle = Erronea;
+								legal = false;
+							}
 						}
 
+						TipoPaquete tipo = (TipoPaquete)sdlutils().rand().nextInt(0, 5);
+						auto hasTipo = paqueteConditions.find("tipoPaquete");
+						if (hasTipo != paqueteConditions.end())
+						{
+							std::string aux = hasTipo->second->AsString();
+							if (aux == "Alimento")
+								tipo = Alimento;
+							else if (aux == "Medicinas")
+								tipo == Medicinas;
+							else if (aux == "Joyas")
+								tipo == Joyas;
+							else if (aux == "Materiales")
+								tipo == Materiales;
+							else if (aux == "Armamento")
+								tipo == Armamento;
+						}
 
-						//Paquete* paquete = new Paquete();
+						int peso = 0;
+						NivelPeso nivelPeso = Ninguno;
+						bool fragil = false;
+
+						if (generalData().getPaqueteLevel() > 1)
+						{
+							fragil = sdlutils().rand().nextInt(0, 10);
+							fragil = fragil < 2;
+							auto hasFragil = paqueteConditions.find("fragil");
+							if (hasFragil != paqueteConditions.end())
+								fragil = hasFragil->second->AsBool();
+
+							if (generalData().getPaqueteLevel() > 2)
+							{
+								// esto toma los valores brutamente del json
+								nivelPeso = paqBuild.pesoRND(20, 30, peso);
+								auto hasNivelPeso = paqueteConditions.find("peso");
+								if (hasNivelPeso != paqueteConditions.end())
+								{
+									std::string aux = hasNivelPeso->second->AsString();
+									if (aux == "Bajo")
+										nivelPeso == Bajo;
+									else if (aux == "Medio")
+										nivelPeso == Medio;
+									else if (aux == "Alto")
+										nivelPeso == Alto;
+									else if (aux == "Ninguno")
+										nivelPeso == Ninguno;
+								}
+
+								auto hasPesoKG = paqueteConditions.find("pesoKG");
+								if (hasPesoKG != paqueteConditions.end())
+									peso = hasPesoKG->second->AsNumber();
+
+							}
+						}
+
+						std::string nombreCalle;
+						if (calle == Erronea || dist == Erroneo)
+						{
+							//Cambiarlo por el sistema de calles err�neas una vez est�
+							//Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
+							//Y meterle un randomizador para que de esas pille la que m�s le guste
+							//Tipo, haces distritoCalle_[Erroneo][rand]
+							//dir = "(CALLE INVENTADA)";
+							int rnd = sdlutils().rand().nextInt(0, paqBuild.distritoCalle_[Erroneo].size());
+							nombreCalle = paqBuild.distritoCalle_[Erroneo][rnd];
+						}
+						else
+							nombreCalle = paqBuild.distritoCalle_[dist][(int)calle];
+
+						Paquete* paquete = new Paquete(dist, calle, nombreCalle, rem, tipo, legal,
+							nivelPeso, peso, fragil);
+
+						auxEvent->paquetes.push_back(paquete);
 					}
 				}
-			}
+				#pragma endregion
 
+				#pragma region Tipo 3
+				auto isConditionEvent = currentEvent.find("condiciones");
+				if (isConditionEvent != currentEvent.end()) {
+
+					JSONObject paqueteConditions = isConditionEvent->second->AsObject();
+					PaqueteBuilder paqBuild(gm().getScene(ecs::sc::MAIN_SCENE));
+
+					bool legal = true;
+
+					std::string rem = paqBuild.remitenteRND();
+					auto hasRemitente = paqueteConditions.find("remitente");
+					if (hasRemitente != paqueteConditions.end())
+						rem = hasRemitente->second->AsString();
+
+					Distrito dist = (Distrito)sdlutils().rand().nextInt(0, getTubesAmount());
+					auto hasDistrito = paqueteConditions.find("distrito");
+					if (hasDistrito != paqueteConditions.end())
+					{
+						std::string aux = hasDistrito->second->AsString();
+						if (aux == "Hestia")
+							dist == Hestia;
+						else if (aux == "Artemisa")
+							dist == Artemisa;
+						else if (aux == "Demeter")
+							dist == Demeter;
+						else if (aux == "Hefesto")
+							dist == Hefesto;
+						else if (aux == "Hermes")
+							dist == Hermes;
+						else if (aux == "Apolo")
+							dist == Apolo;
+						else if (aux == "Poseidon")
+							dist == Poseidon;
+						else if (aux == "Erroneo")
+						{
+							dist == Erroneo;
+							legal = false;
+						}
+
+					}
+
+					Calle calle = (Calle)sdlutils().rand().nextInt(0, 3);
+					auto hasCalle = paqueteConditions.find("calle");
+					if (hasCalle != paqueteConditions.end())
+					{
+						std::string aux = hasCalle->second->AsString();
+						if (aux == "C1")
+							calle = C1;
+						else if (aux == "C2")
+							calle = C2;
+						else if (aux == "C3")
+							calle = C3;
+						else if (aux == "Erroneo")
+						{
+							calle = Erronea;
+							legal = false;
+						}
+					}
+
+					TipoPaquete tipo = (TipoPaquete)sdlutils().rand().nextInt(0, 5);
+					auto hasTipo = paqueteConditions.find("tipoPaquete");
+					if (hasTipo != paqueteConditions.end())
+					{
+						std::string aux = hasTipo->second->AsString();
+						if (aux == "Alimento")
+							tipo = Alimento;
+						else if (aux == "Medicinas")
+							tipo == Medicinas;
+						else if (aux == "Joyas")
+							tipo == Joyas;
+						else if (aux == "Materiales")
+							tipo == Materiales;
+						else if (aux == "Armamento")
+							tipo == Armamento;
+					}
+
+					int peso = 0;
+					NivelPeso nivelPeso = Ninguno;
+					bool fragil = false;
+
+					if (generalData().getPaqueteLevel() > 1)
+					{
+						fragil = sdlutils().rand().nextInt(0, 10);
+						fragil = fragil < 2;
+						auto hasFragil = paqueteConditions.find("fragil");
+						if (hasFragil != paqueteConditions.end())
+							fragil = hasFragil->second->AsBool();
+
+						if (generalData().getPaqueteLevel() > 2)
+						{
+							// esto toma los valores brutamente del json
+							nivelPeso = paqBuild.pesoRND(20, 30, peso);
+							auto hasNivelPeso = paqueteConditions.find("peso");
+							if (hasNivelPeso != paqueteConditions.end())
+							{
+								std::string aux = hasNivelPeso->second->AsString();
+								if (aux == "Bajo")
+									nivelPeso == Bajo;
+								else if (aux == "Medio")
+									nivelPeso == Medio;
+								else if (aux == "Alto")
+									nivelPeso == Alto;
+								else if (aux == "Ninguno")
+									nivelPeso == Ninguno;
+							}
+
+							auto hasPesoKG = paqueteConditions.find("pesoKG");
+							if (hasPesoKG != paqueteConditions.end())
+								peso = hasPesoKG->second->AsNumber();
+
+						}
+					}
+
+					std::string nombreCalle;
+					if (calle == Erronea || dist == Erroneo)
+					{
+						//Cambiarlo por el sistema de calles err�neas una vez est�
+						//Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
+						//Y meterle un randomizador para que de esas pille la que m�s le guste
+						//Tipo, haces distritoCalle_[Erroneo][rand]
+						//dir = "(CALLE INVENTADA)";
+						int rnd = sdlutils().rand().nextInt(0, paqBuild.distritoCalle_[Erroneo].size());
+						nombreCalle = paqBuild.distritoCalle_[Erroneo][rnd];
+					}
+					else
+						nombreCalle = paqBuild.distritoCalle_[dist][(int)calle];
+
+					Paquete* paquete = new Paquete(dist, calle, nombreCalle, rem, tipo, legal,
+						nivelPeso, peso, fragil);
+
+					auxEvent->paquetes.push_back(paquete);
+				}
+				#pragma endregion
+
+				npcData[i]->events.push_back(auxEvent);
+			}
 		}
 		else
 		{
@@ -230,8 +458,316 @@ void GeneralData::readNPCData() {
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(i + 1))->second->AsBool());
 			}
 			npcData.push_back(new NPCMenorData(stringToFelicidad(felicidadStr),diasDanEventos));
+
+			// leemos los eventos
+			JSONObject eventObject = jObject["Eventos"]->AsObject();
+
+			// Hay 3 tipos de eventos. 
+			// 1- Los especiales, que necesitan sus propias lineas
+			// de codigo y se marcan poniendo un "special" y luego el numero de special.
+			// Este tipo es util para paquetes con sprites especiales o los del dia 14.
+			// 2- El que tiene los paquetes prehechos, marcado por un array "paquetes" que
+			// hace los paquetes tal cual estan puestos. Este es util cuando los paquetes
+			// son muy distintos.
+			// 3- Y el condiciones, que hace que todos sus paquetes sean random, pero luego
+			// añade sus condicones especiales. Esto es util cuando quieres que sean muy
+			// similares los paquetes
+			for (int j = 0; j < 5; j++)
+			{
+				NPCevent* auxEvent = new NPCevent();
+
+				JSONObject currentEvent = eventObject.find(std::to_string(j + 1))->second->AsObject();
+				auxEvent->numPaquetes = currentEvent.find("numPaquetes")->second->AsNumber();
+				auxEvent->numPaquetesToComplete = currentEvent.find("numPaquetesParaCompletar")->second->AsNumber();
+
+				#pragma region Tipo 1
+				auto isSpecial = currentEvent.find("special");
+				if (isSpecial != currentEvent.end())
+				{
+					// ES ESPECIAL
+					int numSpecial = isSpecial->second->AsNumber();
+					switch (numSpecial) {
+					case 1:
+						break;
+					}
+				}
+#pragma endregion
+
+				#pragma region Tipo 2
+				auto isPremadePaquete = currentEvent.find("paquetes");
+				if (isPremadePaquete != currentEvent.end())
+				{
+					JSONObject obj = isPremadePaquete->second->AsObject();
+
+					for (auto paq : obj) {
+						JSONObject paqueteConditions = paq.second->AsObject();
+						PaqueteBuilder paqBuild(gm().getScene(ecs::sc::MAIN_SCENE));
+
+						bool legal = true;
+
+						std::string rem = paqBuild.remitenteRND();
+						auto hasRemitente = paqueteConditions.find("remitente");
+						if (hasRemitente != paqueteConditions.end())
+							rem = hasRemitente->second->AsString();
+
+						Distrito dist = (Distrito)sdlutils().rand().nextInt(0, getTubesAmount());
+						auto hasDistrito = paqueteConditions.find("distrito");
+						if (hasDistrito != paqueteConditions.end())
+						{
+							std::string aux = hasDistrito->second->AsString();
+							if (aux == "Hestia")
+								dist == Hestia;
+							else if (aux == "Artemisa")
+								dist == Artemisa;
+							else if (aux == "Demeter")
+								dist == Demeter;
+							else if (aux == "Hefesto")
+								dist == Hefesto;
+							else if (aux == "Hermes")
+								dist == Hermes;
+							else if (aux == "Apolo")
+								dist == Apolo;
+							else if (aux == "Poseidon")
+								dist == Poseidon;
+							else if (aux == "Erroneo")
+							{
+								dist == Erroneo;
+								legal = false;
+							}
+
+						}
+
+						Calle calle = (Calle)sdlutils().rand().nextInt(0, 3);
+						auto hasCalle = paqueteConditions.find("calle");
+						if (hasCalle != paqueteConditions.end())
+						{
+							std::string aux = hasCalle->second->AsString();
+							if (aux == "C1")
+								calle = C1;
+							else if (aux == "C2")
+								calle = C2;
+							else if (aux == "C3")
+								calle = C3;
+							else if (aux == "Erroneo")
+							{
+								calle = Erronea;
+								legal = false;
+							}
+						}
+
+						TipoPaquete tipo = (TipoPaquete)sdlutils().rand().nextInt(0, 5);
+						auto hasTipo = paqueteConditions.find("tipoPaquete");
+						if (hasTipo != paqueteConditions.end())
+						{
+							std::string aux = hasTipo->second->AsString();
+							if (aux == "Alimento")
+								tipo = Alimento;
+							else if (aux == "Medicinas")
+								tipo == Medicinas;
+							else if (aux == "Joyas")
+								tipo == Joyas;
+							else if (aux == "Materiales")
+								tipo == Materiales;
+							else if (aux == "Armamento")
+								tipo == Armamento;
+						}
+
+						int peso = 0;
+						NivelPeso nivelPeso = Ninguno;
+						bool fragil = false;
+
+						if (generalData().getPaqueteLevel() > 1)
+						{
+							fragil = sdlutils().rand().nextInt(0, 10);
+							fragil = fragil < 2;
+							auto hasFragil = paqueteConditions.find("fragil");
+							if (hasFragil != paqueteConditions.end())
+								fragil = hasFragil->second->AsBool();
+
+							if (generalData().getPaqueteLevel() > 2)
+							{
+								// esto toma los valores brutamente del json
+								nivelPeso = paqBuild.pesoRND(20, 30, peso);
+								auto hasNivelPeso = paqueteConditions.find("peso");
+								if (hasNivelPeso != paqueteConditions.end())
+								{
+									std::string aux = hasNivelPeso->second->AsString();
+									if (aux == "Bajo")
+										nivelPeso == Bajo;
+									else if (aux == "Medio")
+										nivelPeso == Medio;
+									else if (aux == "Alto")
+										nivelPeso == Alto;
+									else if (aux == "Ninguno")
+										nivelPeso == Ninguno;
+								}
+
+								auto hasPesoKG = paqueteConditions.find("pesoKG");
+								if (hasPesoKG != paqueteConditions.end())
+									peso = hasPesoKG->second->AsNumber();
+
+							}
+						}
+
+						std::string nombreCalle;
+						if (calle == Erronea || dist == Erroneo)
+						{
+							//Cambiarlo por el sistema de calles err�neas una vez est�
+							//Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
+							//Y meterle un randomizador para que de esas pille la que m�s le guste
+							//Tipo, haces distritoCalle_[Erroneo][rand]
+							//dir = "(CALLE INVENTADA)";
+							int rnd = sdlutils().rand().nextInt(0, paqBuild.distritoCalle_[Erroneo].size());
+							nombreCalle = paqBuild.distritoCalle_[Erroneo][rnd];
+						}
+						else
+							nombreCalle = paqBuild.distritoCalle_[dist][(int)calle];
+
+						Paquete* paquete = new Paquete(dist, calle, nombreCalle, rem, tipo, legal,
+							nivelPeso, peso, fragil);
+
+						auxEvent->paquetes.push_back(paquete);
+					}
+				}
+#pragma endregion
+
+				#pragma region Tipo 3
+				auto isConditionEvent = currentEvent.find("condiciones");
+				if (isConditionEvent != currentEvent.end()) {
+
+					JSONObject paqueteConditions = isConditionEvent->second->AsObject();
+					PaqueteBuilder paqBuild(gm().getScene(ecs::sc::MAIN_SCENE));
+
+					bool legal = true;
+
+					std::string rem = paqBuild.remitenteRND();
+					auto hasRemitente = paqueteConditions.find("remitente");
+					if (hasRemitente != paqueteConditions.end())
+						rem = hasRemitente->second->AsString();
+
+					Distrito dist = (Distrito)sdlutils().rand().nextInt(0, getTubesAmount());
+					auto hasDistrito = paqueteConditions.find("distrito");
+					if (hasDistrito != paqueteConditions.end())
+					{
+						std::string aux = hasDistrito->second->AsString();
+						if (aux == "Hestia")
+							dist == Hestia;
+						else if (aux == "Artemisa")
+							dist == Artemisa;
+						else if (aux == "Demeter")
+							dist == Demeter;
+						else if (aux == "Hefesto")
+							dist == Hefesto;
+						else if (aux == "Hermes")
+							dist == Hermes;
+						else if (aux == "Apolo")
+							dist == Apolo;
+						else if (aux == "Poseidon")
+							dist == Poseidon;
+						else if (aux == "Erroneo")
+						{
+							dist == Erroneo;
+							legal = false;
+						}
+
+					}
+
+					Calle calle = (Calle)sdlutils().rand().nextInt(0, 3);
+					auto hasCalle = paqueteConditions.find("calle");
+					if (hasCalle != paqueteConditions.end())
+					{
+						std::string aux = hasCalle->second->AsString();
+						if (aux == "C1")
+							calle = C1;
+						else if (aux == "C2")
+							calle = C2;
+						else if (aux == "C3")
+							calle = C3;
+						else if (aux == "Erroneo")
+						{
+							calle = Erronea;
+							legal = false;
+						}
+					}
+
+					TipoPaquete tipo = (TipoPaquete)sdlutils().rand().nextInt(0, 5);
+					auto hasTipo = paqueteConditions.find("tipoPaquete");
+					if (hasTipo != paqueteConditions.end())
+					{
+						std::string aux = hasTipo->second->AsString();
+						if (aux == "Alimento")
+							tipo = Alimento;
+						else if (aux == "Medicinas")
+							tipo == Medicinas;
+						else if (aux == "Joyas")
+							tipo == Joyas;
+						else if (aux == "Materiales")
+							tipo == Materiales;
+						else if (aux == "Armamento")
+							tipo == Armamento;
+					}
+
+					int peso = 0;
+					NivelPeso nivelPeso = Ninguno;
+					bool fragil = false;
+
+					if (generalData().getPaqueteLevel() > 1)
+					{
+						fragil = sdlutils().rand().nextInt(0, 10);
+						fragil = fragil < 2;
+						auto hasFragil = paqueteConditions.find("fragil");
+						if (hasFragil != paqueteConditions.end())
+							fragil = hasFragil->second->AsBool();
+
+						if (generalData().getPaqueteLevel() > 2)
+						{
+							// esto toma los valores brutamente del json
+							nivelPeso = paqBuild.pesoRND(20, 30, peso);
+							auto hasNivelPeso = paqueteConditions.find("peso");
+							if (hasNivelPeso != paqueteConditions.end())
+							{
+								std::string aux = hasNivelPeso->second->AsString();
+								if (aux == "Bajo")
+									nivelPeso == Bajo;
+								else if (aux == "Medio")
+									nivelPeso == Medio;
+								else if (aux == "Alto")
+									nivelPeso == Alto;
+								else if (aux == "Ninguno")
+									nivelPeso == Ninguno;
+							}
+
+							auto hasPesoKG = paqueteConditions.find("pesoKG");
+							if (hasPesoKG != paqueteConditions.end())
+								peso = hasPesoKG->second->AsNumber();
+
+						}
+					}
+
+					std::string nombreCalle;
+					if (calle == Erronea || dist == Erroneo)
+					{
+						//Cambiarlo por el sistema de calles err�neas una vez est�
+						//Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
+						//Y meterle un randomizador para que de esas pille la que m�s le guste
+						//Tipo, haces distritoCalle_[Erroneo][rand]
+						//dir = "(CALLE INVENTADA)";
+						int rnd = sdlutils().rand().nextInt(0, paqBuild.distritoCalle_[Erroneo].size());
+						nombreCalle = paqBuild.distritoCalle_[Erroneo][rnd];
+					}
+					else
+						nombreCalle = paqBuild.distritoCalle_[dist][(int)calle];
+
+					Paquete* paquete = new Paquete(dist, calle, nombreCalle, rem, tipo, legal,
+						nivelPeso, peso, fragil);
+
+					auxEvent->paquetes.push_back(paquete);
+				}
+#pragma endregion
+
+				npcData[i]->events.push_back(auxEvent);
+			}
 		}
-		delete jValueRoot;
 		jValueRoot = nullptr;
 	}
 }
@@ -311,13 +847,16 @@ GeneralData::Felicidad GeneralData::stringToFelicidad(const std::string& str)
 
 // Struct NPCdata
 #pragma region NPCdata
-
 GeneralData::NPCdata* GeneralData::getNPCData(Personaje personaje) {
 	NPCdata* npc = nullptr;
 
 	npc = npcData[personaje];
 
 	return npc;
+}
+
+GeneralData::NPCevent* GeneralData::NPCdata::getEvent(int num) {
+	return events[num];
 }
 
 // NPC MENOR

@@ -43,8 +43,26 @@ public:
 	// NOTA IMPORTANTE: POSBILEMENTE SE PONDRA AQUI EL TEMA DE LAS CONDICIONES
 	// Y LOS EVENTOS DE CADA NPC, AUN NO ESTA IMPLEMENTADO, SOLO ESTA PUESTO
 	// LO DE LOS DIALOGOS
+	struct NPCevent {
+		bool completed = false;
+		int numPaquetes;
+		int numPaquetesToComplete;
+		std::vector<Paquete*> paquetes;
+
+		void paqueteSuccesful() {
+			paquetesDone++;
+			completed = paquetesDone >= numPaquetesToComplete;
+		};
+	private:
+		int paquetesDone = 0;
+	};
+	
 	struct NPCdata {
 		Felicidad felicidad;
+		
+		NPCevent* getEvent(int num);
+		std::vector<NPCevent*> events;
+
 		virtual std::pair<const std::string, int> getDialogueInfo() = 0;
 
 		// esto solo lo usa el NPCmenor
@@ -78,19 +96,7 @@ public:
 		bool postConversation;
 	};
 
-	struct NPCevent {
-		bool completed = false;
-		int numPaquetes;
-		int numPaquetesToComplete;
-		std::vector<Paquete*> paquetes;
-
-		void paqueteSuccesful() {
-			paquetesDone++;
-			completed = paquetesDone >= numPaquetesToComplete;
-		};
-	private:
-		int paquetesDone = 0;
-	};
+	
 	// METODOS DE NPCdata
 
 	void readNPCData();
@@ -104,7 +110,6 @@ public:
 	Paquete* getPaqueteNPC() { Paquete* p = paquetesNPCs.back(); paquetesNPCs.pop_back(); return p; }
 private:
 	std::vector<NPCevent*> activeEventsNPCs;
-	std::unordered_map<Personaje, std::vector<NPCevent*>> allEventsNPCs;
 	std::vector<Paquete*> paquetesNPCs;
 	// vector que contiene los datos de todos los 7 npc
 	std::vector<NPCdata*> npcData;
