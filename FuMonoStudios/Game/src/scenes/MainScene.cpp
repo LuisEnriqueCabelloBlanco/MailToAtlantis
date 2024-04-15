@@ -181,7 +181,8 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 	switch (dia)
 	{
 	case 1:		
-		//if(GeneralData::instance()->getSelloMulticolor()) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
+		//if(GeneralData::instance()->getSelloMulticolor()) 
+		//createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
 		//createExclamationPoint();		//Ignorad esto, está aquí para hacer pruebas. Lo quito en cuanto funcione -Javier
 		createStamp(SelloCalleA);
 
@@ -224,7 +225,9 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 }
 void ecs::MainScene::createExclamationPoint() {
 	Entity* xd = addEntity(ecs::layer::FOREGROUND);	
-	xd->addComponent<NPCExclamation>(100,100);
+	auto ld = xd->addComponent<NPCExclamation>();
+	ld->innit(100,100);
+	
 }
 
 void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto) {
