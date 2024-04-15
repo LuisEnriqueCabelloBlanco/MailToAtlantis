@@ -255,6 +255,17 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 			textDialogue->addComponent<DialogComponent>(&dialogMngr_, this);
 
+			if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
+			{
+				GeneralData::NPCevent* event = data->getEvent();
+				for (int i = 0; i < event->numPaquetes; i++) {
+					generalData().addPaqueteNPC(event->paquetes[i]);
+				}
+				generalData().activateEvent(event);
+				generalData().shuffleNPCqueue();
+			}
+				
+
 			dataCollector().recordNPC(charac +1,aux.second, generalData().getNPCData(charac)->felicidad);
 		}
 	};
@@ -324,6 +335,9 @@ void ecs::ExplorationScene::createObjects(int place) {
 }
 
 void ecs::ExplorationScene::closeConversation() {
+
+
+
 	textDialogue->getComponent<RenderImage>()->setTexture(nullptr);
 	textDialogue->removeComponent<DialogComponent>();
 	boxBackground->getComponent<RenderImage>()->setTexture(nullptr);

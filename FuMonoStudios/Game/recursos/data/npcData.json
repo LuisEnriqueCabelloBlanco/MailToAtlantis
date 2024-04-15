@@ -18,19 +18,39 @@
             "pesoKG": 5,
             "fragil": true
           }
+        },
+        "condiciones":{
+          "1":{
+            "remitente": "nashe",
+            "distrito": "Hestia",
+            "calleMarcada": "C1",
+            "tipoPaquete": "Armamento",
+            "peso": "Bajo",
+            "pesoKG": 5,
+            "fragil": true
+          }
+        },
+        "recompensa": {
+          "1": "felicidad+Vagabundo",
+          "2": "felicidad--Secretario"
         }
       },
       "2":{
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
         "condiciones": {
           "remitente": "Albama Ice"
-        }
+        },
+        "recompensa": "felicidad+Vagabundo"
       },
       "3":{
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "special" : 1
+        "special" : 1,
+        "recompensa": "felicidad+++"
       },
       "4":{
         "numPaquetes": 1,

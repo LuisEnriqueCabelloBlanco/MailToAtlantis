@@ -10,11 +10,9 @@ class DialogManager;
 class PaqueteBuilder;
 class Game;
 class Paquete;
+class NPCeventSystem;
 
 namespace pq {
-	/*
-	De locos pero y si lo metemos en un espacio de nombres
-	*/
 	/// <summary>
 	/// enum con todos los distritos posibles que pueden tener los paquetes
 	/// </summary>
@@ -68,28 +66,14 @@ public:
 	// Al acabar el día se debe llamar a setupDayData() para reiniciar las 
 	// variables y ajustar datos segun el dia
 	// 
-	// NOTA IMPORTANTE: POSBILEMENTE SE PONDRA AQUI EL TEMA DE LAS CONDICIONES
-	// Y LOS EVENTOS DE CADA NPC, AUN NO ESTA IMPLEMENTADO, SOLO ESTA PUESTO
-	// LO DE LOS DIALOGOS
-	struct NPCevent {
-		bool completed = false;
-		int numPaquetes;
-		int numPaquetesToComplete;
-		std::vector<Paquete*> paquetes;
-
-		void paqueteSuccesful() {
-			paquetesDone++;
-			completed = paquetesDone >= numPaquetesToComplete;
-		};
-	private:
-		int paquetesDone = 0;
-	};
+	// MIRAR EL comoEscribirEventos.MD PARA SABER COMO USAR ESTO
 	
 	struct NPCdata {
 		Felicidad felicidad;
 		
-		NPCevent* getEvent(int num);
+		int numMisionesAceptadas;
 		std::vector<NPCevent*> events;
+		virtual NPCevent* getEvent() = 0;
 
 		virtual std::pair<const std::string, int> getDialogueInfo() = 0;
 
@@ -100,6 +84,8 @@ public:
 
 	struct NPCMenorData : public NPCdata {
 		NPCMenorData(Felicidad Felicidad, std::vector<bool> DiasDanEvento);
+
+		NPCevent* getEvent() override;
 
 		std::pair<const std::string, int> getDialogueInfo() override;
 		void iterateDialogues() override;
@@ -117,6 +103,8 @@ public:
 	struct NPCMayorData : public NPCdata {
 		NPCMayorData(Felicidad Felicidad);
 
+		NPCevent* getEvent() override;
+
 		std::pair<const std::string, int> getDialogueInfo() override;
 		void iterateDialogues() override {};
 		void setupDayData() override;
@@ -131,14 +119,10 @@ public:
 	void writeNPCData();
 
 	NPCdata* getNPCData(Personaje personaje);
+	
 
-	void addPaqueteNPC(Paquete* p) { paquetesNPCs.push_back(p); }
-	bool areTherePaquetesNPC() { return paquetesNPCs.size() != 0; }
-	void resetPaquetesNPC() { while (areTherePaquetesNPC()) paquetesNPCs.pop_back(); }
-	Paquete* getPaqueteNPC() { Paquete* p = paquetesNPCs.back(); paquetesNPCs.pop_back(); return p; }
+	NPCeventSystem* npcEventSys = nullptr;
 private:
-	std::vector<NPCevent*> activeEventsNPCs;
-	std::vector<Paquete*> paquetesNPCs;
 	// vector que contiene los datos de todos los 7 npc
 	std::vector<NPCdata*> npcData;
 #pragma endregion
@@ -158,9 +142,6 @@ public:
 
 	int getDay() { return dia_; }
 	void setDay(int dia) { dia_ = dia; updateDia(); }
-
-	std::string fromDistritoToString(int i);
-	int fromStringToDistrito(std::string place);
 
 	void updateDia();
 
@@ -186,6 +167,14 @@ public:
 
 	const std::string personajeToString(Personaje pers);
 	Personaje stringToPersonaje(const std::string& pers);
+	std::string fromDistritoToString(int i);
+	int fromStringToDistrito(std::string place);
+	const std::string calleToString(Calle calle);
+	Calle stringToCalle(const std::string& calle);
+	const std::string tipoPaqueteToString(TipoPaquete tipo);
+	TipoPaquete stringToTipoPaquete(const std::string& tipo);
+	const std::string nivelPesoToString(NivelPeso nivel);
+	NivelPeso stringToNivelPeso(const std::string& nivel);
 
 	void updateMoney();
 	//Los métodos para acceder a las herramientas que te pueden dar los NPCs
