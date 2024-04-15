@@ -17,6 +17,8 @@
 #include "../components/PackageChecker.h"
 #include "../components/Gravity.h"
 #include "../components/MoverTransform.h"
+#include "../components/Balanza.h"
+#include "../components/RotarTransform.h"
 #include "../architecture/Time.h"
 #include "../architecture/GameConstants.h"
 #include "../components/SelfDestruct.h"
@@ -188,6 +190,8 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 
 		createInks();
 
+		createBalanza();
+
 		generalData().setPaqueteLevel(0);
 
 		break;
@@ -296,6 +300,50 @@ void ecs::MainScene::createCinta() {
 	cinta->addComponent<Depth>();
 	factory_->setLayer(ecs::layer::DEFAULT);
 
+}
+
+void ecs::MainScene::createBalanza() {
+	// Balanza
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanza = factory_->createImage(Vector2D(50, 230), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
+	Transform* balanzaTr = balanza->getComponent<Transform>();
+	balanza->addComponent<MoverTransform>();
+	balanzaTr->setScale(0.5);
+	Balanza* balanzaComp = balanza->addComponent<Balanza>();
+
+	// BalanzaB
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanzaB = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaB").width(), sdlutils().images().at("balanzaB").height()), &sdlutils().images().at("balanzaB"));
+	Transform* balanzaBTr = balanzaB->getComponent<Transform>();
+	balanzaBTr->setScale(0.5);
+
+	// BalanzaBase
+	factory_->setLayer(ecs::layer::BALANZABASE);
+	Entity* baseBalanza = factory_->createImage(Vector2D(400, 400), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
+	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
+	balanzaBaseTr->setScale(0.5);
+	baseBalanza->addComponent<Gravity>();
+	//baseBalanza->addComponent<Depth>();
+
+	// BalanzaFlecha
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(70, 20), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
+	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
+	balanzaFlechaTr->setScale(0.5);
+	RotarTransform* rotComp = balanzaFlecha->addComponent<RotarTransform>();
+
+	// Seteamos padres
+	balanzaTr->setParent(balanzaBaseTr);
+	balanzaBTr->setParent(balanzaTr);
+	balanzaFlechaTr->setParent(balanzaBaseTr);
+
+
+	Trigger* balanzaTri = balanza->addComponent<Trigger>();
+
+	balanzaTri->addCallback([this, rotComp, balanzaComp, balanzaB](ecs::Entity* entRect) {balanzaComp->initAnimations(entRect, balanzaB, rotComp); }, generalData().DropIn);
+	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(entRect, rotComp); }, generalData().PickUp);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
 }
 
 void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
