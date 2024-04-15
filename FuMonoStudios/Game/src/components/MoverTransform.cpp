@@ -85,5 +85,12 @@ void MoverTransform::enable()
 {
 	enable_ = true; 
 	startTimer_ = sdlutils().currRealTime(); 
-	initPos_ = mTr_->getPos();
+
+	//Si no tiene padre no tiene sentido pedirle posicion relativa
+	if (mTr_->getParent() == nullptr) {
+		initPos_ = mTr_->getPos();
+	}
+	else {
+		initPos_ = mTr_->getRelPos();
+	}
 }
