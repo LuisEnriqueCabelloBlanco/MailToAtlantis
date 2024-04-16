@@ -26,8 +26,8 @@
 #include <QATools/DataCollector.h>
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
-
 #include "../components/NPCExclamation.h"
+#include "../sistemas/NPCeventSystem.h"
 
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 {
@@ -54,7 +54,9 @@ void ecs::MainScene::update()
 			timer_ -= Time::getDeltaTime();
 		}
 		else
+		{
 			gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
+		}
 	}
 }
 
@@ -74,6 +76,10 @@ void ecs::MainScene::render()
 
 void ecs::MainScene::init()
 {
+
+	generalData().npcEventSys->shuffleNPCqueue();
+	generalData().npcEventSys->debugPaquetesInQueue();
+
 	std::cout << "Hola Main" << std::endl;
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
 	timer_ = MINIGAME_TIME;
@@ -130,6 +136,7 @@ void ecs::MainScene::init()
 
 void ecs::MainScene::close() {
 	ecs::Scene::close();
+	generalData().npcEventSys->minigameOver();
 	generalData().updateMoney();
 
 	sdlutils().musics().at("office").haltMusic();

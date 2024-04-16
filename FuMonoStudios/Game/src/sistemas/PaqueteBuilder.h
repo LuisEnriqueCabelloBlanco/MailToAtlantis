@@ -42,7 +42,7 @@ const std::string REMITENT_SETTINGS_PATH = "recursos/config/mail.destinatarios.j
 
 class PaqueteBuilder
 {
-	friend GeneralData;
+	friend NPCeventSystem;
 public:
 	//Método al que se llama que devuelve un Paquete generado aleatoriamente 
 	ecs::Entity* buildPackage(int level, ecs::Scene*);

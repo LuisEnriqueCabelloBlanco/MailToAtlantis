@@ -149,7 +149,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\sistemas\NPCeventSystem.cpp" />
-    <ClCompile Include="src\components\PaqueteEvento.cpp" />
     <ClCompile Include="src\components\NPCExclamation.cpp" />
     <ClCompile Include="src\sistemas\SoundEmiter.cpp" />
     <ClCompile Include="src\components\RenderWithLight.cpp" />
@@ -212,7 +211,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\sistemas\NPCeventSystem.h" />
-    <ClInclude Include="src\components\PaqueteEvento.h" />
     <ClInclude Include="src\components\NPCExclamation.h" />
     <ClInclude Include="src\sistemas\SoundEmiter.h" />
     <ClInclude Include="src\components\RenderWithLight.h" />

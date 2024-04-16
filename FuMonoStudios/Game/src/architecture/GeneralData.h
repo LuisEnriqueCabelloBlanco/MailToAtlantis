@@ -10,6 +10,8 @@ class DialogManager;
 class PaqueteBuilder;
 class Game;
 class Paquete;
+
+class NPCevent;
 class NPCeventSystem;
 
 namespace pq {
@@ -111,7 +113,6 @@ public:
 	private:
 		bool postConversation;
 	};
-
 	
 	// METODOS DE NPCdata
 
@@ -119,7 +120,8 @@ public:
 	void writeNPCData();
 
 	NPCdata* getNPCData(Personaje personaje);
-	
+
+	void incrementarFelicidad(Personaje p, int felicidadIncr);
 
 	NPCeventSystem* npcEventSys = nullptr;
 private:
@@ -180,6 +182,8 @@ public:
 	//Los métodos para acceder a las herramientas que te pueden dar los NPCs
 	void aquireSelloMulticolor() { selloMulticolor = true; }
 	bool getSelloMulticolor() { return selloMulticolor; }
+
+	void unlockMejoraPersonaje(Personaje p);
 private:
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }

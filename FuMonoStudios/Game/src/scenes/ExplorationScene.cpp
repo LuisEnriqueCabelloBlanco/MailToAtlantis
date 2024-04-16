@@ -18,6 +18,8 @@
 #include "../components/DelayedCallback.h"
 #include <architecture/GameConstants.h>
 #include <QATools/DataCollector.h>
+#include "../sistemas/NPCeventSystem.h"
+
 ecs::ExplorationScene::ExplorationScene() :Scene(), numLugares(7)
 {
 	
@@ -257,12 +259,12 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 			if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
 			{
-				GeneralData::NPCevent* event = data->getEvent();
+				NPCevent* event = data->getEvent();
 				for (int i = 0; i < event->numPaquetes; i++) {
-					generalData().addPaqueteNPC(event->paquetes[i]);
+					generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
 				}
-				generalData().activateEvent(event);
-				generalData().shuffleNPCqueue();
+				generalData().npcEventSys->activateEvent(event);
+				generalData().npcEventSys->shuffleNPCqueue();
 			}
 				
 

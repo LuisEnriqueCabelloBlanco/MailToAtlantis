@@ -30,7 +30,6 @@ namespace ecs {
 			IMAGEWITHLIGHT,
 			DELAYEDCALLBACK,
 			CLOCKAUX,
-			PAQUETEEVENTO,
 			// do not remove this
 			_LAST_CMP_ID
 		};

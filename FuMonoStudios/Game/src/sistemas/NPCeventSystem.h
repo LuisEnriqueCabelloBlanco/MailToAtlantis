@@ -8,25 +8,41 @@ class GeneralData;
 class PaqueteBuilder;
 class Game;
 
-struct NPCevent {
+class NPCevent {
+public:
 	std::vector<std::string> recompensas;
 	std::vector<Paquete*> paquetes;
-	std::vector<Condition> condiciones;
+	std::vector<std::vector<Condition>> condiciones;
 
 	bool completed = false;
 	int numPaquetes;
 	int numPaquetesToComplete;
 
+	bool usingDifConditions = false;
 	void checkPaquete(Paquete* p) {
 		if (!completed)
 		{
-			bool valido = false;
+			bool valido = true;
 			int i = 0;
-			while (!valido && i < condiciones.size()) {
-				valido = condiciones[i](p);
-				i++;
+			
+			if (usingDifConditions) {
+				while (valido && i < condiciones.size()) {
+					int j = 0;
+					while (valido && i < condiciones.size()){
+						valido = condiciones[i][j](p);
+						j++;
+					}
+					i++;
+				}
 			}
+			else {
+				while (valido && i < condiciones[0].size()) {
+					valido = condiciones[0][i](p);
 
+					i++;
+				}
+			}
+			
 			if (valido)
 				paqueteSuccesful();
 		}
@@ -46,12 +62,15 @@ public:
 	NPCeventSystem();
 	~NPCeventSystem();
 
+	void debugPaquetesInQueue();
+
+	void activateEvent(NPCevent* e);
+
 	bool areTherePaquetesNPC();
 	Paquete* getPaqueteNPC();
+	void addPaqueteNPC(Paquete* p);
 	// comprueba si el paquete cumple la condicion de algun evento
 	void checkPaqueteSent(Paquete* p);
-
-	void addActiveEvent(NPCevent* event);
 
 	// llamar al final del minijuego y si se ha cumplido un evento, dar recompensas
 	void minigameOver();
