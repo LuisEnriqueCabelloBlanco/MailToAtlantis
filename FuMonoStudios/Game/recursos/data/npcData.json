@@ -11,8 +11,7 @@
             "remitente": "nashe",
             "distrito": "Hestia",
             "calle": "C1",
-            "tipoPaquete": "Armamento",
-            "peso": "Bajo"
+            "tipoPaquete": "Armamento"
           }
         },
         "condiciones":{
@@ -20,13 +19,12 @@
             "remitente": "nashe",
             "distrito": "Hestia",
             "calleMarcada": "C3",
-            "tipoPaquete": "Armamento",
-            "peso": "Bajo"
+            "tipoPaquete": "Armamento"
           }
         },
         "recompensa": {
-          "1": "felicidad+Vagabundo",
-          "2": "felicidad--Secretario"
+          "1": "Vagabundo+",
+          "2": "Secretario-"
         }
       },
       "2":{
@@ -38,7 +36,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "3":{
         "numPaquetes": 1,
@@ -49,7 +47,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "4":{
         "numPaquetes": 1,
@@ -60,7 +58,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "5":{
         "numPaquetes": 1,
@@ -71,7 +69,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "6":{
         "numPaquetes": 1,
@@ -82,7 +80,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "7":{
         "numPaquetes": 1,
@@ -93,7 +91,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "8":{
         "numPaquetes": 1,
@@ -104,7 +102,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "9":{
         "numPaquetes": 1,
@@ -115,7 +113,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "10":{
         "numPaquetes": 1,
@@ -126,7 +124,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "11":{
         "numPaquetes": 1,
@@ -137,7 +135,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "12":{
         "numPaquetes": 1,
@@ -148,7 +146,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "13":{
         "numPaquetes": 1,
@@ -159,7 +157,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "14":{
         "numPaquetes": 1,
@@ -170,7 +168,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       }
     }
   },
@@ -187,7 +185,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "2":{
         "numPaquetes": 1,
@@ -198,7 +196,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "3":{
         "numPaquetes": 1,
@@ -209,7 +207,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "4":{
         "numPaquetes": 1,
@@ -220,7 +218,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "5":{
         "numPaquetes": 1,
@@ -231,7 +229,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "6":{
         "numPaquetes": 1,
@@ -242,7 +240,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "7":{
         "numPaquetes": 1,
@@ -253,7 +251,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "8":{
         "numPaquetes": 1,
@@ -264,7 +262,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "9":{
         "numPaquetes": 1,
@@ -275,7 +273,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "10":{
         "numPaquetes": 1,
@@ -286,7 +284,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "11":{
         "numPaquetes": 1,
@@ -297,7 +295,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "12":{
         "numPaquetes": 1,
@@ -308,7 +306,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "13":{
         "numPaquetes": 1,
@@ -319,7 +317,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "14":{
         "numPaquetes": 1,
@@ -330,7 +328,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       }
     }
   },
@@ -362,7 +360,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "2":{
         "numPaquetes": 1,
@@ -373,7 +371,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "3":{
         "numPaquetes": 1,
@@ -384,7 +382,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "4":{
         "numPaquetes": 1,
@@ -395,7 +393,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "5":{
         "numPaquetes": 1,
@@ -406,7 +404,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       }
     }
   },
@@ -438,7 +436,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "2":{
         "numPaquetes": 1,
@@ -449,7 +447,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "3":{
         "numPaquetes": 1,
@@ -460,7 +458,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "4":{
         "numPaquetes": 1,
@@ -471,7 +469,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "5":{
         "numPaquetes": 1,
@@ -482,7 +480,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       }
     }
   },
@@ -514,7 +512,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "2":{
         "numPaquetes": 1,
@@ -525,7 +523,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "3":{
         "numPaquetes": 1,
@@ -536,7 +534,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "4":{
         "numPaquetes": 1,
@@ -547,7 +545,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "5":{
         "numPaquetes": 1,
@@ -558,7 +556,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       }
     }
   },
@@ -590,7 +588,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "2":{
         "numPaquetes": 1,
@@ -601,7 +599,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "3":{
         "numPaquetes": 1,
@@ -612,7 +610,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "4":{
         "numPaquetes": 1,
@@ -623,7 +621,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "5":{
         "numPaquetes": 1,
@@ -634,7 +632,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       }
     }
   },
@@ -666,7 +664,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "2":{
         "numPaquetes": 1,
@@ -677,7 +675,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "3":{
         "numPaquetes": 1,
@@ -688,7 +686,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "4":{
         "numPaquetes": 1,
@@ -699,7 +697,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       },
       "5":{
         "numPaquetes": 1,
@@ -710,7 +708,7 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "felicidad+Vagabundo"
+        "recompensa": "Vagabundo+"
       }
     }
   }
