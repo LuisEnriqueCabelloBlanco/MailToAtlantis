@@ -17,6 +17,8 @@
 #include "../components/PackageChecker.h"
 #include "../components/Gravity.h"
 #include "../components/MoverTransform.h"
+#include "../components/Balanza.h"
+#include "../components/RotarTransform.h"
 #include "../architecture/Time.h"
 #include "../architecture/GameConstants.h"
 #include "../components/SelfDestruct.h"
@@ -29,6 +31,8 @@
 #include <components/HoverSensorComponent.h>
 #include <components/HoverLayerComponent.h>
 #include <components/RenderWithLight.h>
+
+#include "../components/NPCExclamation.h"
 
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 {
@@ -179,13 +183,15 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		return;
 	switch (dia)
 	{
-	case 1:
-
-		//if(GeneralData::instance()->getSelloMulticolor()) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
-
+	case 1:		
+		//if(GeneralData::instance()->getSelloMulticolor()) 
+		//createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
+		//createExclamationPoint();		//Ignorad esto, está aquí para hacer pruebas. Lo quito en cuanto funcione -Javier
 		createStamp(SelloCalleA);
 
 		createInks();
+
+		createBalanza();
 
 		generalData().setPaqueteLevel(0);
 
@@ -222,7 +228,12 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		break;
 	}	
 }
-
+void ecs::MainScene::createExclamationPoint() {
+	Entity* xd = addEntity(ecs::layer::FOREGROUND);	
+	auto ld = xd->addComponent<NPCExclamation>();
+	ld->innit(100,100);
+	
+}
 
 void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto) {
 	Entity* NotaErronea = addEntity(ecs::layer::FOREGROUND);
@@ -292,6 +303,50 @@ void ecs::MainScene::createCinta() {
 
 }
 
+void ecs::MainScene::createBalanza() {
+	// Balanza
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanza = factory_->createImage(Vector2D(50, 230), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
+	Transform* balanzaTr = balanza->getComponent<Transform>();
+	balanza->addComponent<MoverTransform>();
+	balanzaTr->setScale(0.5);
+	Balanza* balanzaComp = balanza->addComponent<Balanza>();
+
+	// BalanzaB
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanzaB = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaB").width(), sdlutils().images().at("balanzaB").height()), &sdlutils().images().at("balanzaB"));
+	Transform* balanzaBTr = balanzaB->getComponent<Transform>();
+	balanzaBTr->setScale(0.5);
+
+	// BalanzaBase
+	factory_->setLayer(ecs::layer::BALANZABASE);
+	Entity* baseBalanza = factory_->createImage(Vector2D(400, 400), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
+	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
+	balanzaBaseTr->setScale(0.5);
+	baseBalanza->addComponent<Gravity>();
+	//baseBalanza->addComponent<Depth>();
+
+	// BalanzaFlecha
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(70, 20), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
+	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
+	balanzaFlechaTr->setScale(0.5);
+	RotarTransform* rotComp = balanzaFlecha->addComponent<RotarTransform>();
+
+	// Seteamos padres
+	balanzaTr->setParent(balanzaBaseTr);
+	balanzaBTr->setParent(balanzaTr);
+	balanzaFlechaTr->setParent(balanzaBaseTr);
+
+
+	Trigger* balanzaTri = balanza->addComponent<Trigger>();
+
+	balanzaTri->addCallback([this, rotComp, balanzaComp, balanzaB](ecs::Entity* entRect) {balanzaComp->initAnimations(entRect, balanzaB, rotComp); }, generalData().DropIn);
+	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(entRect, rotComp); }, generalData().PickUp);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+}
+
 void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 	constexpr float TUBE_WIDTH = 138;
 	constexpr float TUBE_HEITH = 282;
@@ -331,7 +386,7 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 
 void ecs::MainScene::createManual()
 {
-	constexpr int MANUALNUMPAGES = 8;
+	constexpr int MANUALNUMPAGES = 10;
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 
