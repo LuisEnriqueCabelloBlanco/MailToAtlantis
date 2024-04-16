@@ -162,7 +162,8 @@ namespace ecs {
 
 
 		/// <summary>
-		/// A�ade un componente a Entity
+		/// A�ade un componente a Entity Tener cuidado si se añaden
+		/// varias veces un componente -> puede llevar a error
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <typeparam name="...Ts"></typeparam>
@@ -172,7 +173,6 @@ namespace ecs {
 		template<typename T, typename ...Ts>
 		inline T* addComponent_aux(Ts&&... args) {
 			T* c = new T(std::forward<Ts>(args)...);
-
 			removeComponent<T>();
 
 			currCmps_.push_back(c);

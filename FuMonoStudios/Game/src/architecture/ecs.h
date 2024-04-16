@@ -11,6 +11,8 @@ namespace ecs {
 		enum cmpId : cmpId_t {
 			TRANSFORM = 0,
 			IMAGE,
+			HOVERSENSOR,
+			HOVERLAYER,
 			CTRL,
 			CLICKEABLE,
 			DRAGANDDROP,
@@ -65,6 +67,7 @@ namespace ecs {
 		{
 			INACTIVE,
 			BACKGROUND,
+			LIGHT,
 			DEFAULT,
 			BIN,
 			MANUALSPACE,

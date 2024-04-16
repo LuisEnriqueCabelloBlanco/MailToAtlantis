@@ -63,6 +63,8 @@
     <ClCompile Include="src\sistemas\SoundEmiter.cpp" />
     <ClCompile Include="src\scenes\TutorialScene.cpp" />
     <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
+    <ClCompile Include="src\components\HoverSensorComponent.cpp" />
+    <ClCompile Include="src\components\HoverLayerComponent.cpp" />
     <ClCompile Include="src\components\Balanza.cpp" />
     <ClCompile Include="src\components\RotarTransform.cpp" />
     <ClCompile Include="src\components\NPCExclamation.cpp" />
@@ -166,6 +168,8 @@
     <ClInclude Include="src\sistemas\SoundEmiter.h" />
     <ClInclude Include="src\scenes\TutorialScene.h" />
     <ClInclude Include="src\sistemas\TutorialSystem.h" />
+    <ClInclude Include="src\components\HoverSensorComponent.h" />
+    <ClInclude Include="src\components\HoverLayerComponent.h" />
     <ClInclude Include="src\components\Balanza.h" />
     <ClInclude Include="src\components\RotarTransform.h" />
     <ClInclude Include="src\components\NPCExclamation.h" />

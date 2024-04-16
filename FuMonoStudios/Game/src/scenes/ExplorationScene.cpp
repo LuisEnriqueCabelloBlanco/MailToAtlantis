@@ -189,7 +189,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	}
 
 	factory.setLayer(ecs::layer::DEFAULT);
-	
+	factory.addHoverColorMod(Arrow, build_sdlcolor(0xaaaaaaff));
 	return Arrow;
 
 }
@@ -240,7 +240,8 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	};
 
 	ecs::Entity* BotonPress = factory.createImageButton(pos, size, texturaBoton, funcPress);
-	
+	factory.addHoverColorMod(BotonPress, build_sdlcolor(0xccccccff));
+
 	return BotonPress;
 }
 
