@@ -138,8 +138,6 @@ namespace ecs {
 		/// </summary>
 		void createObjects(int place);
 
-		void createPlaces();
-
 		/// <summary>
 		/// Metodo factoria para las flechas de navegacion
 		/// </summary>
@@ -166,19 +164,18 @@ namespace ecs {
         
 		//VARIABLES
 
-		std::vector<Lugar> lugares;
+		//unordered_map, Lugar*
+		std::unordered_map<std::string, Lugar> lugares;
 
 		//Puntero al lugar actual
 		Lugar* actualPlace_;	
-
-		int numLugares;
 
 		//rect para renderizar el BackGround
 		SDL_Rect rect_;
 
 		DialogManager dialogMngr_;
 
-		std::vector<int> placeToGo;
+		int placeToGo;
 	
 		// entidades del dialogo
 		ecs::Entity* boxBackground;

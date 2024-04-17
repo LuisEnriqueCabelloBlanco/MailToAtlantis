@@ -19,6 +19,7 @@ namespace pq {
 	*/
 	/// <summary>
 	/// enum con todos los distritos posibles que pueden tener los paquetes
+	/// IMPORTANTE: Erroneo siempre debe ser el ultimo
 	/// </summary>
 	enum Distrito { Hestia, Artemisa, Demeter, Hefesto, Hermes, Apolo, Poseidon, Erroneo };
 	/// <summary>
@@ -138,6 +139,7 @@ public:
 
 	std::string fromDistritoToString(int i);
 	int fromStringToDistrito(std::string place);
+	int getNumDistritos() { return (Distrito::Erroneo); }
 
 	void updateDia();
 	void updateDistrictsPerDay(int dia);
