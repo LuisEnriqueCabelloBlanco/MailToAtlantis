@@ -194,7 +194,9 @@ Tras el trascurso de varios días el jugador vera **limitado** el número de per
 Cada NPC tendrá misiones que asignar al jugador. En estas misiones habrá una condicion concreta que tendrá que cumplir sobre un tipo de paquetes que va en contra de lo legal, por lo que será amonestado por ella, por lo que el jugador debe controlar cuanto quiere ayudar a los NPC mientras mantiene un nivel de dinero alto.
 Estos eventos pueden ir desde dejar pasar un paquete especial con el nombre del NPC hasta desviar paquetes a donde el NPC te diga.
 
-Los NPC te dan misiones cada 3 días, teniendo cada día un NPC distinto que te dan dichas misiones. Es decir un dia te dan mision 2 y al otro te dan mision otros 2 distintos.
+La felicidad de los NPC subirá cada vez que cumples un evento, y necesitarás cumplir los 5 eventos distintos para conseguir su maxifinal, no obstante, si consigues su felicidad a 70 te dará su mejora.
+
+Cada evento saldrá solo una vez.
 
 
 Los **paquetes de eventos** se deben definir de antemano en un JSON, de forma que los **paquetes de eventos** nunca sean random.

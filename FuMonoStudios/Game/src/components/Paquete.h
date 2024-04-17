@@ -50,6 +50,7 @@ public:
 	TipoPaquete getTipo() const { return miTipo_; }
 	pq::Distrito getDistrito() const { return miDistrito_; }
 	pq::Calle getCalle() const { return miCalle_; }
+	pq::Calle getCalleMarcada() const { return calleMarcada_; }
 	std::string getRemitente() const { return miRemitente_; }
 	NivelPeso getPeso() const { return miPeso_; }
 	int getCantidadPeso() const { return peso_; }
