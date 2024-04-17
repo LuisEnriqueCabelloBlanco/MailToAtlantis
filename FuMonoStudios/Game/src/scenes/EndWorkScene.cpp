@@ -113,21 +113,18 @@ void EndWorkScene::createButtons()
 		factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Nuevo dia", 50, call);
 		// Sonido
 		sdlutils().soundEffects().at("MoneyProfits").play();
-		auto call1 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
 		generalData().resetFailsCorrects();
 
 	}
 	else
 	{
 		// Boton nueva partida
-		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MAIN_SCENE); };
+		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
 		factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Nueva Partida", 50, call);
 		// Sonido
 		sdlutils().soundEffects().at("LoseMoney").play();
 		// Texto
 		factory_->createLabel(pos_ + Vector2D(0, offset_ * 2), "No has pagado ¡Deportado!", 50);
-		// Ajustes
-		auto call2 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
 		generalData().resetFailsCorrects();
 		generalData().setDia(1);
 		generalData().resetMoney();
