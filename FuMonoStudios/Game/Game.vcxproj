@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\sistemas\NPCeventSystem.cpp" />
     <ClCompile Include="src\components\HoverLayerComponent.cpp" />
     <ClCompile Include="src\components\HoverSensorComponent.cpp" />
     <ClCompile Include="src\components\RotarTransform.cpp" />
@@ -213,6 +214,7 @@
     <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\sistemas\NPCeventSystem.h" />
     <ClInclude Include="src\components\HoverLayerComponent.h" />
     <ClInclude Include="src\components\HoverSensorComponent.h" />
     <ClInclude Include="src\components\RotarTransform.h" />
@@ -299,6 +301,7 @@
     <None Include="recursos\config\sounds.json" />
     <None Include="recursos\data\dialogos.json" />
     <None Include="recursos\data\npcData.json" />
+    <None Include="recursos\data\saveFile.json" />
     <None Include="recursos\dialogos\dialogos.json" />
     <None Include="recursos\dialogos\dialogosNPC.json" />
     <None Include="src\sdlutils\RAEDME.md" />

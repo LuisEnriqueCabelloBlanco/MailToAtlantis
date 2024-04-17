@@ -31,8 +31,8 @@
 #include <components/HoverSensorComponent.h>
 #include <components/HoverLayerComponent.h>
 #include <components/RenderWithLight.h>
-
 #include "../components/NPCExclamation.h"
+#include "../sistemas/NPCeventSystem.h"
 
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 {
@@ -59,7 +59,9 @@ void ecs::MainScene::update()
 			timer_ -= Time::getDeltaTime();
 		}
 		else
+		{
 			gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
+		}
 	}
 }
 
@@ -79,6 +81,10 @@ void ecs::MainScene::render()
 
 void ecs::MainScene::init()
 {
+
+	generalData().npcEventSys->shuffleNPCqueue();
+	generalData().npcEventSys->debugPaquetesInQueue();
+
 	std::cout << "Hola Main" << std::endl;
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
 	timer_ = MINIGAME_TIME;
@@ -127,12 +133,13 @@ void ecs::MainScene::init()
 	sdlutils().musics().at("printer").setMusicVolume(50);
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
-	updateToolsPerDay(generalData().getDia());
+	updateToolsPerDay(generalData().getDay());
 
 }
 
 void ecs::MainScene::close() {
 	ecs::Scene::close();
+	generalData().npcEventSys->minigameOver();
 	generalData().updateMoney();
 
 	sdlutils().musics().at("office").haltMusic();
@@ -569,7 +576,7 @@ void ecs::MainScene::makeDataWindow()
 	data = "Pacage Level: " + std::to_string(generalData().getPaqueteLevel());
 	ImGui::Text(data.c_str());
 	//Dia acutual del juego
-	data = "Current day: " + std::to_string(GeneralData::instance()->getCurrentDay());
+	data = "Current day: " + std::to_string(GeneralData::instance()->getDay());
 	ImGui::Text(data.c_str());
 	ImGui::End();
 }
