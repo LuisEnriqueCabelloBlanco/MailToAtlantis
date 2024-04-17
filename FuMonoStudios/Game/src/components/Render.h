@@ -26,7 +26,7 @@ public:
 	inline void setTexture(Texture* texture) {texturesVector_[0] = texture; };
 	inline void setTexture(int indx) { currentTextureIndx_ = indx; };
 	inline void setVector(const std::vector<Texture*>& textures) { texturesVector_ = textures; }
-	const Texture* getTexture();
+	Texture* getTexture();
 	void nextTexture();
 	void previousTexture();
 private:

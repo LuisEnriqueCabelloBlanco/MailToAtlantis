@@ -12,15 +12,12 @@ public:
 	RenderWithLight();
 	RenderWithLight(Texture*);
 	~RenderWithLight();
+
+	void lightOn();
+	void lightOff();
+
 	void initComponent() override;
-	void render() const;
-	void setTexture(Texture* texture);
-	const Texture* getTexture();
 private:
-	/// <summary>
-	/// Textura que va a ser renderizada
-	/// </summary>
-	Texture* mTexture_;
 	/// <summary>
 	/// Textura del recuadro
 	/// </summary>
@@ -29,10 +26,7 @@ private:
 	/// Transform sobre el que se va a renderizar la imagen
 	/// </summary>
 	Transform* mTr_;
-	/// <summary>
-	/// Inica si este render image es responsable de destruir la textura que le
-	/// pasan
-	/// </summary>
-	bool ownsTexture_;
+
+	ecs::Entity* lightEnt_;
 };
 

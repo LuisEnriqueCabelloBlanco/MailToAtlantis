@@ -17,6 +17,7 @@ class NPCeventSystem;
 namespace pq {
 	/// <summary>
 	/// enum con todos los distritos posibles que pueden tener los paquetes
+	/// IMPORTANTE: Erroneo siempre debe ser el ultimo
 	/// </summary>
 	enum Distrito { Hestia, Artemisa, Demeter, Hefesto, Hermes, Apolo, Poseidon, Erroneo };
 	/// <summary>
@@ -142,8 +143,12 @@ public:
 	void setFinalID(int final); //Cambia el ID del final
 	int getFinalID(); //Devuelve el id del final del juego
 
+
 	int getDay() { return dia_; }
 	void setDay(int dia) { dia_ = dia; updateDia(); }
+
+	int getNumDistritos() { return (Distrito::Erroneo); }
+
 
 	void updateDia();
 

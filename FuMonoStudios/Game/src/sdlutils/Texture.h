@@ -105,6 +105,10 @@ public:
 		render(src, dest, rotation);
 	}
 
+	inline void modColor(Uint8 r, Uint8 g, Uint8 b) {
+		SDL_SetTextureColorMod(texture_, r, g, b);
+	}
+
 private:
 
 	// Construct from text
