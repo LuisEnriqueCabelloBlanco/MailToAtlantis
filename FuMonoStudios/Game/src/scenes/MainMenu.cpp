@@ -9,6 +9,7 @@
 #include "../architecture/GeneralData.h"
 #include "../components/RenderWithLight.h"
 #include <sistemas/ComonObjectsFactory.h>
+#include <components/HoverSensorComponent.h>
 
 //ecs::MainMenu::MainMenu()
 //{
@@ -30,32 +31,40 @@ void ecs::MainMenu::init()
 	sdlutils().clearRenderer();
 
 	//Font* fuente = new Font("recursos/fonts/ARIAL.ttf", 50);
-	Entity* fondo = addEntity();
+	Entity* fondo = addEntity(ecs::layer::BACKGROUND);
 	Texture* texturaFondo = &sdlutils().images().at("fondoMainMenu");
 	Transform* transformFondo = fondo->addComponent<Transform>(0.0f, 0.0f, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 	RenderImage* renderFondo = fondo->addComponent<RenderImage>(texturaFondo);
 
-	Entity* titulo = addEntity();
+	Entity* titulo = addEntity(ecs::layer::BACKGROUND);
 	Texture* texturaTitulo = &sdlutils().images().at("title");
 	Transform* transformTitulo = titulo->addComponent<Transform>(350.0f, 50.0f, texturaTitulo->width()*1.5f, texturaTitulo->height()* 1.5f);
 	RenderImage* renderTitulo = titulo->addComponent<RenderImage>(texturaTitulo);
 
 	auto textColor = build_sdlcolor(0xffffffff);
-
-	factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH- 700, 400), "Tutorial", 50, [this]() {
+	factory_->setLayer(layer::UI);
+	auto tuto = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH- 700, 400), "Tutorial", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::TUTORIAL_SCENE);
 		},textColor);
+	factory_->addHilghtOnHover(tuto);
+	factory_->addHoverColorMod(tuto);
 
-	factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Pulsa para empezar", 50, [this]() {
+
+	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Pulsa para empezar", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
 		},textColor);
+	factory_->addHilghtOnHover(start);
+	factory_->addHoverColorMod(start);
 
-	factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Salir", 50, [this]() {
+
+	auto exit = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Salir", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().endGame();
 		},textColor);
+	factory_->addHilghtOnHover(exit);
+	factory_->addHoverColorMod(exit);
 }
 
 void ecs::MainMenu::changeToMainScene() {

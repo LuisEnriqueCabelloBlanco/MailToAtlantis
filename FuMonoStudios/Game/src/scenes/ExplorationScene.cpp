@@ -18,11 +18,13 @@
 #include "../components/DelayedCallback.h"
 #include <architecture/GameConstants.h>
 #include <QATools/DataCollector.h>
+
 #include "../sistemas/NPCeventSystem.h"
 
 ecs::ExplorationScene::ExplorationScene() :Scene(), numLugares(7)
 {
 	
+
 }
 
 ecs::ExplorationScene::~ExplorationScene()
@@ -37,6 +39,7 @@ void ecs::ExplorationScene::init()
 	canStartConversation = true;
 
 	std::cout << "Hola Exploracion" << std::endl;
+
 	initPlacesDefaultMap();
 	generalData().updateDia();
 	updateNavegavility();
@@ -48,13 +51,11 @@ void ecs::ExplorationScene::init()
 
 		}
 	}
-	actualPlace_ = &lugares[pq::Distrito::Hestia];
-	createPlaces();
+	actualPlace_ = &lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)];
 
-	lugares[pq::Distrito::Hestia].changeActivationObjects(true);
+	createObjects(pq::Distrito::Hestia);
 
-	//boton ir a trabajar
-	boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
+	
 
 }
 
@@ -62,11 +63,13 @@ void ecs::ExplorationScene::init()
 void ecs::ExplorationScene::initPlacesDefaultMap()
 {
 	
-	for (int i = 0; i < numLugares; ++i) {
+	for (int i = 0; i < generalData().getNumDistritos(); ++i) {
 
-		Lugar aux = Lugar(&sdlutils().images().at(generalData().fromDistritoToString(i)), false);
+		std::string placeName = generalData().fromDistritoToString(i);
 
-		lugares.emplace_back(aux);
+		Lugar aux = Lugar(&sdlutils().images().at(placeName), false);
+
+		lugares.insert({ placeName, aux });
 
 	}
 	
@@ -75,34 +78,34 @@ void ecs::ExplorationScene::initPlacesDefaultMap()
 void ecs::ExplorationScene::initDirectionsDefaultMap()
 {
 	//Hestia
-	lugares[pq::Distrito::Hestia].addDirections("Hefesto", &lugares[pq::Distrito::Hefesto]);
-	lugares[pq::Distrito::Hestia].addDirections("Artemisa", &lugares[pq::Distrito::Artemisa]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)].addDirections("Hefesto", &lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)].addDirections("Artemisa", &lugares[generalData().fromDistritoToString(pq::Distrito::Artemisa)]);
 
 	//Artemisa
-	lugares[pq::Distrito::Artemisa].addDirections("Demeter", &lugares[pq::Distrito::Demeter]);
-	lugares[pq::Distrito::Artemisa].addDirections("Hestia", &lugares[pq::Distrito::Hestia]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Artemisa)].addDirections("Demeter", &lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Artemisa)].addDirections("Hestia", &lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)]);
 
 	//Demeter
-	lugares[pq::Distrito::Demeter].addDirections("Hermes", &lugares[pq::Distrito::Hermes]);
-	lugares[pq::Distrito::Demeter].addDirections("Hefesto", &lugares[pq::Distrito::Hefesto]);
-	lugares[pq::Distrito::Demeter].addDirections("Artemisa", &lugares[pq::Distrito::Artemisa]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)].addDirections("Hermes", &lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)].addDirections("Hefesto", &lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)].addDirections("Artemisa", &lugares[generalData().fromDistritoToString(pq::Distrito::Artemisa)]);
 
 	//Hefesto
-	lugares[pq::Distrito::Hefesto].addDirections("Demeter", &lugares[pq::Distrito::Demeter]);
-	lugares[pq::Distrito::Hefesto].addDirections("Hestia", &lugares[pq::Distrito::Hestia]);
-	lugares[pq::Distrito::Hefesto].addDirections("Hermes", &lugares[pq::Distrito::Hermes]);	
+	lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)].addDirections("Demeter", &lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)].addDirections("Hestia", &lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)].addDirections("Hermes", &lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)]);
 
 	//Hermes
-	lugares[pq::Distrito::Hermes].addDirections("Demeter", &lugares[pq::Distrito::Demeter]);
-	lugares[pq::Distrito::Hermes].addDirections("Hefesto", &lugares[pq::Distrito::Hefesto]);
-	lugares[pq::Distrito::Hermes].addDirections("Apolo", &lugares[pq::Distrito::Apolo]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)].addDirections("Demeter", &lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)].addDirections("Hefesto", &lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)].addDirections("Apolo", &lugares[generalData().fromDistritoToString(pq::Distrito::Apolo)]);
 
 	//Apolo
-	lugares[pq::Distrito::Apolo].addDirections("Hermes", &lugares[pq::Distrito::Hermes]);
-	lugares[pq::Distrito::Apolo].addDirections("Poseidon", &lugares[pq::Distrito::Poseidon]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Apolo)].addDirections("Hermes", &lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Apolo)].addDirections("Poseidon", &lugares[generalData().fromDistritoToString(pq::Distrito::Poseidon)]);
 
 	//Poseidon
-	lugares[pq::Distrito::Poseidon].addDirections("Apolo", &lugares[pq::Distrito::Apolo]);
+	lugares[generalData().fromDistritoToString(pq::Distrito::Poseidon)].addDirections("Apolo", &lugares[generalData().fromDistritoToString(pq::Distrito::Apolo)]);
 }
 
 void ecs::ExplorationScene::render()
@@ -120,15 +123,11 @@ void ecs::ExplorationScene::render()
 void ecs::ExplorationScene::update() {
 	Scene::update();
 
-	if (!placeToGo.empty()) {
+	if (placeToGo >= 0 && placeToGo < generalData().getNumDistritos()) {
 
-		int size = placeToGo.size();
-
-		for (int i = 0; i < size; ++i) {
-			navigate(generalData().fromDistritoToString(placeToGo[i]));
-			lugares[placeToGo[i]].changeActivationObjects(true);
-			placeToGo.clear();
-		}
+		navigate(generalData().fromDistritoToString(placeToGo));
+		createObjects(placeToGo);
+		placeToGo = -1;		
 		
 	}
 	
@@ -150,24 +149,6 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 	}
 
 	
-	if (placeDir != "Hestia") {
-
-		if (boton_Trabajo->isActive()) {
-			boton_Trabajo->setActive(false);
-		}
-		
-
-	}
-	else {
-
-		if (!boton_Trabajo->isActive()) {
-			boton_Trabajo->setActive(true);
-		}
-		
-
-	}
-	
-	
 }
 
 ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string place, float scale, int flip)
@@ -180,7 +161,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 
 	int placeID = generalData().fromStringToDistrito(place);
 
-	if(placeID < lugares.size() && lugares[placeID].isNavegable())
+	if(placeID < lugares.size() && lugares[place].isNavegable())
 		sujetaplazas = &sdlutils().images().at("cartel" + place);
 	else
 		sujetaplazas = &sdlutils().images().at("cruz");
@@ -191,7 +172,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 		if (actualPlace_->navigate(place)) {
 			closeConversation();
 			actualPlace_->changeActivationObjects(false);
-			placeToGo.push_back(placeID);
+			placeToGo = placeID;
 			
 		}
 	};
@@ -211,7 +192,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	}
 
 	factory.setLayer(ecs::layer::DEFAULT);
-	
+	factory.addHoverColorMod(Arrow, build_sdlcolor(0xaaaaaaff));
 	return Arrow;
 
 }
@@ -273,7 +254,8 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	};
 
 	ecs::Entity* BotonPress = factory.createImageButton(pos, size, texturaBoton, funcPress);
-	
+	factory.addHoverColorMod(BotonPress, build_sdlcolor(0xccccccff));
+
 	return BotonPress;
 }
 
@@ -281,7 +263,7 @@ void ecs::ExplorationScene::setNavegabilityOfPlace(int place, bool value)
 {
 	if(place < lugares.size())
 	{
-		lugares[place].setNavegability();
+		lugares[generalData().fromDistritoToString(place)].setNavegability(value);
 	}
 }
 
@@ -289,15 +271,6 @@ void ecs::ExplorationScene::updateNavegavility()
 {
 	for (std::string g : generalData().getPlacesToActive())
 		setNavegabilityOfPlace(generalData().fromStringToDistrito(g));
-}
-
-void ecs::ExplorationScene::createPlaces() {
-	int prueba = 0;
-
-	for (int i = 0; i < numLugares; ++i) {
-		createObjects(i);
-	}
-
 }
 
 void ecs::ExplorationScene::createObjects(int place) {
@@ -308,7 +281,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 
 	for (int i = 0; i < pl.at(placeName).myArrows.size(); ++i) {
 
-		lugares[place].addObjects(createNavegationsArrows(pl.at(placeName).myArrows[i].pos,
+		lugares[generalData().fromDistritoToString(place)].addObjects(createNavegationsArrows(pl.at(placeName).myArrows[i].pos,
 			pl.at(placeName).myArrows[i].destination_, pl.at(placeName).myArrows[i].scale_, pl.at(placeName).myArrows[i].flip_));
 
 
@@ -316,13 +289,19 @@ void ecs::ExplorationScene::createObjects(int place) {
 
 	for (int i = 0; i < pl.at(placeName).myCharacters.size(); ++i) {
 
-		lugares[place].addObjects(createCharacter(pl.at(placeName).myCharacters[i].pos,
+		lugares[generalData().fromDistritoToString(place)].addObjects(createCharacter(pl.at(placeName).myCharacters[i].pos,
 			pl.at(placeName).myCharacters[i].name_, pl.at(placeName).myCharacters[i].scale_));
 
 
 	}
 
-	lugares[place].changeActivationObjects(false);
+	if (place == pq::Distrito::Hestia) {
+		//boton ir a trabajar
+		boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
+
+		lugares[generalData().fromDistritoToString(place)].addObjects(boton_Trabajo);
+	}
+
 
 	// creamos la entidad caja dialogo
 	boxBackground = addEntity(ecs::layer::UI);
@@ -348,6 +327,7 @@ void ecs::ExplorationScene::closeConversation() {
 		});
 }
 
+
 //LUGAR__________________________________________________________________________________________
 
 void ecs::Lugar::addDirections(std::string placeDir, Lugar* place)
@@ -368,7 +348,7 @@ ecs::Lugar* ecs::Lugar::getPlaceFromDirection(std::string placeDir)
 void ecs::Lugar::changeActivationObjects(bool state)
 {
 	for (auto& e : ents_) {
-		e->setActive(state);
+		e->setAlive(state);
 	}
 
 }
