@@ -72,7 +72,7 @@ public:
 	
 	struct NPCdata {
 		Felicidad felicidad;
-		
+		int numFelicidad;
 		int numMisionesAceptadas;
 		std::vector<NPCevent*> events;
 		virtual NPCevent* getEvent() = 0;

@@ -217,10 +217,12 @@ void GeneralData::readNPCData() {
 		JSONObject jObject = jValueRoot->AsObject();
 		std::string felicidadStr = jObject.find("Felicidad")->second->AsString();
 
+
 		if (i < 2) // npc grandes
 		{
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
+			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
 			npcData.push_back(data);
 		}
 		else
@@ -228,12 +230,15 @@ void GeneralData::readNPCData() {
 			std::vector<bool> diasDanEventos;
 			jObject = jValueRoot->AsObject();
 			JSONObject jDiasEvento = jObject.find("DiasConEvento")->second->AsObject();
+
 			// leemos los 14 booleanos
 			for (int i = 0; i < 14; i++)
 			{
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(i + 1))->second->AsBool());
 			}
-			npcData.push_back(new NPCMenorData(stringToFelicidad(felicidadStr),diasDanEventos));
+			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
+			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
+			npcData.push_back(data);
 		}
 		jValueRoot = nullptr;
 	}
@@ -248,16 +253,18 @@ void GeneralData::writeNPCData() {
 
 void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
 {
-	int actualFelicidad = getNPCData(p)->felicidad;
+	int actualFelicidad = getNPCData(p)->numFelicidad;
 	int newFelicidadInt = actualFelicidad + felicidadIncr;
 	if (newFelicidadInt < 0)
 		newFelicidadInt = 0;
-	else if (newFelicidadInt > 4)
-		newFelicidadInt = 4;
+	else if (newFelicidadInt > 100)
+		newFelicidadInt = 100;
 
 	Felicidad newFelicidad = (Felicidad)newFelicidadInt;
+	
 
 	getNPCData(p)->felicidad = newFelicidad;
+	getNPCData(p)->numFelicidad = newFelicidadInt;
 }
 
 void GeneralData::unlockMejoraPersonaje(Personaje p) {
