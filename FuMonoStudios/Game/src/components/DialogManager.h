@@ -68,7 +68,6 @@ public:
     void setDialogues(const DialogSelection ds) { setDialogues(ds, "NULL", -1); }
 private:
     void fixText(std::string& text);
-    void crearTildes(std::string& aux);
 
     std::string dialogSelectionToString(const DialogSelection ds);
 
