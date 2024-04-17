@@ -202,68 +202,175 @@
   },
   "Campesino": {
     "Presentacion": [
-      "Yyyyyy, pos como es que saliste corriendo el otro dia macho...",
-      "Buena la has liado, contento tienes a tu jefe...",
-      "Anda toma esto, que es de mi cosecha, a ver si te ayuda un poco hoy que tienes cara de muerto. Aunque no me extranya despu$es de todo el jaleo del otro d$ia.",
+      "Pero bueno tu debes de ser nuevo por aqu&i, no me suena haberte visto antes.",
+      "Anda toma esto a ver si te ayuda un poco hoy que tienes cara de muerto, aunque no me extra$%a despu$es de todo el jaleo del otro d&ia",
       "*Pruebas algo, sabe raro*",
       "Por cierto que no me hab$ia presentado, soy Pancracio Warawa. Un gusto hijo.",
-      "Venga a pasar buena noche, y espabila que la vida te va ha comer!",
-      " $Ultimamente me la l$ias cada 2 por 3 con mi mercanc$ia!"
+      "Venga a pasar buena noche, y espabila que la vida te va ha comer!"
     ],
+
     "FelicidadMinima": [
-      "Felicidad minima Campesino"
+      "*Al llegar a la granja ves a Pancracio consternado, huele a Alcohol, lleva una botella en la mano y no se encuentra su familia en la granja*",
+      "YYYYYYYY, Qu$E Tal ESt$As, hyp, yo estoy CONTENTO AHJAJAAJAja.",
+      "$?El huerto?, jjiijijiJIJ Blurgh, ah$i est$a.",
+      "*El huerto no parece estar en muy buen estado, al igual que Pancracio*",
+      "$!Qu$e miras! $!$!$?eh?!! $?Qu$e miras?",
+      "*ves como Pancracio empieza a desmoronarse*",
+      "Vete, vete y no vuelvas, ya no tengo huerto, no tengo familia, NO TENGO AMIGOS, no tengo nada.",
+      "Vete, vete, vete..."
+
     ],
     "FelicidadMaxima": [
       "Felicidad maxima Campesino"
     ],
     "Eventos": {
       "1": [
-        "1evento"
+        "Hoy esos idiotas de los intermediarios han subido el precio de mis productos,", 
+        "en los mercados de los barrios bajos ya no es solo que no lo puedan comprar los habitantes,",
+        "es que hasta a los propios puestos se les hace el precio excesivo,",
+        "si se desviase alg&un paquete de comida Hermes o Apolo hac$ia los distritos como Hestia o Artemisa tampoco creo que se muriese nadie.",
+        "gui$%o gui$%o codo codo."
       ],
       "2": [
-        "2evento"
+        "&Ultimamente mi rastrillo est&a empezando a chochear.",
+        "Los a$%os les pesan tanto a las cosas como a las personas.",
+        "A los soldados les van a llegar unos paquetes de materiales, entre los que se encuentran una buena cantidad de rastrillos.",
+        "Esos lameculos de los soldados no echar&ian un rastrillo extraviado en falta.",
+        "T&u ya me entiendes."
       ],
       "3": [
-        "3evento"
+        "Unos amigos alados de cierto grupo me han dicho que por los barrios m&as bajos andan bajos de fondos de  medicinas.",
+        "Ya estamos con las mismas tonter&ias de siempre,", 
+        "a Hermes van a llegar una cantidad de medicinas absurda solamente porque hay un brote de gripe gambil.",
+        "Y mientras tanto aqu&i abajo con enfermedades mucho peores muri$endonos del asco.",
+        "Esos nobles no se merecen ni la d&ecima parte de lo que les llega.",
+        "Nosotros en Demeter con dos de sus paquetes ya tendr&iamos suficiente."
       ],
       "4": [
-        "4evento"
+        "&Ultimamente hay mucho ajetreo de con el movimiento de unas joyas luminiscentes muy bonitas que se extraen del fondo marino.",
+        "La verdad es que mi mujer y yo somos muy amantes de llevar joyas, en su mayor&ia de baja calidad,",
+        "pero tenemos bastante arte haciendo que ornamentos de baja calidad luzcan bastante bien.",
+        "Si se extraviase un paquete de joyas de mejor calidad hacia nuestra granja la verdad es que no nos molestar&ia."
       ],
       "5": [
-        "5evento"
+        "&!Paco, Paco, Paco!",
+        "&!Menos mal que est&as aqu&i!",
+        "Me he confundido, madre m&ia que cagada.",
+        "Mira te va a llegar un paquete m&io de comida, algo pesado, lo he enviado sin querer a Hestia,",
+        "pero mi intenci&on era mandarselo a “unas amigas” del distrito de Artemisa.",
+        "Conf&io en t&i para hac&erselo llegar."
       ]
     },
     "GenericoMalo": {
       "1": [
-        "1malo"
+        "Buenos d$ias a quien los tenga, que no voy a ser yo.",
+        "&Ultimamente mis cosechas no est$an para tirar cohetes,",
+        "anda prueba un poco de esto que ha crecido vete t$u a saber c$omo.",
+        "*Pruebas algo, sabe bastante mal*",
+        "Malo $?eh? !PUES QU$E QUIERES QUE HAGA SI NO ME DA PA M$AS, QUIZ&A SI LOS PAQUETES LLEGARAN CORRECTAMENTE SALDR&IA MEJOR!",
+        "ay, hijo, perdona, $ultimamente no duermo demasiado y me cuesta cada vez m$as mantenerme cuerdo,",
+        "las cosechas no van demasiado bien y mi mujer me presiona porque cada vez tenemos menos dinero."
       ],
       "2": [
-        "2malo"
+        "Hay que joderse que llevo 2 semanas sin dormir, esto est$a cada vez pero, mi mujer est$a que se tira de los pelos con las cuentas de la casa,",
+        "mi huerto est$a que parece el descampao de enfrente, tiene m$as malas hierbas que buenas, se las quito y vuelven a crecer.",
+        "Encima los intermediarios, los pu$%eteros intermediarios siempre dando por saco, que si les rob$e la $ultima vez d&andoles mercanc$ia en mal estado.",
+        "Ahora tengo que devolverles el dinero, que si a esto le llamo yo comida, que c&omo me atrevo a cobrar por esta bazofia.",
+        "$!AAAY  QUE PENA LA MIA!",
+        "como si no fuera suficiente la miseria que pido por lo poco que tengo encima van y se me quejan.",
+        "Si es que as&i no se puede, as&i no se puede. No s&e si son los cultivos, la tierra, o si soy yo.",
+        "Pero esto no puede no puede seguir as&i..."
       ],
       "3": [
-        "3malo"
+        "Ay, hijo, si hubiera tenido tu labor a tu edad, de las que me habr&ia librado.",
+        "En el pasado no lo tuve f&acil, comet$i muchos errores, jorobar si los comet&i.",
+        "Pero sal&i de ellos, me rescataron.",
+        "Ya me rescataron una vez de una situaci&on horrenda, consegu&i este trabajo y conoc&i a mi mujer,",
+        "de verdad parec&ia que la vida me hab&ia dado otra oportunidad.",
+        "Pero ya lo ves, estas tierras en mal estado no me da para mantenernos a m&i y a mi mujer en buenas condiciones.",
+        "No se cu&anto podr&e aguantar en esta situaci&on, estoy molio."
       ]
     },
     "GenericoNormal": {
       "1": [
-        "1normal"
+        "Buenas tardes hijo, &?qu&e tal te va en tu trabajo?.",
+        "Espero que ya no tengas tantas ganas de salir huyendo.",
+        "A m&i me podr&ia ir mejor la verdad, anda prueba esto.",
+        "*Pruebas algo, sabe raro, pero al menos es comestible*",
+        "Las cosas ya no son como antes, cuando empec&e todo era m$as sencillo,",
+        "la tierra era m$as pr$ospera y f$ertil y los productos se vend$ian mejor sin tanto intermediario de por medio.",
+        "Pero bueno, se va tirando con lo que tenemos, a pasar buen d$ia."
       ],
       "2": [
-        "2normal"
+        "Buenos d&ias a quien los tenga, estos jodidos intermediarios no dejan de joderme a cada rato,",
+        "cada d&ia m&as baratos vendo yo mis productos y m&as caros los compran otros.",
+        "Pero bueno mejor dejar de quejarse por lo que no puedes cambiar, , $?qu$e tal andamios?.",
+        "Por aqu$i vamos tirando regular, mi mujer ha enfermado y est$a en la cama,",
+        "pero bueno con las medicinas que hemos comprado parece ir mejorando poco a poco.",
+        "Y bueno, $ultimamente he estado paseando por los barrios bajos, la situaci&on podr&ia ser mejor en general.",
+        "Pero bueno, en peores plazas hemos toreado los de estos lares."
       ],
       "3": [
-        "3normal"
+        "Aaaay hijo, quien tuviera tu edad y trabajo, por aqu$i las cosas van a pedales.",
+        "Mi mujer lleva un tiempecillo algo mosqueada, quiere tener un hijo, y mira que es dif$icil querer tener un ni$%o m$as de lo que lo quiero yo.",
+        "Pero vamos a ver, estos campos no dan para alimentar tantas cabezas, casi no nos da para alimentarnos a nosotros.",
+        "Traer una vida para no poder atenderla ..., no me lo perdonar&ia.",
+        "Pero bueno, disfruta de la juventud que algunos no tenemos, a tener un buen d&ia."
       ]
     },
     "GenericoBueno": {
       "1": [
-        "1bueno"
+        "Pero bueno, a qui$en tenemos aqu$i. $?qu$e tal la vida hijo?",
+        "Por aqu$i todo va bastate bien, mira prueba esto que acabo de cosechar.",
+        "*Pruebas algo, sabe bastante bien*",
+        "&Ultimamente lo que cosecho sabe mejor, no se si ser&an los recursos o la tierra, pero estamos que nos salimos,",
+        "esos intermediarios que tanto por saco me dan est&an empezando a soltar un poco m$as por mis productos."
       ],
       "2": [
-        "2bueno"
+        "Buenas tardes chaval&in, estos intermediarios est&an cada vez m&as desesperados por comprarme los productos.",
+        "Oye, $?qu$e te parecer&ia un plan a futuro para hacer que los habitantes de los barrios exteriores puedan comprar mis productos a un precio m&as asequible?",
+        "Ahora mismo ser&ia insostenible para mi granja, pero tal vez en un futuro y con ayuda de ... unos amigos, es posible que pueda con la ayuda de esos amigos.",
+        "Pero bueno, no te entretengo m&as, a pasar buena tarde."
       ],
       "3": [
-        "3bueno"
+        "Ay hijo, qu$e alegr$ia y qu$e ilusi$on.",
+        "Con toda tu ayuda no solo mi campo est$a mejor, sino que todos los cultivos prosperan.",
+        "Puede que tu trabajo con esos paquetes no sea tan agotador como la vida en el campo,",
+        "pero realmente puedes llegar a marcar la diferencia desde ah$i.",
+        "Gracias por el apoyo Paquito, con todos estos ingresos puedo ver la vida desde otra perspectiva m$as amena."
+      ]
+    },
+    "GenericoMaxiBueno":{
+      "1": [
+        "Yeeeeeeepa, que tal estamos m&aquina",
+        "Prueba esto que est$an los clientes que me los quitan de las manos lo intemediarios,",
+        "les soplo m&as de diez veces m$as de dinero que antes, $?Que cu$anto cuesta?, t&u pruebalo.",
+        "*Pruebas algo, es una aut$entica delicia*",
+        "Bueno $?eh?, tengo unos amigos, el grupo de las lechuzas se hacen llamar,",
+        "resulta que junto a ellos estamos llevando un plan ..., digamos que muy discreto.",
+        "Consiste en que los menos favorecidos pod&ais disfrutar de mis productos a un precio menos abusivos de los que ponen los intermediarios,",
+        "no hables mucho del tema, es un secreto.",
+        "Toma, hoy estoy de buen humor, te puedes llevar un poco de esto gratis, $!A pasar buen d$ia!"
+      ],
+      "2": [
+        "$!Ese Paco c$omo anda!",
+        "Por aqu$i andamos muy bien, no veas c$omo han mejorado mis cultivos en poco tiempo, $!mira que es casualidad,",
+        "pero vaya, si resulta que desde que est$as por aqu$i mi situci$on a ido de bien a mejor!, traes buena suerte chaval.",
+        "Mi econom$ia est$a mejor que nunca, madre m$ia c$omo va subiendo el precio que est$an dispuestos a pagar por mis productos esos intermediarios,",
+        "se deben vender bien por los distr$itos c$entricos.",
+        "Y bueno, por el exterior la econom$ia anda un poco peor,",
+        "pero con la ayuda de unos amigos que se hacen llamar el grupo de las lechuzas estamos empezando a ayudar a comer a buen precio a los desfavorecidos.",
+        "$!Venga Paco, que te sea leve el trabajo ma$%ana!, &!y recuerda, no has escuchado nada de un grupo de lechuzas!"
+      ],
+      "3": [
+        "Pero bueeeeeno, si es el Paco.",
+        "Que alegr$ia la m&ia, Paco que vamos a tener un hijo, mi mujer est$a ah$i dentro, nos dimos cuenta porque la pobre estaba un poco pochilla.",
+        "$?Y sabes lo mejor?, $!Qu$e tal y como nos van las cosas podemos incluso permitirnos otro en un futuro no muy lejano!",
+        "Madre m$ia Paco, quien me lo iba a decir, que en tan poco tiempo me iba a dar la vida un vuelco tan gordo.",
+        "Estoy que no me lo creo, espero que junto a mis amigos del grupo de las lechuzas podamos empezar a crear un futuro mejor para mis ni$%os,",
+        "sin reyes ni amos tiranos que subleven a la poblaci&on y la condenen a vivir en la miseria.",
+        "Sea como fuere, t$u no has escuchado nada de un grupo que mira con desd$en al actual rey.",
+        "Larga vida y prosperidad amigo, ojal$a te trate la vida igual de bien que a mi estos $ultimos tiempos."
       ]
     }
   },
