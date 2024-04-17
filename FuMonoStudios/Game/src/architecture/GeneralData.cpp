@@ -274,9 +274,10 @@ const std::string GeneralData::personajeToString(Personaje pers) {
 	return aux;
 }
 
-GeneralData::Personaje GeneralData::stringToPersonaje(const std::string& pers) {
+Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	Personaje aux;
 	// no deja hacer switch y es una cochinada pero es la unica forma de hacerlo
+	//se puede usar un hasmap
 	if (pers == "Vagabundo")
 		aux = Vagabundo;
 	else if (pers == "Secretario")
@@ -295,7 +296,7 @@ GeneralData::Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	return aux;
 }
 
-GeneralData::Felicidad GeneralData::stringToFelicidad(const std::string& str)
+Felicidad GeneralData::stringToFelicidad(const std::string& str)
 {
 	Felicidad aux;
 	if (str == "Minima")
@@ -324,7 +325,7 @@ void GeneralData::setDayData() {
 // Struct NPCdata
 #pragma region NPCdata
 
-GeneralData::NPCdata* GeneralData::getNPCData(Personaje personaje) {
+NPCdata* GeneralData::getNPCData(Personaje personaje) {
 	NPCdata* npc = nullptr;
 
 	npc = npcData[personaje];
@@ -332,113 +333,5 @@ GeneralData::NPCdata* GeneralData::getNPCData(Personaje personaje) {
 	return npc;
 }
 
-// NPC MENOR
-GeneralData::NPCMenorData::NPCMenorData(Felicidad Felicidad, std::vector<bool> DiasDanEvento) {
-	felicidad = Felicidad;
-	iteration = 1;
-	diasDanEvento = DiasDanEvento;
-}
 
-std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
-	
-	std::string tipo;
-	int iterationNum = -1;
-
-	if (felicidad == Minima || felicidad == Maxima || felicidad == NoHabladoAun)
-	{
-		switch (felicidad)
-		{
-		case NoHabladoAun:
-			tipo = "Presentacion";
-			felicidad = Normal;
-			break;
-		case Minima:
-			tipo = "FelicidadMinimo";
-			break;
-		case Maxima:
-			tipo = "FelicidadMaximo";
-			break;
-		}
-	}
-	else if (giveEvent)
-	{
-		tipo = "Eventos";
-		RandomNumberGenerator a;
-		iterationNum = a.nextInt(1, 6);
-	}
-	else
-	{
-		switch (felicidad){
-			case Mala:
-				tipo = "GenericoMalo";
-				iterateDialogues();
-				iterationNum = iteration;
-				break;
-			case Normal:
-				tipo = "GenericoNormal";
-				iterateDialogues();
-				iterationNum = iteration;
-				break;
-			case Buena:
-				tipo = "GenericoBueno";
-				iterateDialogues();
-				iterationNum = iteration;
-				break;
-		}
-	}
-	return std::make_pair(tipo, iterationNum);
-}
-
-void GeneralData::NPCMenorData::setupDayData() {
-	iteration = 1;
-	giveEvent = diasDanEvento[generalData().getDia() - 1];
-}
-
-void GeneralData::NPCMenorData::activateEvent(){
-	giveEvent = true;
-}
-
-void GeneralData::NPCMenorData::deactivateEvent() {
-	giveEvent = false;
-}
-
-void GeneralData::NPCMenorData::iterateDialogues() {
-	iteration++;
-	if (iteration > 3)
-		iteration = 1;
-}
-
-// NPC GRANDE
-
-GeneralData::NPCMayorData::NPCMayorData(Felicidad Felicidad) {
-	felicidad = Felicidad;
-	postConversation = false;
-}
-
-std::pair<const std::string, int> GeneralData::NPCMayorData::getDialogueInfo() {
-	std::string aux;
-
-	switch (felicidad)
-	{
-		case NoHabladoAun:
-			aux = "Presentacion";
-			felicidad = Normal;
-			break;
-		case Minima:
-			aux = "FelicidadMinimo";
-			break;
-		default:
-			aux = postConversation ?
-				"PostConversacionDia" : "Dia";
-			aux = aux + std::to_string(generalData().getDia());
-			postConversation = true;
-			break;
-	}
-
-	return std::make_pair(aux, -1);
-}
-
-void GeneralData::NPCMayorData::setupDayData() {
-	postConversation = false;
-}
 #pragma endregion

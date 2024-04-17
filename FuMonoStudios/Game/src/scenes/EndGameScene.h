@@ -1,6 +1,7 @@
 #pragma once
 #include <architecture/Scene.h>
 #include <json/JSON.h>
+#include <architecture/GeneralData.h>
 class EndGameScene :
     public ecs::Scene
 {
@@ -11,9 +12,11 @@ public:
     }
     void init() override;
 private:
-
-    void loadEnd(const std::string&, JSONObject& ent);
+    void nextEnding();
+    void loadEnd(Personaje npc, JSONObject& ent);
     ecs::Entity* endImage;
+    ecs::Entity* endText;
     std::unordered_map<std::string,std::vector<std::string>> endTexts;
+    int npcId;
 };
 

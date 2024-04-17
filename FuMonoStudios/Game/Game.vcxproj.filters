@@ -69,6 +69,7 @@
     <ClCompile Include="src\components\RotarTransform.cpp" />
     <ClCompile Include="src\components\NPCExclamation.cpp" />
     <ClCompile Include="src\scenes\EndGameScene.cpp" />
+    <ClCompile Include="src\sistemas\NPC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="src\components\RotarTransform.h" />
     <ClInclude Include="src\components\NPCExclamation.h" />
     <ClInclude Include="src\scenes\EndGameScene.h" />
+    <ClInclude Include="src\sistemas\NPC.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\MultipleTextures.h" />
