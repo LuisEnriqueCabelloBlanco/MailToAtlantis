@@ -15,8 +15,15 @@ DialogManager::DialogManager() : currentDialogIndex_(0),boxBackground(nullptr), 
 
 }
 
+
 void DialogManager::init(ecs::Scene* scene)
 {
+    init(scene, "recursos/data/dialogos.json");
+}
+
+void DialogManager::init(ecs::Scene* scene, const std::string& path) {
+    jsonPath = path;
+
     Vector2D pos = Vector2D(100, LOGICAL_RENDER_HEITH - 250);
     Vector2D size = Vector2D(LOGICAL_RENDER_WIDTH - 100, 200);
     scene->getFactory()->setLayer(ecs::layer::UI);
@@ -83,7 +90,7 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     //reseteamos la posicon del indice
     currentDialogIndex_ = 0;
 
-    std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile("recursos/data/dialogos.json"));
+    std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(jsonPath));
 
     // check it was loaded correctly
     // the root must be a JSON object

@@ -49,8 +49,9 @@ public:
     };
 
     DialogManager();
-
+    
     void init(ecs::Scene* scene);
+    void init(ecs::Scene* scene, const std::string& jsonPath);
 
     void update();
     /// <summary>
@@ -87,6 +88,12 @@ private:
     bool isNPC(const DialogSelection ds);
 
     void setDialogueEntitiesActive(bool onoff);
+
+
+    /// <summary>
+    /// path del archivo json, si no se especifica por defecto sera el de dialogos
+    /// </summary>
+    std::string jsonPath;
 
     /// <summary>
     /// Vector donde se almacenan todos los diálogos que se van a soltar
