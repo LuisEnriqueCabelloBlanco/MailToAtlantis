@@ -98,7 +98,7 @@ void ecs::MainScene::init()
 
 	createGarbage();
 
-	dialogMngr_.init(this);
+	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
 	createCharacter({ 400, 300 }, "Campesino", 0.1f);
 
 	//createPaquete(generalData().getPaqueteLevel());
