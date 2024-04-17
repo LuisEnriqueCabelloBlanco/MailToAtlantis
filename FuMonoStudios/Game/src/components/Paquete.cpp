@@ -6,6 +6,7 @@
 #include "../architecture/Entity.h"
 #include "Render.h"
 #include "../architecture/Scene.h"
+#include "../sdlutils/InputHandler.h"
 #include <bitset>
 
 
@@ -81,7 +82,7 @@ bool Paquete::correcto() const{
 	return correcto;	//Si ha superdado todas las pruebas exitosamente, el paquete ser� correcto y devolver� true. Si en alg�n momento ha fallado, devolver� false
 }
 
-void Paquete::sellarCalle(Calle sello, Transform* trSellador) {
+void Paquete::sellarCalle(Calle sello, Transform* trSellador, bool multicolor) {
 
 	Vector2D posSellador = trSellador->getPos();
 	// solo puedes sellar una vez 
@@ -93,10 +94,16 @@ void Paquete::sellarCalle(Calle sello, Transform* trSellador) {
 		//Creamos la entidad sello
 		ecs::Entity* selloEnt = ent_->getMngr()->addEntity(ecs::layer::PACKAGE);
 		//Textura en funcion de tipo calle
-		Texture* selloEntTex = &sdlutils().images().at(
-			(std::string)"sello" += 
-			(std::string)(sello == C1 ? "0" : sello == C2 ? "1" : "2"));
-
+		Texture* selloEntTex;
+		if (multicolor) {
+			selloEntTex = &sdlutils().images().at("selloM");
+		}
+		else {
+			 selloEntTex = &sdlutils().images().at(
+				(std::string)"sello" +=
+				(std::string)(sello == C1 ? "0" : sello == C2 ? "1" : "2"));
+		}
+		
 		//creamos transform y colocamos el sello en el centro del sellador
 		float scale = 0.2f;
 		Transform* selloEntTr = selloEnt->addComponent<Transform>
@@ -107,6 +114,84 @@ void Paquete::sellarCalle(Calle sello, Transform* trSellador) {
 		selloEntTr->setParent(paqTr);
 	}
 }
+
+void Paquete::puntosRojos() {
+	Transform* paqTr = ent_->getComponent<Transform>();
+
+	// Creamos la entidad para el punto rojo
+	Texture* puntoRojoTex = &sdlutils().images().at("puntoRojo");
+	float scale = 0.2f;
+
+	if (puntoRojoTex != nullptr) {
+		// Obtener las dimensiones del paquete
+		float paqWidth = paqTr->getRect().w;
+		float paqHeight = paqTr->getRect().h;
+
+		// Calcular las nuevas coordenadas relativas de cada punto rojo (/60 un poco raro, habria q revisarlo)
+		float offsetX = paqWidth / 60;
+		float offsetY = paqHeight / 60;
+
+		// Definir las posiciones de los puntos rojos con el desplazamiento
+		std::vector<Vector2D> redPoints = {
+			// Esquinas
+			  Vector2D(-offsetX, -offsetY), // Superior izquierda
+			  Vector2D(paqWidth + offsetX, -offsetY), // Superior derecha
+			  Vector2D(-offsetX, paqHeight + offsetY), // Inferior izquierda
+			  Vector2D(paqWidth + offsetX, paqHeight + offsetY), // Inferior derecha
+			  // Mitad entre las esquinas y el centro
+			  Vector2D(paqWidth / 2, -offsetY), // Medio superior
+			  Vector2D(paqWidth / 2, paqHeight + offsetY), // Medio inferior
+			  Vector2D(-offsetX, paqHeight / 2), // Medio izquierda
+			  Vector2D(paqWidth + offsetX, paqHeight / 2), // Medio derecha
+			  // Centro
+			  Vector2D(paqWidth / 2, paqHeight / 2) // Centro
+		};
+
+		// Agregar un punto rojo en cada posición calculada
+		for (const auto& pos : redPoints) {
+			ecs::Entity* puntoRojoEnt = ent_->getMngr()->addEntity(ecs::layer::WRAP_POINTS);
+			Transform* puntoRojoTr = puntoRojoEnt->addComponent<Transform>(
+				pos.getX() - puntoRojoTex->width() * scale / 2,
+				pos.getY() - puntoRojoTex->height() * scale / 2,
+				puntoRojoTex->width() * scale,
+				puntoRojoTex->height() * scale
+				);
+			puntoRojoTr->setParent(paqTr); // Establecer el paquete como padre del punto rojo
+			puntoRojoEnt->addComponent<RenderImage>(puntoRojoTex);
+		}
+	}
+	else {
+		std::cout << "No se pudo cargar la textura del punto rojo" << std::endl;
+	}
+}
+void Paquete::clearLayer(ecs::layer::layerId lyId) {
+	// Obtener la escena a la que pertenece la entidad
+	 ecs::Scene* scene_ = ent_->getMngr();
+
+	// Eliminar todas las entidades de la capa WRAP_POINTS
+	scene_->removeEntitiesByLayer(lyId);
+}
+
+
+void Paquete::drawLines(int routeID, std::string routeName) {
+
+	Transform* paqTr = ent_->getComponent<Transform>();
+
+
+	// Creamos la entidad para el punto rojo
+	Texture* lineaRojaTex = &sdlutils().images().at(routeName);
+	float scale = 0.95f;
+	int lineaRojaPosX = -35;
+	int lineaRojaPosY = -35;
+	ecs::Entity* lineaRojaEnt = ent_->getMngr()->addEntity(ecs::layer::RED_LINES);
+	Transform* lineaRojaTr = lineaRojaEnt->addComponent<Transform>(lineaRojaPosX, lineaRojaPosY,
+		lineaRojaTex->width() * scale,
+		lineaRojaTex->height() * scale);
+	lineaRojaTr->setParent(paqTr); // Establecer el paquete como padre del punto rojo
+	lineaRojaEnt->addComponent<RenderImage>(lineaRojaTex);
+}
+
+
 
 std::string Paquete::getDirecction()
 {

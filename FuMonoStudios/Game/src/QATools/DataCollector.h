@@ -8,9 +8,10 @@
 #include <vector>
 #include <components/Paquete.h>
 #include <architecture/Game.h>
-
+#include <unordered_map>
 #ifdef QA_TOOLS
-constexpr int NUMBER_OF_METRICS = 10;
+
+constexpr int NUMBER_OF_METRICS = 14;
 
 /// <summary>
 /// Clase abstracta de la que heredar para generar distintos csv en funcion de los datos a recopilar
@@ -26,8 +27,9 @@ public:
 
 	inline std::vector<float>& dataArray() { return dataArray_; }
 	inline int& clicks() { return clicks_; }
-	void recordPacage(Paquete*);
-
+	void recordPacage(Paquete*,bool);
+	void recordNavigation(const std::string&);
+	void recordNPC(int NPCid, int numDialog, int fel);
 private:
 	DataCollector();
 
@@ -38,6 +40,17 @@ private:
 	std::vector<float> dataArray_;
 	int currentRow_;
 	int clicks_;
+
+	std::unordered_map<std::string, int> distIndx = {
+		{"Hestia", 1},
+		{"Artemisa", 2 },
+		{"Demeter", 3 },
+		{"Hefesto", 4 },
+		{"Hermes", 5 },
+		{"Apolo", 6 },
+		{"Poseidon", 7 }
+
+	};
 
 };
 

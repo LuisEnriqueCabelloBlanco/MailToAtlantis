@@ -50,7 +50,7 @@ public:
 	inline void writeMessage() {
 		std::cout << "Funcionaaaaaaaaa" << std::endl;
 	};
-
+	void endGame() { exit_ = true; }
 private:
 	/// <summary>
 	/// Metodo para cambiar de una escena a otra

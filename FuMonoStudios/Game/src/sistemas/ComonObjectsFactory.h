@@ -22,6 +22,11 @@ public:
 	/// <param name="lay"></param>
 	void setLayer(ecs::layer::layerId lay) { destLayer_ = lay; }
 	/// <summary>
+	/// establece que fuente se usara al crear textos con esta factory
+	/// </summary>
+	/// <param name="name"></param>
+	void setFont(const std::string& name) { fontName_ = name; }
+	/// <summary>
 	/// Crea un objeto que contiene varias imágenes si no se le añade tamaño 
 	/// se asume el tamaño de la primera textura pasada
 	/// </summary>
@@ -40,6 +45,8 @@ public:
 	/// <param name="pos"></param>
 	/// <returns></returns>
 	ecs::Entity* createLabel(const Vector2D& pos,const std::string& text, int fontSize, SDL_Color textColor = build_sdlcolor(0x000000ff));
+	ecs::Entity* createLabel(const Vector2D& pos, Uint32 width, const std::string& text, int fontSize, SDL_Color textColor = build_sdlcolor(0x000000ff));
+	ecs::Entity* createLabel(const Vector2D& pos, const Vector2D& size, const std::string& text, int fontSize, SDL_Color textColor= build_sdlcolor(0x000000ff));
 	/// <summary>
 	/// Crea un objeto que es una imagen
 	/// </summary>
@@ -70,7 +77,29 @@ public:
 	ecs::Entity* createTextuButton(const Vector2D& pos, const std::string text,
 		int fontSize, CallbackClickeable call,SDL_Color textColor = build_sdlcolor(0x000000ff));
 
+
+	/// <summary>
+	/// hace que un objeto se pueda oscurecer/modificar su color al pasar el ratón por ecima de el
+	/// </summary>
+	/// <param name="entity"></param>
+	/// <param name="c"></param>
+	void addHoverColorMod(ecs::Entity* entity, SDL_Color c = build_sdlcolor(0x000000ff));
+	/// <summary>
+	/// añade el comportamiento de resaltar cuando el ratón pasa por encima
+	/// </summary>
+	/// <param name="entity"></param>
+	void addHilghtOnHover(ecs::Entity* entity);
+
+	ecs::layer::layerId getLayer() { return destLayer_; }
 private:
+	/// <summary>
+	/// añade a la entidad pasada los componentes para ser un boton que da feedback al pasar el cursor por encima
+	/// </summary>
+	/// <param name=""></param>
+	/// <param name="call"></param>
+	void makeButton(ecs::Entity*, CallbackClickeable call);
+
+
 	/// <summary>
 	/// Scene to create the objects
 	/// </summary>
@@ -79,6 +108,10 @@ private:
 	/// capa donde se van a crear los objetos
 	/// </summary>
 	ecs::layer::layerId destLayer_;
+	/// <summary>
+	/// nombre de la fuente que se usara al crear texturas de texto
+	/// </summary>
+	std::string fontName_;
 
 	std::vector<Texture*> createdTextures;
 };

@@ -11,6 +11,8 @@ namespace ecs {
 		enum cmpId : cmpId_t {
 			TRANSFORM = 0,
 			IMAGE,
+			HOVERSENSOR,
+			HOVERLAYER,
 			CTRL,
 			CLICKEABLE,
 			DRAGANDDROP,
@@ -26,9 +28,12 @@ namespace ecs {
 			SELFDESTRUCT,
 			DEPTH,
 			ERROR_NOTE,
+			NPC_EXCLAMATION,
 			IMAGEWITHLIGHT,
 			DELAYEDCALLBACK,
 			CLOCKAUX,
+			BALANZA,
+			ROTARTRANSFORM,
 			// do not remove this
 			_LAST_CMP_ID
 		};
@@ -49,6 +54,7 @@ namespace ecs {
 			MENU_SCENE,
 			PAUSE_SCENE,
 			END_SCENE,
+			TUTORIAL_SCENE,
 			_LAST_SCENE
 		};
 		constexpr sceneId maxSceneId = _LAST_SCENE;
@@ -62,14 +68,21 @@ namespace ecs {
 		{
 			INACTIVE,
 			BACKGROUND,
+			LIGHT,
 			DEFAULT,
 			BIN,
 			MANUALSPACE,
 			MINIMANUAL,
+			BALANZABASE,
+			BALANZA,
 			PACKAGE,
+			INFO_PACKAGE,
 			INK,
 			STAMP,
+			BALANZAB,
 			OFFICEELEMENTS,
+			RED_LINES,
+			WRAP_POINTS,
 			TAPE,
 			MANUAL,
 			FOREGROUND,

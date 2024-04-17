@@ -2,14 +2,22 @@
 #include "Transform.h"
 #include "../architecture/Entity.h"
 #include "../architecture/Time.h"
+#include "../sistemas/SoundEmiter.h"
 
 const float Gravity::GRAVITY_LIMIT = 625.0f;
+const float MIN_SPEED_SOUND = 5.0f;
 const float Gravity::DEFAUTL_FORCE = 9.8f * 4;
 const float Gravity::MAX_VELOCITY = 30.0f;
+const std::string DEFAULT_SOUND = "choque";
 
-Gravity::Gravity() : tr_(nullptr), gravityForce_(DEFAUTL_FORCE), velocity_(0), active_(true) {}
+Gravity::Gravity() : tr_(nullptr), gravityForce_(DEFAUTL_FORCE), velocity_(0), active_(true), 
+    thumpSound_(DEFAULT_SOUND){}
 
-Gravity::Gravity(float force) : tr_(nullptr), gravityForce_(force), velocity_(0), active_(true) {}
+Gravity::Gravity(std::string sound) : tr_(nullptr), gravityForce_(DEFAUTL_FORCE), velocity_(0), 
+    active_(true), thumpSound_(sound) { }
+
+Gravity::Gravity(float force, std::string sound) : tr_(nullptr), gravityForce_(force), 
+    velocity_(0), active_(true), thumpSound_(sound) {}
 
 Gravity::~Gravity() {}
 
@@ -28,7 +36,12 @@ void Gravity::update() {
         bool contactGround = (tr_->getCenter().getY() >= GRAVITY_LIMIT);
 
         if (latestcontactGround_ != contactGround) {
-            sdlutils().soundEffects().at("choque").play();
+            //sdlutils().soundEffects().at("choque0").play();
+            if (velocity_ > MIN_SPEED_SOUND) {
+                float mod = velocity_ / MAX_VELOCITY;
+                std::cout << std::to_string(mod);
+                SoundEmiter::instance()->playSound(thumpSound_, mod);
+            }
             latestcontactGround_ = contactGround;
         }
 

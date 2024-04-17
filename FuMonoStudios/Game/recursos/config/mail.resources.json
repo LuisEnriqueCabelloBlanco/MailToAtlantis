@@ -12,27 +12,31 @@
     {"id": "book6","file": "recursos/images/Book_InfoCalles_2.png"},
     {"id": "book7","file": "recursos/images/Book_InfoCalles_3.png"},
     {"id": "book8","file": "recursos/images/Book_InfoSellos.png"},
+    {"id": "book9","file": "recursos/images/Book_InfoPesos.png"},
+    {"id": "book10","file": "recursos/images/Book_InfoEmbalado.png"},
 
 
 
     {"id": "flechaTest","file": "recursos/images/flecha.png"},
     {"id": "cambioPag","file": "recursos/images/NextPage.png"},
     {"id": "botonTrabajar","file": "recursos/images/placeholderTrabajar.png"},
-    {"id": "demeter","file": "recursos/images/Demeter.png"},
-    {"id": "hefesto","file": "recursos/images/Hefesto.png"},
-    {"id": "hestia","file": "recursos/images/Hestia.png"},
-    {"id": "artemisa","file": "recursos/images/Artemisa2.png"},
-    {"id": "hermes","file": "recursos/images/Hermes.png"},
-    {"id": "apolo","file": "recursos/images/Apolo.png"},
-    {"id": "poseidon","file": "recursos/images/Poseidon.png"},
-    {"id": "fondoMainMenu","file": "recursos/images/main_menu.jpg"},
+    {"id": "Demeter","file": "recursos/images/Demeter.png"},
+    {"id": "Hefesto","file": "recursos/images/Hefesto.png"},
+    {"id": "Hestia","file": "recursos/images/Hestia.png"},
+    {"id": "Artemisa","file": "recursos/images/Artemisa2.png"},
+    {"id": "Hermes","file": "recursos/images/Hermes.png"},
+    {"id": "Apolo","file": "recursos/images/Apolo.png"},
+    {"id": "Poseidon","file": "recursos/images/Poseidon.png"},
+    {"id": "fondoMainMenu","file": "recursos/images/FONDO_MENU_INICIO_v2.png"},
 
     {"id": "sellador0","file": "recursos/images/selladorRojo.png"},
     {"id": "sellador1","file": "recursos/images/selladorAzul.png"},
     {"id": "sellador2","file": "recursos/images/selladorVerde.png"},
+    {"id": "selladorM","file": "recursos/images/selladorM.png"},
     {"id": "sello0","file": "recursos/images/SelloRojo.png"},
     {"id": "sello1","file": "recursos/images/SelloAzul.png"},
     {"id": "sello2","file": "recursos/images/SelloVerde.png"},
+    {"id": "selloM","file": "recursos/images/SelloM.png"},
     {"id": "tinta0","file": "recursos/images/tintaRoja.png"},
     {"id": "tinta1","file": "recursos/images/tintaAzul.png"},
     {"id": "tinta2","file": "recursos/images/tintaVerde.png"},
@@ -75,16 +79,38 @@
     {"id": "tubo7","file": "recursos/images/tubo7.png"},
     {"id": "cruz","file": "recursos/images/cruz.png"},
 
+    {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
+    {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
+    {"id": "exclamacion","file": "recursos/images/Exclamacion.png"},
+    
+    {"id": "ruta1","file": "recursos/images/route1.png"},
+    {"id": "ruta2","file": "recursos/images/route2.png"},
+    {"id": "ruta3","file": "recursos/images/route3.png"},
+    {"id": "ruta4","file": "recursos/images/route4.png"},
+    
+    {"id": "fondoFinalTrabajo","file": "recursos/images/FondoEndWork.png"},
+
     {"id": "title","file": "recursos/images/titulo.png"},
     {"id": "fondoOficina","file": "recursos/images/OficinaProyectosDesenfocada.png"},
     {"id": "cinta","file": "recursos/images/Cinta.png"},
+    {"id": "baseBalanza","file": "recursos/images/BaseBalanza.png"},
+    {"id": "balanzaFlecha","file": "recursos/images/balanzaFlecha.png"},
+    {"id": "balanzaA","file": "recursos/images/balanzaA.png"},
+    {"id": "balanzaB","file": "recursos/images/balanzaB.png"},
 
     {"id": "caja25","file": "recursos/images/Caja_Envuelta_25.png"},
     {"id": "caja50","file": "recursos/images/Caja_Envuelta_50.png"},
     {"id": "caja75","file": "recursos/images/Caja_Envuelta_75.png"},
     {"id": "caja100","file": "recursos/images/Caja_Envuelta_100.png"},
+    {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
+    {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
+
 
     {"id": "papelera","file": "recursos/images/papelera.png"},
+
+    {"id": "atrilManual","file": "recursos/images/ReposaLibros.png"},
+
+
     {"id": "cuadroDialogo","file": "recursos/images/CuadroDialogo.png"},
     {"id": "miniManual","file": "recursos/images/ManualMini.png"},
 
@@ -144,23 +170,38 @@
         "file": "recursos/sounds/click.wav"
     },
     {
-      "id": "arrastrar",
+      "id": "arrastrar0",
       "file": "recursos/sounds/arrastrar.wav"
   },
-  {
-    "id": "choque",
-    "file": "recursos/sounds/choque.wav"
-}
-],
-"musics":[
     {
-        "id": "trabajo",
-        "file": "recursos/sounds/imperial_march.wav"
+      "id": "choque2",
+      "file": "recursos/sounds/choque.wav"
     },
     {
-        "id": "mainMenu",
-        "file": "recursos/sounds/DQOverture.wav"
+      "id": "choque0",
+      "file": "recursos/sounds/thud0.wav"
+    },
+    {
+      "id": "choque1",
+      "file": "recursos/sounds/cardboardDrop.wav"
     }
-
-]
+  ],
+  "musics": [
+    {
+      "id": "trabajo",
+      "file": "recursos/sounds/imperial_march.wav"
+    },
+    {
+      "id": "mainMenu",
+      "file": "recursos/sounds/DQOverture.wav"
+    },
+    {
+      "id": "office",
+      "file": "recursos/sounds/office.wav"
+    },
+    {
+      "id": "printer",
+      "file": "recursos/sounds/printer.wav"
+    }
+  ]
 }

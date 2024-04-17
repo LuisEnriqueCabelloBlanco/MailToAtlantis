@@ -44,6 +44,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -147,7 +148,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\scenes\EndGameScene.cpp" />
+    <ClCompile Include="src\components\HoverLayerComponent.cpp" />
+    <ClCompile Include="src\components\HoverSensorComponent.cpp" />
+    <ClCompile Include="src\components\RotarTransform.cpp" />
+    <ClCompile Include="src\components\Balanza.cpp" />
+    <ClCompile Include="src\components\NPCExclamation.cpp" />
+    <ClCompile Include="src\sistemas\SoundEmiter.cpp" />
     <ClCompile Include="src\components\RenderWithLight.cpp" />
     <ClCompile Include="src\QATools\DataCollector.cpp" />
     <ClCompile Include="src\entities\ClockAux.cpp" />
@@ -203,9 +209,16 @@
     <ClCompile Include="src\utils\Vector2D.cpp" />
     <ClCompile Include="src\components\Transform.cpp" />
     <ClCompile Include="src\architecture\Time.cpp" />
+    <ClCompile Include="src\scenes\TutorialScene.cpp" />
+    <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\scenes\EndGameScene.h" />
+    <ClInclude Include="src\components\HoverLayerComponent.h" />
+    <ClInclude Include="src\components\HoverSensorComponent.h" />
+    <ClInclude Include="src\components\RotarTransform.h" />
+    <ClInclude Include="src\components\Balanza.h" />
+    <ClInclude Include="src\components\NPCExclamation.h" />
+    <ClInclude Include="src\sistemas\SoundEmiter.h" />
     <ClInclude Include="src\components\RenderWithLight.h" />
     <ClInclude Include="src\QATools\DataCollector.h" />
     <ClInclude Include="src\entities\ClockAux.h" />
@@ -275,12 +288,15 @@
     <ClInclude Include="src\utils\Vector2D.h" />
     <ClInclude Include="src\components\Transform.h" />
     <ClInclude Include="src\architecture\Time.h" />
+    <ClInclude Include="src\scenes\TutorialScene.h" />
+    <ClInclude Include="src\sistemas\TutorialSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties.props" />
     <None Include="recursos\config\mail.direcctions.json" />
     <None Include="recursos\config\mail.destinatarios.json" />
     <None Include="recursos\config\mail.resources.json" />
+    <None Include="recursos\config\sounds.json" />
     <None Include="recursos\data\dialogos.json" />
     <None Include="recursos\data\npcData.json" />
     <None Include="recursos\dialogos\dialogos.json" />
@@ -298,6 +314,10 @@
     <Image Include="recursos\images\PesoBajo.png" />
     <Image Include="recursos\images\PesoMedio.png" />
     <Image Include="recursos\images\placeholderTrabajar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="recursos\sounds\office.wav" />
+    <Media Include="recursos\sounds\printer.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

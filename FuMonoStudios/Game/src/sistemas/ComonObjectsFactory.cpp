@@ -2,10 +2,10 @@
 #include "../components/Transform.h"
 #include "../components/Render.h"
 #include "../components/Clickeable.h"
+#include <components/HoverSensorComponent.h>
+#include <components/RenderWithLight.h>
 
-
-
-ComonObjectsFactory::ComonObjectsFactory(ecs::Scene* sc):scene_(sc), destLayer_(ecs::layer::DEFAULT){}
+ComonObjectsFactory::ComonObjectsFactory(ecs::Scene* sc):scene_(sc), destLayer_(ecs::layer::DEFAULT),fontName_("arial"){}
 ComonObjectsFactory::~ComonObjectsFactory()
 {
 	//futuro sistema de limpieza
@@ -18,6 +18,9 @@ ComonObjectsFactory::~ComonObjectsFactory()
 ecs::Entity* ComonObjectsFactory::createMultiTextureImage(const Vector2D& pos, const Vector2D& size, const std::vector<Texture*>& textures)
 {
 	auto entity = scene_->addEntity(destLayer_);
+#ifdef _DEBUG
+	std::cout << "Entidad multitextura creada en la capa " << (int)destLayer_ << std::endl;
+#endif // _DEBUG
 	entity->addComponent<Transform>(pos.getX(), pos.getY(), size.getX(), size.getY());
 	entity->addComponent<RenderImage>(textures);
 	return entity;
@@ -28,17 +31,23 @@ ecs::Entity* ComonObjectsFactory::createMultiTextureImage(const Vector2D& pos, c
 	return createMultiTextureImage(pos,Vector2D(textures[0]->width(), textures[0]->height()),textures);
 }
 
-ecs::Entity* ComonObjectsFactory::createLabel(const Vector2D& pos, const std::string& text, int fontSize, SDL_Color textColor)
+ecs::Entity* ComonObjectsFactory::createLabel(const Vector2D& pos , const std::string& text, int fontSize, SDL_Color textColor)
 {
-#ifdef _DEBUG
-	std::cout << "Entidad de texto creada en la capa " << (int)destLayer_ << std::endl;
-#endif // _DEBUG
-	auto entity = scene_->addEntity(destLayer_);
-	Texture* labelText = new Texture(sdlutils().renderer(), text, sdlutils().fonts().at("arial"+std::to_string(fontSize)), textColor);
+	Texture* labelText = new Texture(sdlutils().renderer(), text, sdlutils().fonts().at(fontName_ + std::to_string(fontSize)), textColor);
 	createdTextures.push_back(labelText);
-	entity->addComponent<Transform>(pos.getX(), pos.getY(), labelText->width(), labelText->height());
-	entity->addComponent<RenderImage>(labelText);
-	return entity;
+	return createImage(pos,labelText);
+}
+ecs::Entity* ComonObjectsFactory::createLabel(const Vector2D& pos,Uint32 width, const std::string& text, int fontSize, SDL_Color textColor)
+{
+	Texture* labelText = new Texture(sdlutils().renderer(), text, sdlutils().fonts().at(fontName_ + std::to_string(fontSize)), textColor, width);
+	createdTextures.push_back(labelText);
+	return createImage(pos, labelText);
+}
+ecs::Entity* ComonObjectsFactory::createLabel(const Vector2D& pos, const Vector2D& size, const std::string& text, int fontSize, SDL_Color textColor)
+{
+	Texture* labelText = new Texture(sdlutils().renderer(), text, sdlutils().fonts().at(fontName_ + std::to_string(fontSize)), textColor, size.getX());
+	createdTextures.push_back(labelText);
+	return createImage(pos, size, labelText);
 }
 
 ecs::Entity* ComonObjectsFactory::createImage(const Vector2D& pos, const Vector2D& size, Texture* texture)
@@ -57,16 +66,50 @@ ecs::Entity* ComonObjectsFactory::createImage(const Vector2D& pos, Texture* text
 ecs::Entity* ComonObjectsFactory::createImageButton(const Vector2D& pos, const Vector2D& size, Texture* texture, CallbackClickeable call)
 {
 	auto entity = createImage(pos,size,texture);
-	auto click = entity->addComponent<Clickeable>();
-	click->addEvent(call);
+	makeButton(entity, call);
 	return entity;
 }
 
-ecs::Entity* ComonObjectsFactory::createTextuButton(const Vector2D& pos, const std::string text, int fontSize, CallbackClickeable call, SDL_Color textColor)
+ecs::Entity* ComonObjectsFactory::createTextuButton(const Vector2D& pos, const std::string text, int fontSize, CallbackClickeable call, 
+	SDL_Color textColor)
 {
-	auto entity = createLabel(pos, text, fontSize);
+	auto entity = createLabel(pos, text, fontSize,textColor);
+	makeButton(entity, call);
+	return entity;
+}
+
+void ComonObjectsFactory::addHoverColorMod(ecs::Entity* entity, SDL_Color c)
+{
+	HoverSensorComponent* hover = entity->getComponent<HoverSensorComponent>();
+	if (hover== nullptr) {
+		hover = entity->addComponent<HoverSensorComponent>();
+	}
+	//posiblemente meter en un metodo que agregue esta propiedad
+	auto texture = entity->getComponent<RenderImage>()->getTexture();
+	hover->addInCall([texture, c]() {texture->modColor(c.r, c.g, c.b); });
+	hover->addOutCall([texture]() {texture->modColor(255, 255, 255); });
+}
+
+void ComonObjectsFactory::addHilghtOnHover(ecs::Entity* entity)
+{
+	HoverSensorComponent* hover = entity->getComponent<HoverSensorComponent>();
+	if (hover == nullptr) {
+		hover = entity->addComponent<HoverSensorComponent>();
+	}
+	//añade feeback al pasar el raton por encima
+	auto light = entity->addComponent<RenderWithLight>();
+	hover = entity->addComponent<HoverSensorComponent>();
+	hover->addInCall([light]() {light->lightOn(); });
+	hover->addOutCall([light]() {light->lightOff(); });
+
+	Clickeable* click = entity->getComponent<Clickeable>();
+	if(click != nullptr)
+		click->addEvent([light]() {light->lightOff(); });
+}
+
+void ComonObjectsFactory::makeButton(ecs::Entity* entity, CallbackClickeable call)
+{
 	auto click = entity->addComponent<Clickeable>();
 	click->addEvent(call);
-	return entity;
 }
 

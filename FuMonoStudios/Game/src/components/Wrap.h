@@ -2,8 +2,13 @@
 
 #include "../architecture/Component.h"
 #include <components/Render.h>
+#include "Paquete.h"
+#include "../architecture/Entity.h"
 
+#include <functional>
 #include <list>
+#include <SDL.h>
+
 
 class Transform;
 
@@ -31,7 +36,7 @@ class Wrap : public ecs::Component {
 public:
 	__CMP_DECL__(ecs::cmp::WRAP);
 
-	Wrap(float spaceAux, int repTimesAux, std::list<int> routeAux);
+	Wrap(float spaceAux, int repTimesAux, std::list<int> routeAux, int routeIndex);
 
 	Wrap(float spaceAux, int repTimesAux);
 
@@ -44,7 +49,7 @@ public:
 	void update() override;
 
 	//devuelve si el paquete esta envuelto
-	bool isWrapped() { return totalPointsRoute == routePointsDone; }
+	bool isWrapped() { return wrapped; }
 
 private:
 
@@ -54,11 +59,26 @@ private:
 	//Comprueba si ha chocado con el punto especificado por última vez
 	void checkPointTouch(int point);
 
+	void drawLines();
+
+	void addLine(const SDL_Point& start, const SDL_Point& end);
+
+
+	struct Line {
+		SDL_Point start;
+		SDL_Point end;
+	};
+
 	Transform* tr_ = nullptr;
 
 	Trigger* tri_ = nullptr;
 
 	RenderImage* mul_ = nullptr;
+
+	RenderImage* renderImage_ = nullptr;
+
+	std::vector<Line> linesDrawn; // Almacena las líneas dibujadas
+	SDL_Renderer* renderer;
 
 	//Ruta con los distintos puntos por los que debe pasar el ratón
 	std::list<int> route;
@@ -88,5 +108,15 @@ private:
 
 	//debug para futuras implementaciones
 	bool debug = true;
+
+	int routeSelectedID;
+
+	// Textura de punto rojo
+	Texture* puntoRojoTex = nullptr;
+
+	Callback funcion_;
+
+	Paquete* paqComp_ = nullptr;
+
 
 };

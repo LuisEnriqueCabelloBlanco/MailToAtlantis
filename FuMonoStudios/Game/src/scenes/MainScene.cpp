@@ -17,6 +17,8 @@
 #include "../components/PackageChecker.h"
 #include "../components/Gravity.h"
 #include "../components/MoverTransform.h"
+#include "../components/Balanza.h"
+#include "../components/RotarTransform.h"
 #include "../architecture/Time.h"
 #include "../architecture/GameConstants.h"
 #include "../components/SelfDestruct.h"
@@ -26,6 +28,11 @@
 #include <QATools/DataCollector.h>
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
+#include <components/HoverSensorComponent.h>
+#include <components/HoverLayerComponent.h>
+#include <components/RenderWithLight.h>
+
+#include "../components/NPCExclamation.h"
 
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 {
@@ -90,6 +97,8 @@ void ecs::MainScene::init()
 
 	createClock();
 
+	createInks();
+
 	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
 	//createCinta();
 
@@ -112,10 +121,10 @@ void ecs::MainScene::init()
 			createTubo((pq::Distrito)z , false);
 	}
 
-	sdlutils().musics().at("trabajo").play();
-	sdlutils().musics().at("trabajo").setMusicVolume(30);
-
-	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
+	sdlutils().musics().at("office").play();
+	sdlutils().musics().at("office").setMusicVolume(50);
+	sdlutils().musics().at("printer").play();
+	sdlutils().musics().at("printer").setMusicVolume(50);
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(generalData().getDia());
@@ -126,7 +135,8 @@ void ecs::MainScene::close() {
 	ecs::Scene::close();
 	generalData().updateMoney();
 
-	sdlutils().musics().at("trabajo").haltMusic();
+	sdlutils().musics().at("office").haltMusic();
+	sdlutils().musics().at("printer").haltMusic();
 }
 
 void ecs::MainScene::createClock() {
@@ -154,13 +164,16 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 			RenderImage* stampRender = entRec->getComponent<RenderImage>();
 
-			stampHerramienta->setFunctionality(type);
+			if (!stampHerramienta->getMulticolorStamp()) { //Si el sello no es multicolor
+				stampHerramienta->setFunctionality(type);
 
-			stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
+				stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
+
+			}
 
 		}
 
-	});
+	}, generalData().DropIn);
 
 }
 
@@ -170,11 +183,15 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		return;
 	switch (dia)
 	{
-	case 1:
-
+	case 1:		
+		//if(GeneralData::instance()->getSelloMulticolor()) 
+		//createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
+		//createExclamationPoint();		//Ignorad esto, está aquí para hacer pruebas. Lo quito en cuanto funcione -Javier
 		createStamp(SelloCalleA);
 
 		createInks();
+
+		createBalanza();
 
 		generalData().setPaqueteLevel(0);
 
@@ -199,11 +216,24 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		generalData().setPaqueteLevel(2);
 
 		break;
+		//si estamos en un dia mayor que el indicado se desbloquean todas las mecánicas
 	default:
+		createStamp(SelloCalleA);
+
+		createInks();
+
+		createCinta();
+
+		generalData().setPaqueteLevel(2);
 		break;
 	}	
 }
-
+void ecs::MainScene::createExclamationPoint() {
+	Entity* xd = addEntity(ecs::layer::FOREGROUND);	
+	auto ld = xd->addComponent<NPCExclamation>();
+	ld->innit(100,100);
+	
+}
 
 void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto) {
 	Entity* NotaErronea = addEntity(ecs::layer::FOREGROUND);
@@ -213,37 +243,51 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 	NotaTR->setScale(0.2f);
 	NotaErronea->addComponent<Depth>();
 	NotaErronea->addComponent<Gravity>();
-	NotaErronea->addComponent<DragAndDrop>(true);
+	NotaErronea->addComponent<DragAndDrop>(true, "arrastrar");
 	NotaErronea->addComponent<RenderImage>(NotaTex);
 	NotaErronea->addComponent<MoverTransform>(NotaErronea->getComponent<Transform>()->getPos() - Vector2D(0, 500),
 		1, Easing::EaseOutBack)->enable();
 	//El texto de la nota
-	Entity* texto_ = addEntity(ecs::layer::FOREGROUND);
-	Font* textFont = new Font("recursos/fonts/ARIAL.ttf", 40);
-	Texture* textureText_ = new Texture(sdlutils().renderer(), NotaErronea->getComponent<ErrorNote>()->text_, *textFont, build_sdlcolor(0x000000ff), 500);
-	Transform* distritoTr = texto_->addComponent<Transform>(25, 70, 250, 100);
-	RenderImage* distritoRender = texto_->addComponent<RenderImage>();
-	distritoRender->setTexture(textureText_);
-	distritoTr->setParent(NotaErronea->getComponent<Transform>());
+	factory_->setLayer(layer::FOREGROUND);
+	Entity* texto = factory_->createLabel(Vector2D(25, 70), Vector2D(250, 100), NotaErronea->getComponent<ErrorNote>()->text_, 40);
+	texto->getComponent<Transform>()->setParent(NotaErronea->getComponent<Transform>());
+	factory_->setLayer(layer::DEFAULT);
 }
 
 void ecs::MainScene::createStamp(TipoHerramienta type)
 {
 	if (type > 2) return;
 	constexpr float STAMPSIZE = 1;
-
+	
 	factory_->setLayer(layer::STAMP);
-
 	auto stamp = factory_->createImage(Vector2D(300, 300),
 		Vector2D(sdlutils().images().at("sellador" + std::to_string(type)).width() * STAMPSIZE, sdlutils().images().at("sellador" + std::to_string(type)).height() * STAMPSIZE),
 		& sdlutils().images().at("sellador" + std::to_string(type)));
 
 	stamp->addComponent<Gravity>();
 	stamp->addComponent<Depth>();
-	stamp->addComponent<DragAndDrop>();
+	stamp->addComponent<DragAndDrop>("arrastrar");
 
 	Herramientas* herrSelladorA = stamp->addComponent<Herramientas>();
 	herrSelladorA->setFunctionality(type);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+}
+
+void ecs::MainScene::createMultipleStamp()
+{	
+	constexpr float STAMPSIZE = 1;
+
+	Entity* stamp = addEntity(ecs::layer::STAMP);
+	Texture* StampTex = &sdlutils().images().at("selladorM");			
+	Transform* tr_ = stamp->addComponent<Transform>(500, 300, StampTex->width(), StampTex->height());	
+	stamp->addComponent<RenderImage>(StampTex);
+	stamp->addComponent<Gravity>();
+	stamp->addComponent<Depth>();
+	stamp->addComponent<DragAndDrop>("arrastrar");
+
+	Herramientas* herrSelladorA = stamp->addComponent<Herramientas>();
+	herrSelladorA->setFunctionality(SelloMultiColor);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 }
@@ -253,10 +297,54 @@ void ecs::MainScene::createCinta() {
 	factory_->setLayer(ecs::layer::TAPE);
 	Entity* cinta = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("cinta"));
 	cinta->addComponent<Gravity>();
-	cinta->addComponent<DragAndDrop>();
+	cinta->addComponent<DragAndDrop>("arrastrar");
 	cinta->addComponent<Depth>();
 	factory_->setLayer(ecs::layer::DEFAULT);
 
+}
+
+void ecs::MainScene::createBalanza() {
+	// Balanza
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanza = factory_->createImage(Vector2D(50, 230), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
+	Transform* balanzaTr = balanza->getComponent<Transform>();
+	balanza->addComponent<MoverTransform>();
+	balanzaTr->setScale(0.5);
+	Balanza* balanzaComp = balanza->addComponent<Balanza>();
+
+	// BalanzaB
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanzaB = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaB").width(), sdlutils().images().at("balanzaB").height()), &sdlutils().images().at("balanzaB"));
+	Transform* balanzaBTr = balanzaB->getComponent<Transform>();
+	balanzaBTr->setScale(0.5);
+
+	// BalanzaBase
+	factory_->setLayer(ecs::layer::BALANZABASE);
+	Entity* baseBalanza = factory_->createImage(Vector2D(400, 400), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
+	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
+	balanzaBaseTr->setScale(0.5);
+	baseBalanza->addComponent<Gravity>();
+	//baseBalanza->addComponent<Depth>();
+
+	// BalanzaFlecha
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(70, 20), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
+	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
+	balanzaFlechaTr->setScale(0.5);
+	RotarTransform* rotComp = balanzaFlecha->addComponent<RotarTransform>();
+
+	// Seteamos padres
+	balanzaTr->setParent(balanzaBaseTr);
+	balanzaBTr->setParent(balanzaTr);
+	balanzaFlechaTr->setParent(balanzaBaseTr);
+
+
+	Trigger* balanzaTri = balanza->addComponent<Trigger>();
+
+	balanzaTri->addCallback([this, rotComp, balanzaComp, balanzaB](ecs::Entity* entRect) {balanzaComp->initAnimations(entRect, balanzaB, rotComp); }, generalData().DropIn);
+	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(entRect, rotComp); }, generalData().PickUp);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
 }
 
 void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
@@ -264,26 +352,33 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 	constexpr float TUBE_HEITH = 282;
 	constexpr float TUBES_X_OFFSET = 200;
 	constexpr float DISTANCE_BETWEEN_TUBES = 220;
-	factory_->setLayer(ecs::layer::BACKGROUND);
+	factory_->setLayer(ecs::layer::DEFAULT);
 
+	auto tubeTexture = &sdlutils().images().at("tubo" + std::to_string(dist + 1));
 	Entity* tuboEnt = factory_->createImage(
 		Vector2D(TUBES_X_OFFSET + (DISTANCE_BETWEEN_TUBES * dist), -40),
 		Vector2D(TUBE_WIDTH, TUBE_HEITH),
-		&sdlutils().images().at("tubo" + std::to_string(dist + 1)));
+		tubeTexture);
 	if (unlock) {
+		tubeTexture->modColor(255, 255, 255);
+		auto layerHover = tuboEnt->addComponent<HoverLayerComponent>(ecs::layer::PACKAGE);
+		auto hilight = tuboEnt->addComponent<RenderWithLight>();
+		layerHover->addInCall([hilight]() {hilight->lightOn(); });
+		layerHover->addOutCall([hilight]() {hilight->lightOff(); });
 
 		Trigger* tuboTri = tuboEnt->addComponent<Trigger>();
 		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this);
 	}
 	else {
-		factory_->setLayer(layer::UI);
-		auto tubeTr = tuboEnt->getComponent<Transform>();
+		//factory_->setLayer(layer::UI);
+		/*auto tubeTr = tuboEnt->getComponent<Transform>();
 
 		auto cross = factory_->createImage(Vector2D(0, 120),
 			Vector2D(tubeTr->getWidth(), tubeTr->getWidth()),
 			&sdlutils().images().at("cruz"));
 
-		cross->getComponent<Transform>()->setParent(tubeTr);
+		cross->getComponent<Transform>()->setParent(tubeTr);*/
+		tubeTexture->modColor(100, 100, 100);
 
 	}
 }
@@ -291,7 +386,7 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 
 void ecs::MainScene::createManual()
 {
-	constexpr int MANUALNUMPAGES = 8;
+	constexpr int MANUALNUMPAGES = 10;
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 
@@ -309,7 +404,7 @@ void ecs::MainScene::createManual()
 	RenderImage* manualRender = manualEnt_->getComponent<RenderImage>();
 	manualRender->setVector(bookTextures);
 	manualEnt_->addComponent<Gravity>();
-	manualEnt_->addComponent<DragAndDrop>(false);
+	manualEnt_->addComponent<DragAndDrop>(false, "arrastrar");
 	manualEnt_->addComponent<Depth>();
 
 
@@ -318,10 +413,13 @@ void ecs::MainScene::createManual()
 	auto next = [manualRender]() {manualRender->nextTexture();};
 	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
 	right->getComponent<Transform>()->setParent(manualTransform);
+	factory_->addHoverColorMod(right);
 
 	auto previous = [manualRender]() {manualRender->previousTexture();};
-	auto left = factory_->createImageButton(Vector2D(75, 280), buttonSize, buttonTexture, previous);
+	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous);
 	left->getComponent<Transform>()->setParent(manualTransform);
+	left->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
+	factory_->addHoverColorMod(left);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
@@ -344,10 +442,10 @@ void ecs::MainScene::createMiniManual() {
 	Transform* manualTransform = miniManualEnt_->getComponent<Transform>();
 	RenderImage* manualRender = miniManualEnt_->getComponent<RenderImage>();
 
-	miniManualEnt_->addComponent<DragAndDrop>(false, true);
+	miniManualEnt_->addComponent<DragAndDrop>(false, true, "arrastrar");
 
 	Trigger* mmTri = miniManualEnt_->getComponent<Trigger>();
-
+	//Luis: TODO refactorizacion del codigo -> seguramente meter en un componente 
 
 	mmTri->addCallback([this, mmTri, manualTransform, minimanualX, minimanualY](ecs::Entity* entRec) {
 
@@ -394,7 +492,7 @@ void ecs::MainScene::createMiniManual() {
 			
 		}
 
-	});
+	}, generalData().DropIn);
 
 
 	factory_->setLayer(ecs::layer::DEFAULT);
@@ -410,7 +508,7 @@ void ecs::MainScene::createSpaceManual() {
 
 	factory_->setLayer(ecs::layer::BACKGROUND);
 
-	Texture* bookTextures = &sdlutils().images().at("cartelArtemisa");
+	Texture* bookTextures = &sdlutils().images().at("atrilManual");
 	
 	auto baseManual = factory_->createImage(Vector2D(1200, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
 	
@@ -434,7 +532,7 @@ void ecs::MainScene::createSpaceManual() {
 
 		}
 
-	});
+	}, generalData().DropIn);
 	
 
 	factory_->setLayer(ecs::layer::DEFAULT);
@@ -530,12 +628,12 @@ void ecs::MainScene::makeControlsWindow()
 	}
 
 	//Todavia no es funcinal ya que no hay forma actual de limitar las mecánicas
-	if (ImGui::CollapsingHeader("Días"))
+	/*if (ImGui::CollapsingHeader("Días"))
 	{
 		int day = generalData().getDia();
 		ImGui::InputInt("Día", &day);
 		generalData().setDia(day);
-	}
+	}*/
 	ImGui::End();
 }
 #endif // DEV_TOOLS

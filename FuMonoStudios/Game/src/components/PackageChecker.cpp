@@ -12,7 +12,14 @@
 #include <components/ErrorNote.h>
 #include <QATools/DataCollector.h>
 
-PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc) : toDis_(dis), extraCond_(),mainSc_(sc)
+PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc) : 
+	toDis_(dis), extraCond_(),mainSc_(sc), tutSc_(nullptr)
+{
+
+}
+
+PackageChecker::PackageChecker(pq::Distrito dis, ecs::TutorialScene* sc) :
+	toDis_(dis), extraCond_(), tutSc_(sc), mainSc_(nullptr)
 {
 
 }
@@ -27,7 +34,7 @@ void PackageChecker::initComponent()
 	std::function<void(ecs::Entity*)> call = [this](ecs::Entity* ent) {checkEntity(ent); };
 	Trigger* tri = ent_->getComponent<Trigger>();
 	assert(tri != nullptr);
-	tri->addCallback(call);
+	tri->addCallback(call, generalData().DropIn);
 }
 
 void PackageChecker::addCondition(Condition newCond)
@@ -65,19 +72,28 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 		mover->enable();
 
 		ent->addComponent<SelfDestruct>(1,[this](){
-			if (mainSc_ != nullptr) mainSc_->createPaquete(generalData().getPaqueteLevel());
+			if (mainSc_ != nullptr)
+				mainSc_->createPaquete(generalData().getPaqueteLevel());
+			else if (tutSc_ != nullptr)
+				tutSc_->packageSent();
 			});
+		bool correct = checkPackage(ent->getComponent<Paquete>());
+		if (correct) {
 
-		if (checkPackage(ent->getComponent<Paquete>())) {			
 			GeneralData::instance()->correctPackage();
 		}
 		else {			
 			GeneralData::instance()->wrongPackage();
-			mainSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo,
-				toDis_ != ent->getComponent<Paquete>()->getDistrito());
+			if (mainSc_ != nullptr)
+				mainSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo,toDis_ != ent->getComponent<Paquete>()->getDistrito());
+			else if (tutSc_ != nullptr)
+				tutSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo, toDis_ != ent->getComponent<Paquete>()->getDistrito());
+				
 		}
 #ifdef QA_TOOLS
-		dataCollector().recordPacage(ent->getComponent<Paquete>());
+
+		dataCollector().recordPacage(ent->getComponent<Paquete>(), correct);
+
 #endif // QA_TOOLS
 	}
 	else
