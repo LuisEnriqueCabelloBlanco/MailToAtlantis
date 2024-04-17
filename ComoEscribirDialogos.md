@@ -23,3 +23,7 @@ Para poner acentos hace falta poner un ' $ ' ANTES de la vocal que queremos tene
 ```
 "Buenos d$ias" = "Buenos días"
 ```
+
+### Ñ, ¿, ¡
+
+Para la Ñ poner un ```$%```, para la ¿ poner ```$?```, para la ¡ poner ```$!```
