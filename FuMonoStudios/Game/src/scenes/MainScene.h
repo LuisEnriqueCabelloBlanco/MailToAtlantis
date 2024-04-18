@@ -57,6 +57,8 @@ namespace ecs {
         
         ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
 
+        void startWork();
+
 #ifdef DEV_TOOLS
         bool nextPacageCorrect_;
         bool stampsUnloked_;

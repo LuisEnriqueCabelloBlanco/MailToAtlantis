@@ -675,8 +675,16 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 		std::string a = "EsclavaRemix";
 		dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(1));
 		};
+	dialogMngr_.setEndDialogueCallback([this](){
+		std::cout << "Los callbacks de final de dialogo funcionan";
+	});
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
 
 	return characterEnt;
+}
+
+void ecs::MainScene::startWork()
+{
+	
 }

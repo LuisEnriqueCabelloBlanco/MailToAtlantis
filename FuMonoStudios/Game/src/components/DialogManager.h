@@ -1,6 +1,7 @@
 // dialog_manager.h
 #pragma once
 
+#include <functional>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -78,6 +79,7 @@ public:
 
     inline bool getCanStartConversation() { return canStartConversation; }
 
+    void setEndDialogueCallback(std::function<void()> func) { endDialogueCallback = func; }
 
 private:
     void fixText(std::string& text);
@@ -139,4 +141,9 @@ private:
     /// entidad del texto del dialogo
     /// </summary>
     ecs::Entity* textDialogue;
+
+    /// <summary>
+    /// entidad del texto del dialogo
+    /// </summary>
+    std::function<void()> endDialogueCallback;
 };
