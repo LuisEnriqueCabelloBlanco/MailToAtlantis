@@ -11,12 +11,14 @@ public:
 
     }
     void init() override;
+    virtual void update() override;
 private:
     void nextEnding();
     void loadEnd(Personaje npc, JSONObject& ent);
-    ecs::Entity* endImage;
-    ecs::Entity* endText;
-    std::unordered_map<std::string,std::vector<std::string>> endTexts;
-    int npcId;
+    ecs::Entity* endImage_;
+    ecs::Entity* endText_;
+    NPCdata* currentNPC;
+    std::unordered_map<Personaje,std::unordered_map<Felicidad,std::string>> endTexts_;
+    int npcId_;
 };
 

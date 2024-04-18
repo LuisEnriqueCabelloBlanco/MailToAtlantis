@@ -12,6 +12,7 @@
 #include "../scenes/ExplorationScene.h"
 #include "../scenes/EndWorkScene.h"
 #include "../scenes/PauseScene.h"
+#include <scenes/EndGameScene.h>
 #include "../scenes/TutorialScene.h"
 #include "Time.h"
 #include "GeneralData.h"
@@ -34,7 +35,7 @@ Game::Game() :exit_(false) {
 	SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
 
 	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),
-		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new ecs::TutorialScene()};
+		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new EndGameScene(),new ecs::TutorialScene()};
 
 	loadScene(ecs::sc::MENU_SCENE);
 }

@@ -33,27 +33,33 @@ void EndWorkScene::init() {
 	factory_->createLabel(pos + Vector2D(0, -300), "Alquiler: -" + std::to_string(generalData().getRent()), 50);
 	factory_->createLabel(pos + Vector2D(0, -400), "Fallos: " + std::to_string(generalData().getFails()), 50);
 	factory_->createLabel(pos + Vector2D(0, -500), "Correctos: " + std::to_string(generalData().getCorrects()), 50);
-	auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
-	factory_->createTextuButton(pos + Vector2D(0, 70), "Nuevo dia", 50,call);
 	//generalData().resetFailsCorrects();
-	generalData().setDia(generalData().getDia() + 1);
+
+
   
 	int money = generalData().getMoney();
 
+	std::function<void()> call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
 	if (money >= 0) {
 		std::string msgPass = "Pasaste el dia ";
 		factory_->createLabel(Vector2D(pos.getX(), 800), msgPass, 50);
-		auto call1 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
 		generalData().resetFailsCorrects();
 		int currentDay = generalData().getDia();
+		if (currentDay < 14) {
+			generalData().setDia(generalData().getDia() + 1);
+		}
+		else {
+			call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::END_SCENE);};
+		}
 	}
 	else
 	{
 		std::string msgPass = "No has pagado, deportado ";
 		factory_->createLabel(Vector2D(pos.getX(), 800), msgPass, 50);
-		auto call2 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
+		call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
 		generalData().resetFailsCorrects();
 		generalData().setDia(1);
 	}
 
+	factory_->createTextuButton(pos + Vector2D(0, 70), "Nuevo dia", 50,call);
 }

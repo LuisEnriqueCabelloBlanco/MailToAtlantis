@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <unordered_map>
 namespace npc {
 	// enum con tipos de felicidad
 	enum Felicidad { Minima, Mala, Normal, Buena, Maxima, NoHabladoAun };
@@ -8,6 +9,17 @@ namespace npc {
 	// enum con el nombre de todos los NPC
 	enum Personaje {
 		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable
+	};
+
+
+	const std::unordered_map<Personaje, std::string> personajeToString = {
+		{Vagabundo,"Vagabundo"},
+		{Secretario,"Secretario"},
+		{Campesino,"Campesino"},
+		{Artesano,"Artesano"},
+		{Tarotisa, "Tarotisa"},
+		{Soldado, "Soldado"},
+		{Contable, "Contable"}
 	};
 
 	// Los datos de los NPC deben actualizarse al acabar cada día.
@@ -28,6 +40,8 @@ namespace npc {
 	// Y LOS EVENTOS DE CADA NPC, AUN NO ESTA IMPLEMENTADO, SOLO ESTA PUESTO
 	// LO DE LOS DIALOGOS
 	struct NPCdata {
+
+		Personaje npcId;
 		Felicidad felicidad;
 		virtual std::pair<const std::string, int> getDialogueInfo() = 0;
 

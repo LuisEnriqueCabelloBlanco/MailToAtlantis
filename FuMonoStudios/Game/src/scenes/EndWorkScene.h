@@ -6,4 +6,5 @@ public:
 	EndWorkScene();
 	virtual ~EndWorkScene();
 	void init() override;
+	
 };

@@ -16,7 +16,7 @@ GeneralData::GeneralData()
 	failsMargin_ = INITIAL_FAILS_MARGIN;
 	corrects_ = 0;
 	fails_ = 0;
-	dia_ = 1;
+	dia_ = INITIAL_DAY;
 	rent_ = 75;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
 
@@ -218,23 +218,23 @@ void GeneralData::readNPCData() {
 		jValueRoot = root[aux];
 
 		JSONObject jObject = jValueRoot->AsObject();
-		std::string felicidadStr = jObject.find("Felicidad")->second->AsString();
+		std::string felicidadStr = jObject["Felicidad"]->AsString();
 
 		if (i < 2) // npc grandes
 		{
-			npcData.push_back(new NPCMayorData(stringToFelicidad(felicidadStr)));
+			npcData[(Personaje)i] = new NPCMayorData(stringToFelicidad(felicidadStr));
 		}
 		else
 		{
 			std::vector<bool> diasDanEventos;
 			jObject = jValueRoot->AsObject();
-			JSONObject jDiasEvento = jObject.find("DiasConEvento")->second->AsObject();
+			JSONObject jDiasEvento = jObject["DiasConEvento"]->AsObject();
 			// leemos los 14 booleanos
 			for (int i = 0; i < 14; i++)
 			{
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(i + 1))->second->AsBool());
 			}
-			npcData.push_back(new NPCMenorData(stringToFelicidad(felicidadStr),diasDanEventos));
+			npcData[(Personaje)i] = new NPCMenorData(stringToFelicidad(felicidadStr),diasDanEventos);
 		}
 		
 	}
@@ -318,7 +318,7 @@ Felicidad GeneralData::stringToFelicidad(const std::string& str)
 void GeneralData::setDayData() {
 	for (int i = 0; i < 7; i++)
 	{
-		npcData[i]->setupDayData();
+		npcData.at((Personaje)i)->setupDayData();
 	}
 }
 

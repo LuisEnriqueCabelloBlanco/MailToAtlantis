@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <unordered_map>
 
 class DialogManager;
 class Paquete;
@@ -131,7 +132,7 @@ private:
 	void reduceMoney(int cant) { dinero_ -= cant; }
 
 	// vector que contiene los datos de todos los 7 npc
-	std::vector<NPCdata*> npcData;
+	std::unordered_map<Personaje,NPCdata*> npcData;
 
 	int fails_;
 	int corrects_;

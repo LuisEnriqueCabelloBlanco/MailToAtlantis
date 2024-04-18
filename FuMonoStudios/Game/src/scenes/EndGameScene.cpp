@@ -9,7 +9,7 @@
 
 EndGameScene::EndGameScene()
 {
-    std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile("recursos/data/dialogos.json"));
+    std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile("recursos/data/ends.json"));
 
     // check it was loaded correctly
     // the root must be a JSON object
@@ -26,7 +26,7 @@ EndGameScene::EndGameScene()
         loadEnd((Personaje)i, root);
     }
     
-    std::vector<Texture*> texturesArray = {
+  /*  std::vector<Texture*> texturesArray = {
         &sdlutils().images().at("placeHolder"),
         &sdlutils().images().at("placeHolder"),
         &sdlutils().images().at("placeHolder"),
@@ -36,30 +36,37 @@ EndGameScene::EndGameScene()
         &sdlutils().images().at("placeHolder"),
     };
     factory_->setLayer(ecs::layer::BACKGROUND);
-    endImage = factory_->createMultiTextureImage(Vector2D(0, 0), Vector2D(600, 600), texturesArray);
-    npcId = 0;
-    endText = factory_->createLabel(Vector2D(300, 900),1000,
-        endTexts[generalData().personajeToString((Personaje)npcId)][generalData().getNPCData((Personaje)npcId)->felicidad], 
-        50);
+    endImage_ = factory_->createMultiTextureImage(Vector2D(0, 0), Vector2D(600, 600), texturesArray);*/
+   
 }
 
 
 
 void EndGameScene::init()
 {
-    //TODO: añadir un contador para que sea necesario leer un mínimo
-    if (ih().mouseButtonDownEvent()) {
+    npcId_ = 0;
+    endText_ = factory_->createLabel(Vector2D(300, 900), 1000,
+        endTexts_[(Personaje)npcId_][generalData().getNPCData((Personaje)npcId_)->felicidad], 
+        50);
+}
+
+void EndGameScene::update()
+{
+    //TODO: anadir un contador para que sea necesario leer un mínimo
+    if (ih().mouseButtonDownEvent() && npcId_ < 7) {
         nextEnding();
     }
-
 }
+
+
 
 void EndGameScene::nextEnding()
 {
+    npcId_++;
+    Personaje npc = (Personaje)npcId_;
     //endImage->getComponent<RenderImage>();
-
-    //TODO: hacer un metodo en la factory para crear texturas a partir de texto
-    endText->addComponent<RenderImage>();
+    Texture* endText = factory_->createTextTexture(endTexts_[npc][generalData().getNPCData(npc)->felicidad], 50);
+    endText_->getComponent<RenderImage>()->setTexture(endText);
 }
 
 void EndGameScene::loadEnd(Personaje npc, JSONObject& root)
@@ -69,18 +76,13 @@ void EndGameScene::loadEnd(Personaje npc, JSONObject& root)
     jsonEntry = root[charac];
     if (jsonEntry != nullptr)
     {
-        int i = 0;
-        for (auto& value : jsonEntry->AsArray())
-        {
-            if (value->IsString()) {
-                endTexts[charac][i] = value->AsString();
-                //añadir cada linea segun su felicidad de el personaje inidcado
-            }
-            else {
-                throw std::runtime_error("Valor no string en el array");
-            }
-            i++;
-        }
+        auto data = jsonEntry->AsObject();
+        endTexts_[npc][Minima] = data["Mini"]->AsString();
+        endTexts_[npc][Mala] = data["Mala"]->AsString();
+        endTexts_[npc][Normal] = data["Normal"]->AsString();
+        endTexts_[npc][Buena] = data["Buena"]->AsString();
+        endTexts_[npc][Maxima] = data["Maxima"]->AsString();
+        endTexts_[npc][NoHabladoAun] = "No hablaste con este Personaje";
     }
     else
     {
