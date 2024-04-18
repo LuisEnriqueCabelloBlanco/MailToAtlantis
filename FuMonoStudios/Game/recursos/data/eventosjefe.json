@@ -246,24 +246,24 @@
     },
     "GenericoNormal": {
       "1": [
-        "Os aterrais de que queramos abolir la propiedad privada, como si ya en el seno de vuestra sociedad actual, la propiedad privada no estuviese abolida para nueve decimas partes de la poblacion."
+        "1normal"
       ],
       "2": [
-        "Los propietarios, al igual que todos los hombres, aman cosechar donde nunca sembraron."
+        "2normal"
       ],
       "3": [
-        "La sociedad burguesa moderna ha establecido nuevas clases, nuevas condiciones de opresion y nuevas formas de lucha."
+        "3normal"
       ]
     },
     "GenericoBueno": {
       "1": [
-        "La burguesia produce, ante todo, sus propios sepultureros. Su hundimiento y la victoria del proletariado son igualmente inevitables."
+        "1bueno"
       ],
       "2": [
-        "La burguesia produce, ante todo, sus propios sepultureros. Su hundimiento y la victoria del proletariado son igualmente inevitables."
+        "2bueno"
       ],
       "3": [
-        "La burguesia produce, ante todo, sus propios sepultureros. Su hundimiento y la victoria del proletariado son igualmente inevitables."
+        "3bueno"
       ]
     }
   },
@@ -530,7 +530,8 @@
       "Por si se te ha olvidado, te recordar$e como se trabaja. Ver$as que es muy sencillo."
     ],
     "1": [
-      "El manual es tu mejor amigo. S$acalo de su atril y arrastralo hasta encima de la mesa."
+      "Sabes qui$en es Alba?",
+      "Tu puta madre calva. "
     ],
     "2": [
       "En el manual est$a todo lo que necesitas saber sobre los paquetes que te ir$an llegando.",

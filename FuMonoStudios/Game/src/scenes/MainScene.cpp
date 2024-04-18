@@ -100,7 +100,7 @@ void ecs::MainScene::init()
 
 	createGarbage();
 
-	dialogMngr_.init(this);
+	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
 	createCharacter({ 400, 300 }, "Campesino", 0.1f);
 
 	//createPaquete(generalData().getPaqueteLevel());
@@ -607,6 +607,8 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, character]() {
 		dialogMngr_.startConversation(character);
+		std::string a = "EsclavaRemix";
+		dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(1));
 		};
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
