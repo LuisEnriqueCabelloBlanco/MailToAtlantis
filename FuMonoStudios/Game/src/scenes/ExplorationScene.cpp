@@ -221,23 +221,25 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, character]() {
 	    dialogMngr_.startConversation(character);
+
+		auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
+		auto data = generalData().getNPCData(charac); //data de dicho personaje
+
+		// activamos los dialogos correspondientes
+		std::pair<const std::string, int> aux = data->getDialogueInfo();
+
+		if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
+		{
+			NPCevent* event = data->getEvent();
+			for (int i = 0; i < event->numPaquetes; i++) {
+				generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+			}
+			generalData().npcEventSys->activateEvent(event);
+			generalData().npcEventSys->shuffleNPCqueue();
+		}
 	};
 
-	auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
-	auto data = generalData().getNPCData(charac); //data de dicho personaje
 
-	// activamos los dialogos correspondientes
-	std::pair<const std::string, int> aux = data->getDialogueInfo();
-
-	if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
-	{
-		NPCevent* event = data->getEvent();
-		for (int i = 0; i < event->numPaquetes; i++) {
-			generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
-		}
-		generalData().npcEventSys->activateEvent(event);
-		generalData().npcEventSys->shuffleNPCqueue();
-	}
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
 	
