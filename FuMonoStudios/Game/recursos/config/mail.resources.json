@@ -93,6 +93,10 @@
     {"id": "title","file": "recursos/images/titulo.png"},
     {"id": "fondoOficina","file": "recursos/images/OficinaProyectosDesenfocada.png"},
     {"id": "cinta","file": "recursos/images/Cinta.png"},
+    {"id": "baseBalanza","file": "recursos/images/BaseBalanza.png"},
+    {"id": "balanzaFlecha","file": "recursos/images/balanzaFlecha.png"},
+    {"id": "balanzaA","file": "recursos/images/balanzaA.png"},
+    {"id": "balanzaB","file": "recursos/images/balanzaB.png"},
 
     {"id": "caja25","file": "recursos/images/Caja_Envuelta_25.png"},
     {"id": "caja50","file": "recursos/images/Caja_Envuelta_50.png"},

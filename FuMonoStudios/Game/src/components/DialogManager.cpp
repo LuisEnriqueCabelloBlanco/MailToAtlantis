@@ -236,51 +236,55 @@ void DialogManager::setDialogueEntitiesActive(bool onoff)
 
 void DialogManager::fixText(std::string& text)
 {
-    crearTildes(text);
-}
-
-void DialogManager::crearTildes(std::string& aux)
-{
-    size_t pos = 0;
-    while ((pos = aux.find('$', pos)) != std::string::npos) {
-        if (pos > 0) {
-            std::string acento;
-            switch (aux[pos + 1]) {
-                case 'a':
-                    acento = "á";
-                    break;
-                case 'e':
-                    acento = "é";
-                    break;
-                case 'i':
-                    acento = "í";
-                    break;
-                case 'o':
-                    acento = "ó";
-                    break;
-                case 'u':
-                    acento = "ú";
-                    break;
-                case 'A':
-                    acento = "Á";
-                    break;
-                case 'E':
-                    acento = "É";
-                    break;
-                case 'I':
-                    acento = "Í";
-                    break;
-                case 'O':
-                    acento = "Ó";
-                    break;
-                case 'U':
-                    acento = "Ú";
-                    break;
-            }
-            aux.replace(pos, 2, acento);  // Reemplazar el carácter anterior y el $
-        }
-        pos++;  // Avanzar la posición de búsqueda para evitar un bucle infinito si se encuentra un $
+  size_t pos = 0;
+  while ((pos = text.find('$', pos)) != std::string::npos) {
+    if (pos > 0) {
+      std::string newChar;
+      switch (text[pos + 1]) {
+      case 'a':
+        newChar = "á";
+        break;
+      case 'e':
+        newChar = "é";
+        break;
+      case 'i':
+        newChar = "í";
+        break;
+      case 'o':
+        newChar = "ó";
+        break;
+      case 'u':
+        newChar = "ú";
+        break;
+      case 'A':
+        newChar = "Á";
+        break;
+      case 'E':
+        newChar = "É";
+        break;
+      case 'I':
+        newChar = "Í";
+        break;
+      case 'O':
+        newChar = "Ó";
+        break;
+      case 'U':
+        newChar = "Ú";
+        break;
+      case '!':
+        newChar = "¡";
+        break;
+      case '?':
+        newChar = "¿";
+        break;
+      case '%':
+        newChar = "ñ";
+        break;
+      }
+      text.replace(pos, 2, newChar);  // Reemplazar el carácter anterior y el $
     }
+    pos++;  // Avanzar la posición de búsqueda para evitar un bucle infinito si se encuentra un $
+  }
 }
 
 std::string DialogManager::dialogSelectionToString(const DialogSelection ds)

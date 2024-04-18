@@ -5,18 +5,19 @@
 #include <list>
 
 constexpr float SCALE_NPCS = 0.25;
+class NPCeventSystem;
 
 namespace ecs {
 
 	/// <summary>
-	/// Struct que guarda la informaci�n de cada lugar, tiene el fondo a renderizar, un booleano para saber si se 
-	/// puedenavegar a �l, un mapa con las direcciones que conectan a �l (a las que no tiene por qu� poder navegarse),
+	/// Struct que guarda la informacion de cada lugar, tiene el fondo a renderizar, un booleano para saber si se 
+	/// puedenavegar a el, un mapa con las direcciones que conectan a el (a las que no tiene por que poder navegarse),
 	/// y una lista de punteros a las entidades propias del lugar (perosonajes y flechas de movimiento) 
-	/// Tiene m�todos para a�adir direcciones al lugar (necesita un string y una instancia de lugar), un booleano
+	/// Tiene metodos para anadir direcciones al lugar (necesita un string y una instancia de lugar), un booleano
 	/// que indica si cierto lugar (indicado con el string del mapa) es navegable, un getPlaceFromDirection 
-	/// que devuelve un puntero apuntando la posici�n de memoria de un lugar del mapa de direcciones (se usa para 
+	/// que devuelve un puntero apuntando la posicion de memoria de un lugar del mapa de direcciones (se usa para 
 	/// moverte por el mapa) y un getTexture (se usa para renderizar el background en el mapa).
-	/// No hay destructora porque no se genera nueva memoria din�mica.
+	/// No hay destructora porque no se genera nueva memoria dinamica.
 	/// </summary>
 	/// 
 	struct Lugar {
@@ -59,12 +60,12 @@ namespace ecs {
 		void addObjects(ecs::Entity* e);
 
 		/// <summary>
-		/// método para comprobar la propia navegabilidad de un lugar
+		/// metodo para comprobar la propia navegabilidad de un lugar
 		/// </summary>
 		bool isNavegable() const;
 
 		/// <summary>
-		/// Método para setear la navegabilidad a true o false en función de value, vale true si no introduces valor
+		/// Metodo para setear la navegabilidad a true o false en funcion de value, vale true si no introduces valor
 		/// </summary>
 		/// <param name="value"></param>
 		void setNavegability(bool value = true);
@@ -78,7 +79,7 @@ namespace ecs {
 		//Bool que permite la navegacion
 		bool navegable_;
 
-		//Mapa con las direcciones adyacentes al lugar (a las que no tiene por qu� poderse navegar)
+		//Mapa con las direcciones adyacentes al lugar (a las que no tiene por que poderse navegar)
 		std::unordered_map<std::string, Lugar*> directions_;
 
 		// Las entidades del lugar se almacenan como las de la escena, en vectores de objetos organizados en layouts
@@ -124,8 +125,6 @@ namespace ecs {
 		/// </summary>
 		void createObjects(int place);
 
-		void createPlaces();
-
 		/// <summary>
 		/// Metodo factoria para las flechas de navegacion
 		/// </summary>
@@ -138,26 +137,25 @@ namespace ecs {
 		/// </summary>
 
 		/// <summary>
-		/// Método para setar la navegabilidad de placeDir lugar, valor por defecto = true
+		/// Metodo para setar la navegabilidad de placeDir lugar, valor por defecto = true
 		/// </summary>
 		/// <param name="placeDir"></param>
 		/// <param name="value"></param>
 		void setNavegabilityOfPlace(int place, bool value = true);
 
 		/// <summary>
-		/// Método para actualizar la navegabilidad según el día
+		/// Metodo para actualizar la navegabilidad segun el dia
 		/// </summary>
 		void updateNavegavility();
 		ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
         
 		//VARIABLES
 
-		std::vector<Lugar> lugares;
+		//unordered_map, Lugar*
+		std::unordered_map<std::string, Lugar> lugares;
 
 		//Puntero al lugar actual
 		Lugar* actualPlace_;	
-
-		int numLugares;
 
 		//rect para renderizar el BackGround
 		SDL_Rect rect_;
@@ -165,6 +163,15 @@ namespace ecs {
 		DialogManager dialogMngr_;
 
 		std::vector<int> placeToGo;
+
+		int placeToGo;
+	
+		// entidades del dialogo
+		ecs::Entity* boxBackground;
+		ecs::Entity* textDialogue;
+
+		// flag para saber si podemos entablar dialogo
+		bool canStartConversation;
 
 		ecs::Entity* boton_Trabajo;
     };

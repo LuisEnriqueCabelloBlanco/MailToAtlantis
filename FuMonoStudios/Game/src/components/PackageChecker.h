@@ -8,6 +8,7 @@
 #include <functional>
 
 using Condition = std::function<bool(Paquete*)>;
+class NPCeventSystem;
 
 class PackageChecker : public ecs::Component
 {
