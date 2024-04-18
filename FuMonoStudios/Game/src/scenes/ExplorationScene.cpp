@@ -21,7 +21,7 @@
 
 #include "../sistemas/NPCeventSystem.h"
 
-ecs::ExplorationScene::ExplorationScene() :Scene(), numLugares(7)
+ecs::ExplorationScene::ExplorationScene() :Scene()
 {
 
 }
@@ -223,43 +223,29 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	    dialogMngr_.startConversation(character);
 	};
 
+	auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
+	auto data = generalData().getNPCData(charac); //data de dicho personaje
+
+	// activamos los dialogos correspondientes
+	std::pair<const std::string, int> aux = data->getDialogueInfo();
+
+	if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
+	{
+		NPCevent* event = data->getEvent();
+		for (int i = 0; i < event->numPaquetes; i++) {
+			generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+		}
+		generalData().npcEventSys->activateEvent(event);
+		generalData().npcEventSys->shuffleNPCqueue();
+	}
+
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
 	
 	//return characterEnt;
 
-		if (canStartConversation)
-		{
-			auto charac = generalData().stringToPersonaje(character);
-			auto data = generalData().getNPCData(charac);
-			canStartConversation = false;
+	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
 
-			boxBackground->getComponent<RenderImage>()->setTexture(&sdlutils().images().at("cuadroDialogo"));
-			// activamos los dialogos correspondientes
-			std::pair<const std::string, int> aux = data->getDialogueInfo();
-
-			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
-
-			textDialogue->addComponent<DialogComponent>(&dialogMngr_, this);
-
-			if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
-			{
-				NPCevent* event = data->getEvent();
-				for (int i = 0; i < event->numPaquetes; i++) {
-					generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
-				}
-				generalData().npcEventSys->activateEvent(event);
-				generalData().npcEventSys->shuffleNPCqueue();
-			}
-				
-
-			dataCollector().recordNPC(charac +1,aux.second, generalData().getNPCData(charac)->felicidad);
-		}
-	};
-
-	ecs::Entity* BotonPress = factory.createImageButton(pos, size, texturaBoton, funcPress);
-	factory.addHoverColorMod(BotonPress, build_sdlcolor(0xccccccff));
-
-	return BotonPress;
+	return characterEnt;
 }
 
 void ecs::ExplorationScene::setNavegabilityOfPlace(int place, bool value)

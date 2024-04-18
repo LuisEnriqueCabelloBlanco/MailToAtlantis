@@ -204,6 +204,8 @@ void DialogManager::startConversation(const std::string& character)
 
         setDialogueEntitiesActive(true);
 
+
+
         std::cout << "jefe otro dialogo que este tenia un agujero\n";
         dataCollector().recordNPC(charac + 1, aux.second, generalData().getNPCData(charac)->felicidad);
         canStartConversation = false;

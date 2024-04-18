@@ -162,8 +162,6 @@ namespace ecs {
 
 		DialogManager dialogMngr_;
 
-		std::vector<int> placeToGo;
-
 		int placeToGo;
 	
 		// entidades del dialogo
