@@ -21,7 +21,7 @@
 
 #include "../sistemas/NPCeventSystem.h"
 
-ecs::ExplorationScene::ExplorationScene() :Scene(), numLugares(7)
+ecs::ExplorationScene::ExplorationScene() :Scene()
 {
 	
 
