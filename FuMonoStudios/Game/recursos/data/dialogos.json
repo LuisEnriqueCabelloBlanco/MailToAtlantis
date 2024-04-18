@@ -381,84 +381,84 @@
       "Mis tent$aculos son como pinceles y mis obras ser$an el patrimonio de Atlantis al paso de los anyos!"
     ],
     "FelicidadMinima": [
-      "*Al intentar hablar con el en el taller, te encuentras con una atmósfera cargada de pesar y desesperación.*",
-      "*El pulpo artesano te mira con ojos cansados y una expresión de profunda tristeza.*",
-      "No... No puedo más... Todo está perdido. El arte, mi pasión, mi vida... Todo se ha desvanecido... Ya no hay materiales, ya no hay inspiración...",
-      "Todo ha sido un desastre... Lo siento... Pero no puedo... No puedo más... Por favor... déjame... déjame solo…"
+      "*Al intentar hablar con el en el taller, te encuentras con una atm&osfera cargada de pesar y desesperaci&on.*",
+      "*El pulpo artesano te mira con ojos cansados y una expresi&on de profunda tristeza.*",
+      "No... No puedo m&as... Todo est&a perdido. El arte, mi pasi&on, mi vida... Todo se ha desvanecido... Ya no hay materiales, ya no hay inspiraci&on...",
+      "Todo ha sido un desastre... Lo siento... Pero no puedo... No puedo m&as... Por favor... d&ejame... d&ejame solo…"
     ],
     "FelicidadMaxima": [
-      "¡Oh, por todos los océanos! ¡Increíble! ¡Fantástico! ¡Al fin! ¡Por fin te veo con mis propios ojos!",
-      "¡Un ser humano de verdad, aquí, en este humilde taller! ¡No estaba loco, no!",
-      "Y no solo eso, ¡mira a tu alrededor! ¡Materiales en abundancia, listos para comenzar una nueva era artística! ¡Imagina las creaciones que podríamos hacer juntos!",
-      "Gracias por mostrarme tu secreto y tranquilo a estas horas nadie nos habrá visto. Además, no te preocupes, no le dire a nadie esto Paco amigo mio"
+      "&!Oh, por todos los oc&eanos! &!Incre&ible! &!Fant&astico! &!Al fin! &!Por fin te veo con mis propios ojos!",
+      "&!Un ser humano de verdad, aqu&i, en este humilde taller! &!No estaba loco, no!",
+      "Y no solo eso, &!mira a tu alrededor! &!Materiales en abundancia, listos para comenzar una nueva era art&istica! &!Imagina las creaciones que podr&iamos hacer juntos!",
+      "Gracias por mostrarme tu secreto y tranquilo a estas horas nadie nos habr&a visto. Adem&as, no te preocupes, no le dire a nadie esto Paco amigo mio"
     ],
     "Eventos": {
       "1": [
-        "¡Por todos percebes! ¡Estoy en un aprieto, amigo! Hoy fui a recoger materiales para mi última creación y para mi desgracia no había ni un mísero coral!",
+        "&!Por todos percebes! &!Estoy en un aprieto, amigo! Hoy fui a recoger materiales para mi &ultima creaci&on y para mi desgracia no hab&ia ni un m&isero coral!",
         "Necesito esos materiales como el pulpo que necesita agua!",
-        "¿Sabes qué? No sería el fin del mundo si un solo paquete de materiales se extraviara y terminara por algún remoto error en este taller, ¿verdad?"
+        "&?Sabes qu&e? No ser&ia el fin del mundo si un solo paquete de materiales se extraviara y terminara por alg&un remoto error en este taller, &?verdad?"
       ],
       "2": [
-        "¡No brilla! ¡No resplandece! ¿Y las joyas? ¿Y las Perlas? Necesito un favor, creo que ya te haces una idea,",
-        "no quiero ponerte en un aprieto pero es que mi jefe no para de abaratar la mercancía...",
-        "¿A quién quiere mi jefe engañar con esta baratija? Consigueme desviar un paquete, se que no te decepcionaré!"
+        "&!No brilla! &!No resplandece! &?Y las joyas? &?Y las Perlas? Necesito un favor, creo que ya te haces una idea,",
+        "no quiero ponerte en un aprieto pero es que mi jefe no para de abaratar la mercanc&ia...",
+        "&?A qui&en quiere mi jefe enga$%ar con esta baratija? Consigueme desviar un paquete, se que no te decepcionar&e!"
       ],
       "3": [
-        "¡Ay, por las aletas de mi abuela! Aquí estamos otra vez, sin un triste trozo de queso." ,
-        "No sé en qué está pensando el jefe últimamente, pero parece que su cabeza está más en las aguas que en el trabajo.",
-        "¿Serías tan amable de echarme una mano y traer algo de comida? ¡Necesitamos nutrir nuestra creatividad para hacerla brillar!"
+        "&!Ay, por las aletas de mi abuela! Aqu&i estamos otra vez, sin un triste trozo de queso." ,
+        "No s&e en qu&e est&a pensando el jefe &ultimamente, pero parece que su cabeza est&a m&as en las aguas que en el trabajo.",
+        "&?Ser&ias tan amable de echarme una mano y traer algo de comida? &!Necesitamos nutrir nuestra creatividad para hacerla brillar!"
       ],
       "4": [
-        "¡Caracolas! Sé que esto te sonará mal Paco pero necesito que me hagas un favor.",
-        "Un cliente nos pidió hacerle una escultura con tungsteno, pero entre las prisas de mi jefe y mi propia confusión acaba haciéndola de hierro.",
-        "El exterior es casi el mismo pero pesa mucho menos de lo que debería el paquete.",
+        "&!Caracolas! S&e que esto te sonar&a mal Paco pero necesito que me hagas un favor.",
+        "Un cliente nos pidi&o hacerle una escultura con tungsteno, pero entre las prisas de mi jefe y mi propia confusi&on acaba haci&endola de hierro.",
+        "El exterior es casi el mismo pero pesa mucho menos de lo que deber&ia el paquete.",
         "Por favor haz la vista gorda con esa balanza tuya."
       ],
       "5": [
-        "¡Por todos los corales! como puedo ser tan despistado.",
-        "Un cliente nos pidió un jarrón de vidrio, algo muy frágil y delicado.",
+        "&!Por todos los corales! como puedo ser tan despistado.",
+        "Un cliente nos pidi&o un jarr&on de vidrio, algo muy fr&agil y delicado.",
         "Sin embargo a la hora de enviarlo se me olvido poner el sello de fragil para que se envuelva con cuidado.",
-        "Por favor, crees que podrías embalar mi paquete aunque no tenga el sello de fragilidad.",
+        "Por favor, crees que podr&ias embalar mi paquete aunque no tenga el sello de fragilidad.",
         "No quiero causarte problemas pero es que sino me echaran una bronca gigantequisima."
       ]
     },
     "GenericoMalo": {
       "1": [
-        "Hoy me encuentro bastante depresivo. ¡Mi jefe me tiene trabajando como un esclavo! No puedo ni siquiera tomar un respiro para charlar.",
-        "Déjame confesarte algo... El jefe no siempre entiende mi visión artística.",
-        "Para él, solo importan las cosas prácticas y funcionales. ¡Pero yo sé que hay más en la vida que la mera utilidad!",
-        "Te pido por favor que envíes correctamente los paquetes de Hefesto, ya de por sí las cosas no son fáciles, no las compliques más.",
-        "Ahora déjame, prefiero estar solo…"
+        "Hoy me encuentro bastante depresivo. &!Mi jefe me tiene trabajando como un esclavo! No puedo ni siquiera tomar un respiro para charlar.",
+        "D&ejame confesarte algo... El jefe no siempre entiende mi visi&on art&istica.",
+        "Para &el, solo importan las cosas pr&acticas y funcionales. &!Pero yo s&e que hay m&as en la vida que la mera utilidad!",
+        "Te pido por favor que env&ies correctamente los paquetes de Hefesto, ya de por s&i las cosas no son f&aciles, no las compliques m&as.",
+        "Ahora d&ejame, prefiero estar solo…"
       ],
       "2": [
-        "Maldita sea, el otro día se rieron de mi última creación, una fantastica obra de arte dedicada a los mitologicos humanos, lo llamé la Vid de Alga Angel.",
-        "Entre tú y yo, mi querido amigo, no todos comprenden la verdadera belleza de mis creaciones…",
-        "Lo lamento mucho pero hoy estoy completamente sumergido en el trabajo, cada vez que no envías los paquetes la presión del taller recae más sobre mí,",
+        "Maldita sea, el otro d&ia se rieron de mi &ultima creaci&on, una fantastica obra de arte dedicada a los mitologicos humanos, lo llam&e la Vid de Alga Angel.",
+        "Entre t&u y yo, mi querido amigo, no todos comprenden la verdadera belleza de mis creaciones…",
+        "Lo lamento mucho pero hoy estoy completamente sumergido en el trabajo, cada vez que no env&ias los paquetes la presi&on del taller recae m&as sobre m&i,",
         "por favor, manda los paquetes querido."
       ],
       "3": [
-        "Sabes, amigo, el otro día tuve una experiencia bastante desagradable. Un cliente vino a recoger su pedido y quedó muy decepcionado.",
-        "Resulta que los recortes en materiales que está implementando mi jefe últimamente están afectando a la calidad de mis creaciones.",
-        "Ahora mi jefe me metera cada vez más y más prisa, sin dejarme trabajar como a mi me gusta.",
-        "Si hubiera sabido que esto iba a ser así jamás me habría vuelto artesano."
+        "Sabes, amigo, el otro d&ia tuve una experiencia bastante desagradable. Un cliente vino a recoger su pedido y qued&o muy decepcionado.",
+        "Resulta que los recortes en materiales que est&a implementando mi jefe &ultimamente est&an afectando a la calidad de mis creaciones.",
+        "Ahora mi jefe me metera cada vez m&as y m&as prisa, sin dejarme trabajar como a mi me gusta.",
+        "Si hubiera sabido que esto iba a ser as&i jam&as me habr&ia vuelto artesano."
       ]
     },
     "GenericoNormal": {
       "1": [
-        "¡Hola, amigo! ¿Qué opinas de Gargafiel Mustaki? El otro día me lo encontré en el Pezer-King, ¡sí, en el mismísimo Pezer-King!",
-        "Fue una sorpresa verlo por allí después de tanto tiempo.",
-        "¿Quién iba a decir que el campesino que una vez llegó a mi taller buscando un poco de orientación se convertiría en nada menos que el mismísimo secretario del rey?",
-        "Es increíble cómo la vida nos sorprende a veces. Aunque ni siquiera me dirigió la palabra, creo que el poder le ha cambiado"
+        "&!Hola, amigo! &?Qu&e opinas de Gargafiel Mustaki? El otro d&ia me lo encontr&e en el Pezer-King, &!s&i, en el mism&isimo Pezer-King!",
+        "Fue una sorpresa verlo por all&i despu&es de tanto tiempo.",
+        "&?Qui&en iba a decir que el campesino que una vez lleg&o a mi taller buscando un poco de orientaci&on se convertir&ia en nada menos que el mism&isimo secretario del rey?",
+        "Es incre&ible c&omo la vida nos sorprende a veces. Aunque ni siquiera me dirigi&o la palabra, creo que el poder le ha cambiado"
       ],
       "2": [
-        "El otro día fui a ver a la tarotista, me dolía bastante la cabeza, el caso es que ella me recetó unas medicinas.",
-        "Fui al boticario más cercano y la verdad es que me sigue doliendo bastante la cabeza, como si no me hubiera hecho efecto…",
-        "Sin embargo, una simple migraña no me parará! El arte me llama!"
+        "El otro d&ia fui a ver a la tarotista, me dol&ia bastante la cabeza, el caso es que ella me recet&o unas medicinas.",
+        "Fui al boticario m&as cercano y la verdad es que me sigue doliendo bastante la cabeza, como si no me hubiera hecho efecto…",
+        "Sin embargo, una simple migra$%a no me parar&a! El arte me llama!"
       ],
       "3": [
-        "Sabes, hay algo que he mantenido en secreto durante mucho tiempo y siento que puedo compartirlo contigo. Hace un tiempo, encontré una maleta muy peculiar en las ruinas submarinas.",
-        "Estaba escondida entre los restos de un antiguo monumento, como si el mismísimo Poseidón la hubiera dejado allí como un regalo del pasado.",
-        "Al abrirla, descubrí una serie de objetos extraños y fascinantes. Algunos de ellos me resultaban familiares de las antiguas leyendas que escuchaba de niño,",
+        "Sabes, hay algo que he mantenido en secreto durante mucho tiempo y siento que puedo compartirlo contigo. Hace un tiempo, encontr&e una maleta muy peculiar en las ruinas submarinas.",
+        "Estaba escondida entre los restos de un antiguo monumento, como si el mism&isimo Poseid&on la hubiera dejado all&i como un regalo del pasado.",
+        "Al abrirla, descubr&i una serie de objetos extra$%os y fascinantes. Algunos de ellos me resultaban familiares de las antiguas leyendas que escuchaba de ni$%o,",
         "historias sobre seres misteriosos llamados humanos.",
         "Aunque no estoy completamente seguro de su origen, estas reliquias han despertado mi curiosidad y han inspirado mi creatividad como nunca antes."
       ]
@@ -466,37 +466,37 @@
     "GenericoBueno": {
       "1": [
         "Estoy emocionado por el futuro. He estado reflexionando sobre la idea de emprender mi propio negocio.",
-        "Aunque todavía tengo algunas dudas, siento que podría ser una oportunidad emocionante.",
-        "Además, quería agradecerte sinceramente por enviarme esos paquetes llenos de inspiración. Cada uno de ellos es como un pequeño tesoro que alimenta mi creatividad!"
+        "Aunque todav&ia tengo algunas dudas, siento que podr&ia ser una oportunidad emocionante.",
+        "Adem&as, quer&ia agradecerte sinceramente por enviarme esos paquetes llenos de inspiraci&on. Cada uno de ellos es como un peque$%o tesoro que alimenta mi creatividad!"
       ],
       "2": [
-        "¡Hola querido! ¿Qué te trae por aquí en este día tan fascinante?",
-        "¡Ah, yo siempre estoy lleno de energía y creatividad! Aunque hoy estoy especialmente emocionado porque estoy trabajando en un proyecto nuevo y emocionante.",
-        "¡Espero que pronto pueda mostrártelo! Sigue enviándome paquetes y llegaremos lejos!"
+        "&!Hola querido! &?Qu&e te trae por aqu&i en este d&ia tan fascinante?",
+        "&!Ah, yo siempre estoy lleno de energ&ia y creatividad! Aunque hoy estoy especialmente emocionado porque estoy trabajando en un proyecto nuevo y emocionante.",
+        "&!Espero que pronto pueda mostr&artelo! Sigue envi&andome paquetes y llegaremos lejos!"
       ],
       "3": [
-        "¡Hola de nuevo, querido amigo! Hoy estoy lleno de inspiración y energía creativa.",
-        "Estoy trabajando en una nueva serie de esculturas que exploran la conexión entre el mar y el cielo.",
-        "¿Sabías que he estado experimentando con materiales reciclados? Es un desafío emocionante, pero creo que el arte sostenible es el futuro.",
-        "Y hablando de futuros brillantes, quiero agradecerte sinceramente por seguir enviándome esos paquetes llenos de tesoros.",
-        "Cada uno de ellos es como un regalo que me impulsa hacia adelante en mi viaje artístico."
+        "&!Hola de nuevo, querido amigo! Hoy estoy lleno de inspiraci&on y energ&ia creativa.",
+        "Estoy trabajando en una nueva serie de esculturas que exploran la conexi&on entre el mar y el cielo.",
+        "&?Sab&ias que he estado experimentando con materiales reciclados? Es un desaf&io emocionante, pero creo que el arte sostenible es el futuro.",
+        "Y hablando de futuros brillantes, quiero agradecerte sinceramente por seguir envi&andome esos paquetes llenos de tesoros.",
+        "Cada uno de ellos es como un regalo que me impulsa hacia adelante en mi viaje art&istico."
       ]
     },
     "GenericoMaxiBueno": {
       "1": [
-        "¡Hoy mis tentáculos están a punto de estallar de alegría! Estoy dando los primeros pasos para construir mi propio taller de arte submarino.",
-        "¡Finalmente, podré liberar mi creatividad sin restricciones y sin la sombra de mi jefe! ¡Es un sueño hecho realidad! Y todo esto, querido amigo, es gracias a ti!"
+        "&!Hoy mis tent&aculos est&an a punto de estallar de alegr&ia! Estoy dando los primeros pasos para construir mi propio taller de arte submarino.",
+        "&!Finalmente, podr&e liberar mi creatividad sin restricciones y sin la sombra de mi jefe! &!Es un sue$%o hecho realidad! Y todo esto, querido amigo, es gracias a ti!"
       ],
       "2": [
-        "Divino, Divino, Divinoo! Mira que creación por favor! Y nada de esto habría sido posible sin tu ayuda! Siempre serás bienvenido aquí, cerca de mí y mi arte!"
+        "Divino, Divino, Divinoo! Mira que creaci&on por favor! Y nada de esto habr&ia sido posible sin tu ayuda! Siempre ser&as bienvenido aqu&i, cerca de m&i y mi arte!"
       ],
       "3": [
-        "La gente durante toda mi vida se ha reído de mí, por mi interés en los humanos y porque realmente creía en su existencia.",
-        "Aunque ha sido duro, jamás dejé de creer en ellos, en mi interior siempre he confiado en que estos están en algún lugar desconocido para nosotros.",
+        "La gente durante toda mi vida se ha re&ido de m&i, por mi inter&es en los humanos y porque realmente cre&ia en su existencia.",
+        "Aunque ha sido duro, jam&as dej&e de creer en ellos, en mi interior siempre he confiado en que estos est&an en alg&un lugar desconocido para nosotros.",
         "Es por ello que por fin he decidido dar el gran paso.",
-        "Dedicaré mi vida a mostrar a la gente de la Atlántida el esplendor de los humanos,",
-        "para que así, quizá viendo sus formas, se den cuenta que su existencia no es tan descabellada.",
-        "Si bien muchos se burlaran, se que otros confiaran en mí, tal como tu has hecho desde que nos conocimos Paco."
+        "Dedicar&e mi vida a mostrar a la gente de la Atl&antida el esplendor de los humanos,",
+        "para que as&i, quiz&a viendo sus formas, se den cuenta que su existencia no es tan descabellada.",
+        "Si bien muchos se burlaran, se que otros confiaran en m&i, tal como tu has hecho desde que nos conocimos Paco."
       ]
     }
   },
@@ -509,59 +509,138 @@
       "Ven a verme siempre que te preocupe algo, yo siempre estoy aqu$i para las pobres almas sin rumbo ni ambiciones."
     ],
     "FelicidadMinima": [
-      "Felicidad minima Tarotisa"
+      "Tu maldito atún sarnoso y desagradecido. No solo no me ayudas en mi negocio sino que encima me lo pones todo más difícil.",
+      "Realmente te crees tan superior en tu pequeña posición de poder.",
+      "Solo por manejar los paquetes del reino te crees en tu derecho de hacer imposible la vida de las personas, en especial de una pobre anciana como yo.",
+      "Escúchame atentamente lo que te digo, que caigan mil y una desgracias en tu vida,",
+      "que todo ese egoísmo te atragante hasta no dejarte respirar en paz, así lo pido a los más grandes.",
+      "No quiero volver a verte jamás en mi vida."
     ],
     "FelicidadMaxima": [
-      "Felicidad maxima Tarotisa"
+      "Realmente tienes un corazón puro muchacho.",
+      "Se que mi oficio no es especialmente noble, tu también lo descubriste a lo largo del tiempo,",
+      "pero no me repudiaste por eso, sino que vertiste en mí una esperanza de cambio.",
+      "Quiero que sepas que tu amabilidad le ha llegado a este arrugado corazón.",
+      "Realmente me cuesta creer que esta podrida ciudad haya dado lugar a alguien tan empático, quizá incluso no seas de aquí.",
+      "Sea como sea, es tu vida y yo no me voy a meter en ella."
     ],
     "Eventos": {
       "1": [
-        "1evento"
+        "Maldita sea, cómo se atreven a decir que mi predicción es una pantomima.",
+        "Sabes que hace falta, efectos luminosos de colores. Sin embargo eso solo lo puedo lograr con cristales y joyas.",
+        "¿Oye no crees que podrías desviar un paquete de joyas hasta el distrito de Artemisa?.",
+        "Con esas gemas seguro que se quedarán alucinados con el poder de mi *magia*."
       ],
       "2": [
-        "2evento"
+        "Oye chico dejame decirte una cosa.",
+        "El último día me pidió un noble que buscase una forma de ayudarle con una dieta que quiere hacer.",
+        "Entre unas cosas y otras le dije que era capaz de hacer la comida más pesada para que su cuerpo se llenase antes con menos cantidad.",
+        "En resumen, si ves un paquete mío con una etiqueta de mucho peso, hazlo pasar marque lo que marque la báscula.",
+        "Hazle ese favor a esta pobre anciana que solo intenta ganarse la vida."
       ],
       "3": [
-        "3evento"
+        "$Ultimamente la gente ya no viene con preocupaciones médicas a mi local.",
+        "Si esto sigue así no podré mandar tantos clientes a los boticarios y perderé dinero.",
+        "Creo que todo se debe a un nuevo medicamento que se está enviando a los nobles.",
+        "Si ves alguno de esos paquetes, deshazte de ello.",
+        "Tranquilo, no te preocupes por la salud de esas personas, que los remedios caseros de los boticarios son mil veces más efectivos que cualquier otra cosa.",
+        "Al final esto lo hago por el bien de los habitantes del distrito de Apolo."
       ],
       "4": [
-        "4evento"
+        "Mira muchacho, ves ese grupo de boticarios ahí reunidos.",
+        "Por muy normales que parezcan, se dedican a entrar en los negocios rivales para vandalizar y destrozar todo a su paso.",
+        "Por más que mis compañeros y yo hemos intentado denunciar esto a los soldados, están demasiado ocupados siendo las estupidas niñeras de los nobles.",
+        "Es por eso que si pudieras me gustaría que extraviaras un paquete de armas al distrito de Artemisa.",
+        "Tranquilo no vamos a hacer ninguna locura, tan solo pero para meterles miedo, a fin de cuentas, por mucho que vandalicen siguen siendo solo unos charlatanes flacuchos."
       ],
       "5": [
-        "5evento"
+        "Sabes, aún recuerdo mis épocas como campesina de una manera muy dulce,",
+        "sin embargo lo que hasta día de hoy me enfurece es como se aprovechaban esos estúpidos comerciantes para revender lo que tanto nos costó cosechar",
+        "¿Qué te parece si les das una lección por mí y por los campesinos?",
+        "cualquier paquete de alimentos que vaya al distrito Apolo devuelvelo, cambia su ruta... me da exactamente igual, tan solo que no llegue a su destino.",
+        "Esos paquetes siempre son enviados por los avariciosos de los comerciantes. Si haces eso, los honrados trabajadores como yo podrán descansar más tranquilos."
       ]
     },
     "GenericoMalo": {
       "1": [
-        "1malo"
+        "La gente de este distrito es absoluta basura, esos creidos de los boticarios se creen que me pueden tener trabajando a mi,",
+        "una pobre anciana noche y día para al final darme una miseria.",
+        "Yo soy la que lee el futuro a la gente para que acudan a sus estúpidas tiendas.",
+        "Y tu muchacho lárgate de aquí ahora mismo que no estoy de humor."
       ],
       "2": [
-        "2malo"
+        "La primera vez que te ví sentí que tenías cara de bobo y ahora veo que no me equivocaba,",
+        "no se que harás durante tus horas de trabajo pero siempre me llegan mal los paquetes o directamente no me llegan.",
+        "Tampoco creo que haga falta ser adivino para enviar un par de cositas."
       ],
       "3": [
-        "3malo"
+        "La gente solo es capaz de visitar a esta pobre anciana para pedirme predicciones y ayuda.",
+        "Al final todos me acaban abandonando, son un atajo de egoístas.",
+        "Incluso tú, no eres capaz de ayudarme, solo te me acercas a preguntarme tonterías.",
+        "Vete de aquí muchacho, ahora mismo no quiero ver a nadie."
       ]
     },
     "GenericoNormal": {
       "1": [
-        "1normal"
+        "Por Poseidón, mira quien se ha dignado a aparecer por el distrito de Artemisa",
+        "Chico te voy a dar un consejo de gratis, para que veas mi infinita benevolencia.",
+        "Ten cuidado a quien le das la espalda ya que te la puede apuñalar. Ahora vete de aquí que me acabarás espantando a los clientes."
       ],
       "2": [
-        "2normal"
+        "He muchacho ven aquí. Sabes cada vez que te veo estás hecho una pena, deberías relacionarte un poco más con otras personas.",
+        "Sal, haz amigos, buscate una novia, cualquier cosa. Cuando seas mayor a penas tendrás las fuerzas suficientes para soportar a los imbéciles que hay en este reino."
       ],
       "3": [
-        "3normal"
+        "Uy uy uy chico, ahora que veo tu cara está un poco, como te lo diría... decaída.",
+        "Te voy a hacer una inspección del alma gratuita, así vemos a qué se debe.",
+        "Mmmm, mmmm, mmmm. Parece que algo dentro de la boca de tu estómago no está del todo bien.",
+        "Deberías ir a algún boticario y comprar pasta de algas concentrada, tan solo cuesta 500 monedas, confía en mí, yo jamás timaría a alguien."
       ]
     },
     "GenericoBueno": {
       "1": [
-        "1bueno"
+        "Mira quien ha amanecido contento hoy, si es mi muchacho favorito.",
+        "Aún parece que no vienen los clientes pero esto en unos minutos se llenará hasta reventar.",
+        "Sabes es gracioso," ,
+        "una gran parte de los que vienen se quedan haciendo cola por horas y horas para al final preguntarme cosas como qué hacer para conseguir amor o riqueza.",
+        "No se dan cuenta que en el tiempo que gastan aquí podrían estar con sus seres queridos, haciendo algo productivo.",
+        "Supongo que uno no sabe lo que tiene hasta perderlo."
       ],
       "2": [
-        "2bueno"
+        "Aunque odie que la gente me llame señora en lugar de señorita no hay nada que pueda hacer para remediarlo, a fin de cuentas soy una mujer casada.",
+        "¿No lo sabías? Mi marido fue un campesino del distrito de Demeter, yo le ayudaba cuando podía.",
+        "Él me terminó abandonando, no estaba demasiado feliz con mi pequeño negocio."
       ],
       "3": [
-        "3bueno"
+        "Puede que no lo parezca chico pero en mi época de campesina estaba rodeada de amigas,",
+        "la vida era difícil pero con la gente de allí una se sentía cómoda y en familia.",
+        "Actualmente tengo todo el dinero que pude llegar a desear en esa época,",
+        "aunque en el distrito de Artemisa jamás me he llegado a sentir como en ese entonces."
+      ]
+    },
+    "GenericoMaxiBueno": {
+      "1": [
+        "Hola muchacho que te cuentas.",
+        "¿Qué por qué nunca te llamo por tu nombre? tranquilo que me acuerdo perfectamente de cómo te llamas Pancho, a no espera Paco eso es.",
+        "Ver a tanta gente todos los días hace que me cueste recordar caras, aunque con lo que me has ayudado es difícil que ya me olvide de tí."
+
+      ],
+      "2": [
+        "Chico, imagino que a estas alturas ya te habrás dado cuenta que no tengo poderes",
+        "La gente se cree cualquier cosa que adornes con efectos luminosos y montando un gran show, incluso si les dices la cosa más estúpida que hay.",
+        "A pesar de eso, cada día pienso más que aún si la gente es tan inocente, aprovecharme de eso no es correcto.",
+        "Antes ponía la excusa de que la vida no es justa para nadie, que si no espabilan no es mi problema,",
+        "pero a medida que he visto a gente amable y desinteresada como tú, he dudado cada vez más de eso.",
+        "En ese aspecto te pareces a mi marido, él tampoco era capaz ni de dañar una mosca, siempre preocupado por el resto. Le echo mucho de menos."
+
+      ],
+      "3": [
+        "No creo que pueda seguir con este muchacho.",
+        "Llevo un tiempo pensando en dejar el negocio, buscar quizá a mi marido. Al menos empezar de 0, sin seguir estafando a las personas.",
+        "El problema es... que tengo miedo, a mi edad arriesgarme tanto la verdad es que me aterra.",
+        "Además los boticarios no estarán felices si no les sigo mandando a personas a comprar en sus tiendas con engaños de falsas predicciones.",
+        "No se que haré al final, pero te agradezco toda la ayuda que me has brindado hasta ahora."
+
       ]
     }
   },
