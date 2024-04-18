@@ -93,6 +93,8 @@ public:
     //si queremos anadir un callback para que ocurra algo cuando se acaba el dialogo 
     void setEndDialogueCallback(std::function<void()> func) { endDialogueCallback = func; }
 
+    //activar/desactivar caja y texto
+    void setDialogueEntitiesActive(bool onoff);
 private:
     void fixText(std::string& text);
 
@@ -100,7 +102,6 @@ private:
 
     bool isNPC(const DialogSelection ds);
 
-    void setDialogueEntitiesActive(bool onoff);
 
 
     /// <summary>

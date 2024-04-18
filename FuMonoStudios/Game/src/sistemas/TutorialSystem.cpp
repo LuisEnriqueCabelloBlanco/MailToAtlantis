@@ -13,8 +13,7 @@ TutorialSystem::TutorialSystem(ecs::TutorialScene* scene) {
 	waitingCallback = false;
 	waitingEmbalaje = false;
 
-	//dialogMngr_.init(scene);
-	createDialogueBox();
+	dialogMngr_.init(scene);
 	createArrow();
 }
 
@@ -40,6 +39,7 @@ void TutorialSystem::update() {
 			registerAction(Action::Embalado);
 		}
 	}
+	dialogMngr_.update();
 }
 
 void TutorialSystem::activateEvent(TutorialEvent event) {
@@ -357,31 +357,6 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 	}
 }
 
-void TutorialSystem::closeConversation() {
-	stopEvent(currentEvent);
-
-	textDialogue_->getComponent<RenderImage>()->setTexture(nullptr);
-	textDialogue_->removeComponent<DialogComponent>();
-	boxBackground_->getComponent<RenderImage>()->setTexture(nullptr);
-}
-
-void TutorialSystem::createDialogueBox() {
-
-	// creamos la entidad caja dialogo
-	boxBackground_ = scene_->addEntity(ecs::layer::UI);
-	auto bgTr = boxBackground_->addComponent<Transform>(100, LOGICAL_RENDER_HEITH - 250, LOGICAL_RENDER_WIDTH - 100, 200);
-	boxBackground_->addComponent<RenderImage>(&sdlutils().images().at("cuadroDialogo"));
-
-	// entidad del texto
-	textDialogue_ = scene_->addEntity(ecs::layer::UI);
-	auto textTr = textDialogue_->addComponent<Transform>(100, 40, 80, 100);
-	textTr->setParent(bgTr);
-	textDialogue_->addComponent<RenderImage>();
-
-	textDialogue_->getComponent<RenderImage>()->setTexture(nullptr);
-	boxBackground_->getComponent<RenderImage>()->setTexture(nullptr);
-}
-
 void TutorialSystem::createArrow() {
 	arrow_ = scene_->addEntity(ecs::layer::UI);
 	arrow_->addComponent<Transform>(100, 100, 50, 100, 90);
@@ -391,10 +366,11 @@ void TutorialSystem::createArrow() {
 }
 
 void TutorialSystem::activateDialogue(bool dialogBoxInBottom) {
-	boxBackground_->getComponent<RenderImage>()->setTexture(&sdlutils().images().at("cuadroDialogo"));
-	boxBackground_->getComponent<Transform>()->setPos(100, dialogBoxInBottom ? LOGICAL_RENDER_HEITH * 0.05 : LOGICAL_RENDER_HEITH - 250);
+	dialogMngr_.setDialogueEntitiesActive(true);
 	dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(tutorialIteration));
-	textDialogue_->addComponent<DialogComponent>(&dialogMngr_);
+	dialogMngr_.setEndDialogueCallback([this]{
+		stopEvent(currentEvent);
+	});
 }
 
 void TutorialSystem::delayedCallback(float time, SimpleCallback call) {
