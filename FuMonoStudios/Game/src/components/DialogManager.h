@@ -9,6 +9,14 @@
 #include "../architecture/Scene.h"
 
 /*
+- - - - - - - COMO SE USA - - - - - - - - -
+- Anadir a la escena un DialogManager
+- Llamar en el init de la escena al init del DialogManager
+- Llamar en el update de la escena al update del DialogManager
+- En la cosa donde quieres un dialogo (por ejemplo la funcion de click en un personaje), llamar a startConversation
+- En caso de querer que ocurra algo en especial cuando termine el dialogo llamar a setEndDialogueCallback
+- SI NO OS QUEDA ALGUNA COSA CLARA NI DESPUES DE MIRAR EL EJEMPLO DE LA EXPLORATION SCENE POR FAVOR PREGUNTADME (David)
+/*
 Clase que genera los dialogos que se van a escribir
 Carga los dialogos del json dialogos.json
 
@@ -50,8 +58,10 @@ public:
     };
 
     DialogManager();
-    
-    void init(ecs::Scene* scene);
+
+    //init que por defecto pone el path del json de los dialogos
+    void init(ecs::Scene* scene); 
+    //init al que le puedes especificar el path del json del que quieres leer (por ejemplo se usara para el )
     void init(ecs::Scene* scene, const std::string& jsonPath);
 
     void update();
@@ -75,10 +85,12 @@ public:
 
     void startConversation(const std::string& character);
 
+    //para quitar la caja de texto y el propio texto
     void closeDialogue();
 
     inline bool getCanStartConversation() { return canStartConversation; }
 
+    //si queremos anadir un callback para que ocurra algo cuando se acaba el dialogo 
     void setEndDialogueCallback(std::function<void()> func) { endDialogueCallback = func; }
 
 private:
@@ -143,7 +155,7 @@ private:
     ecs::Entity* textDialogue;
 
     /// <summary>
-    /// entidad del texto del dialogo
+    /// callback de final de dialogo
     /// </summary>
     std::function<void()> endDialogueCallback;
 };

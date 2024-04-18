@@ -675,6 +675,7 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 		std::string a = "EsclavaRemix";
 		dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(1));
 		};
+	//si queremos anadir un callback para que ocurra algo cuando se acaba el dialogo 
 	dialogMngr_.setEndDialogueCallback([this](){
 		std::cout << "Los callbacks de final de dialogo funcionan";
 	});
