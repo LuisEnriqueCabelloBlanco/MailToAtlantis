@@ -23,8 +23,6 @@ ecs::ExplorationScene::ExplorationScene() :Scene(), numLugares(7)
 
 	generalData().setDayData();
 	initPlacesDefaultMap();
-	generalData().updateDia();
-	updateNavegavility();
 	initDirectionsDefaultMap();
 	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 }
@@ -37,7 +35,10 @@ ecs::ExplorationScene::~ExplorationScene()
 void ecs::ExplorationScene::init()
 {
 	std::cout << "Hola Exploracion" << std::endl;
-	
+
+	//setNavegabilityOfPlace("Hermes"); // Esto es para probar si funciona el seteo.
+
+	generalData().setDayData();
 	generalData().updateDia();
 	updateNavegavility();
 
@@ -48,7 +49,6 @@ void ecs::ExplorationScene::init()
 
 	//boton ir a trabajar
 	boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
-
 
 	dialogMngr_.init(this);
 }
@@ -248,7 +248,7 @@ void ecs::ExplorationScene::setNavegabilityOfPlace(int place, bool value)
 {
 	if(place < lugares.size())
 	{
-		lugares[place].setNavegability();
+		lugares[place].setNavegability(value);
 	}
 }
 
@@ -286,6 +286,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 	lugares[place].changeActivationObjects(false);
 
 }
+
 
 //LUGAR__________________________________________________________________________________________
 

@@ -27,6 +27,8 @@
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
 
+#include "../components/NPCExclamation.h"
+
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 {
 	timer_ = MINIGAME_TIME;
@@ -183,10 +185,10 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		return;
 	switch (dia)
 	{
-	case 1:
-
-		//if(GeneralData::instance()->getSelloMulticolor()) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
-
+	case 1:		
+		//if(GeneralData::instance()->getSelloMulticolor()) 
+		//createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
+		//createExclamationPoint();		//Ignorad esto, está aquí para hacer pruebas. Lo quito en cuanto funcione -Javier
 		createStamp(SelloCalleA);
 
 		createInks();
@@ -226,7 +228,12 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		break;
 	}	
 }
-
+void ecs::MainScene::createExclamationPoint() {
+	Entity* xd = addEntity(ecs::layer::FOREGROUND);	
+	auto ld = xd->addComponent<NPCExclamation>();
+	ld->innit(100,100);
+	
+}
 
 void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto) {
 	Entity* NotaErronea = addEntity(ecs::layer::FOREGROUND);
@@ -328,7 +335,7 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 
 void ecs::MainScene::createManual()
 {
-	constexpr int MANUALNUMPAGES = 8;
+	constexpr int MANUALNUMPAGES = 10;
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 
