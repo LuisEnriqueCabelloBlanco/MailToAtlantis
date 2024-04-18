@@ -1,11 +1,21 @@
 // dialog_manager.h
 #pragma once
 
+#include <functional>
 #include <string>
 #include <vector>
 #include <iostream>
 #include "../architecture/GeneralData.h"
+#include "../architecture/Scene.h"
 
+/*
+- - - - - - - COMO SE USA - - - - - - - - -
+- Anadir a la escena un DialogManager
+- Llamar en el init de la escena al init del DialogManager
+- Llamar en el update de la escena al update del DialogManager
+- En la cosa donde quieres un dialogo (por ejemplo la funcion de click en un personaje), llamar a startConversation
+- En caso de querer que ocurra algo en especial cuando termine el dialogo llamar a setEndDialogueCallback
+- SI NO OS QUEDA ALGUNA COSA CLARA NI DESPUES DE MIRAR EL EJEMPLO DE LA EXPLORATION SCENE POR FAVOR PREGUNTADME (David)
 /*
 Clase que genera los dialogos que se van a escribir
 Carga los dialogos del json dialogos.json
@@ -49,6 +59,12 @@ public:
 
     DialogManager();
 
+    //init que por defecto pone el path del json de los dialogos
+    void init(ecs::Scene* scene); 
+    //init al que le puedes especificar el path del json del que quieres leer (por ejemplo se usara para el )
+    void init(ecs::Scene* scene, const std::string& jsonPath);
+
+    void update();
     /// <summary>
     /// Devuelve el dialogo acutal segun el indice de dialogo
     /// </summary>
@@ -66,18 +82,80 @@ public:
     void setDialogues(const DialogSelection ds, const std::string& tipoDialogo, int dialogueSelection);
     void setDialogues(const DialogSelection ds, const std::string& t) { setDialogues(ds, t, -1); }
     void setDialogues(const DialogSelection ds) { setDialogues(ds, "NULL", -1); }
+
+    void startConversation(const std::string& character);
+
+    //para quitar la caja de texto y el propio texto
+    void closeDialogue();
+
+    inline bool getCanStartConversation() { return canStartConversation; }
+
+    //si queremos anadir un callback para que ocurra algo cuando se acaba el dialogo 
+    void setEndDialogueCallback(std::function<void()> func) { endDialogueCallback = func; }
+
 private:
     void fixText(std::string& text);
 
     std::string dialogSelectionToString(const DialogSelection ds);
 
     bool isNPC(const DialogSelection ds);
+
+    void setDialogueEntitiesActive(bool onoff);
+
+
+    /// <summary>
+    /// path del archivo json, si no se especifica por defecto sera el de dialogos
+    /// </summary>
+    std::string jsonPath;
+
     /// <summary>
     /// Vector donde se almacenan todos los diálogos que se van a soltar
     /// </summary>
     std::vector<std::string> dialogs_;
+
     /// <summary>
-    /// Indice que indica en que diálogo nos encontramos
+    /// Indice que indica en que dialogo nos encontramos
     /// </summary>
     size_t currentDialogIndex_;
+
+    /// <summary>
+    /// booleano para saber si puedes empezar una conversacion (en caso de estar a false estas ya en una)
+    /// </summary>
+    bool canStartConversation;
+
+    /// <summary>
+    /// tiempo minimo entre dialogos en milisegundos (no nos gustan los numeros magicos en el codigo a que no chicos?)
+    /// </summary>
+    Uint32 dialogueCooldownTime;
+
+    /// <summary>
+    /// timer para cooldown entre dos dialogos diferentes (no se podia hacer con el DelayedCallback component por ciertos cambios que se han 
+    /// hecho para no estar anadiendo y quitando componentes con cada nuevo dialogo)
+    /// </summary>
+    Uint32 timer_;
+
+    /// <summary>
+    /// Tiempo al que el timer tiene que llegar (es el tiempo en el comenzo el timer + el cooldownTime)
+    /// </summary>
+    Uint32 dialogueCooldown;
+
+    /// <summary>
+    /// booleano que controla dicho timer
+    /// </summary>
+    bool controlTimer;
+
+    /// <summary>
+    /// entidad de la caja del dialogo
+    /// </summary>
+    ecs::Entity* boxBackground;
+
+    /// <summary>
+    /// entidad del texto del dialogo
+    /// </summary>
+    ecs::Entity* textDialogue;
+
+    /// <summary>
+    /// callback de final de dialogo
+    /// </summary>
+    std::function<void()> endDialogueCallback;
 };

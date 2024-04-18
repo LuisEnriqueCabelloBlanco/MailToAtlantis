@@ -1,25 +1,76 @@
 // dialog_manager.cpp
 #include "DialogManager.h"
 #include <fstream>
+
+#include "DelayedCallback.h"
+#include "DialogComponent.h"
+#include "Render.h"
 #include "../json/JSON.h"
 #include "../json/JSONValue.h"
+#include "QATools/DataCollector.h"
+#include "sistemas/ComonObjectsFactory.h"
 
-DialogManager::DialogManager() : currentDialogIndex_(0) {
+DialogManager::DialogManager() : currentDialogIndex_(0),boxBackground(nullptr), textDialogue(nullptr), endDialogueCallback(nullptr)
+{
+
 }
 
 
+void DialogManager::init(ecs::Scene* scene)
+{
+    init(scene, "recursos/data/dialogos.json");
+}
+
+void DialogManager::init(ecs::Scene* scene, const std::string& path) {
+    jsonPath = path;
+
+    Vector2D pos = Vector2D(100, LOGICAL_RENDER_HEITH - 250);
+    Vector2D size = Vector2D(LOGICAL_RENDER_WIDTH - 100, 200);
+    scene->getFactory()->setLayer(ecs::layer::UI);
+    boxBackground = scene->getFactory()->createImage(pos, size, &sdlutils().images().at("cuadroDialogo"));
+
+    textDialogue = scene->addEntity(ecs::layer::UI);
+    auto textTr = textDialogue->addComponent<Transform>(100, 40, 80, 100);
+    textTr->setParent(boxBackground->getComponent<Transform>());
+    textDialogue->addComponent<RenderImage>();
+    textDialogue->addComponent<DialogComponent>(this);
+
+
+    setDialogueEntitiesActive(false);
+
+    canStartConversation = true;
+
+    dialogueCooldownTime = 100;
+    timer_ = sdlutils().virtualTimer().currTime();
+    dialogueCooldown = dialogueCooldownTime + sdlutils().virtualTimer().currTime();
+    controlTimer = false;
+}
+
+void DialogManager::update()
+{
+    if(controlTimer)
+    {
+        timer_ = sdlutils().virtualTimer().currTime();
+        if(timer_ > dialogueCooldown)
+        {
+            canStartConversation = true;
+            controlTimer = false;
+        }
+    }
+}
 
 std::string DialogManager::getCurrentDialog() {
     if (currentDialogIndex_ < dialogs_.size()) {
         return dialogs_[currentDialogIndex_];
     }
     else {
-        return ""; // No hay m�s di�logos. cleon: ultramegamaxi MAL
+        return " "; // No hay m�s di�logos. cleon: ultramegamaxi MAL
     }
 }
 
 
 bool DialogManager::nextDialog() {
+
     bool isEndOfConversation = (currentDialogIndex_ >= dialogs_.size() - 1);
 
     if (isEndOfConversation) {
@@ -39,7 +90,7 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     //reseteamos la posicon del indice
     currentDialogIndex_ = 0;
 
-    std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile("recursos/data/dialogos.json"));
+    std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(jsonPath));
 
     // check it was loaded correctly
     // the root must be a JSON object
@@ -136,6 +187,47 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     {
         throw std::runtime_error("Fallo en la carga de dialogo: " + stringDialogSel);
     }
+}
+
+void DialogManager::startConversation(const std::string& character)
+{
+    if(canStartConversation)
+    {
+        auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
+        auto data = generalData().getNPCData(charac); //data de dicho personaje
+
+        // activamos los dialogos correspondientes
+        std::pair<const std::string, int> aux = data->getDialogueInfo(); 
+
+
+        setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
+
+        setDialogueEntitiesActive(true);
+
+
+
+        std::cout << "jefe otro dialogo que este tenia un agujero\n";
+        dataCollector().recordNPC(charac + 1, aux.second, generalData().getNPCData(charac)->felicidad);
+        canStartConversation = false;
+    }
+}
+
+void DialogManager::closeDialogue()
+{
+    setDialogueEntitiesActive(false);
+
+    timer_ = sdlutils().virtualTimer().currTime();
+    dialogueCooldown = sdlutils().virtualTimer().currTime() + dialogueCooldownTime  ;
+    controlTimer = true;
+
+    if (endDialogueCallback != nullptr)
+        endDialogueCallback();
+}
+
+void DialogManager::setDialogueEntitiesActive(bool onoff)
+{
+    boxBackground->setActive(onoff);
+    textDialogue->setActive(onoff);
 }
 
 void DialogManager::fixText(std::string& text)

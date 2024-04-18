@@ -63,6 +63,7 @@ void ecs::MainScene::update()
 			gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
 		}
 	}
+	dialogMngr_.update();
 }
 
 void ecs::MainScene::render()
@@ -109,7 +110,11 @@ void ecs::MainScene::init()
 	//createCinta();
 
 	createGarbage();
-	createPaquete(generalData().getPaqueteLevel());
+
+	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
+	createCharacter({ 400, 300 }, "Campesino", 0.1f);
+
+	//createPaquete(generalData().getPaqueteLevel());
 
 	//creacion de las herramientas
 	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
@@ -650,4 +655,37 @@ void ecs::MainScene::makeControlsWindow()
 void ecs::MainScene::createPaquete (int lv) {
 	auto pac = mPaqBuild_->buildPackage(lv, this);
 	pac->getComponent<MoverTransform>()->enable();
+}
+
+
+
+ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
+
+	ComonObjectsFactory factory(this);
+
+	Texture* characterTexture = &sdlutils().images().at(character);
+	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
+
+	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
+	//Actualmente los personajes no tienen memoria, si queremos esto har�a falta a�adrile un parametro
+
+	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
+	CallbackClickeable funcPress = [this, character]() {
+		dialogMngr_.startConversation(character);
+		std::string a = "EsclavaRemix";
+		dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(1));
+		};
+	//si queremos anadir un callback para que ocurra algo cuando se acaba el dialogo 
+	dialogMngr_.setEndDialogueCallback([this](){
+		std::cout << "Los callbacks de final de dialogo funcionan";
+	});
+
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
+
+	return characterEnt;
+}
+
+void ecs::MainScene::startWork()
+{
+	
 }
