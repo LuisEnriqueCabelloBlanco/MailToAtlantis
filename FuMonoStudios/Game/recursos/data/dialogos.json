@@ -381,59 +381,122 @@
       "Mis tent$aculos son como pinceles y mis obras ser$an el patrimonio de Atlantis al paso de los anyos!"
     ],
     "FelicidadMinima": [
-      "Felicidad minima Artesano"
+      "*Al intentar hablar con el en el taller, te encuentras con una atmósfera cargada de pesar y desesperación.*",
+      "*El pulpo artesano te mira con ojos cansados y una expresión de profunda tristeza.*",
+      "No... No puedo más... Todo está perdido. El arte, mi pasión, mi vida... Todo se ha desvanecido... Ya no hay materiales, ya no hay inspiración...",
+      "Todo ha sido un desastre... Lo siento... Pero no puedo... No puedo más... Por favor... déjame... déjame solo…"
     ],
     "FelicidadMaxima": [
-      "Felicidad maxima Artesano"
+      "¡Oh, por todos los océanos! ¡Increíble! ¡Fantástico! ¡Al fin! ¡Por fin te veo con mis propios ojos!",
+      "¡Un ser humano de verdad, aquí, en este humilde taller! ¡No estaba loco, no!",
+      "Y no solo eso, ¡mira a tu alrededor! ¡Materiales en abundancia, listos para comenzar una nueva era artística! ¡Imagina las creaciones que podríamos hacer juntos!",
+      "Gracias por mostrarme tu secreto y tranquilo a estas horas nadie nos habrá visto. Además, no te preocupes, no le dire a nadie esto Paco amigo mio"
     ],
     "Eventos": {
       "1": [
-        "1evento"
+        "¡Por todos percebes! ¡Estoy en un aprieto, amigo! Hoy fui a recoger materiales para mi última creación y para mi desgracia no había ni un mísero coral!",
+        "Necesito esos materiales como el pulpo que necesita agua!",
+        "¿Sabes qué? No sería el fin del mundo si un solo paquete de materiales se extraviara y terminara por algún remoto error en este taller, ¿verdad?"
       ],
       "2": [
-        "2evento"
+        "¡No brilla! ¡No resplandece! ¿Y las joyas? ¿Y las Perlas? Necesito un favor, creo que ya te haces una idea,",
+        "no quiero ponerte en un aprieto pero es que mi jefe no para de abaratar la mercancía...",
+        "¿A quién quiere mi jefe engañar con esta baratija? Consigueme desviar un paquete, se que no te decepcionaré!"
       ],
       "3": [
-        "3evento"
+        "¡Ay, por las aletas de mi abuela! Aquí estamos otra vez, sin un triste trozo de queso." ,
+        "No sé en qué está pensando el jefe últimamente, pero parece que su cabeza está más en las aguas que en el trabajo.",
+        "¿Serías tan amable de echarme una mano y traer algo de comida? ¡Necesitamos nutrir nuestra creatividad para hacerla brillar!"
       ],
       "4": [
-        "4evento"
+        "¡Caracolas! Sé que esto te sonará mal Paco pero necesito que me hagas un favor.",
+        "Un cliente nos pidió hacerle una escultura con tungsteno, pero entre las prisas de mi jefe y mi propia confusión acaba haciéndola de hierro.",
+        "El exterior es casi el mismo pero pesa mucho menos de lo que debería el paquete.",
+        "Por favor haz la vista gorda con esa balanza tuya."
       ],
       "5": [
-        "5evento"
+        "¡Por todos los corales! como puedo ser tan despistado.",
+        "Un cliente nos pidió un jarrón de vidrio, algo muy frágil y delicado.",
+        "Sin embargo a la hora de enviarlo se me olvido poner el sello de fragil para que se envuelva con cuidado.",
+        "Por favor, crees que podrías embalar mi paquete aunque no tenga el sello de fragilidad.",
+        "No quiero causarte problemas pero es que sino me echaran una bronca gigantequisima."
       ]
     },
     "GenericoMalo": {
       "1": [
-        "1malo"
+        "Hoy me encuentro bastante depresivo. ¡Mi jefe me tiene trabajando como un esclavo! No puedo ni siquiera tomar un respiro para charlar.",
+        "Déjame confesarte algo... El jefe no siempre entiende mi visión artística.",
+        "Para él, solo importan las cosas prácticas y funcionales. ¡Pero yo sé que hay más en la vida que la mera utilidad!",
+        "Te pido por favor que envíes correctamente los paquetes de Hefesto, ya de por sí las cosas no son fáciles, no las compliques más.",
+        "Ahora déjame, prefiero estar solo…"
       ],
       "2": [
-        "2malo"
+        "Maldita sea, el otro día se rieron de mi última creación, una fantastica obra de arte dedicada a los mitologicos humanos, lo llamé la Vid de Alga Angel.",
+        "Entre tú y yo, mi querido amigo, no todos comprenden la verdadera belleza de mis creaciones…",
+        "Lo lamento mucho pero hoy estoy completamente sumergido en el trabajo, cada vez que no envías los paquetes la presión del taller recae más sobre mí,",
+        "por favor, manda los paquetes querido."
       ],
       "3": [
-        "3malo"
+        "Sabes, amigo, el otro día tuve una experiencia bastante desagradable. Un cliente vino a recoger su pedido y quedó muy decepcionado.",
+        "Resulta que los recortes en materiales que está implementando mi jefe últimamente están afectando a la calidad de mis creaciones.",
+        "Ahora mi jefe me metera cada vez más y más prisa, sin dejarme trabajar como a mi me gusta.",
+        "Si hubiera sabido que esto iba a ser así jamás me habría vuelto artesano."
       ]
     },
     "GenericoNormal": {
       "1": [
-        "1normal"
+        "¡Hola, amigo! ¿Qué opinas de Gargafiel Mustaki? El otro día me lo encontré en el Pezer-King, ¡sí, en el mismísimo Pezer-King!",
+        "Fue una sorpresa verlo por allí después de tanto tiempo.",
+        "¿Quién iba a decir que el campesino que una vez llegó a mi taller buscando un poco de orientación se convertiría en nada menos que el mismísimo secretario del rey?",
+        "Es increíble cómo la vida nos sorprende a veces. Aunque ni siquiera me dirigió la palabra, creo que el poder le ha cambiado"
       ],
       "2": [
-        "2normal"
+        "El otro día fui a ver a la tarotista, me dolía bastante la cabeza, el caso es que ella me recetó unas medicinas.",
+        "Fui al boticario más cercano y la verdad es que me sigue doliendo bastante la cabeza, como si no me hubiera hecho efecto…",
+        "Sin embargo, una simple migraña no me parará! El arte me llama!"
       ],
       "3": [
-        "3normal"
+        "Sabes, hay algo que he mantenido en secreto durante mucho tiempo y siento que puedo compartirlo contigo. Hace un tiempo, encontré una maleta muy peculiar en las ruinas submarinas.",
+        "Estaba escondida entre los restos de un antiguo monumento, como si el mismísimo Poseidón la hubiera dejado allí como un regalo del pasado.",
+        "Al abrirla, descubrí una serie de objetos extraños y fascinantes. Algunos de ellos me resultaban familiares de las antiguas leyendas que escuchaba de niño,",
+        "historias sobre seres misteriosos llamados humanos.",
+        "Aunque no estoy completamente seguro de su origen, estas reliquias han despertado mi curiosidad y han inspirado mi creatividad como nunca antes."
       ]
     },
     "GenericoBueno": {
       "1": [
-        "1bueno"
+        "Estoy emocionado por el futuro. He estado reflexionando sobre la idea de emprender mi propio negocio.",
+        "Aunque todavía tengo algunas dudas, siento que podría ser una oportunidad emocionante.",
+        "Además, quería agradecerte sinceramente por enviarme esos paquetes llenos de inspiración. Cada uno de ellos es como un pequeño tesoro que alimenta mi creatividad!"
       ],
       "2": [
-        "2bueno"
+        "¡Hola querido! ¿Qué te trae por aquí en este día tan fascinante?",
+        "¡Ah, yo siempre estoy lleno de energía y creatividad! Aunque hoy estoy especialmente emocionado porque estoy trabajando en un proyecto nuevo y emocionante.",
+        "¡Espero que pronto pueda mostrártelo! Sigue enviándome paquetes y llegaremos lejos!"
       ],
       "3": [
-        "3bueno"
+        "¡Hola de nuevo, querido amigo! Hoy estoy lleno de inspiración y energía creativa.",
+        "Estoy trabajando en una nueva serie de esculturas que exploran la conexión entre el mar y el cielo.",
+        "¿Sabías que he estado experimentando con materiales reciclados? Es un desafío emocionante, pero creo que el arte sostenible es el futuro.",
+        "Y hablando de futuros brillantes, quiero agradecerte sinceramente por seguir enviándome esos paquetes llenos de tesoros.",
+        "Cada uno de ellos es como un regalo que me impulsa hacia adelante en mi viaje artístico."
+      ]
+    },
+    "GenericoMaxiBueno": {
+      "1": [
+        "¡Hoy mis tentáculos están a punto de estallar de alegría! Estoy dando los primeros pasos para construir mi propio taller de arte submarino.",
+        "¡Finalmente, podré liberar mi creatividad sin restricciones y sin la sombra de mi jefe! ¡Es un sueño hecho realidad! Y todo esto, querido amigo, es gracias a ti!"
+      ],
+      "2": [
+        "Divino, Divino, Divinoo! Mira que creación por favor! Y nada de esto habría sido posible sin tu ayuda! Siempre serás bienvenido aquí, cerca de mí y mi arte!"
+      ],
+      "3": [
+        "La gente durante toda mi vida se ha reído de mí, por mi interés en los humanos y porque realmente creía en su existencia.",
+        "Aunque ha sido duro, jamás dejé de creer en ellos, en mi interior siempre he confiado en que estos están en algún lugar desconocido para nosotros.",
+        "Es por ello que por fin he decidido dar el gran paso.",
+        "Dedicaré mi vida a mostrar a la gente de la Atlántida el esplendor de los humanos,",
+        "para que así, quizá viendo sus formas, se den cuenta que su existencia no es tan descabellada.",
+        "Si bien muchos se burlaran, se que otros confiaran en mí, tal como tu has hecho desde que nos conocimos Paco."
       ]
     }
   },
