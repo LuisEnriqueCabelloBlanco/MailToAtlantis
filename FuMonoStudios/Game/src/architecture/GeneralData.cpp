@@ -1,8 +1,5 @@
 #include "../components/DialogManager.h"
 #include "GeneralData.h"
-#include <iostream>
-#include <string>
-#include <fstream>
 #include "../json/JSON.h"
 #include "../json/JSONValue.h"
 #include "../sdlutils/RandomNumberGenerator.h"
@@ -243,7 +240,52 @@ void GeneralData::readNPCData() {
 }
 
 void GeneralData::writeNPCData() {
+	
+	
+}
 
+void GeneralData::saveGame() {
+	std::ifstream archivo("recursos/data/saveFile.json");
+
+	if (!archivo.is_open())
+	{
+		std::cout << "Error al abrir saveFile.json" << std::endl;
+		throw std::runtime_error("Error al abrir saveFile.json");
+	}
+
+	// Leer el contenido del archivo en una cadena
+	std::string contenido = "";
+	std::string linea;
+	while (std::getline(archivo, linea)) {
+		contenido += linea + "\n";
+	}
+	archivo.close();
+
+	// cambiar el dia
+	int posDia = contenido.find("Dia") + 6;
+	size_t finLinea = contenido.find('\n', posDia);
+	contenido.replace(posDia, finLinea - posDia, std::to_string(generalData().getDay()) + ",");
+
+	//cambiar el dinero
+
+	int posDinero = contenido.find("Dinero") + 9;
+	finLinea = contenido.find('\n', posDinero);
+	contenido.replace(posDinero, finLinea - posDinero, std::to_string(generalData().getMoney()));
+
+	// Abrir el archivo en modo de escritura
+	std::ofstream archivoSalida("recursos/data/saveFile.json");
+
+	if (!archivoSalida.is_open()) {
+		std::cout << "Error al abrir el archivo saveFile.json para escritura." << std::endl;
+		throw std::runtime_error("Error al escribir saveFile.json");
+	}
+
+	// Escribir el contenido modificado en el archivo
+	archivoSalida.clear();
+	archivoSalida << contenido;
+	archivoSalida.close();
+
+	writeNPCData();
 }
 
 void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
