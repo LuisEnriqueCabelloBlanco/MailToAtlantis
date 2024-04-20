@@ -250,6 +250,48 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	return characterEnt;
 }
 
+ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const std::string& character, float scale) {
+
+	ComonObjectsFactory factory(this);
+
+	Texture* characterTexture = &sdlutils().images().at(character);
+	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
+
+	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
+	//Actualmente los personajes no tienen memoria, si queremos esto haria falta anadrile un parametro
+
+	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
+	CallbackClickeable funcPress = [this, character]() {
+		dialogMngr_.startConversation(character);
+
+		auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
+		auto data = generalData().getNPCData(charac); //data de dicho personaje
+
+		// activamos los dialogos correspondientes
+		std::pair<const std::string, int> aux = data->getDialogueInfo();
+
+		if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
+		{
+			NPCevent* event = data->getEvent();
+			for (int i = 0; i < event->numPaquetes; i++) {
+				generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+			}
+			generalData().npcEventSys->activateEvent(event);
+			generalData().npcEventSys->shuffleNPCqueue();
+		}
+	};
+
+
+
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
+
+	//return characterEnt;
+
+	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
+
+	return characterEnt;
+}
+
 void ecs::ExplorationScene::setNavegabilityOfPlace(int place, bool value)
 {
 	if(place < lugares.size())
@@ -278,6 +320,11 @@ void ecs::ExplorationScene::createObjects(int place) {
 	for (int i = 0; i < pl.at(placeName).myCharacters.size(); ++i) {
 		lugares[generalData().fromDistritoToString(place)].addObjects(createCharacter(pl.at(placeName).myCharacters[i].pos,
 			pl.at(placeName).myCharacters[i].name_, pl.at(placeName).myCharacters[i].scale_));
+	}
+
+	for (int i = 0; i < pl.at(placeName).myInteractableObjs.size(); ++i) {
+		lugares[generalData().fromDistritoToString(place)].addObjects(createInteractableObj(pl.at(placeName).myInteractableObjs[i].pos,
+			pl.at(placeName).myInteractableObjs[i].name_, pl.at(placeName).myInteractableObjs[i].scale_));
 	}
 
 	if (place == pq::Distrito::Hestia) {

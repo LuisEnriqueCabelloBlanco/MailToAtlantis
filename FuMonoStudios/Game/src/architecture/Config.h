@@ -51,13 +51,32 @@ public:
 
 	};
 
+	struct InteractableObjs {
+
+		Vector2D pos;
+
+		std::string name_;
+
+		double scale_;
+
+		bool directionRight_;
+
+		InteractableObjs(double x, double y, std::string name, double scale, bool directionRight) : pos(x, y), name_(name),
+			scale_(scale), directionRight_(directionRight) {}
+
+
+	};
+
 	struct Places {
 
 		std::vector<Arrows> myArrows;
 
 		std::vector<Characters> myCharacters;
 
-		Places(std::vector<Arrows> arrows, std::vector<Characters> characters) : myArrows(arrows), myCharacters(characters){
+		std::vector<InteractableObjs> myInteractableObjs;
+
+		Places(std::vector<Arrows> arrows, std::vector<Characters> characters, std::vector<InteractableObjs> interactableObjs) :
+			myArrows(arrows), myCharacters(characters), myInteractableObjs(interactableObjs){
 
 		}
 

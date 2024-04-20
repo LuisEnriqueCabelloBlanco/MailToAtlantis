@@ -39,8 +39,9 @@ GeneralData::GeneralData()
 	}*/
 	std::cout << "Tamanyo vector de mejoras: " << upgrades_.size() << std::endl;
 	paramAjustes_[0] = 50;
+	std::cout << "Volumen SFX: " << paramAjustes_[0] << std::endl;
 	soundEmiter().setSoundVolumes(paramAjustes_[0]);
-	readNPCData();
+	//readNPCData();
 }
 
 GeneralData::~GeneralData() {

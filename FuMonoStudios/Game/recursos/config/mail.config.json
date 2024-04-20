@@ -142,7 +142,22 @@
                 }
 
             ]}
-        ]},
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 0,
+                "x" : 200.7,
+                "y" : 200.3,
+                "name" : "casa1",
+                "scale" : 0.38,
+                "dir" : true              
+                }
+
+            ]}
+        ]
+        },
 
         {"id": "Artemisa",
         "data": [
