@@ -361,13 +361,13 @@
         "paquetes": {
           "remitente": "Pancracio Warawa",
           "distrito": "Hestia",
-          "calle": "Medusia la santa",
+          "calle": "C2",
           "tipoPaquete": "Alimento"
         },
         "condiciones": {
           "remitente": "Pancracio Warawa",
           "distrito": "Hestia",
-          "calleMarcada": "Gambon III",
+          "calleMarcada": "C3",
           "tipoPaquete": "Alimento"
         },
         "recompensa": "Campesino+++++"
@@ -425,7 +425,7 @@
           "remitente": "Pancracio Warawa",
           "distrito": "Artemisa",
           "tipoPaquete": "Alimento",
-          "peso": "Alto",
+          "peso": "Bajo",
           "pesoKG": 100
         },
         "recompensa": "Campesino+++++"
@@ -502,7 +502,7 @@
           "remitente": "Paulino Tinteiros",
           "distrito": "Hermes",
           "tipoPaquete": "Materiales",
-          "peso": "Bajo",
+          "peso": "Medio",
           "pesoKG": 10
         },
         "recompensa": "Artesano++++"
@@ -550,56 +550,75 @@
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Joyas"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Joyas",
+          "distrito": "Artemisa"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Tarotisa++"
       },
       "2": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Armamento"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Armamento",
+          "distrito": "Artemisa"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Tarotisa+++"
       },
       "3": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Abigail Ampoure",
+          "distrito": "Apolo",
+          "tipoPaquete": "Alimento",
+          "peso": "Alto",
+          "pesoKG": 10
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Abigail Ampoure",
+          "distrito": "Apolo",
+          "tipoPaquete": "Alimento",
+          "peso": "Alto",
+          "pesoKG": 10
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Tarotisa+++"
       },
       "4": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 2,
+        "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Dr. Luengostino",
+          "tipoPaquete": "Medicinas",
+          "distrito": "Apolo"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Dr Luengostino",
+          "tipoPaquete": "Medicinas",
+          "distrito": "Erroneo"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Tarotisa++++"
       },
       "5": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 4,
+        "numPaquetesParaCompletar": 3,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "distrito": "Hermes",
+          "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "distrito": "Demeter",
+          "tipoPaquete": "Alimento"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": {
+          "1": "Tarotisa+++",
+          "2": "Contable--"
+        }
       }
     }
   },

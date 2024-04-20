@@ -412,7 +412,7 @@
       ],
       "5": [
         "$!Por todos los corales! como puedo ser tan despistado.",
-        "Un cliente nos pidi$o un jarr$on de vidrio, algo muy fr$agil y delicado.",
+        "Un cliente de Apolo nos pidi$o un jarr$on de vidrio, algo muy fr$agil y delicado.",
         "Sin embargo a la hora de enviarlo se me olvido poner el sello de fragil para que se envuelva con cuidado.",
         "Por favor, crees que podr$ias embalar mi paquete aunque no tenga el sello de fragilidad.",
         "No quiero causarte problemas pero es que sino me echaran una bronca gigantequisima."
@@ -528,33 +528,34 @@
         "Con esas gemas seguro que se quedar$an alucinados con el poder de mi magia."
       ],
       "2": [
-        "Oye chico dejame decirte una cosa.",
-        "El $ultimo d$ia me pidi$o un noble que buscase una forma de ayudarle con una dieta que quiere hacer.",
-        "Entre unas cosas y otras le dije que era capaz de hacer la comida m$as pesada para que su cuerpo se llenase antes con menos cantidad.",
-        "En resumen, si ves un paquete m$io con una etiqueta de mucho peso, hazlo pasar marque lo que marque la b$ascula.",
-        "Hazle ese favor a esta pobre anciana que solo intenta ganarse la vida."
-      ],
-      "3": [
-        "$Ultimamente la gente ya no viene con preocupaciones m$edicas a mi local.",
-        "Si esto sigue as$i no podr$e mandar tantos clientes a los boticarios y perder$e dinero.",
-        "Creo que todo se debe a un nuevo medicamento que se est$a enviando a los nobles.",
-        "Si ves alguno de esos paquetes, deshazte de ello.",
-        "Tranquilo, no te preocupes por la salud de esas personas, que los remedios caseros de los boticarios son mil veces m$as efectivos que cualquier otra cosa.",
-        "Al final esto lo hago por el bien de los habitantes del distrito de Apolo."
-      ],
-      "4": [
         "Mira muchacho, ves ese grupo de boticarios ah$i reunidos.",
         "Por muy normales que parezcan, se dedican a entrar en los negocios rivales para vandalizar y destrozar todo a su paso.",
         "Por m$as que mis compa$%eros y yo hemos intentado denunciar esto a los soldados, est$an demasiado ocupados siendo las estupidas ni$%eras de los nobles.",
         "Es por eso que si pudieras me gustar$ia que extraviaras un paquete de armas al distrito de Artemisa.",
         "Tranquilo no vamos a hacer ninguna locura, tan solo pero para meterles miedo, a fin de cuentas, por mucho que vandalicen siguen siendo solo unos charlatanes flacuchos."
       ],
+      "3": [
+        "Oye chico dejame decirte una cosa.",
+        "El $ultimo d$ia me pidi$o un noble que buscase una forma de ayudarle con una dieta que quiere hacer.",
+        "Entre unas cosas y otras le dije que era capaz de hacer la comida m$as pesada para que su cuerpo se llenase antes con menos cantidad.",
+        "En resumen, si ves un paquete m$io con una etiqueta de mucho peso, hazlo pasar marque lo que marque la b$ascula.",
+        "Hazle ese favor a esta pobre anciana que solo intenta ganarse la vida."
+      ],
+      "4": [
+        "$Ultimamente la gente ya no viene con preocupaciones m$edicas a mi local.",
+        "Si esto sigue as$i no podr$e mandar tantos clientes a los boticarios y perder$e dinero.",
+        "Creo que todo se debe a un nuevo medicamento desarrollado por un tal Dr. Luengostino que se est$a enviando a los nobles.",
+        "Si ves alguno de esos paquetes, deshazte de ello.",
+        "Tranquilo, no te preocupes por la salud de esas personas, que los remedios caseros de los boticarios son mil veces m$as efectivos que cualquier otra cosa.",
+        "Al final esto lo hago por el bien de los habitantes del distrito de Apolo."
+      ],
+      
       "5": [
         "Sabes, a$un recuerdo mis $epocas como campesina de una manera muy dulce,",
         "sin embargo lo que hasta d$ia de hoy me enfurece es como se aprovechaban esos est$upidos comerciantes para revender lo que tanto nos cost$o cosechar",
         "$?Qu$e te parece si les das una lecci$on por m$i y por los campesinos?",
-        "cualquier paquete de alimentos que vaya al distrito Apolo devuelvelo, cambia su ruta... me da exactamente igual, tan solo que no llegue a su destino.",
-        "Esos paquetes siempre son enviados por los avariciosos de los comerciantes. Si haces eso, los honrados trabajadores como yo podr$an descansar m$as tranquilos."
+        "tres paquete de alimentos que vaya al distrito Hermes devuelvelo por donde ha venido, a Demeter,",
+        "que la gente abra los ojos y deje de negociar con esas sanguijuelas"
       ]
     },
     "GenericoMalo": {
