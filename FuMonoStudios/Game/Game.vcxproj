@@ -301,6 +301,7 @@
     <None Include="recursos\config\sounds.json" />
     <None Include="recursos\data\dialogos.json" />
     <None Include="recursos\data\eventosjefe.json" />
+    <None Include="recursos\data\intObjsData.json" />
     <None Include="recursos\data\npcData.json" />
     <None Include="recursos\data\saveFile.json" />
     <None Include="recursos\dialogos\dialogos.json" />
