@@ -652,61 +652,127 @@
       "Mi pasado es tan resistente como mi armadura, y mi deber es velar por la paz, incluso cuando la tarea me resulta desalentadora."
     ],
     "FelicidadMinima": [
-      "Felicidad minima Soldado"
+      "Hoy... hoy no es un buen d$ia. La carga de trabajo, los informes interminables,",
+      "la presi$on de cuidar de los nobles que ni siquiera agradecen mi presencia.",
+      "A veces me pregunto si todo esto tiene alg$un sentido...",
+      "$?De verdad estoy protegiendo a alguien aqu$i?",
+      "La frustraci$on se acumula, y cada d$ia es un recordatorio de que mi sue$%o de defender los distritos exteriores sigue siendo inalcanzable.",
+      "Y adem$as, para las pocas veces que soy yo el que pide ayuda, se me ignora y se me hace la vida imposible.",
+      "Largate, no quiero que te vuelvas a acercar a mi jam$as $?entiendes?"
     ],
     "FelicidadMaxima": [
-      "Felicidad maxima Soldado"
+      "$!Incre$ible! No puedo creerlo,",
+      "Este es un d$ia que no olvidar$e. Mi coraz$on late con emoci$on al ver que alguien valora mi servicio.",
+      "Gracias a tu amistad y apoyo he podido ir cumplir mi verdadera aspiraci$on,",
+      "por fin podr$e trabajar en los distritos exteriores. Solo tengo que aguantar aqui unas semanas m$as.",
+      "De verdad muchas gracias, se que juntos en los distritos exteriores podremos cambiar el rumbo de las cosas."
     ],
     "Eventos": {
       "1": [
-        "1evento"
+        "Hoy cuando recog$ia los suministros, encontr$e una extra$%a nota en la que se mencionaba que hoy iban a pasar sustancias ilegales a trav$es de paquetes.",
+        "Parece que hay un aumento en el tr$afico de objetos extra$%os y sustancias ilegales en el mercado negro.",
+        "Podr$ias hacerme un favor, necesito que envies a mi distrito dos paquetes con un peso grande, aunque este no sea su destino.",
+        "Es una cuestion de seguridad Atlantiana, por lo que es muy importante."
       ],
       "2": [
-        "2evento"
+        "El otro d$ia recib$i una carta de mi familia y al parecer los suministros m$edicos en los distritos exteriores escasean mucho.",
+        "La situaci$on sigue empeorando y los boticarios necesitan ayuda.",
+        "Aseg$urate de que el distrito de Artemisa reciban al menos 3 paquetes con los recursos m$edicos a tiempo y en buenas condiciones.",
+        "La salud de la gente depende de ello."
       ],
       "3": [
-        "3evento"
+        "Un rumor inquietante est$a circulando entre los habitantes del distrito de Apolo.",
+        "Dicen que hay disturbios en el distrito de Hestia.",
+        "Necesito que verifiques la situaci$on y, si es necesario, ser$ia de mucha ayuda si pudieses redirigir 2 paquetes tanto de comida y medicina hacia Hestia",
+        "Los inocentes no deber$ian sufrir por peleas de otros."
       ],
       "4": [
-        "4evento"
+        "Hoy encontr$e a un joven talentoso de los distritos exteriores que sue$%a con unirse al ej$ercito.",
+        "Me recordaba a m$i mismo cuando era joven y ten$ia grandes aspiraciones.",
+        "$?Ser$ias tan amable de enviar 1 paquete de armamento al distrito de Hestia?",
+        "Qui$en sabe, tal vez estemos forjando al pr$oximo protector de Atlantis."
       ],
       "5": [
-        "5evento"
+        "Buenas Paco, no lo digas por ah$i pero no se si sabes que varios grupos criminales de la Atl$antida han estado falsificando sellos $ultimamente",
+        "Al parecer estos sellos los venden a precios baratos a los incredulos habitantes de los distintos distritos.",
+        "$?Como dices?, que te han llegado varios paquetes a tu oficina con esos sellos. Paco eso es buenisimo para el caso",
+        "Por favor enviame a Apolo dos paquetes con sellos falsos, para que podamos hacer un minucioso an$alisis de estos."
       ]
     },
     "GenericoMalo": {
       "1": [
-        "1malo"
+        "Estoy harto de este trabajo ingrato. Mi jefe no entiende la importancia de proteger a los m$as vulnerables.",
+        "$!Y para colmo, los paquetes que debes enviar a veces nunca llegan! $?Es tan dif$icil seguir instrucciones b$asicas?",
+        "Estoy agotado de ser un pe$on en este juego sin sentido."
       ],
       "2": [
-        "2malo"
+        "Otra vez m$as, los nobles se burlan de mis esfuerzos. $?Te das cuenta de lo absurdo que es tener que cuidar de ellos como si fueran ni$%os peque$%os?",
+        "Y encima cuando cometes un minimo error te culpan como si hubieras dejado escapar a un asesino o algo asi",
+        "Estoy harto de estas estupideces, estoy harto de haber trabajado toda mi vida para esto, estoy harto de todo"
       ],
       "3": [
-        "3malo"
+        "Mis compa$%eros soldados me miran con desprecio. $?Sabes por qu$e?",
+        "Porque no puedo cumplir con las expectativas de mis superiores.",
+        "Con cada paquete perdido los nobles se quejan con nosotros por no garantizar la “seguridad” de sus paquetes.",
+        "Ya es suficientemente dif$icil de por si conseguir un mejor puesto en el ej$ercito de la Atl$antida sin tener que lidiar tambi$en con tu ineptitud."
       ]
     },
     "GenericoNormal": {
       "1": [
-        "1normal"
+        "Los distritos exteriores son duros, y la vida aqu$i no es m$as que una guarder$ia de nobles.",
+        "Al menos contigo puedo ser honesto y expresar mi descontento.",
+        "$?Has notado c$omo algunos nobles tratan de aprovecharse de su posici$on? Es insoportable.",
+        "Pero bueno, as$i es la vida en Apolo, $?verdad?"
       ],
       "2": [
-        "2normal"
+        "He visto cosas extra$%as $ultimamente. Rumores de antiguas reliquias encontradas en las ruinas submarinas. No s$e qu$e pensar al respecto.",
+        "Tal vez sea solo un cuento de viejos pescadores, pero si es verdad, podr$ia cambiar muchas cosas.",
+        "Quiza mostrarnos una visi$on que a$un desconocemos. $?T$u qu$e opinas al respecto?"
       ],
       "3": [
-        "3normal"
+        "Sabes, a veces hecho un poco de menos cuando viv$ia en el distrito de Hestia",
+        "Mucha gente se queda ensimismada con la belleza arquitectonica de Hermes, o todas las obras de arte de Apolo.",
+        "Sin embargo los distritos exteriores tienen una belleza particular que no se explicar, igual es solo la nostalgia, que se yo"
       ]
     },
     "GenericoBueno": {
       "1": [
-        "1bueno"
+        "Hoy fue un d$ia decente. Aunque los nobles siguen siendo una molestia, al menos algunos habitantes de Apolo expresaron su agradecimiento.",
+        "Un gesto amable puede hacer que todo valga la pena.",
+        "A veces, es bueno recordar la raz$on por la que decid$i unirme al ej$ercito en primer lugar."
       ],
       "2": [
-        "2bueno"
+        "$!Mira qui$en est$a aqu$i! Me alegra verte. Hay algo refrescante en la camarader$ia.",
+        "A pesar de todo, sigo manteniendo la esperanza de que las cosas mejoren.",
+        "Tal vez alg$un d$ia pueda hacer una diferencia real y proteger a los que realmente lo necesitan."
       ],
       "3": [
-        "3bueno"
+        "$!Hoy fue un d$ia exitoso! Cumpl$i con mi deber, no ha habido quejas por retrasos o p$erdidas de paquetes y, lo m$as importante,",
+        "pude hacer frente a algunas injusticias que presenci$e.",
+        "Cuando veo resultados como estos, siento que estoy en el camino correcto.",
+        "A veces, solo se necesita un peque$%o cambio para marcar la diferencia."
+      ]
+    },
+    "GenericoMaxiBueno": {
+      "1": [
+        "Ayer mismo consegu$i resolver un caso que realmente considero un logro para toda mi carrera laboral.",
+        "Adem$as, me ha hecho sentir lleno y orgulloso de mi mismo por primera vez en mucho tiempo.",
+        "$!Estoy emocionado! $!Es un paso gigante hacia mi sue$%o!",
+        "Un d$ia de estos tenemos que ir a por unos tragos y te cuento todas mis historias."
+      ],
+      "2": [
+        "$ultimamente las cosas han estado algo movidas por los distritos exteriores, varios de los soldados asignados all$i est$an abandonando su puesto.",
+        "Aunque parezca mala situaci$on esto viene muy bien, asi los soldados se iran antes de que pase algo gordo de verdad.",
+        "Si todo sale bien igual puedo obtener el puesto que tanto tiempo he deseado."
+      ],
+      "3": [
+        "Sabes Paco nunca te he hablado de mi familia, yo crec$i como el mayor de cinco hermanos en Hestia.",
+        "Las cosas eran bastante dif$iciles no te voy a mentir, sobre todo porque mi padre nos abandono a mi familia a m$i.",
+        "Sin embargo, tuve la mejor madre que cualquiera podr$ia pedir.",
+        "Ella es mi inspiraci$on, mi heroina, y todo lo que hago es para mostrar que soy tan fuerte como ella y as$i poder ayudarla."
       ]
     }
+
   },
   "Contable": {
     "Presentacion": [
@@ -761,7 +827,7 @@
 
       ],
       "5": [
-        "$ultimamente las ventas de alimentos no est$an marchando demasiado bien,",
+        "$Ultimamente las ventas de alimentos no est$an marchando demasiado bien,",
         "no se muy bien c$omo pero parece que los habitantes del distrito de Apolo est$an obteniendo cosechas de otra parte.",
         "Dudo que sea de los campesinos ya que la compra de productos a estos no ha disminuido ni un poco.",
         "Esto me huele muy mal, quiz$a s$i un par de paquetes de comida que se dirijan al distrito de Apolo se extrav$ian, vuelvan a comprar nuestros recursos.",
