@@ -49,7 +49,6 @@ public:
 	void activateEvent(TutorialEvent event);
 	void stopEvent(TutorialEvent event);
 
-	void closeConversation();
 
 	void update();
 
@@ -58,11 +57,7 @@ public:
 private:
 	ecs::TutorialScene* scene_;
 
-	// entidades de dialogo
-	ecs::Entity* boxBackground_;
-	ecs::Entity* textDialogue_;
 	DialogManager dialogMngr_;
-	void createDialogueBox();
 
 	void activateDialogue(bool dialogBoxInBottom);
 	int tutorialIteration;

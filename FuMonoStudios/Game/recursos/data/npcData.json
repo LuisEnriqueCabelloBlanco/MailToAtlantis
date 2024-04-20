@@ -3,20 +3,20 @@
     "Felicidad": "Normal",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
-    "Eventos":{
-      "1":{
+    "Eventos": {
+      "1": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-          "1":{
+        "paquetes": {
+          "1": {
             "remitente": "nashe",
             "distrito": "Hestia",
             "calle": "C1",
             "tipoPaquete": "Armamento"
           }
         },
-        "condiciones":{
-          "1":{
+        "condiciones": {
+          "1": {
             "remitente": "nashe",
             "distrito": "Hestia",
             "calleMarcada": "C3",
@@ -28,143 +28,143 @@
           "2": "Secretario-"
         }
       },
-      "2":{
+      "2": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-            "remitente": "Albama Ice"
+        "paquetes": {
+          "remitente": "Albama Ice"
         },
         "condiciones": {
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+"
       },
-      "3":{
+      "3": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-            "remitente": "Albama Ice"
+        "paquetes": {
+          "remitente": "Albama Ice"
         },
         "condiciones": {
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+"
       },
-      "4":{
+      "4": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-            "remitente": "Albama Ice"
+        "paquetes": {
+          "remitente": "Albama Ice"
         },
         "condiciones": {
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+"
       },
-      "5":{
+      "5": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-            "remitente": "Albama Ice"
+        "paquetes": {
+          "remitente": "Albama Ice"
         },
         "condiciones": {
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+"
       },
-      "6":{
+      "6": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-            "remitente": "Albama Ice"
+        "paquetes": {
+          "remitente": "Albama Ice"
         },
         "condiciones": {
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+"
       },
-      "7":{
+      "7": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-            "remitente": "Albama Ice"
+        "paquetes": {
+          "remitente": "Albama Ice"
         },
         "condiciones": {
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+"
       },
-      "8":{
+      "8": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-            "remitente": "Albama Ice"
+        "paquetes": {
+          "remitente": "Albama Ice"
         },
         "condiciones": {
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+"
       },
-      "9":{
+      "9": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-            "remitente": "Albama Ice"
+        "paquetes": {
+          "remitente": "Albama Ice"
         },
         "condiciones": {
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+"
       },
-      "10":{
+      "10": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-            "remitente": "Albama Ice"
+        "paquetes": {
+          "remitente": "Albama Ice"
         },
         "condiciones": {
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+"
       },
-      "11":{
+      "11": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-            "remitente": "Albama Ice"
+        "paquetes": {
+          "remitente": "Albama Ice"
         },
         "condiciones": {
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+"
       },
-      "12":{
+      "12": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-            "remitente": "Albama Ice"
+        "paquetes": {
+          "remitente": "Albama Ice"
         },
         "condiciones": {
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+"
       },
-      "13":{
+      "13": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-            "remitente": "Albama Ice"
+        "paquetes": {
+          "remitente": "Albama Ice"
         },
         "condiciones": {
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+"
       },
-      "14":{
+      "14": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
-        "paquetes":{
-            "remitente": "Albama Ice"
+        "paquetes": {
+          "remitente": "Albama Ice"
         },
         "condiciones": {
           "remitente": "Albama Ice"

@@ -348,10 +348,6 @@ void ecs::TutorialScene::createStamp(TipoHerramienta type)
 	factory_->setLayer(ecs::layer::DEFAULT);
 }
 
-void ecs::TutorialScene::closeConversation() {
-	tutorialSys_->closeConversation();
-}
-
 ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 
 	ecs::Entity* paquete;

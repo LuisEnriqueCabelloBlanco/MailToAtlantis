@@ -925,7 +925,7 @@
     "2": [
       "En el manual est$a todo lo que necesitas saber sobre los paquetes que te ir$an llegando.",
       "Vamos a hacer un ejemplo con un paquete que esta al caer."
-      
+
     ],
     "3": [
       "El paquete est$a repleto de informaci$on $util, abajo a la izquierda est$a el remitente, es decir, quien ha mandado el paquete."
@@ -952,50 +952,52 @@
     "9": [
       "Ahora toca volver a hacerlo con este otro paquete. Este tiene el codigo 011. Vamos a buscar su distrito en el manual."
     ],
-    "10":[
+    "10": [
       "Es del distrito de Demeter. Vamos a su p$agina."
     ],
-    "11":[
+    "11": [
       "Como vemos, es de la calle Camino del Calamar, as$i que sellaremos con el color azul."
     ],
-    "12":[
+    "12": [
       "Ahora lo metemos al tubo con su mismo s$imbolo, el de color verde."
     ],
-    "13":[
+    "13": [
       "Hemos probado ya con los paquetes simples. Sin embargo, la gente en esta ciudad no lo hacen todo bien.",
       "Tenemos que comprobar que los paquetes son legales, que tengan el sello reglamentario y la calle est$e bien puesta.",
       "Fijate que este paquete que acaba de llegar tiene un sello raro. Vamos a buscarlo en la p$agina de los sellos."
     ],
-    "14":[
+    "14": [
       "Parece que el sello rojo de Armamento del paquete no coincide con el del manual. Este paquete entonces va directo a la basura.",
       "Arrastralo hasta la basura para eliminarlo. Es importante que elimines los ilegales, sino te penalizaremos."
     ],
-    "15":[
+    "15": [
       "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
       "No te preocupes que no te voy a penalizar... Tranquilo...",
       "Coge este paquete, que en principio est$a bien reglamentado, y mandalo a la basura."
     ],
-    "16":[
+    "16": [
       "Fijate que te ha salido una notita explicando tu error. Cada paquete correcto son 20 dolares, y cada paquete err$oneo son 30 dolares, que van subiendo seg$un tus fallos.",
       "Espero no ver muchas notitas cuando trabajes... El anterior a ti le hacia demasiados favores a la gente de la ciudad y acababa no ganando nada..."
     ],
-    "17":[
+    "17": [
       "Vale esta es la $ultima cosa que tengo que explicarte. Para ello vas a necesitar la herramienta que te acabo de soltar en la mesa",
       "Algunos paquetes pueden contener cosas muy delicadas, y sus propietarios les ponen un sello de fr$agil para que nosotros lo embalemos bien.",
       "Para poder embalarlo, coge la herramienta de embalar, y sigue la ruta de puntos que ver$as al ponerlo por encima del paquete. Sigue la ruta y se quedar$a niquelado."
     ],
-    "18":[
+    "18": [
       "Muy bien hecho. Ahora aplica lo que hemos aprendido, ponle su sello y mandalo por su tubo correspondiente."
     ],
     "19": [
       "Muy bien, veo que ya te vas acordando. Ya estas listo para poder trabajar."
     ]
   },
-  "EsclavaRemix": [
-    "Bryant myers",
-    "Hoy de nuevo te voy a veeer",
-    "si llama pichea el cell",
-    "estamos fumando marihuana",
-    "hoy seras mi esclava en el cuarto de un motel"
-  ]
+  "BryantMyers": {
+    "EsclavaRemix": [
+      "Bryant myers",
+      "Hoy de nuevo te voy a veeer",
+      "si llama pichea el cell",
+      "estamos fumando marihuana",
+      "hoy seras mi esclava en el cuarto de un motel"
+    ]
+  }
 }

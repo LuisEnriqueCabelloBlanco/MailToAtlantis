@@ -32,8 +32,7 @@ public:
     __CMP_DECL__(ecs::cmp::DIALOGUE)
 
     //mas adelante hacer que la fuente se inicie solaz
-    DialogComponent(DialogManager* manager, ecs::ExplorationScene* scene);
-    DialogComponent(DialogManager* manager, ecs::TutorialScene* scene);
+    DialogComponent(DialogManager* manager);
     ~DialogComponent();
     void initComponent() override;
     void update() override;
@@ -46,9 +45,6 @@ private:
     Transform* mTr_;
     RenderImage* mRend_;
     DialogManager* mDialogMngr_;
-
-    ecs::ExplorationScene* scene1_;
-    ecs::TutorialScene* scene2_;
 
     Font* mFont_;
     Texture* mTexture_;
