@@ -36,7 +36,7 @@ void EndWorkScene::init() {
 	auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
 	factory_->createTextuButton(pos + Vector2D(0, 70), "Nuevo dia", 50,call);
 	//generalData().resetFailsCorrects();
-	generalData().setDia(generalData().getDia() + 1);
+	generalData().setDay(generalData().getDay() + 1);
   
 	int money = generalData().getMoney();
 
@@ -45,7 +45,7 @@ void EndWorkScene::init() {
 		factory_->createLabel(Vector2D(pos.getX(), 800), msgPass, 50);
 		auto call1 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
 		generalData().resetFailsCorrects();
-		int currentDay = generalData().getDia();
+		int currentDay = generalData().getDay();
 	}
 	else
 	{
@@ -53,7 +53,7 @@ void EndWorkScene::init() {
 		factory_->createLabel(Vector2D(pos.getX(), 800), msgPass, 50);
 		auto call2 = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
 		generalData().resetFailsCorrects();
-		generalData().setDia(1);
+		generalData().setDay(1);
 	}
 
 }

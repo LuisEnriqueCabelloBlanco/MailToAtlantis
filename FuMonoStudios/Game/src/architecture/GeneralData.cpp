@@ -6,13 +6,16 @@
 #include "../json/JSON.h"
 #include "../json/JSONValue.h"
 #include "../sdlutils/RandomNumberGenerator.h"
+#include "../sistemas/PaqueteBuilder.h"
+#include "Game.h"
+#include "../sistemas/NPCeventSystem.h"
+
 
 GeneralData::GeneralData()
 {
 	// Esto habra que cargarlo desde un archivo de guardado
 	dinero_ = INITIAL_MONEY;
 	finalID_ = INITIAL_FINAL;
-	eventoID_ = INITIAL_EVENT; 
 	failsMargin_ = INITIAL_FAILS_MARGIN;
 	corrects_ = 0;
 	fails_ = 0;
@@ -20,11 +23,10 @@ GeneralData::GeneralData()
 	rent_ = 75;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
 
-	readNPCData();
 }
 
 GeneralData::~GeneralData() {
-
+	delete npcEventSys;
 }
 
 
@@ -54,16 +56,6 @@ int GeneralData::getFinalID() {
 	return finalID_;
 }
 
-void GeneralData::setEventoID(int evento) {
-	eventoID_ = evento;
-	std::cout << "El ID del evento es: " << eventoID_ << std::endl;
-}
-
-int GeneralData::getEventoID() {
-	std::cout << "El ID del evento que quieres obtener es: " << eventoID_ << std::endl;
-	return eventoID_;
-}
-
 void GeneralData::setRent(int rent) {
 	rent_ = rent;
 	std::cout << "el nuevo alquiler es: " << rent_ << std::endl;
@@ -77,9 +69,95 @@ int GeneralData::getRent() {
 
 void GeneralData::updateDia()
 {
-
 	placesToActive_.clear();
 	updateDistrictsPerDay(dia_);
+	// actualizar los datos para todos los npc
+	for (int i = 0; i < 7; i++)
+	{
+		npcData[i]->setupDayData();
+	}
+}
+
+std::string GeneralData::fromDistritoToString(int i) {
+
+	std::string sol;
+
+	switch (i) {
+		case Distrito::Hestia:
+			sol = "Hestia";
+			break;
+		case Distrito::Artemisa:
+			sol = "Artemisa";
+			break;
+		case Distrito::Demeter:
+			sol = "Demeter";
+			break;
+		case Distrito::Hefesto:
+			sol = "Hefesto";
+			break;
+		case Distrito::Hermes:
+			sol = "Hermes";
+			break;
+		case Distrito::Apolo:
+			sol = "Apolo";
+			break;
+		case Distrito::Poseidon:
+			sol = "Poseidon";
+			break;
+		default:
+			sol = "Erroneo";
+			break;
+	}
+
+	return sol;
+
+}
+
+int GeneralData::fromStringToDistrito(std::string place) {
+
+	int sol;
+
+	if (place == "Hestia") {
+
+		return Distrito::Hestia;
+
+	}
+	else if (place == "Artemisa") {
+
+		return Distrito::Artemisa;
+
+	}
+	else if (place == "Demeter") {
+
+		return Distrito::Demeter;
+
+	}
+	else if (place == "Hefesto") {
+
+		return Distrito::Hefesto;
+
+	}
+	else if (place == "Hermes") {
+
+		return Distrito::Hermes;
+
+	}
+	else if (place == "Apolo") {
+
+		return Distrito::Apolo;
+
+	}
+	else if (place == "Poseidon") {
+
+		return Distrito::Poseidon;
+
+	}
+	else {
+
+		return Distrito::Erroneo;
+
+	}
+
 }
 
 void GeneralData::updateDistrictsPerDay(int dia)
@@ -139,28 +217,57 @@ void GeneralData::readNPCData() {
 		JSONObject jObject = jValueRoot->AsObject();
 		std::string felicidadStr = jObject.find("Felicidad")->second->AsString();
 
+
 		if (i < 2) // npc grandes
 		{
-			npcData.push_back(new NPCMayorData(stringToFelicidad(felicidadStr)));
+			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
+			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
+			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
+			npcData.push_back(data);
 		}
 		else
 		{
 			std::vector<bool> diasDanEventos;
 			jObject = jValueRoot->AsObject();
 			JSONObject jDiasEvento = jObject.find("DiasConEvento")->second->AsObject();
+
 			// leemos los 14 booleanos
 			for (int i = 0; i < 14; i++)
 			{
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(i + 1))->second->AsBool());
 			}
-			npcData.push_back(new NPCMenorData(stringToFelicidad(felicidadStr),diasDanEventos));
+			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
+			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
+			npcData.push_back(data);
 		}
-		
+		jValueRoot = nullptr;
 	}
-	
+
+	if (npcEventSys == nullptr)
+		npcEventSys = new NPCeventSystem();
 }
 
 void GeneralData::writeNPCData() {
+
+}
+
+void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
+{
+	int actualFelicidad = getNPCData(p)->numFelicidad;
+	int newFelicidadInt = actualFelicidad + felicidadIncr;
+	if (newFelicidadInt < 0)
+		newFelicidadInt = 0;
+	else if (newFelicidadInt > 100)
+		newFelicidadInt = 100;
+
+	Felicidad newFelicidad = (Felicidad)newFelicidadInt;
+	
+
+	getNPCData(p)->felicidad = newFelicidad;
+	getNPCData(p)->numFelicidad = newFelicidadInt;
+}
+
+void GeneralData::unlockMejoraPersonaje(Personaje p) {
 
 }
 
@@ -233,16 +340,100 @@ GeneralData::Felicidad GeneralData::stringToFelicidad(const std::string& str)
 	return aux;
 }
 
-void GeneralData::setDayData() {
-	for (int i = 0; i < 7; i++)
-	{
-		npcData[i]->setupDayData();
+const std::string GeneralData::calleToString(Calle calle) {
+	std::string aux = "";
+	switch (calle) {
+	case C1:
+		aux = "C1";
+		break;
+	case C2:
+		aux = "C2";
+		break;
+	case C3:
+		aux = "C3";
+		break;
+	case Erronea:
+		aux = "Erronea";
+		break;
 	}
+	return aux;
+}
+
+Calle GeneralData::stringToCalle(const std::string& calle) {
+	Calle aux = Erronea;
+	if (calle == "C1")
+		aux = C1;
+	else if (calle == "C2")
+		aux = C2;
+	else if (calle == "C3")
+		aux = C3;
+	else if (calle == "Erronea")
+		aux = Erronea;
+	return aux;
+}
+
+const std::string GeneralData::tipoPaqueteToString(TipoPaquete tipo) {
+	std::string aux = "";
+	if (tipo == Alimento)
+		aux = "Alimento";
+	else if (tipo == Medicinas)
+		aux = "Medicinas";
+	else if (tipo == Joyas)
+		aux = "Joyas";
+	else if (tipo == Materiales)
+		aux = "Materiales";
+	else if (tipo == Armamento)
+		aux = "Armamento";
+	return aux;
+}
+
+TipoPaquete GeneralData::stringToTipoPaquete(const std::string& tipo) {
+	TipoPaquete aux = Alimento;
+	if (tipo == "Alimento")
+		aux = Alimento;
+	else if (tipo == "Medicinas")
+		aux = Medicinas;
+	else if (tipo == "Joyas")
+		aux = Joyas;
+	else if (tipo == "Materiales")
+		aux = Materiales;
+	else if (tipo == "Armamento")
+		aux = Armamento;
+	return aux;
+}
+
+const std::string GeneralData::nivelPesoToString(NivelPeso nivel)
+{
+	std::string aux = "";
+	switch (nivel) {
+	case NivelPeso::Bajo:
+		aux = "Bajo";
+	case NivelPeso::Medio:
+		aux = "Medio";
+	case NivelPeso::Alto:
+		aux = "Alto";
+	case NivelPeso::Ninguno:
+		aux = "Ninguno";
+	}
+	return aux;
+}
+
+NivelPeso GeneralData::stringToNivelPeso(const std::string& nivel)
+{
+	NivelPeso aux = Ninguno;
+	if (nivel == "Bajo")
+		aux = Bajo;
+	else if (nivel == "Medio")
+		aux = Medio;
+	else if (nivel == "Alto")
+		aux = Alto;
+	else if (nivel == "Ninguno")
+		aux = Ninguno;
+	return aux;
 }
 
 // Struct NPCdata
 #pragma region NPCdata
-
 GeneralData::NPCdata* GeneralData::getNPCData(Personaje personaje) {
 	NPCdata* npc = nullptr;
 
@@ -250,6 +441,7 @@ GeneralData::NPCdata* GeneralData::getNPCData(Personaje personaje) {
 
 	return npc;
 }
+
 
 // NPC MENOR
 GeneralData::NPCMenorData::NPCMenorData(Felicidad Felicidad, std::vector<bool> DiasDanEvento) {
@@ -310,7 +502,7 @@ std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
 
 void GeneralData::NPCMenorData::setupDayData() {
 	iteration = 1;
-	giveEvent = diasDanEvento[generalData().getDia() - 1];
+	giveEvent = diasDanEvento[generalData().getDay() - 1];
 }
 
 void GeneralData::NPCMenorData::activateEvent(){
@@ -325,6 +517,11 @@ void GeneralData::NPCMenorData::iterateDialogues() {
 	iteration++;
 	if (iteration > 3)
 		iteration = 1;
+}
+
+NPCevent* GeneralData::NPCMenorData::getEvent() {
+	return events[sdlutils().rand().nextInt(0,5)];
+	numMisionesAceptadas++;
 }
 
 // NPC GRANDE
@@ -349,7 +546,7 @@ std::pair<const std::string, int> GeneralData::NPCMayorData::getDialogueInfo() {
 		default:
 			aux = postConversation ?
 				"PostConversacionDia" : "Dia";
-			aux = aux + std::to_string(generalData().getDia());
+			aux = aux + std::to_string(generalData().getDay());
 			postConversation = true;
 			break;
 	}
@@ -359,5 +556,10 @@ std::pair<const std::string, int> GeneralData::NPCMayorData::getDialogueInfo() {
 
 void GeneralData::NPCMayorData::setupDayData() {
 	postConversation = false;
+}
+
+NPCevent* GeneralData::NPCMayorData::getEvent() {
+	return events[numMisionesAceptadas];
+	numMisionesAceptadas++;
 }
 #pragma endregion

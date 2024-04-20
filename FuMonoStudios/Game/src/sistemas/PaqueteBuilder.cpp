@@ -6,6 +6,7 @@
 #include <sistemas/ComonObjectsFactory.h>
 #include "../sdlutils/InputHandler.h"
 #include "../json/JSON.h"
+#include "../sistemas/NPCeventSystem.h"
 
 
 PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
@@ -70,7 +71,7 @@ ecs::Entity* PaqueteBuilder::cartaRND(ecs::Scene* mScene) {
 }
 
 void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
-	Paquete* pNPC = generalData().getPaqueteNPC();
+	Paquete* pNPC = generalData().npcEventSys->getPaqueteNPC();
 	Paquete* pq = ent->addComponent<Paquete>(*pNPC);
 	if (!pNPC->isCarta()) addVisualElements(ent);
 	//else addVisualElementsCarta(ent);
@@ -79,7 +80,7 @@ void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
 bool PaqueteBuilder::shouldBuildNPCPackage()
 {
 	int rnd = sdlutils().rand().nextInt(0, 4);
-	return generalData().areTherePaquetesNPC() && rnd > 0;
+	return generalData().npcEventSys->areTherePaquetesNPC() && rnd > 0;
 }
 
 ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle calle, const std::string& remitente, pq::TipoPaquete tipo, bool correcto, pq::NivelPeso nivPeso, int peso, bool fragil, bool carta)
@@ -137,7 +138,7 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene)
 		{
 			herrEnt->interact(packageBase);
 		}
-		});
+		}, generalData().DropIn);
 
 	packageBase->addComponent<MoverTransform>(packageBase->getComponent<Transform>()->getPos() - Vector2D(200, 0),
 		1, Easing::EaseOutBack)->disable();

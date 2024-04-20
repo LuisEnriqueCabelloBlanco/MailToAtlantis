@@ -27,8 +27,6 @@ namespace ecs {
 		void close() override;
 		void init() override;
 
-		void closeConversation();
-
 		void packageSent();
 
 		enum PackageTutorial { Primero, Segundo, Tercero, FallarAposta, Fragil, Random};

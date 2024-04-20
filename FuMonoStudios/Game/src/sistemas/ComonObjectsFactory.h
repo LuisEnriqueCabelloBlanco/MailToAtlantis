@@ -76,9 +76,30 @@ public:
 	/// <returns></returns>
 	ecs::Entity* createTextuButton(const Vector2D& pos, const std::string text,
 		int fontSize, CallbackClickeable call,SDL_Color textColor = build_sdlcolor(0x000000ff));
-	
 
+
+	/// <summary>
+	/// hace que un objeto se pueda oscurecer/modificar su color al pasar el ratón por ecima de el
+	/// </summary>
+	/// <param name="entity"></param>
+	/// <param name="c"></param>
+	void addHoverColorMod(ecs::Entity* entity, SDL_Color c = build_sdlcolor(0x000000ff));
+	/// <summary>
+	/// añade el comportamiento de resaltar cuando el ratón pasa por encima
+	/// </summary>
+	/// <param name="entity"></param>
+	void addHilghtOnHover(ecs::Entity* entity);
+
+	ecs::layer::layerId getLayer() { return destLayer_; }
 private:
+	/// <summary>
+	/// añade a la entidad pasada los componentes para ser un boton que da feedback al pasar el cursor por encima
+	/// </summary>
+	/// <param name=""></param>
+	/// <param name="call"></param>
+	void makeButton(ecs::Entity*, CallbackClickeable call);
+
+
 	/// <summary>
 	/// Scene to create the objects
 	/// </summary>

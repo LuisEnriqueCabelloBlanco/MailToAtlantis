@@ -64,6 +64,17 @@ namespace ecs {
 		void removeEntitiesByLayer(ecs::layer::layerId layer);
 
 		/// <summary>
+		/// devuelve el vector que contiene los elementos de la capa indicada
+		/// 
+		/// (no se si se esta haciendo de la forma mas eficiente
+		/// </summary>
+		/// <param name="ly"></param>
+		/// <returns></returns>
+		std::vector<Entity*> getLayerEntitys(ecs::layer::layerId ly)const{
+			return objs_[ly];
+		}
+
+		/// <summary>
 		/// Elimina todas las entidades que estuvieran en la escena
 		/// </summary>
 		void clearScene();
