@@ -204,18 +204,17 @@
     "Presentacion": [
       "Pero bueno tu debes de ser nuevo por aqu$i, no me suena haberte visto antes.",
       "Anda toma esto a ver si te ayuda un poco hoy que tienes cara de muerto, aunque no me extra$%a despu$es de todo el jaleo del otro d$ia",
-      "*Pruebas algo, sabe raro*",
       "Por cierto que no me hab$ia presentado, soy Pancracio Warawa. Un gusto hijo.",
       "Venga a pasar buena noche, y espabila que la vida te va ha comer!"
     ],
 
     "FelicidadMinima": [
-      "*Al llegar a la granja ves a Pancracio consternado, huele a Alcohol, lleva una botella en la mano y no se encuentra su familia en la granja*",
+      "Al llegar a la granja ves a Pancracio consternado, huele a Alcohol, lleva una botella en la mano y no se encuentra su familia en la granja",
       "YYYYYYYY, Qu$E Tal ESt$As, hyp, yo estoy CONTENTO AHJAJAAJAja.",
       "$?El huerto?, jjiijijiJIJ Blurgh, ah$i est$a.",
-      "*El huerto no parece estar en muy buen estado, al igual que Pancracio*",
+      "El huerto no parece estar en muy buen estado, al igual que Pancracio",
       "$!Qu$e miras! $!$!$?eh?!! $?Qu$e miras?",
-      "*ves como Pancracio empieza a desmoronarse*",
+      "ves como Pancracio empieza a desmoronarse",
       "Vete, vete y no vuelvas, ya no tengo huerto, no tengo familia, NO TENGO AMIGOS, no tengo nada.",
       "Vete, vete, vete..."
 
@@ -257,7 +256,7 @@
         "$!Menos mal que est$as aqu$i!",
         "Me he confundido, madre m$ia que cagada.",
         "Mira te va a llegar un paquete m$io de comida, algo pesado, lo he enviado sin querer a Hestia,",
-        "pero mi intenci$on era mandarselo a “unas amigas” del distrito de Artemisa.",
+        "pero mi intenci$on era mandarselo a unas amigas del distrito de Artemisa.",
         "Conf$io en t$i para hac$erselo llegar."
       ]
     },
@@ -266,7 +265,6 @@
         "Buenos d$ias a quien los tenga, que no voy a ser yo.",
         "$ultimamente mis cosechas no est$an para tirar cohetes,",
         "anda prueba un poco de esto que ha crecido vete t$u a saber c$omo.",
-        "*Pruebas algo, sabe bastante mal*",
         "Malo $?eh? !PUES QU$E QUIERES QUE HAGA SI NO ME DA PA M$AS, QUIZ$a SI LOS PAQUETES LLEGARAN CORRECTAMENTE SALDR$iA MEJOR!",
         "ay, hijo, perdona, $ultimamente no duermo demasiado y me cuesta cada vez m$as mantenerme cuerdo,",
         "las cosechas no van demasiado bien y mi mujer me presiona porque cada vez tenemos menos dinero."
@@ -296,7 +294,7 @@
         "Buenas tardes hijo, $?qu$e tal te va en tu trabajo?.",
         "Espero que ya no tengas tantas ganas de salir huyendo.",
         "A m$i me podr$ia ir mejor la verdad, anda prueba esto.",
-        "*Pruebas algo, sabe raro, pero al menos es comestible*",
+        "Por tu cara veo que no te convence mucho",
         "Las cosas ya no son como antes, cuando empec$e todo era m$as sencillo,",
         "la tierra era m$as pr$ospera y f$ertil y los productos se vend$ian mejor sin tanto intermediario de por medio.",
         "Pero bueno, se va tirando con lo que tenemos, a pasar buen d$ia."
@@ -322,7 +320,7 @@
       "1": [
         "Pero bueno, a qui$en tenemos aqu$i. $?qu$e tal la vida hijo?",
         "Por aqu$i todo va bastate bien, mira prueba esto que acabo de cosechar.",
-        "*Pruebas algo, sabe bastante bien*",
+        "Vaya parece que si te ha gustado",
         "$ultimamente lo que cosecho sabe mejor, no se si ser$an los recursos o la tierra, pero estamos que nos salimos,",
         "esos intermediarios que tanto por saco me dan est$an empezando a soltar un poco m$as por mis productos."
       ],
@@ -345,7 +343,7 @@
         "Yeeeeeeepa, que tal estamos m$aquina",
         "Prueba esto que est$an los clientes que me los quitan de las manos lo intemediarios,",
         "les soplo m$as de diez veces m$as de dinero que antes, $?Que cu$anto cuesta?, t$u pruebalo.",
-        "*Pruebas algo, es una aut$entica delicia*",
+        "Bueno tranquilo tranquilo, con la velocidad que te lo has comido veo que te encanta",
         "Bueno $?eh?, tengo unos amigos, el grupo de las lechuzas se hacen llamar,",
         "resulta que junto a ellos estamos llevando un plan ..., digamos que muy discreto.",
         "Consiste en que los menos favorecidos pod$ais disfrutar de mis productos a un precio menos abusivos de los que ponen los intermediarios,",
@@ -381,8 +379,6 @@
       "Mis tent$aculos son como pinceles y mis obras ser$an el patrimonio de Atlantis al paso de los anyos!"
     ],
     "FelicidadMinima": [
-      "*Al intentar hablar con el en el taller, te encuentras con una atm$osfera cargada de pesar y desesperaci$on.*",
-      "*El pulpo artesano te mira con ojos cansados y una expresi$on de profunda tristeza.*",
       "No... No puedo m$as... Todo est$a perdido. El arte, mi pasi$on, mi vida... Todo se ha desvanecido... Ya no hay materiales, ya no hay inspiraci$on...",
       "Todo ha sido un desastre... Lo siento... Pero no puedo... No puedo m$as... Por favor... d$ejame... d$ejame solo…"
     ],
@@ -445,7 +441,7 @@
     },
     "GenericoNormal": {
       "1": [
-        "$!Hola, amigo! $?Qu$e opinas de Gargafiel Mustaki? El otro d$ia me lo encontr$e en el Pezer-King, $!s$i, en el mism$isimo Pezer-King!",
+        "$!Hola, amigo! $?Qu$e opinas de Gargafiel Mustaki? El otro d$ia me lo encontr$e en el PezerKing, $!s$i, en el mism$isimo PezerKing!",
         "Fue una sorpresa verlo por all$i despu$es de tanto tiempo.",
         "$?Qui$en iba a decir que el campesino que una vez lleg$o a mi taller buscando un poco de orientaci$on se convertir$ia en nada menos que el mism$isimo secretario del rey?",
         "Es incre$ible c$omo la vida nos sorprende a veces. Aunque ni siquiera me dirigi$o la palabra, creo que el poder le ha cambiado"
@@ -529,7 +525,7 @@
         "Maldita sea, c$omo se atreven a decir que mi predicci$on es una pantomima.",
         "Sabes que hace falta, efectos luminosos de colores. Sin embargo eso solo lo puedo lograr con cristales y joyas.",
         "$?Oye no crees que podr$ias desviar un paquete de joyas hasta el distrito de Artemisa?.",
-        "Con esas gemas seguro que se quedar$an alucinados con el poder de mi *magia*."
+        "Con esas gemas seguro que se quedar$an alucinados con el poder de mi magia."
       ],
       "2": [
         "Oye chico dejame decirte una cosa.",
