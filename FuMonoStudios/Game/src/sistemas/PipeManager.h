@@ -2,28 +2,32 @@
 #include "../components/Paquete.h"
 #include <vector>
 
-struct SwappedPipe {
-	//Comprueba si la tubería está cambiada
-	bool swapActive;
-	//Comprueba si la tubería también lleva a su destino original
-	bool originalDis;
-	//Distrito al que cambia (si está activo)
-	pq::Distrito changedDis;
-};
+namespace tb {
+	struct SwappedPipe {
+		//Comprueba si la tubería está cambiada
+		bool swapActive;
+		//Comprueba si la tubería también lleva a su destino original
+		bool originalDis;
+		//Distrito al que cambia (si está activo)
+		pq::Distrito changedDis;
+	};
 
-struct WeightRestriction {
-	//Checks if the weight is restricted
-	bool weightRestricted;
-	//Checks if only one type is restricted
-	bool singleType;
-	//0 if weight has to be higher than x, 1 if it needs to be x, 2 if it needs to be lower than x, 
-	//3 if it can be any weight except x
-	int minOrMax;
-	//Peso comprobado
-	pq::NivelPeso x;
-	//Si solo comprueban pesos de un tipo, el tipo
-	pq::TipoPaquete typeToWeight;
-};
+	struct WeightRestriction {
+		//Checks if the weight is restricted
+		bool weightRestricted;
+		//Checks if only one type is restricted
+		bool singleType;
+		//0 if weight has to be higher than x, 1 if it needs to be x, 2 if it needs to be lower than x, 
+		//3 if it can be any weight except x
+		int minOrMax;
+		//Peso comprobado
+		pq::NivelPeso x;
+		//Si solo comprueban pesos de un tipo, el tipo
+		pq::TipoPaquete typeToWeight;
+	};
+}
+
+using namespace tb;
 
 class PipeManager
 {
@@ -34,9 +38,31 @@ public:
 	void init();
 	void setReturnPipe(pq::Distrito);
 
-	void updateConditions();
-
 	bool checkPackage(Paquete*, pq::Distrito);
+
+	/// <summary>
+	/// Blocks a pipe
+	/// </summary>
+	/// <param name="target">Target pipe</param>
+	void blockPipe(pq::Distrito target);
+	/// <summary>
+	/// Updates the swapped condition of a pipe
+	/// </summary>
+	/// <param name="target">Target pipe</param>
+	/// <param name="toNew">New swapped state</param>
+	void swapPipe(pq::Distrito target, SwappedPipe toNew);
+	/// <summary>
+	/// Bans a certain type of package in a pipe
+	/// </summary>
+	/// <param name="target">Target pipe</param>
+	/// <param name="ban">Type to ban</param>
+	void banTypeInPipe(pq::Distrito target, pq::TipoPaquete ban);
+	/// <summary>
+	/// Changes weight restrictions to be applied to a pipe
+	/// </summary>
+	/// <param name="target">Target pipe</param>
+	/// <param name="restrictions">New weight restrictions to be applied</param>
+	void weightRestrictPipe(pq::Distrito target, WeightRestriction restrictions);
 
 private:
 	//Comprueba si la tubería está bloqueada o cambiada

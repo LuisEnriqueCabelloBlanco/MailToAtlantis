@@ -27,11 +27,6 @@ void PipeManager::setReturnPipe(pq::Distrito trash)
 	returnPipe_ = trash;
 }
 
-void PipeManager::updateConditions()
-{
-
-}
-
 bool PipeManager::checkPackage(Paquete* pqt, pq::Distrito toDis)
 {
 	//Comprueba si el paquete es correcto de base
@@ -79,6 +74,27 @@ bool PipeManager::checkPackage(Paquete* pqt, pq::Distrito toDis)
 		pqt->correcto() && (pqt->bienSellado() && pqt->correctFragile() &&	//Si es correcto si comprueba si está sellado y protegido si fragil
 		((toDis == returnPipe_ && checkReturningConditions(pqt)) ||		//Si es correcto pero se ha devuelto, comprueba si estaba bloqueado
 		(toDis != returnPipe_ && checkPipeConditions(pqt, toDis)))));	//Si es correcto, comprueba que se haya mandado correctamente
+}
+
+void PipeManager::blockPipe(pq::Distrito target)
+{
+	blockedPipes_[target] = true;
+}
+
+void PipeManager::swapPipe(pq::Distrito target, SwappedPipe toNew)
+{
+	swappedPipes_[target] = toNew;
+}
+
+void PipeManager::banTypeInPipe(pq::Distrito target, pq::TipoPaquete ban)
+{
+	bannedTypePipes_[target].first = true;
+	bannedTypePipes_[target].second = ban;
+}
+
+void PipeManager::weightRestrictPipe(pq::Distrito target, WeightRestriction restrictions)
+{
+	weightRestrictionTypes_[target] = restrictions;
 }
 
 bool PipeManager::checkPipeConditions(Paquete* pqt, pq::Distrito toDis)
