@@ -271,6 +271,15 @@ La parte estética de los escenarios se basará en una arquitectura griega antig
 ### Paletas de color
 Los fondos de la ciudad de la Atlántida tendrán una paleta de colores similar de grises y blancos, con un color extra predominante único de cada distrito: En el distrito de Démeter será el verde, en el de Hefesto el naranja, en el de Hestia el rojo, en el de Artemisa el gris, en el de Hermes el morado, en el de Apolo el amarillo y en el de Poseidón el azul.
 
+### Progresion de dias
+
+![alt text](Imagenes/ProgresionDias.jpg)
+
+Durante los 14 días de juego se podrá:
+- Desbloquear una nueva mecánica (amarillo).
+- Desbloquear un nuevi distrito (rojo).
+- Obtener una misión de un NPC (azul).
+
 ### Lugares
 
 #### Oficina de trabajo
