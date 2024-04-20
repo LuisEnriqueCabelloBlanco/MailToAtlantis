@@ -338,74 +338,95 @@
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
     "DiasConEvento": {
-      "1": true,
+      "1": false,
       "2": true,
-      "3": true,
+      "3": false,
       "4": true,
-      "5": true,
+      "5": false,
       "6": true,
-      "7": true,
-      "8": true,
+      "7": false,
+      "8": false,
       "9": true,
-      "10": true,
+      "10": false,
       "11": true,
-      "12": true,
-      "13": true,
-      "14": true
+      "12": false,
+      "13": false,
+      "14": false
     },
     "Eventos": {
+      
       "1": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Pancracio Warawa",
+          "distrito": "Hestia",
+          "calle": "Medusia la santa",
+          "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Pancracio Warawa",
+          "distrito": "Hestia",
+          "calleMarcada": "Gambon III",
+          "tipoPaquete": "Alimento"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Campesino+++++"
       },
       "2": {
-        "numPaquetes": 1,
+        "numPaquetes": 2,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "distrito": "Hefesto",
+          "tipoPaquete": "Materiales"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "distrito": "Demeter",
+          "tipoPaquete": "Materiales"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Campesino++++"
       },
       "3": {
-        "numPaquetes": 1,
+        "numPaquetes": 2,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "distrito": "Apolo",
+          "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "distrito": "Hestia",
+          "tipoPaquete": "Alimento"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Campesino++"
       },
       "4": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "distrito": "Hermes",
+          "tipoPaquete": "Medicinas"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "distrito": "Demeter",
+          "tipoPaquete": "Medicinas"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Campesino+++"
       },
       "5": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Pancracio Warawa",
+          "distrito": "Artemisa",
+          "tipoPaquete": "Alimento",
+          "peso": "Bajo",
+          "pesoKG": 100
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Pancracio Warawa",
+          "distrito": "Artemisa",
+          "tipoPaquete": "Alimento",
+          "peso": "Alto",
+          "pesoKG": 100
         },
         "recompensa": "Vagabundo+"
       }
@@ -417,18 +438,18 @@
     "DiasConEvento": {
       "1": false,
       "2": true,
-      "3": true,
-      "4": true,
-      "5": true,
-      "6": true,
+      "3": false,
+      "4": false,
+      "5": false,
+      "6": false,
       "7": true,
-      "8": true,
+      "8": false,
       "9": true,
       "10": true,
-      "11": true,
+      "11": false,
       "12": true,
-      "13": true,
-      "14": true
+      "13": false,
+      "14": false
     },
     "Eventos": {
       "1": {
@@ -492,20 +513,20 @@
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
     "DiasConEvento": {
-      "1": true,
-      "2": true,
-      "3": true,
+      "1": false,
+      "2": false,
+      "3": false,
       "4": true,
-      "5": true,
-      "6": true,
+      "5": false,
+      "6": false,
       "7": true,
       "8": true,
-      "9": true,
+      "9": false,
       "10": true,
-      "11": true,
-      "12": true,
+      "11": false,
+      "12": false,
       "13": true,
-      "14": true
+      "14": false
     },
     "Eventos": {
       "1": {
@@ -569,19 +590,19 @@
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
     "DiasConEvento": {
-      "1": true,
-      "2": true,
-      "3": true,
-      "4": true,
-      "5": true,
+      "1": false,
+      "2": false,
+      "3": false,
+      "4": false,
+      "5": false,
       "6": true,
-      "7": true,
+      "7": false,
       "8": true,
-      "9": true,
+      "9": false,
       "10": true,
-      "11": true,
+      "11": false,
       "12": true,
-      "13": true,
+      "13": false,
       "14": true
     },
     "Eventos": {
@@ -646,18 +667,18 @@
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
     "DiasConEvento": {
-      "1": true,
-      "2": true,
-      "3": true,
-      "4": true,
-      "5": true,
-      "6": true,
+      "1": false,
+      "2": false,
+      "3": false,
+      "4": false,
+      "5": false,
+      "6": false,
       "7": true,
-      "8": true,
+      "8": false,
       "9": true,
-      "10": true,
+      "10": false,
       "11": true,
-      "12": true,
+      "12": false,
       "13": true,
       "14": true
     },

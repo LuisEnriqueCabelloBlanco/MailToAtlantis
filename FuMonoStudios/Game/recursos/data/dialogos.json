@@ -223,34 +223,34 @@
       "Felicidad maxima Campesino"
     ],
     "Eventos": {
+      
       "1": [
+        "Paco necesito un favorcillo hijo, a ver si me puedes ayudar",
+        "He enviado unas hortalizas a un primo mio que vive en Hestia, pero entre tanto pensar y pensar en otras cosas me confund$i.",
+        "Si recibes un paquete mio de alimentos con direccion a la calle Medusia la santa,",
+        "tu ponle el sello para que vaya a Gambon III, que para algo que cosecho, que al menos lo pruebe a quien va dirigido de verdad"
+      ],
+      "2": [
+        "$Ultimamente mi rastrillo est$a empezando a chochear.",
+        "Los a$%os les pesan tanto a las cosas como a las personas.",
+        "A los artesanos les van a llegar unos paquetes de materiales, entre los que se encuentran una buena cantidad de rastrillos.",
+        "Esos lameculos de los nobles no echar$ian un rastrillo extraviado en falta. Total, ni que esas estatuas sean demasiado importantes"
+      ],
+      "3": [
         "Hoy esos idiotas de los intermediarios han subido el precio de mis productos,", 
         "en los mercados de los barrios bajos ya no es solo que no lo puedan comprar los habitantes,",
         "es que hasta a los propios puestos se les hace el precio excesivo,",
-        "si se desviase alg$un paquete de comida Hermes o Apolo hac$ia los distritos como Hestia o Artemisa tampoco creo que se muriese nadie.",
+        "si se desviase alg$un paquete de comida Apolo hac$ia los distritos como Hestia tampoco creo que se muriese nadie.",
         "gui$%o gui$%o codo codo."
       ],
-      "2": [
-        "$ultimamente mi rastrillo est$a empezando a chochear.",
-        "Los a$%os les pesan tanto a las cosas como a las personas.",
-        "A los soldados les van a llegar unos paquetes de materiales, entre los que se encuentran una buena cantidad de rastrillos.",
-        "Esos lameculos de los soldados no echar$ian un rastrillo extraviado en falta.",
-        "T$u ya me entiendes."
-      ],
-      "3": [
+      "4": [
         "Unos amigos alados de cierto grupo me han dicho que por los barrios m$as bajos andan bajos de fondos de  medicinas.",
         "Ya estamos con las mismas tonter$ias de siempre,", 
         "a Hermes van a llegar una cantidad de medicinas absurda solamente porque hay un brote de gripe gambil.",
         "Y mientras tanto aqu$i abajo con enfermedades mucho peores muri$endonos del asco.",
         "Esos nobles no se merecen ni la d$ecima parte de lo que les llega.",
         "Nosotros en Demeter con dos de sus paquetes ya tendr$iamos suficiente."
-      ],
-      "4": [
-        "$ultimamente hay mucho ajetreo de con el movimiento de unas joyas luminiscentes muy bonitas que se extraen del fondo marino.",
-        "La verdad es que mi mujer y yo somos muy amantes de llevar joyas, en su mayor$ia de baja calidad,",
-        "pero tenemos bastante arte haciendo que ornamentos de baja calidad luzcan bastante bien.",
-        "Si se extraviase un paquete de joyas de mejor calidad hacia nuestra granja la verdad es que no nos molestar$ia."
-      ],
+      ],  
       "5": [
         "$!Paco, Paco, Paco!",
         "$!Menos mal que est$as aqu$i!",
