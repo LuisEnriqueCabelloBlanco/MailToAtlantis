@@ -255,8 +255,8 @@
         "$!Paco, Paco, Paco!",
         "$!Menos mal que est$as aqu$i!",
         "Me he confundido, madre m$ia que cagada.",
-        "Mira te va a llegar un paquete m$io de comida, algo pesado, lo he enviado sin querer a Hestia,",
-        "pero mi intenci$on era mandarselo a unas amigas del distrito de Artemisa.",
+        "Mira te va a llegar un paquete m$io de comida, bastante pesado, aunque con el sello de peso equivocado.",
+        "Es vital que llegue ese paquete a mis amigas aladas del distrito de Artemisa.",
         "Conf$io en t$i para hac$erselo llegar."
       ]
     },
@@ -402,11 +402,11 @@
       "3": [
         "$!Ay, por las aletas de mi abuela! Aqu$i estamos otra vez, sin un triste trozo de queso." ,
         "No s$e en qu$e est$a pensando el jefe $ultimamente, pero parece que su cabeza est$a m$as en las aguas que en el trabajo.",
-        "$?Ser$ias tan amable de echarme una mano y traer algo de comida? $!Necesitamos nutrir nuestra creatividad para hacerla brillar!"
+        "$?Ser$ias tan amable de echarme una mano y traer un par de paquetes de comida? $!Necesitamos nutrir nuestra creatividad para hacerla brillar!"
       ],
       "4": [
         "$!Caracolas! S$e que esto te sonar$a mal Paco pero necesito que me hagas un favor.",
-        "Un cliente nos pidi$o hacerle una escultura con tungsteno, pero entre las prisas de mi jefe y mi propia confusi$on acaba haci$endola de hierro.",
+        "Un cliente de Hermes nos pidi$o hacerle una escultura con tungsteno, pero entre las prisas de mi jefe y mi propia confusi$on acaba haci$endola de hierro.",
         "El exterior es casi el mismo pero pesa mucho menos de lo que deber$ia el paquete.",
         "Por favor haz la vista gorda con esa balanza tuya."
       ],

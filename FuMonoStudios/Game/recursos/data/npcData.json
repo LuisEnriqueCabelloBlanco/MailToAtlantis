@@ -428,7 +428,7 @@
           "peso": "Alto",
           "pesoKG": 100
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Campesino+++++"
       }
     }
   },
@@ -453,59 +453,76 @@
     },
     "Eventos": {
       "1": {
-        "numPaquetes": 1,
+        "numPaquetes": 2,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Materiales"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Materiales",
+          "distrito": "Hefesto"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Artesano++"
       },
       "2": {
-        "numPaquetes": 1,
+        "numPaquetes": 2,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Joyas"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Joyas",
+          "distrito": "Hefesto"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Artesano+++"
       },
       "3": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Alimento",
+          "distrito": "Hefesto"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Artesano++"
       },
       "4": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Paulino Tinteiros",
+          "distrito": "Hermes",
+          "tipoPaquete": "Materiales",
+          "peso": "Medio",
+          "pesoKG": 10
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Paulino Tinteiros",
+          "distrito": "Hermes",
+          "tipoPaquete": "Materiales",
+          "peso": "Bajo",
+          "pesoKG": 10
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Artesano++++"
       },
       "5": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Paulino Tinteiros",
+          "distrito": "Apolo",
+          "tipoPaquete": "Materiales",
+          "fragil": false
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Paulino Tinteiros",
+          "distrito": "Apolo",
+          "tipoPaquete": "Materiales",
+          "fragil": true
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Artesano+++++"
       }
     }
   },
