@@ -40,6 +40,10 @@ public:
 	/// <param name="scene">Id de la escena a matar</param>
 	void killScene(ecs::sc::sceneId scene);
 
+	// metodo que permite coger una escena
+	ecs::Scene* getScene(ecs::sc::sceneId sc) {
+		return gameScenes_.at(sc);
+	}
 	/// <summary>
 	/// Metodo para solicitar cambio de una escena a otra
 	/// </summary>

@@ -2,12 +2,335 @@
   "Vagabundo": {
     "Felicidad": "NoHabladoAun",
     "numMisionesAceptadas": 0,
-    "numMisionesParaMisionFinal": 13
+    "Eventos": {
+      "1": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "1": {
+            "remitente": "nashe",
+            "distrito": "Hestia",
+            "calle": "C1",
+            "tipoPaquete": "Armamento"
+          }
+        },
+        "condiciones": {
+          "1": {
+            "remitente": "nashe",
+            "distrito": "Hestia",
+            "calleMarcada": "C3",
+            "tipoPaquete": "Armamento"
+          }
+        },
+        "recompensa": {
+          "1": "Vagabundo+",
+          "2": "Secretario-"
+        }
+      },
+      "2": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "3": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "4": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "5": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "6": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "7": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "8": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "9": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "10": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "11": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "12": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "13": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "14": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      }
+    }
   },
   "Secretario": {
     "Felicidad": "NoHabladoAun",
     "numMisionesAceptadas": 0,
-    "numMisionesParaMisionFinal": 7
+    "Eventos":{
+      "1":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "2":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "3":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "4":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "5":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "6":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "7":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "8":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "9":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "10":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "11":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "12":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "13":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "14":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      }
+    }
   },
   "Campesino": {
     "Felicidad": "NoHabladoAun",
@@ -26,6 +349,63 @@
       "12": true,
       "13": true,
       "14": true
+    },
+    "Eventos":{
+      "1":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "2":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "3":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "4":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "5":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      }
     }
   },
   "Artesano": {
@@ -45,6 +425,63 @@
       "12": true,
       "13": true,
       "14": true
+    },
+    "Eventos":{
+      "1":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "2":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "3":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "4":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "5":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      }
     }
   },
   "Tarotisa": {
@@ -64,6 +501,63 @@
       "12": true,
       "13": true,
       "14": true
+    },
+    "Eventos":{
+      "1":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "2":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "3":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "4":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "5":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      }
     }
   },
   "Soldado": {
@@ -83,6 +577,63 @@
       "12": true,
       "13": true,
       "14": true
+    },
+    "Eventos":{
+      "1":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "2":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "3":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "4":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "5":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      }
     }
   },
   "Contable": {
@@ -102,6 +653,63 @@
       "12": true,
       "13": true,
       "14": true
+    },
+    "Eventos":{
+      "1":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "2":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "3":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "4":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "5":{
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes":{
+            "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      }
     }
   }
 }

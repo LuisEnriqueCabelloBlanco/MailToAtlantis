@@ -36,8 +36,9 @@
       - [Jefe oficina](#jefe-oficina)
     - [NPC Grandes](#npc-grandes)
       - [Vagabundo](#vagabundo)
-      - [Secretario del rey](#secretario-del-rey)
         - [Finales](#finales-1)
+      - [Secretario del rey](#secretario-del-rey)
+        - [Finales](#finales-2)
     - [NPC Menores](#npc-menores)
       - [Campesino](#campesino)
       - [Artesano](#artesano)
@@ -194,7 +195,9 @@ Tras el trascurso de varios días el jugador vera **limitado** el número de per
 Cada NPC tendrá misiones que asignar al jugador. En estas misiones habrá una condicion concreta que tendrá que cumplir sobre un tipo de paquetes que va en contra de lo legal, por lo que será amonestado por ella, por lo que el jugador debe controlar cuanto quiere ayudar a los NPC mientras mantiene un nivel de dinero alto.
 Estos eventos pueden ir desde dejar pasar un paquete especial con el nombre del NPC hasta desviar paquetes a donde el NPC te diga.
 
-Los NPC te dan misiones cada 3 días, teniendo cada día un NPC distinto que te dan dichas misiones. Es decir un dia te dan mision 2 y al otro te dan mision otros 2 distintos.
+La felicidad de los NPC subirá cada vez que cumples un evento, y necesitarás cumplir los 5 eventos distintos para conseguir su maxifinal, no obstante, si consigues su felicidad a 70 te dará su mejora.
+
+Cada evento saldrá solo una vez.
 
 
 Los **paquetes de eventos** se deben definir de antemano en un JSON, de forma que los **paquetes de eventos** nunca sean random.
@@ -311,6 +314,27 @@ En la actualidad toda la información sobre los humanos y su propio destino como
 Actúa de forma amigable y de colegueo con el protagonista, y de forma filosófica y fuerte cuando habla sobre su situación con el secretario del rey. Cree que Poseidón ha abandonado a su pueblo y 
 APARIENCIA: Anemos es una carpa koi, la cual se encuentra en un estado de extrema hambruna. este viste con unos ropajes rasgados y holgados que usa para ocultar su lamentable estado. Este oculta su cara con una capucha, asomando únicamente su boca, bigotes y perilla. Este tiene colores vivos a pesar de estos, siendo principalmente el blanco y el rojo.
 
+##### Finales
+
+Maxifinal:
+-Las lechuzas comienzan la revuelta al gobierno, Jones se une y les ayuda.
+-Una vez en el palacio, se encuentran a Gargafiel, que esta muerto debido al polvo t$oxico.
+-Anemos, una vez vagabundo, ahora se pone enfrente del pueblo Atlante, y da un discurso de nuevos tiempos y de esperanza.
+-El pueblo se emociona y reconoce a Anemos como el verdadero rey de Atlantis.
+-Jones pasar$a a gobernar como el mano derecha de Anemos. Durante este reinado, se lograron superar muchas injusticias de la ciudad y la ciudad progres$o exponencialmente.
+
+Malo (No consigues maxiFinal con ningún NPC grande):
+-La policia de Atlantis comienza ya a sospechar la existencia de las lechuzas.
+-Se produce una gran criba, y practicamente todos los miembros de las lechuzas son perseguidos y ejecutados.
+-Jones, consumido por el miedo huye y se recluye a los callejones m$as escondidos de Atlantis.
+-Pero solo es cuesti$on de tiempo que le alcancen.
+
+
+Oculto (Tocas los polvos y mueres):
+-Las lechuzas comienzan la revuelta al gobierno. No obstante, se topan con una gran resistencia por parte de los soldados, que sab$ian de esta revuelta.
+-El secretario del rey lo ten$ia todo bajo control. Las lechuzas poco a poco se retiraron y se exiliaron dentro de Atlantis.
+-Jones fue encontrado al d$ia siguiente. Fue enterrado en la misma ciudad.
+
 #### Secretario del rey
 
 Gargafiel Mustaki es un pez gato de tamaño diminuto el cual nació y se crió en el distrito de Hestia. Desde pequeño mostró una gran ambición y una necesidad casi psicótica de controlar todo a su alrededor. Esta obsesión le provocó diferentes problemas en todos los sitios a los que intentaba ir a trabajar, ya que no le gustaba recibir órdenes de nadie. Poco a poco en sus puestos de trabajo sus superiores desaparecen en circunstancias sospechosas pero debido a su extremadamente pequeño tamaño y su habilidad para desviar la atención, nadie sospechaba de él. Fue de esta forma como poco a poco fue escalando posiciones socialmente, pasando de campesino peón a líder de campo, de ahí a aprendiz de artesano para después volverse un maestro de las herramientas, después inició un periodo como pequeño vendedor a la nobleza, hasta que poco a poco se le asignó la venta de productos a su majestad. Una vez conoció a este, utilizó su fina labia para embaucar y que así le diera un cargo dentro del castillo. Poco a poco gracias a sus acertados consejos que le daba al rey, se fue ganando su favor hasta acabar siendo su mano derecha. Sin embargo, un día que investigaba la biblioteca real, se topó con un libro que revelaba la existencia de los humanos y la superficie. Esto le impactó de primeras, lo que en poco tiempo acabó convirtiéndose en una rabia hacia el rey debido a que sentía menosprecio hacia su persona por no revelarle tal noticia, teniendo él que descubrirlo por su cuenta. Es por ello que convencido de la ineptitud del rey decide asesinarlo con la ayuda de un comerciante llamado Glande Globus, el cual accedió darle veneno a cambio de una mejor posición en el distrito de Hermes. Una vez consiguió dicho brebaje envenenó al rey sirviendo una taza con dicha ponzoña. Esto acabó matando al rey, todo ello bajo los ojos de su único heredero, en aquel entonces de 8 años. Gargafiel decido amenazarle y drogarle, dejándole a su suerte en el distrito de Hestia. Por último decidió reinar la Atlántida desde las sombras, ocultando en todo momento el estado del rey bajo la excusa de que le protegía de un atentado terrorista. En cuanto a la información sobre los humanos, decidió guardarla por el momento, para evitar así un estado de histeria colectiva que acabase revelando su horrible delito. 
@@ -321,12 +345,31 @@ Gargafiel es un pez gato de estatura diminuta, con ojos achinados y un gran y la
 Este es increiblemente astuto y perspicaz, con una capacidad de convencer y manipular casi absurda. Siempre se excusa con sus errores, no siendo capaz de admitir ningun fallo. Suele estar tan metido en sus ideas y planes que a no se que le sirva para uno de ellos, no le dará ninguna importancia a la persona que le hable. Tiene un gran complejo con su tamaño asi que se enfada con todo aquel que lo mencione. Es muy reservado con la mayor parte de la gente, contestando lo más seco posible, midiendo al milimetro sus palabras.
 
 ##### Finales
-MaxiFinal: El secretario poco a poco te va mostrando su obsesión por los humanos y su afán por conocerlos. También su obsesión por Poseidón y su creencia de que el pueblo de Atlantis es superior a los humanos y que él les ayudará a reconquistar la Tierra una vez logren resurgir a la superficie. Durante los días finales te va pidiendo partes de un submarino que está construyendo para resurgir y te promete que te dejará que le acompañes si le ayudas.
-Finalmente, saldrás a la superficie con Gargafiel haciendo uso del submarino. Le revelas que fuiste humano desde siempre y él se queda sin palabras. Gargafiel asegura que Poseidón le ayudará y cuando llegue el día arrasará con toda la humanidad. Vuelves a tu casa original y ves un noticiero que anuncia el descubrimiento de una nueva especie terrestre y posiblemente alienígena. Esa especie no es nadie mas ni menos que Gargafiel. 
-Las autoridades te interrogan y confiesas la existencia de Atlantis. En una semana, una gran expedición llega a la ciudad submarina y retoma el gobierno diciendo que son herederos de Poseidón y los legítimos reyes de Atlantis.
-La ciudad siguió como siempre, mientras los humanos cometían experimentos e investigaciones en los humanos-pez, siempre bajo el nombre de Poseidón.
+MaxiFinal: 
+-Jones sali$o corriendo de su puesto de trabajo y r$apidamente lleg$o al punto acordado con Gargafiel.
+-R$apidamente comenzaron a subir hacia la superficie, mientras la ciudad sufr$ia la explosi$on de la bomba.
+-Una vez en la superficie, Gargafiel se queda asombrado por el aire puro y el terreno extenso y interminable.
+-Le pide a Jones juntos reconquistar el mundo con la gracia de Poseid$on como arma.
+-Sin embargo, se va dando cuenta de que Jones todo este tiempo fue un humano. Gargafiel le repudia y sale corriendo.
+-Jones vuelve a su casa, y cansado, comienza a escribir todo lo que ha aprendido sobre Atlantis.
+-En la televisi$on, Jones comienza a ver el noticiero.
+-En el noticiero, sale Gargafiel, que ha sido capturado por la polic$ia y ser$a investigado, ya que creen que es un alien.
+-Jones pasar$a a crear un libro contando su historia en Atlantis, y lo presenta en el parlamento para permitir una expedici$on hacia la ciudad.
+-Años m$as tarde, la humanidad comienza a sumergirse a la ciudad y a infiltrarse en ella, para poder gobernarla y aprender de ellos desde las sombras.
 
-Malo (No consigues maxiFinal con ningún NPC grande): Debido a la mala situación campesina, se comenzaron a hacer revueltas y protestas en contra del rey. Gargafiel aseguró que el rey no estaba haciendo nada malo y que el problema lo tenían ellos, llegando a instaurar medidas incluso más severas, haciendo abuso de su gran poder. No obstante, esto solo hizo empeorar la situación, provocando una revolución armada que irrumpió en el palacio real en búsqueda de la cabeza del rey. Al descubrir que la figura del rey era falsa, el pueblo asesinó brutalmente a Gargafiel mientras él rogaba a Poseidón que le salvase. La nobleza gobernó desde entonces hasta instaurar un nuevo linaje de reyes. El pueblo nunca sabrá la verdad de los humanos y continuará bajo el mar por los tiempos de los tiempos.
+Malo (No consigues maxiFinal con ningún NPC grande): 
+-Debido a la mala situación campesina, se comenzaron a hacer revueltas y protestas en contra del rey. 
+-Gargafiel aseguró que el rey no estaba haciendo nada malo y que el problema lo tenían ellos, llegando a instaurar medidas incluso más severas, haciendo abuso de su gran poder. 
+-No obstante, esto solo hizo empeorar la situación, provocando una revolución armada que irrumpió en el palacio real en búsqueda de la cabeza del rey. 
+-Al descubrir que la figura del rey era falsa, el pueblo asesinó brutalmente a Gargafiel mientras él rogaba a Poseidón que le salvase. 
+-La nobleza gobernó desde entonces hasta instaurar un nuevo linaje de reyes. El pueblo nunca sabrá la verdad de los humanos y continuará bajo el mar por los tiempos de los tiempos.
+
+Oculto (Mandas la bomba a un distrito): 
+-Una bomba fue detonada en el distrito de Hermes. El caos sumió a la ciudad por el atentado terrorista.
+-Las lechuzas, salieron de su letargo y aprovecharon la situación para tomar el gobierno.
+-Una vez entraron al palacio, se encontraron que no hab$ia nadie dentro de $el.
+-La bomba mat$o a aproximadamente al 25% de la poblaci$on. Incluyendo al pobre vagabundo.
+-Un nuevo linaje se instaur$o y gobern$o durante mucho mucho tiempo. 
 
 ### NPC Menores
 

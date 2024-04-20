@@ -17,6 +17,8 @@
 #include "../components/PackageChecker.h"
 #include "../components/Gravity.h"
 #include "../components/MoverTransform.h"
+#include "../components/Balanza.h"
+#include "../components/RotarTransform.h"
 #include "../architecture/Time.h"
 #include "../architecture/GameConstants.h"
 #include "../components/SelfDestruct.h"
@@ -27,6 +29,11 @@
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
 #include "../sistemas/SoundEmiter.h"
+#include <components/HoverSensorComponent.h>
+#include <components/HoverLayerComponent.h>
+#include <components/RenderWithLight.h>
+#include "../components/NPCExclamation.h"
+#include "../sistemas/NPCeventSystem.h"
 
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 {
@@ -59,8 +66,11 @@ void ecs::MainScene::update()
 			timer_ -= Time::getDeltaTime();
 		}
 		else
+		{
 			gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
+		}
 	}
+	dialogMngr_.update();
 }
 
 void ecs::MainScene::render()
@@ -79,6 +89,10 @@ void ecs::MainScene::render()
 
 void ecs::MainScene::init()
 {
+
+	generalData().npcEventSys->shuffleNPCqueue();
+	generalData().npcEventSys->debugPaquetesInQueue();
+
 	std::cout << "Hola Main" << std::endl;
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
 	timer_ = MINIGAME_TIME;
@@ -103,7 +117,11 @@ void ecs::MainScene::init()
 	//createCinta();
 
 	createGarbage();
-	createPaquete(generalData().getPaqueteLevel());
+
+	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
+	createCharacter({ 400, 300 }, "Campesino", 0.1f);
+
+	//createPaquete(generalData().getPaqueteLevel());
 
 	//creacion de las herramientas
 	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
@@ -128,15 +146,14 @@ void ecs::MainScene::init()
 	SoundEmiter::instance()->playMusic("office");
 	SoundEmiter::instance()->playMusic("printer");
 
-	//Luis: dejo esto comentado porque con la refactorizacion se va a poder hacer de forma mas elegante
-
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
-	updateToolsPerDay(generalData().getDia());
+	updateToolsPerDay(generalData().getDay());
 
 }
 
 void ecs::MainScene::close() {
 	ecs::Scene::close();
+	generalData().npcEventSys->minigameOver();
 	generalData().updateMoney();
 
 	sdlutils().musics().at("office").haltMusic();
@@ -187,13 +204,15 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		return;
 	switch (dia)
 	{
-	case 1:
-
-		//if(GeneralData::instance()->getSelloMulticolor()) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
-
+	case 1:		
+		//if(GeneralData::instance()->getSelloMulticolor()) 
+		//createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
+		//createExclamationPoint();		//Ignorad esto, está aquí para hacer pruebas. Lo quito en cuanto funcione -Javier
 		createStamp(SelloCalleA);
 
 		createInks();
+
+		createBalanza();
 
 		generalData().setPaqueteLevel(0);
 
@@ -230,7 +249,12 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		break;
 	}	
 }
-
+void ecs::MainScene::createExclamationPoint() {
+	Entity* xd = addEntity(ecs::layer::FOREGROUND);	
+	auto ld = xd->addComponent<NPCExclamation>();
+	ld->innit(100,100);
+	
+}
 
 void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto) {
 	Entity* NotaErronea = addEntity(ecs::layer::FOREGROUND);
@@ -300,31 +324,82 @@ void ecs::MainScene::createCinta() {
 
 }
 
+void ecs::MainScene::createBalanza() {
+	// Balanza
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanza = factory_->createImage(Vector2D(50, 230), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
+	Transform* balanzaTr = balanza->getComponent<Transform>();
+	balanza->addComponent<MoverTransform>();
+	balanzaTr->setScale(0.5);
+	Balanza* balanzaComp = balanza->addComponent<Balanza>();
+
+	// BalanzaB
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanzaB = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaB").width(), sdlutils().images().at("balanzaB").height()), &sdlutils().images().at("balanzaB"));
+	Transform* balanzaBTr = balanzaB->getComponent<Transform>();
+	balanzaBTr->setScale(0.5);
+
+	// BalanzaBase
+	factory_->setLayer(ecs::layer::BALANZABASE);
+	Entity* baseBalanza = factory_->createImage(Vector2D(400, 400), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
+	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
+	balanzaBaseTr->setScale(0.5);
+	baseBalanza->addComponent<Gravity>();
+	//baseBalanza->addComponent<Depth>();
+
+	// BalanzaFlecha
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(70, 20), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
+	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
+	balanzaFlechaTr->setScale(0.5);
+	RotarTransform* rotComp = balanzaFlecha->addComponent<RotarTransform>();
+
+	// Seteamos padres
+	balanzaTr->setParent(balanzaBaseTr);
+	balanzaBTr->setParent(balanzaTr);
+	balanzaFlechaTr->setParent(balanzaBaseTr);
+
+
+	Trigger* balanzaTri = balanza->addComponent<Trigger>();
+
+	balanzaTri->addCallback([this, rotComp, balanzaComp, balanzaB](ecs::Entity* entRect) {balanzaComp->initAnimations(entRect, balanzaB, rotComp); }, generalData().DropIn);
+	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(entRect, rotComp); }, generalData().PickUp);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+}
+
 void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 	constexpr float TUBE_WIDTH = 138;
 	constexpr float TUBE_HEITH = 282;
 	constexpr float TUBES_X_OFFSET = 200;
 	constexpr float DISTANCE_BETWEEN_TUBES = 220;
-	factory_->setLayer(ecs::layer::BACKGROUND);
+	factory_->setLayer(ecs::layer::DEFAULT);
 
+	auto tubeTexture = &sdlutils().images().at("tubo" + std::to_string(dist + 1));
 	Entity* tuboEnt = factory_->createImage(
 		Vector2D(TUBES_X_OFFSET + (DISTANCE_BETWEEN_TUBES * dist), -40),
 		Vector2D(TUBE_WIDTH, TUBE_HEITH),
-		&sdlutils().images().at("tubo" + std::to_string(dist + 1)));
+		tubeTexture);
 	if (unlock) {
+		tubeTexture->modColor(255, 255, 255);
+		auto layerHover = tuboEnt->addComponent<HoverLayerComponent>(ecs::layer::PACKAGE);
+		auto hilight = tuboEnt->addComponent<RenderWithLight>();
+		layerHover->addInCall([hilight]() {hilight->lightOn(); });
+		layerHover->addOutCall([hilight]() {hilight->lightOff(); });
 
 		Trigger* tuboTri = tuboEnt->addComponent<Trigger>();
 		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this);
 	}
 	else {
-		factory_->setLayer(layer::UI);
-		auto tubeTr = tuboEnt->getComponent<Transform>();
+		//factory_->setLayer(layer::UI);
+		/*auto tubeTr = tuboEnt->getComponent<Transform>();
 
 		auto cross = factory_->createImage(Vector2D(0, 120),
 			Vector2D(tubeTr->getWidth(), tubeTr->getWidth()),
 			&sdlutils().images().at("cruz"));
 
-		cross->getComponent<Transform>()->setParent(tubeTr);
+		cross->getComponent<Transform>()->setParent(tubeTr);*/
+		tubeTexture->modColor(100, 100, 100);
 
 	}
 }
@@ -332,7 +407,7 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 
 void ecs::MainScene::createManual()
 {
-	constexpr int MANUALNUMPAGES = 8;
+	constexpr int MANUALNUMPAGES = 10;
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 
@@ -359,11 +434,13 @@ void ecs::MainScene::createManual()
 	auto next = [manualRender]() {manualRender->nextTexture();};
 	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
 	right->getComponent<Transform>()->setParent(manualTransform);
+	factory_->addHoverColorMod(right);
 
 	auto previous = [manualRender]() {manualRender->previousTexture();};
 	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous);
 	left->getComponent<Transform>()->setParent(manualTransform);
 	left->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
+	factory_->addHoverColorMod(left);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
@@ -513,7 +590,7 @@ void ecs::MainScene::makeDataWindow()
 	data = "Pacage Level: " + std::to_string(generalData().getPaqueteLevel());
 	ImGui::Text(data.c_str());
 	//Dia acutual del juego
-	data = "Current day: " + std::to_string(GeneralData::instance()->getCurrentDay());
+	data = "Current day: " + std::to_string(GeneralData::instance()->getDay());
 	ImGui::Text(data.c_str());
 	ImGui::End();
 }
@@ -587,4 +664,36 @@ void ecs::MainScene::makeControlsWindow()
 void ecs::MainScene::createPaquete (int lv) {
 	auto pac = mPaqBuild_->buildPackage(lv, this);
 	pac->getComponent<MoverTransform>()->enable();
+}
+
+
+
+ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
+
+	ComonObjectsFactory factory(this);
+
+	Texture* characterTexture = &sdlutils().images().at(character);
+	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
+
+	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
+	//Actualmente los personajes no tienen memoria, si queremos esto har�a falta a�adrile un parametro
+
+	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
+	CallbackClickeable funcPress = [this, character]() {
+		dialogMngr_.startConversation(character);
+		dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(1)); //esta movida se cambiara por las cosas del senor jefe
+		};
+	//si queremos anadir un callback para que ocurra algo cuando se acaba el dialogo 
+	dialogMngr_.setEndDialogueCallback([this](){
+		std::cout << "Los callbacks de final de dialogo funcionan";
+	});
+
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
+
+	return characterEnt;
+}
+
+void ecs::MainScene::startWork()
+{
+	
 }

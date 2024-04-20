@@ -178,16 +178,13 @@ void Game::changeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2) {
 	//Estas comprobaciones van a ser una prueba de que se puede modificar la clase GeneralData, no estará así en la versión final
 	if (scene1 == ecs::sc::MENU_SCENE) {
 		generalData().setFinalID(1);
-		generalData().setEventoID(1);
 	}
 	else if (scene1 == ecs::sc::EXPLORE_SCENE) {
 		generalData().setFinalID(2);
-		generalData().setEventoID(2);
 		generalData().setTubesAmount(generalData().getPlacesToActive().size());
 	}
 	else if (scene1 == ecs::sc::MAIN_SCENE) {
 		generalData().setFinalID(3);
-		generalData().setEventoID(3);
 	}
 	killScene(scene1);
 	if (scene2 != ecs::sc::NULL_SCENE) {
