@@ -6,6 +6,7 @@
 #include <string>
 #include <sdlutils/InputHandler.h>
 #include <components/Render.h>
+#include <architecture/Game.h>
 
 EndGameScene::EndGameScene()
 {
@@ -47,14 +48,19 @@ void EndGameScene::init()
     npcId_ = 0;
     endText_ = factory_->createLabel(Vector2D(300, 900), 1000,
         endTexts_[(Personaje)npcId_][generalData().getNPCData((Personaje)npcId_)->felicidad], 
-        50);
+        50,build_sdlcolor(0xFFFFFFFF));
 }
 
 void EndGameScene::update()
 {
     //TODO: anadir un contador para que sea necesario leer un mínimo
-    if (ih().mouseButtonDownEvent() && npcId_ < 7) {
-        nextEnding();
+    if (ih().mouseButtonDownEvent() ) {
+        if (npcId_ < 6) {
+            nextEnding();
+        }
+        else {
+            gm().requestChangeScene(ecs::sc::END_SCENE, ecs::sc::MENU_SCENE);
+        }
     }
 }
 
@@ -65,8 +71,9 @@ void EndGameScene::nextEnding()
     npcId_++;
     Personaje npc = (Personaje)npcId_;
     //endImage->getComponent<RenderImage>();
-    Texture* endText = factory_->createTextTexture(endTexts_[npc][generalData().getNPCData(npc)->felicidad], 50);
+    Texture* endText = factory_->createTextTexture(endTexts_[npc][generalData().getNPCData(npc)->felicidad], 50, build_sdlcolor(0xFFFFFFFF));
     endText_->getComponent<RenderImage>()->setTexture(endText);
+    endText_->getComponent<Transform>()->setWidth(endText->width());
 }
 
 void EndGameScene::loadEnd(Personaje npc, JSONObject& root)

@@ -98,7 +98,7 @@ void Game::run()
 #endif // QA_TOOLS
 
 		update();
-		sdlutils().clearRenderer();
+		sdlutils().clearRenderer(build_sdlcolor(0x000000));
 
 		ImGui_ImplSDLRenderer2_NewFrame();
 		ImGui_ImplSDL2_NewFrame();
