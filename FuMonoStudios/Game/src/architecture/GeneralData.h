@@ -29,7 +29,7 @@ namespace pq {
 	/// <summary>
 	/// enum con todoos los tipos de cargamento que pueden tener los paquetes
 	/// </summary>
-	enum TipoPaquete { Alimento, Medicinas, Joyas, Materiales, Armamento };
+	enum TipoPaquete { Alimento, Medicinas, Joyas, Materiales, Armamento, Carta };
 	/// <summary>
 	/// enum con todas los tipos de medici�n de peso que pueden tener los paquetes
 	/// </summary>

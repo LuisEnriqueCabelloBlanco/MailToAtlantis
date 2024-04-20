@@ -46,7 +46,7 @@ public:
 	//Método al que se llama que devuelve un Paquete generado aleatoriamente 
 	ecs::Entity* buildPackage(int level, ecs::Scene*);
 	//Método al que se llama que devuelve una Carta generada aleatoriamente 
-	ecs::Entity* cartaRND(ecs::Scene*);
+	void cartaRND(ecs::Entity* packageBase);
 
 
 
@@ -69,7 +69,7 @@ private:
 
 
 
-	ecs::Entity* buildBasePackage(ecs::Scene* mScene);
+	ecs::Entity* buildBasePackage(ecs::Scene* mScene, bool esCarta);
 	void stdRandPackage(ecs::Entity*, int);
 	void paqueteNPC(ecs::Entity*);
 	/// <summary>
