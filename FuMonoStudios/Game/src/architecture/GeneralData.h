@@ -61,7 +61,7 @@ public:
 	NPCeventSystem* npcEventSys = nullptr;
 private:
 	// vector que contiene los datos de todos los 7 npc
-	std::vector<NPCdata*> npcData;
+	std::vector<NPCdata*> npcDataVec_;
 #pragma endregion
 public:
 	GeneralData();

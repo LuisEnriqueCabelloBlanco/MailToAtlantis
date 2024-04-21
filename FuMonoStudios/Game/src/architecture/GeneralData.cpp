@@ -83,7 +83,7 @@ void GeneralData::updateDia()
 	// actualizar los datos para todos los npc
 	for (int i = 0; i < 7; i++)
 	{
-		npcData[i]->setupDayData();
+		npcDataVec_[i]->setupDayData();
 	}
 
 	if (dia_ == 1) {
