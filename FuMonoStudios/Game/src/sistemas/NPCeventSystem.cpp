@@ -88,7 +88,7 @@ void NPCeventSystem::procesarStringRecompensas(std::vector<std::string> vec) {
 			if (reward.find("-") != std::string::npos)
 				felicidadIncrement = -felicidadIncrement;
 
-			npc::Personaje aux = generalData().stringToPersonaje(personajeString);
+			GeneralData::Personaje aux = generalData().stringToPersonaje(personajeString);
 
 			generalData().incrementarFelicidad(aux, felicidadIncrement);
 		}
@@ -98,7 +98,7 @@ void NPCeventSystem::procesarStringRecompensas(std::vector<std::string> vec) {
 
 			std::string personajeString = reward.substr(index + 1, reward.size());
 
-			npc::Personaje aux = generalData().stringToPersonaje(personajeString);
+			GeneralData::Personaje aux = generalData().stringToPersonaje(personajeString);
 
 			generalData().unlockMejoraPersonaje(aux);
 		}
@@ -130,7 +130,7 @@ void NPCeventSystem::readNPCEventData() {
 
 	for (int i = 0; i < 7; i++)
 	{
-		std::string aux = generalData().personajeToString((npc::Personaje)i);
+		std::string aux = generalData().personajeToString((GeneralData::Personaje)i);
 		jValueRoot = root[aux];
 
 		JSONObject jObject = jValueRoot->AsObject();
@@ -523,7 +523,7 @@ void NPCeventSystem::readNPCEventData() {
 					throw std::runtime_error("Evento sin recompensas / no recompensa mal especificado");
 #pragma endregion
 
-				generalData().getNPCData((npc::Personaje)i)->events.push_back(auxEvent);
+				generalData().getNPCData((GeneralData::Personaje)i)->events.push_back(auxEvent);
 			}
 		}
 		else
@@ -912,7 +912,7 @@ void NPCeventSystem::readNPCEventData() {
 					throw std::runtime_error("Evento sin recompensas / no recompensa mal especificado");
 				#pragma endregion
 
-				generalData().getNPCData((npc::Personaje)i)->events.push_back(auxEvent);
+				generalData().getNPCData((GeneralData::Personaje)i)->events.push_back(auxEvent);
 			}
 		}
 		jValueRoot = nullptr;

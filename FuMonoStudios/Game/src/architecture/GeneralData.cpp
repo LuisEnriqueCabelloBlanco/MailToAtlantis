@@ -83,7 +83,7 @@ void GeneralData::updateDia()
 	// actualizar los datos para todos los npc
 	for (int i = 0; i < 7; i++)
 	{
-		npcDataVec_[i]->setupDayData();
+		npcData[i]->setupDayData();
 	}
 
 	if (dia_ == 1) {
@@ -232,7 +232,7 @@ void GeneralData::readNPCData() {
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
-			npcDataVec_.push_back(data);
+			npcData.push_back(data);
 		}
 		else
 		{
@@ -248,7 +248,7 @@ void GeneralData::readNPCData() {
 			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
-			npcDataVec_.push_back(data);
+			npcData.push_back(data);
 		}
 		jValueRoot = nullptr;
 	}
@@ -373,25 +373,25 @@ const std::string GeneralData::personajeToString(Personaje pers) {
 
 	std::string aux = "";
 	switch (pers) {
-		case Personaje::Vagabundo:
+		case Vagabundo:
 			aux = "Vagabundo";
 			break;
-		case Personaje::Secretario:
+		case Secretario:
 			aux = "Secretario";
 			break;
-		case Personaje::Campesino:
+		case Campesino:
 			aux = "Campesino";
 			break;
-		case Personaje::Artesano:
+		case Artesano:
 			aux = "Artesano";
 			break;
-		case Personaje::Tarotisa:
+		case Tarotisa:
 			aux = "Tarotisa";
 			break;
-		case Personaje::Soldado:
+		case Soldado:
 			aux = "Soldado";
 			break;
-		case Personaje::Contable:
+		case Contable:
 			aux = "Contable";
 			break;
 	}
@@ -403,26 +403,26 @@ Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	// no deja hacer switch y es una cochinada pero es la unica forma de hacerlo
 	//se puede usar un hasmap
 	if (pers == "Vagabundo")
-		aux = Personaje::Vagabundo;
+		aux = Vagabundo;
 	else if (pers == "Secretario")
-		aux = Personaje::Secretario;
+		aux = Secretario;
 	else if (pers == "Campesino")
-		aux = Personaje::Campesino;
+		aux = Campesino;
 	else if (pers == "Artesano")
-		aux = Personaje::Artesano;
+		aux = Artesano;
 	else if (pers == "Tarotisa")
-		aux = Personaje::Tarotisa;
+		aux = Tarotisa;
 	else if (pers == "Soldado")
-		aux = Personaje::Soldado;
+		aux = Soldado;
 	else if (pers == "Contable")
-		aux = Personaje::Contable;
+		aux = Contable;
 	
 	return aux;
 }
 
 Felicidad GeneralData::stringToFelicidad(const std::string& str)
 {
-	Felicidad aux = Felicidad::Normal;
+	Felicidad aux = Normal;
 	if (str == "Minima")
 		aux = Felicidad::Minima;
 	else if (str == "Mala")
@@ -442,17 +442,17 @@ Felicidad GeneralData::stringToFelicidad(const std::string& str)
 std::string GeneralData::felicidadToString(Felicidad f)
 {
 	std::string aux = "";
-	if (f == Felicidad::Minima)
+	if (f == Minima)
 		aux = "Minima";
-	else if (f == Felicidad::Mala)
+	else if (f == Mala)
 		aux = "Mala";
-	else if (f == Felicidad::Normal)
+	else if (f == Normal)
 		aux = "Normal";
-	else if (f == Felicidad::Buena)
+	else if (f == Buena)
 		aux = "Buena";
-	else if (f == Felicidad::Maxima)
+	else if (f == Maxima)
 		aux = "Maxima";
-	else if (f == Felicidad::NoHabladoAun)
+	else if (f == NoHabladoAun)
 		aux = "NoHabladoAun";
 	return aux;
 }
@@ -479,6 +479,7 @@ void GeneralData::setDayData() {
 	{
 		npcData.at((Personaje)i)->setupDayData();
 	}
+	return aux;
 }
 
 Calle GeneralData::stringToCalle(const std::string& calle) {
@@ -577,18 +578,18 @@ std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
 	std::string tipo;
 	int iterationNum = -1;
 
-	if (felicidad == Felicidad::Minima || felicidad == Felicidad::Maxima || felicidad == Felicidad::NoHabladoAun)
+	if (felicidad == Minima || felicidad == Maxima || felicidad == NoHabladoAun)
 	{
 		switch (felicidad)
 		{
-		case Felicidad::NoHabladoAun:
+		case NoHabladoAun:
 			tipo = "Presentacion";
-			felicidad = Felicidad::Normal;
+			felicidad = Normal;
 			break;
-		case Felicidad::Minima:
+		case Minima:
 			tipo = "FelicidadMinimo";
 			break;
-		case Felicidad::Maxima:
+		case Maxima:
 			tipo = "FelicidadMaximo";
 			break;
 		}
@@ -602,17 +603,17 @@ std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
 	else
 	{
 		switch (felicidad){
-			case Felicidad::Mala:
+			case Mala:
 				tipo = "GenericoMalo";
 				iterateDialogues();
 				iterationNum = iteration;
 				break;
-			case Felicidad::Normal:
+			case Normal:
 				tipo = "GenericoNormal";
 				iterateDialogues();
 				iterationNum = iteration;
 				break;
-			case Felicidad::Buena:
+			case Buena:
 				tipo = "GenericoBueno";
 				iterateDialogues();
 				iterationNum = iteration;
@@ -658,11 +659,11 @@ std::pair<const std::string, int> GeneralData::NPCMayorData::getDialogueInfo() {
 
 	switch (felicidad)
 	{
-	case Felicidad::NoHabladoAun:
+		case NoHabladoAun:
 			aux = "Presentacion";
-			felicidad = Felicidad::Normal;
+			felicidad = Normal;
 			break;
-		case Felicidad::Minima:
+		case Minima:
 			aux = "FelicidadMinimo";
 			break;
 		default:

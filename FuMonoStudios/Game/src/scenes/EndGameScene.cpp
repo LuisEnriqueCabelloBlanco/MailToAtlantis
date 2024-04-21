@@ -84,12 +84,12 @@ void EndGameScene::loadEnd(Personaje npc, JSONObject& root)
     if (jsonEntry != nullptr)
     {
         auto data = jsonEntry->AsObject();
-        endTexts_[npc][Felicidad::Minima] = data["Mini"]->AsString();
-        endTexts_[npc][Felicidad::Mala] = data["Mala"]->AsString();
-        endTexts_[npc][Felicidad::Normal] = data["Normal"]->AsString();
-        endTexts_[npc][Felicidad::Buena] = data["Buena"]->AsString();
-        endTexts_[npc][Felicidad::Maxima] = data["Maxima"]->AsString();
-        endTexts_[npc][Felicidad::NoHabladoAun] = "No hablaste con este Personaje";
+        endTexts_[npc][Minima] = data["Mini"]->AsString();
+        endTexts_[npc][Mala] = data["Mala"]->AsString();
+        endTexts_[npc][Normal] = data["Normal"]->AsString();
+        endTexts_[npc][Buena] = data["Buena"]->AsString();
+        endTexts_[npc][Maxima] = data["Maxima"]->AsString();
+        endTexts_[npc][NoHabladoAun] = "No hablaste con este Personaje";
     }
     else
     {
