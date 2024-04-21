@@ -114,7 +114,7 @@ void ecs::MainScene::init()
 	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
 	createCharacter({ 400, 300 }, "Campesino", 0.1f);
 
-	//createPaquete(generalData().getPaqueteLevel());
+	createPaquete(generalData().getPaqueteLevel());
 
 	//creacion de las herramientas
 	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos

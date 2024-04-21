@@ -76,6 +76,10 @@ void GeneralData::updateDia()
 	{
 		npcData[i]->setupDayData();
 	}
+
+	if (dia_ == 1) {
+		dinero_ = INITIAL_MONEY;
+	}
 }
 
 std::string GeneralData::fromDistritoToString(int i) {

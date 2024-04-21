@@ -19,7 +19,6 @@ EndWorkScene::~EndWorkScene() {
 
 
 void EndWorkScene::init() {
-	//generalData().updateMoney();
 
 	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
 		&sdlutils().images().at("fondoFinalTrabajo"));
