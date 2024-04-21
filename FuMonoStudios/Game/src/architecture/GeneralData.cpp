@@ -232,7 +232,7 @@ void GeneralData::readNPCData() {
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
-			npcData.push_back(data);
+			npcData[(Personaje)i] = data;
 		}
 		else
 		{
@@ -436,12 +436,12 @@ Felicidad GeneralData::stringToFelicidad(const std::string& str)
 	return aux;
 }
 
-void GeneralData::setDayData() {
-	for (int i = 0; i < 7; i++)
-	{
-		npcData.at((Personaje)i)->setupDayData();
-	}
-}
+//void GeneralData::setDayData() {
+//	for (int i = 0; i < 7; i++)
+//	{
+//		npcData.at((Personaje)i)->setupDayData();
+//	}
+//}
 std::string GeneralData::felicidadToString(Felicidad f)
 {
 	std::string aux = "";

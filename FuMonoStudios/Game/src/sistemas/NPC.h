@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+//#include <sistemas/NPCeventSystem.h>
+class NPCevent;
 namespace npc {
 	// enum con tipos de felicidad
 	enum Felicidad { Minima, Mala, Normal, Buena, Maxima, NoHabladoAun };
@@ -57,6 +59,10 @@ namespace npc {
 		// esto solo lo usa el NPCmenor
 		virtual void iterateDialogues() = 0;
 		virtual void setupDayData() = 0;
+		virtual NPCevent* getEvent() = 0;
+		int numFelicidad;
+		int numMisionesAceptadas;
+		std::vector<NPCevent*> events;
 	};
 
 #pragma region NPCdata
@@ -69,6 +75,7 @@ namespace npc {
 		std::pair<const std::string, int> getDialogueInfo() override;
 		void iterateDialogues() override;
 		void setupDayData() override;
+		NPCevent* getEvent() override;
 	private:
 		void activateEvent();
 		void deactivateEvent();
@@ -85,6 +92,7 @@ namespace npc {
 		std::pair<const std::string, int> getDialogueInfo() override;
 		void iterateDialogues() override {};
 		void setupDayData() override;
+		NPCevent* getEvent() override;
 	private:
 		bool postConversation;
 	};
