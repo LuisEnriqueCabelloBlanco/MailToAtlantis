@@ -70,6 +70,7 @@
     <ClCompile Include="src\components\NPCExclamation.cpp" />
     <ClCompile Include="src\scenes\EndGameScene.cpp" />
     <ClCompile Include="src\sistemas\NPC.cpp" />
+    <ClCompile Include="src\sistemas\NPCeventSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -177,6 +178,7 @@
     <ClInclude Include="src\components\NPCExclamation.h" />
     <ClInclude Include="src\scenes\EndGameScene.h" />
     <ClInclude Include="src\sistemas\NPC.h" />
+    <ClInclude Include="src\sistemas\NPCeventSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\MultipleTextures.h" />
@@ -201,6 +203,7 @@
     <None Include="recursos\data\dialogos.json" />
     <None Include="recursos\config\mail.destinatarios.json" />
     <None Include="recursos\config\sounds.json" />
+    <None Include="recursos\data\saveFile.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="recursos\images\Alimentos.png" />

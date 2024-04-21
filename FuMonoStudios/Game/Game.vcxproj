@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\sistemas\NPCeventSystem.cpp" />
     <ClCompile Include="src\components\HoverLayerComponent.cpp" />
     <ClCompile Include="src\components\HoverSensorComponent.cpp" />
     <ClCompile Include="src\components\RotarTransform.cpp" />
@@ -183,7 +184,6 @@
     <ClCompile Include="src\components\Herramientas.cpp" />
     <ClCompile Include="src\components\MultipleTextures.cpp" />
     <ClCompile Include="src\sistemas\Felicidad.cpp" />
-    <ClCompile Include="src\sistemas\Mapa.cpp" />
     <ClCompile Include="src\components\DialogComponent.cpp" />
     <ClCompile Include="src\components\Gravity.cpp" />
     <ClCompile Include="src\components\Clickeable.cpp" />
@@ -215,6 +215,7 @@
     <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\sistemas\NPCeventSystem.h" />
     <ClInclude Include="src\components\HoverLayerComponent.h" />
     <ClInclude Include="src\components\HoverSensorComponent.h" />
     <ClInclude Include="src\components\RotarTransform.h" />
@@ -252,7 +253,6 @@
     <ClInclude Include="src\components\Herramientas.h" />
     <ClInclude Include="src\components\MultipleTextures.h" />
     <ClInclude Include="src\sistemas\Felicidad.h" />
-    <ClInclude Include="src\sistemas\Mapa.h" />
     <ClInclude Include="src\components\DialogComponent.h" />
     <ClInclude Include="src\components\Gravity.h" />
     <ClInclude Include="src\components\Clickeable.h" />
@@ -302,7 +302,9 @@
     <None Include="recursos\config\mail.resources.json" />
     <None Include="recursos\config\sounds.json" />
     <None Include="recursos\data\dialogos.json" />
+    <None Include="recursos\data\eventosjefe.json" />
     <None Include="recursos\data\npcData.json" />
+    <None Include="recursos\data\saveFile.json" />
     <None Include="recursos\dialogos\dialogos.json" />
     <None Include="recursos\dialogos\dialogosNPC.json" />
     <None Include="src\sdlutils\RAEDME.md" />
