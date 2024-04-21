@@ -246,6 +246,7 @@ void GeneralData::readNPCData() {
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(i + 1))->second->AsBool());
 			}
 			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
+			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
 			npcData.push_back(data);
 		}
@@ -257,7 +258,51 @@ void GeneralData::readNPCData() {
 }
 
 void GeneralData::writeNPCData() {
+	std::ifstream archivo("recursos/data/npcData.json");
 
+	if (!archivo.is_open())
+	{
+		std::cout << "Error al abrir npcData.json" << std::endl;
+		throw std::runtime_error("Error al abrir npcData.json");
+	}
+
+	// Leer el contenido del archivo en una cadena
+	std::string contenido = "";
+	std::string linea;
+	while (std::getline(archivo, linea)) {
+		contenido += linea + "\n";
+	}
+	archivo.close();
+
+
+	for (int i = 0; i < 7; i++)
+	{
+		NPCdata* data = getNPCData((Personaje)i);
+		int posPersonaje = contenido.find('"' + personajeToString((Personaje)i) + '"' + ':');
+
+		int posFelicidad = contenido.find("Felicidad", posPersonaje) + 12;
+		contenido.replace(posFelicidad, (contenido.find('\n', posFelicidad)) - posFelicidad,
+			'"' + generalData().felicidadToString(data->felicidad) + '"' + ',');
+		int posFelicidadNum = contenido.find("FelicidadNum", posPersonaje) + 15;
+		contenido.replace(posFelicidadNum, (contenido.find('\n', posFelicidadNum)) - posFelicidadNum,
+			std::to_string(data->numFelicidad) + ",");
+		int posMisionesAc = contenido.find("numMisionesAceptadas", posPersonaje) + 23;
+		contenido.replace(posMisionesAc, (contenido.find('\n', posMisionesAc)) - posMisionesAc,
+			std::to_string(data->numMisionesAceptadas) + ",");
+	}
+
+	// Abrir el archivo en modo de escritura
+	std::ofstream archivoSalida("recursos/data/npcData.json");
+
+	if (!archivoSalida.is_open()) {
+		std::cout << "Error al abrir el archivo npcData.json para escritura." << std::endl;
+		throw std::runtime_error("Error al escribir npcData.json");
+	}
+	
+	// Escribir el contenido modificado en el archivo
+	archivoSalida.clear();
+	archivoSalida << contenido;
+	archivoSalida.close();
 }
 
 void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
@@ -332,7 +377,7 @@ GeneralData::Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 
 GeneralData::Felicidad GeneralData::stringToFelicidad(const std::string& str)
 {
-	Felicidad aux;
+	Felicidad aux = Normal;
 	if (str == "Minima")
 		aux = Felicidad::Minima;
 	else if (str == "Mala")
@@ -346,6 +391,24 @@ GeneralData::Felicidad GeneralData::stringToFelicidad(const std::string& str)
 	else if (str == "NoHabladoAun")
 		aux = Felicidad::NoHabladoAun;
 
+	return aux;
+}
+
+std::string GeneralData::felicidadToString(Felicidad f)
+{
+	std::string aux = "";
+	if (f == Minima)
+		aux = "Minima";
+	else if (f == Mala)
+		aux = "Mala";
+	else if (f == Normal)
+		aux = "Normal";
+	else if (f == Buena)
+		aux = "Buena";
+	else if (f == Maxima)
+		aux = "Maxima";
+	else if (f == NoHabladoAun)
+		aux = "NoHabladoAun";
 	return aux;
 }
 
