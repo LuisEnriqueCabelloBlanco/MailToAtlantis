@@ -643,59 +643,101 @@
     },
     "Eventos": {
       "1": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "peso": "Alto",
+          "pesoKG": 100
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "distrito": "Apolo",
+          "peso": "Alto",
+          "pesoKG": 100
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Soldado+++"
       },
       "2": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 3,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "1": {
+            "distrito": "Artemisa",
+            "tipoPaquete": "Medicinas"
+          },
+          "2": {
+            "distrito": "Apolo",
+            "tipoPaquete": "Medicinas"
+          },
+          "3": {
+            "distrito": "Poseidon",
+            "tipoPaquete": "Medicinas"
+          }
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "1": {
+            "distrito": "Hestia",
+            "tipoPaquete": "Medicinas"
+          },
+          "2": {
+            "distrito": "Hestia",
+            "tipoPaquete": "Medicinas"
+          },
+          "3": {
+            "distrito": "Hestia",
+            "tipoPaquete": "Medicinas"
+          }
         },
-        "recompensa": "Vagabundo+"
+        "recompensa":{
+          "1": "Soldado++++",
+          "2": "Secretario-",
+          "3": "Tarotisa--"
+        } 
       },
       "3": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 2,
+        "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "1": {
+            "tipoPaquete": "Alimento"
+          },
+          "2": {
+            "tipoPaquete": "Medicinas"
+          }
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "1": {
+            "tipoPaquete": "Alimento",
+            "distrito": "Hestia"
+          },
+          "2": {
+            "tipoPaquete": "Medicinas",
+            "distrito": "Hestia"
+          }
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Soldado++"
       },
       "4": {
-        "numPaquetes": 1,
+        "numPaquetes": 2,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Armamento"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Armamento",
+          "distrito": "Artemisa"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Soldado++"
       },
       "5": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "distrito": "Erroneo"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "distrito":"Apolo"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Soldado++++"
       }
     }
   },
