@@ -35,11 +35,12 @@ ecs::ExplorationScene::~ExplorationScene()
 
 void ecs::ExplorationScene::init()
 {
-	generalData().readNPCData();
 	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 	canStartConversation = true;
-
+#ifdef _DEBUG
 	std::cout << "Hola Exploracion" << std::endl;
+#endif // _DEBUG
+
 
 	initPlacesDefaultMap();
 	generalData().updateDia();
