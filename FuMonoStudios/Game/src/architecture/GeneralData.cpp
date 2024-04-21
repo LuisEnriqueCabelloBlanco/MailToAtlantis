@@ -38,7 +38,19 @@ void GeneralData::updateMoney()
 	if (corrects_ < 0) {
 		rightPackages = 0;
 	}
-	dinero_ += (rightPackages * WRITE_PACAGES_VALUE) - (wrongPackages * WRONG_PACAGES_VALUE) - rent_;
+	dinero_ += calcularDineroGanado() - rent_;
+}
+
+int GeneralData::calcularDineroGanado()
+{
+	int rightPackages = corrects_;
+	int wrongPackages = fails_;
+	return (rightPackages * WRITE_PACAGES_VALUE) - (wrongPackages * WRONG_PACAGES_VALUE);
+}
+
+void GeneralData::resetMoney()
+{
+	dinero_ = INITIAL_MONEY;
 }
 
 //A medida que el proyecto avance, la lista de variables deber� de ampliarse, pero por ahora tenemos esto:
@@ -72,6 +84,10 @@ void GeneralData::updateDia()
 	for (int i = 0; i < 7; i++)
 	{
 		npcData[i]->setupDayData();
+	}
+
+	if (dia_ == 1) {
+		dinero_ = INITIAL_MONEY;
 	}
 }
 
@@ -170,13 +186,9 @@ void GeneralData::updateDistrictsPerDay(int dia)
 		placesToActive_.push_back("Demeter");
 		placesToActive_.push_back("Artemisa");
 		break;
-	case 2:
+	case 5:
 		placesToActive_.push_back("Hermes");
-		break;
-	case 3: 
 		placesToActive_.push_back("Apolo");
-		break;
-	case 4:
 		placesToActive_.push_back("Poseidon");
 		break;
 	default:
@@ -214,10 +226,12 @@ void GeneralData::readNPCData() {
 		JSONObject jObject = jValueRoot->AsObject();
 		std::string felicidadStr = jObject.find("Felicidad")->second->AsString();
 
+
 		if (i < 2) // npc grandes
 		{
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
+			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
 			npcData.push_back(data);
 		}
 		else
@@ -225,12 +239,15 @@ void GeneralData::readNPCData() {
 			std::vector<bool> diasDanEventos;
 			jObject = jValueRoot->AsObject();
 			JSONObject jDiasEvento = jObject.find("DiasConEvento")->second->AsObject();
+
 			// leemos los 14 booleanos
 			for (int i = 0; i < 14; i++)
 			{
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(i + 1))->second->AsBool());
 			}
-			npcData.push_back(new NPCMenorData(stringToFelicidad(felicidadStr),diasDanEventos));
+			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
+			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
+			npcData.push_back(data);
 		}
 		jValueRoot = nullptr;
 	}
@@ -290,16 +307,18 @@ void GeneralData::saveGame() {
 
 void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
 {
-	int actualFelicidad = getNPCData(p)->felicidad;
+	int actualFelicidad = getNPCData(p)->numFelicidad;
 	int newFelicidadInt = actualFelicidad + felicidadIncr;
 	if (newFelicidadInt < 0)
 		newFelicidadInt = 0;
-	else if (newFelicidadInt > 4)
-		newFelicidadInt = 4;
+	else if (newFelicidadInt > 100)
+		newFelicidadInt = 100;
 
 	Felicidad newFelicidad = (Felicidad)newFelicidadInt;
+	
 
 	getNPCData(p)->felicidad = newFelicidad;
+	getNPCData(p)->numFelicidad = newFelicidadInt;
 }
 
 void GeneralData::unlockMejoraPersonaje(Personaje p) {

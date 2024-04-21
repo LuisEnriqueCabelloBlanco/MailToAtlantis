@@ -73,7 +73,7 @@ public:
 	
 	struct NPCdata {
 		Felicidad felicidad;
-		
+		int numFelicidad;
 		int numMisionesAceptadas;
 		std::vector<NPCevent*> events;
 		virtual NPCevent* getEvent() = 0;
@@ -138,6 +138,14 @@ public:
 	/// </summary>
 	/// <param name="writePacages"></param>
 	/// <param name="wrongPacages"></param>
+	void updateMoney();
+
+	//Calcula el dinero que recibe el jugador en base a los aciertos y fallos.
+	//Ejemplos de uso son en el metodo de arriba o en la endWorkScene
+	int calcularDineroGanado();
+	
+	void resetMoney(); //Pone el dinero a INITIAL_MONEY
+
 	int getMoney() { return dinero_; }
 
 	void setFinalID(int final); //Cambia el ID del final
@@ -183,7 +191,6 @@ public:
 	const std::string nivelPesoToString(NivelPeso nivel);
 	NivelPeso stringToNivelPeso(const std::string& nivel);
 
-	void updateMoney();
 	//Los métodos para acceder a las herramientas que te pueden dar los NPCs
 	void aquireSelloMulticolor() { selloMulticolor = true; }
 	bool getSelloMulticolor() { return selloMulticolor; }

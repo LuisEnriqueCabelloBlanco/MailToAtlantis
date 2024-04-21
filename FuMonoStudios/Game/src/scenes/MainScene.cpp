@@ -114,7 +114,7 @@ void ecs::MainScene::init()
 	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
 	createCharacter({ 400, 300 }, "Campesino", 0.1f);
 
-	//createPaquete(generalData().getPaqueteLevel());
+	createPaquete(generalData().getPaqueteLevel());
 
 	//creacion de las herramientas
 	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
@@ -193,52 +193,39 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 {
 	if(dia == 0)
 		return;
-	switch (dia)
-	{
-	case 1:		
+
+
+	if (dia >= 1) {
+		createStamp(SelloCalleA);
+
+		createInks();
+	}
+
+	if (dia >= 5) {
+		createBalanza();
+	}
+
+	if (dia >= 8) {
 		//if(GeneralData::instance()->getSelloMulticolor()) 
 		//createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
 		//createExclamationPoint();		//Ignorad esto, está aquí para hacer pruebas. Lo quito en cuanto funcione -Javier
-		createStamp(SelloCalleA);
+		createCinta();
+	}
 
-		createInks();
 
-		createBalanza();
-
+	if (dia < 3 && dia >= 1) {
 		generalData().setPaqueteLevel(0);
-
-		break;
-
-	case 2:
-		createStamp (SelloCalleA);
-
-		createInks ();
-
+	}
+	else if (dia < 5 && dia >= 3) {
 		generalData().setPaqueteLevel(1);
-
-		break;
-
-	case 3:
-		createStamp (SelloCalleA);
-
-		createInks ();
-
-		createCinta();
-
+	}
+	else if (dia < 8 && dia >= 5) {
 		generalData().setPaqueteLevel(2);
+	}
+	else if (dia < 15 && dia >= 8) {
+		generalData().setPaqueteLevel(3);
+	}
 
-		break;
-		//si estamos en un dia mayor que el indicado se desbloquean todas las mecánicas
-	default:
-		createStamp(SelloCalleA);
-
-		createInks();
-
-		createCinta();
-
-		generalData().setPaqueteLevel(2);
-		break;
-	}	
 }
 void ecs::MainScene::createExclamationPoint() {
 	Entity* xd = addEntity(ecs::layer::FOREGROUND);	
