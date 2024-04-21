@@ -762,59 +762,69 @@
     },
     "Eventos": {
       "1": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "tipoPaquete":"Alimento"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "tipoPaquete":"Alimento",
+          "distrito": "Hermes"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Contable+++"
       },
       "2": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Nota Por Hacer"
         },
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Contable++"
       },
       "3": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Glover Globus",
+          "tipoPaquete": "Materiales",
+          "distrito": "Apolo"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Glover Globus",
+          "tipoPaquete": "Materiales",
+          "distrito": "Apolo",
+          "fragil": true
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Contable++++"
       },
       "4": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Joyas",
+          "distrito": "Poseidon"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Joyas",
+          "distrito": "Hermes"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Contable++++"
       },
       "5": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 2,
+        "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Glover Globus",
+          "distrito": "Erroneo"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Glover Globus",
+          "distrito": "Hermes"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Contable++"
       }
     }
   }
