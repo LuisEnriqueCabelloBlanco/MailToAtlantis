@@ -22,7 +22,7 @@ void EndWorkScene::init() {
 	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
 		&sdlutils().images().at("fondoFinalTrabajo"));
 
-	generalData().setDia(generalData().getDia() + 1);
+	generalData().setDay(generalData().getDay() + 1);
 
 	pos_ = Vector2D(LOGICAL_RENDER_WIDTH / 2 + 200, 100);
 	Vector2D dist(0, -300);
@@ -31,7 +31,7 @@ void EndWorkScene::init() {
 	animFinish = false;
 
 	// Dia actual
-	msg = "Dia " + std::to_string(generalData().getDia());
+	msg = "Dia " + std::to_string(generalData().getDay());
 	factory_->createLabel(Vector2D(1350, 50), msg, 80);
 
 	// Corrects y fails
@@ -126,7 +126,7 @@ void EndWorkScene::createButtons()
 		// Texto
 		factory_->createLabel(pos_ + Vector2D(0, offset_ * 2), "No has pagado ¡Deportado!", 50);
 		generalData().resetFailsCorrects();
-		generalData().setDia(1);
+		generalData().setDay(1);
 		generalData().resetMoney();
 	}
 }
