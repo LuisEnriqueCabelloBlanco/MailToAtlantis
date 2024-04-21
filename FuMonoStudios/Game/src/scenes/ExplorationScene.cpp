@@ -250,46 +250,27 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	return characterEnt;
 }
 
-ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const std::string& character, float scale) {
+ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const std::string& interactableObj, float scale) {
 
 	ComonObjectsFactory factory(this);
 
-	Texture* characterTexture = &sdlutils().images().at(character);
-	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
+	//Texture* characterTexture = &sdlutils().images().at(interactableObj);
+	Vector2D size{ 300 * scale, 200 * scale };
 
 	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
 	//Actualmente los personajes no tienen memoria, si queremos esto haria falta anadrile un parametro
 
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
-	CallbackClickeable funcPress = [this, character]() {
-		dialogMngr_.startConversation(character);
-
-		auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
-		auto data = generalData().getNPCData(charac); //data de dicho personaje
-
-		// activamos los dialogos correspondientes
-		std::pair<const std::string, int> aux = data->getDialogueInfo();
-
-		if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
-		{
-			NPCevent* event = data->getEvent();
-			for (int i = 0; i < event->numPaquetes; i++) {
-				generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
-			}
-			generalData().npcEventSys->activateEvent(event);
-			generalData().npcEventSys->shuffleNPCqueue();
-		}
+	CallbackClickeable funcPress = [this, interactableObj]() {
+		dialogMngr_.startConversationWithObj(interactableObj);
+		//dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(1));
 	};
 
+	ecs::Entity* objEnt = factory.createImageButton(pos, size, nullptr, funcPress);
 
+	factory.addHoverColorMod(objEnt, build_sdlcolor(0xccccccff));
 
-	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
-
-	//return characterEnt;
-
-	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
-
-	return characterEnt;
+	return objEnt;
 }
 
 void ecs::ExplorationScene::setNavegabilityOfPlace(int place, bool value)

@@ -84,6 +84,7 @@ public:
     void setDialogues(const DialogSelection ds) { setDialogues(ds, "NULL", -1); }
 
     void startConversation(const std::string& character);
+    void startConversationWithObj(const std::string& interactableObj);
 
     //para quitar la caja de texto y el propio texto
     void closeDialogue();

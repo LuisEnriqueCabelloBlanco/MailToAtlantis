@@ -51,6 +51,11 @@ public:
 		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable
 	};
 
+	// enum con el nombre de todos los Objetos Interactuables
+	enum InteractableObj {
+		Casa1, Casa2
+	};
+
 	enum MoveType{DropIn, PickUp};
 
 
@@ -72,6 +77,12 @@ public:
 	// 
 	// MIRAR EL comoEscribirEventos.MD PARA SABER COMO USAR ESTO
 	
+	struct IntObjsData {
+
+		virtual std::pair<const std::string, int> getDialogueInfo();
+
+	};
+
 	struct NPCdata {
 		Felicidad felicidad;
 		
@@ -126,6 +137,11 @@ public:
 	void incrementarFelicidad(Personaje p, int felicidadIncr);
 
 	NPCeventSystem* npcEventSys = nullptr;
+
+	// METODOS DE INTOBJSdata
+
+	IntObjsData* getObjData(InteractableObj intobj);
+
 private:
 	// vector que contiene los datos de todos los 7 npc
 	std::vector<NPCdata*> npcData;
@@ -188,6 +204,10 @@ public:
 
 	const std::string personajeToString(Personaje pers);
 	Personaje stringToPersonaje(const std::string& pers);
+
+
+	InteractableObj stringToObj(const std::string& obj);
+
 	std::string fromDistritoToString(int i);
 	int fromStringToDistrito(std::string place);
 	const std::string calleToString(Calle calle);

@@ -609,5 +609,16 @@
       "estamos fumando marihuana",
       "hoy seras mi esclava en el cuarto de un motel"
     ]
+  },
+  "casa1": {
+    "Textos": [
+      "Mondongo"
+    ],
+    "FelicidadMinima": [
+      "Puteros"
+    ],
+    "FelicidadMaxima": [
+      "Tu madre tiene una cosa que ya la quisieras tu"
+    ]
   }
 }

@@ -355,6 +355,17 @@ GeneralData::Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	return aux;
 }
 
+GeneralData::InteractableObj GeneralData::stringToObj(const std::string& pers) {
+	InteractableObj aux;
+	// no deja hacer switch y es una cochinada pero es la unica forma de hacerlo
+	if (pers == "casa1")
+		aux = Casa1;
+	else if (pers == "casa2")
+		aux = Casa2;
+
+	return aux;
+}
+
 GeneralData::Felicidad GeneralData::stringToFelicidad(const std::string& str)
 {
 	Felicidad aux;
@@ -598,3 +609,18 @@ NPCevent* GeneralData::NPCMayorData::getEvent() {
 	numMisionesAceptadas++;
 }
 #pragma endregion
+
+std::pair<const std::string, int> GeneralData::IntObjsData::getDialogueInfo()
+{
+		std::string tipo;
+		tipo = "Textos";
+		RandomNumberGenerator a;
+		int iterationNum = a.nextInt(1, 6);
+
+		return std::make_pair(tipo, iterationNum);
+}
+
+GeneralData::IntObjsData* GeneralData::getObjData(InteractableObj intobj)
+{
+	return nullptr;
+}

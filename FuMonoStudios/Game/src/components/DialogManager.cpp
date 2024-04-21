@@ -212,6 +212,29 @@ void DialogManager::startConversation(const std::string& character)
     }
 }
 
+void DialogManager::startConversationWithObj(const std::string& interactableObj)
+{
+    if (canStartConversation)
+    {
+        auto obj = generalData().stringToObj(interactableObj); //de que objeto queremos el dialogo
+        auto data = generalData().getObjData(obj); //data de dicho objeto
+
+        // activamos los dialogos correspondientes
+        std::pair<const std::string, int> aux = data->getDialogueInfo();
+
+
+        setDialogues((DialogManager::DialogSelection)generalData().stringToObj(interactableObj), aux.first, aux.second);
+
+        setDialogueEntitiesActive(true);
+
+
+
+        std::cout << "jefe otro dialogo que este tenia un agujero\n";
+        //dataCollector().recordNPC(charac + 1, aux.second, generalData().getNPCData(charac)->felicidad);
+        canStartConversation = false;
+    }
+}
+
 void DialogManager::closeDialogue()
 {
     setDialogueEntitiesActive(false);
