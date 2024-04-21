@@ -83,6 +83,7 @@ void EndGameScene::loadEnd(Personaje npc, JSONObject& root)
     jsonEntry = root[charac];
     if (jsonEntry != nullptr)
     {
+        //prueba
         auto data = jsonEntry->AsObject();
         endTexts_[npc][Minima] = data["Mini"]->AsString();
         endTexts_[npc][Mala] = data["Mala"]->AsString();
@@ -95,4 +96,6 @@ void EndGameScene::loadEnd(Personaje npc, JSONObject& root)
     {
         throw std::runtime_error("Fallo en la carga de dialogo");
     }
+
+    //cambio prueba para el merge
 }
