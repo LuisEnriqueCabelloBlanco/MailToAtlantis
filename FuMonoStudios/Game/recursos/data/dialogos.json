@@ -620,5 +620,16 @@
     "FelicidadMaxima": [
       "Tu madre tiene una cosa que ya la quisieras tu"
     ]
+  },
+  "casa2": {
+    "Textos": [
+      "Mondongo"
+    ],
+    "FelicidadMinima": [
+      "Puteros"
+    ],
+    "FelicidadMaxima": [
+      "Tu madre tiene una cosa que ya la quisieras tu"
+    ]
   }
 }

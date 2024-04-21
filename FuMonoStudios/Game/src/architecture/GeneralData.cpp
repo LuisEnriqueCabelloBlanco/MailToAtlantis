@@ -283,6 +283,48 @@ void GeneralData::readNPCData() {
 		npcEventSys = new NPCeventSystem();
 }
 
+//void GeneralData::readIntObjData() {
+//	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/intObjsData.json"));
+//
+//	if (jsonFile == nullptr || !jsonFile->IsObject()) {
+//		throw "Something went wrong while load/parsing intObjsData";
+//	}
+//
+//	JSONObject root = jsonFile->AsObject();
+//	JSONValue* jValueRoot = nullptr;
+//
+//	// cargamos los objetos
+//
+//	for (int i = 0; i < 2; i++)
+//	{
+//		std::string aux = objetoToString((InteractableObj)i);
+//		jValueRoot = root[aux];
+//
+//		JSONObject jObject = jValueRoot->AsObject();
+//
+//		if (i < 2) // npc grandes
+//		{
+//			npcData.push_back(data);
+//		}
+//		else
+//		{
+//			std::vector<bool> diasDanEventos;
+//			jObject = jValueRoot->AsObject();
+//			JSONObject jDiasEvento = jObject.find("DiasConEvento")->second->AsObject();
+//			// leemos los 14 booleanos
+//			for (int i = 0; i < 14; i++)
+//			{
+//				diasDanEventos.push_back(jDiasEvento.find(std::to_string(i + 1))->second->AsBool());
+//			}
+//			intObjData.push_back(new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos));
+//		}
+//		jValueRoot = nullptr;
+//	}
+//
+//	if (npcEventSys == nullptr)
+//		npcEventSys = new NPCeventSystem();
+//}
+
 void GeneralData::writeNPCData() {
 
 }
@@ -352,6 +394,20 @@ GeneralData::Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	else if (pers == "Contable")
 		aux = Contable;
 	
+	return aux;
+}
+
+const std::string GeneralData::objetoToString(InteractableObj pers) {
+
+	std::string aux = "";
+	switch (pers) {
+	case Casa1:
+		aux = "casa1";
+		break;
+	case Casa2:
+		aux = "casa2";
+		break;
+	}
 	return aux;
 }
 
@@ -476,6 +532,8 @@ NivelPeso GeneralData::stringToNivelPeso(const std::string& nivel)
 		aux = Ninguno;
 	return aux;
 }
+
+
 
 // Struct NPCdata
 #pragma region NPCdata
@@ -615,7 +673,7 @@ std::pair<const std::string, int> GeneralData::IntObjsData::getDialogueInfo()
 		std::string tipo;
 		tipo = "Textos";
 		RandomNumberGenerator a;
-		int iterationNum = a.nextInt(1, 6);
+		int iterationNum = a.nextInt(1, 4);
 
 		return std::make_pair(tipo, iterationNum);
 }

@@ -50,7 +50,28 @@
                 }
 
             ]}
-        ]
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 0,
+                "x" : 200.7,
+                "y" : 200.3,
+                "name" : "casa1",
+                "scale" : 0.8,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "casa2",
+                "scale" : 0.8,
+                "dir" : true              
+                }
+
+            ]}
         },
 
         {"id": "Hefesto",
@@ -101,7 +122,28 @@
                 }
 
             ]}
-        ]},
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 0,
+                "x" : 200.7,
+                "y" : 200.3,
+                "name" : "casa1",
+                "scale" : 0.8,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "casa2",
+                "scale" : 0.8,
+                "dir" : true              
+                }
+
+            ]}},
 
         {"id": "Hestia",
         "data": [
@@ -151,7 +193,15 @@
                 "x" : 200.7,
                 "y" : 200.3,
                 "name" : "casa1",
-                "scale" : 0.38,
+                "scale" : 0.8,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "casa2",
+                "scale" : 0.8,
                 "dir" : true              
                 }
 
@@ -198,7 +248,28 @@
                 }
 
             ]}
-        ]},
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 0,
+                "x" : 200.7,
+                "y" : 200.3,
+                "name" : "casa1",
+                "scale" : 0.8,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "casa2",
+                "scale" : 0.8,
+                "dir" : true              
+                }
+
+            ]}},
 
         {"id": "Hermes",
         "data": [
@@ -248,7 +319,28 @@
                 }
 
             ]}
-        ]},
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 0,
+                "x" : 200.7,
+                "y" : 200.3,
+                "name" : "casa1",
+                "scale" : 0.8,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "casa2",
+                "scale" : 0.8,
+                "dir" : true              
+                }
+
+            ]}},
 
         {"id": "Apolo",
         "data": [
@@ -289,7 +381,28 @@
                 }
 
             ]}
-        ]},
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 0,
+                "x" : 200.7,
+                "y" : 200.3,
+                "name" : "casa1",
+                "scale" : 0.8,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "casa2",
+                "scale" : 0.8,
+                "dir" : true              
+                }
+
+            ]}},
 
         {"id": "Poseidon",
         "data": [
@@ -322,7 +435,28 @@
                 }
 
             ]}
-        ]}
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 0,
+                "x" : 200.7,
+                "y" : 200.3,
+                "name" : "casa1",
+                "scale" : 0.8,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "casa2",
+                "scale" : 0.8,
+                "dir" : true              
+                }
+
+            ]}}
 
     ]
 

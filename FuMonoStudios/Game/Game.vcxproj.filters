@@ -202,6 +202,7 @@
     <None Include="recursos\data\saveFile.json" />
     <None Include="recursos\data\eventosjefe.json" />
     <None Include="recursos\data\intObjsData.json" />
+    <None Include="recursos\config\mail.config.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="recursos\images\Alimentos.png" />

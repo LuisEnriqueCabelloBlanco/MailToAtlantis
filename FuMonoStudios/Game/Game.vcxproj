@@ -295,6 +295,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties.props" />
+    <None Include="recursos\config\mail.config.json" />
     <None Include="recursos\config\mail.direcctions.json" />
     <None Include="recursos\config\mail.destinatarios.json" />
     <None Include="recursos\config\mail.resources.json" />

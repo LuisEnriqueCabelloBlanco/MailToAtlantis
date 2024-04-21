@@ -140,11 +140,14 @@ public:
 
 	// METODOS DE INTOBJSdata
 
+	//void readIntObjData();
+
 	IntObjsData* getObjData(InteractableObj intobj);
 
 private:
 	// vector que contiene los datos de todos los 7 npc
 	std::vector<NPCdata*> npcData;
+	std::vector<InteractableObj*> intObjData;
 #pragma endregion
 public:
 	GeneralData();
@@ -206,6 +209,7 @@ public:
 	Personaje stringToPersonaje(const std::string& pers);
 
 
+	const std::string objetoToString(InteractableObj pers);
 	InteractableObj stringToObj(const std::string& obj);
 
 	std::string fromDistritoToString(int i);
