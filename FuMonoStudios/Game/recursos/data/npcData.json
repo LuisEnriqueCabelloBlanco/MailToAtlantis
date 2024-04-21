@@ -660,32 +660,12 @@
         "numPaquetes": 3,
         "numPaquetesParaCompletar": 3,
         "paquetes": {
-          "1": {
             "distrito": "Artemisa",
             "tipoPaquete": "Medicinas"
-          },
-          "2": {
-            "distrito": "Apolo",
-            "tipoPaquete": "Medicinas"
-          },
-          "3": {
-            "distrito": "Poseidon",
-            "tipoPaquete": "Medicinas"
-          }
         },
         "condiciones": {
-          "1": {
             "distrito": "Hestia",
             "tipoPaquete": "Medicinas"
-          },
-          "2": {
-            "distrito": "Hestia",
-            "tipoPaquete": "Medicinas"
-          },
-          "3": {
-            "distrito": "Hestia",
-            "tipoPaquete": "Medicinas"
-          }
         },
         "recompensa":{
           "1": "Soldado++++",
@@ -697,22 +677,11 @@
         "numPaquetes": 2,
         "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "1": {
             "tipoPaquete": "Alimento"
-          },
-          "2": {
-            "tipoPaquete": "Medicinas"
-          }
         },
         "condiciones": {
-          "1": {
             "tipoPaquete": "Alimento",
             "distrito": "Hestia"
-          },
-          "2": {
-            "tipoPaquete": "Medicinas",
-            "distrito": "Hestia"
-          }
         },
         "recompensa": "Soldado++"
       },
@@ -732,7 +701,7 @@
         "numPaquetes": 3,
         "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "distrito": "Erroneo"
+          "distrito": "Hermes"
         },
         "condiciones": {
           "distrito":"Apolo"
@@ -818,7 +787,7 @@
         "numPaquetesParaCompletar": 2,
         "paquetes": {
           "remitente": "Glover Globus",
-          "distrito": "Erroneo"
+          "distrito": "Hermes"
         },
         "condiciones": {
           "remitente": "Glover Globus",
