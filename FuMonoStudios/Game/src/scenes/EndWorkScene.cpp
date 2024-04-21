@@ -125,10 +125,10 @@ void EndWorkScene::createButtons()
 		sdlutils().soundEffects().at("LoseMoney").play();
 		// Texto
 		factory_->createLabel(pos_ + Vector2D(0, offset_ * 2), "No has pagado ¡Deportado!", 50);
+
 		generalData().resetFailsCorrects();
 		generalData().setDay(1);
 		generalData().resetMoney();
 	}
 }
-
 
