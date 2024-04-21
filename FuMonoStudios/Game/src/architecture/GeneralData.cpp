@@ -41,7 +41,19 @@ void GeneralData::updateMoney()
 	if (corrects_ < 0) {
 		rightPackages = 0;
 	}
-	dinero_ += (rightPackages * WRITE_PACAGES_VALUE) - (wrongPackages * WRONG_PACAGES_VALUE) - rent_;
+	dinero_ += calcularDineroGanado() - rent_;
+}
+
+int GeneralData::calcularDineroGanado()
+{
+	int rightPackages = corrects_;
+	int wrongPackages = fails_;
+	return (rightPackages * WRITE_PACAGES_VALUE) - (wrongPackages * WRONG_PACAGES_VALUE);
+}
+
+void GeneralData::resetMoney()
+{
+	dinero_ = INITIAL_MONEY;
 }
 
 //A medida que el proyecto avance, la lista de variables deber� de ampliarse, pero por ahora tenemos esto:
