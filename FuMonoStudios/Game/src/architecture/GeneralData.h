@@ -36,18 +36,6 @@ namespace pq {
 	enum NivelPeso { Ninguno, Bajo, Medio, Alto };
 }
 
-namespace npc {
-
-	// enum con tipos de felicidad
-	enum Felicidad { Minima, Mala, Normal, Buena, Maxima, NoHabladoAun };
-
-	// enum con el nombre de todos los NPC
-	enum Personaje {
-		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable
-	};
-
-}
-
 using namespace pq;
 using namespace npc;
 class GeneralData : public Singleton<GeneralData>
@@ -128,9 +116,6 @@ public:
 	void readNPCData();
 	void writeNPCData();
 
-	void setDayData();
-	
-
 	NPCdata* getNPCData(Personaje personaje);
 
 	void incrementarFelicidad(Personaje p, int felicidadIncr);
@@ -138,7 +123,7 @@ public:
 	NPCeventSystem* npcEventSys = nullptr;
 private:
 	// vector que contiene los datos de todos los 7 npc
-	std::vector<NPCdata*> npcDataVec_;
+	std::vector<NPCdata*> npcData;
 #pragma endregion
 public:
 	GeneralData();
@@ -210,7 +195,6 @@ public:
 	TipoPaquete stringToTipoPaquete(const std::string& tipo);
 	const std::string nivelPesoToString(NivelPeso nivel);
 	NivelPeso stringToNivelPeso(const std::string& nivel);
-
 
 	//Los métodos para acceder a las herramientas que te pueden dar los NPCs
 	void aquireSelloMulticolor() { selloMulticolor = true; }
