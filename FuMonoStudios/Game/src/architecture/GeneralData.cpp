@@ -16,7 +16,7 @@ GeneralData::GeneralData()
 	failsMargin_ = INITIAL_FAILS_MARGIN;
 	corrects_ = 0;
 	fails_ = 0;
-	dia_ = INITIAL_DAY;
+	dia_ = 1;
 	rent_ = 75;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
 
@@ -224,7 +224,7 @@ void GeneralData::readNPCData() {
 		jValueRoot = root[aux];
 
 		JSONObject jObject = jValueRoot->AsObject();
-		std::string felicidadStr = jObject["Felicidad"]->AsString();
+		std::string felicidadStr = jObject.find("Felicidad")->second->AsString();
 
 
 		if (i < 2) // npc grandes
@@ -398,10 +398,9 @@ const std::string GeneralData::personajeToString(Personaje pers) {
 	return aux;
 }
 
-Personaje GeneralData::stringToPersonaje(const std::string& pers) {
+GeneralData::Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	Personaje aux;
 	// no deja hacer switch y es una cochinada pero es la unica forma de hacerlo
-	//se puede usar un hasmap
 	if (pers == "Vagabundo")
 		aux = Vagabundo;
 	else if (pers == "Secretario")
@@ -420,7 +419,7 @@ Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	return aux;
 }
 
-Felicidad GeneralData::stringToFelicidad(const std::string& str)
+GeneralData::Felicidad GeneralData::stringToFelicidad(const std::string& str)
 {
 	Felicidad aux = Normal;
 	if (str == "Minima")
@@ -472,12 +471,6 @@ const std::string GeneralData::calleToString(Calle calle) {
 	case Erronea:
 		aux = "Erronea";
 		break;
-	}
-}
-void GeneralData::setDayData() {
-	for (int i = 0; i < 7; i++)
-	{
-		npcData.at((Personaje)i)->setupDayData();
 	}
 	return aux;
 }

@@ -154,9 +154,7 @@ El **taco de fallos** ira cambiando de sprites según el numero de **fallos** al
 #### Felicidad
 Cada personaje tiene asociado un parámetro de felicidad, dicho valor va aumentando o reduciendose. 
 
-La felicidad puede ir desde el -X hasta el Y, teniendo diferentes puntos que actuan como flags.
-
-Tras el día final se pasará a una escena donde se irá exponiendo en un texto / imagen donde se vea el final del NPC en función de la felicidad con la que acaba. En el caso de felicidad mínima no se mostrará el final del personaje.
+La felicidad puede ir desde el -X hasta el Y, teniendo diferentes puntos que actuan como flags. 
 
 Condiciones del comportamiento de la felicidad:
 

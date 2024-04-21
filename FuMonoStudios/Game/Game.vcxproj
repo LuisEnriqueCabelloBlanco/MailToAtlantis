@@ -154,8 +154,6 @@
     <ClCompile Include="src\components\RotarTransform.cpp" />
     <ClCompile Include="src\components\Balanza.cpp" />
     <ClCompile Include="src\components\NPCExclamation.cpp" />
-    <ClCompile Include="src\scenes\EndGameScene.cpp" />
-    <ClCompile Include="src\sistemas\NPC.cpp" />
     <ClCompile Include="src\sistemas\SoundEmiter.cpp" />
     <ClCompile Include="src\components\RenderWithLight.cpp" />
     <ClCompile Include="src\QATools\DataCollector.cpp" />
@@ -221,8 +219,6 @@
     <ClInclude Include="src\components\RotarTransform.h" />
     <ClInclude Include="src\components\Balanza.h" />
     <ClInclude Include="src\components\NPCExclamation.h" />
-    <ClInclude Include="src\scenes\EndGameScene.h" />
-    <ClInclude Include="src\sistemas\NPC.h" />
     <ClInclude Include="src\sistemas\SoundEmiter.h" />
     <ClInclude Include="src\components\RenderWithLight.h" />
     <ClInclude Include="src\QATools\DataCollector.h" />
