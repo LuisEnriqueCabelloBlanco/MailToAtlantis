@@ -214,16 +214,16 @@ void GeneralData::readNPCData() {
 	}
 	
 	JSONObject root = jsonFile->AsObject();
-	JSONValue* jValueRoot = nullptr;
+	JSONValue* jValue = nullptr;
 
 	// cargamos los 7 personajes
 
 	for (int i = 0; i < 7; i++)
 	{
 		std::string aux = personajeToString((Personaje)i);
-		jValueRoot = root[aux];
+		jValue = root[aux];
 
-		JSONObject jObject = jValueRoot->AsObject();
+		JSONObject jObject = jValue->AsObject();
 		std::string felicidadStr = jObject["Felicidad"]->AsString();
 
 
@@ -237,7 +237,7 @@ void GeneralData::readNPCData() {
 		else
 		{
 			std::vector<bool> diasDanEventos;
-			jObject = jValueRoot->AsObject();
+			jObject = jValue->AsObject();
 			JSONObject jDiasEvento = jObject.find("DiasConEvento")->second->AsObject();
 
 			// leemos los 14 booleanos
@@ -247,7 +247,7 @@ void GeneralData::readNPCData() {
 			}
 			npcData[(Personaje)i] = new NPCMenorData(stringToFelicidad(felicidadStr),diasDanEventos);
 		}
-		jValueRoot = nullptr;
+		jValue = nullptr;
 	}
 
 	if (npcEventSys == nullptr)

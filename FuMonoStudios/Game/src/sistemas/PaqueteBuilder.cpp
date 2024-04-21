@@ -14,14 +14,25 @@ PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
 	directionsFont = &sdlutils().fonts().at("arial40");
 
 	std::string filename = "recursos/config/mail.direcctions.json";
-	getStreetsFromJSON(filename, Demeter, "Demeter");
-	getStreetsFromJSON(filename, Hefesto, "Hefesto");
-	getStreetsFromJSON(filename, Hestia, "Hestia");
-	getStreetsFromJSON(filename, Artemisa, "Artemisa");
-	getStreetsFromJSON(filename, Hermes, "Hermes");
-	getStreetsFromJSON(filename, Apolo, "Apolo");
-	getStreetsFromJSON(filename, Poseidon, "Poseidon");
-	getStreetsFromJSON(filename, Erroneo, "Erroneo");
+	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(filename));
+
+	// check it was loaded correctly
+	// the root must be a JSON object
+	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
+		throw "Something went wrong while load/parsing '" + filename + "'";
+	}
+	// we know the root is JSONObject
+	JSONObject root = jValueRoot->AsObject();
+
+	getStreetsFromJSON(root, Demeter, "Demeter");
+	getStreetsFromJSON(root, Hefesto, "Hefesto");
+	getStreetsFromJSON(root, Hestia, "Hestia");
+	getStreetsFromJSON(root, Artemisa, "Artemisa");
+	getStreetsFromJSON(root, Hermes, "Hermes");
+	getStreetsFromJSON(root, Apolo, "Apolo");
+	getStreetsFromJSON(root, Poseidon, "Poseidon");
+	getStreetsFromJSON(root, Erroneo, "Erroneo");
+
 	getNamesFromJSON();
 	getRoutesFromJSON();
 }
@@ -336,18 +347,8 @@ std::string PaqueteBuilder::remitenteRND() {
 	return sol;	
 }
 
-void PaqueteBuilder::getStreetsFromJSON(const std::string& filename, Distrito dist, const std::string& distString)
+void PaqueteBuilder::getStreetsFromJSON(JSONObject& root, Distrito dist, const std::string& distString)
 {
-	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(filename));
-
-	// check it was loaded correctly
-	// the root must be a JSON object
-	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while load/parsing '" + filename + "'";
-	}
-
-	// we know the root is JSONObject
-	JSONObject root = jValueRoot->AsObject();
 	JSONValue* jValue = nullptr;
 
 	jValue = root[distString];
@@ -363,13 +364,12 @@ void PaqueteBuilder::getStreetsFromJSON(const std::string& filename, Distrito di
 					distritoCalle_[dist].emplace_back(aux);
 				}
 				else {
-					throw "'Calles' array in '" + filename
-						+ "' includes and invalid value";
+					throw "'Calles' array in includes and invalid value";
 				}
 			}
 		}
 		else {
-			throw "'Demeter' is not an array in '" + filename + "'";
+			throw "'is not an array '";
 		}
 	}
 }
