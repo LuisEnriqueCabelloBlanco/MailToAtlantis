@@ -173,13 +173,9 @@ void GeneralData::updateDistrictsPerDay(int dia)
 		placesToActive_.push_back("Demeter");
 		placesToActive_.push_back("Artemisa");
 		break;
-	case 2:
+	case 5:
 		placesToActive_.push_back("Hermes");
-		break;
-	case 3: 
 		placesToActive_.push_back("Apolo");
-		break;
-	case 4:
 		placesToActive_.push_back("Poseidon");
 		break;
 	default:
