@@ -1,107 +1,800 @@
 {
   "Vagabundo": {
-    "Felicidad": "NoHabladoAun",
+    "Felicidad": "Normal",
+    "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
-    "numMisionesParaMisionFinal": 13
+    "Eventos": {
+      "1": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "1": {
+            "remitente": "nashe",
+            "distrito": "Hestia",
+            "calle": "C1",
+            "tipoPaquete": "Armamento"
+          }
+        },
+        "condiciones": {
+          "1": {
+            "remitente": "nashe",
+            "distrito": "Hestia",
+            "calleMarcada": "C3",
+            "tipoPaquete": "Armamento"
+          }
+        },
+        "recompensa": {
+          "1": "Vagabundo+",
+          "2": "Secretario-"
+        }
+      },
+      "2": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "3": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "4": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "5": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "6": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "7": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "8": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "9": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "10": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "11": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "12": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "13": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "14": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      }
+    }
   },
   "Secretario": {
     "Felicidad": "NoHabladoAun",
+    "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
-    "numMisionesParaMisionFinal": 7
+    "Eventos": {
+      "1": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "2": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "3": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "4": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "5": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "6": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "7": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "8": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "9": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "10": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "11": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "12": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "13": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      },
+      "14": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Albama Ice"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Vagabundo+"
+      }
+    }
   },
   "Campesino": {
     "Felicidad": "NoHabladoAun",
+    "FelicidadNum": 50,
     "DiasConEvento": {
-      "1": true,
+      "1": false,
       "2": true,
-      "3": true,
+      "3": false,
       "4": true,
-      "5": true,
+      "5": false,
       "6": true,
-      "7": true,
-      "8": true,
+      "7": false,
+      "8": false,
       "9": true,
-      "10": true,
+      "10": false,
       "11": true,
-      "12": true,
-      "13": true,
-      "14": true
+      "12": false,
+      "13": false,
+      "14": false
+    },
+    "Eventos": {
+      
+      "1": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Pancracio Warawa",
+          "distrito": "Hestia",
+          "calle": "C2",
+          "tipoPaquete": "Alimento"
+        },
+        "condiciones": {
+          "remitente": "Pancracio Warawa",
+          "distrito": "Hestia",
+          "calleMarcada": "C3",
+          "tipoPaquete": "Alimento"
+        },
+        "recompensa": "Campesino+++++"
+      },
+      "2": {
+        "numPaquetes": 2,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "distrito": "Hefesto",
+          "tipoPaquete": "Materiales"
+        },
+        "condiciones": {
+          "distrito": "Demeter",
+          "tipoPaquete": "Materiales"
+        },
+        "recompensa": "Campesino++++"
+      },
+      "3": {
+        "numPaquetes": 2,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "distrito": "Apolo",
+          "tipoPaquete": "Alimento"
+        },
+        "condiciones": {
+          "distrito": "Hestia",
+          "tipoPaquete": "Alimento"
+        },
+        "recompensa": "Campesino++"
+      },
+      "4": {
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 2,
+        "paquetes": {
+          "distrito": "Hermes",
+          "tipoPaquete": "Medicinas"
+        },
+        "condiciones": {
+          "distrito": "Demeter",
+          "tipoPaquete": "Medicinas"
+        },
+        "recompensa": "Campesino+++"
+      },
+      "5": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Pancracio Warawa",
+          "distrito": "Artemisa",
+          "tipoPaquete": "Alimento",
+          "peso": "Bajo",
+          "pesoKG": 100
+        },
+        "condiciones": {
+          "remitente": "Pancracio Warawa",
+          "distrito": "Artemisa",
+          "tipoPaquete": "Alimento",
+          "peso": "Bajo",
+          "pesoKG": 100
+        },
+        "recompensa": "Campesino+++++"
+      }
     }
   },
   "Artesano": {
     "Felicidad": "NoHabladoAun",
+    "FelicidadNum": 50,
     "DiasConEvento": {
       "1": false,
       "2": true,
-      "3": true,
-      "4": true,
-      "5": true,
-      "6": true,
+      "3": false,
+      "4": false,
+      "5": false,
+      "6": false,
       "7": true,
-      "8": true,
+      "8": false,
       "9": true,
       "10": true,
-      "11": true,
+      "11": false,
       "12": true,
-      "13": true,
-      "14": true
+      "13": false,
+      "14": false
+    },
+    "Eventos": {
+      "1": {
+        "numPaquetes": 2,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "tipoPaquete": "Materiales"
+        },
+        "condiciones": {
+          "tipoPaquete": "Materiales",
+          "distrito": "Hefesto"
+        },
+        "recompensa": "Artesano++"
+      },
+      "2": {
+        "numPaquetes": 2,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "tipoPaquete": "Joyas"
+        },
+        "condiciones": {
+          "tipoPaquete": "Joyas",
+          "distrito": "Hefesto"
+        },
+        "recompensa": "Artesano+++"
+      },
+      "3": {
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 2,
+        "paquetes": {
+          "tipoPaquete": "Alimento"
+        },
+        "condiciones": {
+          "tipoPaquete": "Alimento",
+          "distrito": "Hefesto"
+        },
+        "recompensa": "Artesano++"
+      },
+      "4": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Paulino Tinteiros",
+          "distrito": "Hermes",
+          "tipoPaquete": "Materiales",
+          "peso": "Medio",
+          "pesoKG": 10
+        },
+        "condiciones": {
+          "remitente": "Paulino Tinteiros",
+          "distrito": "Hermes",
+          "tipoPaquete": "Materiales",
+          "peso": "Medio",
+          "pesoKG": 10
+        },
+        "recompensa": "Artesano++++"
+      },
+      "5": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Paulino Tinteiros",
+          "distrito": "Apolo",
+          "tipoPaquete": "Materiales",
+          "fragil": false
+        },
+        "condiciones": {
+          "remitente": "Paulino Tinteiros",
+          "distrito": "Apolo",
+          "tipoPaquete": "Materiales",
+          "fragil": true
+        },
+        "recompensa": "Artesano+++++"
+      }
     }
   },
   "Tarotisa": {
     "Felicidad": "NoHabladoAun",
+    "FelicidadNum": 50,
     "DiasConEvento": {
-      "1": true,
-      "2": true,
-      "3": true,
+      "1": false,
+      "2": false,
+      "3": false,
       "4": true,
-      "5": true,
-      "6": true,
+      "5": false,
+      "6": false,
       "7": true,
       "8": true,
-      "9": true,
+      "9": false,
       "10": true,
-      "11": true,
-      "12": true,
+      "11": false,
+      "12": false,
       "13": true,
-      "14": true
+      "14": false
+    },
+    "Eventos": {
+      "1": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "tipoPaquete": "Joyas"
+        },
+        "condiciones": {
+          "tipoPaquete": "Joyas",
+          "distrito": "Artemisa"
+        },
+        "recompensa": "Tarotisa++"
+      },
+      "2": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "tipoPaquete": "Armamento"
+        },
+        "condiciones": {
+          "tipoPaquete": "Armamento",
+          "distrito": "Artemisa"
+        },
+        "recompensa": "Tarotisa+++"
+      },
+      "3": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Abigail Ampoure",
+          "distrito": "Apolo",
+          "tipoPaquete": "Alimento",
+          "peso": "Alto",
+          "pesoKG": 10
+        },
+        "condiciones": {
+          "remitente": "Abigail Ampoure",
+          "distrito": "Apolo",
+          "tipoPaquete": "Alimento",
+          "peso": "Alto",
+          "pesoKG": 10
+        },
+        "recompensa": "Tarotisa+++"
+      },
+      "4": {
+        "numPaquetes": 2,
+        "numPaquetesParaCompletar": 2,
+        "paquetes": {
+          "remitente": "Dr. Luengostino",
+          "tipoPaquete": "Medicinas",
+          "distrito": "Apolo"
+        },
+        "condiciones": {
+          "remitente": "Dr Luengostino",
+          "tipoPaquete": "Medicinas",
+          "distrito": "Erroneo"
+        },
+        "recompensa": "Tarotisa++++"
+      },
+      "5": {
+        "numPaquetes": 4,
+        "numPaquetesParaCompletar": 3,
+        "paquetes": {
+          "distrito": "Hermes",
+          "tipoPaquete": "Alimento"
+        },
+        "condiciones": {
+          "distrito": "Demeter",
+          "tipoPaquete": "Alimento"
+        },
+        "recompensa": {
+          "1": "Tarotisa+++",
+          "2": "Contable--"
+        }
+      }
     }
   },
   "Soldado": {
     "Felicidad": "NoHabladoAun",
+    "FelicidadNum": 50,
     "DiasConEvento": {
-      "1": true,
-      "2": true,
-      "3": true,
-      "4": true,
-      "5": true,
+      "1": false,
+      "2": false,
+      "3": false,
+      "4": false,
+      "5": false,
       "6": true,
-      "7": true,
+      "7": false,
       "8": true,
-      "9": true,
+      "9": false,
       "10": true,
-      "11": true,
+      "11": false,
       "12": true,
-      "13": true,
+      "13": false,
       "14": true
+    },
+    "Eventos": {
+      "1": {
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 2,
+        "paquetes": {
+          "peso": "Alto",
+          "pesoKG": 100
+        },
+        "condiciones": {
+          "distrito": "Apolo",
+          "peso": "Alto",
+          "pesoKG": 100
+        },
+        "recompensa": "Soldado+++"
+      },
+      "2": {
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 3,
+        "paquetes": {
+            "distrito": "Artemisa",
+            "tipoPaquete": "Medicinas"
+        },
+        "condiciones": {
+            "distrito": "Hestia",
+            "tipoPaquete": "Medicinas"
+        },
+        "recompensa":{
+          "1": "Soldado++++",
+          "2": "Secretario-",
+          "3": "Tarotisa--"
+        } 
+      },
+      "3": {
+        "numPaquetes": 2,
+        "numPaquetesParaCompletar": 2,
+        "paquetes": {
+            "tipoPaquete": "Alimento"
+        },
+        "condiciones": {
+            "tipoPaquete": "Alimento",
+            "distrito": "Hestia"
+        },
+        "recompensa": "Soldado++"
+      },
+      "4": {
+        "numPaquetes": 2,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "tipoPaquete": "Armamento"
+        },
+        "condiciones": {
+          "tipoPaquete": "Armamento",
+          "distrito": "Artemisa"
+        },
+        "recompensa": "Soldado++"
+      },
+      "5": {
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 2,
+        "paquetes": {
+          "distrito": "Hermes"
+        },
+        "condiciones": {
+          "distrito":"Apolo"
+        },
+        "recompensa": "Soldado++++"
+      }
     }
   },
   "Contable": {
     "Felicidad": "NoHabladoAun",
+    "FelicidadNum": 50,
     "DiasConEvento": {
-      "1": true,
-      "2": true,
-      "3": true,
-      "4": true,
-      "5": true,
-      "6": true,
+      "1": false,
+      "2": false,
+      "3": false,
+      "4": false,
+      "5": false,
+      "6": false,
       "7": true,
-      "8": true,
+      "8": false,
       "9": true,
-      "10": true,
+      "10": false,
       "11": true,
-      "12": true,
+      "12": false,
       "13": true,
       "14": true
+    },
+    "Eventos": {
+      "1": {
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 2,
+        "paquetes": {
+          "tipoPaquete":"Alimento"
+        },
+        "condiciones": {
+          "tipoPaquete":"Alimento",
+          "distrito": "Hermes"
+        },
+        "recompensa": "Contable+++"
+      },
+      "2": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Nota Por Hacer"
+        },
+        "condiciones": {
+          "remitente": "Albama Ice"
+        },
+        "recompensa": "Contable++"
+      },
+      "3": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Glover Globus",
+          "tipoPaquete": "Materiales",
+          "distrito": "Apolo"
+        },
+        "condiciones": {
+          "remitente": "Glover Globus",
+          "tipoPaquete": "Materiales",
+          "distrito": "Apolo",
+          "fragil": true
+        },
+        "recompensa": "Contable++++"
+      },
+      "4": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "tipoPaquete": "Joyas",
+          "distrito": "Poseidon"
+        },
+        "condiciones": {
+          "tipoPaquete": "Joyas",
+          "distrito": "Hermes"
+        },
+        "recompensa": "Contable++++"
+      },
+      "5": {
+        "numPaquetes": 2,
+        "numPaquetesParaCompletar": 2,
+        "paquetes": {
+          "remitente": "Glover Globus",
+          "distrito": "Hermes"
+        },
+        "condiciones": {
+          "remitente": "Glover Globus",
+          "distrito": "Hermes"
+        },
+        "recompensa": "Contable++"
+      }
     }
   }
 }

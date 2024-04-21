@@ -7,7 +7,7 @@
 using Callback = std::function<void(ecs::Entity*)>;
 
 enum TipoHerramienta {
-	SelloCalleA, SelloCalleB, SelloCalleC
+	SelloCalleA, SelloCalleB, SelloCalleC, SelloMultiColor
 };
 
 // Para usar esta clase, hay que asignarla al entity y luego
@@ -30,7 +30,10 @@ public:
 	void setFunctionality(TipoHerramienta tipo);
 
 	void interact(ecs::Entity* paquete);
+
+	bool getMulticolorStamp() { return multicolorStamp; }
 private:
+	bool multicolorStamp;
 	Callback funcion_;
 };
 

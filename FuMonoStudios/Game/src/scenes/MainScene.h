@@ -5,6 +5,7 @@
 #include "../components/Paquete.h"
 #include <components/Herramientas.h>
 #include "../sistemas/PaqueteBuilder.h"
+#include "components/DialogManager.h"
 
 namespace ecs {
     class Game;
@@ -22,10 +23,12 @@ namespace ecs {
         void setTimer(float time) { timer_ = time; }
         void createPaquete(int lv);
         void createErrorMessage(Paquete* paqComp, bool, bool);
+        void createExclamationPoint();
     private:
         void createManual();
         void createMiniManual();
         void createSpaceManual();
+        void createMultipleStamp();
 
         //void createTubo(Paquete::Distrito dist, bool desbloqueado);
 
@@ -35,6 +38,7 @@ namespace ecs {
         //void createSelladores();
         void createGarbage();
         void createCinta();
+        void createBalanza();
         void createTubo(pq::Distrito dist, bool);
         void createStamp(TipoHerramienta type);
         
@@ -48,8 +52,12 @@ namespace ecs {
 
         float timer_;
         bool timerPaused_;
+
+        DialogManager dialogMngr_;
         
-        
+        ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
+
+        void startWork();
 
 #ifdef DEV_TOOLS
         bool nextPacageCorrect_;

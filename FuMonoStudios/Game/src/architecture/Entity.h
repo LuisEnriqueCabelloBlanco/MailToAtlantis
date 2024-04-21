@@ -103,6 +103,10 @@ namespace ecs {
 			return myLayer;
 		}
 
+		//inline void setLayer(ecs::layer::layerId layer) {
+		//	myLayer = layer;
+		//}
+
 		inline void addIterator(std::vector<Entity*>::iterator it) {
 			mIt_ = it;
 		}
@@ -139,11 +143,11 @@ namespace ecs {
 		/// <summary>
 		/// determina si un objeto se tiene que renderizar
 		/// </summary>
-		bool active_;
+		bool active_; //esto es mentira, no solo para el render tambien el update
 		/// <summary>
 		/// determina si un objeto se tiene que actualizar
 		/// </summary>
-		bool enable_;
+		bool enable_; //???? esto es otra mentira, no hace na (os acabo de mentir, si que hace, se carga toda la ejecucion del programa, no usar a no ser que lo arregles)
 		/// <summary>
 		/// puntero a la escena a la que pertenece al entidad
 		/// </summary>
@@ -158,7 +162,8 @@ namespace ecs {
 
 
 		/// <summary>
-		/// A�ade un componente a Entity
+		/// A�ade un componente a Entity Tener cuidado si se añaden
+		/// varias veces un componente -> puede llevar a error
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <typeparam name="...Ts"></typeparam>
@@ -168,7 +173,6 @@ namespace ecs {
 		template<typename T, typename ...Ts>
 		inline T* addComponent_aux(Ts&&... args) {
 			T* c = new T(std::forward<Ts>(args)...);
-
 			removeComponent<T>();
 
 			currCmps_.push_back(c);

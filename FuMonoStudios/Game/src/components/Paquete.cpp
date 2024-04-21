@@ -82,7 +82,7 @@ bool Paquete::correcto() const{
 	return correcto;	//Si ha superdado todas las pruebas exitosamente, el paquete ser� correcto y devolver� true. Si en alg�n momento ha fallado, devolver� false
 }
 
-void Paquete::sellarCalle(Calle sello, Transform* trSellador) {
+void Paquete::sellarCalle(Calle sello, Transform* trSellador, bool multicolor) {
 
 	Vector2D posSellador = trSellador->getPos();
 	// solo puedes sellar una vez 
@@ -94,10 +94,16 @@ void Paquete::sellarCalle(Calle sello, Transform* trSellador) {
 		//Creamos la entidad sello
 		ecs::Entity* selloEnt = ent_->getMngr()->addEntity(ecs::layer::PACKAGE);
 		//Textura en funcion de tipo calle
-		Texture* selloEntTex = &sdlutils().images().at(
-			(std::string)"sello" += 
-			(std::string)(sello == C1 ? "0" : sello == C2 ? "1" : "2"));
-
+		Texture* selloEntTex;
+		if (multicolor) {
+			selloEntTex = &sdlutils().images().at("selloM");
+		}
+		else {
+			 selloEntTex = &sdlutils().images().at(
+				(std::string)"sello" +=
+				(std::string)(sello == C1 ? "0" : sello == C2 ? "1" : "2"));
+		}
+		
 		//creamos transform y colocamos el sello en el centro del sellador
 		float scale = 0.2f;
 		Transform* selloEntTr = selloEnt->addComponent<Transform>

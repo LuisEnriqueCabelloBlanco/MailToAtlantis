@@ -11,6 +11,7 @@
 #include <functional>
 #include <components/ErrorNote.h>
 #include <QATools/DataCollector.h>
+#include "../sistemas/NPCeventSystem.h"
 
 PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc) : 
 	toDis_(dis), extraCond_(),mainSc_(sc), tutSc_(nullptr)
@@ -34,7 +35,7 @@ void PackageChecker::initComponent()
 	std::function<void(ecs::Entity*)> call = [this](ecs::Entity* ent) {checkEntity(ent); };
 	Trigger* tri = ent_->getComponent<Trigger>();
 	assert(tri != nullptr);
-	tri->addCallback(call);
+	tri->addCallback(call, generalData().DropIn);
 }
 
 void PackageChecker::addCondition(Condition newCond)
@@ -90,6 +91,9 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 				tutSc_->createErrorMessage(ent->getComponent<Paquete>(), toDis_ == Erroneo, toDis_ != ent->getComponent<Paquete>()->getDistrito());
 				
 		}
+
+		generalData().npcEventSys->checkPaqueteSent(ent->getComponent<Paquete>());
+
 #ifdef QA_TOOLS
 
 		dataCollector().recordPacage(ent->getComponent<Paquete>(), correct);
