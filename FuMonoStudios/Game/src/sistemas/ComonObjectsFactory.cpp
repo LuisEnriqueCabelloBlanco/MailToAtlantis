@@ -33,15 +33,21 @@ ecs::Entity* ComonObjectsFactory::createMultiTextureImage(const Vector2D& pos, c
 
 ecs::Entity* ComonObjectsFactory::createLabel(const Vector2D& pos , const std::string& text, int fontSize, SDL_Color textColor)
 {
-	return createImage(pos,createTextTexture(text,fontSize,textColor));
+	Texture* labelText = new Texture(sdlutils().renderer(), text, sdlutils().fonts().at(fontName_ + std::to_string(fontSize)), textColor);
+	createdTextures.push_back(labelText);
+	return createImage(pos,labelText);
 }
 ecs::Entity* ComonObjectsFactory::createLabel(const Vector2D& pos,Uint32 width, const std::string& text, int fontSize, SDL_Color textColor)
 {
-	return  createImage(pos, createTextTexture(text, fontSize, textColor,width));
+	Texture* labelText = new Texture(sdlutils().renderer(), text, sdlutils().fonts().at(fontName_ + std::to_string(fontSize)), textColor, width);
+	createdTextures.push_back(labelText);
+	return createImage(pos, labelText);
 }
 ecs::Entity* ComonObjectsFactory::createLabel(const Vector2D& pos, const Vector2D& size, const std::string& text, int fontSize, SDL_Color textColor)
 {
-	return createImage(pos, size, createTextTexture(text,fontSize,textColor,size.getX()));
+	Texture* labelText = new Texture(sdlutils().renderer(), text, sdlutils().fonts().at(fontName_ + std::to_string(fontSize)), textColor, size.getX());
+	createdTextures.push_back(labelText);
+	return createImage(pos, size, labelText);
 }
 
 ecs::Entity* ComonObjectsFactory::createImage(const Vector2D& pos, const Vector2D& size, Texture* texture)
@@ -99,21 +105,6 @@ void ComonObjectsFactory::addHilghtOnHover(ecs::Entity* entity)
 	Clickeable* click = entity->getComponent<Clickeable>();
 	if(click != nullptr)
 		click->addEvent([light]() {light->lightOff(); });
-}
-
-Texture* ComonObjectsFactory::createTextTexture(const std::string& text, int fontSize, SDL_Color c,int width)
-{
-	Texture* nText;
-	if(width == 0)
-		nText = new Texture(sdlutils().renderer(), text, sdlutils().fonts().at(fontName_ + std::to_string(fontSize)), c);
-	else if (width > 0) {
-		nText = new Texture(sdlutils().renderer(), text, sdlutils().fonts().at(fontName_ + std::to_string(fontSize)), c, width);
-	}
-	else {
-		throw "Invalid Texture Width";
-	}
-	createdTextures.push_back(nText);
-	return nText;
 }
 
 void ComonObjectsFactory::makeButton(ecs::Entity* entity, CallbackClickeable call)

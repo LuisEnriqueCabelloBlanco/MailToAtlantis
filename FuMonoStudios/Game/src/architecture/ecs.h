@@ -53,7 +53,6 @@ namespace ecs {
 			END_WORK_SCENE,
 			MENU_SCENE,
 			PAUSE_SCENE,
-			END_SCENE,
 			TUTORIAL_SCENE,
 			_LAST_SCENE
 		};
