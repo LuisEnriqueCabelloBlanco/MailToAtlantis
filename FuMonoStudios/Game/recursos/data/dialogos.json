@@ -611,25 +611,15 @@
     ]
   },
   "casa1": {
-    "Textos": [
-      "Mondongo"
-    ],
-    "FelicidadMinima": [
-      "Puteros"
-    ],
-    "FelicidadMaxima": [
-      "Tu madre tiene una cosa que ya la quisieras tu"
+    "TextoCasa1": [
+      "Mondongo",
+      ":("
     ]
   },
   "casa2": {
-    "Textos": [
-      "Mondongo"
-    ],
-    "FelicidadMinima": [
-      "Puteros"
-    ],
-    "FelicidadMaxima": [
-      "Tu madre tiene una cosa que ya la quisieras tu"
+    "TextoCasa2": [
+      "Mondongo2",
+      ":("
     ]
   }
 }

@@ -54,7 +54,7 @@ public:
     // aqui se elije que rama de dialogo escojer dentro del json
     enum DialogSelection {
         Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable,
-        JefeOficina, Tutorial, BryantMyers
+        JefeOficina, Tutorial, BryantMyers, Casa1, Casa2
     };
 
     DialogManager();

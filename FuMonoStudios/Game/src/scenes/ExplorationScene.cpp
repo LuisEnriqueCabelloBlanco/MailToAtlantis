@@ -34,6 +34,7 @@ ecs::ExplorationScene::~ExplorationScene()
 void ecs::ExplorationScene::init()
 {
 	generalData().readNPCData();
+	generalData().readIntObjData();
 	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 	canStartConversation = true;
 
@@ -267,8 +268,6 @@ ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const st
 	};
 
 	ecs::Entity* objEnt = factory.createImageButton(pos, size, nullptr, funcPress);
-
-	factory.addHoverColorMod(objEnt, build_sdlcolor(0xccccccff));
 
 	return objEnt;
 }

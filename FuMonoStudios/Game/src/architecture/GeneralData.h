@@ -52,9 +52,7 @@ public:
 	};
 
 	// enum con el nombre de todos los Objetos Interactuables
-	enum InteractableObj {
-		Casa1, Casa2
-	};
+	enum InteractableObj { Casa1, Casa2 };
 
 	enum MoveType{DropIn, PickUp};
 
@@ -78,8 +76,9 @@ public:
 	// MIRAR EL comoEscribirEventos.MD PARA SABER COMO USAR ESTO
 	
 	struct IntObjsData {
-
-		virtual std::pair<const std::string, int> getDialogueInfo();
+		IntObjsData(InteractableObj text);
+		InteractableObj texto;
+		virtual const std::string getDialogueInfo();
 
 	};
 
@@ -140,14 +139,15 @@ public:
 
 	// METODOS DE INTOBJSdata
 
-	//void readIntObjData();
+	void readIntObjData();
 
 	IntObjsData* getObjData(InteractableObj intobj);
 
 private:
 	// vector que contiene los datos de todos los 7 npc
 	std::vector<NPCdata*> npcData;
-	std::vector<InteractableObj*> intObjData;
+	// vector que contiene los datos de todos los objetos interactuables
+	std::vector<IntObjsData*> intObjData;
 #pragma endregion
 public:
 	GeneralData();

@@ -220,10 +220,11 @@ void DialogManager::startConversationWithObj(const std::string& interactableObj)
         auto data = generalData().getObjData(obj); //data de dicho objeto
 
         // activamos los dialogos correspondientes
-        std::pair<const std::string, int> aux = data->getDialogueInfo();
+        const std::string aux = data->getDialogueInfo();
 
-
-        setDialogues((DialogManager::DialogSelection)generalData().stringToObj(interactableObj), aux.first, aux.second);
+        
+        //setDialogues((DialogManager::DialogSelection)generalData().stringToObj(interactableObj), aux);
+        setDialogues(DialogManager::DialogSelection::Casa1, "TextoCasa1");
 
         setDialogueEntitiesActive(true);
 
@@ -340,6 +341,12 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
         break;
     case BryantMyers:
         aux = "EsclavaRemix";
+        break;
+    case Casa1:
+        aux = "casa1";
+        break;
+    case Casa2:
+        aux = "casa2";
         break;
     }
     return aux;
