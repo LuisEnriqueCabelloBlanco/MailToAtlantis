@@ -97,6 +97,7 @@
     {"id": "balanzaFlecha","file": "recursos/images/balanzaFlecha.png"},
     {"id": "balanzaA","file": "recursos/images/balanzaA.png"},
     {"id": "balanzaB","file": "recursos/images/balanzaB.png"},
+    {"id": "balanzaDigital","file": "recursos/images/balanza2.png"},
 
     {"id": "caja25","file": "recursos/images/Caja_Envuelta_25.png"},
     {"id": "caja50","file": "recursos/images/Caja_Envuelta_50.png"},
