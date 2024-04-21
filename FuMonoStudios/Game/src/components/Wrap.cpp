@@ -1,6 +1,5 @@
 #include "Wrap.h"
 #include "Transform.h"
-#include "MultipleTextures.h"
 
 #include "../architecture/Entity.h"
 #include "../sdlutils/InputHandler.h"

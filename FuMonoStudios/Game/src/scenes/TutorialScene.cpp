@@ -16,7 +16,8 @@ ecs::TutorialScene::TutorialScene() : Scene() {
 }
 
 ecs::TutorialScene::~TutorialScene() {
-
+	delete tutorialSys_;
+	delete mPaqBuild_;
 }
 
 void ecs::TutorialScene::update() {

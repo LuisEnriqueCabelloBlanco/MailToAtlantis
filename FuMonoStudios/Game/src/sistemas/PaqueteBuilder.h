@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include "../sdlutils/VirtualTimer.h"
 #include "../architecture/GeneralData.h"
-#include "../components/MultipleTextures.h"
 #include "../components/Wrap.h"
 #include "../components/Gravity.h"
 #include "../components/Depth.h"
