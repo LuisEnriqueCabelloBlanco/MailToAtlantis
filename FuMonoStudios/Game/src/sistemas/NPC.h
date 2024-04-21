@@ -22,6 +22,15 @@ namespace npc {
 		{Contable, "Contable"}
 	};
 
+	const std::unordered_map<Felicidad, std::string> happinessToString = {
+		{Minima, "Mínima"},
+		{Mala, "Mala"},
+		{Normal, "Normal"},
+		{Buena, "Buena"},
+		{Maxima, "Maxima"},
+		{NoHabladoAun, "No Hablado Aun"}
+	};
+
 	// Los datos de los NPC deben actualizarse al acabar cada día.
 	// Recogen datos sobre su felicidad, así como que dialogo deben enseñar.
 	// Al iniciarse, su felicidad estará en NoHabladoAun, y al sacar su

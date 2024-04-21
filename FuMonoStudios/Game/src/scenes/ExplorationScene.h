@@ -106,10 +106,7 @@ namespace ecs {
 		/// </summary>
 		void navigate(std::string placeDir);
 
-		/// <summary>
-		/// Metodo para renderizar el backGround
-		/// </summary>
-		void renderBackGround() const;
+		void makeDataWindow();
 
 		// cierra la conversacion
 		void closeConversation();
