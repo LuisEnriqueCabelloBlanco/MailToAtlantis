@@ -285,6 +285,11 @@ void ecs::ExplorationScene::createObjects(int place) {
 		boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
 
 		lugares[generalData().fromDistritoToString(place)].addObjects(boton_Trabajo);
+
+		//PLACEHOLDER_BOTON_GUARDADO
+		factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
+			generalData().saveGame();
+			}, SDL_Color{255,255,0});
 	}
 }
 

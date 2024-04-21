@@ -1,10 +1,9 @@
 #pragma once
 #include "../utils/Singleton.h"
-#include "../sistemas/Felicidad.h"
 #include "GameConstants.h"
-#include <vector>
-#include <string>
 #include <iostream>
+#include <fstream>
+#include <string>
 
 class DialogManager;
 class PaqueteBuilder;
@@ -44,6 +43,7 @@ public:
 	enum Felicidad { Minima, Mala, Normal, Buena, Maxima, NoHabladoAun };
 	
 	Felicidad stringToFelicidad(const std::string& str);
+	std::string felicidadToString(Felicidad);
 
 	// enum con el nombre de todos los NPC
 	enum Personaje {
@@ -196,6 +196,8 @@ public:
 	bool getSelloMulticolor() { return selloMulticolor; }
 
 	void unlockMejoraPersonaje(Personaje p);
+
+	void saveGame();
 private:
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }
