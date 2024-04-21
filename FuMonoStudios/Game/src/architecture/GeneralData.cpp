@@ -81,9 +81,9 @@ void GeneralData::updateDia()
 	placesToActive_.clear();
 	updateDistrictsPerDay(dia_);
 	// actualizar los datos para todos los npc
-	for (int i = 0; i < 7; i++)
+	for (auto it : npcData)
 	{
-		npcDataVec_[i]->setupDayData();
+		it.second->setupDayData();
 	}
 
 	if (dia_ == 1) {
