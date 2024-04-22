@@ -33,9 +33,9 @@ Ejemplo: *"Redirige 3 paquetes que saldrán de Hestia de comida mandados por Pac
 ```
 (Escribirlas tal cual)
 ##### Características que podemos poner en la sección paquetes:
-remitente, distrito, calle, tipoPaquete, peso, pesoKG, fragil 
+remitente, distrito, calle, tipoPaquete, peso, pesoKG, fragil, legal
 ##### Características que podemos poner en la sección condiciones:
-remitente, distrito, calleMarcada, tipoPaquete, peso, pesoKG, fragil
+remitente, distrito, calleMarcada, tipoPaquete, peso, pesoKG, fragil, legal
 ##### Recopmensas que poder poner en la sección recompensas:
 (Personaje)+ o - 
 El + es para subir un nivel de felicidad y el menos para bajar uno, se pueden poner mas de un + o -.

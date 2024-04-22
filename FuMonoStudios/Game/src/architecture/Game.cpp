@@ -13,6 +13,7 @@
 #include "../scenes/ExplorationScene.h"
 #include "../scenes/EndWorkScene.h"
 #include "../scenes/PauseScene.h"
+#include <scenes/EndGameScene.h>
 #include "../scenes/TutorialScene.h"
 #include "Time.h"
 #include "GeneralData.h"
@@ -35,9 +36,7 @@ Game::Game() :exit_(false) {
 	SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
 
 	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),
-
-	new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new ecs::TutorialScene(), new ecs::ConfigScene()};
-		
+		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new EndGameScene(),new ecs::TutorialScene(), new ecs::ConfigScene()};
 	gamePaused_ = false;
 
 	loadScene(ecs::sc::MENU_SCENE);
@@ -53,6 +52,8 @@ Game::~Game()
 
 void Game::run()
 {
+	//esto es una cochinada pero mejor esto a que tarde 2 anios en cargar la escena de exploracion
+	generalData().readNPCData();
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -99,7 +100,7 @@ void Game::run()
 #endif // QA_TOOLS
 
 		update();
-		sdlutils().clearRenderer();
+		sdlutils().clearRenderer(build_sdlcolor(0x000000));
 
 		ImGui_ImplSDLRenderer2_NewFrame();
 		ImGui_ImplSDL2_NewFrame();
@@ -142,7 +143,10 @@ void Game::loadScene(ecs::sc::sceneId scene)
 		gameScenes_[scene]->init();
 		//cargamos la escena
 		loadedScenes_.push_back(gameScenes_[scene]);
+#ifdef _DEBUG
 		std::cout << "Scene Loaded" << std::endl;
+#endif // _DEBUG
+
 	}
 #ifdef QA_TOOLS
 	dataCollector().record();
@@ -160,7 +164,10 @@ void Game::killScene(ecs::sc::sceneId scene)
 	if (it != loadedScenes_.end()) {
 		(*it)->close();
 		loadedScenes_.erase(it);
+#ifdef _DEBUG
 		std::cout << "Scene Killed" << std::endl;
+#endif // _DEBUG
+
 	}
 }
 

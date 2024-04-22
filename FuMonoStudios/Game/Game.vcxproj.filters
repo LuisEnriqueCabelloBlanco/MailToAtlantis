@@ -25,7 +25,6 @@
     <ClCompile Include="src\components\Paquete.cpp" />
     <ClCompile Include="src\components\PackageChecker.cpp" />
     <ClCompile Include="src\components\Herramientas.cpp" />
-    <ClCompile Include="src\components\MultipleTextures.cpp" />
     <ClCompile Include="src\scenes\MainMenu.cpp" />
     <ClCompile Include="src\components\MoverTransform.cpp" />
     <ClCompile Include="src\components\PackageChecker.cpp" />
@@ -69,6 +68,8 @@
     <ClCompile Include="src\components\RotarTransform.cpp" />
     <ClCompile Include="src\components\NPCExclamation.cpp" />
     <ClCompile Include="src\sistemas\NPCeventSystem.cpp" />
+    <ClCompile Include="src\scenes\EndGameScene.cpp" />
+    <ClCompile Include="src\sistemas\NPC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -95,7 +96,6 @@
     <ClInclude Include="src\sdlutils\Texture.h" />
     <ClInclude Include="src\sdlutils\VirtualTimer.h" />
     <ClInclude Include="src\components\Transform.h" />
-    <ClInclude Include="src\components\MultipleTextures.h" />
     <ClInclude Include="src\components\Paquete.h" />
     <ClInclude Include="src\components\PackageChecker.h" />
     <ClInclude Include="src\components\Herramientas.h" />
@@ -175,6 +175,8 @@
     <ClInclude Include="src\components\RotarTransform.h" />
     <ClInclude Include="src\components\NPCExclamation.h" />
     <ClInclude Include="src\sistemas\NPCeventSystem.h" />
+    <ClInclude Include="src\scenes\EndGameScene.h" />
+    <ClInclude Include="src\sistemas\NPC.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\MultipleTextures.h" />
