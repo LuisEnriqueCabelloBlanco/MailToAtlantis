@@ -64,6 +64,7 @@ void ecs::MainScene::update()
 		}
 	}
 	dialogMngr_.update();
+
 }
 
 void ecs::MainScene::render()
@@ -422,6 +423,20 @@ void ecs::MainScene::createManual()
 	factory_->addHoverColorMod(left);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
+
+	//Creacion de botones de indices
+
+	if (true) { //PLACE HOLDER HASTA LOS BOOLS DE JULIAN
+
+		Vector2D buttonSize(20, 40);
+		factory_->setLayer(ecs::layer::FOREGROUND);
+		auto next = [manualRender]() { };
+		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
+		right->getComponent<Transform>()->setParent(manualTransform);
+		factory_->addHoverColorMod(right);
+
+
+	}
 
 }
 
