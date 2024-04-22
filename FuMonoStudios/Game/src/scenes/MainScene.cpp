@@ -428,12 +428,15 @@ void ecs::MainScene::createManual()
 
 	if (true) { //PLACE HOLDER HASTA LOS BOOLS DE JULIAN
 
-		Vector2D buttonSize(20, 40);
+		Vector2D buttonIndexSize(20, 40);
 		factory_->setLayer(ecs::layer::FOREGROUND);
-		auto next = [manualRender]() { };
-		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
-		right->getComponent<Transform>()->setParent(manualTransform);
-		factory_->addHoverColorMod(right);
+
+		std::vector<int> indexTextures = { 2, 3, 6, 7, 8 };
+
+		auto pagCodigos = [manualRender]() { manualRender->setTexture(2); };
+		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonIndexSize, buttonTexture, pagCodigos);
+		indexCodigos->getComponent<Transform>()->setParent(manualTransform);
+		factory_->addHoverColorMod(indexCodigos);
 
 
 	}
