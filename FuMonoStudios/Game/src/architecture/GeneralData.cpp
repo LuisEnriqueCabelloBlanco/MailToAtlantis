@@ -26,6 +26,15 @@ GeneralData::~GeneralData() {
 	delete npcEventSys;
 }
 
+void GeneralData::loadSaveFile()
+{
+	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/saveFile.json"));
+
+	JSONObject root = jsonFile->AsObject();
+
+	dia_ = root.find("Dia")->second->AsNumber();
+	dinero_ = root.find("Dinero")->second->AsNumber();
+}
 
 void GeneralData::updateMoney()
 {

@@ -67,6 +67,7 @@ public:
 	GeneralData();
 	~GeneralData();
 
+	void loadSaveFile();
 	/// <summary>
 	/// Metodo que acutaliza cuanto dinero tienes en funcion de los fallos y aciertos que realices
 	/// </summary>
@@ -145,10 +146,9 @@ private:
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }
 
+	void updateDistrictsPerDay(int dia);
 	// vector que contiene los datos de todos los 7 npc
 	std::unordered_map<Personaje,NPCdata*> npcData;
-	void updateDistrictsPerDay(int dia);
-
 
 	int fails_;
 	int corrects_;

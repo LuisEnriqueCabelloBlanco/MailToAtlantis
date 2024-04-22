@@ -51,15 +51,22 @@ void ecs::MainMenu::init()
 	factory_->addHoverColorMod(tuto);
 
 
-	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Pulsa para empezar", 50, [this]() {
+	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Nueva partida", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
 		},textColor);
 	factory_->addHilghtOnHover(start);
 	factory_->addHoverColorMod(start);
 
+	auto loadSave = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Cargar partida guardada", 50, [this]() {
+		sdlutils().musics().at("mainMenu").haltMusic();
+		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
+		generalData().loadSaveFile();
+		}, textColor);
+	factory_->addHilghtOnHover(start);
+	factory_->addHoverColorMod(start);
 
-	auto exit = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Salir", 50, [this]() {
+	auto exit = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 700), "Salir", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().endGame();
 		},textColor);

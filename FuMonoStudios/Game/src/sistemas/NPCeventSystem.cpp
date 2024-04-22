@@ -245,6 +245,10 @@ void NPCeventSystem::readNPCEventData() {
 									}
 								}
 
+								auto hasLegal = paqObj.find("legal");
+								if (hasLegal != paqObj.end())
+									legal = hasLegal->second->AsBool();
+
 								std::string nombreCalle;
 								if (calle == Erronea || dist == Erroneo)
 								{
@@ -336,6 +340,10 @@ void NPCeventSystem::readNPCEventData() {
 									}
 								}
 
+								auto hasLegal = obj.find("legal");
+								if (hasLegal != obj.end())
+									legal = hasLegal->second->AsBool();
+
 								std::string nombreCalle;
 								if (calle == Erronea || dist == Erroneo)
 								{
@@ -425,6 +433,15 @@ void NPCeventSystem::readNPCEventData() {
 										});
 								}
 
+								auto hasLegal = pqConditions.find("legal");
+								if (hasLegal != pqConditions.end()) {
+									bool aux = hasLegal->second->AsBool();
+									auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
+										return p->correcto() == aux;
+										});
+								}
+									
+
 								auto hasFragil = pqConditions.find("fragil");
 								if (hasFragil != pqConditions.end()) {
 									bool aux = hasFragil->second->AsBool();
@@ -486,6 +503,14 @@ void NPCeventSystem::readNPCEventData() {
 								int aux = hasPesoKG->second->AsNumber();
 								condicionesDeTodos.push_back([aux](Paquete* p) -> bool {
 									return p->getCantidadPeso() == aux;
+									});
+							}
+
+							auto hasLegal = obj.find("legal");
+							if (hasLegal != obj.end()) {
+								bool aux = hasLegal->second->AsBool();
+								auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
+									return p->correcto() == aux;
 									});
 							}
 
@@ -633,6 +658,10 @@ void NPCeventSystem::readNPCEventData() {
 									}
 								}
 
+								auto hasLegal = obj.find("legal");
+								if (hasLegal != obj.end())
+									legal = hasLegal->second->AsBool();
+
 								std::string nombreCalle;
 								if (calle == Erronea || dist == Erroneo)
 								{
@@ -724,6 +753,10 @@ void NPCeventSystem::readNPCEventData() {
 									}
 								}
 
+								auto hasLegal = obj.find("legal");
+								if (hasLegal != obj.end())
+									legal = hasLegal->second->AsBool();
+
 								std::string nombreCalle;
 								if (calle == Erronea || dist == Erroneo)
 								{
@@ -812,6 +845,14 @@ void NPCeventSystem::readNPCEventData() {
 										});
 								}
 
+								auto hasLegal = pqConditions.find("legal");
+								if (hasLegal != pqConditions.end()) {
+									bool aux = hasLegal->second->AsBool();
+									auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
+										return p->correcto() == aux;
+										});
+								}
+
 								auto hasFragil = pqConditions.find("fragil");
 								if (hasFragil != pqConditions.end()) {
 									bool aux = hasFragil->second->AsBool();
@@ -874,6 +915,14 @@ void NPCeventSystem::readNPCEventData() {
 								int aux = hasPesoKG->second->AsNumber();
 								condicionesDeTodos.push_back([aux](Paquete* p) -> bool {
 									return p->getCantidadPeso() == aux;
+									});
+							}
+
+							auto hasLegal = obj.find("legal");
+							if (hasLegal != obj.end()) {
+								bool aux = hasLegal->second->AsBool();
+								auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
+									return p->correcto() == aux;
 									});
 							}
 
