@@ -11,7 +11,12 @@ NPCeventSystem::NPCeventSystem() {
 }
 
 NPCeventSystem::~NPCeventSystem() {
-
+	for (auto it : activeEventsNPCs) {
+		delete it;
+	}
+	for (auto it : paquetesNPCs) {
+		delete it;
+	}
 }
 
 Paquete* NPCeventSystem::getPaqueteNPC() {
@@ -88,7 +93,7 @@ void NPCeventSystem::procesarStringRecompensas(std::vector<std::string> vec) {
 			if (reward.find("-") != std::string::npos)
 				felicidadIncrement = -felicidadIncrement;
 
-			GeneralData::Personaje aux = generalData().stringToPersonaje(personajeString);
+			npc::Personaje aux = generalData().stringToPersonaje(personajeString);
 
 			generalData().incrementarFelicidad(aux, felicidadIncrement);
 		}
@@ -98,7 +103,7 @@ void NPCeventSystem::procesarStringRecompensas(std::vector<std::string> vec) {
 
 			std::string personajeString = reward.substr(index + 1, reward.size());
 
-			GeneralData::Personaje aux = generalData().stringToPersonaje(personajeString);
+			npc::Personaje aux = generalData().stringToPersonaje(personajeString);
 
 			generalData().unlockMejoraPersonaje(aux);
 		}
@@ -130,7 +135,7 @@ void NPCeventSystem::readNPCEventData() {
 
 	for (int i = 0; i < 7; i++)
 	{
-		std::string aux = generalData().personajeToString((GeneralData::Personaje)i);
+		std::string aux = generalData().personajeToString((npc::Personaje)i);
 		jValueRoot = root[aux];
 
 		JSONObject jObject = jValueRoot->AsObject();
@@ -523,7 +528,7 @@ void NPCeventSystem::readNPCEventData() {
 					throw std::runtime_error("Evento sin recompensas / no recompensa mal especificado");
 #pragma endregion
 
-				generalData().getNPCData((GeneralData::Personaje)i)->events.push_back(auxEvent);
+				generalData().getNPCData((npc::Personaje)i)->events.push_back(auxEvent);
 			}
 		}
 		else
@@ -912,7 +917,7 @@ void NPCeventSystem::readNPCEventData() {
 					throw std::runtime_error("Evento sin recompensas / no recompensa mal especificado");
 				#pragma endregion
 
-				generalData().getNPCData((GeneralData::Personaje)i)->events.push_back(auxEvent);
+				generalData().getNPCData((npc::Personaje)i)->events.push_back(auxEvent);
 			}
 		}
 		jValueRoot = nullptr;

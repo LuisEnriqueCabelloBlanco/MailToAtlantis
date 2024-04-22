@@ -115,11 +115,12 @@ void Paquete::sellarCalle(Calle sello, Transform* trSellador, bool multicolor) {
 	}
 }
 
-void Paquete::puntosRojos() {
+void Paquete::puntosRojos(int routeID) {
 	Transform* paqTr = ent_->getComponent<Transform>();
 
-	// Creamos la entidad para el punto rojo
+	// Creamos la entidad para el punto 
 	Texture* puntoRojoTex = &sdlutils().images().at("puntoRojo");
+	Texture* puntoVerdeTex = &sdlutils().images().at("puntoVerde");
 	float scale = 0.2f;
 
 	if (puntoRojoTex != nullptr) {
@@ -133,32 +134,52 @@ void Paquete::puntosRojos() {
 
 		// Definir las posiciones de los puntos rojos con el desplazamiento
 		std::vector<Vector2D> redPoints = {
-			// Esquinas
+
 			  Vector2D(-offsetX, -offsetY), // Superior izquierda
 			  Vector2D(paqWidth + offsetX, -offsetY), // Superior derecha
 			  Vector2D(-offsetX, paqHeight + offsetY), // Inferior izquierda
 			  Vector2D(paqWidth + offsetX, paqHeight + offsetY), // Inferior derecha
-			  // Mitad entre las esquinas y el centro
 			  Vector2D(paqWidth / 2, -offsetY), // Medio superior
 			  Vector2D(paqWidth / 2, paqHeight + offsetY), // Medio inferior
 			  Vector2D(-offsetX, paqHeight / 2), // Medio izquierda
 			  Vector2D(paqWidth + offsetX, paqHeight / 2), // Medio derecha
-			  // Centro
 			  Vector2D(paqWidth / 2, paqHeight / 2) // Centro
 		};
 
-		// Agregar un punto rojo en cada posición calculada
-		for (const auto& pos : redPoints) {
-			ecs::Entity* puntoRojoEnt = ent_->getMngr()->addEntity(ecs::layer::WRAP_POINTS);
-			Transform* puntoRojoTr = puntoRojoEnt->addComponent<Transform>(
-				pos.getX() - puntoRojoTex->width() * scale / 2,
-				pos.getY() - puntoRojoTex->height() * scale / 2,
-				puntoRojoTex->width() * scale,
-				puntoRojoTex->height() * scale
-				);
-			puntoRojoTr->setParent(paqTr); // Establecer el paquete como padre del punto rojo
-			puntoRojoEnt->addComponent<RenderImage>(puntoRojoTex);
+		int greenPointIndex; 
+		//Determina el lugar del punto verde dependiendo de la ruta que le pasen
+		switch (routeID) {
+		case 0:
+			greenPointIndex = 0; // Superior izquierda
+			break;
+		case 1:
+			greenPointIndex = 0; // Superior izquierda
+			break;
+		case 2:
+			greenPointIndex = 1; // Superior derecha
+			break;
+		case 3:
+			greenPointIndex = 4; // Inferior izquierda
+			break;	
+		default:
+			greenPointIndex = -1; // Significa que no se aplica ningún punto verde
+			break;
 		}
+
+		for (int i = 0; i < redPoints.size(); ++i) {
+			Texture* currentTex = (i == greenPointIndex) ? puntoVerdeTex : puntoRojoTex;
+
+			ecs::Entity* puntoEnt = ent_->getMngr()->addEntity(ecs::layer::WRAP_POINTS);
+			Transform* puntoTr = puntoEnt->addComponent<Transform>(
+				redPoints[i].getX() - currentTex->width() * scale / 2,
+				redPoints[i].getY() - currentTex->height() * scale / 2,
+				currentTex->width() * scale,
+				currentTex->height() * scale
+				);
+			puntoTr->setParent(paqTr);
+			puntoEnt->addComponent<RenderImage>(currentTex);
+		}
+
 	}
 	else {
 		std::cout << "No se pudo cargar la textura del punto rojo" << std::endl;

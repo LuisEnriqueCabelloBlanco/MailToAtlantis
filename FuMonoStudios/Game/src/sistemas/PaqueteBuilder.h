@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include "../sdlutils/VirtualTimer.h"
 #include "../architecture/GeneralData.h"
-#include "../components/MultipleTextures.h"
 #include "../components/Wrap.h"
 #include "../components/Gravity.h"
 #include "../components/Depth.h"
@@ -11,6 +10,8 @@
 #include "../components/Herramientas.h"
 #include "../components/MoverTransform.h"
 #include <components/Paquete.h>
+#include <json/JSON.h>
+#include <json/JSONValue.h>
 
 
 constexpr int PESADO_MAX = 75;	//Límite del peso máximo de paquetes pesados 
@@ -91,7 +92,7 @@ private:
 	/// <param name="filename">direccion del fichero json</param>
 	/// <param name="dist">valor enum del distritio al que pertenece</param>
 	/// <param name="distString">valor string del distrito al que pertenece</param>
-	void getStreetsFromJSON(const std::string& filename, Distrito dist,const std::string& distString);
+	void getStreetsFromJSON(JSONObject& root, Distrito dist,const std::string& distString);
 	void getNamesFromJSON();
 
 	//Metodo para leer todos los patrones de empaquetado del JSON

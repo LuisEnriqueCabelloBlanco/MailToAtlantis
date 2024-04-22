@@ -107,6 +107,10 @@ namespace ecs {
 		/// </summary>
 		void navigate(std::string placeDir);
 
+		void makeDataWindow();
+
+		// cierra la conversacion
+		void closeConversation();
     private:
 		
 		/// <summary>

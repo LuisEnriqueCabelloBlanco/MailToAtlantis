@@ -255,8 +255,8 @@
         "$!Paco, Paco, Paco!",
         "$!Menos mal que est$as aqu$i!",
         "Me he confundido, madre m$ia que cagada.",
-        "Mira te va a llegar un paquete m$io de comida, algo pesado, lo he enviado sin querer a Hestia,",
-        "pero mi intenci$on era mandarselo a unas amigas del distrito de Artemisa.",
+        "Mira te va a llegar un paquete m$io de comida, bastante pesado, aunque con el sello de peso equivocado.",
+        "Es vital que llegue ese paquete a mis amigas aladas del distrito de Artemisa.",
         "Conf$io en t$i para hac$erselo llegar."
       ]
     },
@@ -402,17 +402,17 @@
       "3": [
         "$!Ay, por las aletas de mi abuela! Aqu$i estamos otra vez, sin un triste trozo de queso." ,
         "No s$e en qu$e est$a pensando el jefe $ultimamente, pero parece que su cabeza est$a m$as en las aguas que en el trabajo.",
-        "$?Ser$ias tan amable de echarme una mano y traer algo de comida? $!Necesitamos nutrir nuestra creatividad para hacerla brillar!"
+        "$?Ser$ias tan amable de echarme una mano y traer un par de paquetes de comida? $!Necesitamos nutrir nuestra creatividad para hacerla brillar!"
       ],
       "4": [
         "$!Caracolas! S$e que esto te sonar$a mal Paco pero necesito que me hagas un favor.",
-        "Un cliente nos pidi$o hacerle una escultura con tungsteno, pero entre las prisas de mi jefe y mi propia confusi$on acaba haci$endola de hierro.",
+        "Un cliente de Hermes nos pidi$o hacerle una escultura con tungsteno, pero entre las prisas de mi jefe y mi propia confusi$on acaba haci$endola de hierro.",
         "El exterior es casi el mismo pero pesa mucho menos de lo que deber$ia el paquete.",
         "Por favor haz la vista gorda con esa balanza tuya."
       ],
       "5": [
         "$!Por todos los corales! como puedo ser tan despistado.",
-        "Un cliente nos pidi$o un jarr$on de vidrio, algo muy fr$agil y delicado.",
+        "Un cliente de Apolo nos pidi$o un jarr$on de vidrio, algo muy fr$agil y delicado.",
         "Sin embargo a la hora de enviarlo se me olvido poner el sello de fragil para que se envuelva con cuidado.",
         "Por favor, crees que podr$ias embalar mi paquete aunque no tenga el sello de fragilidad.",
         "No quiero causarte problemas pero es que sino me echaran una bronca gigantequisima."
@@ -528,33 +528,34 @@
         "Con esas gemas seguro que se quedar$an alucinados con el poder de mi magia."
       ],
       "2": [
-        "Oye chico dejame decirte una cosa.",
-        "El $ultimo d$ia me pidi$o un noble que buscase una forma de ayudarle con una dieta que quiere hacer.",
-        "Entre unas cosas y otras le dije que era capaz de hacer la comida m$as pesada para que su cuerpo se llenase antes con menos cantidad.",
-        "En resumen, si ves un paquete m$io con una etiqueta de mucho peso, hazlo pasar marque lo que marque la b$ascula.",
-        "Hazle ese favor a esta pobre anciana que solo intenta ganarse la vida."
-      ],
-      "3": [
-        "$Ultimamente la gente ya no viene con preocupaciones m$edicas a mi local.",
-        "Si esto sigue as$i no podr$e mandar tantos clientes a los boticarios y perder$e dinero.",
-        "Creo que todo se debe a un nuevo medicamento que se est$a enviando a los nobles.",
-        "Si ves alguno de esos paquetes, deshazte de ello.",
-        "Tranquilo, no te preocupes por la salud de esas personas, que los remedios caseros de los boticarios son mil veces m$as efectivos que cualquier otra cosa.",
-        "Al final esto lo hago por el bien de los habitantes del distrito de Apolo."
-      ],
-      "4": [
         "Mira muchacho, ves ese grupo de boticarios ah$i reunidos.",
         "Por muy normales que parezcan, se dedican a entrar en los negocios rivales para vandalizar y destrozar todo a su paso.",
         "Por m$as que mis compa$%eros y yo hemos intentado denunciar esto a los soldados, est$an demasiado ocupados siendo las estupidas ni$%eras de los nobles.",
         "Es por eso que si pudieras me gustar$ia que extraviaras un paquete de armas al distrito de Artemisa.",
         "Tranquilo no vamos a hacer ninguna locura, tan solo pero para meterles miedo, a fin de cuentas, por mucho que vandalicen siguen siendo solo unos charlatanes flacuchos."
       ],
+      "3": [
+        "Oye chico dejame decirte una cosa.",
+        "El $ultimo d$ia me pidi$o un noble que buscase una forma de ayudarle con una dieta que quiere hacer.",
+        "Entre unas cosas y otras le dije que era capaz de hacer la comida m$as pesada para que su cuerpo se llenase antes con menos cantidad.",
+        "En resumen, si ves un paquete m$io con una etiqueta de mucho peso, hazlo pasar marque lo que marque la b$ascula.",
+        "Hazle ese favor a esta pobre anciana que solo intenta ganarse la vida."
+      ],
+      "4": [
+        "$Ultimamente la gente ya no viene con preocupaciones m$edicas a mi local.",
+        "Si esto sigue as$i no podr$e mandar tantos clientes a los boticarios y perder$e dinero.",
+        "Creo que todo se debe a un nuevo medicamento desarrollado por un tal Dr. Luengostino que se est$a enviando a los nobles.",
+        "Si ves alguno de esos paquetes, deshazte de ello.",
+        "Tranquilo, no te preocupes por la salud de esas personas, que los remedios caseros de los boticarios son mil veces m$as efectivos que cualquier otra cosa.",
+        "Al final esto lo hago por el bien de los habitantes del distrito de Apolo."
+      ],
+      
       "5": [
         "Sabes, a$un recuerdo mis $epocas como campesina de una manera muy dulce,",
         "sin embargo lo que hasta d$ia de hoy me enfurece es como se aprovechaban esos est$upidos comerciantes para revender lo que tanto nos cost$o cosechar",
         "$?Qu$e te parece si les das una lecci$on por m$i y por los campesinos?",
-        "cualquier paquete de alimentos que vaya al distrito Apolo devuelvelo, cambia su ruta... me da exactamente igual, tan solo que no llegue a su destino.",
-        "Esos paquetes siempre son enviados por los avariciosos de los comerciantes. Si haces eso, los honrados trabajadores como yo podr$an descansar m$as tranquilos."
+        "tres paquete de alimentos que vaya al distrito Hermes devuelvelo por donde ha venido, a Demeter,",
+        "que la gente abra los ojos y deje de negociar con esas sanguijuelas"
       ]
     },
     "GenericoMalo": {
@@ -672,20 +673,20 @@
       ],
       "2": [
         "El otro d$ia recib$i una carta de mi familia y al parecer los suministros m$edicos en los distritos exteriores escasean mucho.",
-        "La situaci$on sigue empeorando y los boticarios necesitan ayuda.",
-        "Aseg$urate de que el distrito de Artemisa reciban al menos 3 paquetes con los recursos m$edicos a tiempo y en buenas condiciones.",
+        "Parece ser que los boticarios estan pasandose bastante con los precios",
+        "Aseg$urate de que el distrito de Hestia reciban al menos 3 paquetes con los recursos m$edicos a tiempo y en buenas condiciones.",
         "La salud de la gente depende de ello."
       ],
       "3": [
         "Un rumor inquietante est$a circulando entre los habitantes del distrito de Apolo.",
         "Dicen que hay disturbios en el distrito de Hestia.",
-        "Necesito que verifiques la situaci$on y, si es necesario, ser$ia de mucha ayuda si pudieses redirigir 2 paquetes tanto de comida y medicina hacia Hestia",
+        "Necesito que verifiques la situaci$on y, si es necesario, ser$ia de mucha ayuda si pudieses redirigir 2 paquetes uno de comida y otro de medicina hacia Hestia",
         "Los inocentes no deber$ian sufrir por peleas de otros."
       ],
       "4": [
         "Hoy encontr$e a un joven talentoso de los distritos exteriores que sue$%a con unirse al ej$ercito.",
         "Me recordaba a m$i mismo cuando era joven y ten$ia grandes aspiraciones.",
-        "$?Ser$ias tan amable de enviar 1 paquete de armamento al distrito de Hestia?",
+        "$?Ser$ias tan amable de enviar 1 paquete de armamento al distrito de Artemisa?",
         "Qui$en sabe, tal vez estemos forjando al pr$oximo protector de Atlantis."
       ],
       "5": [
@@ -823,12 +824,11 @@
 
       ],
       "5": [
-        "$Ultimamente las ventas de alimentos no est$an marchando demasiado bien,",
-        "no se muy bien c$omo pero parece que los habitantes del distrito de Apolo est$an obteniendo cosechas de otra parte.",
-        "Dudo que sea de los campesinos ya que la compra de productos a estos no ha disminuido ni un poco.",
-        "Esto me huele muy mal, quiz$a s$i un par de paquetes de comida que se dirijan al distrito de Apolo se extrav$ian, vuelvan a comprar nuestros recursos.",
-        "Se que suena mal pero de verdad que lo hago principalmente por los campesinos,",
-        "si no vendemos tampoco podemos comprarles a ellos y acabar$an totalmente arruinados."
+        "Paco voy a darte una lecci$on de finanzas.",
+        "hay veces que es muy importante abaratar costes en peque$%as minucias, por ejemplo, hoy mismo he enviado dos paquetes pero usando unos sellos m$as baratos.",
+        "Se los compr$e a un vendedor ambulante que encontre en la plaza de Hermes.",
+        "$?Como dices?, que si el sello no es el oficial debes devolver los paquetes. Por dios, pero no puedes hacer eso, este env&io es muy urgente.",
+        "Por favor paco haz la vista gorda por esta vez por favor te lo pido"
       ]
     },
     "GenericoMalo": {
