@@ -74,7 +74,7 @@ int GeneralData::calcularDineroGanado()
 {
 	int rightPackages = corrects_;
 	int wrongPackages = fails_;
-	int totalRightMoney = 0
+	int totalRightMoney = 0;
 	if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
 		totalRightMoney = rightPackages * (WRITE_PACAGES_VALUE + 10);
 	}
