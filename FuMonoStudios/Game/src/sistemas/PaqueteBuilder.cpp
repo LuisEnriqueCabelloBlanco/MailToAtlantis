@@ -34,7 +34,8 @@ PaqueteBuilder::~PaqueteBuilder() {
 
 ecs::Entity* PaqueteBuilder::buildPackage(int level, ecs::Scene* mScene) {
 	
-	auto packageBase = buildBasePackage(mScene, false);
+
+	ecs::Entity* packageBase;
 	
 	int rnd = sdlutils().rand().nextInt(0, 2);
 
@@ -43,9 +44,11 @@ ecs::Entity* PaqueteBuilder::buildPackage(int level, ecs::Scene* mScene) {
 		cartaRND(packageBase);
 	}
 	else {
-
+		packageBase = buildBasePackage(mScene, false);
+	
 		//decision de si el paquete que saldr� es de NPC
 		if (!shouldBuildNPCPackage()) {
+
 			stdRandPackage(packageBase, level);
 		}
 		else {
@@ -77,7 +80,7 @@ void PaqueteBuilder::cartaRND(ecs::Entity* packageBase) {
 		dir = distritoCalle_[toDist][(int)toDir];
 
 
-	Paquete* carta = packageBase->addComponent<Paquete>(distritoRND(), toDir, dir, remitenteRND(), pq::TipoPaquete::Carta, false, pq::NivelPeso::Ninguno, PESO_CARTA, false, true);
+	Paquete* carta = packageBase->addComponent<Paquete>(toDist, toDir, dir, remitenteRND(), pq::TipoPaquete::Carta, false, pq::NivelPeso::Ninguno, PESO_CARTA, false, true);
 	addVisualElements(packageBase);
 
 }
@@ -117,12 +120,14 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene, bool esCarta)
 	ComonObjectsFactory* factory = mScene->getFactory();
 	factory->setLayer(ecs::layer::PACKAGE);
 
+
 	Texture* texturaPaquet;
-	if (esCarta) {
-		texturaPaquet = &sdlutils().images().at("carta");
+	if (!esCarta) {
+				texturaPaquet = &sdlutils().images().at("boxTest");
+
 	}
 	else {
-		texturaPaquet = &sdlutils().images().at("boxTest");
+		texturaPaquet = &sdlutils().images().at("carta");
 	}
 	//ENVOLTURA
 	//se puede rellenar con un for
@@ -134,10 +139,13 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene, bool esCarta)
 		&sdlutils().images().at("caja100")
 	};
 	auto packageBase = factory->createMultiTextureImage(Vector2D(1600.0f, 600.0f), Vector2D(320.5f, 245.5), textures);
+
+
 	//interaccion y fisicas
 	packageBase->addComponent<Depth>();
 	packageBase->addComponent<Gravity>();
 	DragAndDrop* drgPq = packageBase->addComponent<DragAndDrop>(true, "arrastrar");
+	
 	//herramientas
 
 	Trigger* packTRI_ = packageBase->getComponent<Trigger>();
