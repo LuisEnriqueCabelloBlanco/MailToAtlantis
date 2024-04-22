@@ -403,6 +403,14 @@
     {
       "id": "tubo0",
       "file": "recursos/sounds/tubochupa.wav"
+    },
+    {
+      "id": "emb_com0",
+      "file":  "recursos/sounds/embalajeinicial.wav"
+    },
+    {
+      "id": "emb_cont0",
+      "file":  "recursos/sounds/embalajesigue.wav"
     }
   ],
   "musics": [

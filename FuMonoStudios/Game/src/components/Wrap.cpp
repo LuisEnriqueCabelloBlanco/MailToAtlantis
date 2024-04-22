@@ -6,6 +6,7 @@
 #include "../json/JSON.h"
 #include "../sdlutils/Texture.h"
 #include "../sdlutils/SDLUtils.h"
+#include "../sistemas/SoundEmiter.h"
 
 #include <SDL.h>
 #include <vector>
@@ -176,9 +177,15 @@ void Wrap::update() {
 					|| (routePointsDone == (totalPointsRoute * 3) / 4 && wrapFase < 3)
 					|| (routePointsDone == totalPointsRoute && wrapFase < 4)) {
 
+					if (wrapFase < 1) {
+						SoundEmiter::instance()->playSound("emb_com");
+					}
+					else {
+						SoundEmiter::instance()->playSound("emb_cont");
+					}
+
 					mul_->nextTexture();
 					wrapFase++;
-
 				}
 
 				//Si se ha recorrido toda la ruta se comprueba si quedan repeticiones de patron. En caso contrario se da por envalado

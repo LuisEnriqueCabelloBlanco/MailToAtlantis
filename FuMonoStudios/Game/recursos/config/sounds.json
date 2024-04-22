@@ -11,6 +11,14 @@
     {
       "key": "tubo",
       "amount": 1
+    },
+    {
+      "key": "emb_com",
+      "amount": 1
+    },
+    {
+      "key": "emb_cont",
+      "amount":  1
     }
   ]
 }
