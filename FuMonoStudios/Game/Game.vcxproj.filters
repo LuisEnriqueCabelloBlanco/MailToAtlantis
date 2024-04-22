@@ -25,7 +25,6 @@
     <ClCompile Include="src\components\Paquete.cpp" />
     <ClCompile Include="src\components\PackageChecker.cpp" />
     <ClCompile Include="src\components\Herramientas.cpp" />
-    <ClCompile Include="src\components\MultipleTextures.cpp" />
     <ClCompile Include="src\scenes\MainMenu.cpp" />
     <ClCompile Include="src\components\MoverTransform.cpp" />
     <ClCompile Include="src\components\PackageChecker.cpp" />
@@ -34,7 +33,6 @@
     <ClCompile Include="src\architecture\GeneralData.cpp" />
     <ClCompile Include="src\sistemas\PaqueteBuilder.cpp" />
     <ClCompile Include="src\sistemas\Felicidad.cpp" />
-    <ClCompile Include="src\sistemas\Mapa.cpp" />
     <ClCompile Include="src\components\Wrap.cpp" />
     <ClCompile Include="src\scenes\EndWorkScene.cpp" />
     <ClCompile Include="src\sistemas\ComonObjectsFactory.cpp" />
@@ -69,6 +67,8 @@
     <ClCompile Include="src\components\RotarTransform.cpp" />
     <ClCompile Include="src\components\NPCExclamation.cpp" />
     <ClCompile Include="src\sistemas\NPCeventSystem.cpp" />
+    <ClCompile Include="src\scenes\EndGameScene.cpp" />
+    <ClCompile Include="src\sistemas\NPC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -95,7 +95,6 @@
     <ClInclude Include="src\sdlutils\Texture.h" />
     <ClInclude Include="src\sdlutils\VirtualTimer.h" />
     <ClInclude Include="src\components\Transform.h" />
-    <ClInclude Include="src\components\MultipleTextures.h" />
     <ClInclude Include="src\components\Paquete.h" />
     <ClInclude Include="src\components\PackageChecker.h" />
     <ClInclude Include="src\components\Herramientas.h" />
@@ -105,7 +104,6 @@
     <ClInclude Include="src\architecture\GeneralData.h" />
     <ClInclude Include="src\sistemas\PaqueteBuilder.h" />
     <ClInclude Include="src\sistemas\Felicidad.h" />
-    <ClInclude Include="src\sistemas\Mapa.h" />
     <ClInclude Include="src\components\Wrap.h" />
     <ClInclude Include="src\scenes\EndWorkScene.h" />
     <ClInclude Include="src\components\SelfDestruct.h" />
@@ -175,6 +173,8 @@
     <ClInclude Include="src\components\RotarTransform.h" />
     <ClInclude Include="src\components\NPCExclamation.h" />
     <ClInclude Include="src\sistemas\NPCeventSystem.h" />
+    <ClInclude Include="src\scenes\EndGameScene.h" />
+    <ClInclude Include="src\sistemas\NPC.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\MultipleTextures.h" />
@@ -200,6 +200,7 @@
     <None Include="recursos\config\mail.destinatarios.json" />
     <None Include="recursos\config\sounds.json" />
     <None Include="recursos\data\saveFile.json" />
+    <None Include="recursos\data\eventosjefe.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="recursos\images\Alimentos.png" />

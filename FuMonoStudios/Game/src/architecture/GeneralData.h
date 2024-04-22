@@ -1,6 +1,9 @@
 #pragma once
 #include "../utils/Singleton.h"
 #include "GameConstants.h"
+#include <sistemas/NPC.h>
+#include <vector>
+#include <unordered_map>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -34,88 +37,19 @@ namespace pq {
 }
 
 using namespace pq;
+using namespace npc;
 class GeneralData : public Singleton<GeneralData>
 {
 public:
 	friend Singleton<GeneralData>;
-
-	// enum con tipos de felicidad
-	enum Felicidad { Minima, Mala, Normal, Buena, Maxima, NoHabladoAun };
 	
 	Felicidad stringToFelicidad(const std::string& str);
 	std::string felicidadToString(Felicidad);
 
-	// enum con el nombre de todos los NPC
-	enum Personaje {
-		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable
-	};
-
 	enum MoveType{DropIn, PickUp};
 
-
-	#pragma region NPCdata
-
-	// Los datos de los NPC deben actualizarse al acabar cada día.
-	// Recogen datos sobre su felicidad, así como que dialogo deben enseñar.
-	// Al iniciarse, su felicidad estará en NoHabladoAun, y al sacar su
-	// primer diálogo cambiará a Normal.
-	// NPC MENORES: El bool giveEvent dicta si debe dar evento (true) o dar
-	// un dialogo generico (false). El int iteration itera sobre los 3 posibles
-	// dialogos genericos que tiene el personaje.
-	// NPC GRANDES: El bool postConversation si es true, significa que ya se 
-	// ha hablado con el una vez, y sacara el dialogo mas corto que sale despues
-	// del dialogo original de ese dia.
-	// 
-	// Al acabar el día se debe llamar a setupDayData() para reiniciar las 
-	// variables y ajustar datos segun el dia
-	// 
-	// MIRAR EL comoEscribirEventos.MD PARA SABER COMO USAR ESTO
 	
-	struct NPCdata {
-		Felicidad felicidad;
-		int numFelicidad;
-		int numMisionesAceptadas;
-		std::vector<NPCevent*> events;
-		virtual NPCevent* getEvent() = 0;
-
-		virtual std::pair<const std::string, int> getDialogueInfo() = 0;
-
-		// esto solo lo usa el NPCmenor
-		virtual void iterateDialogues() = 0;
-		virtual void setupDayData() = 0;
-	};
-
-	struct NPCMenorData : public NPCdata {
-		NPCMenorData(Felicidad Felicidad, std::vector<bool> DiasDanEvento);
-
-		NPCevent* getEvent() override;
-
-		std::pair<const std::string, int> getDialogueInfo() override;
-		void iterateDialogues() override;
-		void setupDayData() override;
-	private:
-		void activateEvent();
-		void deactivateEvent();
-
-		std::vector<bool> diasDanEvento;
-
-		bool giveEvent;
-		int iteration;
-	};
-
-	struct NPCMayorData : public NPCdata {
-		NPCMayorData(Felicidad Felicidad);
-
-		NPCevent* getEvent() override;
-
-		std::pair<const std::string, int> getDialogueInfo() override;
-		void iterateDialogues() override {};
-		void setupDayData() override;
-	private:
-		bool postConversation;
-	};
-	
-	// METODOS DE NPCdata
+#pragma endregion
 
 	void readNPCData();
 	void writeNPCData();
@@ -127,12 +61,13 @@ public:
 	NPCeventSystem* npcEventSys = nullptr;
 private:
 	// vector que contiene los datos de todos los 7 npc
-	std::vector<NPCdata*> npcData;
+	std::vector<NPCdata*> npcDataVec_;
 #pragma endregion
 public:
 	GeneralData();
 	~GeneralData();
 
+	void loadSaveFile();
 	/// <summary>
 	/// Metodo que acutaliza cuanto dinero tienes en funcion de los fallos y aciertos que realices
 	/// </summary>
@@ -172,6 +107,15 @@ public:
 	void wrongPackage() { fails_++; }
 	int getFails() { return fails_; }
 	int getCorrects() { return corrects_; }
+
+	int getCharacterEventID(int p) {
+		return charactersEvents_[p];
+	}
+
+	void setCharacterEventID(int p, int e) {
+		charactersEvents_[p] = e;
+	}
+
 	void resetFailsCorrects() { fails_ = 0; corrects_ = 0; }
 
 	int getPaqueteLevel(); // Devuelve el lvl del paquete correspondiente al d�a
@@ -203,6 +147,8 @@ private:
 	void reduceMoney(int cant) { dinero_ -= cant; }
 
 	void updateDistrictsPerDay(int dia);
+	// vector que contiene los datos de todos los 7 npc
+	std::unordered_map<Personaje,NPCdata*> npcData;
 
 	int fails_;
 	int corrects_;
@@ -215,6 +161,8 @@ private:
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
 	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo
 	int numTubos_; // Numero de tubos que habrán en el minijuego de paquetes
+	int charactersEvents_[7]; // Recoge los eventos de paquete de cada personaje
+	std::vector<Paquete*> paquetesNPCs;
 	std::vector<std::string> placesToActive_;
 
 	//Aqui van las variables que indican si se han conseguido las herramientas especiales de los NPCs

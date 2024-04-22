@@ -16,7 +16,7 @@ GeneralData::GeneralData()
 	failsMargin_ = INITIAL_FAILS_MARGIN;
 	corrects_ = 0;
 	fails_ = 0;
-	dia_ = 1;
+	dia_ = INITIAL_DAY;
 	rent_ = 75;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
 
@@ -26,6 +26,15 @@ GeneralData::~GeneralData() {
 	delete npcEventSys;
 }
 
+void GeneralData::loadSaveFile()
+{
+	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/saveFile.json"));
+
+	JSONObject root = jsonFile->AsObject();
+
+	dia_ = root.find("Dia")->second->AsNumber();
+	dinero_ = root.find("Dinero")->second->AsNumber();
+}
 
 void GeneralData::updateMoney()
 {
@@ -81,9 +90,9 @@ void GeneralData::updateDia()
 	placesToActive_.clear();
 	updateDistrictsPerDay(dia_);
 	// actualizar los datos para todos los npc
-	for (int i = 0; i < 7; i++)
+	for (auto it : npcData)
 	{
-		npcData[i]->setupDayData();
+		it.second->setupDayData();
 	}
 
 	if (dia_ == 1) {
@@ -214,17 +223,17 @@ void GeneralData::readNPCData() {
 	}
 	
 	JSONObject root = jsonFile->AsObject();
-	JSONValue* jValueRoot = nullptr;
+	JSONValue* jValue = nullptr;
 
 	// cargamos los 7 personajes
 
 	for (int i = 0; i < 7; i++)
 	{
 		std::string aux = personajeToString((Personaje)i);
-		jValueRoot = root[aux];
+		jValue = root[aux];
 
-		JSONObject jObject = jValueRoot->AsObject();
-		std::string felicidadStr = jObject.find("Felicidad")->second->AsString();
+		JSONObject jObject = jValue->AsObject();
+		std::string felicidadStr = jObject["Felicidad"]->AsString();
 
 
 		if (i < 2) // npc grandes
@@ -232,12 +241,12 @@ void GeneralData::readNPCData() {
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
-			npcData.push_back(data);
+			npcData[(Personaje)i] = data;
 		}
 		else
 		{
 			std::vector<bool> diasDanEventos;
-			jObject = jValueRoot->AsObject();
+			jObject = jValue->AsObject();
 			JSONObject jDiasEvento = jObject.find("DiasConEvento")->second->AsObject();
 
 			// leemos los 14 booleanos
@@ -245,12 +254,9 @@ void GeneralData::readNPCData() {
 			{
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(i + 1))->second->AsBool());
 			}
-			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
-			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
-			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
-			npcData.push_back(data);
+			npcData[(Personaje)i] = new NPCMenorData(stringToFelicidad(felicidadStr),diasDanEventos);
 		}
-		jValueRoot = nullptr;
+		jValue = nullptr;
 	}
 
 	if (npcEventSys == nullptr)
@@ -398,9 +404,10 @@ const std::string GeneralData::personajeToString(Personaje pers) {
 	return aux;
 }
 
-GeneralData::Personaje GeneralData::stringToPersonaje(const std::string& pers) {
+Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	Personaje aux;
 	// no deja hacer switch y es una cochinada pero es la unica forma de hacerlo
+	//se puede usar un hasmap
 	if (pers == "Vagabundo")
 		aux = Vagabundo;
 	else if (pers == "Secretario")
@@ -419,7 +426,7 @@ GeneralData::Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	return aux;
 }
 
-GeneralData::Felicidad GeneralData::stringToFelicidad(const std::string& str)
+Felicidad GeneralData::stringToFelicidad(const std::string& str)
 {
 	Felicidad aux = Normal;
 	if (str == "Minima")
@@ -438,6 +445,12 @@ GeneralData::Felicidad GeneralData::stringToFelicidad(const std::string& str)
 	return aux;
 }
 
+//void GeneralData::setDayData() {
+//	for (int i = 0; i < 7; i++)
+//	{
+//		npcData.at((Personaje)i)->setupDayData();
+//	}
+//}
 std::string GeneralData::felicidadToString(Felicidad f)
 {
 	std::string aux = "";
@@ -550,7 +563,8 @@ NivelPeso GeneralData::stringToNivelPeso(const std::string& nivel)
 
 // Struct NPCdata
 #pragma region NPCdata
-GeneralData::NPCdata* GeneralData::getNPCData(Personaje personaje) {
+
+NPCdata* GeneralData::getNPCData(Personaje personaje) {
 	NPCdata* npc = nullptr;
 
 	npc = npcData[personaje];
@@ -558,124 +572,4 @@ GeneralData::NPCdata* GeneralData::getNPCData(Personaje personaje) {
 	return npc;
 }
 
-
-// NPC MENOR
-GeneralData::NPCMenorData::NPCMenorData(Felicidad Felicidad, std::vector<bool> DiasDanEvento) {
-	felicidad = Felicidad;
-	iteration = 1;
-	diasDanEvento = DiasDanEvento;
-}
-
-std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
-	
-	std::string tipo;
-	int iterationNum = -1;
-
-	if (felicidad == Minima || felicidad == Maxima || felicidad == NoHabladoAun)
-	{
-		switch (felicidad)
-		{
-		case NoHabladoAun:
-			tipo = "Presentacion";
-			felicidad = Normal;
-			break;
-		case Minima:
-			tipo = "FelicidadMinimo";
-			break;
-		case Maxima:
-			tipo = "FelicidadMaximo";
-			break;
-		}
-	}
-	else if (giveEvent)
-	{
-		tipo = "Eventos";
-		RandomNumberGenerator a;
-		iterationNum = a.nextInt(1, 6);
-	}
-	else
-	{
-		switch (felicidad){
-			case Mala:
-				tipo = "GenericoMalo";
-				iterateDialogues();
-				iterationNum = iteration;
-				break;
-			case Normal:
-				tipo = "GenericoNormal";
-				iterateDialogues();
-				iterationNum = iteration;
-				break;
-			case Buena:
-				tipo = "GenericoBueno";
-				iterateDialogues();
-				iterationNum = iteration;
-				break;
-		}
-	}
-	return std::make_pair(tipo, iterationNum);
-}
-
-void GeneralData::NPCMenorData::setupDayData() {
-	iteration = 1;
-	giveEvent = diasDanEvento[generalData().getDay() - 1];
-}
-
-void GeneralData::NPCMenorData::activateEvent(){
-	giveEvent = true;
-}
-
-void GeneralData::NPCMenorData::deactivateEvent() {
-	giveEvent = false;
-}
-
-void GeneralData::NPCMenorData::iterateDialogues() {
-	iteration++;
-	if (iteration > 3)
-		iteration = 1;
-}
-
-NPCevent* GeneralData::NPCMenorData::getEvent() {
-	return events[sdlutils().rand().nextInt(0,5)];
-	numMisionesAceptadas++;
-}
-
-// NPC GRANDE
-
-GeneralData::NPCMayorData::NPCMayorData(Felicidad Felicidad) {
-	felicidad = Felicidad;
-	postConversation = false;
-}
-
-std::pair<const std::string, int> GeneralData::NPCMayorData::getDialogueInfo() {
-	std::string aux;
-
-	switch (felicidad)
-	{
-		case NoHabladoAun:
-			aux = "Presentacion";
-			felicidad = Normal;
-			break;
-		case Minima:
-			aux = "FelicidadMinimo";
-			break;
-		default:
-			aux = postConversation ?
-				"PostConversacionDia" : "Dia";
-			aux = aux + std::to_string(generalData().getDay());
-			postConversation = true;
-			break;
-	}
-
-	return std::make_pair(aux, -1);
-}
-
-void GeneralData::NPCMayorData::setupDayData() {
-	postConversation = false;
-}
-
-NPCevent* GeneralData::NPCMayorData::getEvent() {
-	return events[numMisionesAceptadas];
-	numMisionesAceptadas++;
-}
 #pragma endregion
