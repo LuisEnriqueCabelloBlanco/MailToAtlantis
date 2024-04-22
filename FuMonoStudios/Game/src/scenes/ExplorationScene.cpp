@@ -258,13 +258,9 @@ ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const st
 	//Texture* characterTexture = &sdlutils().images().at(interactableObj);
 	Vector2D size{ 300 * scale, 200 * scale };
 
-	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
-	//Actualmente los personajes no tienen memoria, si queremos esto haria falta anadrile un parametro
-
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, interactableObj]() {
 		dialogMngr_.startConversationWithObj(interactableObj);
-		//dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(1));
 	};
 
 	ecs::Entity* objEnt = factory.createImageButton(pos, size, nullptr, funcPress);

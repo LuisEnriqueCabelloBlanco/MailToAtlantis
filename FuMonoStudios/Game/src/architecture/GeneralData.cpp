@@ -669,10 +669,6 @@ const std::string GeneralData::IntObjsData::getDialogueInfo()
 			tipo = "TextoCasa2";
 			break;
 		default:
-			/*aux = postConversation ?
-				"PostConversacionDia" : "Dia";
-			aux = aux + std::to_string(generalData().getDay());
-			postConversation = true;*/
 			break;
 		}
 
@@ -683,7 +679,6 @@ const std::string GeneralData::IntObjsData::getDialogueInfo()
 GeneralData::IntObjsData* GeneralData::getObjData(InteractableObj intobj)
 {
 	IntObjsData* obj = nullptr;
-
 	obj = intObjData[intobj];
 
 	return obj;

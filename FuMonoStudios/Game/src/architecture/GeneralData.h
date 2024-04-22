@@ -205,19 +205,27 @@ public:
 	int getRent();
 	void setRent(int rent);
 
+	//Textos personajes
 	const std::string personajeToString(Personaje pers);
 	Personaje stringToPersonaje(const std::string& pers);
 
-
+	//Textos objetos
 	const std::string objetoToString(InteractableObj pers);
 	InteractableObj stringToObj(const std::string& obj);
 
+	//Textos distritos
 	std::string fromDistritoToString(int i);
 	int fromStringToDistrito(std::string place);
+
+	//Textos calles
 	const std::string calleToString(Calle calle);
 	Calle stringToCalle(const std::string& calle);
+
+	//Textos paquetes
 	const std::string tipoPaqueteToString(TipoPaquete tipo);
 	TipoPaquete stringToTipoPaquete(const std::string& tipo);
+
+	//Textos peso
 	const std::string nivelPesoToString(NivelPeso nivel);
 	NivelPeso stringToNivelPeso(const std::string& nivel);
 
