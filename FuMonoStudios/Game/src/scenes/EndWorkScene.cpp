@@ -131,4 +131,3 @@ void EndWorkScene::createButtons()
 	}
 }
 
-
