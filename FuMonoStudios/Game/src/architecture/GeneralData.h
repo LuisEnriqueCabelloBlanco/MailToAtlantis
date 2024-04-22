@@ -97,6 +97,7 @@ public:
 
 		bool giveEvent;
 		int iteration;
+		bool postConversation;
 	};
 
 	struct NPCMayorData : public NPCdata {
@@ -129,6 +130,7 @@ public:
 	GeneralData();
 	~GeneralData();
 
+	void loadSaveFile();
 	/// <summary>
 	/// Metodo que acutaliza cuanto dinero tienes en funcion de los fallos y aciertos que realices
 	/// </summary>

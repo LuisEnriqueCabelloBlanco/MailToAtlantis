@@ -26,6 +26,15 @@ GeneralData::~GeneralData() {
 	delete npcEventSys;
 }
 
+void GeneralData::loadSaveFile()
+{
+	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/saveFile.json"));
+
+	JSONObject root = jsonFile->AsObject();
+
+	dia_ = root.find("Dia")->second->AsNumber();
+	dinero_ = root.find("Dinero")->second->AsNumber();
+}
 
 void GeneralData::updateMoney()
 {
@@ -571,6 +580,7 @@ GeneralData::NPCMenorData::NPCMenorData(Felicidad Felicidad, std::vector<bool> D
 	felicidad = Felicidad;
 	iteration = 1;
 	diasDanEvento = DiasDanEvento;
+	postConversation = false;
 }
 
 std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
@@ -578,6 +588,7 @@ std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
 	std::string tipo;
 	int iterationNum = -1;
 
+	postConversation = true;
 	if (felicidad == Minima || felicidad == Maxima || felicidad == NoHabladoAun)
 	{
 		switch (felicidad)
@@ -624,8 +635,11 @@ std::pair<const std::string, int> GeneralData::NPCMenorData::getDialogueInfo() {
 }
 
 void GeneralData::NPCMenorData::setupDayData() {
+	if (postConversation = true && felicidad == NoHabladoAun)
+		felicidad = Normal;
 	iteration = 1;
 	giveEvent = diasDanEvento[generalData().getDay() - 1];
+	postConversation = false;
 }
 
 void GeneralData::NPCMenorData::activateEvent(){
@@ -661,7 +675,7 @@ std::pair<const std::string, int> GeneralData::NPCMayorData::getDialogueInfo() {
 	{
 		case NoHabladoAun:
 			aux = "Presentacion";
-			felicidad = Normal;
+			postConversation = true;
 			break;
 		case Minima:
 			aux = "FelicidadMinimo";
@@ -678,6 +692,8 @@ std::pair<const std::string, int> GeneralData::NPCMayorData::getDialogueInfo() {
 }
 
 void GeneralData::NPCMayorData::setupDayData() {
+	if (postConversation = true && felicidad == NoHabladoAun)
+		felicidad = Normal;
 	postConversation = false;
 }
 
