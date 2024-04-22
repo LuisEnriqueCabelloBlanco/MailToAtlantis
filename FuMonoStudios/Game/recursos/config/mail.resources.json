@@ -184,6 +184,10 @@
     {
       "id": "choque1",
       "file": "recursos/sounds/cardboardDrop.wav"
+    },
+    {
+      "id": "tubo0",
+      "file": "recursos/sounds/tubochupa.wav"
     }
   ],
   "musics": [

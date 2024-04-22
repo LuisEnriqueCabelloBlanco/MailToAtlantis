@@ -51,6 +51,7 @@ void SoundEmiter::playSound(std::string sound)
 		int am = it.first;
 		int rnd = sdlutils().rand().nextInt(0, am);
 		std::string fileName = sound + std::to_string(rnd);
+		std::cout << fileName << "\n";
 		sdlutils().soundEffects().at(fileName).setVolume(soundVolume_);
 		sdlutils().soundEffects().at(fileName).play();
 	}
@@ -63,6 +64,7 @@ void SoundEmiter::playSound(std::string sound, float modifier)
 		int am = it.first;
 		int rnd = sdlutils().rand().nextInt(0, am);
 		std::string fileName = sound + std::to_string(rnd);
+		std::cout << fileName << "\n";
 		sdlutils().soundEffects().at(fileName).setVolume(soundVolume_ * modifier);
 		sdlutils().soundEffects().at(fileName).play();
 	}

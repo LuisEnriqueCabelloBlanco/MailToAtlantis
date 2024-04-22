@@ -11,6 +11,7 @@
 #include <functional>
 #include <components/ErrorNote.h>
 #include <QATools/DataCollector.h>
+#include "../sistemas/SoundEmiter.h";
 
 PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc) : 
 	toDis_(dis), extraCond_(),mainSc_(sc), tutSc_(nullptr)
@@ -52,6 +53,8 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 {
 	//comprobamos si es un paquete
 	if (ent->getComponent<Paquete>() != nullptr) {
+		SoundEmiter::instance()->playSound("tubo");
+
 		ent->getComponent<DragAndDrop>()->disableInteraction();
 
 		Vector2D entPos = ent->getComponent<Transform>()->getPos();

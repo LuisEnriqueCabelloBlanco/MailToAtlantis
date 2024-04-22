@@ -7,6 +7,10 @@
     {
       "key": "choque",
       "amount": 2
+    },
+    {
+      "key": "tubo",
+      "amount": 1
     }
   ]
 }
