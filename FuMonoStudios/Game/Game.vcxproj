@@ -220,6 +220,7 @@
     <ClCompile Include="src\architecture\Time.cpp" />
     <ClCompile Include="src\scenes\TutorialScene.cpp" />
     <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
+    <ClCompile Include="src\sistemas\WorkRestrictionsSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\sistemas\PipeManager.h" />
@@ -301,6 +302,7 @@
     <ClInclude Include="src\architecture\Time.h" />
     <ClInclude Include="src\scenes\TutorialScene.h" />
     <ClInclude Include="src\sistemas\TutorialSystem.h" />
+    <ClInclude Include="src\sistemas\WorkRestrictionsSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties.props" />

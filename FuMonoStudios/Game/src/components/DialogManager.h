@@ -52,10 +52,6 @@ Hay 3 tipos de setDialogues en funcion de las necesidades del dialog.json
 class DialogManager {
 public:
     // aqui se elije que rama de dialogo escojer dentro del json
-    enum DialogSelection {
-        Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable,
-        JefeOficina, Tutorial, BryantMyers
-    };
 
     DialogManager();
 
@@ -79,9 +75,9 @@ public:
     bool nextDialog();
     
     // Establece los dialogos del tipo introducido mirar arriba para saber cual usar
-    void setDialogues(const DialogSelection ds, const std::string& tipoDialogo, int dialogueSelection);
-    void setDialogues(const DialogSelection ds, const std::string& t) { setDialogues(ds, t, -1); }
-    void setDialogues(const DialogSelection ds) { setDialogues(ds, "NULL", -1); }
+    void setDialogues(const GeneralData::DialogSelection ds, const std::string& tipoDialogo, int dialogueSelection);
+    void setDialogues(const GeneralData::DialogSelection ds, const std::string& t) { setDialogues(ds, t, -1); }
+    void setDialogues(const GeneralData::DialogSelection ds) { setDialogues(ds, "NULL", -1); }
 
     void startConversation(const std::string& character);
 
@@ -98,9 +94,7 @@ public:
 private:
     void fixText(std::string& text);
 
-    std::string dialogSelectionToString(const DialogSelection ds);
-
-    bool isNPC(const DialogSelection ds);
+    bool isNPC(const GeneralData::DialogSelection ds);
 
 
 

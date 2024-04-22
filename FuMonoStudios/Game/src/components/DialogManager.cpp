@@ -83,7 +83,7 @@ bool DialogManager::nextDialog() {
     return isEndOfConversation;
 }
 
-void DialogManager::setDialogues(const DialogSelection ds, const std::string& tipoDialogo, int dialogueIteration)
+void DialogManager::setDialogues(const GeneralData::DialogSelection ds, const std::string& tipoDialogo, int dialogueIteration)
 {
     //eliminamos los dialogos anteriores
     dialogs_.clear();
@@ -101,7 +101,7 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     JSONObject root = jValueRoot->AsObject();
     JSONValue* jsonEntry = nullptr;
 
-    const std::string& stringDialogSel = dialogSelectionToString(ds);
+    const std::string& stringDialogSel = generalData().dialogSelectionToString(ds);
 
     jsonEntry = root[stringDialogSel];
     if (jsonEntry != nullptr)
@@ -179,7 +179,7 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
 
             if (isNPC(ds))
             {
-                generalData().getNPCData(generalData().stringToPersonaje(dialogSelectionToString(ds)))->iterateDialogues();
+                generalData().getNPCData(generalData().stringToPersonaje(generalData().dialogSelectionToString(ds)))->iterateDialogues();
             }
         }
     }
@@ -200,7 +200,7 @@ void DialogManager::startConversation(const std::string& character)
         std::pair<const std::string, int> aux = data->getDialogueInfo(); 
 
 
-        setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
+        setDialogues((GeneralData::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
 
         setDialogueEntitiesActive(true);
 
@@ -282,46 +282,8 @@ void DialogManager::fixText(std::string& text)
   }
 }
 
-std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
-{
-    std::string aux;
-    switch (ds)
-    {
-    case Vagabundo:
-        aux = "Vagabundo";
-        break;
-    case Secretario:
-        aux = "Secretario";
-        break;
-    case Campesino:
-        aux = "Campesino";
-        break;
-    case Artesano:
-        aux = "Artesano";
-        break;
-    case Tarotisa:
-        aux = "Tarotisa";
-        break;
-    case Soldado:
-        aux = "Soldado";
-        break;
-    case Contable:
-        aux = "Contable";
-        break;
-    case JefeOficina:
-        aux = "JefeOficina";
-        break;
-    case Tutorial:
-        aux = "Tutorial";
-        break;
-    case BryantMyers:
-        aux = "EsclavaRemix";
-        break;
-    }
-    return aux;
-}
 
-bool DialogManager::isNPC(const DialogSelection ds)
+bool DialogManager::isNPC(const GeneralData::DialogSelection ds)
 {
     return ds < 7;
 }

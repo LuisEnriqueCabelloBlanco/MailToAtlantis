@@ -48,6 +48,10 @@ public:
 
 	enum MoveType{DropIn, PickUp};
 
+	enum DialogSelection {
+		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable,
+		JefeOficina, Tutorial, BryantMyers
+	};
 	
 #pragma endregion
 
@@ -56,7 +60,7 @@ public:
 
 	NPCdata* getNPCData(Personaje personaje);
 
-	void incrementarFelicidad(Personaje p, int felicidadIncr);
+    void incrementarFelicidad(Personaje p, int felicidadIncr);
 
 	NPCeventSystem* npcEventSys = nullptr;
 private:
@@ -142,6 +146,8 @@ public:
 	void unlockMejoraPersonaje(Personaje p);
 
 	void saveGame();
+
+    std::string dialogSelectionToString(DialogSelection ds);
 private:
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }

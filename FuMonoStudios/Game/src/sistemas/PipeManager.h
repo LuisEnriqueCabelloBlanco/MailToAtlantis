@@ -25,6 +25,48 @@ namespace tb {
 		//Si solo comprueban pesos de un tipo, el tipo
 		pq::TipoPaquete typeToWeight;
 	};
+
+
+	enum restrictionId {
+
+		BLOCK_PIPE,
+		SWAP_PIPE,
+		BAN_TYPE_IN_PIPE,
+		WEIGHT_RESTRICT_PIPE
+	};
+
+	struct WorkEvent {
+		restrictionId id;
+
+		// if we use union we save memory, but then use only primitive
+		// types, otherwise you will need to define constructors almost
+		// every where.
+		union {
+			struct
+			{
+				Distrito targetPipe;
+			} block_pipe_data;
+
+			struct
+			{
+				Distrito targetPipe;
+				SwappedPipe dest;
+			} swap_pipe_data;
+
+			struct
+			{
+				Distrito targetPipe;
+				TipoPaquete ban;
+			} ban_type_pipe_data;
+
+			struct
+			{
+				Distrito target;
+				WeightRestriction restrictions;
+			} weight_res_pipe_data;
+		};
+	};
+
 }
 
 using namespace tb;
@@ -64,6 +106,7 @@ public:
 	/// <param name="restrictions">New weight restrictions to be applied</param>
 	void weightRestrictPipe(pq::Distrito target, WeightRestriction restrictions);
 
+	void activateEvent(WorkEvent evento);
 private:
 	//Comprueba si la tubería está bloqueada o cambiada
 	bool checkPipeConditions(Paquete*, pq::Distrito);

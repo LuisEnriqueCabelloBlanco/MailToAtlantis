@@ -409,19 +409,19 @@ Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	// no deja hacer switch y es una cochinada pero es la unica forma de hacerlo
 	//se puede usar un hasmap
 	if (pers == "Vagabundo")
-		aux = Vagabundo;
+		aux = npc::Vagabundo;
 	else if (pers == "Secretario")
-		aux = Secretario;
+		aux = npc::Secretario;
 	else if (pers == "Campesino")
-		aux = Campesino;
+		aux = npc::Campesino;
 	else if (pers == "Artesano")
-		aux = Artesano;
+		aux = npc::Artesano;
 	else if (pers == "Tarotisa")
-		aux = Tarotisa;
+		aux = npc::Tarotisa;
 	else if (pers == "Soldado")
-		aux = Soldado;
+		aux = npc::Soldado;
 	else if (pers == "Contable")
-		aux = Contable;
+		aux = npc::Contable;
 	
 	return aux;
 }
@@ -573,3 +573,42 @@ NPCdata* GeneralData::getNPCData(Personaje personaje) {
 }
 
 #pragma endregion
+
+std::string GeneralData::dialogSelectionToString(const DialogSelection ds)
+{
+	std::string aux;
+	switch (ds)
+	{
+	case Vagabundo:
+		aux = "Vagabundo";
+		break;
+	case Secretario:
+		aux = "Secretario";
+		break;
+	case Campesino:
+		aux = "Campesino";
+		break;
+	case Artesano:
+		aux = "Artesano";
+		break;
+	case Tarotisa:
+		aux = "Tarotisa";
+		break;
+	case Soldado:
+		aux = "Soldado";
+		break;
+	case Contable:
+		aux = "Contable";
+		break;
+	case JefeOficina:
+		aux = "JefeOficina";
+		break;
+	case Tutorial:
+		aux = "Tutorial";
+		break;
+	case BryantMyers:
+		aux = "EsclavaRemix";
+		break;
+	}
+	return aux;
+}

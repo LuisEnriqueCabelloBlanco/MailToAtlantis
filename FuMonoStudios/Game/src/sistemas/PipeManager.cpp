@@ -97,6 +97,27 @@ void PipeManager::weightRestrictPipe(pq::Distrito target, WeightRestriction rest
 	weightRestrictionTypes_[target] = restrictions;
 }
 
+void PipeManager::activateEvent(WorkEvent evento)
+{
+    switch (evento.id)
+    {
+    case BLOCK_PIPE:
+		blockPipe(evento.block_pipe_data.targetPipe);
+		break;
+	case SWAP_PIPE:
+		swapPipe(evento.swap_pipe_data.targetPipe, evento.swap_pipe_data.dest);
+		break;
+	case BAN_TYPE_IN_PIPE:
+		banTypeInPipe(evento.ban_type_pipe_data.targetPipe, evento.ban_type_pipe_data.ban);
+		break;
+	case WEIGHT_RESTRICT_PIPE:
+		weightRestrictPipe(evento.weight_res_pipe_data.target, evento.weight_res_pipe_data.restrictions);
+		break;
+    default:
+		break;
+    }
+}
+
 bool PipeManager::checkPipeConditions(Paquete* pqt, pq::Distrito toDis)
 {
 	bool correct;

@@ -663,7 +663,7 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, character]() {
 		dialogMngr_.startConversation(character);
-		dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(1)); //esta movida se cambiara por las cosas del senor jefe
+		dialogMngr_.setDialogues(GeneralData::Tutorial, std::to_string(1)); //esta movida se cambiara por las cosas del senor jefe
 		};
 	//si queremos anadir un callback para que ocurra algo cuando se acaba el dialogo 
 	dialogMngr_.setEndDialogueCallback([this](){
