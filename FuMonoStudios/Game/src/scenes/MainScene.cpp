@@ -33,6 +33,7 @@
 #include <components/HoverLayerComponent.h>
 #include <components/RenderWithLight.h>
 #include "../components/NPCExclamation.h"
+#include "../sistemas/NPCeventSystem.h"
 
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 {
@@ -59,8 +60,11 @@ void ecs::MainScene::update()
 			timer_ -= Time::getDeltaTime();
 		}
 		else
+		{
 			gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
+		}
 	}
+	dialogMngr_.update();
 }
 
 void ecs::MainScene::render()
@@ -79,6 +83,10 @@ void ecs::MainScene::render()
 
 void ecs::MainScene::init()
 {
+
+	generalData().npcEventSys->shuffleNPCqueue();
+	generalData().npcEventSys->debugPaquetesInQueue();
+
 	std::cout << "Hola Main" << std::endl;
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
 	timer_ = MINIGAME_TIME;
@@ -99,10 +107,15 @@ void ecs::MainScene::init()
 
 	createInks();
 
+
 	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
-	//createCinta();
+	createCinta();
 
 	createGarbage();
+
+	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
+	createCharacter({ 400, 300 }, "Campesino", 0.1f);
+
 	createPaquete(generalData().getPaqueteLevel());
 
 	//creacion de las herramientas
@@ -129,12 +142,13 @@ void ecs::MainScene::init()
 	SoundEmiter::instance()->playMusic("printer");
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
-	updateToolsPerDay(generalData().getDia());
+	updateToolsPerDay(generalData().getDay());
 
 }
 
 void ecs::MainScene::close() {
 	ecs::Scene::close();
+	generalData().npcEventSys->minigameOver();
 	generalData().updateMoney();
 
 	sdlutils().musics().at("office").haltMusic();
@@ -183,52 +197,39 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 {
 	if(dia == 0)
 		return;
-	switch (dia)
-	{
-	case 1:		
+
+
+	if (dia >= 1) {
+		createStamp(SelloCalleA);
+
+		createInks();
+	}
+
+	if (dia >= 5) {
+		createBalanza();
+	}
+
+	if (dia >= 8) {
 		//if(GeneralData::instance()->getSelloMulticolor()) 
 		//createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
 		//createExclamationPoint();		//Ignorad esto, está aquí para hacer pruebas. Lo quito en cuanto funcione -Javier
-		createStamp(SelloCalleA);
+		createCinta();
+	}
 
-		createInks();
 
-		createBalanza();
-
+	if (dia < 3 && dia >= 1) {
 		generalData().setPaqueteLevel(0);
-
-		break;
-
-	case 2:
-		createStamp (SelloCalleA);
-
-		createInks ();
-
+	}
+	else if (dia < 5 && dia >= 3) {
 		generalData().setPaqueteLevel(1);
-
-		break;
-
-	case 3:
-		createStamp (SelloCalleA);
-
-		createInks ();
-
-		createCinta();
-
+	}
+	else if (dia < 8 && dia >= 5) {
 		generalData().setPaqueteLevel(2);
+	}
+	else if (dia < 15 && dia >= 8) {
+		generalData().setPaqueteLevel(3);
+	}
 
-		break;
-		//si estamos en un dia mayor que el indicado se desbloquean todas las mecánicas
-	default:
-		createStamp(SelloCalleA);
-
-		createInks();
-
-		createCinta();
-
-		generalData().setPaqueteLevel(2);
-		break;
-	}	
 }
 void ecs::MainScene::createExclamationPoint() {
 	Entity* xd = addEntity(ecs::layer::FOREGROUND);	
@@ -571,7 +572,7 @@ void ecs::MainScene::makeDataWindow()
 	data = "Pacage Level: " + std::to_string(generalData().getPaqueteLevel());
 	ImGui::Text(data.c_str());
 	//Dia acutual del juego
-	data = "Current day: " + std::to_string(GeneralData::instance()->getCurrentDay());
+	data = "Current day: " + std::to_string(GeneralData::instance()->getDay());
 	ImGui::Text(data.c_str());
 	ImGui::End();
 }
@@ -645,4 +646,36 @@ void ecs::MainScene::makeControlsWindow()
 void ecs::MainScene::createPaquete (int lv) {
 	auto pac = mPaqBuild_->buildPackage(lv, this);
 	pac->getComponent<MoverTransform>()->enable();
+}
+
+
+
+ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
+
+	ComonObjectsFactory factory(this);
+
+	Texture* characterTexture = &sdlutils().images().at(character);
+	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
+
+	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
+	//Actualmente los personajes no tienen memoria, si queremos esto har�a falta a�adrile un parametro
+
+	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
+	CallbackClickeable funcPress = [this, character]() {
+		dialogMngr_.startConversation(character);
+		dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(1)); //esta movida se cambiara por las cosas del senor jefe
+		};
+	//si queremos anadir un callback para que ocurra algo cuando se acaba el dialogo 
+	dialogMngr_.setEndDialogueCallback([this](){
+		std::cout << "Los callbacks de final de dialogo funcionan";
+	});
+
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
+
+	return characterEnt;
+}
+
+void ecs::MainScene::startWork()
+{
+	
 }

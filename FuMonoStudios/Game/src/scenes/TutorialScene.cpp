@@ -16,7 +16,8 @@ ecs::TutorialScene::TutorialScene() : Scene() {
 }
 
 ecs::TutorialScene::~TutorialScene() {
-
+	delete tutorialSys_;
+	delete mPaqBuild_;
 }
 
 void ecs::TutorialScene::update() {
@@ -346,10 +347,6 @@ void ecs::TutorialScene::createStamp(TipoHerramienta type)
 	herrSelladorA->setFunctionality(type);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
-}
-
-void ecs::TutorialScene::closeConversation() {
-	tutorialSys_->closeConversation();
 }
 
 ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {

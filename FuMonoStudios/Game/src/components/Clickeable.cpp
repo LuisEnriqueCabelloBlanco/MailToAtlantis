@@ -43,8 +43,6 @@ void Clickeable::update() {
 		SDL_Point point{ ihdlr.getMousePos().first, ihdlr.getMousePos().second };
 
 		if (SDL_PointInRect(&point, mRect_)) {
-
-			std::cout << "click" << std::endl;
 			// 
 			//Recorrido por las colbacks a las que est� suscrito este objeto
 			sdlutils().soundEffects().at("click").play();

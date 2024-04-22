@@ -18,14 +18,14 @@
 #include "../components/DelayedCallback.h"
 #include <architecture/GameConstants.h>
 #include <QATools/DataCollector.h>
+#include <imgui.h>
+#include <imgui_impl_sdl2.h>
+#include <imgui_impl_sdlrenderer2.h>
+#include "../sistemas/NPCeventSystem.h"
+
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
 
-	generalData().setDayData();
-	initPlacesDefaultMap();
-	initDirectionsDefaultMap();
-	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
-	canStartConversation = true;
 }
 
 ecs::ExplorationScene::~ExplorationScene()
@@ -35,12 +35,17 @@ ecs::ExplorationScene::~ExplorationScene()
 
 void ecs::ExplorationScene::init()
 {
+	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
+	canStartConversation = true;
+#ifdef _DEBUG
 	std::cout << "Hola Exploracion" << std::endl;
-	//setNavegabilityOfPlace("Hermes"); // Esto es para probar si funciona el seteo.
+#endif // _DEBUG
 
-	generalData().setDayData();
+
+	initPlacesDefaultMap();
 	generalData().updateDia();
 	updateNavegavility();
+	initDirectionsDefaultMap();
 
 	for (auto& e : objs_) {
 		for (auto en : e){
@@ -52,8 +57,7 @@ void ecs::ExplorationScene::init()
 
 	createObjects(pq::Distrito::Hestia);
 
-	
-
+	dialogMngr_.init(this);
 }
 
 
@@ -111,8 +115,12 @@ void ecs::ExplorationScene::render()
 	actualPlace_->getTexture()->render(rect_);
 	Scene::render();
 
-#ifdef DEV_
+#ifdef DEV_TOOLS
+	ImGui::NewFrame();
+	makeDataWindow();
+	ImGui::Render();
 
+	ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData());
 #endif // DEV_
 
 }
@@ -127,7 +135,7 @@ void ecs::ExplorationScene::update() {
 		placeToGo = -1;		
 		
 	}
-	
+	dialogMngr_.update();
 }
 
 void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin const
@@ -146,6 +154,20 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 	}
 
 	
+}
+
+void ecs::ExplorationScene::makeDataWindow()
+{
+	ImGui::Begin("Exploration Scene Data");
+	if (ImGui::CollapsingHeader("Felicidad Npc")) {
+		for (int i = 0; i < 7; i++) {
+			auto npc = generalData().getNPCData((Personaje)i);
+			std::string npcData = generalData().personajeToString((Personaje)i) + ": " + 
+				npc::happinessToString.at(npc->felicidad);
+			ImGui::Text(+ npcData.c_str());
+		}
+	}
+	ImGui::End();
 }
 
 ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string place, float scale, int flip)
@@ -167,10 +189,9 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	
 	CallbackClickeable cosa = [this, place, placeID]() {
 		if (actualPlace_->navigate(place)) {
-			closeConversation();
+			dialogMngr_.closeDialogue();
 			actualPlace_->changeActivationObjects(false);
 			placeToGo = placeID;
-			
 		}
 	};
 
@@ -212,37 +233,42 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 	ComonObjectsFactory factory(this);
 
-	Texture* texturaBoton = &sdlutils().images().at(character);
-	Vector2D size{ texturaBoton->width() * scale, texturaBoton->height() * scale };
+	Texture* characterTexture = &sdlutils().images().at(character);
+	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
 	
 	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
-	//Actualmente los personajes no tienen memoria, si queremos esto har�a falta a�adrile un parametro
+	//Actualmente los personajes no tienen memoria, si queremos esto haria falta anadrile un parametro
 
-	// al pulsar sale el dialogo
+	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, character]() {
+	    dialogMngr_.startConversation(character);
 
-		if (canStartConversation)
+		auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
+		auto data = generalData().getNPCData(charac); //data de dicho personaje
+
+		// activamos los dialogos correspondientes
+		std::pair<const std::string, int> aux = data->getDialogueInfo();
+
+		if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
 		{
-			auto charac = generalData().stringToPersonaje(character);
-			auto data = generalData().getNPCData(charac);
-			canStartConversation = false;
-
-			boxBackground->getComponent<RenderImage>()->setTexture(&sdlutils().images().at("cuadroDialogo"));
-			// activamos los dialogos correspondientes
-			std::pair<const std::string, int> aux = data->getDialogueInfo();
-
-			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
-
-			textDialogue->addComponent<DialogComponent>(&dialogMngr_, this);
-
-			dataCollector().recordNPC(charac +1,aux.second, generalData().getNPCData(charac)->felicidad);
+			NPCevent* event = data->getEvent();
+			for (int i = 0; i < event->numPaquetes; i++) {
+				generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+			}
+			generalData().npcEventSys->activateEvent(event);
+			generalData().npcEventSys->shuffleNPCqueue();
 		}
 	};
 
-	ecs::Entity* BotonPress = factory.createImageButton(pos, size, texturaBoton, funcPress);
-	factory.addHoverColorMod(BotonPress, build_sdlcolor(0xccccccff));
 
-	return BotonPress;
+
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
+	
+	//return characterEnt;
+
+	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
+
+	return characterEnt;
 }
 
 void ecs::ExplorationScene::setNavegabilityOfPlace(int place, bool value)
@@ -266,19 +292,13 @@ void ecs::ExplorationScene::createObjects(int place) {
 	std::string placeName = generalData().fromDistritoToString(place);
 
 	for (int i = 0; i < pl.at(placeName).myArrows.size(); ++i) {
-
 		lugares[generalData().fromDistritoToString(place)].addObjects(createNavegationsArrows(pl.at(placeName).myArrows[i].pos,
 			pl.at(placeName).myArrows[i].destination_, pl.at(placeName).myArrows[i].scale_, pl.at(placeName).myArrows[i].flip_));
-
-
 	}
 
 	for (int i = 0; i < pl.at(placeName).myCharacters.size(); ++i) {
-
 		lugares[generalData().fromDistritoToString(place)].addObjects(createCharacter(pl.at(placeName).myCharacters[i].pos,
 			pl.at(placeName).myCharacters[i].name_, pl.at(placeName).myCharacters[i].scale_));
-
-
 	}
 
 	if (place == pq::Distrito::Hestia) {
@@ -286,28 +306,12 @@ void ecs::ExplorationScene::createObjects(int place) {
 		boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
 
 		lugares[generalData().fromDistritoToString(place)].addObjects(boton_Trabajo);
+
+		//PLACEHOLDER_BOTON_GUARDADO
+		factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
+			generalData().saveGame();
+			}, SDL_Color{255,255,0});
 	}
-
-
-	// creamos la entidad caja dialogo
-	boxBackground = addEntity(ecs::layer::UI);
-	auto bgTr = boxBackground->addComponent<Transform>(100, LOGICAL_RENDER_HEITH - 250, LOGICAL_RENDER_WIDTH - 100, 200);
-	boxBackground->addComponent<RenderImage>(nullptr);
-
-	// entidad del texto
-	textDialogue = addEntity(ecs::layer::UI);
-	auto textTr = textDialogue->addComponent<Transform>(100, 40, 80, 100);
-	textTr->setParent(bgTr);
-	textDialogue->addComponent<RenderImage>();
-}
-
-void ecs::ExplorationScene::closeConversation() {
-	textDialogue->getComponent<RenderImage>()->setTexture(nullptr);
-	textDialogue->removeComponent<DialogComponent>();
-	boxBackground->getComponent<RenderImage>()->setTexture(nullptr);
-	textDialogue->addComponent<DelayedCallback>(0.1, [this]() {
-		canStartConversation = true;
-		});
 }
 
 
@@ -333,7 +337,6 @@ void ecs::Lugar::changeActivationObjects(bool state)
 	for (auto& e : ents_) {
 		e->setAlive(state);
 	}
-
 }
 
 void ecs::Lugar::addObjects(ecs::Entity* e)

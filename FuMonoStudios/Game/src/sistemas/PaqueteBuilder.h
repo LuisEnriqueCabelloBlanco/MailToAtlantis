@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include "../sdlutils/VirtualTimer.h"
 #include "../architecture/GeneralData.h"
-#include "../components/MultipleTextures.h"
 #include "../components/Wrap.h"
 #include "../components/Gravity.h"
 #include "../components/Depth.h"
@@ -11,6 +10,8 @@
 #include "../components/Herramientas.h"
 #include "../components/MoverTransform.h"
 #include <components/Paquete.h>
+#include <json/JSON.h>
+#include <json/JSONValue.h>
 
 
 constexpr int PESADO_MAX = 75;	//Límite del peso máximo de paquetes pesados 
@@ -42,6 +43,7 @@ const std::string REMITENT_SETTINGS_PATH = "recursos/config/mail.destinatarios.j
 
 class PaqueteBuilder
 {
+	friend NPCeventSystem;
 public:
 	//Método al que se llama que devuelve un Paquete generado aleatoriamente 
 	ecs::Entity* buildPackage(int level, ecs::Scene*);
@@ -68,6 +70,12 @@ private:
 	}DifficultySettings;
 
 
+	pq::Distrito distritoRND();	//Método que elige un distrito aleatorio de los que hay
+	pq::TipoPaquete tipoRND();		//Método que elige un tipo de paquete aleatorio entre los que hay
+	pq::Calle calleRND(int probError);	//Método que elige una calle aleatoria de las posibilidades. El valor probError es, sobre 100, la probabilidad de que sea una calle incorrecta
+	bool boolRND(int probFalse);		//Método que genera un bool con valor aleatorio entre true y false. El valor probFalse es, sobre 100, la probabilidad de que sea false
+	pq::NivelPeso pesoRND(int probPeso, int probError, int& peso);	//Método que elige si un paquete tiene peso, y si es erróneo, devolviendo un peso para el paquete con la variable "peso"
+	std::string remitenteRND();			//Método que elige un nombre random de Remitente
 
 	ecs::Entity* buildBasePackage(ecs::Scene* mScene);
 	void stdRandPackage(ecs::Entity*, int);
@@ -78,20 +86,13 @@ private:
 	/// <returns></returns>
 	bool shouldBuildNPCPackage();
 
-	pq::Distrito distritoRND();	//Método que elige un distrito aleatorio de los que hay
-	pq::TipoPaquete tipoRND();		//Método que elige un tipo de paquete aleatorio entre los que hay
-	pq::Calle calleRND(int probError);	//Método que elige una calle aleatoria de las posibilidades. El valor probError es, sobre 100, la probabilidad de que sea una calle incorrecta
-	bool boolRND(int probFalse);		//Método que genera un bool con valor aleatorio entre true y false. El valor probFalse es, sobre 100, la probabilidad de que sea false
-	pq::NivelPeso pesoRND(int probPeso, int probError, int& peso);	//Método que elige si un paquete tiene peso, y si es erróneo, devolviendo un peso para el paquete con la variable "peso"
-	std::string remitenteRND();			//Método que elige un nombre random de Remitente
-
 	/// <summary>
 	/// Funcion auxiliar para cargar en el mapa las direcciones
 	/// </summary>
 	/// <param name="filename">direccion del fichero json</param>
 	/// <param name="dist">valor enum del distritio al que pertenece</param>
 	/// <param name="distString">valor string del distrito al que pertenece</param>
-	void getStreetsFromJSON(const std::string& filename, Distrito dist,const std::string& distString);
+	void getStreetsFromJSON(JSONObject& root, Distrito dist,const std::string& distString);
 	void getNamesFromJSON();
 
 	//Metodo para leer todos los patrones de empaquetado del JSON
