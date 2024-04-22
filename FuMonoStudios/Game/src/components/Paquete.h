@@ -35,7 +35,7 @@ public:
 	void envolver() { envuelto_ = true; }
 
 	//Genera los puntos rojos al envolver
-	void puntosRojos();
+	void puntosRojos(int routeID);
 
 	//Genera las linea rojas entre los puntos rojos
 	void drawLines(int routeID, std::string routeName);

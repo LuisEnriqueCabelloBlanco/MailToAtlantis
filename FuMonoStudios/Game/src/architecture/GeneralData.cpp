@@ -1,8 +1,5 @@
 #include "../components/DialogManager.h"
 #include "GeneralData.h"
-#include <iostream>
-#include <string>
-#include <fstream>
 #include "../json/JSON.h"
 #include "../json/JSONValue.h"
 #include "../sdlutils/RandomNumberGenerator.h"
@@ -19,7 +16,7 @@ GeneralData::GeneralData()
 	failsMargin_ = INITIAL_FAILS_MARGIN;
 	corrects_ = 0;
 	fails_ = 0;
-	dia_ = 1;
+	dia_ = INITIAL_DAY;
 	rent_ = 75;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
 
@@ -50,7 +47,19 @@ void GeneralData::updateMoney()
 	if (corrects_ < 0) {
 		rightPackages = 0;
 	}
-	dinero_ += (rightPackages * WRITE_PACAGES_VALUE) - (wrongPackages * WRONG_PACAGES_VALUE) - rent_;
+	dinero_ += calcularDineroGanado() - rent_;
+}
+
+int GeneralData::calcularDineroGanado()
+{
+	int rightPackages = corrects_;
+	int wrongPackages = fails_;
+	return (rightPackages * WRITE_PACAGES_VALUE) - (wrongPackages * WRONG_PACAGES_VALUE);
+}
+
+void GeneralData::resetMoney()
+{
+	dinero_ = INITIAL_MONEY;
 }
 
 //A medida que el proyecto avance, la lista de variables deber� de ampliarse, pero por ahora tenemos esto:
@@ -224,7 +233,7 @@ void GeneralData::readNPCData() {
 		jValueRoot = root[aux];
 
 		JSONObject jObject = jValueRoot->AsObject();
-		std::string felicidadStr = jObject.find("Felicidad")->second->AsString();
+		std::string felicidadStr = jObject["Felicidad"]->AsString();
 
 
 		if (i < 2) // npc grandes
@@ -246,6 +255,7 @@ void GeneralData::readNPCData() {
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(i + 1))->second->AsBool());
 			}
 			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
+			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
 			npcData.push_back(data);
 		}
@@ -257,7 +267,95 @@ void GeneralData::readNPCData() {
 }
 
 void GeneralData::writeNPCData() {
+	std::ifstream archivo("recursos/data/npcData.json");
 
+	if (!archivo.is_open())
+	{
+		std::cout << "Error al abrir npcData.json" << std::endl;
+		throw std::runtime_error("Error al abrir npcData.json");
+	}
+
+	// Leer el contenido del archivo en una cadena
+	std::string contenido = "";
+	std::string linea;
+	while (std::getline(archivo, linea)) {
+		contenido += linea + "\n";
+	}
+	archivo.close();
+
+
+	for (int i = 0; i < 7; i++)
+	{
+		NPCdata* data = getNPCData((Personaje)i);
+		int posPersonaje = contenido.find('"' + personajeToString((Personaje)i) + '"' + ':');
+
+		int posFelicidad = contenido.find("Felicidad", posPersonaje) + 12;
+		contenido.replace(posFelicidad, (contenido.find('\n', posFelicidad)) - posFelicidad,
+			'"' + generalData().felicidadToString(data->felicidad) + '"' + ',');
+		int posFelicidadNum = contenido.find("FelicidadNum", posPersonaje) + 15;
+		contenido.replace(posFelicidadNum, (contenido.find('\n', posFelicidadNum)) - posFelicidadNum,
+			std::to_string(data->numFelicidad) + ",");
+		int posMisionesAc = contenido.find("numMisionesAceptadas", posPersonaje) + 23;
+		contenido.replace(posMisionesAc, (contenido.find('\n', posMisionesAc)) - posMisionesAc,
+			std::to_string(data->numMisionesAceptadas) + ",");
+	}
+
+	// Abrir el archivo en modo de escritura
+	std::ofstream archivoSalida("recursos/data/npcData.json");
+
+	if (!archivoSalida.is_open()) {
+		std::cout << "Error al abrir el archivo npcData.json para escritura." << std::endl;
+		throw std::runtime_error("Error al escribir npcData.json");
+	}
+	
+	// Escribir el contenido modificado en el archivo
+	archivoSalida.clear();
+	archivoSalida << contenido;
+	archivoSalida.close();
+}
+
+void GeneralData::saveGame() {
+	std::ifstream archivo("recursos/data/saveFile.json");
+
+	if (!archivo.is_open())
+	{
+		std::cout << "Error al abrir saveFile.json" << std::endl;
+		throw std::runtime_error("Error al abrir saveFile.json");
+	}
+
+	// Leer el contenido del archivo en una cadena
+	std::string contenido = "";
+	std::string linea;
+	while (std::getline(archivo, linea)) {
+		contenido += linea + "\n";
+	}
+	archivo.close();
+
+	// cambiar el dia
+	int posDia = contenido.find("Dia") + 6;
+	size_t finLinea = contenido.find('\n', posDia);
+	contenido.replace(posDia, finLinea - posDia, std::to_string(generalData().getDay()) + ",");
+
+	//cambiar el dinero
+
+	int posDinero = contenido.find("Dinero") + 9;
+	finLinea = contenido.find('\n', posDinero);
+	contenido.replace(posDinero, finLinea - posDinero, std::to_string(generalData().getMoney()));
+
+	// Abrir el archivo en modo de escritura
+	std::ofstream archivoSalida("recursos/data/saveFile.json");
+
+	if (!archivoSalida.is_open()) {
+		std::cout << "Error al abrir el archivo saveFile.json para escritura." << std::endl;
+		throw std::runtime_error("Error al escribir saveFile.json");
+	}
+
+	// Escribir el contenido modificado en el archivo
+	archivoSalida.clear();
+	archivoSalida << contenido;
+	archivoSalida.close();
+
+	writeNPCData();
 }
 
 void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
@@ -309,9 +407,10 @@ const std::string GeneralData::personajeToString(Personaje pers) {
 	return aux;
 }
 
-GeneralData::Personaje GeneralData::stringToPersonaje(const std::string& pers) {
+Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	Personaje aux;
 	// no deja hacer switch y es una cochinada pero es la unica forma de hacerlo
+	//se puede usar un hasmap
 	if (pers == "Vagabundo")
 		aux = Vagabundo;
 	else if (pers == "Secretario")
@@ -330,9 +429,9 @@ GeneralData::Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	return aux;
 }
 
-GeneralData::Felicidad GeneralData::stringToFelicidad(const std::string& str)
+Felicidad GeneralData::stringToFelicidad(const std::string& str)
 {
-	Felicidad aux;
+	Felicidad aux = Normal;
 	if (str == "Minima")
 		aux = Felicidad::Minima;
 	else if (str == "Mala")
@@ -346,6 +445,24 @@ GeneralData::Felicidad GeneralData::stringToFelicidad(const std::string& str)
 	else if (str == "NoHabladoAun")
 		aux = Felicidad::NoHabladoAun;
 
+	return aux;
+}
+
+std::string GeneralData::felicidadToString(Felicidad f)
+{
+	std::string aux = "";
+	if (f == Minima)
+		aux = "Minima";
+	else if (f == Mala)
+		aux = "Mala";
+	else if (f == Normal)
+		aux = "Normal";
+	else if (f == Buena)
+		aux = "Buena";
+	else if (f == Maxima)
+		aux = "Maxima";
+	else if (f == NoHabladoAun)
+		aux = "NoHabladoAun";
 	return aux;
 }
 
@@ -364,6 +481,12 @@ const std::string GeneralData::calleToString(Calle calle) {
 	case Erronea:
 		aux = "Erronea";
 		break;
+	}
+}
+void GeneralData::setDayData() {
+	for (int i = 0; i < 7; i++)
+	{
+		npcData.at((Personaje)i)->setupDayData();
 	}
 	return aux;
 }

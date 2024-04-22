@@ -106,8 +106,9 @@ void ecs::MainScene::init()
 
 	createInks();
 
+
 	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
-	//createCinta();
+	createCinta();
 
 	createGarbage();
 

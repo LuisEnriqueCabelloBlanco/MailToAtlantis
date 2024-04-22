@@ -90,6 +90,16 @@ public:
 	/// <param name="entity"></param>
 	void addHilghtOnHover(ecs::Entity* entity);
 
+	/// <summary>
+	/// Crea una textura de texto de la que se encargará la 
+	/// factory de destruir
+	/// </summary>
+	/// <param name="text"></param>
+	/// <param name="fontSize"></param>
+	/// <param name="c"></param>
+	/// <returns></returns>
+	Texture* createTextTexture(const std::string& text, int fontSize, SDL_Color c = build_sdlcolor(0x000000ff), int width = 0);
+
 	ecs::layer::layerId getLayer() { return destLayer_; }
 private:
 	/// <summary>

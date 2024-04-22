@@ -18,9 +18,10 @@
 #include "../components/DelayedCallback.h"
 #include <architecture/GameConstants.h>
 #include <QATools/DataCollector.h>
-
 #include "../sistemas/NPCeventSystem.h"
-
+#include <imgui.h>
+#include <imgui_impl_sdl2.h>
+#include <imgui_impl_sdlrenderer2.h>
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
 
@@ -112,8 +113,12 @@ void ecs::ExplorationScene::render()
 	actualPlace_->getTexture()->render(rect_);
 	Scene::render();
 
-#ifdef DEV_
+#ifdef DEV_TOOLS
+	ImGui::NewFrame();
+	makeDataWindow();
+	ImGui::Render();
 
+	ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData());
 #endif // DEV_
 
 }
@@ -147,6 +152,20 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 	}
 
 	
+}
+
+void ecs::ExplorationScene::makeDataWindow()
+{
+	ImGui::Begin("Exploration Scene Data");
+	if (ImGui::CollapsingHeader("Felicidad Npc")) {
+		for (int i = 0; i < 7; i++) {
+			auto npc = generalData().getNPCData((Personaje)i);
+			std::string npcData = generalData().personajeToString((Personaje)i) + ": " + 
+				npc::happinessToString.at(npc->felicidad);
+			ImGui::Text(+ npcData.c_str());
+		}
+	}
+	ImGui::End();
 }
 
 ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string place, float scale, int flip)
@@ -285,6 +304,11 @@ void ecs::ExplorationScene::createObjects(int place) {
 		boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
 
 		lugares[generalData().fromDistritoToString(place)].addObjects(boton_Trabajo);
+
+		//PLACEHOLDER_BOTON_GUARDADO
+		factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
+			generalData().saveGame();
+			}, SDL_Color{255,255,0});
 	}
 }
 
