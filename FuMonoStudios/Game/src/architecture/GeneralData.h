@@ -1,5 +1,6 @@
 #pragma once
 #include "../utils/Singleton.h"
+#include "../sistemas/Felicidad.h"
 #include "GameConstants.h"
 #include <vector>
 #include <string>
@@ -43,7 +44,6 @@ public:
 	enum Felicidad { Minima, Mala, Normal, Buena, Maxima, NoHabladoAun };
 	
 	Felicidad stringToFelicidad(const std::string& str);
-	std::string felicidadToString(Felicidad);
 
 	// enum con el nombre de todos los NPC
 	enum Personaje {

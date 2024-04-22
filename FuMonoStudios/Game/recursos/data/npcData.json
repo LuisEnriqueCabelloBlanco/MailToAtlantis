@@ -337,7 +337,6 @@
   "Campesino": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -436,7 +435,6 @@
   "Artesano": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -531,7 +529,6 @@
   "Tarotisa": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -628,7 +625,6 @@
   "Soldado": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -717,7 +713,6 @@
   "Contable": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
