@@ -59,9 +59,6 @@ public:
 	void incrementarFelicidad(Personaje p, int felicidadIncr);
 
 	NPCeventSystem* npcEventSys = nullptr;
-private:
-	// vector que contiene los datos de todos los 7 npc
-	std::vector<NPCdata*> npcDataVec_;
 #pragma endregion
 public:
 	GeneralData();

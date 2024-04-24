@@ -78,6 +78,11 @@ void NPCMenorData::iterateDialogues() {
 		iteration = 1;
 }
 
+NPCevent* NPCMenorData::getEvent() {
+	return events[sdlutils().rand().nextInt(0, 5)];
+	numMisionesAceptadas++;
+}
+
 // NPC GRANDE
 
 NPCMayorData::NPCMayorData(Felicidad Felicidad) {
