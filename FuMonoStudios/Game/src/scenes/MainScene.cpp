@@ -666,7 +666,7 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 		dialogMngr_.init(this, jsonPath);
 		mWorkRes.init();
 		//set dialogues aleatorio
-		funcPress = [this, character]() {
+		funcPress = [this, character]() { //no queremos hacer un start conversation
 			dialogMngr_.setDialogueEntitiesActive(true);
 			dialogMngr_.setDialogues(GeneralData::Event1, "1");
 			//set dialogues aleatorio
@@ -694,7 +694,7 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
 	dialogMngr_.setEndDialogueCallback([characterEnt]{
-		characterEnt->setAlive(false);
+		characterEnt->setAlive(false); //bye bye jefe
 	});
 
 	return characterEnt;
