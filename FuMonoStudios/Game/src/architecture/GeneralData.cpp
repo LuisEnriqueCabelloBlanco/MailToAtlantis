@@ -244,19 +244,19 @@ void GeneralData::readNPCData() {
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
 			JSONArray eventosCompletados = jObject.find("EventosCompletados")->second->AsArray();
-			int i = 0;
+			int k = 0;
 			for (auto it : eventosCompletados)
 			{
-				data->eventosCompletados[i].first = true;
-				if (it < 0)
-					data->eventosCompletados[i].second = false;
+				data->eventosCompletados[k].first = true;
+				if (it->AsNumber() < 0)
+					data->eventosCompletados[k].second = false;
 				else
-					data->eventosCompletados[i].second = true;
-				i++;
+					data->eventosCompletados[k].second = true;
+				k++;
 			}
-			for (int j = i; j < 14; j++)
-				data->eventosCompletados[j] = std::make_pair(false, false);
-			npcData.emplace((Personaje)i,data);
+			for (int z = k; z < 14; z++)
+				data->eventosCompletados[z] = std::make_pair(false, false);
+			npcData.emplace((Personaje)k, data);
 		}
 		else
 		{
@@ -273,19 +273,19 @@ void GeneralData::readNPCData() {
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
 			JSONArray eventosCompletados = jObject.find("EventosCompletados")->second->AsArray();
-			int i = 0;
+			int k = 0;
 			for (auto it : eventosCompletados)
 			{
-				data->eventosCompletados[i].first = true;
-				if (it < 0)
-					data->eventosCompletados[i].second = false;
+				data->eventosCompletados[k].first = true;
+				if (it->AsNumber() < 0)
+					data->eventosCompletados[k].second = false;
 				else
-					data->eventosCompletados[i].second = true;
-				i++;
+					data->eventosCompletados[k].second = true;
+				k++;
 			}
-			for (int j = i; j < 14; j++)
-				data->eventosCompletados[j] = std::make_pair(false, false);
-			npcData.emplace((Personaje)i,data);
+			for (int z = k; z < 5; z++)
+				data->eventosCompletados[z] = std::make_pair(false, false);
+			npcData.emplace((Personaje)k,data);
 		}
 		jValue = nullptr;
 	}
@@ -326,6 +326,21 @@ void GeneralData::writeNPCData() {
 		int posMisionesAc = contenido.find("numMisionesAceptadas", posPersonaje) + 23;
 		contenido.replace(posMisionesAc, (contenido.find('\n', posMisionesAc)) - posMisionesAc,
 			std::to_string(data->numMisionesAceptadas) + ",");
+
+		int posEventosCompletados = contenido.find("EventosCompletados", posPersonaje) + 23;
+		std::string newEventosString = "[";
+		for (int i = 1; i < data->eventosCompletados.size() + 1; i++)
+		{
+			// si ha sido completado
+			if (data->eventosCompletados[i].first)
+			{
+				newEventosString += std::to_string(data->eventosCompletados[i].second ? i : -i) += ",";
+			}
+			newEventosString += "],";
+		}
+		contenido.replace(posEventosCompletados, (contenido.find('\n', posEventosCompletados)) - 
+			posEventosCompletados, newEventosString);
+
 	}
 
 	// Abrir el archivo en modo de escritura
