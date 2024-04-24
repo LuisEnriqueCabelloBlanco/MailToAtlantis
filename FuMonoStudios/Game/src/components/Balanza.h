@@ -17,6 +17,10 @@ public:
 	void initAnimations(ecs::Entity* paquete, ecs::Entity* balanzaB, RotarTransform* flechaRotComp);
 	void finishAnimatios(ecs::Entity* paquete, RotarTransform* flechaRotComp);
 
+	//Balanza Digital
+	void initAnimationsDigital(ecs::Entity* paquete, ecs::Entity* balanzaB);
+	void finishAnimatiosDigital(ecs::Entity* paquete);
+
 private:
 	Transform* myTransform_;
 	bool startAnimation;

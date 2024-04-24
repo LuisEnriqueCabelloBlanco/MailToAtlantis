@@ -111,7 +111,7 @@ void ecs::MainScene::init()
 	createCinta();
 
 	createGarbage();
-
+	createBalanzaDigital();
 	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
 	createCharacter({ 400, 300 }, "Campesino", 0.1f);
 
@@ -345,6 +345,39 @@ void ecs::MainScene::createBalanza() {
 	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(entRect, rotComp); }, generalData().PickUp);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
+}
+
+void ecs::MainScene::createBalanzaDigital() {
+	// Balanza
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanza = factory_->createImage(Vector2D(0, -65), Vector2D(sdlutils().images().at("balanzaDigA").width(), sdlutils().images().at("balanzaDigA").height()), &sdlutils().images().at("balanzaDigA"));
+	Transform* balanzaTr = balanza->getComponent<Transform>();
+	balanza->addComponent<MoverTransform>();
+	balanzaTr->setScale(0.5);
+	Balanza* balanzaComp = balanza->addComponent<Balanza>();
+
+	// BalanzaBase
+	factory_->setLayer(ecs::layer::BALANZABASE);
+	Entity* baseBalanza = factory_->createImage(Vector2D(600, 800), Vector2D(sdlutils().images().at("balanzaDigB").width(), sdlutils().images().at("balanzaDigB").height()), &sdlutils().images().at("balanzaDigB"));
+	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
+	balanzaBaseTr->setScale(0.5);
+	baseBalanza->addComponent<Gravity>();
+	//baseBalanza->addComponent<Depth>();
+
+	//Añadir los numeros del peso
+
+	// Seteamos padres
+	balanzaTr->setParent(balanzaBaseTr);
+	//balanzaFlechaTr->setParent(balanzaBaseTr);
+
+
+	Trigger* balanzaTri = balanza->addComponent<Trigger>();
+
+	balanzaTri->addCallback([this, balanzaComp, balanza](ecs::Entity* entRect) {balanzaComp->initAnimationsDigital(entRect, balanza); }, generalData().DropIn);
+	balanzaTri->addCallback([this, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatiosDigital(entRect); }, generalData().PickUp);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+
 }
 
 void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {

@@ -29,6 +29,7 @@ namespace ecs {
         void createMiniManual();
         void createSpaceManual();
         void createMultipleStamp();
+        void createBalanzaDigital();
 
         //void createTubo(Paquete::Distrito dist, bool desbloqueado);
 

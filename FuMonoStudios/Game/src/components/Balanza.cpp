@@ -65,3 +65,43 @@ void Balanza::finishAnimatios(ecs::Entity* paquete, RotarTransform* flechaRotCom
 	}
 }
 
+void Balanza::initAnimationsDigital(ecs::Entity* paquete, ecs::Entity* balanzaB) {
+	if (paquete->hasComponent(ecs::cmp::PAQUETE)) {
+
+		//Obtenemos cantidad peso
+		int cantidadPeso = paquete->getComponent<Paquete>()->getCantidadPeso();
+
+		//Animamos paquete
+		MoverTransform* paqueteMovComp = paquete->getComponent<MoverTransform>();
+		Transform* paqTr = paquete->getComponent<Transform>();
+		paqueteMovComp->setEasing(Easing::EaseOutCubic);
+		paqueteMovComp->setFinalPos(Vector2D(myTransform_->getPos().getX() + myTransform_->getWidth() / 2 - paqTr->getWidth() / 2
+			, myTransform_->getPos().getY() - 190));
+		paqueteMovComp->setMoveTime(1.0f);
+		paqueteMovComp->enable();
+
+		//Animamos balanza
+			/*balanzaB->setLayer(ecs::layer::BALANZAB);*/
+		MoverTransform* balanzaMovComp = ent_->getComponent<MoverTransform>();
+		balanzaMovComp->setEasing(Easing::EaseOutCubic);
+		balanzaMovComp->setFinalPos(Vector2D(myTransform_->getRelPos().getX(), myTransform_->getRelPos().getY() + 10));
+		balanzaMovComp->setMoveTime(1.0f);
+		balanzaMovComp->enable();
+	}
+}
+
+void Balanza::finishAnimatiosDigital(ecs::Entity* paquete) {
+
+	if (paquete->hasComponent(ecs::cmp::PAQUETE)) {
+
+		//Animamos balanza
+				/*balanzaB->setLayer(ecs::layer::BALANZAB);*/
+		MoverTransform* balanzaMovComp = ent_->getComponent<MoverTransform>();
+		balanzaMovComp->setEasing(Easing::EaseOutCubic);
+		balanzaMovComp->setFinalPos(Vector2D(myTransform_->getRelPos().getX(), myTransform_->getRelPos().getY() - 1));
+		balanzaMovComp->setMoveTime(1.0f);
+		balanzaMovComp->enable();
+	}
+
+}
+
