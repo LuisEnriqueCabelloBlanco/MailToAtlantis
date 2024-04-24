@@ -693,6 +693,9 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 	});
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
+	dialogMngr_.setEndDialogueCallback([characterEnt]{
+		characterEnt->setAlive(false);
+	});
 
 	return characterEnt;
 }
