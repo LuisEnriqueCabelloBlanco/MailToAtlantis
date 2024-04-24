@@ -15,7 +15,7 @@ NPCeventSystem::~NPCeventSystem() {
 		delete it;
 	}
 	for (auto it : paquetesNPCs) {
-		delete it;
+		
 	}
 }
 
@@ -65,6 +65,9 @@ void NPCeventSystem::minigameOver() {
 		if (event->completed)
 		{
 			std::cout << "Event completed";
+			NPCdata* data = generalData().getNPCData(event->personaje);
+			data->eventosCompletados[event->numEvento].first = true;
+			data->eventosCompletados[event->numEvento].second = event->completed;
 			procesarStringRecompensas(event->recompensas);
 		}
 	}
@@ -459,6 +462,9 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject obj, NPCevent* auxEve
 
 void NPCeventSystem::readNPCevent(JSONObject eventObject, int personaje, int index) {
 	NPCevent* auxEvent = new NPCevent();
+
+	auxEvent->personaje = (Personaje)personaje;
+	auxEvent->numEvento = index;
 
 	JSONObject currentEvent = eventObject.find(std::to_string(index + 1))->second->AsObject();
 	auxEvent->numPaquetes = currentEvent.find("numPaquetes")->second->AsNumber();

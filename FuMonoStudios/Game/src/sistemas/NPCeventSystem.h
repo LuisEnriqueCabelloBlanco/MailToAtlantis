@@ -11,6 +11,11 @@ class Game;
 
 class NPCevent {
 public:
+	~NPCevent() {
+		for (auto it : paquetes)
+			delete it;
+	}
+
 	std::vector<std::string> recompensas;
 	std::vector<Paquete*> paquetes;
 	std::vector<std::vector<Condition>> condiciones;
@@ -54,6 +59,9 @@ public:
 		completed = paquetesDone >= numPaquetesToComplete;
 	};
 	int paquetesDone = 0;
+
+	Personaje personaje;
+	int numEvento;
 };
 
 

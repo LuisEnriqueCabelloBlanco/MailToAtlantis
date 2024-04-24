@@ -24,6 +24,8 @@ GeneralData::GeneralData()
 
 GeneralData::~GeneralData() {
 	delete npcEventSys;
+	for (auto it : npcData)
+		delete it.second;
 }
 
 void GeneralData::loadSaveFile()
@@ -241,6 +243,19 @@ void GeneralData::readNPCData() {
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
+			JSONArray eventosCompletados = jObject.find("EventosCompletados")->second->AsArray();
+			int i = 0;
+			for (auto it : eventosCompletados)
+			{
+				data->eventosCompletados[i].first = true;
+				if (it < 0)
+					data->eventosCompletados[i].second = false;
+				else
+					data->eventosCompletados[i].second = true;
+				i++;
+			}
+			for (int j = i; j < 14; j++)
+				data->eventosCompletados[j] = std::make_pair(false, false);
 			npcData.emplace((Personaje)i,data);
 		}
 		else
@@ -257,6 +272,19 @@ void GeneralData::readNPCData() {
 			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
+			JSONArray eventosCompletados = jObject.find("EventosCompletados")->second->AsArray();
+			int i = 0;
+			for (auto it : eventosCompletados)
+			{
+				data->eventosCompletados[i].first = true;
+				if (it < 0)
+					data->eventosCompletados[i].second = false;
+				else
+					data->eventosCompletados[i].second = true;
+				i++;
+			}
+			for (int j = i; j < 14; j++)
+				data->eventosCompletados[j] = std::make_pair(false, false);
 			npcData.emplace((Personaje)i,data);
 		}
 		jValue = nullptr;

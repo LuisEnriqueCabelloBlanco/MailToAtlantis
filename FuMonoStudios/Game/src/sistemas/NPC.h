@@ -51,7 +51,10 @@ namespace npc {
 	// Y LOS EVENTOS DE CADA NPC, AUN NO ESTA IMPLEMENTADO, SOLO ESTA PUESTO
 	// LO DE LOS DIALOGOS
 	struct NPCdata {
-
+		virtual ~NPCdata() {
+			for (auto it : events)
+				delete it;
+		}
 		Personaje npcId;
 		Felicidad felicidad;
 		virtual std::pair<const std::string, int> getDialogueInfo() = 0;
@@ -63,6 +66,9 @@ namespace npc {
 		int numFelicidad;
 		int numMisionesAceptadas;
 		std::vector<NPCevent*> events;
+		// el primero es si ha sido completado, el segundo es si ha sido succesful
+		std::vector<std::pair<bool, bool>> eventosCompletados;
+		bool postConversation;
 	};
 
 #pragma region NPCdata
@@ -83,11 +89,8 @@ namespace npc {
 		std::vector<bool> diasDanEvento;
 		std::pair<int, NPCevent*> selectedEvent;
 
-		std::vector<bool> eventosCompletados;
-
 		bool giveEvent;
 		int iteration;
-		bool postConversation;
 	};
 
 	struct NPCMayorData : public NPCdata {
@@ -97,7 +100,5 @@ namespace npc {
 		void iterateDialogues() override {};
 		void setupDayData() override;
 		NPCevent* getEvent() override;
-	private:
-		bool postConversation;
 	};
 }

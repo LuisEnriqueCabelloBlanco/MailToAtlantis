@@ -3,6 +3,7 @@
     "Felicidad": "Normal",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -26,7 +27,8 @@
         "recompensa": {
           "1": "Vagabundo+",
           "2": "Secretario-"
-        }
+        },
+        "textoDiario": "Texto diario"
       },
       "2": {
         "numPaquetes": 1,
@@ -37,7 +39,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "3": {
         "numPaquetes": 1,
@@ -48,7 +51,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "4": {
         "numPaquetes": 1,
@@ -59,7 +63,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "5": {
         "numPaquetes": 1,
@@ -70,7 +75,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "6": {
         "numPaquetes": 1,
@@ -81,7 +87,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "7": {
         "numPaquetes": 1,
@@ -92,7 +99,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "8": {
         "numPaquetes": 1,
@@ -103,7 +111,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "9": {
         "numPaquetes": 1,
@@ -114,7 +123,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "10": {
         "numPaquetes": 1,
@@ -125,7 +135,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "11": {
         "numPaquetes": 1,
@@ -136,7 +147,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "12": {
         "numPaquetes": 1,
@@ -147,7 +159,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "13": {
         "numPaquetes": 1,
@@ -158,7 +171,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "14": {
         "numPaquetes": 1,
@@ -169,7 +183,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       }
     }
   },
@@ -177,6 +192,7 @@
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -187,7 +203,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "2": {
         "numPaquetes": 1,
@@ -198,7 +215,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "3": {
         "numPaquetes": 1,
@@ -209,7 +227,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "4": {
         "numPaquetes": 1,
@@ -220,7 +239,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "5": {
         "numPaquetes": 1,
@@ -231,7 +251,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "6": {
         "numPaquetes": 1,
@@ -242,7 +263,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "7": {
         "numPaquetes": 1,
@@ -253,7 +275,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "8": {
         "numPaquetes": 1,
@@ -264,7 +287,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "9": {
         "numPaquetes": 1,
@@ -275,7 +299,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "10": {
         "numPaquetes": 1,
@@ -286,7 +311,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "11": {
         "numPaquetes": 1,
@@ -297,7 +323,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "12": {
         "numPaquetes": 1,
@@ -308,7 +335,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "13": {
         "numPaquetes": 1,
@@ -319,7 +347,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "14": {
         "numPaquetes": 1,
@@ -330,7 +359,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       }
     }
   },
@@ -354,8 +384,8 @@
       "13": false,
       "14": false
     },
+    "EventosCompletados": [],
     "Eventos": {
-      
       "1": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
@@ -371,7 +401,8 @@
           "calleMarcada": "C3",
           "tipoPaquete": "Alimento"
         },
-        "recompensa": "Campesino+++++"
+        "recompensa": "Campesino+++++",
+        "textoDiario": "Texto diario"
       },
       "2": {
         "numPaquetes": 2,
@@ -384,7 +415,8 @@
           "distrito": "Demeter",
           "tipoPaquete": "Materiales"
         },
-        "recompensa": "Campesino++++"
+        "recompensa": "Campesino++++",
+        "textoDiario": "Texto diario"
       },
       "3": {
         "numPaquetes": 2,
@@ -397,7 +429,8 @@
           "distrito": "Hestia",
           "tipoPaquete": "Alimento"
         },
-        "recompensa": "Campesino++"
+        "recompensa": "Campesino++",
+        "textoDiario": "Texto diario"
       },
       "4": {
         "numPaquetes": 3,
@@ -410,7 +443,8 @@
           "distrito": "Demeter",
           "tipoPaquete": "Medicinas"
         },
-        "recompensa": "Campesino+++"
+        "recompensa": "Campesino+++",
+        "textoDiario": "Texto diario"
       },
       "5": {
         "numPaquetes": 1,
@@ -429,7 +463,8 @@
           "peso": "Bajo",
           "pesoKG": 100
         },
-        "recompensa": "Campesino+++++"
+        "recompensa": "Campesino+++++",
+        "textoDiario": "Texto diario"
       }
     }
   },
@@ -453,6 +488,7 @@
       "13": false,
       "14": false
     },
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 2,
@@ -464,7 +500,8 @@
           "tipoPaquete": "Materiales",
           "distrito": "Hefesto"
         },
-        "recompensa": "Artesano++"
+        "recompensa": "Artesano++",
+        "textoDiario": "Texto diario"
       },
       "2": {
         "numPaquetes": 2,
@@ -476,7 +513,8 @@
           "tipoPaquete": "Joyas",
           "distrito": "Hefesto"
         },
-        "recompensa": "Artesano+++"
+        "recompensa": "Artesano+++",
+        "textoDiario": "Texto diario"
       },
       "3": {
         "numPaquetes": 3,
@@ -488,7 +526,8 @@
           "tipoPaquete": "Alimento",
           "distrito": "Hefesto"
         },
-        "recompensa": "Artesano++"
+        "recompensa": "Artesano++",
+        "textoDiario": "Texto diario"
       },
       "4": {
         "numPaquetes": 1,
@@ -507,7 +546,8 @@
           "peso": "Medio",
           "pesoKG": 10
         },
-        "recompensa": "Artesano++++"
+        "recompensa": "Artesano++++",
+        "textoDiario": "Texto diario"
       },
       "5": {
         "numPaquetes": 1,
@@ -524,7 +564,8 @@
           "tipoPaquete": "Materiales",
           "fragil": true
         },
-        "recompensa": "Artesano+++++"
+        "recompensa": "Artesano+++++",
+        "textoDiario": "Texto diario"
       }
     }
   },
@@ -548,6 +589,7 @@
       "13": true,
       "14": false
     },
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -559,7 +601,8 @@
           "tipoPaquete": "Joyas",
           "distrito": "Artemisa"
         },
-        "recompensa": "Tarotisa++"
+        "recompensa": "Tarotisa++",
+        "textoDiario": "Texto diario"
       },
       "2": {
         "numPaquetes": 1,
@@ -571,7 +614,8 @@
           "tipoPaquete": "Armamento",
           "distrito": "Artemisa"
         },
-        "recompensa": "Tarotisa+++"
+        "recompensa": "Tarotisa+++",
+        "textoDiario": "Texto diario"
       },
       "3": {
         "numPaquetes": 1,
@@ -590,7 +634,8 @@
           "peso": "Alto",
           "pesoKG": 10
         },
-        "recompensa": "Tarotisa+++"
+        "recompensa": "Tarotisa+++",
+        "textoDiario": "Texto diario"
       },
       "4": {
         "numPaquetes": 2,
@@ -605,7 +650,8 @@
           "tipoPaquete": "Medicinas",
           "distrito": "Erroneo"
         },
-        "recompensa": "Tarotisa++++"
+        "recompensa": "Tarotisa++++",
+        "textoDiario": "Texto diario"
       },
       "5": {
         "numPaquetes": 4,
@@ -621,7 +667,8 @@
         "recompensa": {
           "1": "Tarotisa+++",
           "2": "Contable--"
-        }
+        },
+        "textoDiario": "Texto diario"
       }
     }
   },
@@ -645,6 +692,7 @@
       "13": false,
       "14": true
     },
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 3,
@@ -658,7 +706,8 @@
           "peso": "Alto",
           "pesoKG": 100
         },
-        "recompensa": "Soldado+++"
+        "recompensa": "Soldado+++",
+        "textoDiario": "Texto diario"
       },
       "2": {
         "numPaquetes": 3,
@@ -675,7 +724,8 @@
           "1": "Soldado++++",
           "2": "Secretario-",
           "3": "Tarotisa--"
-        } 
+        },
+        "textoDiario": "Texto diario"
       },
       "3": {
         "numPaquetes": 2,
@@ -687,7 +737,8 @@
             "tipoPaquete": "Alimento",
             "distrito": "Hestia"
         },
-        "recompensa": "Soldado++"
+        "recompensa": "Soldado++",
+        "textoDiario": "Texto diario"
       },
       "4": {
         "numPaquetes": 2,
@@ -710,7 +761,8 @@
         "condiciones": {
           "distrito":"Apolo"
         },
-        "recompensa": "Soldado++++"
+        "recompensa": "Soldado++++",
+        "textoDiario": "Texto diario"
       }
     }
   },
@@ -734,6 +786,7 @@
       "13": true,
       "14": true
     },
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 3,
@@ -745,7 +798,8 @@
           "tipoPaquete":"Alimento",
           "distrito": "Hermes"
         },
-        "recompensa": "Contable+++"
+        "recompensa": "Contable+++",
+        "textoDiario": "Texto diario"
       },
       "2": {
         "numPaquetes": 1,
@@ -756,7 +810,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Contable++"
+        "recompensa": "Contable++",
+        "textoDiario": "Texto diario"
       },
       "3": {
         "numPaquetes": 1,
@@ -772,7 +827,8 @@
           "distrito": "Apolo",
           "fragil": true
         },
-        "recompensa": "Contable++++"
+        "recompensa": "Contable++++",
+        "textoDiario": "Texto diario"
       },
       "4": {
         "numPaquetes": 1,
@@ -785,7 +841,8 @@
           "tipoPaquete": "Joyas",
           "distrito": "Hermes"
         },
-        "recompensa": "Contable++++"
+        "recompensa": "Contable++++",
+        "textoDiario": "Texto diario"
       },
       "5": {
         "numPaquetes": 2,
@@ -798,7 +855,8 @@
           "remitente": "Glover Globus",
           "distrito": "Hermes"
         },
-        "recompensa": "Contable++"
+        "recompensa": "Contable++",
+        "textoDiario": "Texto diario"
       }
     }
   }
