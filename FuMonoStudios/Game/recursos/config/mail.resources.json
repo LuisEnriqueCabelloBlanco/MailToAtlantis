@@ -195,6 +195,7 @@
     {"id": "title","file": "recursos/images/titulo.png"},
     {"id": "fondoOficina","file": "recursos/images/OficinaProyectosDesenfocada.png"},
     {"id": "cinta","file": "recursos/images/Cinta.png"},
+    {"id": "cintaRapida","file": "recursos/images/CintaRapida.png"},
     {"id": "baseBalanza","file": "recursos/images/BaseBalanza.png"},
     {"id": "balanzaFlecha","file": "recursos/images/balanzaFlecha.png"},
     {"id": "balanzaA","file": "recursos/images/balanzaA.png"},

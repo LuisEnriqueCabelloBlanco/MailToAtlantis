@@ -109,6 +109,7 @@ void ecs::MainScene::init()
 
 
 	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
+	GeneralData::instance ()->aquireEnvolverRapido ();
 	createCinta();
 
 	createGarbage();
@@ -192,10 +193,9 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 }
 
 void ecs::MainScene::updateToolsPerDay(int dia)
-{
+{	
 	if(dia == 0)
-		return;
-
+		return;	
 
 	if (dia >= 1) {
 		createStamp(SelloCalleA);
@@ -210,6 +210,7 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 	if (dia >= 8) {
 		//if(GeneralData::instance()->getSelloMulticolor()) 
 		//createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
+		// 
 		//createExclamationPoint();		//Ignorad esto, está aquí para hacer pruebas. Lo quito en cuanto funcione -Javier
 		createCinta();
 	}
@@ -296,7 +297,9 @@ void ecs::MainScene::createMultipleStamp()
 void ecs::MainScene::createCinta() {
 
 	factory_->setLayer(ecs::layer::TAPE);
-	Entity* cinta = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("cinta"));
+	Entity* cinta;
+	if(GeneralData::instance()->getEnvolverRapido()) cinta = factory_->createImage (Vector2D (560, 500), Vector2D (100, 150), &sdlutils ().images ().at ("cintaRapida"));
+	else cinta = factory_->createImage (Vector2D (560, 500), Vector2D (100, 150), &sdlutils ().images ().at ("cinta"));
 	cinta->addComponent<Gravity>();
 	cinta->addComponent<DragAndDrop>("arrastrar");
 	cinta->addComponent<Depth>();

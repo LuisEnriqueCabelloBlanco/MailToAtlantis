@@ -138,6 +138,8 @@ public:
 	//Los métodos para acceder a las herramientas que te pueden dar los NPCs
 	void aquireSelloMulticolor() { selloMulticolor = true; }
 	bool getSelloMulticolor() { return selloMulticolor; }
+	void aquireEnvolverRapido() { envolverRapido = true; }
+	bool getEnvolverRapido() { return envolverRapido; }
 
 	void unlockMejoraPersonaje(Personaje p);
 
@@ -167,6 +169,7 @@ private:
 
 	//Aqui van las variables que indican si se han conseguido las herramientas especiales de los NPCs
 	bool selloMulticolor = false;
+	bool envolverRapido = false;
 
 };
 

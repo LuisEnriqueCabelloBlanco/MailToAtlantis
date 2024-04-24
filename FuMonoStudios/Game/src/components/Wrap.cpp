@@ -117,89 +117,95 @@ void Wrap::update() {
 			SDL_Rect tapeRect = tapeEnt->getComponent<Transform>()->getRect();
 
 			if (SDL_PointInRect(&point, &tapeRect)) {
-
-				paqComp_->puntosRojos(routeSelectedID);
-				switch (routeSelectedID) {
-				case 0:
-					paqComp_->drawLines(0, "ruta1");
-					break;
-				case 1:
-					paqComp_->drawLines(0, "ruta2");
-					break;
-				case 2:
-					paqComp_->drawLines(0, "ruta3");
-					break;
-				case 3:
-					paqComp_->drawLines(0, "ruta4");
-					break;
-				default:
-					std::cout << "Ruta no encontrada" << std::endl;
-					break;
+				if (GeneralData::instance ()->getEnvolverRapido ()) {
+					wrapped = true;
+					ent_->getComponent<Paquete> ()->envolver ();
+					for (int i = 0; i < 4; i++)mul_->nextTexture ();					
 				}
+				else {
+					paqComp_->puntosRojos (routeSelectedID);
+					switch (routeSelectedID) {
+					case 0:
+						paqComp_->drawLines (0, "ruta1");
+						break;
+					case 1:
+						paqComp_->drawLines (0, "ruta2");
+						break;
+					case 2:
+						paqComp_->drawLines (0, "ruta3");
+						break;
+					case 3:
+						paqComp_->drawLines (0, "ruta4");
+						break;
+					default:
+						std::cout << "Ruta no encontrada" << std::endl;
+						break;
+					}
 
-				// Se calculan los puntos centrales tanto del paquete como de la cinta
-				double centerXTR = posXTR + widthTR / 2;
-				double centerYTR = posYTR + heightTR / 2;
+					// Se calculan los puntos centrales tanto del paquete como de la cinta
+					double centerXTR = posXTR + widthTR / 2;
+					double centerYTR = posYTR + heightTR / 2;
 
-				double centerXTape = tapeRect.x + tapeRect.w / 2;
-				double centerYTape = tapeRect.y + tapeRect.h / 2;
+					double centerXTape = tapeRect.x + tapeRect.w / 2;
+					double centerYTape = tapeRect.y + tapeRect.h / 2;
 
 
-				std::vector<double> pointsX{ abs(centerXTape - (centerXTR - widthTR / 2)), abs(centerXTape - centerXTR), abs(centerXTape - (centerXTR + widthTR / 2)) };
+					std::vector<double> pointsX{ abs (centerXTape - (centerXTR - widthTR / 2)), abs (centerXTape - centerXTR), abs (centerXTape - (centerXTR + widthTR / 2)) };
 
-				std::vector<double> pointsY{ abs(centerYTape - (centerYTR - heightTR / 2)), abs(centerYTape - centerYTR), abs(centerYTape - (centerYTR + heightTR / 2)) };
-				int nCheckPointRoute = 0;
+					std::vector<double> pointsY{ abs (centerYTape - (centerYTR - heightTR / 2)), abs (centerYTape - centerYTR), abs (centerYTape - (centerYTR + heightTR / 2)) };
+					int nCheckPointRoute = 0;
 
-				for (int i = 0; i < pointsY.size(); ++i) {
+					for (int i = 0; i < pointsY.size (); ++i) {
 
-					for (int j = 0; j < pointsX.size(); ++j) {
+						for (int j = 0; j < pointsX.size (); ++j) {
 
-						if (debug && false) {
-							std::cout << nCheckPointRoute << std::endl;
+							if (debug && false) {
+								std::cout << nCheckPointRoute << std::endl;
+							}
+
+							if (pointsX[j] < space && pointsY[i] < space) {
+
+								checkPointTouch (nCheckPointRoute);
+
+							}
+
+							nCheckPointRoute++;
+
+						}
+					}
+
+
+					//Se comprueba el % de paquete empaquetado para hacer el cambio de sprites
+					if ((routePointsDone == totalPointsRoute / 4 && wrapFase < 1)
+						|| (routePointsDone == totalPointsRoute / 2 && wrapFase < 2)
+						|| (routePointsDone == (totalPointsRoute * 3) / 4 && wrapFase < 3)
+						|| (routePointsDone == totalPointsRoute && wrapFase < 4)) {
+
+						mul_->nextTexture ();
+						wrapFase++;
+
+					}
+
+					//Si se ha recorrido toda la ruta se comprueba si quedan repeticiones de patron. En caso contrario se da por envalado
+					if (lastPoint == route.end ()) {
+
+						if (debug) {
+							std::cout << "Embalado" << std::endl;
 						}
 
-						if (pointsX[j] < space && pointsY[i] < space) {
+						repTimes--;
 
-							checkPointTouch(nCheckPointRoute);
+						if (repTimes < 0) {
 
+							wrapped = true;
+							ent_->getComponent<Paquete> ()->envolver ();
 						}
 
-						nCheckPointRoute++;
-
+						paqComp_->clearLayer (ecs::layer::WRAP_POINTS);
+						paqComp_->clearLayer (ecs::layer::RED_LINES);
+						restartRoute ();
 					}
-				}
-
-
-				//Se comprueba el % de paquete empaquetado para hacer el cambio de sprites
-				if ((routePointsDone == totalPointsRoute / 4 && wrapFase < 1)
-					|| (routePointsDone == totalPointsRoute / 2 && wrapFase < 2)
-					|| (routePointsDone == (totalPointsRoute * 3) / 4 && wrapFase < 3)
-					|| (routePointsDone == totalPointsRoute && wrapFase < 4)) {
-
-					mul_->nextTexture();
-					wrapFase++;
-
-				}
-
-				//Si se ha recorrido toda la ruta se comprueba si quedan repeticiones de patron. En caso contrario se da por envalado
-				if (lastPoint == route.end()) {
-
-					if (debug) {
-						std::cout << "Embalado" << std::endl;
-					}
-
-					repTimes--;
-
-					if (repTimes < 0) {
-
-						wrapped = true;
-						ent_->getComponent<Paquete>()->envolver();
-					}
-
-					paqComp_->clearLayer(ecs::layer::WRAP_POINTS);
-					paqComp_->clearLayer(ecs::layer::RED_LINES);
-					restartRoute();
-				}
+				}				
 
 			}
 
