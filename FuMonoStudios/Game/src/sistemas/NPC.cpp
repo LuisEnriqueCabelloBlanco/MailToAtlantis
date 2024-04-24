@@ -35,7 +35,7 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 	else if (giveEvent)
 	{
 		tipo = "Eventos";
-		iterationNum = selectedEvent.first;
+		iterationNum = selectedEvent.first + 1;
 	}
 	else
 	{
