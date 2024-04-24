@@ -227,7 +227,7 @@ void GeneralData::readNPCData() {
 
 	// cargamos los 7 personajes
 
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		std::string aux = personajeToString((Personaje)i);
 		jValue = root[aux];
@@ -400,6 +400,9 @@ const std::string GeneralData::personajeToString(Personaje pers) {
 		case Contable:
 			aux = "Contable";
 			break;
+	    case Jefe:
+			aux = "Jefe";
+		    break;
 	}
 	return aux;
 }
@@ -422,6 +425,8 @@ Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 		aux = npc::Soldado;
 	else if (pers == "Contable")
 		aux = npc::Contable;
+	else if (pers == "Jefe")
+		aux = npc::Jefe;
 	
 	return aux;
 }
@@ -600,8 +605,8 @@ std::string GeneralData::dialogSelectionToString(const DialogSelection ds)
 	case Contable:
 		aux = "Contable";
 		break;
-	case JefeOficina:
-		aux = "JefeOficina";
+	case Jefe:
+		aux = "Jefe";
 		break;
 	case Tutorial:
 		aux = "Tutorial";

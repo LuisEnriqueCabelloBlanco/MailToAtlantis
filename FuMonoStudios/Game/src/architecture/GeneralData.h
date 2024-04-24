@@ -50,7 +50,7 @@ public:
 
 	enum DialogSelection {
 		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable,
-		JefeOficina, Tutorial, BryantMyers
+		Jefe, Tutorial, Event1, Event2, Event3, Event4, BryantMyers
 	};
 	
 #pragma endregion

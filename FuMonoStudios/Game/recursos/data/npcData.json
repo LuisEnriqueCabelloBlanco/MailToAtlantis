@@ -355,7 +355,7 @@
       "14": false
     },
     "Eventos": {
-      
+
       "1": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
@@ -664,28 +664,28 @@
         "numPaquetes": 3,
         "numPaquetesParaCompletar": 3,
         "paquetes": {
-            "distrito": "Artemisa",
-            "tipoPaquete": "Medicinas"
+          "distrito": "Artemisa",
+          "tipoPaquete": "Medicinas"
         },
         "condiciones": {
-            "distrito": "Hestia",
-            "tipoPaquete": "Medicinas"
+          "distrito": "Hestia",
+          "tipoPaquete": "Medicinas"
         },
-        "recompensa":{
+        "recompensa": {
           "1": "Soldado++++",
           "2": "Secretario-",
           "3": "Tarotisa--"
-        } 
+        }
       },
       "3": {
         "numPaquetes": 2,
         "numPaquetesParaCompletar": 2,
         "paquetes": {
-            "tipoPaquete": "Alimento"
+          "tipoPaquete": "Alimento"
         },
         "condiciones": {
-            "tipoPaquete": "Alimento",
-            "distrito": "Hestia"
+          "tipoPaquete": "Alimento",
+          "distrito": "Hestia"
         },
         "recompensa": "Soldado++"
       },
@@ -708,7 +708,7 @@
           "distrito": "Hermes"
         },
         "condiciones": {
-          "distrito":"Apolo"
+          "distrito": "Apolo"
         },
         "recompensa": "Soldado++++"
       }
@@ -739,10 +739,10 @@
         "numPaquetes": 3,
         "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "tipoPaquete":"Alimento"
+          "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "tipoPaquete":"Alimento",
+          "tipoPaquete": "Alimento",
           "distrito": "Hermes"
         },
         "recompensa": "Contable+++"
@@ -799,6 +799,101 @@
           "distrito": "Hermes"
         },
         "recompensa": "Contable++"
+      }
+    }
+  },
+  "Jefe": {
+    "Felicidad": "NoHabladoAun",
+    "FelicidadNum": 50,
+    "numMisionesAceptadas": 0,
+    "DiasConEvento": {
+      "1": false,
+      "2": false,
+      "3": false,
+      "4": false,
+      "5": false,
+      "6": false,
+      "7": false,
+      "8": false,
+      "9": false,
+      "10": false,
+      "11": false,
+      "12": false,
+      "13": false,
+      "14": false
+    },
+    "Eventos": {
+      "1": {
+        "numPaquetes": 2,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "tipoPaquete": "Materiales"
+        },
+        "condiciones": {
+          "tipoPaquete": "Materiales",
+          "distrito": "Hefesto"
+        },
+        "recompensa": "Artesano++"
+      },
+      "2": {
+        "numPaquetes": 2,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "tipoPaquete": "Joyas"
+        },
+        "condiciones": {
+          "tipoPaquete": "Joyas",
+          "distrito": "Hefesto"
+        },
+        "recompensa": "Artesano+++"
+      },
+      "3": {
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 2,
+        "paquetes": {
+          "tipoPaquete": "Alimento"
+        },
+        "condiciones": {
+          "tipoPaquete": "Alimento",
+          "distrito": "Hefesto"
+        },
+        "recompensa": "Artesano++"
+      },
+      "4": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Paulino Tinteiros",
+          "distrito": "Hermes",
+          "tipoPaquete": "Materiales",
+          "peso": "Medio",
+          "pesoKG": 10
+        },
+        "condiciones": {
+          "remitente": "Paulino Tinteiros",
+          "distrito": "Hermes",
+          "tipoPaquete": "Materiales",
+          "peso": "Medio",
+          "pesoKG": 10
+        },
+        "recompensa": "Artesano++++"
+      },
+      "5": {
+        "numPaquetes": 1,
+        "numPaquetesParaCompletar": 1,
+        "paquetes": {
+          "remitente": "Paulino Tinteiros",
+          "distrito": "Apolo",
+          "tipoPaquete": "Materiales",
+          "fragil": false
+        },
+        "condiciones": {
+          "remitente": "Paulino Tinteiros",
+          "distrito": "Apolo",
+          "tipoPaquete": "Materiales",
+          "fragil": true
+        },
+        "recompensa": "Artesano+++++"
       }
     }
   }

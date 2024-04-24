@@ -1,9 +1,7 @@
 #include "MainScene.h"
 #include "../architecture/Entity.h"
 #include <iostream>
-#include <fstream>
 #include <imgui.h>
-#include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
 #include "../sdlutils/SDLUtils.h"
 #include "../components/Transform.h"
@@ -21,7 +19,6 @@
 #include "../components/RotarTransform.h"
 #include "../architecture/Time.h"
 #include "../architecture/GameConstants.h"
-#include "../components/SelfDestruct.h"
 #include "../architecture/GeneralData.h"
 #include "../sistemas/ComonObjectsFactory.h"
 #include "../components/Depth.h"
@@ -29,7 +26,6 @@
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
 #include "../sistemas/PipeManager.h"
-#include <components/HoverSensorComponent.h>
 #include <components/HoverLayerComponent.h>
 #include <components/RenderWithLight.h>
 #include "../components/NPCExclamation.h"
@@ -115,8 +111,11 @@ void ecs::MainScene::init()
 
 	createGarbage();
 
-	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
-	createCharacter({ 400, 300 }, "Campesino", 0.1f);
+	int dia = generalData().getDay();
+	if(dia%4 == 2 || dia == 3 || dia == 5 || dia == 8) //basura lo se
+	{
+	    createCharacter({ 400, 300 }, "Jefe", 0.1f);
+	}
 
 	createPaquete(generalData().getPaqueteLevel());
 
@@ -651,20 +650,34 @@ void ecs::MainScene::createPaquete (int lv) {
 
 
 ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
-
 	ComonObjectsFactory factory(this);
 
 	Texture* characterTexture = &sdlutils().images().at(character);
 	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
 
-	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
-	//Actualmente los personajes no tienen memoria, si queremos esto har�a falta a�adrile un parametro
-
-	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, character]() {
 		dialogMngr_.startConversation(character);
-		dialogMngr_.setDialogues(GeneralData::Tutorial, std::to_string(1)); //esta movida se cambiara por las cosas del senor jefe
 		};
+
+	int dia = generalData().getDay();
+
+	std::string jsonPath;
+	if (dia % 4 == 2) //evento aleatorio
+	{
+		mWorkRes.init();
+		jsonPath = "recursos/data/eventosjefe.json";
+		//set dialogues aleatorio
+		mPipeMngr_->activateEvent(mWorkRes.getEvent(GeneralData::DialogSelection::Event1, 0));
+	}
+	else //nuevo distrito/mecanica
+	{
+		jsonPath = "recursos/data/dialogos.json";
+	}
+
+	dialogMngr_.init(this, jsonPath);
+
+
+
 	//si queremos anadir un callback para que ocurra algo cuando se acaba el dialogo 
 	dialogMngr_.setEndDialogueCallback([this](){
 		std::cout << "Los callbacks de final de dialogo funcionan";

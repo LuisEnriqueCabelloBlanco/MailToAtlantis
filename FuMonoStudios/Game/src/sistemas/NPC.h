@@ -10,7 +10,7 @@ namespace npc {
 
 	// enum con el nombre de todos los NPC
 	enum Personaje {
-		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable
+		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable, Jefe
 	};
 
 
@@ -21,7 +21,8 @@ namespace npc {
 		{Artesano,"Artesano"},
 		{Tarotisa, "Tarotisa"},
 		{Soldado, "Soldado"},
-		{Contable, "Contable"}
+		{Contable, "Contable"},
+        {Jefe, "Jefe"}
 	};
 
 	const std::unordered_map<Felicidad, std::string> happinessToString = {
