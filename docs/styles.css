@@ -277,21 +277,32 @@ footer img:hover {
 
 .imagen-container {
     position: relative;
-    display: inline-block; /* Asegura que las imágenes estén una al lado de la otra */
+    display: inline-block; 
+	width: 400px; 
+    height: 200px; 
 }
 
-.cambiar-imagen:nth-child(2) {
-    opacity: 0; /* Oculta la segunda imagen al principio */
+.cambiar-imagen {
     position: absolute;
     top: 0;
     left: 0;
     transition: opacity 0.5s ease-in-out;
+	width: 100%; 
+    height: 100%;
 }
 
-.cambiar-imagen:hover:nth-child(1) {
-    opacity: 0; /* Oculta la primera imagen al pasar el ratón */
+.primera-imagen {
+    opacity: 1; /* Asegura que la primera imagen es visible inicialmente */
 }
 
-.cambiar-imagen:hover:nth-child(2) {
+.segunda-imagen {
+    opacity: 0; /* Oculta la segunda imagen inicialmente */
+}
+
+.imagen-container:hover .primera-imagen {
+    opacity: 0; /* Hace la primera imagen transparente al pasar el ratón */
+}
+
+.imagen-container:hover .segunda-imagen {
     opacity: 1; /* Muestra la segunda imagen al pasar el ratón */
 }

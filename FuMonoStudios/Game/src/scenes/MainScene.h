@@ -5,6 +5,7 @@
 #include "../components/Paquete.h"
 #include <components/Herramientas.h>
 #include "../sistemas/PaqueteBuilder.h"
+#include "components/DialogManager.h"
 
 namespace ecs {
     class Game;
@@ -51,8 +52,12 @@ namespace ecs {
 
         float timer_;
         bool timerPaused_;
+
+        DialogManager dialogMngr_;
         
-        
+        ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
+
+        void startWork();
 
 #ifdef DEV_TOOLS
         bool nextPacageCorrect_;
