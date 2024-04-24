@@ -47,7 +47,7 @@ public:
 	/// </summary>
 	/// <returns></returns>
 	std::string getDirecction();
-	TipoPaquete getTipo() const { return miTipo_; }
+	pq::TipoPaquete getTipo() const { return miTipo_; }
 	pq::Distrito getDistrito() const { return miDistrito_; }
 	pq::Calle getCalle() const { return miCalle_; }
 	pq::Calle getCalleMarcada() const { return calleMarcada_; }

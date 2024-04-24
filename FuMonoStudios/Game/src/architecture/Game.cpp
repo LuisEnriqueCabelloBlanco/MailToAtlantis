@@ -50,6 +50,8 @@ Game::~Game()
 
 void Game::run()
 {
+	//esto es una cochinada pero mejor esto a que tarde 2 anios en cargar la escena de exploracion
+	generalData().readNPCData();
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -141,7 +143,10 @@ void Game::loadScene(ecs::sc::sceneId scene)
 		gameScenes_[scene]->init();
 		//cargamos la escena
 		loadedScenes_.push_back(gameScenes_[scene]);
+#ifdef _DEBUG
 		std::cout << "Scene Loaded" << std::endl;
+#endif // _DEBUG
+
 	}
 #ifdef QA_TOOLS
 	dataCollector().record();
@@ -159,7 +164,10 @@ void Game::killScene(ecs::sc::sceneId scene)
 	if (it != loadedScenes_.end()) {
 		(*it)->close();
 		loadedScenes_.erase(it);
+#ifdef _DEBUG
 		std::cout << "Scene Killed" << std::endl;
+#endif // _DEBUG
+
 	}
 }
 

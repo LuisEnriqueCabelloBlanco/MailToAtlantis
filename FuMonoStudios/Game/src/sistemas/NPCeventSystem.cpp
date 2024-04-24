@@ -11,7 +11,12 @@ NPCeventSystem::NPCeventSystem() {
 }
 
 NPCeventSystem::~NPCeventSystem() {
-
+	for (auto it : activeEventsNPCs) {
+		delete it;
+	}
+	for (auto it : paquetesNPCs) {
+		delete it;
+	}
 }
 
 Paquete* NPCeventSystem::getPaqueteNPC() {

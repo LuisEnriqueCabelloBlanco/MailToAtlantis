@@ -18,10 +18,11 @@
 #include "../components/DelayedCallback.h"
 #include <architecture/GameConstants.h>
 #include <QATools/DataCollector.h>
-#include "../sistemas/NPCeventSystem.h"
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
+#include "../sistemas/NPCeventSystem.h"
+
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
 
@@ -34,11 +35,12 @@ ecs::ExplorationScene::~ExplorationScene()
 
 void ecs::ExplorationScene::init()
 {
-	generalData().readNPCData();
 	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 	canStartConversation = true;
-
+#ifdef _DEBUG
 	std::cout << "Hola Exploracion" << std::endl;
+#endif // _DEBUG
+
 
 	initPlacesDefaultMap();
 	generalData().updateDia();

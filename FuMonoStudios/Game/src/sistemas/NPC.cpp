@@ -1,4 +1,4 @@
-#include<sistemas/NPC.h>
+#include <sistemas/NPC.h>
 #include <architecture/GeneralData.h>
 #include <sdlutils/SDLUtils.h>
 using namespace npc;
@@ -111,3 +111,10 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 void NPCMayorData::setupDayData() {
 	postConversation = false;
 }
+
+NPCevent* npc::NPCMayorData::getEvent()
+{
+	numMisionesAceptadas++;
+	return events[numMisionesAceptadas];
+}
+

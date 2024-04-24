@@ -1,12 +1,12 @@
 #pragma once
 #include "../utils/Singleton.h"
 #include "GameConstants.h"
-#include <fstream>
 #include <sistemas/NPC.h>
 #include <vector>
-#include <string>
-#include <iostream>
 #include <unordered_map>
+#include <iostream>
+#include <fstream>
+#include <string>
 
 class DialogManager;
 class PaqueteBuilder;
@@ -48,71 +48,8 @@ public:
 
 	enum MoveType{DropIn, PickUp};
 
-
-	#pragma region NPCdata
-
-	// Los datos de los NPC deben actualizarse al acabar cada día.
-	// Recogen datos sobre su felicidad, así como que dialogo deben enseñar.
-	// Al iniciarse, su felicidad estará en NoHabladoAun, y al sacar su
-	// primer diálogo cambiará a Normal.
-	// NPC MENORES: El bool giveEvent dicta si debe dar evento (true) o dar
-	// un dialogo generico (false). El int iteration itera sobre los 3 posibles
-	// dialogos genericos que tiene el personaje.
-	// NPC GRANDES: El bool postConversation si es true, significa que ya se 
-	// ha hablado con el una vez, y sacara el dialogo mas corto que sale despues
-	// del dialogo original de ese dia.
-	// 
-	// Al acabar el día se debe llamar a setupDayData() para reiniciar las 
-	// variables y ajustar datos segun el dia
-	// 
-	// MIRAR EL comoEscribirEventos.MD PARA SABER COMO USAR ESTO
 	
-	struct NPCdata {
-		Felicidad felicidad;
-		int numFelicidad;
-		int numMisionesAceptadas;
-		std::vector<NPCevent*> events;
-		virtual NPCevent* getEvent() = 0;
-
-		virtual std::pair<const std::string, int> getDialogueInfo() = 0;
-
-		// esto solo lo usa el NPCmenor
-		virtual void iterateDialogues() = 0;
-		virtual void setupDayData() = 0;
-	};
-
-	struct NPCMenorData : public NPCdata {
-		NPCMenorData(Felicidad Felicidad, std::vector<bool> DiasDanEvento);
-
-		NPCevent* getEvent() override;
-
-		std::pair<const std::string, int> getDialogueInfo() override;
-		void iterateDialogues() override;
-		void setupDayData() override;
-	private:
-		void activateEvent();
-		void deactivateEvent();
-
-		std::vector<bool> diasDanEvento;
-
-		bool giveEvent;
-		int iteration;
-		bool postConversation;
-	};
-
-	struct NPCMayorData : public NPCdata {
-		NPCMayorData(Felicidad Felicidad);
-
-		NPCevent* getEvent() override;
-
-		std::pair<const std::string, int> getDialogueInfo() override;
-		void iterateDialogues() override {};
-		void setupDayData() override;
-	private:
-		bool postConversation;
-	};
-	
-	// METODOS DE NPCdata
+#pragma endregion
 
 	void readNPCData();
 	void writeNPCData();
@@ -122,6 +59,9 @@ public:
 	void incrementarFelicidad(Personaje p, int felicidadIncr);
 
 	NPCeventSystem* npcEventSys = nullptr;
+private:
+	// vector que contiene los datos de todos los 7 npc
+	std::vector<NPCdata*> npcDataVec_;
 #pragma endregion
 public:
 	GeneralData();
