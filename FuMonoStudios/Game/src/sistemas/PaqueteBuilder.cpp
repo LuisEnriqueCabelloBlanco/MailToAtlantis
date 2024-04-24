@@ -435,7 +435,7 @@ void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) 
 	ecs::Entity* distritoEnt = paq->getMngr()->addEntity(ecs::layer::INFO_PACKAGE);
 	Texture* distritoTex = new Texture(sdlutils().renderer(), paqComp->getDirecction(), *directionsFont, build_sdlcolor(0x000000ff), 500);
 	createdTextures.push_back(distritoTex);
-	Transform* distritoTr = distritoEnt->addComponent<Transform>(10, 165, 200, 50);
+	Transform* distritoTr = distritoEnt->addComponent<Transform>(10, 140, 240, 60);
 	RenderImage* distritoRender = distritoEnt->addComponent<RenderImage>(distritoTex);
 	distritoTr->setParent(paq->getComponent<Transform>());
 
@@ -443,7 +443,7 @@ void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) 
 	ecs::Entity* remitenteEnt = paq->getMngr()->addEntity(ecs::layer::INFO_PACKAGE);
 	Texture* remitenteTex = new Texture(sdlutils().renderer(), "Rte: " + paqComp->getRemitente(), *directionsFont, build_sdlcolor(0x000000ff), 500);
 	createdTextures.push_back(remitenteTex);
-	Transform* remitenteTr = remitenteEnt->addComponent<Transform>(10, 215, 150, 25);
+	Transform* remitenteTr = remitenteEnt->addComponent<Transform>(10, 200, 200, 35);
 	RenderImage* remitenteRender = remitenteEnt->addComponent<RenderImage>(remitenteTex);
 	remitenteTr->setParent(paq->getComponent<Transform>());
 }
