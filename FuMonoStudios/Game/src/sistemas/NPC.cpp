@@ -9,6 +9,7 @@ NPCMenorData::NPCMenorData(Felicidad Felicidad, std::vector<bool> DiasDanEvento)
 	diasDanEvento = DiasDanEvento;
 	giveEvent = false;
 	postConversation = false;
+	eventosCompletados = std::vector<bool>(5,false);
 }
 
 std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
