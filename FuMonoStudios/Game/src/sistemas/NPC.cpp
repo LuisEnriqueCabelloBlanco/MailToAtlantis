@@ -114,7 +114,7 @@ NPCevent* NPCMenorData::getEvent() {
 
 	postConversation = true;
 	numMisionesAceptadas++;
-	return events[sdlutils().rand().nextInt(0, 5)];
+	return selectedEvent.second;
 }
 
 // NPC GRANDE

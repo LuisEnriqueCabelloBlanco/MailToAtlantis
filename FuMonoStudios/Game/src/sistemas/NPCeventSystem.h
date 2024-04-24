@@ -1,5 +1,6 @@
 #pragma once
 #include <functional>
+#include "json/JSONValue.h"
 #include "../components/Paquete.h"
 
 using Condition = std::function<bool(Paquete*)>;
@@ -82,7 +83,17 @@ public:
 private:
 	void procesarStringRecompensas(std::vector<std::string> vec);
 
+	void readNPCevent(JSONObject eventObject, int personaje, int index);
+
+	void readPaquetes(JSONObject obj, NPCevent* auxEvent);
+	void readPaquetesEspecificos(JSONObject obj, NPCevent* event);
+
+	void readCondiciones(JSONObject obj, NPCevent* auxEvent);
+	void readCondicionesEspecificos(JSONObject obj, NPCevent* auxEvent);
+
 	std::vector<NPCevent*> activeEventsNPCs;
 	std::vector<Paquete*> paquetesNPCs;
+
+
 };
 
