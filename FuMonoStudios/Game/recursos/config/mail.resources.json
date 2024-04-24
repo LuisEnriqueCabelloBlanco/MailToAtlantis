@@ -382,12 +382,30 @@
     }
   ],
   "sounds": [
-    {"id": "click", "file": "recursos/sounds/click.wav"},
-    {"id": "arrastrar0", "file": "recursos/sounds/arrastrar.wav"},
-    {"id": "choque", "file": "recursos/sounds/choque.wav"},
-    {"id": "MoneyProfits", "file": "recursos/sounds/MoneyProfits.wav"},
-    {"id": "LoseMoney", "file": "recursos/sounds/Lose.wav"},
-    {"id": "GuiImpact", "file": "recursos/sounds/GuiImpact.wav"},
+    {
+      "id": "click",
+      "file": "recursos/sounds/click.wav"
+    },
+    {
+      "id": "arrastrar0",
+      "file": "recursos/sounds/arrastrar.wav"
+    },
+    {
+      "id": "choque",
+      "file": "recursos/sounds/choque.wav"
+    },
+    {
+      "id": "MoneyProfits",
+      "file": "recursos/sounds/MoneyProfits.wav"
+    },
+    {
+      "id": "LoseMoney",
+      "file": "recursos/sounds/Lose.wav"
+    },
+    {
+      "id": "GuiImpact",
+      "file": "recursos/sounds/GuiImpact.wav"
+    },
     {
       "id": "choque2",
       "file": "recursos/sounds/choque.wav"
@@ -406,11 +424,19 @@
     },
     {
       "id": "emb_com0",
-      "file":  "recursos/sounds/embalajeinicial.wav"
+      "file": "recursos/sounds/embalajeinicial.wav"
     },
     {
       "id": "emb_cont0",
-      "file":  "recursos/sounds/embalajesigue.wav"
+      "file": "recursos/sounds/embalajesigue.wav"
+    },
+    {
+      "id": "stamp0",
+      "file": "recursos/sounds/stamp.wav"
+    },
+    {
+      "id": "ink0",
+      "file": "recursos/sounds/changeInks.wav"
     }
   ],
   "musics": [

@@ -182,7 +182,7 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 			if (!stampHerramienta->getMulticolorStamp()) { //Si el sello no es multicolor
 				stampHerramienta->setFunctionality(type);
-
+				SoundEmiter::instance()->playSound("ink");
 				stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
 
 			}

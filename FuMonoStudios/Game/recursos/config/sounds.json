@@ -18,6 +18,14 @@
     },
     {
       "key": "emb_cont",
+      "amount": 1
+    },
+    {
+      "key": "stamp",
+      "amount": 1
+    },
+    {
+      "key": "ink",
       "amount":  1
     }
   ]
