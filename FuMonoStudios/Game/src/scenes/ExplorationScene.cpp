@@ -144,7 +144,7 @@ void ecs::ExplorationScene::update() {
 
 void ecs::ExplorationScene::close() {
 	clearScene();
-	delete diario_;
+	diario_->setAlive(false);
 }
 
 void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin const
@@ -291,11 +291,14 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 		if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
 		{
 			NPCevent* event = data->getEvent();
-			for (int i = 0; i < event->numPaquetes; i++) {
-				generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+			if (event != nullptr)
+			{
+				for (int i = 0; i < event->numPaquetes; i++) {
+					generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+				}
+				generalData().npcEventSys->activateEvent(event);
+				generalData().npcEventSys->shuffleNPCqueue();
 			}
-			generalData().npcEventSys->activateEvent(event);
-			generalData().npcEventSys->shuffleNPCqueue();
 		}
 	};
 
