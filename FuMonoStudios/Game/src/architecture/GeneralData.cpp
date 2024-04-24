@@ -318,7 +318,7 @@ void GeneralData::readIntObjData() {
 
 	// cargamos los objetos
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 20; i++)
 	{
 		std::string aux = objetoToString((InteractableObj)i);
 		jValueRoot = root[aux];
@@ -473,7 +473,7 @@ const std::string GeneralData::personajeToString(Personaje pers) {
 }
 
 Personaje GeneralData::stringToPersonaje(const std::string& pers) {
-	Personaje aux;
+	Personaje aux = Vagabundo;
 	// no deja hacer switch y es una cochinada pero es la unica forma de hacerlo
 	//se puede usar un hasmap
 	if (pers == "Vagabundo")
@@ -498,23 +498,82 @@ const std::string GeneralData::objetoToString(InteractableObj pers) {
 
 	std::string aux = "";
 	switch (pers) {
-	case Casa1:
-		aux = "casa1";
-		break;
-	case Casa2:
-		aux = "casa2";
-		break;
+
+		//Hestia
+	case CasaGrande: aux = "CasaGrande"; break;
+	case CartelOficina: aux = "CartelOficina"; break;
+	case Muro: aux = "Muro"; break;
+
+		//Artemisa
+	case TiendaPociones: aux = "TiendaPociones"; break;
+	case TiendaBolas: aux = "TiendaBolas"; break;
+	case TiendaJarrones: aux = "TiendaJarrones"; break;
+
+		//Demeter
+	case Molino: aux = "Molino"; break;
+	case Arbol: aux = "Arbol"; break;
+	case Carreta: aux = "Carreta"; break;
+
+		//Hefesto
+	case PulpoCartel: aux = "PulpoCartel"; break;
+	case TiendaCeramica: aux = "TiendaCeramica"; break;
+	case TiendaEsculturas: aux = "TiendaEsculturas"; break;
+
+		//Hermes
+	case TiendaDerecha: aux = "TiendaDerecha"; break;
+	case PanteonIzq: aux = "PanteonIzq"; break;
+	case PanteonDer: aux = "PanteonDer"; break;
+
+		//Apolo
+	case Panteon: aux = "Panteon"; break;
+	case Edificios: aux = "Edificios"; break;
+	case Charco: aux = "Charco"; break;
+
+		//Poseidon
+	case Casa1: aux = "casa1"; break;
+	case Casa2: aux = "casa2"; break;
+
+	default: break;
 	}
 	return aux;
 }
 
 GeneralData::InteractableObj GeneralData::stringToObj(const std::string& pers) {
-	InteractableObj aux;
-	// no deja hacer switch y es una cochinada pero es la unica forma de hacerlo
-	if (pers == "casa1")
-		aux = Casa1;
-	else if (pers == "casa2")
-		aux = Casa2;
+	InteractableObj aux = CasaGrande;
+	
+	//Hestia
+	if (pers == "CasaGrande") aux = CasaGrande;
+	else if (pers == "CartelOficina") aux = CartelOficina;
+	else if (pers == "Muro") aux = Muro;
+
+	//Artemisa
+	else if (pers == "TiendaPociones") aux = TiendaPociones;
+	else if (pers == "TiendaBolas") aux = TiendaBolas;
+	else if (pers == "TiendaJarrones") aux = TiendaJarrones;
+
+	//Demeter
+	else if (pers == "Molino") aux = Molino;
+	else if (pers == "Arbol") aux = Arbol;
+	else if (pers == "Carreta") aux = Carreta;
+
+	//Hefesto
+	else if (pers == "PulpoCartel") aux = PulpoCartel;
+	else if (pers == "TiendaCeramica") aux = TiendaCeramica;
+	else if (pers == "TiendaEsculturas") aux = TiendaEsculturas;
+
+	//Hermes
+	else if (pers == "TiendaDerecha") aux = TiendaDerecha;
+	else if (pers == "PanteonIzq") aux = PanteonIzq;
+	else if (pers == "PanteonDer") aux = PanteonDer;
+
+	//Apolo
+	else if (pers == "Panteon") aux = Panteon;
+	else if (pers == "Edificios") aux = Edificios;
+	else if (pers == "Charco") aux = Charco;
+
+	//Poseidon
+	else if (pers == "casa1") aux = Casa1;
+	else if (pers == "casa2") aux = Casa2;
 
 	return aux;
 }
@@ -674,22 +733,50 @@ GeneralData::IntObjsData::IntObjsData(InteractableObj text)
 
 const std::string GeneralData::IntObjsData::getDialogueInfo()
 {
-		std::string tipo;
+		std::string aux;
 
 		switch (texto)
 		{
-		case Casa1:
-			tipo = "TextoCasa1";
-			break;
-		case Casa2:
-			tipo = "TextoCasa2";
-			break;
+
+			//Hestia
+		case CasaGrande: aux = "TextoCasaGrande"; break;
+		case CartelOficina: aux = "TextoCartelOficina"; break;
+		case Muro: aux = "TextoMuro"; break;
+
+			//Artemisa
+		case TiendaPociones: aux = "TextoTiendaPociones"; break;
+		case TiendaBolas: aux = "TextoTiendaBolas"; break;
+		case TiendaJarrones: aux = "TextoTiendaJarrones"; break;
+
+			//Demeter
+		case Molino: aux = "TextoMolino"; break;
+		case Arbol: aux = "TextoArbol"; break;
+		case Carreta: aux = "TextoCarreta"; break;
+
+			//Hefesto
+		case PulpoCartel: aux = "TextoPulpoCartel"; break;
+		case TiendaCeramica: aux = "TextoTiendaCeramica"; break;
+		case TiendaEsculturas: aux = "TextoTiendaEsculturas"; break;
+
+			//Hermes
+		case TiendaDerecha: aux = "TextoTiendaDerecha"; break;
+		case PanteonIzq: aux = "TextoPanteonIzq"; break;
+		case PanteonDer: aux = "TextoPanteonDer"; break;
+
+			//Apolo
+		case Panteon: aux = "TextoPanteon"; break;
+		case Edificios: aux = "TextoEdificios"; break;
+		case Charco: aux = "TextoCharco"; break;
+
+			//Poseidon
+		case Casa1: aux = "TextoCasa1"; break;
+		case Casa2: aux = "TextoCasa2"; break;
 		default:
 			break;
 		}
 
 
-		return tipo;
+		return aux;
 }
 
 GeneralData::IntObjsData* GeneralData::getObjData(InteractableObj intobj)

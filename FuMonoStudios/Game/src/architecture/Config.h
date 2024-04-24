@@ -57,12 +57,13 @@ public:
 
 		std::string name_;
 
-		double scale_;
+		double scaleX_;
+		double scaleY_;
 
 		bool directionRight_;
 
-		InteractableObjs(double x, double y, std::string name, double scale, bool directionRight) : pos(x, y), name_(name),
-			scale_(scale), directionRight_(directionRight) {}
+		InteractableObjs(double x, double y, std::string name, double scaleX, double scaleY, bool directionRight) : pos(x, y), name_(name),
+			scaleX_(scaleX), scaleY_(scaleY), directionRight_(directionRight) {}
 
 
 	};

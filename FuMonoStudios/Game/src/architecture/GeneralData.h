@@ -48,7 +48,15 @@ public:
 	std::string felicidadToString(Felicidad);
 
 	// enum con el nombre de todos los Objetos Interactuables
-	enum InteractableObj { Casa1, Casa2 };
+	enum InteractableObj {
+		CasaGrande, CartelOficina, Muro, //Hestia
+		TiendaPociones, TiendaBolas, TiendaJarrones, //Artemisa
+		Molino, Arbol, Carreta, //Demeter
+		PulpoCartel, TiendaCeramica, TiendaEsculturas, //Hefesto
+		TiendaDerecha, PanteonIzq, PanteonDer, //Hermes
+		Panteon, Edificios, Charco, //Apolo
+		Casa1, Casa2 //Poseidon
+	};
 
 	enum MoveType{DropIn, PickUp};
 

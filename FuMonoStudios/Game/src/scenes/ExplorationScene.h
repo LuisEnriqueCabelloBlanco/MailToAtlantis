@@ -153,7 +153,7 @@ namespace ecs {
 		void updateNavegavility();
 		ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
 
-		ecs::Entity* createInteractableObj(Vector2D pos, const std::string& character, float scale);
+		ecs::Entity* createInteractableObj(Vector2D pos, const std::string& character, float scaleX, float scaleY);
         
 		//VARIABLES
 

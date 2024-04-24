@@ -56,18 +56,29 @@
             {"intObj" : [
 
                 {"id" : 0,
-                "x" : 200.7,
-                "y" : 200.3,
-                "name" : "casa1",
-                "scale" : 0.8,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "Molino",
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 },
 
                 {"id" : 1,
                 "x" : 600.7,
                 "y" : 600.3,
-                "name" : "casa2",
-                "scale" : 0.8,
+                "name" : "Arbol",
+                "scaleX" : 1,
+                "scaleY" : 1,
+                "dir" : true              
+                },
+
+                {"id" : 2,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "Carreta",
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 }
 
@@ -132,16 +143,27 @@
                 {"id" : 0,
                 "x" : 200.7,
                 "y" : 200.3,
-                "name" : "casa1",
-                "scale" : 0.8,
+                "name" : "PulpoCartel",
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 },
 
                 {"id" : 1,
                 "x" : 600.7,
                 "y" : 600.3,
-                "name" : "casa2",
-                "scale" : 0.8,
+                "name" : "TiendaCeramica",
+                "scaleX" : 1,
+                "scaleY" : 1,
+                "dir" : true              
+                },
+
+                {"id" : 2,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "TiendaEsculturas",
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 }
 
@@ -194,16 +216,27 @@
                 {"id" : 0,
                 "x" : 200.7,
                 "y" : 200.3,
-                "name" : "casa1",
-                "scale" : 0.8,
+                "name" : "CasaGrande",
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 },
 
                 {"id" : 1,
                 "x" : 600.7,
                 "y" : 600.3,
-                "name" : "casa2",
-                "scale" : 0.8,
+                "name" : "CartelOficina",
+                "scaleX" : 1,
+                "scaleY" : 1,
+                "dir" : true              
+                },
+
+                {"id" : 2,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "Muro",
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 }
 
@@ -258,16 +291,27 @@
                 {"id" : 0,
                 "x" : 200.7,
                 "y" : 200.3,
-                "name" : "casa1",
-                "scale" : 0.8,
+                "name" : "TiendaPociones",
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 },
 
                 {"id" : 1,
                 "x" : 600.7,
                 "y" : 600.3,
-                "name" : "casa2",
-                "scale" : 0.8,
+                "name" : "TiendaBolas",
+                "scaleX" : 1,
+                "scaleY" : 1,
+                "dir" : true              
+                },
+
+                {"id" : 2,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "TiendaJarrones",
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 }
 
@@ -327,18 +371,29 @@
             {"intObj" : [
 
                 {"id" : 0,
-                "x" : 200.7,
-                "y" : 200.3,
-                "name" : "casa1",
-                "scale" : 0.8,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "TiendaDerecha",
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 },
 
                 {"id" : 1,
                 "x" : 600.7,
                 "y" : 600.3,
-                "name" : "casa2",
-                "scale" : 0.8,
+                "name" : "PanteonIzq",
+                "scaleX" : 1,
+                "scaleY" : 1,
+                "dir" : true              
+                },
+
+                {"id" : 2,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "PanteonDer",
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 }
 
@@ -389,18 +444,29 @@
             {"intObj" : [
 
                 {"id" : 0,
-                "x" : 200.7,
-                "y" : 200.3,
-                "name" : "casa1",
-                "scale" : 0.8,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "Panteon",
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 },
 
                 {"id" : 1,
                 "x" : 600.7,
                 "y" : 600.3,
-                "name" : "casa2",
-                "scale" : 0.8,
+                "name" : "Edificios",
+                "scaleX" : 1,
+                "scaleY" : 1,
+                "dir" : true              
+                },
+
+                {"id" : 2,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "Charco",
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 }
 
@@ -442,11 +508,12 @@
 
             {"intObj" : [
 
-                {"id" : 0,
-                "x" : 200.7,
-                "y" : 200.3,
+                {"id" : 1,
+                "x" : 600.7,
+                "y" : 600.3,
                 "name" : "casa1",
-                "scale" : 0.8,
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 },
 
@@ -454,7 +521,8 @@
                 "x" : 600.7,
                 "y" : 600.3,
                 "name" : "casa2",
-                "scale" : 0.8,
+                "scaleX" : 1,
+                "scaleY" : 1,
                 "dir" : true              
                 }
 

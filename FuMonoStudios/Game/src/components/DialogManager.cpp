@@ -336,12 +336,43 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
     case BryantMyers:
         aux = "EsclavaRemix";
         break;
-    case Casa1:
-        aux = "casa1";
-        break;
-    case Casa2:
-        aux = "casa2";
-        break;
+
+    //Dialogos objetos distritos
+        //Hestia
+    case CasaGrande: aux = "CasaGrande"; break;
+    case CartelOficina: aux = "CartelOficina"; break;
+    case Muro: aux = "Muro"; break;
+
+        //Artemisa
+    case TiendaPociones: aux = "TiendaPociones"; break;
+    case TiendaBolas: aux = "TiendaBolas"; break;
+    case TiendaJarrones: aux = "TiendaJarrones"; break;
+
+        //Demeter
+    case Molino: aux = "Molino"; break;
+    case Arbol: aux = "Arbol"; break;
+    case Carreta: aux = "Carreta"; break;
+
+        //Hefesto
+    case PulpoCartel: aux = "PulpoCartel"; break;
+    case TiendaCeramica: aux = "TiendaCeramica"; break;
+    case TiendaEsculturas: aux = "TiendaEsculturas"; break;
+
+        //Hermes
+    case TiendaDerecha: aux = "TiendaDerecha"; break;
+    case PanteonIzq: aux = "PanteonIzq"; break;
+    case PanteonDer: aux = "PanteonDer"; break;
+
+        //Apolo
+    case Panteon: aux = "Panteon"; break;
+    case Edificios: aux = "Edificios"; break;
+    case Charco: aux = "Charco"; break;
+
+        //Poseidon
+    case Casa1: aux = "casa1"; break;
+    case Casa2: aux = "casa2"; break;
+
+    //default: break;
     }
     return aux;
 }

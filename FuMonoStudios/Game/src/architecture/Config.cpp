@@ -134,11 +134,12 @@ void Config::loadReasources(std::string filename) {
 
 							std::string dest = cObj["name"]->AsString();
 
-							double scale = cObj["scale"]->AsNumber();
+							double scaleX = cObj["scaleX"]->AsNumber();
+							double scaleY = cObj["scaleY"]->AsNumber();
 
 							bool dir = cObj["dir"]->AsBool();
 
-							InteractableObjs interactableObj{ x, y, dest, scale, dir };
+							InteractableObjs interactableObj{ x, y, dest, scaleX, scaleY, dir };
 
 							placeInteractableObjs.push_back(interactableObj);
 

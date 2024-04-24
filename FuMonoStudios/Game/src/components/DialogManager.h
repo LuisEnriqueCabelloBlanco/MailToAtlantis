@@ -54,7 +54,14 @@ public:
     // aqui se elije que rama de dialogo escojer dentro del json
     enum DialogSelection {
         Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable,
-        JefeOficina, Tutorial, BryantMyers, Casa1, Casa2
+        JefeOficina, Tutorial, BryantMyers,
+        CasaGrande, CartelOficina, Muro, //Hestia
+        TiendaPociones, TiendaBolas, TiendaJarrones, //Artemisa
+        Molino, Arbol, Carreta, //Demeter
+        PulpoCartel, TiendaCeramica, TiendaEsculturas, //Hefesto
+        TiendaDerecha, PanteonIzq, PanteonDer, //Hermes
+        Panteon, Edificios, Charco, //Apolo
+        Casa1, Casa2 //Poseidon
     };
 
     DialogManager();

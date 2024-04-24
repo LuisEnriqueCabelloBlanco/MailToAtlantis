@@ -272,12 +272,12 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	return characterEnt;
 }
 
-ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const std::string& interactableObj, float scale) {
+ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const std::string& interactableObj, float scaleX, float scaleY) {
 
 	ComonObjectsFactory factory(this);
 
 	//Texture* characterTexture = &sdlutils().images().at(interactableObj);
-	Vector2D size{ 300 * scale, 200 * scale };
+	Vector2D size{ 300 * scaleX, 200 * scaleY };
 
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, interactableObj]() {
@@ -321,7 +321,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 
 	for (int i = 0; i < pl.at(placeName).myInteractableObjs.size(); ++i) {
 		lugares[generalData().fromDistritoToString(place)].addObjects(createInteractableObj(pl.at(placeName).myInteractableObjs[i].pos,
-			pl.at(placeName).myInteractableObjs[i].name_, pl.at(placeName).myInteractableObjs[i].scale_));
+			pl.at(placeName).myInteractableObjs[i].name_, pl.at(placeName).myInteractableObjs[i].scaleX_, pl.at(placeName).myInteractableObjs[i].scaleY_));
 	}
 
 	if (place == pq::Distrito::Hestia) {
