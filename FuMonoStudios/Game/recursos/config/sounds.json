@@ -26,7 +26,15 @@
     },
     {
       "key": "ink",
-      "amount":  1
+      "amount": 1
+    },
+    {
+      "key": "click",
+      "amount": 1
+    },
+    {
+      "key": "page",
+      "amount": 1
     }
   ]
 }

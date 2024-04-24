@@ -32,7 +32,7 @@ void ecs::PauseScene::init()
 	Transform* transformBoton = BotonPress->addComponent<Transform>(400, 600, texturaBoton->width(), texturaBoton->height());
 	RenderImage* renderBoton = BotonPress->addComponent<RenderImage>(texturaBoton);
 
-	auto clickerPress = BotonPress->addComponent<Clickeable>();
+	auto clickerPress = BotonPress->addComponent<Clickeable>("click");
 
 	
 	CallbackClickeable funcPress = [this]() {

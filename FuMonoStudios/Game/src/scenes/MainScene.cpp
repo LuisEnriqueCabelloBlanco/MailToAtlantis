@@ -414,12 +414,12 @@ void ecs::MainScene::createManual()
 	Vector2D buttonSize(40, 40);
 	factory_->setLayer(ecs::layer::FOREGROUND);
 	auto next = [manualRender]() {manualRender->nextTexture();};
-	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
+	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next, "page");
 	right->getComponent<Transform>()->setParent(manualTransform);
 	factory_->addHoverColorMod(right);
 
 	auto previous = [manualRender]() {manualRender->previousTexture();};
-	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous);
+	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous, "page");
 	left->getComponent<Transform>()->setParent(manualTransform);
 	left->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
 	factory_->addHoverColorMod(left);
@@ -670,7 +670,7 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 		std::cout << "Los callbacks de final de dialogo funcionan";
 	});
 
-	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "click");
 
 	return characterEnt;
 }

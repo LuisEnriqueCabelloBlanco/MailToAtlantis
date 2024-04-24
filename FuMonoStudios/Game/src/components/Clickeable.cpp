@@ -1,16 +1,18 @@
 #include "Clickeable.h"
 
-#include "Transform.h"
-#include "Trigger.h"
-#include "../architecture/Entity.h"
-#include "../sdlutils/InputHandler.h"
+#include <components/Transform.h>
+#include <components/Trigger.h>
+#include <architecture/Entity.h>
+#include <sdlutils/InputHandler.h>
 
 #include <SDL.h>
 #include <assert.h>
 
+#include <sistemas/SoundEmiter.h>
 
 
-Clickeable::Clickeable(): mTr_(nullptr), eventsWhenClick_() {
+
+Clickeable::Clickeable(std::string soundClick): mTr_(nullptr), eventsWhenClick_(), soundWhenClicked_(soundClick) {
 
 }
 
@@ -45,7 +47,9 @@ void Clickeable::update() {
 		if (SDL_PointInRect(&point, mRect_)) {
 			// 
 			//Recorrido por las colbacks a las que est� suscrito este objeto
-			sdlutils().soundEffects().at("click").play();
+			if (soundWhenClicked_ != "") {
+				SoundEmiter::instance()->playSound(soundWhenClicked_);
+			}
 			for (CallbackClickeable call : eventsWhenClick_) {
 
 				call();

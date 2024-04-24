@@ -383,16 +383,12 @@
   ],
   "sounds": [
     {
-      "id": "click",
+      "id": "click0",
       "file": "recursos/sounds/click.wav"
     },
     {
       "id": "arrastrar0",
       "file": "recursos/sounds/arrastrar.wav"
-    },
-    {
-      "id": "choque",
-      "file": "recursos/sounds/choque.wav"
     },
     {
       "id": "MoneyProfits",
@@ -437,24 +433,28 @@
     {
       "id": "ink0",
       "file": "recursos/sounds/changeInks.wav"
+    },
+    {
+      "id": "page0",
+      "file":  "recursos/sounds/paginas.wav"
     }
   ],
   "musics": [
     {
       "id": "trabajo",
-      "file": "recursos/sounds/imperial_march.wav"
+      "file": "recursos/musics/imperial_march.wav"
     },
     {
       "id": "mainMenu",
-      "file": "recursos/sounds/DQOverture.wav"
+      "file": "recursos/musics/DQOverture.wav"
     },
     {
       "id": "office",
-      "file": "recursos/sounds/office.wav"
+      "file": "recursos/musics/office.wav"
     },
     {
       "id": "printer",
-      "file": "recursos/sounds/printer.wav"
+      "file": "recursos/musics/printer.wav"
     }
   ]
 }

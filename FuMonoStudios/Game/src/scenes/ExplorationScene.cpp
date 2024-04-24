@@ -219,7 +219,7 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 
 	ecs::Entity* e = addEntity();
 	e->addComponent<Transform>(pos.getX(), pos.getY(), scale.getX(), scale.getY());
-	auto clickableBotonTrabajar = e->addComponent<Clickeable>();
+	auto clickableBotonTrabajar = e->addComponent<Clickeable>("");
 	CallbackClickeable funcPress = [this]() {
 		gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
 	};
@@ -262,7 +262,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 
 
-	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "click");
 	
 	//return characterEnt;
 
