@@ -61,7 +61,7 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 
 void NPCMenorData::setupDayData() {
 	iteration = 1;
-	giveEvent = diasDanEvento[generalData().getDia() - 1];
+	giveEvent = diasDanEvento[generalData().getDay() - 1];
 }
 
 void NPCMenorData::activateEvent() {
@@ -100,7 +100,7 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 	default:
 		aux = postConversation ?
 			"PostConversacionDia" : "Dia";
-		aux = aux + std::to_string(generalData().getDia());
+		aux = aux + std::to_string(generalData().getDay());
 		postConversation = true;
 		break;
 	}

@@ -92,7 +92,7 @@ void GeneralData::updateDia()
 	// actualizar los datos para todos los npc
 	for (int i = 0; i < 7; i++)
 	{
-		npcData[i]->setupDayData();
+		npcData[(Personaje)i]->setupDayData();
 	}
 
 	if (dia_ == 1) {
@@ -241,7 +241,7 @@ void GeneralData::readNPCData() {
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
-			npcData.push_back(data);
+			npcData.emplace((Personaje)i,data);
 		}
 		else
 		{
@@ -250,14 +250,14 @@ void GeneralData::readNPCData() {
 			JSONObject jDiasEvento = jObject.find("DiasConEvento")->second->AsObject();
 
 			// leemos los 14 booleanos
-			for (int i = 0; i < 14; i++)
+			for (int j = 0; j < 14; j++)
 			{
-				diasDanEventos.push_back(jDiasEvento.find(std::to_string(i + 1))->second->AsBool());
+				diasDanEventos.push_back(jDiasEvento.find(std::to_string(j + 1))->second->AsBool());
 			}
 			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
-			npcData.push_back(data);
+			npcData.emplace((Personaje)i,data);
 		}
 		jValueRoot = nullptr;
 	}
@@ -481,12 +481,6 @@ const std::string GeneralData::calleToString(Calle calle) {
 	case Erronea:
 		aux = "Erronea";
 		break;
-	}
-}
-void GeneralData::setDayData() {
-	for (int i = 0; i < 7; i++)
-	{
-		npcData.at((Personaje)i)->setupDayData();
 	}
 	return aux;
 }
