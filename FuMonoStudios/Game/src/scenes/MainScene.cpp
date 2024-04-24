@@ -112,7 +112,7 @@ void ecs::MainScene::init()
 	createGarbage();
 
 	int dia = generalData().getDay();
-	if(dia%4 == 2 || dia == 3 || dia == 5 || dia == 8) //basura lo se
+	if(dia%4 == 2 || dia == 1 || dia == 3 || dia == 5 || dia == 8) //basura lo se
 	{
 	    createCharacter({ 400, 300 }, "Jefe", 0.1f);
 	}
@@ -655,23 +655,32 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 	Texture* characterTexture = &sdlutils().images().at(character);
 	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
 
-	CallbackClickeable funcPress = [this, character]() {
-		dialogMngr_.startConversation(character);
-		};
+	CallbackClickeable funcPress;
 
 	int dia = generalData().getDay();
 
 	std::string jsonPath;
 	if (dia % 4 == 2) //evento aleatorio
 	{
-		mWorkRes.init();
 		jsonPath = "recursos/data/eventosjefe.json";
+		dialogMngr_.init(this, jsonPath);
+		mWorkRes.init();
 		//set dialogues aleatorio
-		mPipeMngr_->activateEvent(mWorkRes.getEvent(GeneralData::DialogSelection::Event1, 0));
+		funcPress = [this, character]() {
+			dialogMngr_.setDialogueEntitiesActive(true);
+			dialogMngr_.setDialogues(GeneralData::Event1, "1");
+			//set dialogues aleatorio
+			mPipeMngr_->activateEvent(mWorkRes.getEvent(GeneralData::DialogSelection::Event1, 0));
+		};
+		
 	}
 	else //nuevo distrito/mecanica
 	{
 		jsonPath = "recursos/data/dialogos.json";
+		dialogMngr_.init(this, jsonPath);
+		funcPress = [this, character]() {
+			dialogMngr_.startConversation(character);
+		};
 	}
 
 	dialogMngr_.init(this, jsonPath);

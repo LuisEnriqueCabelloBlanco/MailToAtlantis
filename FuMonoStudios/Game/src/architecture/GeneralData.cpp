@@ -614,6 +614,9 @@ std::string GeneralData::dialogSelectionToString(const DialogSelection ds)
 	case BryantMyers:
 		aux = "EsclavaRemix";
 		break;
+	case Event1:
+		aux = "Evento1";
+		break;
 	}
 	return aux;
 }

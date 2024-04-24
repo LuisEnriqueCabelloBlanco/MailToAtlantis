@@ -102,7 +102,7 @@ void DialogManager::setDialogues(const GeneralData::DialogSelection ds, const st
     JSONValue* jsonEntry = nullptr;
 
     const std::string& stringDialogSel = generalData().dialogSelectionToString(ds);
-
+    auto a =generalData().getDay();
     jsonEntry = root[stringDialogSel];
     if (jsonEntry != nullptr)
     {
