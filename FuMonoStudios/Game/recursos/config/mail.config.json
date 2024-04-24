@@ -56,29 +56,29 @@
             {"intObj" : [
 
                 {"id" : 0,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 235.0,
+                "y" : 0.0,
                 "name" : "Molino",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 433,
+                "scaleY" : 505,
                 "dir" : true              
                 },
 
                 {"id" : 1,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 900.0,
+                "y" : 0.0,
                 "name" : "Arbol",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 543,
+                "scaleY" : 785,
                 "dir" : true              
                 },
 
                 {"id" : 2,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 53.0,
+                "y" : 602.0,
                 "name" : "Carreta",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 312,
+                "scaleY" : 338,
                 "dir" : true              
                 }
 
@@ -141,29 +141,29 @@
             {"intObj" : [
 
                 {"id" : 0,
-                "x" : 200.7,
-                "y" : 200.3,
+                "x" : 87.0,
+                "y" : 69.0,
                 "name" : "PulpoCartel",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 643,
+                "scaleY" : 207,
                 "dir" : true              
                 },
 
                 {"id" : 1,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 1056.0,
+                "y" : 35.0,
                 "name" : "TiendaCeramica",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 198,
+                "scaleY" : 497,
                 "dir" : true              
                 },
 
                 {"id" : 2,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 1614.0,
+                "y" : 0.0,
                 "name" : "TiendaEsculturas",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 281,
+                "scaleY" : 551,
                 "dir" : true              
                 }
 
@@ -214,29 +214,29 @@
             {"intObj" : [
 
                 {"id" : 0,
-                "x" : 200.7,
-                "y" : 200.3,
+                "x" : 0.0,
+                "y" : 0.0,
                 "name" : "CasaGrande",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 300,
+                "scaleY" : 690,
                 "dir" : true              
                 },
 
                 {"id" : 1,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 505.0,
+                "y" : 109.0,
                 "name" : "CartelOficina",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 385,
+                "scaleY" : 165,
                 "dir" : true              
                 },
 
                 {"id" : 2,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 1509.0,
+                "y" : 247.0,
                 "name" : "Muro",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 327,
+                "scaleY" : 429,
                 "dir" : true              
                 }
 
@@ -289,29 +289,29 @@
             {"intObj" : [
 
                 {"id" : 0,
-                "x" : 200.7,
-                "y" : 200.3,
+                "x" : 1427.0,
+                "y" : 201.0,
                 "name" : "TiendaPociones",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 489,
+                "scaleY" : 871,
                 "dir" : true              
                 },
 
                 {"id" : 1,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 0.0,
+                "y" : 113.0,
                 "name" : "TiendaBolas",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 277,
+                "scaleY" : 961,
                 "dir" : true              
                 },
 
                 {"id" : 2,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 253.0,
+                "y" : 0.0,
                 "name" : "TiendaJarrones",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 480,
+                "scaleY" : 480,
                 "dir" : true              
                 }
 
