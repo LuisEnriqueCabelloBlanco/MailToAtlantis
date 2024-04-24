@@ -81,9 +81,13 @@ namespace npc {
 		void deactivateEvent();
 
 		std::vector<bool> diasDanEvento;
+		std::pair<int, NPCevent*> selectedEvent;
+
+		std::vector<bool> eventosCompletados;
 
 		bool giveEvent;
 		int iteration;
+		bool postConversation;
 	};
 
 	struct NPCMayorData : public NPCdata {

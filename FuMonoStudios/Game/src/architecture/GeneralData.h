@@ -59,9 +59,6 @@ public:
 	void incrementarFelicidad(Personaje p, int felicidadIncr);
 
 	NPCeventSystem* npcEventSys = nullptr;
-private:
-	// vector que contiene los datos de todos los 7 npc
-	std::vector<NPCdata*> npcDataVec_;
 #pragma endregion
 public:
 	GeneralData();
@@ -108,14 +105,6 @@ public:
 	int getFails() { return fails_; }
 	int getCorrects() { return corrects_; }
 
-	int getCharacterEventID(int p) {
-		return charactersEvents_[p];
-	}
-
-	void setCharacterEventID(int p, int e) {
-		charactersEvents_[p] = e;
-	}
-
 	void resetFailsCorrects() { fails_ = 0; corrects_ = 0; }
 
 	int getPaqueteLevel(); // Devuelve el lvl del paquete correspondiente al d�a
@@ -161,7 +150,6 @@ private:
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
 	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo
 	int numTubos_; // Numero de tubos que habrán en el minijuego de paquetes
-	int charactersEvents_[7]; // Recoge los eventos de paquete de cada personaje
 	std::vector<Paquete*> paquetesNPCs;
 	std::vector<std::string> placesToActive_;
 
