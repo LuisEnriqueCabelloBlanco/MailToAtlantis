@@ -387,8 +387,13 @@
       "size": 50
     },
     {
-      "id": "simpleHandmade50",
+      "id": "simpleHandmade20",
       "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 20
+    },
+    {
+      "id": "simpleHandmadeTuneado20",
+      "file": "recursos/fonts/SimpleHandmadeTuneado.ttf",
       "size": 20
     }
   ],

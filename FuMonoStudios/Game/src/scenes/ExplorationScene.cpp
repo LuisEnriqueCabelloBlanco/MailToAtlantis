@@ -1,4 +1,4 @@
-#include "ExplorationScene.h"
+﻿#include "ExplorationScene.h"
 #include "../architecture/Entity.h"
 #include <iostream>
 #include "../sdlutils/SDLUtils.h"
@@ -327,7 +327,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 				j++;
 			}
 
-			// a�adimos pag vacia para que no quede desparejo
+			// añadimos pag vacia para que no quede desparejo
 			if (j % 2 != 0)
 				diarioText_.push_back(" ");
 
@@ -357,12 +357,12 @@ void ecs::ExplorationScene::setupDiarioPages() {
 	{
 		currentDiarioPage = 0;
 		leftPageRnd->setTexture(new Texture(sdlutils().renderer(),
-			diarioText_[currentDiarioPage], sdlutils().fonts().at("simpleHandmade50"),
+			diarioText_[currentDiarioPage], sdlutils().fonts().at("simpleHandmade20"),
 			build_sdlcolor(0x00000000ff), 245));
 		leftPageTr->setWidth(leftPageRnd->getTexture()->width());
 		leftPageTr->setHeith(leftPageRnd->getTexture()->height());
 		rightPageRnd->setTexture(new Texture(sdlutils().renderer(),
-			diarioText_[currentDiarioPage + 1], sdlutils().fonts().at("simpleHandmade50"),
+			diarioText_[currentDiarioPage + 1], sdlutils().fonts().at("simpleHandmade20"),
 			build_sdlcolor(0x00000000ff), 245));
 		rightPageTr->setWidth(rightPageRnd->getTexture()->width());
 		rightPageTr->setHeith(rightPageRnd->getTexture()->height());
@@ -386,16 +386,16 @@ void ecs::ExplorationScene::changeDiarioPages(bool forward) {
 	if (oldTex != nullptr)	
 		delete oldTex;
 
-
 	leftPageRnd->setTexture(new Texture(sdlutils().renderer(),
-		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage ], 
-		sdlutils().fonts().at("simpleHandmade50"),
+		p,
+		//diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage ], 
+		sdlutils().fonts().at("simpleHandmade20"),
 		build_sdlcolor(0x00000000ff), 245));
 	leftPageTr->setWidth(leftPageRnd->getTexture()->width());
 	leftPageTr->setHeith(leftPageRnd->getTexture()->height());
 	rightPageRnd->setTexture(new Texture(sdlutils().renderer(),
 		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage+ 1], 
-		sdlutils().fonts().at("simpleHandmade50"),
+		sdlutils().fonts().at("simpleHandmade20"),
 		build_sdlcolor(0x00000000ff), 245));
 	rightPageTr->setWidth(rightPageRnd->getTexture()->width());
 	rightPageTr->setHeith(rightPageRnd->getTexture()->height());
