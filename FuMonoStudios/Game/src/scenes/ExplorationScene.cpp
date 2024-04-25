@@ -332,9 +332,18 @@ void ecs::ExplorationScene::setupDiarioPages() {
 				diarioText_.push_back(" ");
 
 			//ponemos sus paginas
-			for (int k = 0; k < j; k++) {
-				if (k % 2 == 0)
-					textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + (k / 2) + 1)));
+			if (j == 0) // tiene que haber una aunque no haya texto
+			{
+				textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
+				diarioText_.push_back(" ");
+				diarioText_.push_back(" ");
+			}
+			else
+			{
+				for (int k = 0; k < j; k++) {
+					if (k % 2 == 0)
+						textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + (k / 2) + 1)));
+				}
 			}
 		}
 	}
@@ -363,13 +372,13 @@ void ecs::ExplorationScene::setupDiarioPages() {
 void ecs::ExplorationScene::changeDiarioPages(bool forward) {
 	if (forward) {
 		diario_->getComponent<RenderImage>()->nextTexture();
-		if (currentDiarioPage < (diarioText_.size() / 2) - 1)
-			currentDiarioPage++;
+		if (currentDiarioPage < diarioText_.size() - 2)
+			currentDiarioPage = currentDiarioPage + 2;
 	}
 	else {
 		diario_->getComponent<RenderImage>()->previousTexture();
 		if (currentDiarioPage > 0)
-			currentDiarioPage--;
+			currentDiarioPage = currentDiarioPage - 2;
 	}
 		
 
@@ -379,13 +388,13 @@ void ecs::ExplorationScene::changeDiarioPages(bool forward) {
 
 
 	leftPageRnd->setTexture(new Texture(sdlutils().renderer(),
-		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage * 2], 
+		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage ], 
 		sdlutils().fonts().at("simpleHandmade50"),
 		build_sdlcolor(0x00000000ff), 245));
 	leftPageTr->setWidth(leftPageRnd->getTexture()->width());
 	leftPageTr->setHeith(leftPageRnd->getTexture()->height());
 	rightPageRnd->setTexture(new Texture(sdlutils().renderer(),
-		diarioText_.size() < 1 ? " " : diarioText_[(currentDiarioPage * 2) + 1], 
+		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage+ 1], 
 		sdlutils().fonts().at("simpleHandmade50"),
 		build_sdlcolor(0x00000000ff), 245));
 	rightPageTr->setWidth(rightPageRnd->getTexture()->width());

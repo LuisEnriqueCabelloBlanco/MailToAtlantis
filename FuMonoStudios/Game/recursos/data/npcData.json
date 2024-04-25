@@ -570,7 +570,7 @@
     }
   },
   "Tarotisa": {
-    "Felicidad": "NoHabladoAun",
+    "Felicidad": "Normal",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
     "DiasConEvento": {
