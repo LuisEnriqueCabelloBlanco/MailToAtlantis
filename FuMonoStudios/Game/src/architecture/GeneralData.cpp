@@ -248,15 +248,13 @@ void GeneralData::readNPCData() {
 			for (auto it : eventosCompletados)
 			{
 				data->eventosCompletados[k].first = true;
-				if (it->AsNumber() < 0)
-					data->eventosCompletados[k].second = false;
-				else
-					data->eventosCompletados[k].second = true;
+				data->eventosCompletados[k].second = it->AsNumber();
 				k++;
 			}
 			for (int z = k; z < 14; z++)
-				data->eventosCompletados[z] = std::make_pair(false, false);
-			npcData.emplace((Personaje)k, data);
+				data->eventosCompletados[z] = std::make_pair(false, 0);
+
+			npcData.emplace((Personaje)i, data);
 		}
 		else
 		{
@@ -277,15 +275,13 @@ void GeneralData::readNPCData() {
 			for (auto it : eventosCompletados)
 			{
 				data->eventosCompletados[k].first = true;
-				if (it->AsNumber() < 0)
-					data->eventosCompletados[k].second = false;
-				else
-					data->eventosCompletados[k].second = true;
+				data->eventosCompletados[k].second = it->AsNumber();
 				k++;
 			}
 			for (int z = k; z < 5; z++)
-				data->eventosCompletados[z] = std::make_pair(false, false);
-			npcData.emplace((Personaje)k,data);
+				data->eventosCompletados[z] = std::make_pair(false, 0);
+
+			npcData.emplace((Personaje)i,data);
 		}
 		jValue = nullptr;
 	}
@@ -327,17 +323,19 @@ void GeneralData::writeNPCData() {
 		contenido.replace(posMisionesAc, (contenido.find('\n', posMisionesAc)) - posMisionesAc,
 			std::to_string(data->numMisionesAceptadas) + ",");
 
-		int posEventosCompletados = contenido.find("EventosCompletados", posPersonaje) + 23;
+		int posEventosCompletados = contenido.find("EventosCompletados", posPersonaje) + 21;
 		std::string newEventosString = "[";
-		for (int i = 1; i < data->eventosCompletados.size() + 1; i++)
+		for (int i = 0; i < data->eventosCompletados.size(); i++)
 		{
 			// si ha sido completado
 			if (data->eventosCompletados[i].first)
 			{
-				newEventosString += std::to_string(data->eventosCompletados[i].second ? i : -i) += ",";
+				newEventosString += std::to_string(data->eventosCompletados[i].second) += ",";
 			}
-			newEventosString += "],";
 		}
+		if (newEventosString[newEventosString.size() - 1] == ',')
+			newEventosString.pop_back();
+		newEventosString += "],";
 		contenido.replace(posEventosCompletados, (contenido.find('\n', posEventosCompletados)) - 
 			posEventosCompletados, newEventosString);
 

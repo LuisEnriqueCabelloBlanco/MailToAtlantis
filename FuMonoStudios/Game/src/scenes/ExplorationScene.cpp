@@ -241,7 +241,38 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 void ecs::ExplorationScene::createDiario() {
 	diario_ = addEntity(ecs::layer::UI);
 	diario_->addComponent<Transform>(1300, 1000, 600, 400);
-	diario_->addComponent<RenderImage>(&sdlutils().images().at("diario1"));
+
+	// texto
+	ecs::Entity* textoDiarioLeft = addEntity(ecs::layer::UI);
+	leftPageTr = textoDiarioLeft->addComponent<Transform>(55, 80, 1, 1);
+	leftPageTr->setParent(diario_->getComponent<Transform>());
+	leftPageRnd = textoDiarioLeft->addComponent<RenderImage>();
+
+	ecs::Entity* textoDiarioRight = addEntity(ecs::layer::UI);
+	rightPageTr = textoDiarioRight->addComponent<Transform>(307, 40, 1, 1);
+	rightPageTr->setParent(diario_->getComponent<Transform>());
+	rightPageRnd = textoDiarioRight->addComponent<RenderImage>();
+
+	setupDiarioPages();
+
+	// botones de pasar pagina
+
+	factory_->setLayer(ecs::layer::UI);
+	ecs::Entity* pasarPagIzq = factory_->createImageButton(Vector2D(43,315),Vector2D(40,40), 
+		&sdlutils().images().at("cambioPag"), [this]() {
+			changeDiarioPages(false);
+		});
+	pasarPagIzq->getComponent<Transform>()->setParent(diario_->getComponent<Transform>());
+	pasarPagIzq->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
+
+	ecs::Entity* pasarPagDer = factory_->createImageButton(Vector2D(516, 315), Vector2D(40, 40),
+		&sdlutils().images().at("cambioPag"), [this]() {
+			changeDiarioPages(true);
+		});
+	pasarPagDer->getComponent<Transform>()->setParent(diario_->getComponent<Transform>());
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+
 	diario_->addComponent<MoverTransform>(Easing::EaseOutBack);
 	HoverSensorComponent* hoverComp = diario_->addComponent<HoverSensorComponent>();
 	hoverComp->addInCall([this]() {
@@ -258,14 +289,107 @@ void ecs::ExplorationScene::createDiario() {
 		if (!comp->isEnabled())
 			comp->enable();
 	});
+}
 
-	// texto
-	ecs::Entity* textoDiario = addEntity(ecs::layer::UI);
-	Transform* textTr = textoDiario->addComponent<Transform>(50, 50, 300, 600);
-	textTr->setParent(diario_->getComponent<Transform>());
-	RenderImage* textRnd = textoDiario->addComponent<RenderImage>();
-	textRnd->setTexture(new Texture(sdlutils().renderer(), "Anemos", sdlutils().fonts().at("simpleHandmade50"),
-		build_sdlcolor(0x00000000ff), 20));
+void ecs::ExplorationScene::setupDiarioPages() {
+	RenderImage* rendComp = diario_->getComponent<RenderImage>();
+	if (rendComp == nullptr)
+		rendComp = diario_->addComponent<RenderImage>();
+
+	std::vector<Texture*> textureVec;
+	bool diarioVacio = true;
+	for (int i = 0; i < 7; i++) {
+		NPCdata* data = generalData().getNPCData((npc::Personaje)i);
+		if (data->felicidad != NoHabladoAun)
+		{
+			diarioVacio = false;
+			//procesamos los textos
+			std::string textoPersonaje = "";
+			int j = 0;
+			bool eventoCompletado = true;
+			while (eventoCompletado && j < data->eventosCompletados.size()) {
+				eventoCompletado = data->eventosCompletados[j].first;
+				if (eventoCompletado) {
+					textoPersonaje = textoPersonaje + "- Dia " + std::to_string(std::abs(
+						data->eventosCompletados[j].second)) + "- " + data->events[j]->textoDiario += "\n";
+				}
+				j++;
+			}
+
+			j = 0;
+			while (textoPersonaje.size() > 0) {
+				int maxLen = j % 2 == 0 ? MAX_CHAR_LEN_LEFT_DIARIO : MAX_CHAR_LEN_RIGHT_DIARIO;
+				diarioText_.push_back(textoPersonaje.substr(0, maxLen));
+				if (textoPersonaje.length() < maxLen)
+					textoPersonaje.clear();
+				else
+					textoPersonaje.substr(maxLen);
+				j++;
+			}
+
+			// añadimos pag vacia para que no quede desparejo
+			if (j % 2 != 0)
+				diarioText_.push_back(" ");
+
+			//ponemos sus paginas
+			for (int k = 0; k < j; k++) {
+				if (k % 2 == 0)
+					textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + (k / 2) + 1)));
+			}
+		}
+	}
+
+	if (diarioVacio)
+		textureVec.push_back(&sdlutils().images().at("bookTest"));
+
+	diario_->getComponent<RenderImage>()->setVector(textureVec);
+
+	if (!diarioVacio)
+	{
+		currentDiarioPage = 0;
+		leftPageRnd->setTexture(new Texture(sdlutils().renderer(),
+			diarioText_[currentDiarioPage], sdlutils().fonts().at("simpleHandmade50"),
+			build_sdlcolor(0x00000000ff), 245));
+		leftPageTr->setWidth(leftPageRnd->getTexture()->width());
+		leftPageTr->setHeith(leftPageRnd->getTexture()->height());
+		rightPageRnd->setTexture(new Texture(sdlutils().renderer(),
+			diarioText_[currentDiarioPage + 1], sdlutils().fonts().at("simpleHandmade50"),
+			build_sdlcolor(0x00000000ff), 245));
+		rightPageTr->setWidth(rightPageRnd->getTexture()->width());
+		rightPageTr->setHeith(rightPageRnd->getTexture()->height());
+	}
+}
+
+void ecs::ExplorationScene::changeDiarioPages(bool forward) {
+	if (forward) {
+		diario_->getComponent<RenderImage>()->nextTexture();
+		if (currentDiarioPage < (diarioText_.size() / 2) - 1)
+			currentDiarioPage++;
+	}
+	else {
+		diario_->getComponent<RenderImage>()->previousTexture();
+		if (currentDiarioPage > 0)
+			currentDiarioPage--;
+	}
+		
+
+	Texture* oldTex = leftPageRnd->getTexture();
+	if (oldTex != nullptr)	
+		delete oldTex;
+
+
+	leftPageRnd->setTexture(new Texture(sdlutils().renderer(),
+		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage * 2], 
+		sdlutils().fonts().at("simpleHandmade50"),
+		build_sdlcolor(0x00000000ff), 245));
+	leftPageTr->setWidth(leftPageRnd->getTexture()->width());
+	leftPageTr->setHeith(leftPageRnd->getTexture()->height());
+	rightPageRnd->setTexture(new Texture(sdlutils().renderer(),
+		diarioText_.size() < 1 ? " " : diarioText_[(currentDiarioPage * 2) + 1], 
+		sdlutils().fonts().at("simpleHandmade50"),
+		build_sdlcolor(0x00000000ff), 245));
+	rightPageTr->setWidth(rightPageRnd->getTexture()->width());
+	rightPageTr->setHeith(rightPageRnd->getTexture()->height());
 }
 
 ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::string& character, float scale) {

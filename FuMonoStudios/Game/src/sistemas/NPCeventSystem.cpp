@@ -62,14 +62,13 @@ void NPCeventSystem::minigameOver() {
 
 	for (NPCevent* event : activeEventsNPCs)
 	{
+		std::cout << "Event " << (event->completed ? "completed" : "failed");
+		NPCdata* data = generalData().getNPCData(event->personaje);
+		data->eventosCompletados[event->numEvento].first = true;
+		data->eventosCompletados[event->numEvento].second = 
+			generalData().getDay() * event->completed ? 1 : -1;
 		if (event->completed)
-		{
-			std::cout << "Event completed";
-			NPCdata* data = generalData().getNPCData(event->personaje);
-			data->eventosCompletados[event->numEvento].first = true;
-			data->eventosCompletados[event->numEvento].second = event->completed;
 			procesarStringRecompensas(event->recompensas);
-		}
 	}
 
 	while (areTherePaquetesNPC())
@@ -463,12 +462,13 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject obj, NPCevent* auxEve
 void NPCeventSystem::readNPCevent(JSONObject eventObject, int personaje, int index) {
 	NPCevent* auxEvent = new NPCevent();
 
-	auxEvent->personaje = (Personaje)personaje;
+	auxEvent->personaje = (npc::Personaje)personaje;
 	auxEvent->numEvento = index;
 
 	JSONObject currentEvent = eventObject.find(std::to_string(index + 1))->second->AsObject();
 	auxEvent->numPaquetes = currentEvent.find("numPaquetes")->second->AsNumber();
 	auxEvent->numPaquetesToComplete = currentEvent.find("numPaquetesParaCompletar")->second->AsNumber();
+	auxEvent->textoDiario = currentEvent.find("textoDiario")->second->AsString();
 
 	// Si es especial, nos saltamos el resto
 	auto isSpecial = currentEvent.find("special");

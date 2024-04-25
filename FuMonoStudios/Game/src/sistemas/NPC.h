@@ -67,7 +67,7 @@ namespace npc {
 		int numMisionesAceptadas;
 		std::vector<NPCevent*> events;
 		// el primero es si ha sido completado, el segundo es si ha sido succesful
-		std::vector<std::pair<bool, bool>> eventosCompletados;
+		std::vector<std::pair<bool, int>> eventosCompletados;
 		bool postConversation;
 	};
 

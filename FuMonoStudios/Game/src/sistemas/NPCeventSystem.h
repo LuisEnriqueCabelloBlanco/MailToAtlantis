@@ -19,6 +19,7 @@ public:
 	std::vector<std::string> recompensas;
 	std::vector<Paquete*> paquetes;
 	std::vector<std::vector<Condition>> condiciones;
+	std::string textoDiario;
 
 	bool completed = false;
 	int numPaquetes;

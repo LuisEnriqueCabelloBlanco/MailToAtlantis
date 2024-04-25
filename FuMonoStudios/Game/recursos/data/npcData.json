@@ -3,7 +3,7 @@
     "Felicidad": "Normal",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
-    "EventosCompletados": [1, 2, 3],
+    "EventosCompletados": [1,2],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -28,7 +28,7 @@
           "1": "Vagabundo+",
           "2": "Secretario-"
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela"
       },
       "2": {
         "numPaquetes": 1,
@@ -40,7 +40,7 @@
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "textoDiario": "Texto diario 2"
       },
       "3": {
         "numPaquetes": 1,
@@ -52,7 +52,7 @@
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "textoDiario": "Texto diario3 "
       },
       "4": {
         "numPaquetes": 1,
@@ -189,10 +189,10 @@
     }
   },
   "Secretario": {
-    "Felicidad": "NoHabladoAun",
+    "Felicidad": "Normal",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
-    "EventosCompletados": [],
+    "EventosCompletados": [1,2],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -204,7 +204,7 @@
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "textoDiario": "Texto diario1"
       },
       "2": {
         "numPaquetes": 1,
@@ -216,7 +216,7 @@
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "textoDiario": "Texto diario2"
       },
       "3": {
         "numPaquetes": 1,
@@ -570,7 +570,7 @@
     }
   },
   "Tarotisa": {
-    "Felicidad": "Normal",
+    "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
     "DiasConEvento": {
@@ -750,7 +750,8 @@
           "tipoPaquete": "Armamento",
           "distrito": "Artemisa"
         },
-        "recompensa": "Soldado++"
+        "recompensa": "Soldado++",
+        "textoDiario": "Texto diario"
       },
       "5": {
         "numPaquetes": 3,
