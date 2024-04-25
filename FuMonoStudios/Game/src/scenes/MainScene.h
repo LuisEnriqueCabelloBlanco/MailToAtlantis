@@ -25,7 +25,7 @@ namespace ecs {
         void createErrorMessage(Paquete* paqComp, bool, bool);
         void createExclamationPoint();
     private:
-        void createManual();
+        void createManual(int NumPages);
         void createMiniManual();
         void createSpaceManual();
         void createMultipleStamp();

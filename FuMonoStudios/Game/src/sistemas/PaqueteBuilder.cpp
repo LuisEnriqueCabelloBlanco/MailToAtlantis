@@ -7,6 +7,7 @@
 #include "../sdlutils/InputHandler.h"
 #include "../json/JSON.h"
 #include "../sistemas/NPCeventSystem.h"
+#include "../components/RenderWithLight.h"
 
 
 PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
@@ -126,7 +127,7 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene)
 		&sdlutils().images().at("caja75"),
 		&sdlutils().images().at("caja100")
 	};
-	auto packageBase = factory->createMultiTextureImage(Vector2D(1600.0f, 600.0f), Vector2D(320.5f, 245.5), textures);
+	auto packageBase = factory->createMultiTextureImage(Vector2D(1600.0f, 800.0f), Vector2D(320.5f, 245.5), textures);
 	//interaccion y fisicas
 	packageBase->addComponent<Depth>();
 	packageBase->addComponent<Gravity>();
@@ -438,6 +439,9 @@ void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) 
 	Transform* distritoTr = distritoEnt->addComponent<Transform>(10, 140, 240, 60);
 	RenderImage* distritoRender = distritoEnt->addComponent<RenderImage>(distritoTex);
 	distritoTr->setParent(paq->getComponent<Transform>());
+	auto hilight = distritoEnt->addComponent<RenderWithLight>();
+	hilight->lightOn();
+
 
 	// Texto remitente
 	ecs::Entity* remitenteEnt = paq->getMngr()->addEntity(ecs::layer::INFO_PACKAGE);

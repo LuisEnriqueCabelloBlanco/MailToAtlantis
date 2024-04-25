@@ -333,7 +333,11 @@
       "id": "Soldado",
       "file": "recursos/images/Abakand Istacoz.png"
     },
+    {
+      "id": "Jefe",
+      "file": "recursos/images/JefeOficina.png"
 
+    },
     {
       "id": "reloj",
       "file": "recursos/images/Reloj.png"
