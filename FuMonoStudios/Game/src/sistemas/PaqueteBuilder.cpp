@@ -439,8 +439,6 @@ void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) 
 	Transform* distritoTr = distritoEnt->addComponent<Transform>(10, 140, 240, 60);
 	RenderImage* distritoRender = distritoEnt->addComponent<RenderImage>(distritoTex);
 	distritoTr->setParent(paq->getComponent<Transform>());
-	auto hilight = distritoEnt->addComponent<RenderWithLight>();
-	hilight->lightOn();
 
 
 	// Texto remitente

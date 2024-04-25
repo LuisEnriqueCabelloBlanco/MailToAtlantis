@@ -141,22 +141,17 @@ bool Transform::getIfPointerIn() const {
 
 void Transform::setActiveChildren(bool act) {
 
-
-	
 	if (!childsTr_.empty()) {
-
 
 		for (auto it : childsTr_) {
 
 			if (it != nullptr) {
 				it->ent_->setActive(act);
 			}
-			
 
 		}
 
 	}
-	
-	
+		
 
 }

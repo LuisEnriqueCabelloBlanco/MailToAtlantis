@@ -192,6 +192,7 @@ void Wrap::update() {
 
 					if (repTimes < 0) {
 
+						tr_->setActiveChildren(false);
 						wrapped = true;
 						ent_->getComponent<Paquete>()->envolver();
 					}
