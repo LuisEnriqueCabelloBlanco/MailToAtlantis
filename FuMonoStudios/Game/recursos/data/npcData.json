@@ -3,7 +3,7 @@
     "Felicidad": "Normal",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
-    "EventosCompletados": [1,2],
+    "EventosCompletados": [3,4,-7],
     "Eventos": {
       "1": {
         "numPaquetes": 1,

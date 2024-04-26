@@ -311,7 +311,9 @@ void ecs::ExplorationScene::setupDiarioPages() {
 				eventoCompletado = data->eventosCompletados[j].first;
 				if (eventoCompletado) {
 					textoPersonaje = textoPersonaje + "- Dia " + std::to_string(std::abs(
-						data->eventosCompletados[j].second)) + "- " + data->events[j]->textoDiario += "\n";
+						data->eventosCompletados[j].second)) + "- " + (
+						(data->eventosCompletados[j].second > 0) ? " (COMPLETADO)" : " (FALLIDO)") + "\n" +
+						data->events[abs(data->eventosCompletados[j].second) - 1]->textoDiario + "\n";
 				}
 				j++;
 			}
@@ -387,8 +389,7 @@ void ecs::ExplorationScene::changeDiarioPages(bool forward) {
 		delete oldTex;
 
 	leftPageRnd->setTexture(new Texture(sdlutils().renderer(),
-		p,
-		//diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage ], 
+		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage ], 
 		sdlutils().fonts().at("simpleHandmade20"),
 		build_sdlcolor(0x00000000ff), 245));
 	leftPageTr->setWidth(leftPageRnd->getTexture()->width());
