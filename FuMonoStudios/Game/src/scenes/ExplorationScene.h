@@ -182,9 +182,11 @@ namespace ecs {
 
 		ecs::Entity* boton_Trabajo;
 
+		void addDiarioEvent(NPCevent* event);
 		void setupDiarioPages();
 		void changeDiarioPages(bool forward);
 		std::vector<std::string> diarioText_;
+		std::vector<int> pagesByCharacter;
 		int currentDiarioPage;
 		ecs::Entity* diario_;
 		RenderImage* leftPageRnd;

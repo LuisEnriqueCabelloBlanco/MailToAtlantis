@@ -52,8 +52,8 @@ namespace npc {
 	// LO DE LOS DIALOGOS
 	struct NPCdata {
 		virtual ~NPCdata() {
-			for (auto it : events)
-				delete it;
+			//for (auto it : events)
+				//delete it;
 		}
 		Personaje npcId;
 		Felicidad felicidad;

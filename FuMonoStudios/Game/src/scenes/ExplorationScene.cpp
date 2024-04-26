@@ -292,6 +292,8 @@ void ecs::ExplorationScene::createDiario() {
 }
 
 void ecs::ExplorationScene::setupDiarioPages() {
+	diarioText_.clear();
+	pagesByCharacter = std::vector<int>(7, 0);
 	RenderImage* rendComp = diario_->getComponent<RenderImage>();
 	if (rendComp == nullptr)
 		rendComp = diario_->addComponent<RenderImage>();
@@ -310,10 +312,25 @@ void ecs::ExplorationScene::setupDiarioPages() {
 			while (eventoCompletado && j < data->eventosCompletados.size()) {
 				eventoCompletado = data->eventosCompletados[j].first;
 				if (eventoCompletado) {
-					textoPersonaje = textoPersonaje + "- Dia " + std::to_string(std::abs(
-						data->eventosCompletados[j].second)) + "- " + (
-						(data->eventosCompletados[j].second > 0) ? " (COMPLETADO)" : " (FALLIDO)") + "\n" +
-						data->events[abs(data->eventosCompletados[j].second) - 1]->textoDiario + "\n";
+					std::string textoCompletado = " (EN CURSO)";
+					textoPersonaje = textoPersonaje + "- Dia ";
+					if (data->eventosCompletados[j].second == 0) // si el evento es de hoy
+					{
+						textoPersonaje = textoPersonaje + std::to_string(generalData().getDay()) +
+							textoCompletado + "\n" + 
+							data->events[generalData().getDay()]->textoDiario + "\n";
+					}
+					else
+					{
+						if (data->eventosCompletados[j].second > 0)
+							textoCompletado = " (COMPLETADO)";
+						else
+							textoCompletado = " (FALLIDO)";
+
+						textoPersonaje = textoPersonaje + std::to_string(std::abs(data->eventosCompletados[j].second))
+							+ "- " + textoCompletado + "\n"
+							+ data->events[abs(data->eventosCompletados[j].second) - 1]->textoDiario + "\n";
+					}
 				}
 				j++;
 			}
@@ -329,9 +346,13 @@ void ecs::ExplorationScene::setupDiarioPages() {
 				j++;
 			}
 
+			pagesByCharacter[i] = j;
 			// añadimos pag vacia para que no quede desparejo
-			if (j % 2 != 0)
+			if (j % 2 != 0) {
 				diarioText_.push_back(" ");
+				pagesByCharacter[i]++;
+			}
+				
 
 			//ponemos sus paginas
 			if (j == 0) // tiene que haber una aunque no haya texto
@@ -402,6 +423,20 @@ void ecs::ExplorationScene::changeDiarioPages(bool forward) {
 	rightPageTr->setHeith(rightPageRnd->getTexture()->height());
 }
 
+void ecs::ExplorationScene::addDiarioEvent(NPCevent* event)
+{
+	NPCdata* data = generalData().getNPCData(event->personaje);
+	int i = 0;
+	while (i < data->eventosCompletados.size())
+	{
+		if (!data->eventosCompletados[i].first)
+			break;
+		i++;
+	}
+	generalData().getNPCData(event->personaje)->eventosCompletados[i] = std::make_pair(true, 0);
+	setupDiarioPages();
+}
+
 ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
 
 	ComonObjectsFactory factory(this);
@@ -431,6 +466,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 					generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
 				}
 				generalData().npcEventSys->activateEvent(event);
+				addDiarioEvent(event);
 				generalData().npcEventSys->shuffleNPCqueue();
 			}
 		}
