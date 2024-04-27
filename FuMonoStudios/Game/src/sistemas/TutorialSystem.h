@@ -35,7 +35,7 @@ public:
 	SellarSegundoPaquete, EnviarSegundoPaquete, EntraTercerPaquete, EnPaginaInfoSellos,
 	EntraCuartoPaquete, ExplicacionFalloAposta, 
 	EntraPaquetePeso, EnviarPaquetePeso, 
-	EntraPaqueteFragil, SellarYEnviarFragil,
+	EntraPaqueteFragil, SellarFragil, EnviarFragil,
 	Fin};
 
 	enum Action { SacarManual, PaginaCodigosPostales, PaginaDistritoHestia, PaqueteEstampado,

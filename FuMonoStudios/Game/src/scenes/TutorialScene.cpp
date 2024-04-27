@@ -69,7 +69,7 @@ void ecs::TutorialScene::close() {
 }
 
 void ecs::TutorialScene::createManual() {
-	constexpr int MANUALNUMPAGES = 8;
+	constexpr int MANUALNUMPAGES = 10;
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 

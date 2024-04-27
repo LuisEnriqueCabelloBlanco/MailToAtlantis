@@ -78,9 +78,9 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			arrow_->getComponent<MoverTransform>()->enable();
 
 			delayedCallback(1.2, [this]() {
-				arrow_->getComponent<Transform>()->setPos(1150, 410);
+				arrow_->getComponent<Transform>()->setPos(1350, 425);
 				arrow_->addComponent<MoverTransform>(Vector2D(800, 700), 1, Easing::EaseOutBack, [this]() {
-					arrow_->getComponent<Transform>()->setPos(1150, 410);
+					arrow_->getComponent<Transform>()->setPos(1350, 425);
 					});
 				arrow_->getComponent<MoverTransform>()->enable();
 				});
@@ -160,7 +160,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		#pragma region Tercer Paquete
 		case TutorialEvent::EntraTercerPaquete:
-			canDrag = true; // CAMBAIR A TRUE PARA EMPEZAR DESDE MAS ADELATNE
+			canDrag = true; // CAMBIAR A TRUE PARA EMPEZAR DESDE MAS ADELANTE
 			canPassPagesManual = false;
 			scene_->deactivateTubos();
 			scene_->createPackage(ecs::TutorialScene::Tercero);
@@ -203,7 +203,12 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 				});
 			break;
 
-		case TutorialEvent::SellarYEnviarFragil:
+		case TutorialEvent::SellarFragil:
+			canDrag = false;
+			activateDialogue(false);
+			break;
+
+		case TutorialEvent::EnviarFragil:
 			canDrag = false;
 			activateDialogue(false);
 			break;
@@ -362,22 +367,35 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 
 		#pragma region Paquete Fragil
 		case TutorialEvent::EntraPaqueteFragil:
+
+			canDrag = true;
+			canPassPagesManual = true;
+			scene_->activateTubos();
+			addActionListener(Action::PaqueteEstampado, [this] {
+				delayedCallback(1, [this] {
+					activateEvent(TutorialSystem::SellarFragil);
+					});
+			});
+
+			break;
+
+		case TutorialEvent::SellarFragil:
 			canDrag = true;
 			waitingEmbalaje = true;
 			addActionListener(Action::Embalado, [this]() {
 				delayedCallback(1, [this] {
-					activateEvent(TutorialSystem::SellarYEnviarFragil);
+					activateEvent(TutorialSystem::EnviarFragil);
 					});
 				});
 			break;
-		case TutorialEvent::SellarYEnviarFragil:
+
+		case TutorialEvent::EnviarFragil:
 			canDrag = true;
-			canPassPagesManual = true;
-			scene_->activateTubos();
-			addActionListener(Action::PaqueteEnviado, [this] {
+			waitingEmbalaje = true;
+			addActionListener(Action::PaqueteEnviado, [this]() {
 				delayedCallback(1, [this] {
 					activateEvent(TutorialSystem::Fin);
-					});				
+					});
 				});
 			break;
 #pragma endregion
@@ -387,9 +405,19 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			canDrag = true;
 			canPassPagesManual = true;
 			waitingPesado = true;
+
+			arrow_->setActive(true);
+
+			// animacion de la flecha
+			arrow_->getComponent<Transform>()->setPos(1350, 625);
+			arrow_->getComponent<Transform>()->setRotation(130);
+			arrow_->addComponent<MoverTransform>(Vector2D(1150, 425), 1, Easing::EaseOutBack);
+			arrow_->getComponent<MoverTransform>()->enable();
+
 			addActionListener(Action::Pesado, [this]() {
 				delayedCallback(1, [this] {
 					activateEvent(TutorialSystem::EnviarPaquetePeso);
+					arrow_->setActive(false);
 					});
 			});
 
