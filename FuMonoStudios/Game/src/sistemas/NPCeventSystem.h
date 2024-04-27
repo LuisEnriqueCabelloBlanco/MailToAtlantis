@@ -11,6 +11,7 @@ class Game;
 
 class NPCevent {
 public:
+	~NPCevent();
 	std::vector<std::string> recompensas;
 	std::vector<Paquete*> paquetes;
 	std::vector<std::vector<Condition>> condiciones;

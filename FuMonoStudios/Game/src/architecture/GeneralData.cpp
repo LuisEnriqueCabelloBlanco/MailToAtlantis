@@ -43,6 +43,15 @@ GeneralData::GeneralData()
 
 GeneralData::~GeneralData() {
 	delete npcEventSys;
+	for (auto obj : intObjData) {
+		delete obj;
+	}
+	for (auto package : paquetesNPCs) {
+		delete package;
+	}
+	for (auto& npc : npcData) {
+		delete npc.second;
+	}
 }
 
 void GeneralData::loadSaveFile()

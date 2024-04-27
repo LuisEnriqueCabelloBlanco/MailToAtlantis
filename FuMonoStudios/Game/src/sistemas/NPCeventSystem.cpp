@@ -580,3 +580,10 @@ void NPCeventSystem::readNPCEventData() {
 		jValueRoot = nullptr;
 	}
 }
+
+NPCevent::~NPCevent()
+{
+	for (auto pq : paquetes) {
+		delete pq;
+	}
+}

@@ -82,6 +82,7 @@ void ComonObjectsFactory::addHoverColorMod(ecs::Entity* entity, SDL_Color c)
 	auto texture = entity->getComponent<RenderImage>()->getTexture();
 	hover->addInCall([texture, c]() {texture->modColor(c.r, c.g, c.b); });
 	hover->addOutCall([texture]() {texture->modColor(255, 255, 255); });
+	hover->addDestoryCall([texture]() {texture->modColor(255, 255, 255); });
 }
 
 void ComonObjectsFactory::addHilghtOnHover(ecs::Entity* entity)

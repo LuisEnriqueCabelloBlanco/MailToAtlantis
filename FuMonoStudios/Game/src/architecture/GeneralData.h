@@ -87,8 +87,6 @@ public:
 private:
 	// vector que contiene los datos de todos los objetos interactuables
 	std::vector<IntObjsData*> intObjData;
-	// vector que contiene los datos de todos los 7 npc
-	std::vector<NPCdata*> npcDataVec_;
 #pragma endregion
 public:
 	GeneralData();
