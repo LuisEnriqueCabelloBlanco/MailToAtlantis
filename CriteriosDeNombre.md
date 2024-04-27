@@ -58,3 +58,7 @@ protected:
 private:
 }
 ```
+
+## Keys de audio
+
+Los sonidos (todos, incluso aquellos que solo van a tener una pull de 1) deben tener un número al final de su nombre base, empezando por el cero de manera ascendente. Por ejemplo, los sonidos del paquete contra la mesa podrían ser llamados 'choque' y sus diferentes keys "choque0", "choque1", "choque2", etc.

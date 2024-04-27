@@ -55,9 +55,22 @@ namespace ecs {
 			PAUSE_SCENE,
 			END_SCENE,
 			TUTORIAL_SCENE,
-			_LAST_SCENE
+			CONFIG_SCENE,
+			_LAST_SCENE,
+			NULL_SCENE
 		};
 		constexpr sceneId maxSceneId = _LAST_SCENE;
+	}
+
+	using scUpg_t = uint8_t;
+	//Namespace para etiquetar las mejoras
+	namespace upg {
+		enum upgradeId : scUpg_t {
+			MONEY_UPGRADE,
+			SELLO_UPGRADE,
+			_LAST_UPGRADE
+		};
+		constexpr upgradeId maxUpgradeId = _LAST_UPGRADE;
 	}
 
 	using lyId_t = uint8_t;

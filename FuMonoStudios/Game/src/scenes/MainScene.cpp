@@ -28,6 +28,7 @@
 #include <QATools/DataCollector.h>
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
+#include "../sistemas/SoundEmiter.h"
 #include <components/HoverSensorComponent.h>
 #include <components/HoverLayerComponent.h>
 #include <components/RenderWithLight.h>
@@ -53,6 +54,12 @@ ecs::MainScene::~MainScene()
 void ecs::MainScene::update()
 {
 	Scene::update();
+	if (gm().gamePaused()) {
+		timerPaused_ = true;
+	}
+	else {
+		timerPaused_ = false;
+	}
 	if (!timerPaused_)
 	{
 		if (timer_ > 0) {
@@ -127,10 +134,12 @@ void ecs::MainScene::init()
 			createTubo((pq::Distrito)z , false);
 	}
 
-	sdlutils().musics().at("office").play();
+	/*sdlutils().musics().at("office").play();
 	sdlutils().musics().at("office").setMusicVolume(50);
 	sdlutils().musics().at("printer").play();
-	sdlutils().musics().at("printer").setMusicVolume(50);
+	sdlutils().musics().at("printer").setMusicVolume(50);*/
+	SoundEmiter::instance()->playMusic("office");
+	SoundEmiter::instance()->playMusic("printer");
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(generalData().getDay());

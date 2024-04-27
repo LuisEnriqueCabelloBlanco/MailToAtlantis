@@ -223,7 +223,7 @@
       "Felicidad maxima Campesino"
     ],
     "Eventos": {
-      
+
       "1": [
         "Paco necesito un favorcillo hijo, a ver si me puedes ayudar",
         "He enviado unas hortalizas a un primo mio que vive en Hestia, pero entre tanto pensar y pensar en otras cosas me confund$i.",
@@ -237,7 +237,7 @@
         "Esos lameculos de los nobles no echar$ian un rastrillo extraviado en falta. Total, ni que esas estatuas sean demasiado importantes"
       ],
       "3": [
-        "Hoy esos idiotas de los intermediarios han subido el precio de mis productos,", 
+        "Hoy esos idiotas de los intermediarios han subido el precio de mis productos,",
         "en los mercados de los barrios bajos ya no es solo que no lo puedan comprar los habitantes,",
         "es que hasta a los propios puestos se les hace el precio excesivo,",
         "si se desviase alg$un paquete de comida Apolo hac$ia los distritos como Hestia tampoco creo que se muriese nadie.",
@@ -245,12 +245,12 @@
       ],
       "4": [
         "Unos amigos alados de cierto grupo me han dicho que por los barrios m$as bajos andan bajos de fondos de  medicinas.",
-        "Ya estamos con las mismas tonter$ias de siempre,", 
+        "Ya estamos con las mismas tonter$ias de siempre,",
         "a Hermes van a llegar una cantidad de medicinas absurda solamente porque hay un brote de gripe gambil.",
         "Y mientras tanto aqu$i abajo con enfermedades mucho peores muri$endonos del asco.",
         "Esos nobles no se merecen ni la d$ecima parte de lo que les llega.",
         "Nosotros en Demeter con dos de sus paquetes ya tendr$iamos suficiente."
-      ],  
+      ],
       "5": [
         "$!Paco, Paco, Paco!",
         "$!Menos mal que est$as aqu$i!",
@@ -338,7 +338,7 @@
         "Gracias por el apoyo Paquito, con todos estos ingresos puedo ver la vida desde otra perspectiva m$as amena."
       ]
     },
-    "GenericoMaxiBueno":{
+    "GenericoMaxiBueno": {
       "1": [
         "Yeeeeeeepa, que tal estamos m$aquina",
         "Prueba esto que est$an los clientes que me los quitan de las manos lo intemediarios,",
@@ -400,7 +400,7 @@
         "$?A qui$en quiere mi jefe enga$%ar con esta baratija? Consigueme desviar un paquete, se que no te decepcionar$e!"
       ],
       "3": [
-        "$!Ay, por las aletas de mi abuela! Aqu$i estamos otra vez, sin un triste trozo de queso." ,
+        "$!Ay, por las aletas de mi abuela! Aqu$i estamos otra vez, sin un triste trozo de queso.",
         "No s$e en qu$e est$a pensando el jefe $ultimamente, pero parece que su cabeza est$a m$as en las aguas que en el trabajo.",
         "$?Ser$ias tan amable de echarme una mano y traer un par de paquetes de comida? $!Necesitamos nutrir nuestra creatividad para hacerla brillar!"
       ],
@@ -549,7 +549,7 @@
         "Tranquilo, no te preocupes por la salud de esas personas, que los remedios caseros de los boticarios son mil veces m$as efectivos que cualquier otra cosa.",
         "Al final esto lo hago por el bien de los habitantes del distrito de Apolo."
       ],
-      
+
       "5": [
         "Sabes, a$un recuerdo mis $epocas como campesina de una manera muy dulce,",
         "sin embargo lo que hasta d$ia de hoy me enfurece es como se aprovechaban esos est$upidos comerciantes para revender lo que tanto nos cost$o cosechar",
@@ -598,7 +598,7 @@
       "1": [
         "Mira quien ha amanecido contento hoy, si es mi muchacho favorito.",
         "A$un parece que no vienen los clientes pero esto en unos minutos se llenar$a hasta reventar.",
-        "Sabes es gracioso," ,
+        "Sabes es gracioso,",
         "una gran parte de los que vienen se quedan haciendo cola por horas y horas para al final preguntarme cosas como qu$e hacer para conseguir amor o riqueza.",
         "No se dan cuenta que en el tiempo que gastan aqu$i podr$ian estar con sus seres queridos, haciendo algo productivo.",
         "Supongo que uno no sabe lo que tiene hasta perderlo."
@@ -994,6 +994,72 @@
       "si llama pichea el cell",
       "estamos fumando marihuana",
       "hoy seras mi esclava en el cuarto de un motel"
+    ]
+  },
+  "CasaGrande": {
+    "TextoCasaGrande": [ "Grande" ]
+  },
+  "CartelOficina": {
+    "TextoCartelOficina": [ "CartelOficina" ]
+  },
+  "Muro": {
+    "TextoMuro": [ "Muro" ]
+  },
+  "TiendaPociones": {
+    "TextoTiendaPociones": [ "TiendaPociones" ]
+  },
+  "TiendaBolas": {
+    "TextoTiendaBolas": [ "TiendaBolas" ]
+  },
+  "TiendaJarrones": {
+    "TextoTiendaJarrones": [ "TiedaJarrones" ]
+  },
+  "Molino": {
+    "TextoMolino": [ "Molino" ]
+  },
+  "Arbol": {
+    "TextoArbol": [ "Arbol" ]
+  },
+  "Carreta": {
+    "TextoCarreta": [ "Carreta" ]
+  },
+  "PulpoCartel": {
+    "TextoPulpoCartel": [ "PulpoCartel" ]
+  },
+  "TiendaCeramica": {
+    "TextoTiendaCeramica": [ "TiendaCeramica" ]
+  },
+  "TiendaEsculturas": {
+    "TextoTiendaEsculturas": [ "TiendaEsculturas" ]
+  },
+  "TiendaDerecha": {
+    "TextoTiendaDerecha": [ "TiendaDerecha" ]
+  },
+  "PanteonIzq": {
+    "TextoPanteonIzq": [ "PanteonIzq" ]
+  },
+  "PanteonDer": {
+    "TextoPanteonDer": [ "PanteonDer" ]
+  },
+  "Panteon": {
+    "TextoPanteon": [ "Panteon" ]
+  },
+  "Edificios": {
+    "TextoEdificios": [ "Edificios" ]
+  },
+  "Charco": {
+    "TextoCharco": [ "Charco" ]
+  },
+  "casa1": {
+    "TextoCasa1": [
+      "Mondongo",
+      ":("
+    ]
+  },
+  "casa2": {
+    "TextoCasa2": [
+      "Mondongo2",
+      ":("
     ]
   }
 }

@@ -50,6 +50,40 @@
                 }
 
             ]}
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 0,
+                "x" : 235.0,
+                "y" : 0.0,
+                "name" : "Molino",
+                "scaleX" : 433,
+                "scaleY" : 505,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 900.0,
+                "y" : 0.0,
+                "name" : "Arbol",
+                "scaleX" : 543,
+                "scaleY" : 785,
+                "dir" : true              
+                },
+
+                {"id" : 2,
+                "x" : 53.0,
+                "y" : 602.0,
+                "name" : "Carreta",
+                "scaleX" : 312,
+                "scaleY" : 338,
+                "dir" : true              
+                }
+
+            ]}
+
         ]
         },
 
@@ -101,7 +135,39 @@
                 }
 
             ]}
-        ]},
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 0,
+                "x" : 87.0,
+                "y" : 69.0,
+                "name" : "PulpoCartel",
+                "scaleX" : 643,
+                "scaleY" : 207,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 1056.0,
+                "y" : 35.0,
+                "name" : "TiendaCeramica",
+                "scaleX" : 198,
+                "scaleY" : 497,
+                "dir" : true              
+                },
+
+                {"id" : 2,
+                "x" : 1614.0,
+                "y" : 0.0,
+                "name" : "TiendaEsculturas",
+                "scaleX" : 281,
+                "scaleY" : 551,
+                "dir" : true              
+                }
+
+            ]}]},
 
         {"id": "Hestia",
         "data": [
@@ -142,7 +208,41 @@
                 }
 
             ]}
-        ]},
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 0,
+                "x" : 0.0,
+                "y" : 0.0,
+                "name" : "CasaGrande",
+                "scaleX" : 300,
+                "scaleY" : 690,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 505.0,
+                "y" : 109.0,
+                "name" : "CartelOficina",
+                "scaleX" : 385,
+                "scaleY" : 165,
+                "dir" : true              
+                },
+
+                {"id" : 2,
+                "x" : 1509.0,
+                "y" : 247.0,
+                "name" : "Muro",
+                "scaleX" : 327,
+                "scaleY" : 429,
+                "dir" : true              
+                }
+
+            ]}
+        ]
+        },
 
         {"id": "Artemisa",
         "data": [
@@ -183,7 +283,39 @@
                 }
 
             ]}
-        ]},
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 0,
+                "x" : 1427.0,
+                "y" : 201.0,
+                "name" : "TiendaPociones",
+                "scaleX" : 489,
+                "scaleY" : 871,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 0.0,
+                "y" : 113.0,
+                "name" : "TiendaBolas",
+                "scaleX" : 277,
+                "scaleY" : 961,
+                "dir" : true              
+                },
+
+                {"id" : 2,
+                "x" : 253.0,
+                "y" : 0.0,
+                "name" : "TiendaJarrones",
+                "scaleX" : 480,
+                "scaleY" : 480,
+                "dir" : true              
+                }
+
+            ]}]},
 
         {"id": "Hermes",
         "data": [
@@ -233,7 +365,39 @@
                 }
 
             ]}
-        ]},
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 0,
+                "x" : 1304.0,
+                "y" : 112.0,
+                "name" : "TiendaDerecha",
+                "scaleX" : 627,
+                "scaleY" : 618,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 517.0,
+                "y" : 9.0,
+                "name" : "PanteonIzq",
+                "scaleX" : 268,
+                "scaleY" : 341,
+                "dir" : true              
+                },
+
+                {"id" : 2,
+                "x" : 819.0,
+                "y" : 120.0,
+                "name" : "PanteonDer",
+                "scaleX" : 408,
+                "scaleY" : 307,
+                "dir" : true              
+                }
+
+            ]}]},
 
         {"id": "Apolo",
         "data": [
@@ -274,7 +438,39 @@
                 }
 
             ]}
-        ]},
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 0,
+                "x" : 57.0,
+                "y" : 75.0,
+                "name" : "Panteon",
+                "scaleX" : 982,
+                "scaleY" : 387,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 1049.0,
+                "y" : 108.0,
+                "name" : "Edificios",
+                "scaleX" : 860,
+                "scaleY" : 310,
+                "dir" : true              
+                },
+
+                {"id" : 2,
+                "x" : 1394.0,
+                "y" : 725.0,
+                "name" : "Charco",
+                "scaleX" : 530,
+                "scaleY" : 352,
+                "dir" : true              
+                }
+
+            ]}]},
 
         {"id": "Poseidon",
         "data": [
@@ -307,7 +503,30 @@
                 }
 
             ]}
-        ]}
+        ],
+        "dataObjs": [
+
+            {"intObj" : [
+
+                {"id" : 1,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "casa1",
+                "scaleX" : 1,
+                "scaleY" : 1,
+                "dir" : true              
+                },
+
+                {"id" : 1,
+                "x" : 600.7,
+                "y" : 600.3,
+                "name" : "casa2",
+                "scaleX" : 1,
+                "scaleY" : 1,
+                "dir" : true              
+                }
+
+            ]}]}
 
     ]
 

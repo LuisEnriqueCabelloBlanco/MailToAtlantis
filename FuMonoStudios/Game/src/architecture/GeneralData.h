@@ -1,6 +1,7 @@
 #pragma once
 #include "../utils/Singleton.h"
 #include "GameConstants.h"
+#include <architecture/ecs.h>
 #include <sistemas/NPC.h>
 #include <vector>
 #include <unordered_map>
@@ -46,9 +47,26 @@ public:
 	Felicidad stringToFelicidad(const std::string& str);
 	std::string felicidadToString(Felicidad);
 
+	// enum con el nombre de todos los Objetos Interactuables
+	enum InteractableObj {
+		CasaGrande, CartelOficina, Muro, //Hestia
+		TiendaPociones, TiendaBolas, TiendaJarrones, //Artemisa
+		Molino, Arbol, Carreta, //Demeter
+		PulpoCartel, TiendaCeramica, TiendaEsculturas, //Hefesto
+		TiendaDerecha, PanteonIzq, PanteonDer, //Hermes
+		Panteon, Edificios, Charco, //Apolo
+		Casa1, Casa2 //Poseidon
+	};
+
 	enum MoveType{DropIn, PickUp};
 
 	
+	struct IntObjsData {
+		IntObjsData(InteractableObj text);
+		InteractableObj texto;
+		virtual const std::string getDialogueInfo();
+
+	};
 #pragma endregion
 
 	void readNPCData();
@@ -59,6 +77,18 @@ public:
 	void incrementarFelicidad(Personaje p, int felicidadIncr);
 
 	NPCeventSystem* npcEventSys = nullptr;
+
+	// METODOS DE INTOBJSdata
+
+	void readIntObjData();
+
+	IntObjsData* getObjData(InteractableObj intobj);
+
+private:
+	// vector que contiene los datos de todos los objetos interactuables
+	std::vector<IntObjsData*> intObjData;
+	// vector que contiene los datos de todos los 7 npc
+	std::vector<NPCdata*> npcDataVec_;
 #pragma endregion
 public:
 	GeneralData();
@@ -80,9 +110,22 @@ public:
 
 	int getMoney() { return dinero_; }
 
+	void setUpgradeValue(ecs::upg::upgradeId upgrade, bool value) {
+		upgrades_[upgrade] = value;
+	}
+
+	bool getUpgradeValue(ecs::upg::upgradeId upgrade) {
+		return upgrades_[upgrade];
+	}
+
 	void setFinalID(int final); //Cambia el ID del final
 	int getFinalID(); //Devuelve el id del final del juego
 
+	void changeParamID(int i, bool suma); //Modifica un parametro en especifico del array y decide si se suma o no
+	int getParam(int i) {
+		std::cout << "El valor del parametro que quieres es: " << paramAjustes_[i] << std::endl;
+		return paramAjustes_[i]; 
+	}
 
 	int getDay() { return dia_; }
 	void setDay(int dia) { dia_ = dia; updateDia(); }
@@ -113,14 +156,27 @@ public:
 	int getRent();
 	void setRent(int rent);
 
+	//Textos personajes
 	const std::string personajeToString(Personaje pers);
 	Personaje stringToPersonaje(const std::string& pers);
+
+	//Textos objetos
+	const std::string objetoToString(InteractableObj pers);
+	InteractableObj stringToObj(const std::string& obj);
+
+	//Textos distritos
 	std::string fromDistritoToString(int i);
 	int fromStringToDistrito(std::string place);
+
+	//Textos calles
 	const std::string calleToString(Calle calle);
 	Calle stringToCalle(const std::string& calle);
+
+	//Textos paquetes
 	const std::string tipoPaqueteToString(TipoPaquete tipo);
 	TipoPaquete stringToTipoPaquete(const std::string& tipo);
+
+	//Textos peso
 	const std::string nivelPesoToString(NivelPeso nivel);
 	NivelPeso stringToNivelPeso(const std::string& nivel);
 
@@ -147,15 +203,20 @@ private:
 	int finalID_; //Variable int que define en la �ltima escena cu�l final se va a reproducir
 	int dia_;
 	int paqueteLvl_ = 0; // de momento es 0
+
+	int paramAjustes_[10]; //Array de ints en el que cada posicion corresponde al numero de configuracion de un parametro
+						  //dentro de los ajustes del juego. Por ejemplo, la posición 1 puede corresponder al
+	                      //nivel de volumen (maximo 100).
+
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
 	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo
 	int numTubos_; // Numero de tubos que habrán en el minijuego de paquetes
 	std::vector<Paquete*> paquetesNPCs;
 	std::vector<std::string> placesToActive_;
-
+	
+	std::vector<bool> upgrades_;
 	//Aqui van las variables que indican si se han conseguido las herramientas especiales de los NPCs
-	bool selloMulticolor = false;
-
+	bool selloMulticolor = false; //Sello multicolor debe estar debtro de updates
 };
 
 inline GeneralData& generalData() {
