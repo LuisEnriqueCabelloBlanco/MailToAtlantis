@@ -109,7 +109,7 @@ void ecs::MainScene::init()
 
 
 	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
-	GeneralData::instance ()->aquireEnvolverRapido ();
+	GeneralData::instance ()->aquireVariosFallos();
 	createCinta();
 
 	createGarbage();

@@ -37,7 +37,7 @@ void GeneralData::loadSaveFile()
 }
 
 void GeneralData::updateMoney()
-{
+{	
 	int rightPackages = corrects_;
 	int wrongPackages = fails_;
 	//funcion de ejemplo seguramente haya que cambiarlo
@@ -54,6 +54,12 @@ int GeneralData::calcularDineroGanado()
 {
 	int rightPackages = corrects_;
 	int wrongPackages = fails_;
+	if (fails_ < failsMargin_) {
+		wrongPackages = 0;
+	}
+	else {
+		wrongPackages -= failsMargin_;
+	}
 	return (rightPackages * WRITE_PACAGES_VALUE) - (wrongPackages * WRONG_PACAGES_VALUE);
 }
 

@@ -140,6 +140,8 @@ public:
 	bool getSelloMulticolor() { return selloMulticolor; }
 	void aquireEnvolverRapido() { envolverRapido = true; }
 	bool getEnvolverRapido() { return envolverRapido; }
+	void aquireVariosFallos() { variosFallos = true; failsMargin_ = 2; }
+	bool getVariosFallos() { return variosFallos; }
 
 	void unlockMejoraPersonaje(Personaje p);
 
@@ -170,6 +172,7 @@ private:
 	//Aqui van las variables que indican si se han conseguido las herramientas especiales de los NPCs
 	bool selloMulticolor = false;
 	bool envolverRapido = false;
+	bool variosFallos = false;
 
 };
 
