@@ -177,7 +177,8 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene, bool esCarta)
 		{
 			herrEnt->interact(packageBase);
 		}
-		}, generalData().DropIn);
+
+	}, generalData().DropIn);
 
 	packageBase->addComponent<MoverTransform>(packageBase->getComponent<Transform>()->getPos() - Vector2D(200, 0),
 		1, Easing::EaseOutBack)->disable();
