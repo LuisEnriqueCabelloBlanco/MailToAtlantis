@@ -29,7 +29,7 @@ namespace ecs {
 
 		void packageSent();
 
-		enum PackageTutorial { Primero, Segundo, Tercero, FallarAposta, Fragil, Random};
+		enum PackageTutorial { Primero, Segundo, Tercero, FallarAposta, Fragil, BalanzaTut, Random};
 		ecs::Entity* createPackage(PackageTutorial pt);
 
 		void createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto);
@@ -58,12 +58,16 @@ namespace ecs {
 
 		void createFragilTool();
 
+		void createBalanza();
+
 		Entity* manualEnt_;
 		Entity* miniManualEnt_;
 
 		TutorialSystem* tutorialSys_;
 
 		PaqueteBuilder* mPaqBuild_;
+
+		bool balanzaUsed;
 
 		// lo mismo que el drag and drop pero funciona unicamente 
 		// si el canDrag esta activo
@@ -85,6 +89,8 @@ namespace ecs {
 			}
 		private:
 			TutorialSystem* tutorialSys_;
+
+			
 		};
 	};
 }
