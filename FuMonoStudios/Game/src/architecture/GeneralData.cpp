@@ -3,6 +3,9 @@
 #include "../json/JSON.h"
 #include "../json/JSONValue.h"
 #include "../sdlutils/RandomNumberGenerator.h"
+
+#include "../architecture/ecs.h"
+#include "../sistemas/SoundEmiter.h"
 #include "../sistemas/PaqueteBuilder.h"
 #include "Game.h"
 #include "../sistemas/NPCeventSystem.h"
@@ -19,7 +22,23 @@ GeneralData::GeneralData()
 	dia_ = INITIAL_DAY;
 	rent_ = 75;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
+	upgrades_.resize(ecs::upg::_LAST_UPGRADE);
+	for (auto upg : upgrades_) {
+		upg = false;
+	}
+	//upgrades_[ecs::upg::MONEY_UPGRADE] = true;
 
+	/*if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
+		std::cout << "Mejora de dinero desbloqueada" << std::endl;
+	}
+	else {
+		std::cout << "Mejora de dinero NO desbloqueada" << std::endl;
+	}*/
+	std::cout << "Tamanyo vector de mejoras: " << upgrades_.size() << std::endl;
+	paramAjustes_[0] = 50;
+	std::cout << "Volumen SFX: " << paramAjustes_[0] << std::endl;
+	soundEmiter().setSoundVolumes(paramAjustes_[0]);
+	//readNPCData();
 }
 
 GeneralData::~GeneralData() {
@@ -47,6 +66,7 @@ void GeneralData::updateMoney()
 	if (corrects_ < 0) {
 		rightPackages = 0;
 	}
+
 	dinero_ += calcularDineroGanado() - rent_;
 }
 
@@ -54,7 +74,14 @@ int GeneralData::calcularDineroGanado()
 {
 	int rightPackages = corrects_;
 	int wrongPackages = fails_;
-	return (rightPackages * WRITE_PACAGES_VALUE) - (wrongPackages * WRONG_PACAGES_VALUE);
+	int totalRightMoney = 0;
+	if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
+		totalRightMoney = rightPackages * (WRITE_PACAGES_VALUE + 10);
+	}
+	else {
+		totalRightMoney = rightPackages * WRITE_PACAGES_VALUE;
+	}
+	return 		totalRightMoney - (wrongPackages * WRONG_PACAGES_VALUE);
 }
 
 void GeneralData::resetMoney()
@@ -211,6 +238,22 @@ int GeneralData::getPaqueteLevel() {
 	return paqueteLvl_;
 }
 
+void GeneralData::changeParamID(int i, bool suma) {
+	if (suma) {
+		paramAjustes_[i] += 10;
+		if (paramAjustes_[i] >= 100) {
+			paramAjustes_[i] = 100;
+		}
+	}
+	else {
+		paramAjustes_[i] -= 10;
+		if (paramAjustes_[i] <= 0) {
+			paramAjustes_[i] = 0;
+		}
+	}
+
+	std::cout << "El valor del parametro ahora es: " << paramAjustes_[i] << std::endl;
+}
 void GeneralData::setPaqueteLevel(int lvl) {
 	paqueteLvl_ = lvl;
 }
@@ -261,6 +304,31 @@ void GeneralData::readNPCData() {
 
 	if (npcEventSys == nullptr)
 		npcEventSys = new NPCeventSystem();
+}
+
+void GeneralData::readIntObjData() {
+	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/intObjsData.json"));
+
+	if (jsonFile == nullptr || !jsonFile->IsObject()) {
+		throw "Something went wrong while load/parsing intObjsData";
+	}
+
+	JSONObject root = jsonFile->AsObject();
+	JSONValue* jValueRoot = nullptr;
+
+	// cargamos los objetos
+
+	for (int i = 0; i < 20; i++)
+	{
+		std::string aux = objetoToString((InteractableObj)i);
+		jValueRoot = root[aux];
+
+		JSONObject jObject = jValueRoot->AsObject();
+		std::string textosStr = jObject.find("Textos")->second->AsString();
+
+		intObjData.push_back(new IntObjsData(stringToObj(textosStr)));
+		jValueRoot = nullptr;
+	}
 }
 
 void GeneralData::writeNPCData() {
@@ -405,7 +473,7 @@ const std::string GeneralData::personajeToString(Personaje pers) {
 }
 
 Personaje GeneralData::stringToPersonaje(const std::string& pers) {
-	Personaje aux;
+	Personaje aux = Vagabundo;
 	// no deja hacer switch y es una cochinada pero es la unica forma de hacerlo
 	//se puede usar un hasmap
 	if (pers == "Vagabundo")
@@ -423,6 +491,90 @@ Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	else if (pers == "Contable")
 		aux = Contable;
 	
+	return aux;
+}
+
+const std::string GeneralData::objetoToString(InteractableObj pers) {
+
+	std::string aux = "";
+	switch (pers) {
+
+		//Hestia
+	case CasaGrande: aux = "CasaGrande"; break;
+	case CartelOficina: aux = "CartelOficina"; break;
+	case Muro: aux = "Muro"; break;
+
+		//Artemisa
+	case TiendaPociones: aux = "TiendaPociones"; break;
+	case TiendaBolas: aux = "TiendaBolas"; break;
+	case TiendaJarrones: aux = "TiendaJarrones"; break;
+
+		//Demeter
+	case Molino: aux = "Molino"; break;
+	case Arbol: aux = "Arbol"; break;
+	case Carreta: aux = "Carreta"; break;
+
+		//Hefesto
+	case PulpoCartel: aux = "PulpoCartel"; break;
+	case TiendaCeramica: aux = "TiendaCeramica"; break;
+	case TiendaEsculturas: aux = "TiendaEsculturas"; break;
+
+		//Hermes
+	case TiendaDerecha: aux = "TiendaDerecha"; break;
+	case PanteonIzq: aux = "PanteonIzq"; break;
+	case PanteonDer: aux = "PanteonDer"; break;
+
+		//Apolo
+	case Panteon: aux = "Panteon"; break;
+	case Edificios: aux = "Edificios"; break;
+	case Charco: aux = "Charco"; break;
+
+		//Poseidon
+	case Casa1: aux = "casa1"; break;
+	case Casa2: aux = "casa2"; break;
+
+	default: break;
+	}
+	return aux;
+}
+
+GeneralData::InteractableObj GeneralData::stringToObj(const std::string& pers) {
+	InteractableObj aux = CasaGrande;
+	
+	//Hestia
+	if (pers == "CasaGrande") aux = CasaGrande;
+	else if (pers == "CartelOficina") aux = CartelOficina;
+	else if (pers == "Muro") aux = Muro;
+
+	//Artemisa
+	else if (pers == "TiendaPociones") aux = TiendaPociones;
+	else if (pers == "TiendaBolas") aux = TiendaBolas;
+	else if (pers == "TiendaJarrones") aux = TiendaJarrones;
+
+	//Demeter
+	else if (pers == "Molino") aux = Molino;
+	else if (pers == "Arbol") aux = Arbol;
+	else if (pers == "Carreta") aux = Carreta;
+
+	//Hefesto
+	else if (pers == "PulpoCartel") aux = PulpoCartel;
+	else if (pers == "TiendaCeramica") aux = TiendaCeramica;
+	else if (pers == "TiendaEsculturas") aux = TiendaEsculturas;
+
+	//Hermes
+	else if (pers == "TiendaDerecha") aux = TiendaDerecha;
+	else if (pers == "PanteonIzq") aux = PanteonIzq;
+	else if (pers == "PanteonDer") aux = PanteonDer;
+
+	//Apolo
+	else if (pers == "Panteon") aux = Panteon;
+	else if (pers == "Edificios") aux = Edificios;
+	else if (pers == "Charco") aux = Charco;
+
+	//Poseidon
+	else if (pers == "casa1") aux = Casa1;
+	else if (pers == "casa2") aux = Casa2;
+
 	return aux;
 }
 
@@ -561,6 +713,8 @@ NivelPeso GeneralData::stringToNivelPeso(const std::string& nivel)
 	return aux;
 }
 
+
+
 // Struct NPCdata
 #pragma region NPCdata
 
@@ -572,4 +726,64 @@ NPCdata* GeneralData::getNPCData(Personaje personaje) {
 	return npc;
 }
 
+GeneralData::IntObjsData::IntObjsData(InteractableObj text)
+{
+	texto = text;
+}
+
+const std::string GeneralData::IntObjsData::getDialogueInfo()
+{
+		std::string aux;
+
+		switch (texto)
+		{
+
+			//Hestia
+		case CasaGrande: aux = "TextoCasaGrande"; break;
+		case CartelOficina: aux = "TextoCartelOficina"; break;
+		case Muro: aux = "TextoMuro"; break;
+
+			//Artemisa
+		case TiendaPociones: aux = "TextoTiendaPociones"; break;
+		case TiendaBolas: aux = "TextoTiendaBolas"; break;
+		case TiendaJarrones: aux = "TextoTiendaJarrones"; break;
+
+			//Demeter
+		case Molino: aux = "TextoMolino"; break;
+		case Arbol: aux = "TextoArbol"; break;
+		case Carreta: aux = "TextoCarreta"; break;
+
+			//Hefesto
+		case PulpoCartel: aux = "TextoPulpoCartel"; break;
+		case TiendaCeramica: aux = "TextoTiendaCeramica"; break;
+		case TiendaEsculturas: aux = "TextoTiendaEsculturas"; break;
+
+			//Hermes
+		case TiendaDerecha: aux = "TextoTiendaDerecha"; break;
+		case PanteonIzq: aux = "TextoPanteonIzq"; break;
+		case PanteonDer: aux = "TextoPanteonDer"; break;
+
+			//Apolo
+		case Panteon: aux = "TextoPanteon"; break;
+		case Edificios: aux = "TextoEdificios"; break;
+		case Charco: aux = "TextoCharco"; break;
+
+			//Poseidon
+		case Casa1: aux = "TextoCasa1"; break;
+		case Casa2: aux = "TextoCasa2"; break;
+		default:
+			break;
+		}
+
+
+		return aux;
+}
+
+GeneralData::IntObjsData* GeneralData::getObjData(InteractableObj intobj)
+{
+	IntObjsData* obj = nullptr;
+	obj = intObjData[intobj];
+
+	return obj;
+}
 #pragma endregion

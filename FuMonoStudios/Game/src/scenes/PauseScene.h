@@ -13,6 +13,5 @@ namespace ecs {
         virtual ~PauseScene();
 
         void init() override;
-        void leaveMenu();
     };
 }

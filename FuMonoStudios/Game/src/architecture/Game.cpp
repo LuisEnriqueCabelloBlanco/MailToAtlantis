@@ -7,6 +7,7 @@
 #include <algorithm>
 #include "../sdlutils/InputHandler.h"
 #include "../scenes/MainScene.h"
+#include "../scenes/ConfigScene.h"
 #include "../scenes/MainMenu.h"
 #include "../scenes/PauseScene.h"
 #include "../scenes/ExplorationScene.h"
@@ -35,7 +36,8 @@ Game::Game() :exit_(false) {
 	SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
 
 	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),
-		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new EndGameScene(),new ecs::TutorialScene()};
+		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new EndGameScene(),new ecs::TutorialScene(), new ecs::ConfigScene()};
+	gamePaused_ = false;
 
 	loadScene(ecs::sc::MENU_SCENE);
 }
@@ -83,9 +85,7 @@ void Game::run()
 		}
 		/*if (ih().isKeyDown(SDL_SCANCODE_P)) {
 			loadScene(ecs::sc::PAUSE_SCENE);
-		}
-		if (ih().isKeyDown(SDL_SCANCODE_L)) {
-			killScene(ecs::sc::PAUSE_SCENE);
+			gamePaused_ = true;
 		}
 		if (ih().isKeyDown(SDL_SCANCODE_E)) {
 			changeScene(ecs::sc::MENU_SCENE, ecs::sc::MAIN_SCENE);
@@ -194,7 +194,9 @@ void Game::changeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2) {
 		generalData().setFinalID(3);
 	}
 	killScene(scene1);
-	loadScene(scene2);
+	if (scene2 != ecs::sc::NULL_SCENE) {
+		loadScene(scene2);
+	}
 	/*if (loadedScenes.size() < 1) {
 		loadScene(scene2);
 	}*/

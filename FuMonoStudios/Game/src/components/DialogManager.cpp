@@ -211,6 +211,25 @@ void DialogManager::startConversation(const std::string& character)
     }
 }
 
+void DialogManager::startConversationWithObj(const std::string& interactableObj)
+{
+    if (canStartConversation)
+    {
+        auto obj = generalData().stringToObj(interactableObj); //de que objeto queremos el dialogo
+        auto data = generalData().getObjData(obj); //data de dicho objeto
+
+        // activamos los dialogos correspondientes
+        const std::string aux = data->getDialogueInfo();
+        
+        setDialogues((DialogManager::DialogSelection)(generalData().stringToObj(interactableObj) + 10), aux);
+
+        setDialogueEntitiesActive(true);
+
+        std::cout << "jefe otro dialogo que este tenia un agujero\n";
+        canStartConversation = false;
+    }
+}
+
 void DialogManager::closeDialogue()
 {
     setDialogueEntitiesActive(false);
@@ -317,6 +336,43 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
     case BryantMyers:
         aux = "EsclavaRemix";
         break;
+
+    //Dialogos objetos distritos
+        //Hestia
+    case CasaGrande: aux = "CasaGrande"; break;
+    case CartelOficina: aux = "CartelOficina"; break;
+    case Muro: aux = "Muro"; break;
+
+        //Artemisa
+    case TiendaPociones: aux = "TiendaPociones"; break;
+    case TiendaBolas: aux = "TiendaBolas"; break;
+    case TiendaJarrones: aux = "TiendaJarrones"; break;
+
+        //Demeter
+    case Molino: aux = "Molino"; break;
+    case Arbol: aux = "Arbol"; break;
+    case Carreta: aux = "Carreta"; break;
+
+        //Hefesto
+    case PulpoCartel: aux = "PulpoCartel"; break;
+    case TiendaCeramica: aux = "TiendaCeramica"; break;
+    case TiendaEsculturas: aux = "TiendaEsculturas"; break;
+
+        //Hermes
+    case TiendaDerecha: aux = "TiendaDerecha"; break;
+    case PanteonIzq: aux = "PanteonIzq"; break;
+    case PanteonDer: aux = "PanteonDer"; break;
+
+        //Apolo
+    case Panteon: aux = "Panteon"; break;
+    case Edificios: aux = "Edificios"; break;
+    case Charco: aux = "Charco"; break;
+
+        //Poseidon
+    case Casa1: aux = "casa1"; break;
+    case Casa2: aux = "casa2"; break;
+
+    //default: break;
     }
     return aux;
 }
