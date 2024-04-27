@@ -371,29 +371,29 @@
             {"intObj" : [
 
                 {"id" : 0,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 1304.0,
+                "y" : 112.0,
                 "name" : "TiendaDerecha",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 627,
+                "scaleY" : 618,
                 "dir" : true              
                 },
 
                 {"id" : 1,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 517.0,
+                "y" : 9.0,
                 "name" : "PanteonIzq",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 268,
+                "scaleY" : 341,
                 "dir" : true              
                 },
 
                 {"id" : 2,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 819.0,
+                "y" : 120.0,
                 "name" : "PanteonDer",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 408,
+                "scaleY" : 307,
                 "dir" : true              
                 }
 
@@ -444,29 +444,29 @@
             {"intObj" : [
 
                 {"id" : 0,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 57.0,
+                "y" : 75.0,
                 "name" : "Panteon",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 982,
+                "scaleY" : 387,
                 "dir" : true              
                 },
 
                 {"id" : 1,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 1049.0,
+                "y" : 108.0,
                 "name" : "Edificios",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 860,
+                "scaleY" : 310,
                 "dir" : true              
                 },
 
                 {"id" : 2,
-                "x" : 600.7,
-                "y" : 600.3,
+                "x" : 1394.0,
+                "y" : 725.0,
                 "name" : "Charco",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "scaleX" : 530,
+                "scaleY" : 352,
                 "dir" : true              
                 }
 

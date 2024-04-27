@@ -277,7 +277,7 @@ ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const st
 	ComonObjectsFactory factory(this);
 
 	//Texture* characterTexture = &sdlutils().images().at(interactableObj);
-	Vector2D size{ 300 * scaleX, 200 * scaleY };
+	Vector2D size{ scaleX, scaleY };
 
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, interactableObj]() {

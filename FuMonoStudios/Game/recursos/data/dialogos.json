@@ -1000,7 +1000,7 @@
     "TextoCasaGrande": [ "Grande" ]
   },
   "CartelOficina": {
-    "TextoCasaGrande": [ "CartelOficina" ]
+    "TextoCartelOficina": [ "CartelOficina" ]
   },
   "Muro": {
     "TextoMuro": [ "Muro" ]

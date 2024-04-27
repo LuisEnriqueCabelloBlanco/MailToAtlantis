@@ -1,6 +1,6 @@
 {
     "CasaGrande": {
-        "Textos": "Grande"
+        "Textos": "CasaGrande"
     }, 
     "CartelOficina": {
         "Textos": "CartelOficina"
@@ -15,7 +15,7 @@
         "Textos": "TiendaBolas"
     },
     "TiendaJarrones": {
-        "Textos": "TiedaJarrones"
+        "Textos": "TiendaJarrones"
     },
     "Molino": {
         "Textos": "Molino"
