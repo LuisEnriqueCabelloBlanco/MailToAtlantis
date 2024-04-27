@@ -220,8 +220,11 @@ void DialogManager::startConversationWithObj(const std::string& interactableObj)
 
         // activamos los dialogos correspondientes
         const std::string aux = data->getDialogueInfo();
-        
-        setDialogues((DialogManager::DialogSelection)(generalData().stringToObj(interactableObj) + 10), aux);
+        const std::string aux2 = std::to_string(generalData().getDay());
+
+        const std::string aux3 = std::to_string(sdlutils().rand().nextInt(0, 3));
+
+        setDialogues((DialogManager::DialogSelection)(generalData().stringToObj(interactableObj) + 10), aux+aux2+aux3);
 
         setDialogueEntitiesActive(true);
 
