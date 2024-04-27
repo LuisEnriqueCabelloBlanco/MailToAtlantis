@@ -9,11 +9,14 @@
 #include "../sdlutils/InputHandler.h"
 #include "../components/PackageChecker.h"
 #include "../components/ErrorNote.h"
+#include "../components/Balanza.h"
+#include "../components/RotarTransform.h"
 
-ecs::TutorialScene::TutorialScene() : Scene() {
+ecs::TutorialScene::TutorialScene() : Scene(), balanzaUsed(false) {
 
 	tutorialSys_ = new TutorialSystem(this);
 	mPaqBuild_ = new PaqueteBuilder(this);
+	
 }
 
 ecs::TutorialScene::~TutorialScene() {
@@ -67,7 +70,7 @@ void ecs::TutorialScene::close() {
 }
 
 void ecs::TutorialScene::createManual() {
-	constexpr int MANUALNUMPAGES = 8;
+	constexpr int MANUALNUMPAGES = 10;
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 
@@ -137,8 +140,8 @@ void ecs::TutorialScene::createMiniManual() {
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
 
-	float minimanualX = 1200;
-	float minimanualY = 500;
+	float minimanualX = 1450;
+	float minimanualY = 525;
 
 	factory_->setLayer(ecs::layer::MINIMANUAL);
 
@@ -211,7 +214,7 @@ void ecs::TutorialScene::createSpaceManual() {
 
 	Texture* bookTextures = &sdlutils().images().at("atrilManual");
 
-	auto baseManual = factory_->createImage(Vector2D(1200, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
+	auto baseManual = factory_->createImage(Vector2D(1450, 525), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
 
 	Transform* manualTransform = baseManual->getComponent<Transform>();
 	RenderImage* manualRender = baseManual->getComponent<RenderImage>();
@@ -364,6 +367,8 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 		paquete = mPaqBuild_->customPackage(Demeter, C3, "Jhonny Huesos", Medicinas);
 	else if (pt == Fragil)
 		paquete = mPaqBuild_->customPackage(Hestia, C3, "Travis Lubin", Alimento,true, pq::Ninguno,0,true);
+	else if (pt == BalanzaTut)
+		paquete = mPaqBuild_->customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Medio, 90);
 	else
 		paquete = mPaqBuild_->buildPackage(1, this);
 
@@ -422,6 +427,52 @@ void ecs::TutorialScene::createFragilTool() {
 	cinta->addComponent<DragAndDropTutorial>(true, tutorialSys_,"arrastrar");
 	cinta->addComponent<Depth>();
 	factory_->setLayer(ecs::layer::DEFAULT);
+}
+
+void ecs::TutorialScene::createBalanza() {
+
+	float scale = 0.3;
+
+	// Balanza
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanza = factory_->createImage(Vector2D(30, 110), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
+	Transform* balanzaTr = balanza->getComponent<Transform>();
+	balanza->addComponent<MoverTransform>();
+	balanzaTr->setScale(scale);
+	Balanza* balanzaComp = balanza->addComponent<Balanza>();
+
+	// BalanzaB
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanzaB = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaB").width(), sdlutils().images().at("balanzaB").height()), &sdlutils().images().at("balanzaB"));
+	Transform* balanzaBTr = balanzaB->getComponent<Transform>();
+	balanzaBTr->setScale(scale);
+
+	// BalanzaBase
+	factory_->setLayer(ecs::layer::BALANZABASE);
+	Entity* baseBalanza = factory_->createImage(Vector2D(1100, 300), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
+	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
+	balanzaBaseTr->setScale(scale);
+
+	// BalanzaFlecha
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(45, 20), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
+	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
+	balanzaFlechaTr->setScale(scale);
+	RotarTransform* rotComp = balanzaFlecha->addComponent<RotarTransform>();
+
+	// Seteamos padres
+	balanzaTr->setParent(balanzaBaseTr);
+	balanzaBTr->setParent(balanzaTr);
+	balanzaFlechaTr->setParent(balanzaBaseTr);
+
+
+	Trigger* balanzaTri = balanza->addComponent<Trigger>();
+
+	balanzaTri->addCallback([this, rotComp, balanzaComp, balanzaB](ecs::Entity* entRect) {balanzaComp->initAnimations(entRect, balanzaB, rotComp); }, generalData().DropIn);
+	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(entRect, rotComp); balanzaUsed = true; }, generalData().PickUp);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+
 }
 
 void ecs::TutorialScene::packageSent() {

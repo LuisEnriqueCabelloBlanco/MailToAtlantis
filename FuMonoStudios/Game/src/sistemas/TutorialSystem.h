@@ -34,11 +34,13 @@ public:
 	PaqueteEnseñarCodigoPostal, PaqueteBuscarPaginaCodigosPostales, BuscarPaginaHestia,
 	EnseñarSellos, EnseñarTubos, EntraSegundoPaquete, SegundoBuscarPaginaDistritos, 
 	SellarSegundoPaquete, EnviarSegundoPaquete, EntraTercerPaquete, EnPaginaInfoSellos,
-	EntraCuartoPaquete, ExplicacionFalloAposta, EntraPaqueteFragil, SellarYEnviarFragil,
+	EntraCuartoPaquete, ExplicacionFalloAposta, 
+	EntraPaquetePeso, EnviarPaquetePeso, 
+	EntraPaqueteFragil, SellarFragil, EnviarFragil,
 	Fin};
 
 	enum Action { SacarManual, PaginaCodigosPostales, PaginaDistritoHestia, PaqueteEstampado,
-	PaqueteEnviado, PaginaDistritoDemeter, PaginaSellos, Basura, Embalado};
+	PaqueteEnviado, PaginaDistritoDemeter, PaginaSellos, Basura, Embalado, Pesado};
 
 	TutorialSystem(ecs::TutorialScene* scene);
 	~TutorialSystem();
@@ -80,5 +82,7 @@ private:
 
 	Wrap* waitingWrapComp;
 	bool waitingEmbalaje;
+
+	bool waitingPesado;
 };
 

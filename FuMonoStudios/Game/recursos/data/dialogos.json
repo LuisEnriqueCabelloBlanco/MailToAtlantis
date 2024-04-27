@@ -975,15 +975,28 @@
       "Fijate que te ha salido una notita explicando tu error. Cada paquete correcto son 20 dolares, y cada paquete err$oneo son 30 dolares, que van subiendo seg$un tus fallos.",
       "Espero no ver muchas notitas cuando trabajes... El anterior a ti le hacia demasiados favores a la gente de la ciudad y acababa no ganando nada..."
     ],
-    "17": [
-      "Vale esta es la $ultima cosa que tengo que explicarte. Para ello vas a necesitar la herramienta que te acabo de soltar en la mesa",
-      "Algunos paquetes pueden contener cosas muy delicadas, y sus propietarios les ponen un sello de fr$agil para que nosotros lo embalemos bien.",
-      "Para poder embalarlo, coge la herramienta de embalar, y sigue la ruta de puntos que ver$as al ponerlo por encima del paquete. Sigue la ruta y se quedar$a niquelado."
+    "17":[
+      "Aqui no acaba la cosa, varios de los paquetes que debes enviar contendran un sello de pesado por motivos de seguridad a la hora de transportarlos.",
+      "Estos sello indican el peso del paquete, pudiendo ser bajo, medio y alto. En el manual tienes unas paginas que explican la diferencia de sellos.",
+      "El problema es que los habitantes no son muy espabilados asi que tendras que asegurarte con la balanaza que el sello de pesado corresponde a su peso",
+      "Para ello fijate en la region a donde apunta la flecha al colocar el paquete en la balanza."
     ],
-    "18": [
-      "Muy bien hecho. Ahora aplica lo que hemos aprendido, ponle su sello y mandalo por su tubo correspondiente."
+    "18":[
+      "Como ves este paquete esta correcto, por lo cual pon sus sellos correspondientes y envialo."
     ],
     "19": [
+      "Vale esta es la $ultima cosa que tengo que explicarte. Para ello vas a necesitar la herramienta que te acabo de soltar en la mesa",
+      "Algunos paquetes pueden contener cosas muy delicadas, y sus propietarios les ponen un sello de fr$agil para que nosotros lo embalemos bien.",
+      "Antes de embalarlo sera mejor que le pongas sello, ya que una vez embalado no podras ver sus caracteristicas."
+    ],
+    "20": [
+      "Para poder embalarlo, coge la herramienta de embalar, y sigue la ruta de puntos que ver$as al ponerlo por encima del paquete.",
+      "Sigue la ruta empezando por el punto verde y te quedar$a niquelado"
+    ],
+    "21": [
+      "Por $ultimo envia el paquete y abras terminado"
+    ],
+    "22": [
       "Muy bien, veo que ya te vas acordando. Ya estas listo para poder trabajar."
     ]
   },
