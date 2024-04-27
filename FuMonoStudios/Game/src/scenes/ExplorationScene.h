@@ -98,7 +98,7 @@ namespace ecs {
         ExplorationScene();
         virtual ~ExplorationScene();
         void init() override;
-        //virtual void close() override {}
+		virtual void close() override;
         void render();
 		void update();
 
@@ -135,6 +135,8 @@ namespace ecs {
 		ecs::Entity* createNavegationsArrows(Vector2D pos, std::string place, float scale, int flip);
 
 		ecs::Entity* createWorkButton(Vector2D pos, Vector2D scale);
+
+		void createDiario();
 
 		/// <summary>
 		/// Metodo factoria para characters
@@ -178,6 +180,7 @@ namespace ecs {
 		bool canStartConversation;
 
 		ecs::Entity* boton_Trabajo;
+		ecs::Entity* diario_;
     };
 }
 

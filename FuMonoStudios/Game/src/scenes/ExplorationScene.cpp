@@ -22,6 +22,8 @@
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
 #include "../sistemas/NPCeventSystem.h"
+#include "../components/HoverSensorComponent.h"
+#include "../components/MoverTransform.h"
 
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
@@ -59,6 +61,8 @@ void ecs::ExplorationScene::init()
 	createObjects(pq::Distrito::Hestia);
 
 	dialogMngr_.init(this);
+
+	createDiario();
 }
 
 
@@ -137,6 +141,11 @@ void ecs::ExplorationScene::update() {
 		
 	}
 	dialogMngr_.update();
+}
+
+void ecs::ExplorationScene::close() {
+	clearScene();
+	diario_->setAlive(false);
 }
 
 void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin const
@@ -230,6 +239,36 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 	return e;
 }
 
+void ecs::ExplorationScene::createDiario() {
+	diario_ = addEntity(ecs::layer::UI);
+	diario_->addComponent<Transform>(1300, 1000, 600, 400);
+	diario_->addComponent<RenderImage>(&sdlutils().images().at("diario1"));
+	diario_->addComponent<MoverTransform>(Easing::EaseOutBack);
+	HoverSensorComponent* hoverComp = diario_->addComponent<HoverSensorComponent>();
+	hoverComp->addInCall([this]() {
+		MoverTransform* comp = diario_->getComponent<MoverTransform>();
+		comp->setFinalPos(Vector2D(1300, 700));
+		comp->setMoveTime(0.2);
+		if (!comp->isEnabled())
+			comp->enable();
+	});
+	hoverComp->addOutCall([this]() {
+		MoverTransform* comp = diario_->getComponent<MoverTransform>();
+		comp->setFinalPos(Vector2D(1300, 1000));
+		comp->setMoveTime(0.2);
+		if (!comp->isEnabled())
+			comp->enable();
+	});
+
+	// texto
+	ecs::Entity* textoDiario = addEntity(ecs::layer::UI);
+	Transform* textTr = textoDiario->addComponent<Transform>(50, 50, 300, 600);
+	textTr->setParent(diario_->getComponent<Transform>());
+	RenderImage* textRnd = textoDiario->addComponent<RenderImage>();
+	textRnd->setTexture(new Texture(sdlutils().renderer(), "Anemos", sdlutils().fonts().at("simpleHandmade50"),
+		build_sdlcolor(0x00000000ff), 20));
+}
+
 ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
 
 	ComonObjectsFactory factory(this);
@@ -253,11 +292,14 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 		if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
 		{
 			NPCevent* event = data->getEvent();
-			for (int i = 0; i < event->numPaquetes; i++) {
-				generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+			if (event != nullptr)
+			{
+				for (int i = 0; i < event->numPaquetes; i++) {
+					generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+				}
+				generalData().npcEventSys->activateEvent(event);
+				generalData().npcEventSys->shuffleNPCqueue();
 			}
-			generalData().npcEventSys->activateEvent(event);
-			generalData().npcEventSys->shuffleNPCqueue();
 		}
 	};
 

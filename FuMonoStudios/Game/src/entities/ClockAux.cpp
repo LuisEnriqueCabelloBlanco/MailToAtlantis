@@ -23,7 +23,7 @@ ClockAux::~ClockAux() {
 void ClockAux::initComponent() {
 	ecs::Scene* mngr = ent_->getMngr();
 
-	ent_->addComponent<Transform>(1340, 510, 210, 140, 0);
+	ent_->addComponent<Transform>(350, 510, 210, 140, 0);
 	clockRender = ent_->addComponent<RenderImage>(&sdlutils().images().at("reloj"));
 
 	ecs::Entity* manecillaL = mngr->addEntity(ecs::layer::BACKGROUND);

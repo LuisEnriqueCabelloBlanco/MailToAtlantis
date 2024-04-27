@@ -11,6 +11,7 @@ public:
 	__CMP_DECL__(ecs::cmp::IMAGEWITHLIGHT)
 	RenderWithLight();
 	RenderWithLight(Texture*);
+	RenderWithLight(Texture*, ecs::layer::layerId);
 	~RenderWithLight();
 
 	void lightOn();
@@ -28,5 +29,7 @@ private:
 	Transform* mTr_;
 
 	ecs::Entity* lightEnt_;
+
+	ecs::layer::layerId layer_;
 };
 
