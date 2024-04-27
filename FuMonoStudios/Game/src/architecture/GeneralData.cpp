@@ -1,3 +1,4 @@
+#include <utils/checkML.h>
 #include "../components/DialogManager.h"
 #include "GeneralData.h"
 #include "../json/JSON.h"
@@ -51,6 +52,7 @@ GeneralData::~GeneralData() {
 	}
 	for (auto& npc : npcData) {
 		delete npc.second;
+		npc.second = nullptr;
 	}
 }
 

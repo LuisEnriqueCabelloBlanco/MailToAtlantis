@@ -179,7 +179,6 @@
     <ClInclude Include="src\sistemas\NPC.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\components\MultipleTextures.h" />
     <ClCompile Include="src\components\DialogManager.cpp" />
     <ClCompile Include="src\components\DialogComponent.cpp" />
     <ClInclude Include="src\components\DialogComponent.h" />

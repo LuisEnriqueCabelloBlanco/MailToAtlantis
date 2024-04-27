@@ -1,3 +1,4 @@
+#include <utils/checkML.h>
 #include "ExplorationScene.h"
 #include "../architecture/Entity.h"
 #include <iostream>
@@ -18,9 +19,13 @@
 #include "../components/DelayedCallback.h"
 #include <architecture/GameConstants.h>
 #include <QATools/DataCollector.h>
+
+#ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
+#endif // DEV_TOOLS
+
 #include "../sistemas/NPCeventSystem.h"
 #include "../components/HoverSensorComponent.h"
 #include "../components/MoverTransform.h"
@@ -170,6 +175,7 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 
 void ecs::ExplorationScene::makeDataWindow()
 {
+#ifdef DEV_TOOLS
 	ImGui::Begin("Exploration Scene Data");
 	if (ImGui::CollapsingHeader("Felicidad Npc")) {
 		for (int i = 0; i < 7; i++) {
@@ -180,6 +186,7 @@ void ecs::ExplorationScene::makeDataWindow()
 		}
 	}
 	ImGui::End();
+#endif // DEV_TOOLS
 }
 
 ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string place, float scale, int flip)

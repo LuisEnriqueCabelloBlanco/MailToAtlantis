@@ -1,4 +1,5 @@
 // dialog_manager.cpp
+#include <utils/checkML.h>
 #include "DialogManager.h"
 #include <fstream>
 
@@ -13,6 +14,10 @@
 DialogManager::DialogManager() : currentDialogIndex_(0),boxBackground(nullptr), textDialogue(nullptr), endDialogueCallback(nullptr)
 {
 
+}
+
+DialogManager::~DialogManager()
+{
 }
 
 
@@ -206,7 +211,10 @@ void DialogManager::startConversation(const std::string& character)
 
 
         std::cout << "jefe otro dialogo que este tenia un agujero\n";
+#ifdef QA_TOOLS
         dataCollector().recordNPC(charac + 1, aux.second, generalData().getNPCData(charac)->felicidad);
+#endif // QA_TOOLS
+
         canStartConversation = false;
     }
 }

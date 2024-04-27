@@ -1,10 +1,13 @@
+#include <utils/checkML.h>
 #include "MainScene.h"
 #include "../architecture/Entity.h"
 #include <iostream>
 #include <fstream>
+#ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
+#endif // DEV_TOOLS
 #include "../sdlutils/SDLUtils.h"
 #include "../components/Transform.h"
 #include "../components/Render.h"
