@@ -17,7 +17,9 @@ void WorkRestrictionsSystem::init()
 
 tb::WorkEvent WorkRestrictionsSystem::getRandomEvent()
 {
-    return getEvent(4);
+    auto& rand = sdlutils().rand();
+    int event = rand.nextInt(1, 5); //cambiar el segundo valor por el ultimo evento que haya en el json
+    return getEvent(event);
 }
 
 tb::WorkEvent WorkRestrictionsSystem::getEvent(int selection)

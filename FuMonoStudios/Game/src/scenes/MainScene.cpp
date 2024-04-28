@@ -87,6 +87,8 @@ void ecs::MainScene::init()
 	std::cout << "Hola Main" << std::endl;
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
 	timer_ = MINIGAME_TIME;
+	timerPaused_ = true;
+
 	// Fondo
 	factory_->setLayer(layer::BACKGROUND);
 	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
@@ -101,7 +103,7 @@ void ecs::MainScene::init()
 	createMiniManual();
 	createSpaceManual();
 
-	createClock();
+	//createClock(); empieza a girar desde que se entra a la escena y queremos que lo haga cuando entres al trabajo
 
 	createInks();
 
@@ -112,12 +114,12 @@ void ecs::MainScene::init()
 	createGarbage();
 
 	int dia = generalData().getDay();
-	if(dia%4 == 2 || dia == 1 || dia == 3 || dia == 5 || dia == 8) //basura lo se
+	if (dia % 4 == 2 || dia == 1 || dia == 3 || dia == 5 || dia == 8) //basura lo se pero la progresion es la que hay, por lo menos he podido hacer aritmetica modular para los eventos del jefe al ser constantes
 	{
-	    createCharacter({ 400, 300 }, "Jefe", 0.1f);
+		createCharacter({ 500, 250 }, "Jefe",0.35f);
 	}
-
-	createPaquete(generalData().getPaqueteLevel());
+	else
+		startWork();
 
 	//creacion de las herramientas
 	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
@@ -142,7 +144,6 @@ void ecs::MainScene::init()
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(generalData().getDay());
-
 }
 
 void ecs::MainScene::close() {
@@ -684,8 +685,9 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 	dialogMngr_.init(this, jsonPath);
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
-	dialogMngr_.setEndDialogueCallback([characterEnt]{
+	dialogMngr_.setEndDialogueCallback([characterEnt, this]{
 		characterEnt->setAlive(false); //bye bye jefe
+		startWork();
 	});
 
 	return characterEnt;
@@ -693,5 +695,7 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 
 void ecs::MainScene::startWork()
 {
-	
+	timerPaused_ = false;
+	createPaquete(generalData().getPaqueteLevel());
+	createClock();
 }
