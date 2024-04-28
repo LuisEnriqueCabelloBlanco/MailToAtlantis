@@ -45,7 +45,7 @@ void ecs::MainMenu::init()
 	auto tuto = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH- 700, 400), "Tutorial", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::TUTORIAL_SCENE);
-		},textColor);
+		}, "click", textColor);
 	factory_->addHilghtOnHover(tuto);
 	factory_->addHoverColorMod(tuto);
 
@@ -53,7 +53,7 @@ void ecs::MainMenu::init()
 	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Nueva partida", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
-		},textColor);
+		},"click", textColor);
 	factory_->addHilghtOnHover(start);
 	factory_->addHoverColorMod(start);
 
@@ -61,14 +61,14 @@ void ecs::MainMenu::init()
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
 		generalData().loadSaveFile();
-		}, textColor);
+		}, "click", textColor);
 	factory_->addHilghtOnHover(loadSave);
 	factory_->addHoverColorMod(loadSave);
 
 	auto exit = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 700), "Salir", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().endGame();
-		},textColor);
+		}, "click", textColor);
 	factory_->addHilghtOnHover(exit);
 	factory_->addHoverColorMod(exit);
 }

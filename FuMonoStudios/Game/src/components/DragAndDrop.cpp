@@ -104,7 +104,9 @@ void DragAndDrop::update() {
 			
 			if (dragging_) {
 
-				if (draggingSound_ != "") {
+				if (draggingSound_ != "") 
+				{
+					std::cout << "nodragging \n";
 					SoundEmiter::instance()->haltSound(draggingSound_);
 				}
 

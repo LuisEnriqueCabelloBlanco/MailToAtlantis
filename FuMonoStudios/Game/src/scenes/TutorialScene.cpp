@@ -109,7 +109,7 @@ void ecs::TutorialScene::createManual() {
 				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
 		}
 		};
-	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
+	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next, "page");
 	right->getComponent<Transform>()->setParent(manualTransform);
 
 	auto previous = [manualRender, this]() {
@@ -127,7 +127,7 @@ void ecs::TutorialScene::createManual() {
 				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
 		}
 		};
-	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous);
+	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous, "page");
 	left->getComponent<Transform>()->setParent(manualTransform);
 	left->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
 

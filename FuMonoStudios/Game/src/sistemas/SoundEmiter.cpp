@@ -4,6 +4,9 @@
 #include "../json/JSON.h"
 #include <exception>
 
+onst int MAX_CHANNELS = 3;
+
+
 SoundEmiter::SoundEmiter() : soundVolume_(100), musicVolume_(100)
 {
 
@@ -17,6 +20,7 @@ SoundEmiter::~SoundEmiter()
 void SoundEmiter::init()
 {
 	processSoundListJSON();
+	SoundEffect::setNumberofChannels(3);
 }
 
 void SoundEmiter::setSoundVolumes(int volume)

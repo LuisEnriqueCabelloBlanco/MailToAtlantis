@@ -43,6 +43,12 @@ private:
 	/// Mapa de las canciones
 	/// </summary>
 	std::unordered_map<std::string, bool> activeSongs_;
+
+	//Manejo de canales
+
+	int playInChannel_;
+
+	void changeChannel();
 };
 
 

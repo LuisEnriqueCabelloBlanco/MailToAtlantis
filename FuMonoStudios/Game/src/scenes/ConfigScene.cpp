@@ -34,7 +34,7 @@ void ecs::ConfigScene::init()
 		gm().requestChangeScene(ecs::sc::CONFIG_SCENE, ecs::sc::MENU_SCENE);
 
 	};
-	factory_->createTextuButton({ 400,400 }, "Pulsa para volver al menu", 50,funcPress);
+	factory_->createTextuButton({ 400,400 }, "Pulsa para volver al menu", 50,funcPress, "click");
 
 
 	//Luis: esto que sea place holder hay que poner imagen
@@ -43,7 +43,7 @@ void ecs::ConfigScene::init()
 	CallbackClickeable funcScreenModeBoton = [this]() {
 		sdlutils().toggleFullScreen();
 	};
-	factory_->createTextuButton({ 500,700 }, "Cambiar modo de ventana", 50, funcScreenModeBoton);
+	factory_->createTextuButton({ 500,700 }, "Cambiar modo de ventana", 50, funcScreenModeBoton, "click");
 
 	// Parametro de audio
 	audioValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParam(1)), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
@@ -65,10 +65,10 @@ void ecs::ConfigScene::init()
 		audioValueEnt_->getComponent<RenderImage>()->setTexture(audioValueTexture_);
 
 	};
-	factory_->createTextuButton({ 400,600 }, "(-)", 50, funcPress2);
+	factory_->createTextuButton({ 400,600 }, "(-)", 50, funcPress2, "click");
 
 	// Boton (+) para el parametro de audio
-	factory_->createTextuButton({ 600,600 }, "(+)", 50, funcPress2);
+	factory_->createTextuButton({ 600,600 }, "(+)", 50, funcPress2, "click");
 }
 
 //No usar de momento este método porque peta el programa aunque tenga la misma función que lo que pasa en los callbacks

@@ -67,7 +67,7 @@ ecs::Entity* ComonObjectsFactory::createImageButton(const Vector2D& pos, const V
 }
 
 ecs::Entity* ComonObjectsFactory::createTextuButton(const Vector2D& pos, const std::string text, int fontSize, CallbackClickeable call, 
-	SDL_Color textColor, std::string soundClick)
+	std::string soundClick, SDL_Color textColor)
 {
 	auto entity = createLabel(pos, text, fontSize,textColor);
 	makeButton(entity, call, soundClick);

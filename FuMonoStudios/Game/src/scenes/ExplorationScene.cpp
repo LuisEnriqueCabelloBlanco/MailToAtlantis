@@ -212,7 +212,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 		}
 	};
 
-	ecs::Entity* Arrow = factory_->createImageButton(pos, size, sujetaplazas, cosa);
+	ecs::Entity* Arrow = factory_->createImageButton(pos, size, sujetaplazas, cosa, "click");
 
 	Transform* arrowTR = Arrow->getComponent<Transform>();
 
@@ -330,7 +330,7 @@ ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const st
 		dialogMngr_.startConversationWithObj(interactableObj);
 	};
 
-	ecs::Entity* objEnt = factory_->createImageButton(pos, size, nullptr, funcPress);
+	ecs::Entity* objEnt = factory_->createImageButton(pos, size, nullptr, funcPress, "click");
 
 	return objEnt;
 }
@@ -381,7 +381,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 		//PLACEHOLDER_BOTON_GUARDADO
 		factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
 			generalData().saveGame();
-			}, SDL_Color{255,255,0});
+			}, "click", SDL_Color{255,255,0});
 	}
 }
 
