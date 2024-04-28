@@ -324,7 +324,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 					{
 						textoPersonaje = textoPersonaje + std::to_string(generalData().getDay()) +
 							textoCompletado + "\n" + 
-							data->events[generalData().getDay()]->textoDiario + "\n";
+							data->events[(generalData().getDay() - 1)]->textoDiario + "\n";
 					}
 					else
 					{
@@ -341,14 +341,24 @@ void ecs::ExplorationScene::setupDiarioPages() {
 				j++;
 			}
 
+			
+
 			j = 0;
 			while (textoPersonaje.size() > 0) {
 				int maxLen = j % 2 == 0 ? MAX_CHAR_LEN_LEFT_DIARIO : MAX_CHAR_LEN_RIGHT_DIARIO;
+				std::string provisionalSubstring = textoPersonaje.substr(0, maxLen);
+				int numSaltosLinea = 0;
+				for (int i = 0; i < provisionalSubstring.size(); i++) {
+					if (provisionalSubstring[i] == '\n')
+						numSaltosLinea++;
+				}
+				maxLen = maxLen - (numSaltosLinea * 13);
+
 				diarioText_.push_back(textoPersonaje.substr(0, maxLen));
-				if (textoPersonaje.length() < maxLen)
+				if (textoPersonaje.size() < maxLen)
 					textoPersonaje.clear();
 				else
-					textoPersonaje.substr(maxLen);
+					textoPersonaje = textoPersonaje.substr(maxLen);
 				j++;
 			}
 
@@ -371,7 +381,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 			{
 				for (int k = 0; k < j; k++) {
 					if (k % 2 == 0)
-						textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + (k / 2) + 1)));
+						textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
 				}
 			}
 		}

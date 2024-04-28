@@ -38,7 +38,7 @@ bool NPCeventSystem::areTherePaquetesNPC() {
 	return paquetesNPCs.size() != 0;
 }
 
-void NPCeventSystem::checkPaqueteSent(Paquete* p) {
+void NPCeventSystem::checkPaqueteSent(Paquete* p, Distrito tubo) {
 	for (NPCevent* event : activeEventsNPCs) {
 
 		for (auto conditionVec : event->condiciones) {
@@ -50,6 +50,9 @@ void NPCeventSystem::checkPaqueteSent(Paquete* p) {
 				valid = conditionVec[i](p);
 				i++;
 			}
+
+			if (event->usingCondicionTubo)
+				valid = event->condicionTubo(tubo);
 
 			if (valid && i >= conditionVec.size() && conditionVec.size() > 0)
 			{
@@ -320,6 +323,14 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 				});
 		}
 
+		auto hasTubo = pqConditions.find("tuboSeleccionado");
+		if (hasTubo != pqConditions.end()) {
+			auxEvent->usingCondicionTubo = true;
+			Distrito aux = (Distrito)generalData().fromStringToDistrito(hasTubo->second->AsString());
+			auxEvent->condicionTubo = ([aux](Distrito tubo) -> bool{
+					return tubo == aux;
+				});
+		}
 		auto hasCalle = pqConditions.find("calleMarcada");
 		if (hasCalle != pqConditions.end()) {
 			Calle aux = (Calle)generalData().stringToCalle(hasCalle->second->AsString());
@@ -360,7 +371,7 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 				});
 		}
 
-
+		
 		auto hasFragil = pqConditions.find("fragil");
 		if (hasFragil != pqConditions.end()) {
 			bool aux = hasFragil->second->AsBool();

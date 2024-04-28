@@ -3,44 +3,36 @@
     "Felicidad": "Normal",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
-    "EventosCompletados": [3,4,-7],
+    "EventosCompletados": [1,2,2,2,2],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "1": {
-            "remitente": "nashe",
-            "distrito": "Hestia",
-            "calle": "C1",
-            "tipoPaquete": "Armamento"
-          }
+          "remitente": "no se usa"
         },
         "condiciones": {
-          "1": {
-            "remitente": "nashe",
-            "distrito": "Hestia",
-            "calleMarcada": "C3",
-            "tipoPaquete": "Armamento"
-          }
+          "remitente" : "no se usa"
         },
-        "recompensa": {
-          "1": "Vagabundo+",
-          "2": "Secretario-"
-        },
-        "textoDiario": "siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela siguela"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "no se usa"
       },
       "2": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Albama Ice",
+          "distrito": "Demeter",
+          "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Albama Ice",
+          "distrito": "Demeter",
+          "tuboSeleccionado": "Hestia",
+          "tipoPaquete": "Alimento"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario 2"
+        "textoDiario": "Anemos me ha contado que lleva mucho tiempo sin comer nada bueno y me ha pedido un paquete de comida de Demeter.\nDebo redirigir un paquete de alimentos de Demeter al de Hestia"
       },
       "3": {
         "numPaquetes": 1,
