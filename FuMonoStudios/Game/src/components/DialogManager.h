@@ -1,6 +1,6 @@
 // dialog_manager.h
 #pragma once
-
+#include <utils/checkML.h>
 #include <functional>
 #include <string>
 #include <vector>
@@ -65,6 +65,7 @@ public:
     };
 
     DialogManager();
+    ~DialogManager();
 
     //init que por defecto pone el path del json de los dialogos
     void init(ecs::Scene* scene); 

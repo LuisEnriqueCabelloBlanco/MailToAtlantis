@@ -30,7 +30,6 @@ void ecs::MainMenu::init()
 	//generalData().updateFelicidadPersonajes();
 	sdlutils().clearRenderer();
 
-	//Font* fuente = new Font("recursos/fonts/ARIAL.ttf", 50);
 	Entity* fondo = addEntity(ecs::layer::BACKGROUND);
 	Texture* texturaFondo = &sdlutils().images().at("fondoMainMenu");
 	Transform* transformFondo = fondo->addComponent<Transform>(0.0f, 0.0f, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);

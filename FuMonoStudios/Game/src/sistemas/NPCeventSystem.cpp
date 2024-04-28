@@ -1,4 +1,5 @@
-﻿#include "NPCeventSystem.h"
+﻿#include <utils/checkML.h>
+#include "NPCeventSystem.h"
 #include "../json/JSON.h"
 #include <random>
 #include <algorithm>
@@ -81,7 +82,7 @@ void NPCeventSystem::activateEvent(NPCevent* e) {
 	activeEventsNPCs.push_back(e);
 }
 
-void NPCeventSystem::procesarStringRecompensas(std::vector<std::string> vec) {
+void NPCeventSystem::procesarStringRecompensas(std::vector<std::string>& vec) {
 
 	for (std::string& reward : vec) {
 		// si tiene un sumar o restar
@@ -116,7 +117,7 @@ void NPCeventSystem::debugPaquetesInQueue() {
 }
 
 
-void NPCeventSystem::readPaquetes(JSONObject obj, NPCevent* auxEvent) {
+void NPCeventSystem::readPaquetes(JSONObject& obj, NPCevent* auxEvent) {
 
 	for (int i = 0; i < auxEvent->numPaquetes; i++)
 	{
@@ -213,7 +214,7 @@ void NPCeventSystem::readPaquetes(JSONObject obj, NPCevent* auxEvent) {
 
 }
 
-void NPCeventSystem::readPaquetesEspecificos(JSONObject obj, NPCevent* auxEvent) {
+void NPCeventSystem::readPaquetesEspecificos(JSONObject& obj, NPCevent* auxEvent) {
 	for (auto paq : obj) {
 		JSONObject paqObj = paq.second->AsObject();
 
@@ -309,7 +310,7 @@ void NPCeventSystem::readPaquetesEspecificos(JSONObject obj, NPCevent* auxEvent)
 	}
 }
 
-void NPCeventSystem::readCondiciones(JSONObject obj, NPCevent* auxEvent) {
+void NPCeventSystem::readCondiciones(JSONObject& obj, NPCevent* auxEvent) {
 	std::vector<Condition> condicionesDeTodos;
 
 	auto hasRemitente = obj.find("remitente");
@@ -380,7 +381,7 @@ void NPCeventSystem::readCondiciones(JSONObject obj, NPCevent* auxEvent) {
 	auxEvent->condiciones.push_back(condicionesDeTodos);
 }
 
-void NPCeventSystem::readCondicionesEspecificos(JSONObject obj, NPCevent* auxEvent) {
+void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEvent) {
 	int i = 0;
 	for (auto paq : obj)
 	{
@@ -457,7 +458,7 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject obj, NPCevent* auxEve
 	}
 }
 
-void NPCeventSystem::readNPCevent(JSONObject eventObject, int personaje, int index) {
+void NPCeventSystem::readNPCevent(JSONObject& eventObject, int personaje, int index) {
 	NPCevent* auxEvent = new NPCevent();
 
 	JSONObject currentEvent = eventObject.find(std::to_string(index + 1))->second->AsObject();
@@ -579,4 +580,7 @@ void NPCeventSystem::readNPCEventData() {
 		}
 		jValueRoot = nullptr;
 	}
+	jsonFile.release();
 }
+
+

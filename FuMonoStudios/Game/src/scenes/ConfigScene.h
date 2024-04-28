@@ -1,4 +1,5 @@
 #pragma once
+#include <utils/checkML.h>
 #include "../architecture/Scene.h"
 #include "../architecture/ecs.h"
 
@@ -12,8 +13,8 @@ namespace ecs {
         Texture* audioValueTexture_;
         Entity* audioValueEnt_;
 
-        Texture* screenModeTexture_;
-        Entity* screenModeEnt_;
+        //Texture* screenModeTexture_;
+        //Entity* screenModeEnt_;
     public:
         ConfigScene();
         virtual ~ConfigScene();

@@ -1,3 +1,4 @@
+#include <utils/checkML.h>
 #include "ExplorationScene.h"
 #include "../architecture/Entity.h"
 #include <iostream>
@@ -18,12 +19,17 @@
 #include "../components/DelayedCallback.h"
 #include <architecture/GameConstants.h>
 #include <QATools/DataCollector.h>
+
+#ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
+#endif // DEV_TOOLS
+
 #include "../sistemas/NPCeventSystem.h"
 #include "../components/HoverSensorComponent.h"
 #include "../components/MoverTransform.h"
+#include <components/RenderWithLight.h>
 
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
@@ -50,12 +56,13 @@ void ecs::ExplorationScene::init()
 	updateNavegavility();
 	initDirectionsDefaultMap();
 
-	for (auto& e : objs_) {
-		for (auto en : e){
-				en->setAlive(false);
+	//for (auto& e : objs_) {
+	//	for (auto en : e){
+	//			en->setAlive(false);
 
-		}
-	}
+	//	}
+	//}
+	clearScene();
 	actualPlace_ = &lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)];
 
 	createObjects(pq::Distrito::Hestia);
@@ -168,6 +175,7 @@ void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin co
 
 void ecs::ExplorationScene::makeDataWindow()
 {
+#ifdef DEV_TOOLS
 	ImGui::Begin("Exploration Scene Data");
 	if (ImGui::CollapsingHeader("Felicidad Npc")) {
 		for (int i = 0; i < 7; i++) {
@@ -178,14 +186,13 @@ void ecs::ExplorationScene::makeDataWindow()
 		}
 	}
 	ImGui::End();
+#endif // DEV_TOOLS
 }
 
 ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string place, float scale, int flip)
 {
 	//para crear la flecha a hefesto
-
-	ComonObjectsFactory factory(this);
-	factory.setLayer(ecs::layer::FOREGROUND);
+	factory_->setLayer(ecs::layer::FOREGROUND);
 	Texture* sujetaplazas;
 
 	int placeID = generalData().fromStringToDistrito(place);
@@ -205,7 +212,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 		}
 	};
 
-	ecs::Entity* Arrow = factory.createImageButton(pos, size, sujetaplazas, cosa);
+	ecs::Entity* Arrow = factory_->createImageButton(pos, size, sujetaplazas, cosa);
 
 	Transform* arrowTR = Arrow->getComponent<Transform>();
 
@@ -219,8 +226,8 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 		arrowTR->setFlip(SDL_FLIP_NONE);
 	}
 
-	factory.setLayer(ecs::layer::DEFAULT);
-	factory.addHoverColorMod(Arrow, build_sdlcolor(0xaaaaaaff));
+	factory_->setLayer(ecs::layer::DEFAULT);
+	factory_->addHoverColorMod(Arrow, build_sdlcolor(0xaaaaaaff));
 	return Arrow;
 
 }
@@ -234,8 +241,6 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 		gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
-
-
 	return e;
 }
 
@@ -265,8 +270,9 @@ void ecs::ExplorationScene::createDiario() {
 	Transform* textTr = textoDiario->addComponent<Transform>(50, 50, 300, 600);
 	textTr->setParent(diario_->getComponent<Transform>());
 	RenderImage* textRnd = textoDiario->addComponent<RenderImage>();
-	textRnd->setTexture(new Texture(sdlutils().renderer(), "Anemos", sdlutils().fonts().at("simpleHandmade50"),
-		build_sdlcolor(0x00000000ff), 20));
+	factory_->setFont("simpleHandmade");
+	textRnd->setTexture(factory_->createTextTexture("Anemos", 50, build_sdlcolor(0x00000000ff), 20));
+	factory_->setFont("arial");
 }
 
 ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
@@ -316,8 +322,6 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const std::string& interactableObj, float scaleX, float scaleY) {
 
-	ComonObjectsFactory factory(this);
-
 	//Texture* characterTexture = &sdlutils().images().at(interactableObj);
 	Vector2D size{ scaleX, scaleY };
 
@@ -326,7 +330,7 @@ ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const st
 		dialogMngr_.startConversationWithObj(interactableObj);
 	};
 
-	ecs::Entity* objEnt = factory.createImageButton(pos, size, nullptr, funcPress);
+	ecs::Entity* objEnt = factory_->createImageButton(pos, size, nullptr, funcPress);
 
 	return objEnt;
 }
@@ -351,26 +355,28 @@ void ecs::ExplorationScene::createObjects(int place) {
 
 	std::string placeName = generalData().fromDistritoToString(place);
 
+	auto& arrows = pl.at(placeName).myArrows;
 	for (int i = 0; i < pl.at(placeName).myArrows.size(); ++i) {
-		lugares[generalData().fromDistritoToString(place)].addObjects(createNavegationsArrows(pl.at(placeName).myArrows[i].pos,
-			pl.at(placeName).myArrows[i].destination_, pl.at(placeName).myArrows[i].scale_, pl.at(placeName).myArrows[i].flip_));
+		lugares[placeName].addObjects(createNavegationsArrows(arrows[i].pos,
+			arrows[i].destination_, arrows[i].scale_, arrows[i].flip_));
 	}
-
+	auto& characters = pl.at(placeName).myCharacters;
 	for (int i = 0; i < pl.at(placeName).myCharacters.size(); ++i) {
-		lugares[generalData().fromDistritoToString(place)].addObjects(createCharacter(pl.at(placeName).myCharacters[i].pos,
-			pl.at(placeName).myCharacters[i].name_, pl.at(placeName).myCharacters[i].scale_));
+		lugares[placeName].addObjects(createCharacter(characters[i].pos,
+			characters[i].name_, characters[i].scale_));
 	}
 
+	auto& intObjs = pl.at(placeName).myInteractableObjs;
 	for (int i = 0; i < pl.at(placeName).myInteractableObjs.size(); ++i) {
-		lugares[generalData().fromDistritoToString(place)].addObjects(createInteractableObj(pl.at(placeName).myInteractableObjs[i].pos,
-			pl.at(placeName).myInteractableObjs[i].name_, pl.at(placeName).myInteractableObjs[i].scaleX_, pl.at(placeName).myInteractableObjs[i].scaleY_));
+		lugares[placeName].addObjects(createInteractableObj(intObjs[i].pos,
+			intObjs[i].name_, intObjs[i].scaleX_, intObjs[i].scaleY_));
 	}
 
 	if (place == pq::Distrito::Hestia) {
 		//boton ir a trabajar
 		boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
 
-		lugares[generalData().fromDistritoToString(place)].addObjects(boton_Trabajo);
+		lugares[placeName].addObjects(boton_Trabajo);
 
 		//PLACEHOLDER_BOTON_GUARDADO
 		factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {

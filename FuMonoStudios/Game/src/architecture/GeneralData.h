@@ -1,4 +1,5 @@
 #pragma once
+#include <utils/checkML.h>
 #include "../utils/Singleton.h"
 #include "GameConstants.h"
 #include <architecture/ecs.h>
@@ -87,8 +88,6 @@ public:
 private:
 	// vector que contiene los datos de todos los objetos interactuables
 	std::vector<IntObjsData*> intObjData;
-	// vector que contiene los datos de todos los 7 npc
-	std::vector<NPCdata*> npcDataVec_;
 #pragma endregion
 public:
 	GeneralData();
@@ -108,13 +107,13 @@ public:
 	
 	void resetMoney(); //Pone el dinero a INITIAL_MONEY
 
-	int getMoney() { return dinero_; }
+	inline int getMoney() { return dinero_; }
 
-	void setUpgradeValue(ecs::upg::upgradeId upgrade, bool value) {
+	inline void setUpgradeValue(ecs::upg::upgradeId upgrade, bool value) {
 		upgrades_[upgrade] = value;
 	}
 
-	bool getUpgradeValue(ecs::upg::upgradeId upgrade) {
+	inline bool getUpgradeValue(ecs::upg::upgradeId upgrade) {
 		return upgrades_[upgrade];
 	}
 
@@ -122,33 +121,33 @@ public:
 	int getFinalID(); //Devuelve el id del final del juego
 
 	void changeParamID(int i, bool suma); //Modifica un parametro en especifico del array y decide si se suma o no
-	int getParam(int i) {
+	inline int getParam(int i) {
 		std::cout << "El valor del parametro que quieres es: " << paramAjustes_[i] << std::endl;
 		return paramAjustes_[i]; 
 	}
 
-	int getDay() { return dia_; }
-	void setDay(int dia) { dia_ = dia; updateDia(); }
+	inline int getDay() { return dia_; }
+	inline void setDay(int dia) { dia_ = dia; updateDia(); }
 
-	int getNumDistritos() { return (Distrito::Erroneo); }
+	inline int getNumDistritos() { return (Distrito::Erroneo); }
 
 
 	void updateDia();
 
-	std::vector<std::string> getPlacesToActive() { return placesToActive_; }
+	inline std::vector<std::string> getPlacesToActive() { return placesToActive_; }
 
-	void setTubesAmount(int tubos) { 
+	inline void setTubesAmount(int tubos) { 
 		if (tubos >= 7) numTubos_ = 7;
 		else numTubos_ = tubos; 
 	} // Aumenta el numero de tubos en el minijuego cuando se requiera (podría llamarse automáticamente
 	// desde setDia modificado). Que jose lo haga cuando se sepan los días en los que un distrito y su tubo se desbloquean
-	int getTubesAmount() { return numTubos_; }
-	void correctPackage() { corrects_++; }
-	void wrongPackage() { fails_++; }
-	int getFails() { return fails_; }
-	int getCorrects() { return corrects_; }
+	inline int getTubesAmount() { return numTubos_; }
+	inline void correctPackage() { corrects_++; }
+	inline void wrongPackage() { fails_++; }
+	inline int getFails() { return fails_; }
+	inline int getCorrects() { return corrects_; }
 
-	void resetFailsCorrects() { fails_ = 0; corrects_ = 0; }
+	inline void resetFailsCorrects() { fails_ = 0; corrects_ = 0; }
 
 	int getPaqueteLevel(); // Devuelve el lvl del paquete correspondiente al d�a
 	void setPaqueteLevel(int lvl);
@@ -181,8 +180,8 @@ public:
 	NivelPeso stringToNivelPeso(const std::string& nivel);
 
 	//Los métodos para acceder a las herramientas que te pueden dar los NPCs
-	void aquireSelloMulticolor() { selloMulticolor = true; }
-	bool getSelloMulticolor() { return selloMulticolor; }
+	inline void aquireSelloMulticolor() { selloMulticolor = true; }
+	inline bool getSelloMulticolor() { return selloMulticolor; }
 
 	void unlockMejoraPersonaje(Personaje p);
 
@@ -192,7 +191,9 @@ private:
 	void reduceMoney(int cant) { dinero_ -= cant; }
 
 	void updateDistrictsPerDay(int dia);
-	// vector que contiene los datos de todos los 7 npc
+	/// <summary>
+	/// estructura que almacena los datos de los npc
+	/// </summary>
 	std::unordered_map<Personaje,NPCdata*> npcData;
 
 	int fails_;

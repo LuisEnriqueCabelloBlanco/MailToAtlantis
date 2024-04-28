@@ -1,3 +1,4 @@
+#include <utils/checkML.h>
 #include "../components/DialogManager.h"
 #include "GeneralData.h"
 #include "../json/JSON.h"
@@ -43,6 +44,16 @@ GeneralData::GeneralData()
 
 GeneralData::~GeneralData() {
 	delete npcEventSys;
+	for (auto obj : intObjData) {
+		delete obj;
+	}
+	for (auto package : paquetesNPCs) {
+		delete package;
+	}
+	for (auto& npc : npcData) {
+		delete npc.second;
+		npc.second = nullptr;
+	}
 }
 
 void GeneralData::loadSaveFile()
