@@ -6,12 +6,16 @@
 #include "../components/Clickeable.h"
 
 /*
-Clase a la que llamar para crear objetos que se crean frecuentemente (para no andar copiando y pegando codigo
-a lo tonto)
-
+Clase a la que llamar para crear objetos que se crean frecuentemente
+Tales como:
+	-Imagenes
+	-Textos
+	-Botones
 Los metodos devuelven un puntero a la entidad por si se le quiere aplicar mas operaciones en tras crearlo
-*/
 
+Existen otras operaciones como los setters de capa y fuente para determinar que se va a usar (como si fuera openGL)
+Ademas de operaciones para aniadir funcionalidad a las entidades como detecciones de hover o iluminacion en el hover
+*/
 class ComonObjectsFactory
 {
 public:
@@ -148,7 +152,9 @@ private:
 	/// nombre de la fuente que se usara al crear texturas de texto
 	/// </summary>
 	std::string fontName_;
-
+	/// <summary>
+	/// Vector de texturas creadas que se elimnaran al destruir la instancia de la clase
+	/// </summary>
 	std::vector<Texture*> createdTextures;
 };
 
