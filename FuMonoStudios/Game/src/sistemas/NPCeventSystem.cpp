@@ -580,11 +580,7 @@ void NPCeventSystem::readNPCEventData() {
 		}
 		jValueRoot = nullptr;
 	}
+	jsonFile.release();
 }
 
-NPCevent::~NPCevent()
-{
-	for (auto& pq : paquetes) {
-		delete pq;
-	}
-}
+
