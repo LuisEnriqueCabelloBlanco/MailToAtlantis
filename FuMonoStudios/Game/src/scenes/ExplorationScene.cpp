@@ -259,6 +259,13 @@ void ecs::ExplorationScene::createDiario() {
 	rightPageTr->setParent(diario_->getComponent<Transform>());
 	rightPageRnd = textoDiarioRight->addComponent<RenderImage>();
 
+	//carita felicidad
+	ecs::Entity* caraFel = addEntity(ecs::layer::UI);
+	auto caraFelTr = caraFel->addComponent<Transform>(267, 28, 28, 28);
+	caraFelTr->setParent(diario_->getComponent<Transform>());
+	caraFelicidad = caraFel->addComponent<RenderImage>();
+	caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadNormal"));
+
 	setupDiarioPages();
 
 	// botones de pasar pagina
@@ -295,6 +302,8 @@ void ecs::ExplorationScene::createDiario() {
 		if (!comp->isEnabled())
 			comp->enable();
 	});
+
+	
 }
 
 void ecs::ExplorationScene::setupDiarioPages() {
@@ -305,6 +314,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 		rendComp = diario_->addComponent<RenderImage>();
 
 	std::vector<Texture*> textureVec;
+	int firstPersonaje = -1;
 	bool diarioVacio = true;
 	for (int i = 0; i < 7; i++) {
 		NPCdata* data = generalData().getNPCData((npc::Personaje)i);
@@ -369,6 +379,8 @@ void ecs::ExplorationScene::setupDiarioPages() {
 				pagesByCharacter[i]++;
 			}
 				
+			if (firstPersonaje == -1)
+				firstPersonaje = i;
 
 			//ponemos sus paginas
 			if (j == 0) // tiene que haber una aunque no haya texto
@@ -406,6 +418,11 @@ void ecs::ExplorationScene::setupDiarioPages() {
 		rightPageTr->setWidth(rightPageRnd->getTexture()->width());
 		rightPageTr->setHeith(rightPageRnd->getTexture()->height());
 	}
+
+	if (firstPersonaje == -1)
+		caraFelicidad->setTexture(nullptr);
+	else
+		changeCaraFelicidad(generalData().getNPCData((Personaje)firstPersonaje));
 }
 
 void ecs::ExplorationScene::changeDiarioPages(bool forward) {
@@ -419,7 +436,16 @@ void ecs::ExplorationScene::changeDiarioPages(bool forward) {
 		if (currentDiarioPage > 0)
 			currentDiarioPage = currentDiarioPage - 2;
 	}
-		
+	
+	int i = 0;
+	bool texFound = false;
+	Texture* tex = diario_->getComponent<RenderImage>()->getTexture();
+	while (!texFound && i < 7) {
+		texFound = tex == &sdlutils().images().at("diario" + std::to_string(i + 1));
+		i++;
+	}
+	if (texFound)
+		changeCaraFelicidad(generalData().getNPCData((Personaje)(i - 1)));
 
 	Texture* oldTex = leftPageRnd->getTexture();
 	if (oldTex != nullptr)	
@@ -437,6 +463,26 @@ void ecs::ExplorationScene::changeDiarioPages(bool forward) {
 		build_sdlcolor(0x00000000ff), 245));
 	rightPageTr->setWidth(rightPageRnd->getTexture()->width());
 	rightPageTr->setHeith(rightPageRnd->getTexture()->height());
+}
+
+void ecs::ExplorationScene::changeCaraFelicidad(NPCdata* data) {
+	switch (data->felicidad) {
+	case Minima:
+		caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadMinimo"));
+		break;
+	case Mala:
+		caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadMalo"));
+		break;
+	case Normal:
+		caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadNormal"));
+		break;
+	case Buena:
+		caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadBueno"));
+		break;
+	case Maxima:
+		caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadMaxima"));
+		break;
+	}
 }
 
 void ecs::ExplorationScene::addDiarioEvent(NPCevent* event)

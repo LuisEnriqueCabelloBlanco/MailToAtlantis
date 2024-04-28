@@ -188,6 +188,7 @@ namespace ecs {
 		void addDiarioEvent(NPCevent* event);
 		void setupDiarioPages();
 		void changeDiarioPages(bool forward);
+		void changeCaraFelicidad(NPCdata* data);
 		std::vector<std::string> diarioText_;
 		std::vector<int> pagesByCharacter;
 		int currentDiarioPage;
@@ -196,6 +197,7 @@ namespace ecs {
 		Transform* leftPageTr;
 		RenderImage* rightPageRnd;
 		Transform* rightPageTr;
+		RenderImage* caraFelicidad;
     };
 }
 
