@@ -61,6 +61,7 @@ namespace ecs {
 		};
 		constexpr sceneId maxSceneId = _LAST_SCENE;
 	}
+#define __SC_DECL__(cId) constexpr static ecs::scId_t id = cId;
 
 	using scUpg_t = uint8_t;
 	//Namespace para etiquetar las mejoras

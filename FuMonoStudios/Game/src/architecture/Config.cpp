@@ -173,8 +173,5 @@ void Config::loadReasources(std::string filename) {
 }
 
 void Config::closeInfo() {
-
 	places_.clear();
-
-	
 }

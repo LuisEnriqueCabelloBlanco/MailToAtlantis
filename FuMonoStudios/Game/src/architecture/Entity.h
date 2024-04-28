@@ -23,17 +23,31 @@ namespace ecs {
 			for (auto c : currCmps_) {
 				delete c;
 			}
-			//std::cout << "Entidad destruida"<<std::endl;
 		};
-
+		/// <summary>
+		/// Inica si la entidad esta viva
+		/// </summary>
+		/// <returns></returns>
 		inline bool isAlive() const { return alive_; };
-
+		/// <summary>
+		/// Indica si la entidad esta activa
+		/// </summary>
+		/// <returns></returns>
 		inline bool isActive() const { return active_; };
-
+		/// <summary>
+		/// AVISO: funcion en desuso si se quiere usar revisar el codigo fuente
+		/// </summary>
+		/// <returns></returns>
 		inline bool isEnable() const { return enable_; };
-
+		/// <summary>
+		/// Determina si en el siguente frame se destruira la entidad
+		/// </summary>
+		/// <param name="alive"></param>
 		inline void setAlive(bool alive) { alive_ = alive; };
-
+		/// <summary>
+		/// Determina si una entidad va a estar activa
+		/// </summary>
+		/// <param name="active"></param>
 		inline void setActive(bool active) { 
 
 			Transform* myTR = getComponent<Transform>();
@@ -50,13 +64,23 @@ namespace ecs {
 				myLayer = ecs::layer::INACTIVE;
 			}
 		};
-
+		/// <summary>
+		/// AVISO: funcionalidad en desuso
+		/// </summary>
+		/// <param name="enable"></param>
 		inline void setEnable(bool enable) { enable_ =enable; };
 
-		//ACCESOR AL MANAGER (Luis va a hacer cositas)
+		/// <summary>
+		/// Accesor a la escena permite a los componentes 
+		/// realizar operaciones como meter nuevas entidades a la escena
+		/// TODO: cambiar el nombre
+		/// </summary>
+		/// <returns></returns>
 		inline Scene* getMngr() const { return scene_; };
 
-		//Modelo predeterminado del add entity al cual se mete pasandole cualquier valor excepto los especificos declarados justo debajo
+		/// <summary> 
+		///	Modelo predeterminado del add entity al cual se mete pasandole cualquier valor excepto los especificos
+		/// </summary>
 		template<typename T, typename ...Ts>
 		inline T* addComponent(Ts&&... args) {
 
@@ -66,7 +90,10 @@ namespace ecs {
 
 		}
 
-		//sobreescritura del add component especificando funcionalidad extra necesaria para el Trigger
+		/// <summary>
+		/// Sobreescritura del add component especificando funcionalidad extra necesaria para el Trigger
+		/// </summary>
+		/// <returns></returns>
 		template<>
 		inline Trigger* addComponent<Trigger>() {
 
@@ -76,7 +103,10 @@ namespace ecs {
 
 		}
 
-		//Remueve el componente de Entity marcado por cId
+		/// <summary>
+		/// Elimina el componente de Entity marcado por cId
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
 		template<typename T>
 		inline void removeComponent() {
 			if (cmps_[cmpId<T>] != nullptr) {
@@ -89,7 +119,11 @@ namespace ecs {
 			}
 		}
 
-		//Devuelve referencia al componente de Entity marcado por cId
+		/// <summary>
+		/// Devuelve un puntero al componente de Entity marcado por cId
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
 		template<typename T>
 		inline T* getComponent() {
 
@@ -99,14 +133,13 @@ namespace ecs {
 
 			return static_cast<T*>(cmps_[cId]);
 		}
-
+		/// <summary>
+		/// Devuelve al capa a la que pertenece la entidad
+		/// </summary>
+		/// <returns></returns>
 		inline ecs::layer::layerId getLayer() {
 			return myLayer;
 		}
-
-		//inline void setLayer(ecs::layer::layerId layer) {
-		//	myLayer = layer;
-		//}
 
 		inline void addIterator(std::vector<Entity*>::iterator it) {
 			mIt_ = it;
@@ -116,19 +149,27 @@ namespace ecs {
 			return mIt_;
 		}
 
-		//Comprueba si Entity tiene el componente marcado por cId
+		/// <summary>
+		/// Comprueba si Entity tiene el componente marcado por cId
+		/// </summary>
+		/// <param name="cId"></param>
+		/// <returns></returns>
 		inline bool hasComponent(ecs::cmpId_t cId) {
 			return cmps_[cId] != nullptr;
 		}
 
+		/// <summary>
+		/// Llama al update de cada componente activo en la entidad
+		/// </summary>
 		inline void update() {
 			auto n = currCmps_.size();
 			for (auto i = 0u; i < n; i++) {
 				currCmps_[i]->update();
 			}
-			//std::cout << "Entidad Update" << std::endl;
 		}
-
+		/// <summary>
+		/// Llama al render de cada componente activo en la entidad
+		/// </summary>
 		inline void render() {
 			auto n = currCmps_.size();
 			for (auto i = 0u; i < n; i++) {
@@ -155,10 +196,19 @@ namespace ecs {
 		Scene* scene_;
 
 		std::vector<Entity*>::iterator mIt_;
+		/// <summary>
+		/// Capa a la que pertenece la entidad
+		/// </summary>
 		ecs::layer::layerId myLayer = ecs::layer::DEFAULT;
 		//La layer que se especifico al principio para la entidad, esta no se cambia nunca y es una referencia para poder volver a ella
 		ecs::layer::layerId mySpecifyLayer = ecs::layer::DEFAULT;
+		/// <summary>
+		/// vector de componentes acitvos en la entidad
+		/// </summary>
 		std::vector<Component*> currCmps_;
+		/// <summary>
+		/// vector de componentes en la entidad
+		/// </summary>
 		std::array<Component*, cmp::maxComponentId> cmps_;
 
 

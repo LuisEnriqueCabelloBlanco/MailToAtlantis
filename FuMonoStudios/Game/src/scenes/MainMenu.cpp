@@ -26,7 +26,10 @@ ecs::MainMenu::~MainMenu()
 
 void ecs::MainMenu::init()
 {
+#ifdef _DEBUG
 	std::cout << "Hola Menu" << std::endl;
+#endif // _DEBUG
+
 	//generalData().updateFelicidadPersonajes();
 	sdlutils().clearRenderer();
 

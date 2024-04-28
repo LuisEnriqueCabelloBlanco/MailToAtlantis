@@ -13,6 +13,7 @@ namespace ecs {
     class MainScene :public Scene
     {
     public:
+        __SC_DECL__(ecs::sc::MAIN_SCENE)
         MainScene();
         virtual ~MainScene();
 

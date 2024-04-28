@@ -95,8 +95,9 @@ void ecs::MainScene::init()
 
 	generalData().npcEventSys->shuffleNPCqueue();
 	generalData().npcEventSys->debugPaquetesInQueue();
-
+#ifdef _DEBUG
 	std::cout << "Hola Main" << std::endl;
+#endif // _DEBUG
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
 	timer_ = MINIGAME_TIME;
 	// Fondo
@@ -676,7 +677,10 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 		};
 	//si queremos anadir un callback para que ocurra algo cuando se acaba el dialogo 
 	dialogMngr_.setEndDialogueCallback([this](){
+#ifdef _DEBUG
 		std::cout << "Los callbacks de final de dialogo funcionan";
+#endif // _DEBUG
+
 	});
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);

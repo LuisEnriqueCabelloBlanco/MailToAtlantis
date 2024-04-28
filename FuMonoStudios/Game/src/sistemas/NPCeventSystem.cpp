@@ -65,7 +65,10 @@ void NPCeventSystem::minigameOver() {
 	{
 		if (event->completed)
 		{
+#ifdef _DEBUG
 			std::cout << "Event completed";
+#endif // _DEBUG
+
 			procesarStringRecompensas(event->recompensas);
 		}
 	}
@@ -112,8 +115,10 @@ void NPCeventSystem::procesarStringRecompensas(std::vector<std::string>& vec) {
 }
 
 void NPCeventSystem::debugPaquetesInQueue() {
+#ifdef _DEBUG
 	std::cout << std::endl << "Eventos: " << activeEventsNPCs.size() << 
 		" Paquetes de npc: " << paquetesNPCs.size() << std::endl;
+#endif // _DEBUG
 }
 
 

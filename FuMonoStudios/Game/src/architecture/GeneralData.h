@@ -44,11 +44,14 @@ class GeneralData : public Singleton<GeneralData>
 {
 public:
 	friend Singleton<GeneralData>;
-	
+
 	Felicidad stringToFelicidad(const std::string& str);
 	std::string felicidadToString(Felicidad);
 
-	// enum con el nombre de todos los Objetos Interactuables
+	
+	/// <summary>
+	/// enum con el nombre de todos los Objetos Interactuables
+	/// </summary>
 	enum InteractableObj {
 		CasaGrande, CartelOficina, Muro, //Hestia
 		TiendaPociones, TiendaBolas, TiendaJarrones, //Artemisa
@@ -61,38 +64,61 @@ public:
 
 	enum MoveType{DropIn, PickUp};
 
-	
+	/// <summary>
+	/// Estructura que almacena la informacion de los objetos interactuables
+	/// </summary>
 	struct IntObjsData {
 		IntObjsData(InteractableObj text);
-		InteractableObj texto;
+		InteractableObj objId;
 		virtual const std::string getDialogueInfo();
 
 	};
-#pragma endregion
-
+	/// <summary>
+	/// Carga los datos de los npc es decir: Felicidad, Misiones pendientes, Eventos
+	/// </summary>
 	void readNPCData();
+	/// <summary>
+	/// Guarda los datos de los npc es decir: Felicidad, Misiones pendientes, Eventos
+	/// </summary>
 	void writeNPCData();
-
+	/// <summary>
+	/// Devuelve los datos del npc solicitado
+	/// </summary>
+	/// <param name="personaje"></param>
+	/// <returns></returns>
 	NPCdata* getNPCData(Personaje personaje);
-
+	/// <summary>
+	/// Incrementa la felicidad del personaje indicado
+	/// </summary>
+	/// <param name="p"></param>
+	/// <param name="felicidadIncr"></param>
 	void incrementarFelicidad(Personaje p, int felicidadIncr);
 
 	NPCeventSystem* npcEventSys = nullptr;
 
-	// METODOS DE INTOBJSdata
-
+	/// <summary>
+	/// Obtiene los datos de los objetos interactuables
+	/// </summary>
 	void readIntObjData();
-
+	/// <summary>
+	/// Devuelve los datos del objeto solicitado
+	/// </summary>
+	/// <param name="intobj"></param>
+	/// <returns></returns>
 	IntObjsData* getObjData(InteractableObj intobj);
 
 private:
-	// vector que contiene los datos de todos los objetos interactuables
+	/// <summary>
+	/// vector que contiene los datos de todos los objetos interactuables
+	/// </summary>
 	std::vector<IntObjsData*> intObjData;
 #pragma endregion
 public:
 	GeneralData();
 	~GeneralData();
-
+	/// <summary>
+	/// Caraga la partida guardada
+	/// </summary>
 	void loadSaveFile();
 	/// <summary>
 	/// Metodo que acutaliza cuanto dinero tienes en funcion de los fallos y aciertos que realices
@@ -101,12 +127,21 @@ public:
 	/// <param name="wrongPacages"></param>
 	void updateMoney();
 
-	//Calcula el dinero que recibe el jugador en base a los aciertos y fallos.
-	//Ejemplos de uso son en el metodo de arriba o en la endWorkScene
+	/// <summary>
+	/// Calcula el dinero que recibe el jugador en base a los aciertos y fallos.
+	/// </summary>
+	/// <returns></returns>
 	int calcularDineroGanado();
 	
-	void resetMoney(); //Pone el dinero a INITIAL_MONEY
+	/// <summary>
+	/// Reestablece el dinero a la cantidad inicial
+	/// </summary>
+	void resetMoney(); 
 
+	/// <summary>
+	/// Devuelve la cantidad de dinero que tiene el jugador
+	/// </summary>
+	/// <returns></returns>
 	inline int getMoney() { return dinero_; }
 
 	inline void setUpgradeValue(ecs::upg::upgradeId upgrade, bool value) {
@@ -122,7 +157,10 @@ public:
 
 	void changeParamID(int i, bool suma); //Modifica un parametro en especifico del array y decide si se suma o no
 	inline int getParam(int i) {
+#ifdef _DEBUG
 		std::cout << "El valor del parametro que quieres es: " << paramAjustes_[i] << std::endl;
+#endif // _DEBUG
+
 		return paramAjustes_[i]; 
 	}
 
@@ -184,7 +222,9 @@ public:
 	inline bool getSelloMulticolor() { return selloMulticolor; }
 
 	void unlockMejoraPersonaje(Personaje p);
-
+	/// <summary>
+	/// Guarda el juego
+	/// </summary>
 	void saveGame();
 private:
 	void addMoney(int cant) { dinero_ += cant; }
@@ -195,26 +235,62 @@ private:
 	/// estructura que almacena los datos de los npc
 	/// </summary>
 	std::unordered_map<Personaje,NPCdata*> npcData;
-
+	/// <summary>
+	/// Fallos cometidos por el jugador
+	/// </summary>
 	int fails_;
+	/// <summary>
+	/// Aciertos conseguidos por el jugador
+	/// </summary>
 	int corrects_;
+	/// <summary>
+	/// Precio del alquiler
+	/// </summary>
 	int rent_;
+	/// <summary>
+	/// Dinero que tiene le jugador
+	/// </summary>
 	int dinero_;
+	/// <summary>
+	/// Margen de fallos que puede cometer el jugador
+	/// </summary>
 	int failsMargin_;
-	int finalID_; //Variable int que define en la �ltima escena cu�l final se va a reproducir
-	int dia_;
-	int paqueteLvl_ = 0; // de momento es 0
 
-	int paramAjustes_[10]; //Array de ints en el que cada posicion corresponde al numero de configuracion de un parametro
-						  //dentro de los ajustes del juego. Por ejemplo, la posición 1 puede corresponder al
-	                      //nivel de volumen (maximo 100).
+	int finalID_; //Variable int que define en la �ltima escena cu�l final se va a reproducir
+	/// <summary>
+	/// Dia de juego en el que nos encontramos
+	/// </summary>
+	int dia_;
+	/// <summary>
+	/// Clasificacion de distribucion de la creacion de paquetes
+	/// </summary>
+	int paqueteLvl_ = 0;
+
+	/// <summary>
+	/// Array de ints en el que cada posicion corresponde al numero de configuracion de un parametro
+	/// dentro de los ajustes del juego. Por ejemplo, la posición 1 puede corresponder 
+	/// nivel de volumen (maximo 100).
+	/// </summary>
+	int paramAjustes_[10];
 
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
 	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo
-	int numTubos_; // Numero de tubos que habrán en el minijuego de paquetes
-	std::vector<Paquete*> paquetesNPCs;
-	std::vector<std::string> placesToActive_;
 	
+	/// <summary>
+	/// Numero de tubos que habrán en el minijuego de paquetes
+	/// </summary>
+	int numTubos_;
+	/// <summary>
+	/// Luis: no se que hace realmente este vector si alguien sabe especificar que lo ponga porfavor y gracias
+	/// </summary>
+	std::vector<Paquete*> paquetesNPCs;
+	/// <summary>
+	/// Luis: no se que hace realmente este vector si alguien sabe especificar que lo ponga porfavor y gracias
+	/// </summary>
+	std::vector<std::string> placesToActive_;
+	/// <summary>
+	/// Vector con las mejoras desbloqueadas hasta el momento
+	/// </summary>
 	std::vector<bool> upgrades_;
 	//Aqui van las variables que indican si se han conseguido las herramientas especiales de los NPCs
 	bool selloMulticolor = false; //Sello multicolor debe estar debtro de updates

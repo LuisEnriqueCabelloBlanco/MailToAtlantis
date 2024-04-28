@@ -16,7 +16,9 @@ class Config : public Singleton<Config> {
 	friend Singleton<Config>; // needed to give access to private constructors
 
 public:
-
+	/// <summary>
+	/// Esctructura que guarda la informacion de las flechas de navegacion de la escena de exploracion
+	/// </summary>
 	struct Arrows {
 
 		Vector2D pos;
@@ -34,7 +36,9 @@ public:
 
 
 	};
-
+	/// <summary>
+	/// Esctructura que guarda la informacion de los personajes en una escena
+	/// </summary>
 	struct Characters {
 
 		Vector2D pos;
@@ -50,7 +54,9 @@ public:
 
 
 	};
-
+	/// <summary>
+	/// Esctructura que guarda la informacion de los objetos interactuables en una escena
+	/// </summary>
 	struct InteractableObjs {
 
 		Vector2D pos;
@@ -67,7 +73,9 @@ public:
 
 
 	};
-
+	/// <summary>
+	/// Estructura que guarda la informacion de un lugar navegable en la escena de exploracion
+	/// </summary>
 	struct Places {
 
 		std::vector<Arrows> myArrows;
@@ -120,13 +128,10 @@ public:
 		}
 	};
 
-
-
-	
-	// All resource maps can be modified from outside, this way you can store
-// your own dynamically. Be careful when modifying them!
-
-// fonts map
+	/// <summary>
+	/// accesor a los lugares de navegacion
+	/// </summary>
+	/// <returns></returns>
 	inline auto& places() {
 		return placesAccessWrapper_;
 	}
@@ -136,12 +141,18 @@ private:
 	Config();
 	Config(std::string filename);
 
-	void closeInfo(); // free resources the
-	void loadReasources(std::string filename); // load resources from the json file
+	/// <summary>
+	/// limpia los datos de la clase
+	/// </summary>
+	void closeInfo();
+	/// <summary>
+	/// carga los datos del fichero indicado
+	/// </summary>
+	/// <param name="filename">ruta del fichero json para cargar</param>
+	void loadReasources(std::string filename);
 
 
-	sdl_resource_table<Places> places_; // fonts map (string -> font)
-
+	sdl_resource_table<Places> places_;
 
 	map_access_wrapper<Places> placesAccessWrapper_;
 

@@ -35,9 +35,13 @@ GeneralData::GeneralData()
 	else {
 		std::cout << "Mejora de dinero NO desbloqueada" << std::endl;
 	}*/
+#ifdef _DEBUG
 	std::cout << "Tamanyo vector de mejoras: " << upgrades_.size() << std::endl;
+#endif // _DEBUG
 	paramAjustes_[0] = 50;
+#ifdef _DEBUG
 	std::cout << "Volumen SFX: " << paramAjustes_[0] << std::endl;
+#endif // _DEBUG
 	soundEmiter().setSoundVolumes(paramAjustes_[0]);
 	//readNPCData();
 }
@@ -104,17 +108,24 @@ void GeneralData::resetMoney()
 
 void GeneralData::setFinalID(int final) {
 	finalID_ = final;
+#ifdef _DEBUG
 	std::cout << "El ID del final del juego es: " << finalID_ << std::endl;
+#endif // _DEBUG
+
 }
 
 int GeneralData::getFinalID() {
+#ifdef _DEBUG
 	std::cout << "El ID del final del juego que quieres obtener es: " << finalID_ << std::endl;
+#endif // _DEBUG
 	return finalID_;
 }
 
 void GeneralData::setRent(int rent) {
 	rent_ = rent;
+#ifdef _DEBUG
 	std::cout << "el nuevo alquiler es: " << rent_ << std::endl;
+#endif // _DEBUG
 }
 
 int GeneralData::getRent() {
@@ -262,8 +273,9 @@ void GeneralData::changeParamID(int i, bool suma) {
 			paramAjustes_[i] = 0;
 		}
 	}
-
+#ifdef _DEBUG
 	std::cout << "El valor del parametro ahora es: " << paramAjustes_[i] << std::endl;
+#endif // _DEBUG
 }
 void GeneralData::setPaqueteLevel(int lvl) {
 	paqueteLvl_ = lvl;
@@ -350,7 +362,6 @@ void GeneralData::writeNPCData() {
 
 	if (!archivo.is_open())
 	{
-		std::cout << "Error al abrir npcData.json" << std::endl;
 		throw std::runtime_error("Error al abrir npcData.json");
 	}
 
@@ -383,7 +394,6 @@ void GeneralData::writeNPCData() {
 	std::ofstream archivoSalida("recursos/data/npcData.json");
 
 	if (!archivoSalida.is_open()) {
-		std::cout << "Error al abrir el archivo npcData.json para escritura." << std::endl;
 		throw std::runtime_error("Error al escribir npcData.json");
 	}
 	
@@ -398,7 +408,6 @@ void GeneralData::saveGame() {
 
 	if (!archivo.is_open())
 	{
-		std::cout << "Error al abrir saveFile.json" << std::endl;
 		throw std::runtime_error("Error al abrir saveFile.json");
 	}
 
@@ -425,7 +434,6 @@ void GeneralData::saveGame() {
 	std::ofstream archivoSalida("recursos/data/saveFile.json");
 
 	if (!archivoSalida.is_open()) {
-		std::cout << "Error al abrir el archivo saveFile.json para escritura." << std::endl;
 		throw std::runtime_error("Error al escribir saveFile.json");
 	}
 
@@ -742,14 +750,14 @@ NPCdata* GeneralData::getNPCData(Personaje personaje) {
 
 GeneralData::IntObjsData::IntObjsData(InteractableObj text)
 {
-	texto = text;
+	objId = text;
 }
 
 const std::string GeneralData::IntObjsData::getDialogueInfo()
 {
 		std::string aux;
 
-		switch (texto)
+		switch (objId)
 		{
 
 			//Hestia
