@@ -2,6 +2,8 @@
 #include <sistemas/NPC.h>
 #include <architecture/GeneralData.h>
 #include <sdlutils/SDLUtils.h>
+#include <sistemas/NPCeventSystem.h>
+#include <sistemas/NPCevent.h>
 using namespace npc;
 npc::NPCMenorData::~NPCMenorData()
 {
