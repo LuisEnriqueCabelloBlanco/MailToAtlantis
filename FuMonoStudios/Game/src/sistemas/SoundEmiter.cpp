@@ -190,6 +190,11 @@ void SoundEmiter::haltAllSounds()
 	}
 }
 
+void SoundEmiter::haltAllMusic()
+{
+
+}
+
 void SoundEmiter::changeChannel()
 {
 	std::cout << playInChannel_ << " ";

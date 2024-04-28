@@ -38,7 +38,7 @@
 #include "../components/NPCExclamation.h"
 #include "../sistemas/NPCeventSystem.h"
 
-ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
+ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), clockMusic(0)
 {
 	timer_ = MINIGAME_TIME;
 #ifdef DEV_TOOLS
@@ -67,11 +67,21 @@ void ecs::MainScene::update()
 	{
 		if (timer_ > 0) {
 			timer_ -= Time::getDeltaTime();
+			if (timer_ <= MINIGAME_TIME / 4 && clockMusic == 0) {
+				SoundEmiter::instance()->playMusic("clockSlow");
+				clockMusic++;
+			}
+			if (timer_ <= MINIGAME_TIME / 10 && clockMusic == 1) {
+				SoundEmiter::instance()->haltMusic("clockSlow");
+				SoundEmiter::instance()->playMusic("clockFast");
+				clockMusic++;
+			}
 		}
 		else
 		{
 			gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
 		}
+		
 	}
 	dialogMngr_.update();
 }
@@ -153,6 +163,7 @@ void ecs::MainScene::close() {
 	ecs::Scene::close();
 	generalData().npcEventSys->minigameOver();
 	generalData().updateMoney();
+	SoundEmiter::instance()->close();
 
 	sdlutils().musics().at("office").haltMusic();
 	sdlutils().musics().at("printer").haltMusic();

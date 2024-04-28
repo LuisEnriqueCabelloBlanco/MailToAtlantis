@@ -477,6 +477,14 @@
     {
       "id": "printer",
       "file": "recursos/musics/printer.wav"
+    },
+    {
+      "id": "clockSlow",
+      "file": "recursos/musics/tictacLento.wav"
+    },
+    {
+      "id": "clockFast",
+      "file": "recursos/musics/tictacRapido.wav"
     }
   ]
 }
