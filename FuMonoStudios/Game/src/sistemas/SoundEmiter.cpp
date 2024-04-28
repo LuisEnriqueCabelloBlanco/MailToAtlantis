@@ -4,23 +4,28 @@
 #include "../json/JSON.h"
 #include <exception>
 
-onst int MAX_CHANNELS = 3;
+const int MAX_CHANNELS = 3;
 
 
-SoundEmiter::SoundEmiter() : soundVolume_(100), musicVolume_(100)
+SoundEmiter::SoundEmiter() : soundVolume_(100), musicVolume_(100), playInChannel_(0)
 {
 
 }
 
 SoundEmiter::~SoundEmiter()
 {
-
+	haltAllSounds();
 }
 
 void SoundEmiter::init()
 {
 	processSoundListJSON();
-	SoundEffect::setNumberofChannels(3);
+	SoundEffect::setNumberofChannels(MAX_CHANNELS);
+}
+
+void SoundEmiter::close()
+{
+	haltAllSounds();
 }
 
 void SoundEmiter::setSoundVolumes(int volume)
@@ -40,8 +45,8 @@ void SoundEmiter::muteSingleSound(std::string sound, bool mute)
 {
 	try {
 		auto it = soundPulls_.at(sound);
-		it.second = mute;
-		for (int i = 0; i < it.first; i++) {
+		it.mute = mute;
+		for (int i = 0; i < it.amount; i++) {
 			std::string fileName = sound + std::to_string(i);
 			if (mute) {
 				sdlutils().soundEffects().at(fileName).setVolume(0);
@@ -60,13 +65,15 @@ void SoundEmiter::playSound(std::string sound)
 {
 	try {
 		auto it = soundPulls_.at(sound);
-		if (!it.second) {
-			int am = it.first;
+		if (!it.mute) {
+			int am = it.amount;
 			int rnd = sdlutils().rand().nextInt(0, am);
 			std::string fileName = sound + std::to_string(rnd);
 			std::cout << fileName << "\n";
 			sdlutils().soundEffects().at(fileName).setVolume(soundVolume_);
-			sdlutils().soundEffects().at(fileName).play();
+			sdlutils().soundEffects().at(fileName).play(0, playInChannel_);
+			it.lastChannel = playInChannel_;
+			changeChannel();
 		}
 	}
 	catch (...) {
@@ -78,13 +85,15 @@ void SoundEmiter::playSound(std::string sound, float modifier)
 {
 	try {
 		auto it = soundPulls_.at(sound);
-		if (!it.second) {
-			int am = it.first;
+		if (!it.mute) {
+			int am = it.amount;
 			int rnd = sdlutils().rand().nextInt(0, am);
 			std::string fileName = sound + std::to_string(rnd);
 			std::cout << fileName << "\n";
 			sdlutils().soundEffects().at(fileName).setVolume(soundVolume_ * modifier);
-			sdlutils().soundEffects().at(fileName).play();
+			sdlutils().soundEffects().at(fileName).play(0, playInChannel_);
+			it.lastChannel = playInChannel_;
+			changeChannel();
 		}
 	}
 	catch (...) {
@@ -95,13 +104,13 @@ void SoundEmiter::playSound(std::string sound, float modifier)
 void SoundEmiter::haltSound(std::string sound)
 {
 	try {
-		int it = soundPulls_.at(sound).first;
-		for (int i = 0; i < it; i++) {
-			sdlutils().soundEffects().at(sound + std::to_string(i)).haltChannel();
+		auto it = soundPulls_.at(sound);
+		for (int i = 0; i < it.amount; i++) {
+			sdlutils().soundEffects().at(sound + std::to_string(i)).haltChannel(it.lastChannel);
 		}
 	}
 	catch (...) {
-		throw "No existe ese sonido.";
+		throw "Ha ocurrido un error al intentar detener ese sonido.";
 	}
 }
 
@@ -172,4 +181,21 @@ void SoundEmiter::processSoundListJSON()
 			throw "Error uwu";
 		}
 	}
+}
+
+void SoundEmiter::haltAllSounds()
+{
+	for (int i = -1; i < MAX_CHANNELS; i++) {
+		sdlutils().soundEffects().at("click0").haltChannel(i); 
+	}
+}
+
+void SoundEmiter::changeChannel()
+{
+	std::cout << playInChannel_ << " ";
+	playInChannel_++;
+	if (playInChannel_ == MAX_CHANNELS) {
+		playInChannel_ = 0;
+	}
+	std::cout << playInChannel_ << "\n";
 }

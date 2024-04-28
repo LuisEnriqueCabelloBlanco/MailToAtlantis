@@ -4,6 +4,11 @@
 #include <unordered_map>
 #include "../utils/Singleton.h"
 
+struct SoundInfo {
+	int amount;
+	bool mute;
+	int lastChannel;
+};
 /// <summary>
 /// Componente que se ocupará de manejar el sonido dentro de entidades.
 /// </summary>
@@ -16,6 +21,7 @@ public:
 	~SoundEmiter();
 
 	void init();
+	void close();
 
 	void setSoundVolumes(int volume);
 	void muteSingleSound(std::string sound, bool mute);
@@ -31,13 +37,15 @@ public:
 private:
 	void processSoundListJSON();
 
+	void haltAllSounds();
+
 	int soundVolume_;
 	int musicVolume_;
 	
 	/// <summary>
 	/// Mapa de los soundPulls. La clave es el nombre del sonido y el int es cuántos sonidos hay en esa pull.
 	/// </summary>
-	std::unordered_map<std::string, std::pair<int, bool>> soundPulls_;
+	std::unordered_map<std::string, SoundInfo> soundPulls_;
 
 	/// <summary>
 	/// Mapa de las canciones
