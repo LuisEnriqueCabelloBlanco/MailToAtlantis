@@ -1,6 +1,7 @@
 #pragma once
-#include "PipeManager.h"
 #include <sistemas/PipeManager.h>
+#include <json/JSON.h>
+
 
 using namespace tb;
 
@@ -11,8 +12,13 @@ public:
     ~WorkRestrictionsSystem();
     void init();
 
-    tb::WorkEvent getEvent(GeneralData::DialogSelection ds, int iteration);
+    tb::WorkEvent getRandomEvent();
+    tb::WorkEvent getEvent(int selection);
 private:
     std::string jsonPath;
+    void eventBlockPipe(WorkEvent& event, JSONObject jsonObj);
+    void eventSwapPipe(WorkEvent& event, JSONObject jsonObj);
+    void eventBanType(WorkEvent& event, JSONObject jsonObj);
+    void eventWeightRes(WorkEvent& event, JSONObject jsonObj);
 };
 

@@ -1,8 +1,103 @@
 {
   "Evento1": {
-    "1": ["odio mi vida"]
+    "dialogo": "Hoy no hay paquetes a Hestia crack",
+    "id": 0,
+    "target": "Hestia"
   },
   "Evento2": {
+    "dialogo": "Hestia a Demeter",
+    "id": 1,
+    "target": "Hestia",
+    "swapActive": true,
+    "originalDis":  true,
+    "dest": "Demeter"
+  },
+  "Evento3": {
+    "dialogo": "Hestia no come hoy",
+    "id": 2,
+    "target": "Hestia",
+    "ban":  "Alimento"
+  },
+  "Evento4": {
+    "dialogo": "Si pesas mas que el peso medio y vas a Hestia a tomar por culo",
+    "id": 3,
+    "target": "Hestia",
+    "weightRestricted": true,
+    "singleType": true,
+    "typeToWeight": "Alimento",
+    "minOrMax": 1,
+    "peso": "Medio"
+  },
+  "Evento5": {
+
+  },
+  "Evento6": {
+
+  },
+  "Evento7": {
+
+  },
+  "Evento8": {
+
+  },
+  "Evento9": {
+
+  },
+  "Evento10": {
+
+  },
+  "Evento11": {
+
+  },
+  "Evento12": {
+
+  },
+  "Evento13": {
+
+  },
+  "Evento14": {
+
+  },
+  "Evento15": {
+
+  },
+  "Evento16": {
+
+  },
+  "Evento17": {
+
+  },
+  "Evento18": {
+
+  },
+  "Evento19": {
+
+  },
+  "Evento20": {
+
+  },
+  "Evento21": {
+
+  },
+  "Evento22": {
+
+  },
+  "Evento23": {
+
+  },
+  "Evento24": {
+
+  },
+  "Evento25": {
+
+  },
+  "Evento26": {
+
+  },
+  "Evento27": {
+
+  },
+  "Evento28": {
 
   }
 }

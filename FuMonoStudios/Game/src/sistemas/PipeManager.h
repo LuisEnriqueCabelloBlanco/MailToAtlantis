@@ -36,8 +36,8 @@ namespace tb {
 	};
 
 	struct WorkEvent {
+		std::string dialogue;
 		restrictionId id;
-
 		// if we use union we save memory, but then use only primitive
 		// types, otherwise you will need to define constructors almost
 		// every where.
@@ -61,7 +61,7 @@ namespace tb {
 
 			struct
 			{
-				Distrito target;
+				Distrito targetPipe;
 				WeightRestriction restrictions;
 			} weight_res_pipe_data;
 		};

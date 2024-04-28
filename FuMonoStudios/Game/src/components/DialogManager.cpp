@@ -189,6 +189,15 @@ void DialogManager::setDialogues(const GeneralData::DialogSelection ds, const st
     }
 }
 
+void DialogManager::setDialogues(std::string& dialogo) //mirar en el .h por que no es const juro que tiene sentido
+{
+    dialogs_.clear();
+
+    fixText(dialogo);
+
+    dialogs_.push_back(dialogo);
+}
+
 void DialogManager::startConversation(const std::string& character)
 {
     if(canStartConversation)

@@ -111,7 +111,7 @@ void PipeManager::activateEvent(WorkEvent evento)
 		banTypeInPipe(evento.ban_type_pipe_data.targetPipe, evento.ban_type_pipe_data.ban);
 		break;
 	case WEIGHT_RESTRICT_PIPE:
-		weightRestrictPipe(evento.weight_res_pipe_data.target, evento.weight_res_pipe_data.restrictions);
+		weightRestrictPipe(evento.weight_res_pipe_data.targetPipe, evento.weight_res_pipe_data.restrictions);
 		break;
     default:
 		break;
