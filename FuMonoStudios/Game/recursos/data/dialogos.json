@@ -15,10 +15,10 @@
       "felicidadMaxima vagabundo"
     ],
     "Dia1": [
-      "dia1"
+      "no se usa"
     ],
     "PostConversacionDia1": [
-      "postConvDia1"
+      "no se usa"
     ],
     "Dia2": [
       "dia2"
@@ -223,7 +223,7 @@
       "Felicidad maxima Campesino"
     ],
     "Eventos": {
-      
+
       "1": [
         "Paco necesito un favorcillo hijo, a ver si me puedes ayudar",
         "He enviado unas hortalizas a un primo mio que vive en Hestia, pero entre tanto pensar y pensar en otras cosas me confund$i.",
@@ -237,7 +237,7 @@
         "Esos lameculos de los nobles no echar$ian un rastrillo extraviado en falta. Total, ni que esas estatuas sean demasiado importantes"
       ],
       "3": [
-        "Hoy esos idiotas de los intermediarios han subido el precio de mis productos,", 
+        "Hoy esos idiotas de los intermediarios han subido el precio de mis productos,",
         "en los mercados de los barrios bajos ya no es solo que no lo puedan comprar los habitantes,",
         "es que hasta a los propios puestos se les hace el precio excesivo,",
         "si se desviase alg$un paquete de comida Apolo hac$ia los distritos como Hestia tampoco creo que se muriese nadie.",
@@ -245,12 +245,12 @@
       ],
       "4": [
         "Unos amigos alados de cierto grupo me han dicho que por los barrios m$as bajos andan bajos de fondos de  medicinas.",
-        "Ya estamos con las mismas tonter$ias de siempre,", 
+        "Ya estamos con las mismas tonter$ias de siempre,",
         "a Hermes van a llegar una cantidad de medicinas absurda solamente porque hay un brote de gripe gambil.",
         "Y mientras tanto aqu$i abajo con enfermedades mucho peores muri$endonos del asco.",
         "Esos nobles no se merecen ni la d$ecima parte de lo que les llega.",
         "Nosotros en Demeter con dos de sus paquetes ya tendr$iamos suficiente."
-      ],  
+      ],
       "5": [
         "$!Paco, Paco, Paco!",
         "$!Menos mal que est$as aqu$i!",
@@ -338,7 +338,7 @@
         "Gracias por el apoyo Paquito, con todos estos ingresos puedo ver la vida desde otra perspectiva m$as amena."
       ]
     },
-    "GenericoMaxiBueno":{
+    "GenericoMaxiBueno": {
       "1": [
         "Yeeeeeeepa, que tal estamos m$aquina",
         "Prueba esto que est$an los clientes que me los quitan de las manos lo intemediarios,",
@@ -400,7 +400,7 @@
         "$?A qui$en quiere mi jefe enga$%ar con esta baratija? Consigueme desviar un paquete, se que no te decepcionar$e!"
       ],
       "3": [
-        "$!Ay, por las aletas de mi abuela! Aqu$i estamos otra vez, sin un triste trozo de queso." ,
+        "$!Ay, por las aletas de mi abuela! Aqu$i estamos otra vez, sin un triste trozo de queso.",
         "No s$e en qu$e est$a pensando el jefe $ultimamente, pero parece que su cabeza est$a m$as en las aguas que en el trabajo.",
         "$?Ser$ias tan amable de echarme una mano y traer un par de paquetes de comida? $!Necesitamos nutrir nuestra creatividad para hacerla brillar!"
       ],
@@ -549,7 +549,7 @@
         "Tranquilo, no te preocupes por la salud de esas personas, que los remedios caseros de los boticarios son mil veces m$as efectivos que cualquier otra cosa.",
         "Al final esto lo hago por el bien de los habitantes del distrito de Apolo."
       ],
-      
+
       "5": [
         "Sabes, a$un recuerdo mis $epocas como campesina de una manera muy dulce,",
         "sin embargo lo que hasta d$ia de hoy me enfurece es como se aprovechaban esos est$upidos comerciantes para revender lo que tanto nos cost$o cosechar",
@@ -598,7 +598,7 @@
       "1": [
         "Mira quien ha amanecido contento hoy, si es mi muchacho favorito.",
         "A$un parece que no vienen los clientes pero esto en unos minutos se llenar$a hasta reventar.",
-        "Sabes es gracioso," ,
+        "Sabes es gracioso,",
         "una gran parte de los que vienen se quedan haciendo cola por horas y horas para al final preguntarme cosas como qu$e hacer para conseguir amor o riqueza.",
         "No se dan cuenta que en el tiempo que gastan aqu$i podr$ian estar con sus seres queridos, haciendo algo productivo.",
         "Supongo que uno no sabe lo que tiene hasta perderlo."
@@ -975,15 +975,28 @@
       "Fijate que te ha salido una notita explicando tu error. Cada paquete correcto son 20 dolares, y cada paquete err$oneo son 30 dolares, que van subiendo seg$un tus fallos.",
       "Espero no ver muchas notitas cuando trabajes... El anterior a ti le hacia demasiados favores a la gente de la ciudad y acababa no ganando nada..."
     ],
-    "17": [
-      "Vale esta es la $ultima cosa que tengo que explicarte. Para ello vas a necesitar la herramienta que te acabo de soltar en la mesa",
-      "Algunos paquetes pueden contener cosas muy delicadas, y sus propietarios les ponen un sello de fr$agil para que nosotros lo embalemos bien.",
-      "Para poder embalarlo, coge la herramienta de embalar, y sigue la ruta de puntos que ver$as al ponerlo por encima del paquete. Sigue la ruta y se quedar$a niquelado."
+    "17":[
+      "Aqui no acaba la cosa, varios de los paquetes que debes enviar contendran un sello de pesado por motivos de seguridad a la hora de transportarlos.",
+      "Estos sello indican el peso del paquete, pudiendo ser bajo, medio y alto. En el manual tienes unas paginas que explican la diferencia de sellos.",
+      "El problema es que los habitantes no son muy espabilados asi que tendras que asegurarte con la balanaza que el sello de pesado corresponde a su peso",
+      "Para ello fijate en la region a donde apunta la flecha al colocar el paquete en la balanza."
     ],
-    "18": [
-      "Muy bien hecho. Ahora aplica lo que hemos aprendido, ponle su sello y mandalo por su tubo correspondiente."
+    "18":[
+      "Como ves este paquete esta correcto, por lo cual pon sus sellos correspondientes y envialo."
     ],
     "19": [
+      "Vale esta es la $ultima cosa que tengo que explicarte. Para ello vas a necesitar la herramienta que te acabo de soltar en la mesa",
+      "Algunos paquetes pueden contener cosas muy delicadas, y sus propietarios les ponen un sello de fr$agil para que nosotros lo embalemos bien.",
+      "Antes de embalarlo sera mejor que le pongas sello, ya que una vez embalado no podras ver sus caracteristicas."
+    ],
+    "20": [
+      "Para poder embalarlo, coge la herramienta de embalar, y sigue la ruta de puntos que ver$as al ponerlo por encima del paquete.",
+      "Sigue la ruta empezando por el punto verde y te quedar$a niquelado"
+    ],
+    "21": [
+      "Por $ultimo envia el paquete y abras terminado"
+    ],
+    "22": [
       "Muy bien, veo que ya te vas acordando. Ya estas listo para poder trabajar."
     ]
   },
@@ -995,5 +1008,1229 @@
       "estamos fumando marihuana",
       "hoy seras mi esclava en el cuarto de un motel"
     ]
-  }
+  },
+    "CasaGrande": {
+        "TextoCasaGrande00": [ "Grande00" ],
+        "TextoCasaGrande01": [ "Grande01" ],
+        "TextoCasaGrande02": [ "Grande02" ],
+
+        "TextoCasaGrande10": [ "Grande10" ],
+        "TextoCasaGrande11": [ "Grande11" ],
+        "TextoCasaGrande12": [ "Grande12" ],
+
+        "TextoCasaGrande20": [ "Grande20" ],
+        "TextoCasaGrande21": [ "Grande21" ],
+        "TextoCasaGrande22": [ "Grande22" ],
+
+        "TextoCasaGrande30": [ "Grande30" ],
+        "TextoCasaGrande31": [ "Grande31" ],
+        "TextoCasaGrande32": [ "Grande32" ],
+
+        "TextoCasaGrande40": [ "Grande40" ],
+        "TextoCasaGrande41": [ "Grande41" ],
+        "TextoCasaGrande42": [ "Grande42" ],
+
+        "TextoCasaGrande50": [ "Grande50" ],
+        "TextoCasaGrande51": [ "Grande51" ],
+        "TextoCasaGrande52": [ "Grande52" ],
+
+        "TextoCasaGrande60": [ "Grande60" ],
+        "TextoCasaGrande61": [ "Grande61" ],
+        "TextoCasaGrande62": [ "Grande62" ],
+
+        "TextoCasaGrande70": [ "Grande70" ],
+        "TextoCasaGrande71": [ "Grande71" ],
+        "TextoCasaGrande72": [ "Grande72" ],
+
+        "TextoCasaGrande80": [ "Grande80" ],
+        "TextoCasaGrande81": [ "Grande81" ],
+        "TextoCasaGrande82": [ "Grande82" ],
+
+        "TextoCasaGrande90": [ "Grande90" ],
+        "TextoCasaGrande91": [ "Grande91" ],
+        "TextoCasaGrande92": [ "Grande92" ],
+
+        "TextoCasaGrande100": [ "Grande100" ],
+        "TextoCasaGrande101": [ "Grande101" ],
+        "TextoCasaGrande102": [ "Grande102" ],
+
+        "TextoCasaGrande110": [ "Grande110" ],
+        "TextoCasaGrande111": [ "Grande111" ],
+        "TextoCasaGrande112": [ "Grande112" ],
+
+        "TextoCasaGrande120": [ "Grande120" ],
+        "TextoCasaGrande121": [ "Grande121" ],
+        "TextoCasaGrande122": [ "Grande122" ],
+
+        "TextoCasaGrande130": [ "Grande130" ],
+        "TextoCasaGrande131": [ "Grande131" ],
+        "TextoCasaGrande132": [ "Grande132" ],
+
+        "TextoCasaGrande140": [ "Grande140" ],
+        "TextoCasaGrande141": [ "Grande141" ],
+        "TextoCasaGrande142": [ "Grande142" ]
+    },
+    "CartelOficina": {
+        "TextoCartelOficina00": [ "CartelOficina00" ],
+        "TextoCartelOficina01": [ "CartelOficina01" ],
+        "TextoCartelOficina02": [ "CartelOficina02" ],
+
+        "TextoCartelOficina10": [ "CartelOficina10" ],
+        "TextoCartelOficina11": [ "CartelOficina11" ],
+        "TextoCartelOficina12": [ "CartelOficina12" ],
+
+        "TextoCartelOficina20": [ "CartelOficina20" ],
+        "TextoCartelOficina21": [ "CartelOficina21" ],
+        "TextoCartelOficina22": [ "CartelOficina22" ],
+
+        "TextoCartelOficina30": [ "CartelOficina30" ],
+        "TextoCartelOficina31": [ "CartelOficina31" ],
+        "TextoCartelOficina32": [ "CartelOficina32" ],
+
+        "TextoCartelOficina40": [ "CartelOficina40" ],
+        "TextoCartelOficina41": [ "CartelOficina41" ],
+        "TextoCartelOficina42": [ "CartelOficina42" ],
+
+        "TextoCartelOficina50": [ "CartelOficina50" ],
+        "TextoCartelOficina51": [ "CartelOficina51" ],
+        "TextoCartelOficina52": [ "CartelOficina52" ],
+
+        "TextoCartelOficina60": [ "CartelOficina60" ],
+        "TextoCartelOficina61": [ "CartelOficina61" ],
+        "TextoCartelOficina62": [ "CartelOficina62" ],
+
+        "TextoCartelOficina70": [ "CartelOficina70" ],
+        "TextoCartelOficina71": [ "CartelOficina71" ],
+        "TextoCartelOficina72": [ "CartelOficina72" ],
+
+        "TextoCartelOficina80": [ "CartelOficina80" ],
+        "TextoCartelOficina81": [ "CartelOficina81" ],
+        "TextoCartelOficina82": [ "CartelOficina82" ],
+
+        "TextoCartelOficina90": [ "CartelOficina90" ],
+        "TextoCartelOficina91": [ "CartelOficina91" ],
+        "TextoCartelOficina92": [ "CartelOficina92" ],
+
+        "TextoCartelOficina100": [ "CartelOficina100" ],
+        "TextoCartelOficina101": [ "CartelOficina101" ],
+        "TextoCartelOficina102": [ "CartelOficina102" ],
+
+        "TextoCartelOficina110": [ "CartelOficina110" ],
+        "TextoCartelOficina111": [ "CartelOficina111" ],
+        "TextoCartelOficina112": [ "CartelOficina112" ],
+
+        "TextoCartelOficina120": [ "CartelOficina120" ],
+        "TextoCartelOficina121": [ "CartelOficina121" ],
+        "TextoCartelOficina122": [ "CartelOficina122" ],
+
+        "TextoCartelOficina130": [ "CartelOficina130" ],
+        "TextoCartelOficina131": [ "CartelOficina131" ],
+        "TextoCartelOficina132": [ "CartelOficina132" ],
+
+        "TextoCartelOficina140": [ "CartelOficina140" ],
+        "TextoCartelOficina141": [ "CartelOficina141" ],
+        "TextoCartelOficina142": [ "CartelOficina142" ]
+    },
+    "Muro": {
+        "TextoMuro00": [ "Muro00" ],
+        "TextoMuro01": [ "Muro01" ],
+        "TextoMuro02": [ "Muro02" ],
+
+        "TextoMuro10": [ "Muro10" ],
+        "TextoMuro11": [ "Muro11" ],
+        "TextoMuro12": [ "Muro12" ],
+
+        "TextoMuro20": [ "Muro20" ],
+        "TextoMuro21": [ "Muro21" ],
+        "TextoMuro22": [ "Muro22" ],
+
+        "TextoMuro30": [ "Muro30" ],
+        "TextoMuro31": [ "Muro31" ],
+        "TextoMuro32": [ "Muro32" ],
+
+        "TextoMuro40": [ "Muro40" ],
+        "TextoMuro41": [ "Muro41" ],
+        "TextoMuro42": [ "Muro42" ],
+
+        "TextoMuro50": [ "Muro50" ],
+        "TextoMuro51": [ "Muro51" ],
+        "TextoMuro52": [ "Muro52" ],
+
+        "TextoMuro60": [ "Muro60" ],
+        "TextoMuro61": [ "Muro61" ],
+        "TextoMuro62": [ "Muro62" ],
+
+        "TextoMuro70": [ "Muro70" ],
+        "TextoMuro71": [ "Muro71" ],
+        "TextoMuro72": [ "Muro72" ],
+
+        "TextoMuro80": [ "Muro80" ],
+        "TextoMuro81": [ "Muro81" ],
+        "TextoMuro82": [ "Muro82" ],
+
+        "TextoMuro90": [ "Muro90" ],
+        "TextoMuro91": [ "Muro91" ],
+        "TextoMuro92": [ "Muro92" ],
+
+        "TextoMuro100": [ "Muro100" ],
+        "TextoMuro101": [ "Muro101" ],
+        "TextoMuro102": [ "Muro102" ],
+        
+        "TextoMuro110": [ "Muro110" ],
+        "TextoMuro111": [ "Muro111" ],
+        "TextoMuro112": [ "Muro112" ],
+        
+        "TextoMuro120": [ "Muro120" ],
+        "TextoMuro121": [ "Muro121" ],
+        "TextoMuro122": [ "Muro122" ],
+        
+        "TextoMuro130": [ "Muro130" ],
+        "TextoMuro131": [ "Muro131" ],
+        "TextoMuro132": [ "Muro132" ],
+        
+        "TextoMuro140": [ "Muro140" ],
+        "TextoMuro141": [ "Muro141" ],
+        "TextoMuro142": [ "Muro142" ]
+    },
+    "TiendaPociones": {
+        "TextoTiendaPociones00": [ "TiendaPociones00" ],
+        "TextoTiendaPociones01": [ "TiendaPociones01" ],
+        "TextoTiendaPociones02": [ "TiendaPociones02" ],
+        
+        "TextoTiendaPociones10": [ "TiendaPociones10" ],
+        "TextoTiendaPociones11": [ "TiendaPociones11" ],
+        "TextoTiendaPociones12": [ "TiendaPociones12" ],
+        
+        "TextoTiendaPociones20": [ "TiendaPociones20" ],
+        "TextoTiendaPociones21": [ "TiendaPociones21" ],
+        "TextoTiendaPociones22": [ "TiendaPociones22" ],
+        
+        "TextoTiendaPociones30": [ "TiendaPociones30" ],
+        "TextoTiendaPociones31": [ "TiendaPociones31" ],
+        "TextoTiendaPociones32": [ "TiendaPociones32" ],
+        
+        "TextoTiendaPociones40": [ "TiendaPociones40" ],
+        "TextoTiendaPociones41": [ "TiendaPociones41" ],
+        "TextoTiendaPociones42": [ "TiendaPociones42" ],
+        
+        "TextoTiendaPociones50": [ "TiendaPociones50" ],
+        "TextoTiendaPociones51": [ "TiendaPociones51" ],
+        "TextoTiendaPociones52": [ "TiendaPociones52" ],
+        
+        "TextoTiendaPociones60": [ "TiendaPociones60" ],
+        "TextoTiendaPociones61": [ "TiendaPociones61" ],
+        "TextoTiendaPociones62": [ "TiendaPociones62" ],
+        
+        "TextoTiendaPociones70": [ "TiendaPociones70" ],
+        "TextoTiendaPociones71": [ "TiendaPociones71" ],
+        "TextoTiendaPociones72": [ "TiendaPociones72" ],
+        
+        "TextoTiendaPociones80": [ "TiendaPociones80" ],
+        "TextoTiendaPociones81": [ "TiendaPociones81" ],
+        "TextoTiendaPociones82": [ "TiendaPociones82" ],
+        
+        "TextoTiendaPociones90": [ "TiendaPociones90" ],
+        "TextoTiendaPociones91": [ "TiendaPociones91" ],
+        "TextoTiendaPociones92": [ "TiendaPociones92" ],
+        
+        "TextoTiendaPociones100": [ "TiendaPociones100" ],
+        "TextoTiendaPociones101": [ "TiendaPociones101" ],
+        "TextoTiendaPociones102": [ "TiendaPociones102" ],
+        
+        "TextoTiendaPociones110": [ "TiendaPociones110" ],
+        "TextoTiendaPociones111": [ "TiendaPociones111" ],
+        "TextoTiendaPociones112": [ "TiendaPociones112" ],
+        
+        "TextoTiendaPociones120": [ "TiendaPociones120" ],
+        "TextoTiendaPociones121": [ "TiendaPociones121" ],
+        "TextoTiendaPociones122": [ "TiendaPociones122" ],
+        
+        "TextoTiendaPociones130": [ "TiendaPociones130" ],
+        "TextoTiendaPociones131": [ "TiendaPociones131" ],
+        "TextoTiendaPociones132": [ "TiendaPociones132" ],
+        
+        "TextoTiendaPociones140": [ "TiendaPociones140" ],
+        "TextoTiendaPociones141": [ "TiendaPociones141" ],
+        "TextoTiendaPociones142": [ "TiendaPociones142" ]
+    },
+    "TiendaBolas": {
+        "TextoTiendaBolas00": [ "TiendaBolas00" ],
+        "TextoTiendaBolas01": [ "TiendaBolas01" ],
+        "TextoTiendaBolas02": [ "TiendaBolas02" ],
+        
+        "TextoTiendaBolas10": [ "TiendaBolas10" ],
+        "TextoTiendaBolas11": [ "TiendaBolas11" ],
+        "TextoTiendaBolas12": [ "TiendaBolas12" ],
+        
+        "TextoTiendaBolas20": [ "TiendaBolas20" ],
+        "TextoTiendaBolas21": [ "TiendaBolas21" ],
+        "TextoTiendaBolas22": [ "TiendaBolas22" ],
+        
+        "TextoTiendaBolas30": [ "TiendaBolas30" ],
+        "TextoTiendaBolas31": [ "TiendaBolas31" ],
+        "TextoTiendaBolas32": [ "TiendaBolas32" ],
+        
+        "TextoTiendaBolas40": [ "TiendaBolas40" ],
+        "TextoTiendaBolas41": [ "TiendaBolas41" ],
+        "TextoTiendaBolas42": [ "TiendaBolas42" ],
+        
+        "TextoTiendaBolas50": [ "TiendaBolas50" ],
+        "TextoTiendaBolas51": [ "TiendaBolas51" ],
+        "TextoTiendaBolas52": [ "TiendaBolas52" ],
+        
+        "TextoTiendaBolas60": [ "TiendaBolas60" ],
+        "TextoTiendaBolas61": [ "TiendaBolas61" ],
+        "TextoTiendaBolas62": [ "TiendaBolas62" ],
+        
+        "TextoTiendaBolas70": [ "TiendaBolas70" ],
+        "TextoTiendaBolas71": [ "TiendaBolas71" ],
+        "TextoTiendaBolas72": [ "TiendaBolas72" ],
+        
+        "TextoTiendaBolas80": [ "TiendaBolas80" ],
+        "TextoTiendaBolas81": [ "TiendaBolas81" ],
+        "TextoTiendaBolas82": [ "TiendaBolas82" ],
+        
+        "TextoTiendaBolas90": [ "TiendaBolas90" ],
+        "TextoTiendaBolas91": [ "TiendaBolas91" ],
+        "TextoTiendaBolas92": [ "TiendaBolas92" ],
+        
+        "TextoTiendaBolas100": [ "TiendaBolas100" ],
+        "TextoTiendaBolas101": [ "TiendaBolas101" ],
+        "TextoTiendaBolas102": [ "TiendaBolas102" ],
+        
+        "TextoTiendaBolas110": [ "TiendaBolas110" ],
+        "TextoTiendaBolas111": [ "TiendaBolas111" ],
+        "TextoTiendaBolas112": [ "TiendaBolas112" ],
+        
+        "TextoTiendaBolas120": [ "TiendaBolas120" ],
+        "TextoTiendaBolas121": [ "TiendaBolas121" ],
+        "TextoTiendaBolas122": [ "TiendaBolas122" ],
+        
+        "TextoTiendaBolas130": [ "TiendaBolas130" ],
+        "TextoTiendaBolas131": [ "TiendaBolas131" ],
+        "TextoTiendaBolas132": [ "TiendaBolas132" ],
+        
+        "TextoTiendaBolas140": [ "TiendaBolas140" ],
+        "TextoTiendaBolas141": [ "TiendaBolas141" ],
+        "TextoTiendaBolas142": [ "TiendaBolas142" ]
+    },
+    "TiendaJarrones": {
+        "TextoTiendaJarrones00": [ "TiedaJarrones00" ],
+        "TextoTiendaJarrones01": [ "TiedaJarrones01" ],
+        "TextoTiendaJarrones02": [ "TiedaJarrones02" ],
+        
+        "TextoTiendaJarrones10": [ "TiedaJarrones10" ],
+        "TextoTiendaJarrones11": [ "TiedaJarrones11" ],
+        "TextoTiendaJarrones12": [ "TiedaJarrones12" ],
+        
+        "TextoTiendaJarrones20": [ "TiedaJarrones20" ],
+        "TextoTiendaJarrones21": [ "TiedaJarrones21" ],
+        "TextoTiendaJarrones22": [ "TiedaJarrones22" ],
+        
+        "TextoTiendaJarrones30": [ "TiedaJarrones30" ],
+        "TextoTiendaJarrones31": [ "TiedaJarrones31" ],
+        "TextoTiendaJarrones32": [ "TiedaJarrones32" ],
+        
+        "TextoTiendaJarrones40": [ "TiedaJarrones40" ],
+        "TextoTiendaJarrones41": [ "TiedaJarrones41" ],
+        "TextoTiendaJarrones42": [ "TiedaJarrones42" ],
+        
+        "TextoTiendaJarrones50": [ "TiedaJarrones50" ],
+        "TextoTiendaJarrones51": [ "TiedaJarrones51" ],
+        "TextoTiendaJarrones52": [ "TiedaJarrones52" ],
+        
+        "TextoTiendaJarrones60": [ "TiedaJarrones60" ],
+        "TextoTiendaJarrones61": [ "TiedaJarrones61" ],
+        "TextoTiendaJarrones62": [ "TiedaJarrones62" ],
+        
+        "TextoTiendaJarrones70": [ "TiedaJarrones70" ],
+        "TextoTiendaJarrones71": [ "TiedaJarrones71" ],
+        "TextoTiendaJarrones72": [ "TiedaJarrones72" ],
+        
+        "TextoTiendaJarrones80": [ "TiedaJarrones80" ],
+        "TextoTiendaJarrones81": [ "TiedaJarrones81" ],
+        "TextoTiendaJarrones82": [ "TiedaJarrones82" ],
+        
+        "TextoTiendaJarrones90": [ "TiedaJarrones90" ],
+        "TextoTiendaJarrones91": [ "TiedaJarrones91" ],
+        "TextoTiendaJarrones92": [ "TiedaJarrones92" ],
+        
+        "TextoTiendaJarrones100": [ "TiedaJarrones100" ],
+        "TextoTiendaJarrones101": [ "TiedaJarrones101" ],
+        "TextoTiendaJarrones102": [ "TiedaJarrones102" ],
+        
+        "TextoTiendaJarrones110": [ "TiedaJarrones110" ],
+        "TextoTiendaJarrones111": [ "TiedaJarrones111" ],
+        "TextoTiendaJarrones112": [ "TiedaJarrones112" ],
+        
+        "TextoTiendaJarrones120": [ "TiedaJarrones120" ],
+        "TextoTiendaJarrones121": [ "TiedaJarrones121" ],
+        "TextoTiendaJarrones122": [ "TiedaJarrones122" ],
+        
+        "TextoTiendaJarrones130": [ "TiedaJarrones130" ],
+        "TextoTiendaJarrones131": [ "TiedaJarrones131" ],
+        "TextoTiendaJarrones132": [ "TiedaJarrones132" ],
+        
+        "TextoTiendaJarrones140": [ "TiedaJarrones140" ],
+        "TextoTiendaJarrones141": [ "TiedaJarrones141" ],
+        "TextoTiendaJarrones142": [ "TiedaJarrones142" ]
+    },
+    "Molino": {
+        "TextoMolino00": [ "Molino00" ],
+        "TextoMolino01": [ "Molino01" ],
+        "TextoMolino02": [ "Molino02" ],
+        
+        "TextoMolino10": [ "Molino10" ],
+        "TextoMolino11": [ "Molino11" ],
+        "TextoMolino12": [ "Molino12" ],
+        
+        "TextoMolino20": [ "Molino20" ],
+        "TextoMolino21": [ "Molino21" ],
+        "TextoMolino22": [ "Molino22" ],
+        
+        "TextoMolino30": [ "Molino30" ],
+        "TextoMolino31": [ "Molino31" ],
+        "TextoMolino32": [ "Molino32" ],
+        
+        "TextoMolino40": [ "Molino40" ],
+        "TextoMolino41": [ "Molino41" ],
+        "TextoMolino42": [ "Molino42" ],
+        
+        "TextoMolino50": [ "Molino50" ],
+        "TextoMolino51": [ "Molino51" ],
+        "TextoMolino52": [ "Molino52" ],
+        
+        "TextoMolino60": [ "Molino60" ],
+        "TextoMolino61": [ "Molino61" ],
+        "TextoMolino62": [ "Molino62" ],
+        
+        "TextoMolino70": [ "Molino70" ],
+        "TextoMolino71": [ "Molino71" ],
+        "TextoMolino72": [ "Molino72" ],
+        
+        "TextoMolino80": [ "Molino80" ],
+        "TextoMolino81": [ "Molino81" ],
+        "TextoMolino82": [ "Molino82" ],
+        
+        "TextoMolino90": [ "Molino90" ],
+        "TextoMolino91": [ "Molino91" ],
+        "TextoMolino92": [ "Molino92" ],
+        
+        "TextoMolino100": [ "Molino100" ],
+        "TextoMolino101": [ "Molino101" ],
+        "TextoMolino102": [ "Molino102" ],
+        
+        "TextoMolino110": [ "Molino110" ],
+        "TextoMolino111": [ "Molino111" ],
+        "TextoMolino112": [ "Molino112" ],
+        
+        "TextoMolino120": [ "Molino120" ],
+        "TextoMolino121": [ "Molino121" ],
+        "TextoMolino122": [ "Molino122" ],
+        
+        "TextoMolino130": [ "Molino130" ],
+        "TextoMolino131": [ "Molino131" ],
+        "TextoMolino132": [ "Molino132" ],
+        
+        "TextoMolino140": [ "Molino140" ],
+        "TextoMolino141": [ "Molino141" ],
+        "TextoMolino142": [ "Molino142" ]
+    },
+    "Arbol": {
+        "TextoArbol00": [ "Arbol00" ],
+        "TextoArbol01": [ "Arbol01" ],
+        "TextoArbol02": [ "Arbol02" ],
+        
+        "TextoArbol10": [ "Arbol10" ],
+        "TextoArbol11": [ "Arbol11" ],
+        "TextoArbol12": [ "Arbol12" ],
+        
+        "TextoArbol20": [ "Arbol20" ],
+        "TextoArbol21": [ "Arbol21" ],
+        "TextoArbol22": [ "Arbol22" ],
+        
+        "TextoArbol30": [ "Arbol30" ],
+        "TextoArbol31": [ "Arbol31" ],
+        "TextoArbol32": [ "Arbol32" ],
+        
+        "TextoArbol40": [ "Arbol40" ],
+        "TextoArbol41": [ "Arbol41" ],
+        "TextoArbol42": [ "Arbol42" ],
+        
+        "TextoArbol50": [ "Arbol50" ],
+        "TextoArbol51": [ "Arbol51" ],
+        "TextoArbol52": [ "Arbol52" ],
+        
+        "TextoArbol60": [ "Arbol60" ],
+        "TextoArbol61": [ "Arbol61" ],
+        "TextoArbol62": [ "Arbol62" ],
+        
+        "TextoArbol70": [ "Arbol70" ],
+        "TextoArbol71": [ "Arbol71" ],
+        "TextoArbol72": [ "Arbol72" ],
+        
+        "TextoArbol80": [ "Arbol80" ],
+        "TextoArbol81": [ "Arbol81" ],
+        "TextoArbol82": [ "Arbol82" ],
+        
+        "TextoArbol90": [ "Arbol90" ],
+        "TextoArbol91": [ "Arbol91" ],
+        "TextoArbol92": [ "Arbol92" ],
+        
+        "TextoArbol100": [ "Arbol100" ],
+        "TextoArbol101": [ "Arbol101" ],
+        "TextoArbol102": [ "Arbol102" ],
+        
+        "TextoArbol110": [ "Arbol110" ],
+        "TextoArbol111": [ "Arbol111" ],
+        "TextoArbol112": [ "Arbol112" ],
+        
+        "TextoArbol120": [ "Arbol120" ],
+        "TextoArbol121": [ "Arbol121" ],
+        "TextoArbol122": [ "Arbol122" ],
+        
+        "TextoArbol130": [ "Arbol130" ],
+        "TextoArbol131": [ "Arbol131" ],
+        "TextoArbol132": [ "Arbol132" ],
+        
+        "TextoArbol140": [ "Arbol140" ],
+        "TextoArbol141": [ "Arbol141" ],
+        "TextoArbol142": [ "Arbol142" ]
+    },
+    "Carreta": {
+        "TextoCarreta00": [ "Carreta00" ],
+        "TextoCarreta01": [ "Carreta01" ],
+        "TextoCarreta02": [ "Carreta02" ],
+        
+        "TextoCarreta10": [ "Carreta10" ],
+        "TextoCarreta11": [ "Carreta11" ],
+        "TextoCarreta12": [ "Carreta12" ],
+        
+        "TextoCarreta20": [ "Carreta20" ],
+        "TextoCarreta21": [ "Carreta21" ],
+        "TextoCarreta22": [ "Carreta22" ],
+        
+        "TextoCarreta30": [ "Carreta30" ],
+        "TextoCarreta31": [ "Carreta31" ],
+        "TextoCarreta32": [ "Carreta32" ],
+        
+        "TextoCarreta40": [ "Carreta40" ],
+        "TextoCarreta41": [ "Carreta41" ],
+        "TextoCarreta42": [ "Carreta42" ],
+        
+        "TextoCarreta50": [ "Carreta50" ],
+        "TextoCarreta51": [ "Carreta51" ],
+        "TextoCarreta52": [ "Carreta52" ],
+        
+        "TextoCarreta60": [ "Carreta60" ],
+        "TextoCarreta61": [ "Carreta61" ],
+        "TextoCarreta62": [ "Carreta62" ],
+        
+        "TextoCarreta70": [ "Carreta70" ],
+        "TextoCarreta71": [ "Carreta71" ],
+        "TextoCarreta72": [ "Carreta72" ],
+        
+        "TextoCarreta80": [ "Carreta80" ],
+        "TextoCarreta81": [ "Carreta81" ],
+        "TextoCarreta82": [ "Carreta82" ],
+        
+        "TextoCarreta90": [ "Carreta90" ],
+        "TextoCarreta91": [ "Carreta91" ],
+        "TextoCarreta92": [ "Carreta92" ],
+        
+        "TextoCarreta100": [ "Carreta100" ],
+        "TextoCarreta101": [ "Carreta101" ],
+        "TextoCarreta102": [ "Carreta102" ],
+        
+        "TextoCarreta110": [ "Carreta110" ],
+        "TextoCarreta111": [ "Carreta111" ],
+        "TextoCarreta112": [ "Carreta112" ],
+        
+        "TextoCarreta120": [ "Carreta120" ],
+        "TextoCarreta121": [ "Carreta121" ],
+        "TextoCarreta122": [ "Carreta122" ],
+        
+        "TextoCarreta130": [ "Carreta130" ],
+        "TextoCarreta131": [ "Carreta131" ],
+        "TextoCarreta132": [ "Carreta132" ],
+        
+        "TextoCarreta140": [ "Carreta140" ],
+        "TextoCarreta141": [ "Carreta141" ],
+        "TextoCarreta142": [ "Carreta142" ]
+    },
+    "PulpoCartel": {
+        "TextoPulpoCartel00": [ "PulpoCartel00" ],
+        "TextoPulpoCartel01": [ "PulpoCartel01" ],
+        "TextoPulpoCartel02": [ "PulpoCartel02" ],
+        
+        "TextoPulpoCartel10": [ "PulpoCartel10" ],
+        "TextoPulpoCartel11": [ "PulpoCartel11" ],
+        "TextoPulpoCartel12": [ "PulpoCartel12" ],
+        
+        "TextoPulpoCartel20": [ "PulpoCartel20" ],
+        "TextoPulpoCartel21": [ "PulpoCartel21" ],
+        "TextoPulpoCartel22": [ "PulpoCartel22" ],
+        
+        "TextoPulpoCartel30": [ "PulpoCartel30" ],
+        "TextoPulpoCartel31": [ "PulpoCartel31" ],
+        "TextoPulpoCartel32": [ "PulpoCartel32" ],
+        
+        "TextoPulpoCartel40": [ "PulpoCartel40" ],
+        "TextoPulpoCartel41": [ "PulpoCartel41" ],
+        "TextoPulpoCartel42": [ "PulpoCartel42" ],
+        
+        "TextoPulpoCartel50": [ "PulpoCartel50" ],
+        "TextoPulpoCartel51": [ "PulpoCartel51" ],
+        "TextoPulpoCartel52": [ "PulpoCartel52" ],
+        
+        "TextoPulpoCartel60": [ "PulpoCartel60" ],
+        "TextoPulpoCartel61": [ "PulpoCartel61" ],
+        "TextoPulpoCartel62": [ "PulpoCartel62" ],
+        
+        "TextoPulpoCartel70": [ "PulpoCartel70" ],
+        "TextoPulpoCartel71": [ "PulpoCartel71" ],
+        "TextoPulpoCartel72": [ "PulpoCartel72" ],
+        
+        "TextoPulpoCartel80": [ "PulpoCartel80" ],
+        "TextoPulpoCartel81": [ "PulpoCartel81" ],
+        "TextoPulpoCartel82": [ "PulpoCartel82" ],
+        
+        "TextoPulpoCartel90": [ "PulpoCartel90" ],
+        "TextoPulpoCartel91": [ "PulpoCartel91" ],
+        "TextoPulpoCartel92": [ "PulpoCartel92" ],
+        
+        "TextoPulpoCartel100": [ "PulpoCartel100" ],
+        "TextoPulpoCartel101": [ "PulpoCartel101" ],
+        "TextoPulpoCartel102": [ "PulpoCartel102" ],
+        
+        "TextoPulpoCartel110": [ "PulpoCartel110" ],
+        "TextoPulpoCartel111": [ "PulpoCartel111" ],
+        "TextoPulpoCartel112": [ "PulpoCartel112" ],
+        
+        "TextoPulpoCartel120": [ "PulpoCartel120" ],
+        "TextoPulpoCartel121": [ "PulpoCartel121" ],
+        "TextoPulpoCartel122": [ "PulpoCartel122" ],
+        
+        "TextoPulpoCartel130": [ "PulpoCartel130" ],
+        "TextoPulpoCartel131": [ "PulpoCartel131" ],
+        "TextoPulpoCartel132": [ "PulpoCartel132" ],
+        
+        "TextoPulpoCartel140": [ "PulpoCartel140" ],
+        "TextoPulpoCartel141": [ "PulpoCartel141" ],
+        "TextoPulpoCartel142": [ "PulpoCartel142" ]
+    },
+    "TiendaCeramica": {
+        "TextoTiendaCeramica00": [ "TiendaCeramica00" ],
+        "TextoTiendaCeramica01": [ "TiendaCeramica01" ],
+        "TextoTiendaCeramica02": [ "TiendaCeramica02" ],
+        
+        "TextoTiendaCeramica10": [ "TiendaCeramica10" ],
+        "TextoTiendaCeramica11": [ "TiendaCeramica11" ],
+        "TextoTiendaCeramica12": [ "TiendaCeramica12" ],
+        
+        "TextoTiendaCeramica20": [ "TiendaCeramica20" ],
+        "TextoTiendaCeramica21": [ "TiendaCeramica21" ],
+        "TextoTiendaCeramica22": [ "TiendaCeramica22" ],
+        
+        "TextoTiendaCeramica30": [ "TiendaCeramica30" ],
+        "TextoTiendaCeramica31": [ "TiendaCeramica31" ],
+        "TextoTiendaCeramica32": [ "TiendaCeramica32" ],
+        
+        "TextoTiendaCeramica40": [ "TiendaCeramica40" ],
+        "TextoTiendaCeramica41": [ "TiendaCeramica41" ],
+        "TextoTiendaCeramica42": [ "TiendaCeramica42" ],
+        
+        "TextoTiendaCeramica50": [ "TiendaCeramica50" ],
+        "TextoTiendaCeramica51": [ "TiendaCeramica51" ],
+        "TextoTiendaCeramica52": [ "TiendaCeramica52" ],
+        
+        "TextoTiendaCeramica60": [ "TiendaCeramica60" ],
+        "TextoTiendaCeramica61": [ "TiendaCeramica61" ],
+        "TextoTiendaCeramica62": [ "TiendaCeramica62" ],
+        
+        "TextoTiendaCeramica70": [ "TiendaCeramica70" ],
+        "TextoTiendaCeramica71": [ "TiendaCeramica71" ],
+        "TextoTiendaCeramica72": [ "TiendaCeramica72" ],
+        
+        "TextoTiendaCeramica80": [ "TiendaCeramica80" ],
+        "TextoTiendaCeramica81": [ "TiendaCeramica81" ],
+        "TextoTiendaCeramica82": [ "TiendaCeramica82" ],
+        
+        "TextoTiendaCeramica90": [ "TiendaCeramica90" ],
+        "TextoTiendaCeramica91": [ "TiendaCeramica91" ],
+        "TextoTiendaCeramica92": [ "TiendaCeramica92" ],
+        
+        "TextoTiendaCeramica100": [ "TiendaCeramica100" ],
+        "TextoTiendaCeramica101": [ "TiendaCeramica101" ],
+        "TextoTiendaCeramica102": [ "TiendaCeramica102" ],
+        
+        "TextoTiendaCeramica110": [ "TiendaCeramica110" ],
+        "TextoTiendaCeramica111": [ "TiendaCeramica111" ],
+        "TextoTiendaCeramica112": [ "TiendaCeramica112" ],
+        
+        "TextoTiendaCeramica120": [ "TiendaCeramica120" ],
+        "TextoTiendaCeramica121": [ "TiendaCeramica121" ],
+        "TextoTiendaCeramica122": [ "TiendaCeramica122" ],
+        
+        "TextoTiendaCeramica130": [ "TiendaCeramica130" ],
+        "TextoTiendaCeramica131": [ "TiendaCeramica131" ],
+        "TextoTiendaCeramica132": [ "TiendaCeramica132" ],
+        
+        "TextoTiendaCeramica140": [ "TiendaCeramica140" ],
+        "TextoTiendaCeramica141": [ "TiendaCeramica141" ],
+        "TextoTiendaCeramica142": [ "TiendaCeramica142" ]
+    },
+    "TiendaEsculturas": {
+        "TextoTiendaEsculturas00": [ "TiendaEsculturas00" ],
+        "TextoTiendaEsculturas01": [ "TiendaEsculturas01" ],
+        "TextoTiendaEsculturas02": [ "TiendaEsculturas02" ],
+        
+        "TextoTiendaEsculturas10": [ "TiendaEsculturas10" ],
+        "TextoTiendaEsculturas11": [ "TiendaEsculturas11" ],
+        "TextoTiendaEsculturas12": [ "TiendaEsculturas12" ],
+        
+        "TextoTiendaEsculturas20": [ "TiendaEsculturas20" ],
+        "TextoTiendaEsculturas21": [ "TiendaEsculturas21" ],
+        "TextoTiendaEsculturas22": [ "TiendaEsculturas22" ],
+        
+        "TextoTiendaEsculturas30": [ "TiendaEsculturas30" ],
+        "TextoTiendaEsculturas31": [ "TiendaEsculturas31" ],
+        "TextoTiendaEsculturas32": [ "TiendaEsculturas32" ],
+        
+        "TextoTiendaEsculturas40": [ "TiendaEsculturas40" ],
+        "TextoTiendaEsculturas41": [ "TiendaEsculturas41" ],
+        "TextoTiendaEsculturas42": [ "TiendaEsculturas42" ],
+        
+        "TextoTiendaEsculturas50": [ "TiendaEsculturas50" ],
+        "TextoTiendaEsculturas51": [ "TiendaEsculturas51" ],
+        "TextoTiendaEsculturas52": [ "TiendaEsculturas52" ],
+        
+        "TextoTiendaEsculturas60": [ "TiendaEsculturas60" ],
+        "TextoTiendaEsculturas61": [ "TiendaEsculturas61" ],
+        "TextoTiendaEsculturas62": [ "TiendaEsculturas62" ],
+        
+        "TextoTiendaEsculturas70": [ "TiendaEsculturas70" ],
+        "TextoTiendaEsculturas71": [ "TiendaEsculturas71" ],
+        "TextoTiendaEsculturas72": [ "TiendaEsculturas72" ],
+        
+        "TextoTiendaEsculturas80": [ "TiendaEsculturas80" ],
+        "TextoTiendaEsculturas81": [ "TiendaEsculturas81" ],
+        "TextoTiendaEsculturas82": [ "TiendaEsculturas82" ],
+        
+        "TextoTiendaEsculturas90": [ "TiendaEsculturas90" ],
+        "TextoTiendaEsculturas91": [ "TiendaEsculturas91" ],
+        "TextoTiendaEsculturas92": [ "TiendaEsculturas92" ],
+        
+        "TextoTiendaEsculturas100": [ "TiendaEsculturas100" ],
+        "TextoTiendaEsculturas101": [ "TiendaEsculturas101" ],
+        "TextoTiendaEsculturas102": [ "TiendaEsculturas102" ],
+        
+        "TextoTiendaEsculturas110": [ "TiendaEsculturas110" ],
+        "TextoTiendaEsculturas111": [ "TiendaEsculturas111" ],
+        "TextoTiendaEsculturas112": [ "TiendaEsculturas112" ],
+        
+        "TextoTiendaEsculturas120": [ "TiendaEsculturas120" ],
+        "TextoTiendaEsculturas121": [ "TiendaEsculturas121" ],
+        "TextoTiendaEsculturas122": [ "TiendaEsculturas122" ],
+        
+        "TextoTiendaEsculturas130": [ "TiendaEsculturas130" ],
+        "TextoTiendaEsculturas131": [ "TiendaEsculturas131" ],
+        "TextoTiendaEsculturas132": [ "TiendaEsculturas132" ],
+        
+        "TextoTiendaEsculturas140": [ "TiendaEsculturas140" ],
+        "TextoTiendaEsculturas141": [ "TiendaEsculturas141" ],
+        "TextoTiendaEsculturas142": [ "TiendaEsculturas142" ]
+    },
+    "TiendaDerecha": {
+        "TextoTiendaDerecha00": [ "TiendaDerecha00" ],
+        "TextoTiendaDerecha01": [ "TiendaDerecha01" ],
+        "TextoTiendaDerecha02": [ "TiendaDerecha02" ],
+        
+        "TextoTiendaDerecha10": [ "TiendaDerecha10" ],
+        "TextoTiendaDerecha11": [ "TiendaDerecha11" ],
+        "TextoTiendaDerecha12": [ "TiendaDerecha12" ],
+        
+        "TextoTiendaDerecha20": [ "TiendaDerecha20" ],
+        "TextoTiendaDerecha21": [ "TiendaDerecha21" ],
+        "TextoTiendaDerecha22": [ "TiendaDerecha22" ],
+        
+        "TextoTiendaDerecha30": [ "TiendaDerecha30" ],
+        "TextoTiendaDerecha31": [ "TiendaDerecha31" ],
+        "TextoTiendaDerecha32": [ "TiendaDerecha32" ],
+        
+        "TextoTiendaDerecha40": [ "TiendaDerecha40" ],
+        "TextoTiendaDerecha41": [ "TiendaDerecha41" ],
+        "TextoTiendaDerecha42": [ "TiendaDerecha42" ],
+        
+        "TextoTiendaDerecha50": [ "TiendaDerecha50" ],
+        "TextoTiendaDerecha51": [ "TiendaDerecha51" ],
+        "TextoTiendaDerecha52": [ "TiendaDerecha52" ],
+        
+        "TextoTiendaDerecha60": [ "TiendaDerecha60" ],
+        "TextoTiendaDerecha61": [ "TiendaDerecha61" ],
+        "TextoTiendaDerecha62": [ "TiendaDerecha62" ],
+        
+        "TextoTiendaDerecha70": [ "TiendaDerecha70" ],
+        "TextoTiendaDerecha71": [ "TiendaDerecha71" ],
+        "TextoTiendaDerecha72": [ "TiendaDerecha72" ],
+        
+        "TextoTiendaDerecha80": [ "TiendaDerecha80" ],
+        "TextoTiendaDerecha81": [ "TiendaDerecha81" ],
+        "TextoTiendaDerecha82": [ "TiendaDerecha82" ],
+        
+        "TextoTiendaDerecha90": [ "TiendaDerecha90" ],
+        "TextoTiendaDerecha91": [ "TiendaDerecha91" ],
+        "TextoTiendaDerecha92": [ "TiendaDerecha92" ],
+        
+        "TextoTiendaDerecha100": [ "TiendaDerecha100" ],
+        "TextoTiendaDerecha101": [ "TiendaDerecha101" ],
+        "TextoTiendaDerecha102": [ "TiendaDerecha102" ],
+        
+        "TextoTiendaDerecha110": [ "TiendaDerecha110" ],
+        "TextoTiendaDerecha111": [ "TiendaDerecha111" ],
+        "TextoTiendaDerecha112": [ "TiendaDerecha112" ],
+        
+        "TextoTiendaDerecha120": [ "TiendaDerecha120" ],
+        "TextoTiendaDerecha121": [ "TiendaDerecha121" ],
+        "TextoTiendaDerecha122": [ "TiendaDerecha122" ],
+        
+        "TextoTiendaDerecha130": [ "TiendaDerecha130" ],
+        "TextoTiendaDerecha131": [ "TiendaDerecha131" ],
+        "TextoTiendaDerecha132": [ "TiendaDerecha132" ],
+        
+        "TextoTiendaDerecha140": [ "TiendaDerecha140" ],
+        "TextoTiendaDerecha141": [ "TiendaDerecha141" ],
+        "TextoTiendaDerecha142": [ "TiendaDerecha142" ]
+    },
+    "PanteonIzq": {
+        "TextoPanteonIzq00": [ "PanteonIzq00" ],
+        "TextoPanteonIzq01": [ "PanteonIzq01" ],
+        "TextoPanteonIzq02": [ "PanteonIzq02" ],
+        
+        "TextoPanteonIzq10": [ "PanteonIzq10" ],
+        "TextoPanteonIzq11": [ "PanteonIzq11" ],
+        "TextoPanteonIzq12": [ "PanteonIzq12" ],
+        
+        "TextoPanteonIzq20": [ "PanteonIzq20" ],
+        "TextoPanteonIzq21": [ "PanteonIzq21" ],
+        "TextoPanteonIzq22": [ "PanteonIzq22" ],
+        
+        "TextoPanteonIzq30": [ "PanteonIzq30" ],
+        "TextoPanteonIzq31": [ "PanteonIzq31" ],
+        "TextoPanteonIzq32": [ "PanteonIzq32" ],
+        
+        "TextoPanteonIzq40": [ "PanteonIzq40" ],
+        "TextoPanteonIzq41": [ "PanteonIzq41" ],
+        "TextoPanteonIzq42": [ "PanteonIzq42" ],
+        
+        "TextoPanteonIzq50": [ "PanteonIzq50" ],
+        "TextoPanteonIzq51": [ "PanteonIzq51" ],
+        "TextoPanteonIzq52": [ "PanteonIzq52" ],
+        
+        "TextoPanteonIzq60": [ "PanteonIzq60" ],
+        "TextoPanteonIzq61": [ "PanteonIzq61" ],
+        "TextoPanteonIzq62": [ "PanteonIzq62" ],
+        
+        "TextoPanteonIzq70": [ "PanteonIzq70" ],
+        "TextoPanteonIzq71": [ "PanteonIzq71" ],
+        "TextoPanteonIzq72": [ "PanteonIzq72" ],
+        
+        "TextoPanteonIzq80": [ "PanteonIzq80" ],
+        "TextoPanteonIzq81": [ "PanteonIzq81" ],
+        "TextoPanteonIzq82": [ "PanteonIzq82" ],
+        
+        "TextoPanteonIzq90": [ "PanteonIzq90" ],
+        "TextoPanteonIzq91": [ "PanteonIzq91" ],
+        "TextoPanteonIzq92": [ "PanteonIzq92" ],
+        
+        "TextoPanteonIzq100": [ "PanteonIzq100" ],
+        "TextoPanteonIzq101": [ "PanteonIzq101" ],
+        "TextoPanteonIzq102": [ "PanteonIzq102" ],
+        
+        "TextoPanteonIzq110": [ "PanteonIzq110" ],
+        "TextoPanteonIzq111": [ "PanteonIzq111" ],
+        "TextoPanteonIzq112": [ "PanteonIzq112" ],
+        
+        "TextoPanteonIzq120": [ "PanteonIzq120" ],
+        "TextoPanteonIzq121": [ "PanteonIzq121" ],
+        "TextoPanteonIzq122": [ "PanteonIzq122" ],
+        
+        "TextoPanteonIzq130": [ "PanteonIzq130" ],
+        "TextoPanteonIzq131": [ "PanteonIzq131" ],
+        "TextoPanteonIzq132": [ "PanteonIzq132" ],
+        
+        "TextoPanteonIzq140": [ "PanteonIzq140" ],
+        "TextoPanteonIzq141": [ "PanteonIzq141" ],
+        "TextoPanteonIzq142": [ "PanteonIzq142" ]
+    },
+    "PanteonDer": {
+        "TextoPanteonDer00": [ "PanteonDer00" ],
+        "TextoPanteonDer01": [ "PanteonDer01" ],
+        "TextoPanteonDer02": [ "PanteonDer02" ],
+        
+        "TextoPanteonDer10": [ "PanteonDer10" ],
+        "TextoPanteonDer11": [ "PanteonDer11" ],
+        "TextoPanteonDer12": [ "PanteonDer12" ],
+        
+        "TextoPanteonDer20": [ "PanteonDer20" ],
+        "TextoPanteonDer21": [ "PanteonDer21" ],
+        "TextoPanteonDer22": [ "PanteonDer22" ],
+        
+        "TextoPanteonDer30": [ "PanteonDer30" ],
+        "TextoPanteonDer31": [ "PanteonDer31" ],
+        "TextoPanteonDer32": [ "PanteonDer32" ],
+        
+        "TextoPanteonDer40": [ "PanteonDer40" ],
+        "TextoPanteonDer41": [ "PanteonDer41" ],
+        "TextoPanteonDer42": [ "PanteonDer42" ],
+        
+        "TextoPanteonDer50": [ "PanteonDer50" ],
+        "TextoPanteonDer51": [ "PanteonDer51" ],
+        "TextoPanteonDer52": [ "PanteonDer52" ],
+        
+        "TextoPanteonDer60": [ "PanteonDer60" ],
+        "TextoPanteonDer61": [ "PanteonDer61" ],
+        "TextoPanteonDer62": [ "PanteonDer62" ],
+        
+        "TextoPanteonDer70": [ "PanteonDer70" ],
+        "TextoPanteonDer71": [ "PanteonDer71" ],
+        "TextoPanteonDer72": [ "PanteonDer72" ],
+        
+        "TextoPanteonDer80": [ "PanteonDer80" ],
+        "TextoPanteonDer81": [ "PanteonDer81" ],
+        "TextoPanteonDer82": [ "PanteonDer82" ],
+        
+        "TextoPanteonDer90": [ "PanteonDer90" ],
+        "TextoPanteonDer91": [ "PanteonDer91" ],
+        "TextoPanteonDer92": [ "PanteonDer92" ],
+        
+        "TextoPanteonDer100": [ "PanteonDer100" ],
+        "TextoPanteonDer101": [ "PanteonDer101" ],
+        "TextoPanteonDer102": [ "PanteonDer102" ],
+        
+        "TextoPanteonDer110": [ "PanteonDer110" ],
+        "TextoPanteonDer111": [ "PanteonDer111" ],
+        "TextoPanteonDer112": [ "PanteonDer112" ],
+        
+        "TextoPanteonDer120": [ "PanteonDer120" ],
+        "TextoPanteonDer121": [ "PanteonDer121" ],
+        "TextoPanteonDer122": [ "PanteonDer122" ],
+        
+        "TextoPanteonDer130": [ "PanteonDer130" ],
+        "TextoPanteonDer131": [ "PanteonDer131" ],
+        "TextoPanteonDer132": [ "PanteonDer132" ],
+        
+        "TextoPanteonDer140": [ "PanteonDer140" ],
+        "TextoPanteonDer141": [ "PanteonDer141" ],
+        "TextoPanteonDer142": [ "PanteonDer142" ]
+    },
+    "Panteon": {
+        "TextoPanteon00": [ "Panteon00" ],
+        "TextoPanteon01": [ "Panteon01" ],
+        "TextoPanteon02": [ "Panteon02" ],
+        
+        "TextoPanteon10": [ "Panteon10" ],
+        "TextoPanteon11": [ "Panteon11" ],
+        "TextoPanteon12": [ "Panteon12" ],
+        
+        "TextoPanteon20": [ "Panteon20" ],
+        "TextoPanteon21": [ "Panteon21" ],
+        "TextoPanteon22": [ "Panteon22" ],
+        
+        "TextoPanteon30": [ "Panteon30" ],
+        "TextoPanteon31": [ "Panteon31" ],
+        "TextoPanteon32": [ "Panteon32" ],
+        
+        "TextoPanteon40": [ "Panteon40" ],
+        "TextoPanteon41": [ "Panteon41" ],
+        "TextoPanteon42": [ "Panteon42" ],
+        
+        "TextoPanteon50": [ "Panteon50" ],
+        "TextoPanteon51": [ "Panteon51" ],
+        "TextoPanteon52": [ "Panteon52" ],
+        
+        "TextoPanteon60": [ "Panteon60" ],
+        "TextoPanteon61": [ "Panteon61" ],
+        "TextoPanteon62": [ "Panteon62" ],
+        
+        "TextoPanteon70": [ "Panteon70" ],
+        "TextoPanteon71": [ "Panteon71" ],
+        "TextoPanteon72": [ "Panteon72" ],
+        
+        "TextoPanteon80": [ "Panteon80" ],
+        "TextoPanteon81": [ "Panteon81" ],
+        "TextoPanteon82": [ "Panteon82" ],
+        
+        "TextoPanteon90": [ "Panteon90" ],
+        "TextoPanteon91": [ "Panteon91" ],
+        "TextoPanteon92": [ "Panteon92" ],
+        
+        "TextoPanteon100": [ "Panteon100" ],
+        "TextoPanteon101": [ "Panteon101" ],
+        "TextoPanteon102": [ "Panteon102" ],
+        
+        "TextoPanteon110": [ "Panteon110" ],
+        "TextoPanteon111": [ "Panteon111" ],
+        "TextoPanteon112": [ "Panteon112" ],
+        
+        "TextoPanteon120": [ "Panteon120" ],
+        "TextoPanteon121": [ "Panteon121" ],
+        "TextoPanteon122": [ "Panteon122" ],
+        
+        "TextoPanteon130": [ "Panteon130" ],
+        "TextoPanteon131": [ "Panteon131" ],
+        "TextoPanteon132": [ "Panteon132" ],
+        
+        "TextoPanteon140": [ "Panteon140" ],
+        "TextoPanteon141": [ "Panteon141" ],
+        "TextoPanteon142": [ "Panteon142" ]
+    },
+    "Edificios": {
+        "TextoEdificios00": [ "Edificios00" ],
+        "TextoEdificios01": [ "Edificios01" ],
+        "TextoEdificios02": [ "Edificios02" ],
+        
+        "TextoEdificios10": [ "Edificios10" ],
+        "TextoEdificios11": [ "Edificios11" ],
+        "TextoEdificios12": [ "Edificios12" ],
+        
+        "TextoEdificios20": [ "Edificios20" ],
+        "TextoEdificios21": [ "Edificios21" ],
+        "TextoEdificios22": [ "Edificios22" ],
+        
+        "TextoEdificios30": [ "Edificios30" ],
+        "TextoEdificios31": [ "Edificios31" ],
+        "TextoEdificios32": [ "Edificios32" ],
+        
+        "TextoEdificios40": [ "Edificios40" ],
+        "TextoEdificios41": [ "Edificios41" ],
+        "TextoEdificios42": [ "Edificios42" ],
+        
+        "TextoEdificios50": [ "Edificios50" ],
+        "TextoEdificios51": [ "Edificios51" ],
+        "TextoEdificios52": [ "Edificios52" ],
+        
+        "TextoEdificios60": [ "Edificios60" ],
+        "TextoEdificios61": [ "Edificios61" ],
+        "TextoEdificios62": [ "Edificios62" ],
+        
+        "TextoEdificios70": [ "Edificios70" ],
+        "TextoEdificios71": [ "Edificios71" ],
+        "TextoEdificios72": [ "Edificios72" ],
+        
+        "TextoEdificios80": [ "Edificios80" ],
+        "TextoEdificios81": [ "Edificios81" ],
+        "TextoEdificios82": [ "Edificios82" ],
+        
+        "TextoEdificios90": [ "Edificios90" ],
+        "TextoEdificios91": [ "Edificios91" ],
+        "TextoEdificios92": [ "Edificios92" ],
+        
+        "TextoEdificios100": [ "Edificios100" ],
+        "TextoEdificios101": [ "Edificios101" ],
+        "TextoEdificios102": [ "Edificios102" ],
+        
+        "TextoEdificios110": [ "Edificios110" ],
+        "TextoEdificios111": [ "Edificios111" ],
+        "TextoEdificios112": [ "Edificios112" ],
+        
+        "TextoEdificios120": [ "Edificios120" ],
+        "TextoEdificios121": [ "Edificios121" ],
+        "TextoEdificios122": [ "Edificios122" ],
+        
+        "TextoEdificios130": [ "Edificios130" ],
+        "TextoEdificios131": [ "Edificios131" ],
+        "TextoEdificios132": [ "Edificios132" ],
+        
+        "TextoEdificios140": [ "Edificios140" ],
+        "TextoEdificios141": [ "Edificios141" ],
+        "TextoEdificios142": [ "Edificios142" ]
+    },
+    "Charco": {
+        "TextoCharco00": [ "Charco00" ],
+        "TextoCharco01": [ "Charco01" ],
+        "TextoCharco02": [ "Charco02" ],
+        
+        "TextoCharco10": [ "Charco10" ],
+        "TextoCharco11": [ "Charco11" ],
+        "TextoCharco12": [ "Charco12" ],
+        
+        "TextoCharco20": [ "Charco20" ],
+        "TextoCharco21": [ "Charco21" ],
+        "TextoCharco22": [ "Charco22" ],
+        
+        "TextoCharco30": [ "Charco30" ],
+        "TextoCharco31": [ "Charco31" ],
+        "TextoCharco32": [ "Charco32" ],
+        
+        "TextoCharco40": [ "Charco40" ],
+        "TextoCharco41": [ "Charco41" ],
+        "TextoCharco42": [ "Charco42" ],
+        
+        "TextoCharco50": [ "Charco50" ],
+        "TextoCharco51": [ "Charco51" ],
+        "TextoCharco52": [ "Charco52" ],
+        
+        "TextoCharco60": [ "Charco60" ],
+        "TextoCharco61": [ "Charco61" ],
+        "TextoCharco62": [ "Charco62" ],
+        
+        "TextoCharco70": [ "Charco70" ],
+        "TextoCharco71": [ "Charco71" ],
+        "TextoCharco72": [ "Charco72" ],
+        
+        "TextoCharco80": [ "Charco80" ],
+        "TextoCharco81": [ "Charco81" ],
+        "TextoCharco82": [ "Charco82" ],
+        
+        "TextoCharco90": [ "Charco90" ],
+        "TextoCharco91": [ "Charco91" ],
+        "TextoCharco92": [ "Charco92" ],
+        
+        "TextoCharco100": [ "Charco100" ],
+        "TextoCharco101": [ "Charco101" ],
+        "TextoCharco102": [ "Charco102" ],
+        
+        "TextoCharco110": [ "Charco110" ],
+        "TextoCharco111": [ "Charco111" ],
+        "TextoCharco112": [ "Charco112" ],
+        
+        "TextoCharco120": [ "Charco120" ],
+        "TextoCharco121": [ "Charco121" ],
+        "TextoCharco122": [ "Charco122" ],
+        
+        "TextoCharco130": [ "Charco130" ],
+        "TextoCharco131": [ "Charco131" ],
+        "TextoCharco132": [ "Charco132" ],
+        
+        "TextoCharco140": [ "Charco140" ],
+        "TextoCharco141": [ "Charco141" ],
+        "TextoCharco142": [ "Charco142" ]
+    },
+    "casa1": {
+        "TextoCasa100": [ "Mondongo00" ],
+        "TextoCasa101": [ "Mondongo01" ],
+        "TextoCasa102": [ "Mondongo02" ],
+        
+        "TextoCasa110": [ "Mondongo10" ],
+        "TextoCasa111": [ "Mondongo11" ],
+        "TextoCasa112": [ "Mondongo12" ],
+        
+        "TextoCasa120": [ "Mondongo20" ],
+        "TextoCasa121": [ "Mondongo21" ],
+        "TextoCasa122": [ "Mondongo22" ],
+        
+        "TextoCasa130": [ "Mondongo30" ],
+        "TextoCasa131": [ "Mondongo31" ],
+        "TextoCasa132": [ "Mondongo32" ],
+        
+        "TextoCasa140": [ "Mondongo40" ],
+        "TextoCasa141": [ "Mondongo41" ],
+        "TextoCasa142": [ "Mondongo42" ],
+        
+        "TextoCasa150": [ "Mondongo50" ],
+        "TextoCasa151": [ "Mondongo51" ],
+        "TextoCasa152": [ "Mondongo52" ],
+        
+        "TextoCasa160": [ "Mondongo60" ],
+        "TextoCasa161": [ "Mondongo61" ],
+        "TextoCasa162": [ "Mondongo62" ],
+        
+        "TextoCasa170": [ "Mondongo70" ],
+        "TextoCasa171": [ "Mondongo71" ],
+        "TextoCasa172": [ "Mondongo72" ],
+        
+        "TextoCasa180": [ "Mondongo80" ],
+        "TextoCasa181": [ "Mondongo81" ],
+        "TextoCasa182": [ "Mondongo82" ],
+        
+        "TextoCasa190": [ "Mondongo90" ],
+        "TextoCasa191": [ "Mondongo91" ],
+        "TextoCasa192": [ "Mondongo92" ],
+        
+        "TextoCasa1100": [ "Mondongo100" ],
+        "TextoCasa1101": [ "Mondongo101" ],
+        "TextoCasa1102": [ "Mondongo102" ],
+        
+        "TextoCasa1110": [ "Mondongo110" ],
+        "TextoCasa1111": [ "Mondongo111" ],
+        "TextoCasa1112": [ "Mondongo112" ],
+        
+        "TextoCasa1120": [ "Mondongo120" ],
+        "TextoCasa1121": [ "Mondongo121" ],
+        "TextoCasa1122": [ "Mondongo122" ],
+        
+        "TextoCasa1130": [ "Mondongo130" ],
+        "TextoCasa1131": [ "Mondongo131" ],
+        "TextoCasa1132": [ "Mondongo132" ],
+        
+        "TextoCasa1140": [ "Mondongo140" ],
+        "TextoCasa1141": [ "Mondongo141" ],
+        "TextoCasa1142": [ "Mondongo142" ]
+    },
+    "casa2": {
+        "TextoCasa2": [
+            "Mondongo2",
+            ":("
+        ],
+        "TextoCasa200": [ "Mondongo200" ],
+        "TextoCasa201": [ "Mondongo201" ],
+        "TextoCasa202": [ "Mondongo202" ],
+        
+        "TextoCasa210": [ "Mondongo210" ],
+        "TextoCasa211": [ "Mondongo211" ],
+        "TextoCasa212": [ "Mondongo212" ],
+        
+        "TextoCasa220": [ "Mondongo220" ],
+        "TextoCasa221": [ "Mondongo221" ],
+        "TextoCasa222": [ "Mondongo222" ],
+        
+        "TextoCasa230": [ "Mondongo230" ],
+        "TextoCasa231": [ "Mondongo231" ],
+        "TextoCasa232": [ "Mondongo232" ],
+        
+        "TextoCasa240": [ "Mondongo240" ],
+        "TextoCasa241": [ "Mondongo241" ],
+        "TextoCasa242": [ "Mondongo242" ],
+        
+        "TextoCasa250": [ "Mondongo250" ],
+        "TextoCasa251": [ "Mondongo251" ],
+        "TextoCasa252": [ "Mondongo252" ],
+        
+        "TextoCasa260": [ "Mondongo260" ],
+        "TextoCasa261": [ "Mondongo261" ],
+        "TextoCasa262": [ "Mondongo262" ],
+        
+        "TextoCasa270": [ "Mondongo270" ],
+        "TextoCasa271": [ "Mondongo271" ],
+        "TextoCasa272": [ "Mondongo272" ],
+        
+        "TextoCasa280": [ "Mondongo280" ],
+        "TextoCasa281": [ "Mondongo281" ],
+        "TextoCasa282": [ "Mondongo282" ],
+        
+        "TextoCasa290": [ "Mondongo290" ],
+        "TextoCasa291": [ "Mondongo291" ],
+        "TextoCasa292": [ "Mondongo292" ],
+        
+        "TextoCasa2100": [ "Mondongo2100" ],
+        "TextoCasa2101": [ "Mondongo2101" ],
+        "TextoCasa2102": [ "Mondongo2102" ],
+        
+        "TextoCasa2110": [ "Mondongo2110" ],
+        "TextoCasa2111": [ "Mondongo2111" ],
+        "TextoCasa2112": [ "Mondongo2112" ],
+        
+        "TextoCasa2120": [ "Mondongo2120" ],
+        "TextoCasa2121": [ "Mondongo2121" ],
+        "TextoCasa2122": [ "Mondongo2122" ],
+        
+        "TextoCasa2130": [ "Mondongo2130" ],
+        "TextoCasa2131": [ "Mondongo2131" ],
+        "TextoCasa2132": [ "Mondongo2132" ],
+        
+        "TextoCasa2140": [ "Mondongo140" ],
+        "TextoCasa2141": [ "Mondongo141" ],
+        "TextoCasa2142": [ "Mondongo142" ]
+    }
 }

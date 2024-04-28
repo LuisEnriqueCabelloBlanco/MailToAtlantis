@@ -15,8 +15,14 @@
     {"id": "book9","file": "recursos/images/Book_InfoPesos.png"},
     {"id": "book10","file": "recursos/images/Book_InfoEmbalado.png"},
 
-
-
+    {"id": "diario1", "file": "recursos/images/Diario0.png"},
+    {"id": "diario2", "file": "recursos/images/Diario1.png"},
+    {"id": "diario3", "file": "recursos/images/Diario2.png"},
+    {"id": "diario4", "file": "recursos/images/Diario3.png"},
+    {"id": "diario5", "file": "recursos/images/Diario4.png"},
+    {"id": "diario6", "file": "recursos/images/Diario5.png"},
+    {"id": "diario7", "file": "recursos/images/Diario6.png"},
+    
     {"id": "flechaTest","file": "recursos/images/flecha.png"},
     {"id": "cambioPag","file": "recursos/images/NextPage.png"},
     {"id": "botonTrabajar","file": "recursos/images/placeholderTrabajar.png"},
@@ -199,6 +205,10 @@
     {"id": "balanzaFlecha","file": "recursos/images/balanzaFlecha.png"},
     {"id": "balanzaA","file": "recursos/images/balanzaA.png"},
     {"id": "balanzaB","file": "recursos/images/balanzaB.png"},
+    {"id": "balanzaDigital","file": "recursos/images/balanza2.png"},
+
+
+
 
     {
       "id": "fondoFinalTrabajo",
@@ -246,6 +256,9 @@
       "id": "puntoVerde",
       "file": "recursos/images/PuntoVerde.png"
     },
+
+    {"id": "carta","file": "recursos/images/carta.png"},
+
 
 
 
@@ -327,7 +340,11 @@
       "id": "Soldado",
       "file": "recursos/images/Abakand Istacoz.png"
     },
+    {
+      "id": "Jefe",
+      "file": "recursos/images/JefeOficina.png"
 
+    },
     {
       "id": "reloj",
       "file": "recursos/images/Reloj.png"
@@ -378,6 +395,11 @@
     {
       "id": "roboto50",
       "file": "recursos/fonts/Roboto-Thin.ttf",
+      "size": 50
+    },
+    {
+      "id": "simpleHandmade50",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
       "size": 50
     }
   ],

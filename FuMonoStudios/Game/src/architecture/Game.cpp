@@ -1,12 +1,18 @@
 #include "Game.h"
 #include <list>
+
+#ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
+#endif // DEV_TOOLS
+
+#include <utils/checkML.h>
 #include <SDL.h>
 #include <algorithm>
 #include "../sdlutils/InputHandler.h"
 #include "../scenes/MainScene.h"
+#include "../scenes/ConfigScene.h"
 #include "../scenes/MainMenu.h"
 #include "../scenes/PauseScene.h"
 #include "../scenes/ExplorationScene.h"
@@ -35,9 +41,11 @@ Game::Game() :exit_(false) {
 	SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
 
 	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),
-		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new EndGameScene(),new ecs::TutorialScene()};
+		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new EndGameScene(),new ecs::TutorialScene(), new ecs::ConfigScene()};
+	gamePaused_ = false;
 
 	loadScene(ecs::sc::MENU_SCENE);
+	sceneChange_ = false;
 }
 
 Game::~Game()
@@ -52,12 +60,14 @@ void Game::run()
 {
 	//esto es una cochinada pero mejor esto a que tarde 2 anios en cargar la escena de exploracion
 	generalData().readNPCData();
+#ifdef DEV_TOOLS
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	io.DisplaySize = ImGui::GetMainViewport()->Size;
 	ImGui_ImplSDL2_InitForSDLRenderer(sdlutils().window(), sdlutils().renderer());
 	ImGui_ImplSDLRenderer2_Init(sdlutils().renderer());
+#endif // DEV_TOOLS
 	SoundEmiter::instance()->init();
 
 	while (!exit_)
@@ -83,9 +93,7 @@ void Game::run()
 		}
 		/*if (ih().isKeyDown(SDL_SCANCODE_P)) {
 			loadScene(ecs::sc::PAUSE_SCENE);
-		}
-		if (ih().isKeyDown(SDL_SCANCODE_L)) {
-			killScene(ecs::sc::PAUSE_SCENE);
+			gamePaused_ = true;
 		}
 		if (ih().isKeyDown(SDL_SCANCODE_E)) {
 			changeScene(ecs::sc::MENU_SCENE, ecs::sc::MAIN_SCENE);
@@ -101,9 +109,11 @@ void Game::run()
 
 		update();
 		sdlutils().clearRenderer(build_sdlcolor(0x000000));
-
+#ifdef DEV_TOOLS
 		ImGui_ImplSDLRenderer2_NewFrame();
 		ImGui_ImplSDL2_NewFrame();
+#endif // DEV_TOOLS
+
 		/**/
 		render();
 
@@ -115,9 +125,11 @@ void Game::run()
 			autoRecodTime++;
 		}*/
 	}
+#ifdef DEV_TOOLS
 	ImGui_ImplSDLRenderer2_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
 	ImGui::DestroyContext();
+#endif // DEV_TOOLS
 }
 
 //void Game::writeMessage() {
@@ -194,7 +206,9 @@ void Game::changeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2) {
 		generalData().setFinalID(3);
 	}
 	killScene(scene1);
-	loadScene(scene2);
+	if (scene2 != ecs::sc::NULL_SCENE) {
+		loadScene(scene2);
+	}
 	/*if (loadedScenes.size() < 1) {
 		loadScene(scene2);
 	}*/

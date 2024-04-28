@@ -1,3 +1,4 @@
+#include <utils/checkML.h>
 #include "Config.h"
 
 #include <cassert>
@@ -53,6 +54,8 @@ void Config::loadReasources(std::string filename) {
 					std::vector<Arrows> placeArrows;
 
 					std::vector<Characters> placeCharacters;
+
+					std::vector<InteractableObjs> placeInteractableObjs;
 
 					//recorrido de la info del lugar
 					for (auto& i : vObj["data"]->AsArray()) {
@@ -116,7 +119,36 @@ void Config::loadReasources(std::string filename) {
 
 					}
 
-					Places pl{ placeArrows, placeCharacters };
+					//recorrido de la info del lugar
+					for (auto& o : vObj["dataObjs"]->AsArray()) {
+
+						JSONObject oObj = o->AsObject();
+
+
+						for (auto& c : oObj["intObj"]->AsArray()) {
+
+							JSONObject cObj = c->AsObject();
+
+							double x = cObj["x"]->AsNumber();
+
+							double y = cObj["y"]->AsNumber();
+
+							std::string dest = cObj["name"]->AsString();
+
+							double scaleX = cObj["scaleX"]->AsNumber();
+							double scaleY = cObj["scaleY"]->AsNumber();
+
+							bool dir = cObj["dir"]->AsBool();
+
+							InteractableObjs interactableObj{ x, y, dest, scaleX, scaleY, dir };
+
+							placeInteractableObjs.push_back(interactableObj);
+
+						}
+
+					}
+
+					Places pl{ placeArrows, placeCharacters, placeInteractableObjs };
 
 					places_.emplace(key, pl);
 					

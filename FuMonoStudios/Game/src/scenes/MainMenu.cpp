@@ -30,7 +30,6 @@ void ecs::MainMenu::init()
 	//generalData().updateFelicidadPersonajes();
 	sdlutils().clearRenderer();
 
-	//Font* fuente = new Font("recursos/fonts/ARIAL.ttf", 50);
 	Entity* fondo = addEntity(ecs::layer::BACKGROUND);
 	Texture* texturaFondo = &sdlutils().images().at("fondoMainMenu");
 	Transform* transformFondo = fondo->addComponent<Transform>(0.0f, 0.0f, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
@@ -63,8 +62,8 @@ void ecs::MainMenu::init()
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
 		generalData().loadSaveFile();
 		}, textColor);
-	factory_->addHilghtOnHover(start);
-	factory_->addHoverColorMod(start);
+	factory_->addHilghtOnHover(loadSave);
+	factory_->addHoverColorMod(loadSave);
 
 	auto exit = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 700), "Salir", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();

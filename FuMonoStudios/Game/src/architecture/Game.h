@@ -12,9 +12,9 @@
 
 
 #ifdef _DEBUG
-#define DEV_TOOLS
+//#define DEV_TOOLS
 #endif // _DEBUG
-#define QA_TOOLS
+//#define QA_TOOLS
 
 
 
@@ -50,7 +50,12 @@ public:
 	/// <param name="scene1"></param>
 	/// <param name="scene2"></param>
 	void requestChangeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2);
-
+	void unpauseGame() {
+		gamePaused_ = false;
+	}
+	bool gamePaused() {
+		return gamePaused_;
+	}
 	inline void writeMessage() {
 		std::cout << "Funcionaaaaaaaaa" << std::endl;
 	};
@@ -80,6 +85,7 @@ private:
 	SDL_Renderer* renderer_;
 
 	bool sceneChange_;
+	bool gamePaused_;
 	ecs::sc::sceneId scene1_, scene2_; //una guarrada lo se, pero ahora mismo quiero que el juego no explote, ya se hara bonito
 
 

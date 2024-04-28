@@ -1,10 +1,13 @@
+#include <utils/checkML.h>
 #include "MainScene.h"
 #include "../architecture/Entity.h"
 #include <iostream>
 #include <fstream>
+#ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
+#endif // DEV_TOOLS
 #include "../sdlutils/SDLUtils.h"
 #include "../components/Transform.h"
 #include "../components/Render.h"
@@ -54,6 +57,12 @@ ecs::MainScene::~MainScene()
 void ecs::MainScene::update()
 {
 	Scene::update();
+	if (gm().gamePaused()) {
+		timerPaused_ = true;
+	}
+	else {
+		timerPaused_ = false;
+	}
 	if (!timerPaused_)
 	{
 		if (timer_ > 0) {
@@ -99,22 +108,16 @@ void ecs::MainScene::init()
 	//	createTubo((pq::Distrito)i);
 	//}
 
-	createManual();
+	
 	createMiniManual();
 	createSpaceManual();
 
 	createClock();
 
-	createInks();
-
-
-	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
-	createCinta();
-
 	createGarbage();
 
 	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
-	createCharacter({ 400, 300 }, "Campesino", 0.1f);
+	createCharacter({ 500, 300 }, "Campesino", 0.2f);
 
 	createPaquete(generalData().getPaqueteLevel());
 
@@ -203,6 +206,7 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		createStamp(SelloCalleA);
 
 		createInks();
+
 	}
 
 	if (dia >= 5) {
@@ -219,15 +223,19 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 
 	if (dia < 3 && dia >= 1) {
 		generalData().setPaqueteLevel(0);
+		createManual(8);
 	}
 	else if (dia < 5 && dia >= 3) {
 		generalData().setPaqueteLevel(1);
+		createManual(8);
 	}
 	else if (dia < 8 && dia >= 5) {
 		generalData().setPaqueteLevel(2);
+		createManual(9);
 	}
 	else if (dia < 15 && dia >= 8) {
 		generalData().setPaqueteLevel(3);
+		createManual(10);
 	}
 
 }
@@ -263,7 +271,7 @@ void ecs::MainScene::createStamp(TipoHerramienta type)
 	constexpr float STAMPSIZE = 1;
 	
 	factory_->setLayer(layer::STAMP);
-	auto stamp = factory_->createImage(Vector2D(300, 300),
+	auto stamp = factory_->createImage(Vector2D(350, 700),
 		Vector2D(sdlutils().images().at("sellador" + std::to_string(type)).width() * STAMPSIZE, sdlutils().images().at("sellador" + std::to_string(type)).height() * STAMPSIZE),
 		& sdlutils().images().at("sellador" + std::to_string(type)));
 
@@ -307,33 +315,34 @@ void ecs::MainScene::createCinta() {
 }
 
 void ecs::MainScene::createBalanza() {
+
+	float scale = 0.3;
+
 	// Balanza
 	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanza = factory_->createImage(Vector2D(50, 230), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
+	Entity* balanza = factory_->createImage(Vector2D(30, 110), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
 	Transform* balanzaTr = balanza->getComponent<Transform>();
 	balanza->addComponent<MoverTransform>();
-	balanzaTr->setScale(0.5);
+	balanzaTr->setScale(scale);
 	Balanza* balanzaComp = balanza->addComponent<Balanza>();
 
 	// BalanzaB
 	factory_->setLayer(ecs::layer::BALANZA);
 	Entity* balanzaB = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaB").width(), sdlutils().images().at("balanzaB").height()), &sdlutils().images().at("balanzaB"));
 	Transform* balanzaBTr = balanzaB->getComponent<Transform>();
-	balanzaBTr->setScale(0.5);
+	balanzaBTr->setScale(scale);
 
 	// BalanzaBase
 	factory_->setLayer(ecs::layer::BALANZABASE);
-	Entity* baseBalanza = factory_->createImage(Vector2D(400, 400), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
+	Entity* baseBalanza = factory_->createImage(Vector2D(1100, 300), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
 	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
-	balanzaBaseTr->setScale(0.5);
-	baseBalanza->addComponent<Gravity>();
-	//baseBalanza->addComponent<Depth>();
+	balanzaBaseTr->setScale(scale);
 
 	// BalanzaFlecha
 	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanzaFlecha = factory_->createImage(Vector2D(70, 20), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(45, 20), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
 	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
-	balanzaFlechaTr->setScale(0.5);
+	balanzaFlechaTr->setScale(scale);
 	RotarTransform* rotComp = balanzaFlecha->addComponent<RotarTransform>();
 
 	// Seteamos padres
@@ -353,8 +362,8 @@ void ecs::MainScene::createBalanza() {
 void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 	constexpr float TUBE_WIDTH = 138;
 	constexpr float TUBE_HEITH = 282;
-	constexpr float TUBES_X_OFFSET = 200;
-	constexpr float DISTANCE_BETWEEN_TUBES = 220;
+	constexpr float TUBES_X_OFFSET = 50;
+	constexpr float DISTANCE_BETWEEN_TUBES = 280;
 	factory_->setLayer(ecs::layer::DEFAULT);
 
 	auto tubeTexture = &sdlutils().images().at("tubo" + std::to_string(dist + 1));
@@ -387,17 +396,17 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 }
 
 
-void ecs::MainScene::createManual()
+void ecs::MainScene::createManual(int NumPages)
 {
-	constexpr int MANUALNUMPAGES = 10;
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 
 	Texture* buttonTexture = &sdlutils().images().at("cambioPag");
 	//creado array de texturas par el libro
 	std::vector<Texture*> bookTextures;
-	bookTextures.reserve(MANUALNUMPAGES);
-	for (int i = 1; i <= MANUALNUMPAGES; i++) {
+
+	bookTextures.reserve(NumPages);
+	for (int i = 1; i <= NumPages; i++) {
 		bookTextures.emplace_back(&sdlutils().images().at("book"+std::to_string(i)));
 	}
 	factory_->setLayer(ecs::layer::MANUAL);
@@ -433,8 +442,8 @@ void ecs::MainScene::createMiniManual() {
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
 
-	float minimanualX = 1200;
-	float minimanualY = 500;
+	float minimanualX = 1450;
+	float minimanualY = 525;
 
 	factory_->setLayer(ecs::layer::MINIMANUAL);
 
@@ -513,7 +522,7 @@ void ecs::MainScene::createSpaceManual() {
 
 	Texture* bookTextures = &sdlutils().images().at("atrilManual");
 	
-	auto baseManual = factory_->createImage(Vector2D(1200, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
+	auto baseManual = factory_->createImage(Vector2D(1450, 525), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
 	
 	Transform* manualTransform = baseManual->getComponent<Transform>();
 	RenderImage* manualRender = baseManual->getComponent<RenderImage>();

@@ -1,4 +1,5 @@
 #pragma once
+#include <utils/checkML.h>
 #include <string>
 #include <unordered_map>
 #include "../utils/Singleton.h"
@@ -44,3 +45,7 @@ private:
 	std::unordered_map<std::string, bool> activeSongs_;
 };
 
+
+inline SoundEmiter& soundEmiter() {
+	return *SoundEmiter::instance();
+}
