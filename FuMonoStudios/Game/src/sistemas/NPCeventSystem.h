@@ -41,6 +41,8 @@ private:
 	void readPaquetes(JSONObject& obj, NPCevent* auxEvent);
 	void readPaquetesEspecificos(JSONObject& obj, NPCevent* event);
 
+	Paquete* readPacage(JSONObject& obj);
+
 	void readCondiciones(JSONObject& obj, NPCevent* auxEvent);
 	void readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEvent);
 
