@@ -337,7 +337,7 @@ void ecs::MainScene::createBalanza() {
 
 	// BalanzaFlecha
 	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanzaFlecha = factory_->createImage(Vector2D(45, 20), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(45, 20), Vector2D(sdlutils().images().at("balanzaFlecha2").width(), sdlutils().images().at("balanzaFlecha2").height()), &sdlutils().images().at("balanzaFlecha2"));
 	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
 	balanzaFlechaTr->setScale(scale);
 	RotarTransform* rotComp = balanzaFlecha->addComponent<RotarTransform>();
