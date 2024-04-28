@@ -4,6 +4,7 @@
 #include "RotarTransform.h"
 #include "MoverTransform.h"
 
+
 Balanza::Balanza()
 {
 }
@@ -69,7 +70,7 @@ void Balanza::initAnimationsDigital(ecs::Entity* paquete, ecs::Entity* balanzaB)
 	if (paquete->hasComponent(ecs::cmp::PAQUETE)) {
 
 		//Obtenemos cantidad peso
-		int cantidadPeso = paquete->getComponent<Paquete>()->getCantidadPeso();
+		 paquetePeso_ = paquete->getComponent<Paquete>()->getCantidadPeso();
 
 		//Animamos paquete
 		MoverTransform* paqueteMovComp = paquete->getComponent<MoverTransform>();
@@ -89,6 +90,7 @@ void Balanza::initAnimationsDigital(ecs::Entity* paquete, ecs::Entity* balanzaB)
 		balanzaMovComp->enable();
 	}
 }
+
 
 void Balanza::finishAnimatiosDigital(ecs::Entity* paquete) {
 

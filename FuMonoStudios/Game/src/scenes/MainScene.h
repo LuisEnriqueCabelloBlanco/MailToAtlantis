@@ -78,6 +78,7 @@ namespace ecs {
 
         //El pinche paquete builder para no crear uno en cada paquete
         PaqueteBuilder* mPaqBuild_;
+        
     };
 }
 

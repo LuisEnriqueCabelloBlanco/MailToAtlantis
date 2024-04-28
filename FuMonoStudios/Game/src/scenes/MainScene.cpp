@@ -350,31 +350,48 @@ void ecs::MainScene::createBalanza() {
 void ecs::MainScene::createBalanzaDigital() {
 	// Balanza
 	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanza = factory_->createImage(Vector2D(0, -65), Vector2D(sdlutils().images().at("balanzaDigA").width(), sdlutils().images().at("balanzaDigA").height()), &sdlutils().images().at("balanzaDigA"));
+	Entity* balanza = factory_->createImage(Vector2D(0, -52), Vector2D(sdlutils().images().at("balanzaDigA").width(), sdlutils().images().at("balanzaDigA").height()), &sdlutils().images().at("balanzaDigA"));
 	Transform* balanzaTr = balanza->getComponent<Transform>();
 	balanza->addComponent<MoverTransform>();
-	balanzaTr->setScale(0.5);
+	balanzaTr->setScale(0.4);
 	Balanza* balanzaComp = balanza->addComponent<Balanza>();
 
 	// BalanzaBase
 	factory_->setLayer(ecs::layer::BALANZABASE);
-	Entity* baseBalanza = factory_->createImage(Vector2D(600, 800), Vector2D(sdlutils().images().at("balanzaDigB").width(), sdlutils().images().at("balanzaDigB").height()), &sdlutils().images().at("balanzaDigB"));
+	Entity* baseBalanza = factory_->createImage(Vector2D(800, 850), Vector2D(sdlutils().images().at("balanzaDigB").width(), sdlutils().images().at("balanzaDigB").height()), &sdlutils().images().at("balanzaDigB"));
 	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
-	balanzaBaseTr->setScale(0.5);
+	balanzaBaseTr->setScale(0.4);
 	baseBalanza->addComponent<Gravity>();
 	//baseBalanza->addComponent<Depth>();
 
-	//Añadir los numeros del peso
+	////Añadir los numeros del peso
+	std::string msg = "0";
+	factory_->setLayer(ecs::layer::NUMBERS);
+	factory_->createLabel(Vector2D(1050, 890), msg, 50);
 
 	// Seteamos padres
 	balanzaTr->setParent(balanzaBaseTr);
 	//balanzaFlechaTr->setParent(balanzaBaseTr);
 
-
+	
 	Trigger* balanzaTri = balanza->addComponent<Trigger>();
 
-	balanzaTri->addCallback([this, balanzaComp, balanza](ecs::Entity* entRect) {balanzaComp->initAnimationsDigital(entRect, balanza); }, generalData().DropIn);
-	balanzaTri->addCallback([this, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatiosDigital(entRect); }, generalData().PickUp);
+	balanzaTri->addCallback([this, balanzaComp, balanza](ecs::Entity* entRect){
+			balanzaComp->initAnimationsDigital(entRect, balanza); 
+		std::string msg = std::to_string(balanzaComp->getPaquetePeso());
+		removeEntitiesByLayer(ecs::layer::NUMBERS);
+		factory_->setLayer(ecs::layer::NUMBERS);
+		factory_->createLabel(Vector2D(1040, 890), msg, 50);
+		
+		}, generalData().DropIn);
+	
+	balanzaTri->addCallback([this, balanzaComp](ecs::Entity* entRect) {
+		balanzaComp->finishAnimatiosDigital(entRect); 
+		std::string msg2 = "0";
+		removeEntitiesByLayer(ecs::layer::NUMBERS);
+		factory_->setLayer(ecs::layer::NUMBERS);
+		factory_->createLabel(Vector2D(1050, 890), msg2, 50);
+		}, generalData().PickUp);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 

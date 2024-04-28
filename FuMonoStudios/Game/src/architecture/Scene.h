@@ -91,6 +91,7 @@ namespace ecs {
 		std::queue<std::pair<ecs::layer::layerId, std::vector<Entity*>::iterator>> del_;
 
 		ComonObjectsFactory* factory_;
+	
 	};
 }
 
