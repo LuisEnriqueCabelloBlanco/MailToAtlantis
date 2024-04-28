@@ -97,7 +97,10 @@ void ecs::MainScene::init()
 
 	//for (int i = 0; i < 7; i++) {
 	//	createTubo((pq::Distrito)i);
-	//}
+	//}	
+
+	//La bola de cristal se tiene que crear antes que el primer paquete
+	if (GeneralData::instance()->getBolaCristal()) createBolaCristal();	  //Este es la bola de cristal. Si el jugador la ha desbloqueado, esta aparecerá en la oficina				
 
 	createManual();
 	createMiniManual();
@@ -105,17 +108,15 @@ void ecs::MainScene::init()
 
 	createClock();
 
-	createInks();
+	createInks();	
 
-
-	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
-	GeneralData::instance ()->aquireVariosFallos();
 	createCinta();
 
 	createGarbage();
 
 	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
 	createCharacter({ 400, 300 }, "Campesino", 0.1f);
+	
 
 	createPaquete(generalData().getPaqueteLevel());
 
@@ -158,6 +159,17 @@ void ecs::MainScene::createClock() {
 	Entity* clock = addEntity(ecs::layer::BACKGROUND);
 	clock->addComponent<ClockAux>(MINIGAME_TIME);
 }
+void ecs::MainScene::createBolaCristal() {	 
+	int tamano = 3;
+	std::vector<Texture*> ballTextures;
+	ballTextures.reserve(tamano);
+	for (int i = 1; i <= tamano; i++) {
+		ballTextures.emplace_back(&sdlutils().images().at("bola" + std::to_string(i)));
+	}
+	Entity* bola = factory_->createMultiTextureImage(Vector2D(500, 500), Vector2D(150, 200), ballTextures);
+	bolaCrist_ = bola->addComponent<CristalBall>(bola->getComponent<RenderImage>());
+	std::cout << "QsjndaskjnsdanjUeso\n";
+}
 
 void ecs::MainScene::createInks() {
 
@@ -193,12 +205,13 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 }
 
 void ecs::MainScene::updateToolsPerDay(int dia)
-{	
+{		
 	if(dia == 0)
 		return;	
 
 	if (dia >= 1) {
-		createStamp(SelloCalleA);
+		if (GeneralData::instance()->getSelloMulticolor()) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina								
+		else createStamp(SelloCalleA);
 
 		createInks();
 	}
@@ -207,11 +220,7 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		createBalanza();
 	}
 
-	if (dia >= 8) {
-		//if(GeneralData::instance()->getSelloMulticolor()) 
-		//createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
-		// 
-		//createExclamationPoint();		//Ignorad esto, está aquí para hacer pruebas. Lo quito en cuanto funcione -Javier
+	if (dia >= 8) {				
 		createCinta();
 	}
 
@@ -282,7 +291,7 @@ void ecs::MainScene::createMultipleStamp()
 
 	Entity* stamp = addEntity(ecs::layer::STAMP);
 	Texture* StampTex = &sdlutils().images().at("selladorM");			
-	Transform* tr_ = stamp->addComponent<Transform>(500, 300, StampTex->width(), StampTex->height());	
+	Transform* tr_ = stamp->addComponent<Transform>(300, 300, StampTex->width(), StampTex->height());
 	stamp->addComponent<RenderImage>(StampTex);
 	stamp->addComponent<Gravity>();
 	stamp->addComponent<Depth>();
@@ -664,6 +673,12 @@ void ecs::MainScene::makeControlsWindow()
 void ecs::MainScene::createPaquete (int lv) {
 	auto pac = mPaqBuild_->buildPackage(lv, this);
 	pac->getComponent<MoverTransform>()->enable();
+
+	if (GeneralData::instance()->getBolaCristal() && bolaCrist_!= nullptr) {
+		int rnd = sdlutils().rand().nextInt(0, 4);		
+		if(rnd !=1) bolaCrist_->check(pac->getComponent<Paquete>(), true);
+		else bolaCrist_->check(pac->getComponent<Paquete>(), false);
+	}
 }
 
 

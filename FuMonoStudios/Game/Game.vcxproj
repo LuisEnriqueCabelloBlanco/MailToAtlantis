@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\entities\CristalBall.cpp" />
     <ClCompile Include="src\sistemas\NPCeventSystem.cpp" />
     <ClCompile Include="src\components\HoverLayerComponent.cpp" />
     <ClCompile Include="src\components\HoverSensorComponent.cpp" />
@@ -221,6 +222,7 @@
     <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\entities\CristalBall.h" />
     <ClInclude Include="src\sistemas\NPCeventSystem.h" />
     <ClInclude Include="src\components\HoverLayerComponent.h" />
     <ClInclude Include="src\components\HoverSensorComponent.h" />

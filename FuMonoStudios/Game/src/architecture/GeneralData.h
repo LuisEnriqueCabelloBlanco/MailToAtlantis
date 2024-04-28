@@ -142,6 +142,8 @@ public:
 	bool getEnvolverRapido() { return envolverRapido; }
 	void aquireVariosFallos() { variosFallos = true; failsMargin_ = 2; }
 	bool getVariosFallos() { return variosFallos; }
+	void aquireBolaCristal() { bolaCristal = true; }
+	bool getBolaCristal() { return bolaCristal; }
 
 	void unlockMejoraPersonaje(Personaje p);
 
@@ -173,6 +175,7 @@ private:
 	bool selloMulticolor = false;
 	bool envolverRapido = false;
 	bool variosFallos = false;
+	bool bolaCristal = false;
 
 };
 

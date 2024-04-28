@@ -69,6 +69,7 @@
     <ClCompile Include="src\sistemas\NPCeventSystem.cpp" />
     <ClCompile Include="src\scenes\EndGameScene.cpp" />
     <ClCompile Include="src\sistemas\NPC.cpp" />
+    <ClCompile Include="src\entities\CristalBall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -175,9 +176,9 @@
     <ClInclude Include="src\sistemas\NPCeventSystem.h" />
     <ClInclude Include="src\scenes\EndGameScene.h" />
     <ClInclude Include="src\sistemas\NPC.h" />
+    <ClInclude Include="src\entities\CristalBall.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\components\MultipleTextures.h" />
     <ClCompile Include="src\components\DialogManager.cpp" />
     <ClCompile Include="src\components\DialogComponent.cpp" />
     <ClInclude Include="src\components\DialogComponent.h" />

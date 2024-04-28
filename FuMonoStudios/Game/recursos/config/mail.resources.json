@@ -14,8 +14,7 @@
     {"id": "book8","file": "recursos/images/Book_InfoSellos.png"},
     {"id": "book9","file": "recursos/images/Book_InfoPesos.png"},
     {"id": "book10","file": "recursos/images/Book_InfoEmbalado.png"},
-
-
+   
 
     {"id": "flechaTest","file": "recursos/images/flecha.png"},
     {"id": "cambioPag","file": "recursos/images/NextPage.png"},
@@ -40,6 +39,9 @@
     {"id": "tinta0","file": "recursos/images/tintaRoja.png"},
     {"id": "tinta1","file": "recursos/images/tintaAzul.png"},
     {"id": "tinta2","file": "recursos/images/tintaVerde.png"},
+    {"id": "bola1","file": "recursos/images/BolaCristalError.png"},
+    {"id": "bola2","file": "recursos/images/BolaCristalNada.png"},
+    {"id": "bola3","file": "recursos/images/BolaCristalCorrecto.png"},
 
     {
       "id": "press",
