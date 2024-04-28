@@ -37,6 +37,7 @@
     <ClCompile Include="src\scenes\EndWorkScene.cpp" />
     <ClCompile Include="src\sistemas\ComonObjectsFactory.cpp" />
     <ClCompile Include="src\components\SelfDestruct.cpp" />
+    <ClCompile Include="src\scenes\ConfigScene.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp">
       <Filter>utilsSource</Filter>
     </ClCompile>
@@ -147,6 +148,7 @@
       <Filter>componetsHeader</Filter>
     </ClInclude>
     <ClInclude Include="src\utils\checkML.h" />
+    <ClInclude Include="src\scenes\ConfigScene.h" />
     <ClInclude Include="ImGui\imconfig.h" />
     <ClInclude Include="ImGui\imgui.h" />
     <ClInclude Include="ImGui\imgui_internal.h" />
@@ -177,7 +179,6 @@
     <ClInclude Include="src\sistemas\NPC.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\components\MultipleTextures.h" />
     <ClCompile Include="src\components\DialogManager.cpp" />
     <ClCompile Include="src\components\DialogComponent.cpp" />
     <ClInclude Include="src\components\DialogComponent.h" />
@@ -201,6 +202,8 @@
     <None Include="recursos\config\sounds.json" />
     <None Include="recursos\data\saveFile.json" />
     <None Include="recursos\data\eventosjefe.json" />
+    <None Include="recursos\data\intObjsData.json" />
+    <None Include="recursos\config\mail.config.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="recursos\images\Alimentos.png" />

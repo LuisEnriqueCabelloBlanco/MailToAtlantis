@@ -2,8 +2,9 @@
 #include <functional>
 #include "json/JSONValue.h"
 #include "../components/Paquete.h"
+#include <sistemas/NPCevent.h>
 
-using Condition = std::function<bool(Paquete*)>;
+
 using namespace pq;
 class GeneralData;
 class PaqueteBuilder;
@@ -70,7 +71,7 @@ class NPCeventSystem
 {
 public:
 	NPCeventSystem();
-	~NPCeventSystem();
+	virtual ~NPCeventSystem();
 
 	void debugPaquetesInQueue();
 
@@ -90,15 +91,17 @@ public:
 
 	void shuffleNPCqueue();
 private:
-	void procesarStringRecompensas(std::vector<std::string> vec);
+	void procesarStringRecompensas(std::vector<std::string>& vec);
 
-	void readNPCevent(JSONObject eventObject, int personaje, int index);
+	void readNPCevent(JSONObject& eventObject, int personaje, int index);
 
-	void readPaquetes(JSONObject obj, NPCevent* auxEvent);
-	void readPaquetesEspecificos(JSONObject obj, NPCevent* event);
+	void readPaquetes(JSONObject& obj, NPCevent* auxEvent);
+	void readPaquetesEspecificos(JSONObject& obj, NPCevent* event);
 
-	void readCondiciones(JSONObject obj, NPCevent* auxEvent);
-	void readCondicionesEspecificos(JSONObject obj, NPCevent* auxEvent);
+	Paquete* readPacage(JSONObject& obj);
+
+	void readCondiciones(JSONObject& obj, NPCevent* auxEvent);
+	void readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEvent);
 
 	std::vector<NPCevent*> activeEventsNPCs;
 	std::vector<Paquete*> paquetesNPCs;

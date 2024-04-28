@@ -203,8 +203,13 @@
     {"id": "cinta","file": "recursos/images/Cinta.png"},
     {"id": "baseBalanza","file": "recursos/images/BaseBalanza.png"},
     {"id": "balanzaFlecha","file": "recursos/images/balanzaFlecha.png"},
+    {"id": "balanzaFlecha2","file": "recursos/images/balanzaFlecha2.png"},
     {"id": "balanzaA","file": "recursos/images/balanzaA.png"},
     {"id": "balanzaB","file": "recursos/images/balanzaB.png"},
+    {"id": "balanzaDigital","file": "recursos/images/balanza2.png"},
+
+
+
 
     {
       "id": "fondoFinalTrabajo",
@@ -252,6 +257,9 @@
       "id": "puntoVerde",
       "file": "recursos/images/PuntoVerde.png"
     },
+
+    {"id": "carta","file": "recursos/images/carta.png"},
+
 
 
 
@@ -333,7 +341,11 @@
       "id": "Soldado",
       "file": "recursos/images/Abakand Istacoz.png"
     },
+    {
+      "id": "Jefe",
+      "file": "recursos/images/JefeOficina.png"
 
+    },
     {
       "id": "reloj",
       "file": "recursos/images/Reloj.png"

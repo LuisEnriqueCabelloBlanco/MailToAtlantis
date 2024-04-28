@@ -1,4 +1,5 @@
-﻿#include "NPCeventSystem.h"
+﻿#include <utils/checkML.h>
+#include "NPCeventSystem.h"
 #include "../json/JSON.h"
 #include <random>
 #include <algorithm>
@@ -68,7 +69,13 @@ void NPCeventSystem::minigameOver() {
 		data->eventosCompletados[event->numEvento].second = 
 			generalData().getDay() * event->completed ? 1 : -1;
 		if (event->completed)
+		{
+#ifdef _DEBUG
+			std::cout << "Event completed";
+#endif // _DEBUG
+
 			procesarStringRecompensas(event->recompensas);
+		}
 	}
 
 	while (areTherePaquetesNPC())
@@ -83,7 +90,7 @@ void NPCeventSystem::activateEvent(NPCevent* e) {
 	activeEventsNPCs.push_back(e);
 }
 
-void NPCeventSystem::procesarStringRecompensas(std::vector<std::string> vec) {
+void NPCeventSystem::procesarStringRecompensas(std::vector<std::string>& vec) {
 
 	for (std::string& reward : vec) {
 		// si tiene un sumar o restar
@@ -113,205 +120,112 @@ void NPCeventSystem::procesarStringRecompensas(std::vector<std::string> vec) {
 }
 
 void NPCeventSystem::debugPaquetesInQueue() {
+#ifdef _DEBUG
 	std::cout << std::endl << "Eventos: " << activeEventsNPCs.size() << 
 		" Paquetes de npc: " << paquetesNPCs.size() << std::endl;
+#endif // _DEBUG
 }
 
 
-void NPCeventSystem::readPaquetes(JSONObject obj, NPCevent* auxEvent) {
+void NPCeventSystem::readPaquetes(JSONObject& obj, NPCevent* auxEvent) {
 
 	for (int i = 0; i < auxEvent->numPaquetes; i++)
 	{
-		PaqueteBuilder paqBuild(gm().getScene(ecs::sc::MAIN_SCENE));
-
-		bool legal = true;
-
-		std::string rem = paqBuild.remitenteRND();
-		auto hasRemitente = obj.find("remitente");
-		if (hasRemitente != obj.end())
-			rem = hasRemitente->second->AsString();
-
-		Distrito dist = (Distrito)sdlutils().rand().nextInt(0, generalData().getTubesAmount());
-		auto hasDistrito = obj.find("distrito");
-		if (hasDistrito != obj.end())
-		{
-
-			dist = (Distrito)generalData().fromStringToDistrito(
-				hasDistrito->second->AsString());
-
-			if (legal && dist == Erroneo)
-				legal = false;
-		}
-
-		Calle calle = (Calle)sdlutils().rand().nextInt(0, 3);
-		auto hasCalle = obj.find("calle");
-		if (hasCalle != obj.end())
-		{
-			calle = generalData().stringToCalle(hasCalle->second->AsString());
-
-			if (legal && calle == Erronea)
-				legal = false;
-		}
-
-		TipoPaquete tipo = (TipoPaquete)sdlutils().rand().nextInt(0, 5);
-		auto hasTipo = obj.find("tipoPaquete");
-		if (hasTipo != obj.end())
-		{
-			tipo = generalData().stringToTipoPaquete(hasTipo->second->AsString());
-		}
-
-		int peso = 0;
-		NivelPeso nivelPeso = Ninguno;
-		bool fragil = false;
-
-		if (generalData().getPaqueteLevel() > 1)
-		{
-			fragil = sdlutils().rand().nextInt(0, 10);
-			fragil = fragil < 2;
-			auto hasFragil = obj.find("fragil");
-			if (hasFragil != obj.end())
-				fragil = hasFragil->second->AsBool();
-
-			if (generalData().getPaqueteLevel() > 2)
-			{
-				// esto toma los valores brutamente del json
-				nivelPeso = paqBuild.pesoRND(20, 30, peso);
-				auto hasNivelPeso = obj.find("peso");
-				if (hasNivelPeso != obj.end())
-				{
-					nivelPeso = generalData().stringToNivelPeso(hasNivelPeso->second->AsString());
-				}
-
-				auto hasPesoKG = obj.find("pesoKG");
-				if (hasPesoKG != obj.end())
-					peso = hasPesoKG->second->AsNumber();
-
-			}
-		}
-
-		auto hasLegal = obj.find("legal");
-		if (hasLegal != obj.end())
-			legal = hasLegal->second->AsBool();
-
-		std::string nombreCalle;
-		if (calle == Erronea || dist == Erroneo)
-		{
-			//Cambiarlo por el sistema de calles err�neas una vez est�
-			//Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
-			//Y meterle un randomizador para que de esas pille la que m�s le guste
-			//Tipo, haces distritoCalle_[Erroneo][rand]
-			//dir = "(CALLE INVENTADA)";
-			int rnd = sdlutils().rand().nextInt(0, paqBuild.distritoCalle_[Erroneo].size());
-			nombreCalle = paqBuild.distritoCalle_[Erroneo][rnd];
-		}
-		else
-			nombreCalle = paqBuild.distritoCalle_[dist][(int)calle];
-
-		Paquete* paquete = new Paquete(dist, calle, nombreCalle, rem, tipo, legal,
-			nivelPeso, peso, fragil);
-
+		Paquete* paquete = readPacage(obj);
 		auxEvent->paquetes.push_back(paquete);
 	}
-
 }
 
-void NPCeventSystem::readPaquetesEspecificos(JSONObject obj, NPCevent* auxEvent) {
+void NPCeventSystem::readPaquetesEspecificos(JSONObject& obj, NPCevent* auxEvent) {
 	for (auto paq : obj) {
 		JSONObject paqObj = paq.second->AsObject();
-
-		PaqueteBuilder paqBuild(gm().getScene(ecs::sc::MAIN_SCENE));
-
-		bool legal = true;
-
-		std::string rem = paqBuild.remitenteRND();
-		auto hasRemitente = paqObj.find("remitente");
-		if (hasRemitente != paqObj.end())
-			rem = hasRemitente->second->AsString();
-
-		Distrito dist = (Distrito)sdlutils().rand().nextInt(0, generalData().getTubesAmount());
-		auto hasDistrito = paqObj.find("distrito");
-		if (hasDistrito != paqObj.end())
-		{
-
-			dist = (Distrito)generalData().fromStringToDistrito(
-				hasDistrito->second->AsString());
-
-			if (legal && dist == Erroneo)
-				legal = false;
-		}
-
-		Calle calle = (Calle)sdlutils().rand().nextInt(0, 3);
-		auto hasCalle = paqObj.find("calle");
-		if (hasCalle != paqObj.end())
-		{
-			calle = generalData().stringToCalle(hasCalle->second->AsString());
-
-			if (legal && calle == Erronea)
-				legal = false;
-		}
-
-		TipoPaquete tipo = (TipoPaquete)sdlutils().rand().nextInt(0, 5);
-		auto hasTipo = paqObj.find("tipoPaquete");
-		if (hasTipo != paqObj.end())
-		{
-			tipo = generalData().stringToTipoPaquete(hasTipo->second->AsString());
-		}
-
-		int peso = 0;
-		NivelPeso nivelPeso = Ninguno;
-		bool fragil = false;
-
-		if (generalData().getPaqueteLevel() > 1)
-		{
-			fragil = sdlutils().rand().nextInt(0, 10);
-			fragil = fragil < 2;
-			auto hasFragil = paqObj.find("fragil");
-			if (hasFragil != paqObj.end())
-				fragil = hasFragil->second->AsBool();
-
-			if (generalData().getPaqueteLevel() > 2)
-			{
-				// esto toma los valores brutamente del json
-				nivelPeso = paqBuild.pesoRND(20, 30, peso);
-				auto hasNivelPeso = paqObj.find("peso");
-				if (hasNivelPeso != paqObj.end())
-				{
-					nivelPeso = generalData().stringToNivelPeso(hasNivelPeso->second->AsString());
-				}
-
-				auto hasPesoKG = paqObj.find("pesoKG");
-				if (hasPesoKG != paqObj.end())
-					peso = hasPesoKG->second->AsNumber();
-
-			}
-		}
-
-		auto hasLegal = paqObj.find("legal");
-		if (hasLegal != paqObj.end())
-			legal = hasLegal->second->AsBool();
-
-		std::string nombreCalle;
-		if (calle == Erronea || dist == Erroneo)
-		{
-			//Cambiarlo por el sistema de calles err�neas una vez est�
-			//Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
-			//Y meterle un randomizador para que de esas pille la que m�s le guste
-			//Tipo, haces distritoCalle_[Erroneo][rand]
-			//dir = "(CALLE INVENTADA)";
-			int rnd = sdlutils().rand().nextInt(0, paqBuild.distritoCalle_[Erroneo].size());
-			nombreCalle = paqBuild.distritoCalle_[Erroneo][rnd];
-		}
-		else
-			nombreCalle = paqBuild.distritoCalle_[dist][(int)calle];
-
-		Paquete* paquete = new Paquete(dist, calle, nombreCalle, rem, tipo, legal,
-			nivelPeso, peso, fragil);
-
+		Paquete* paquete = readPacage(paqObj);
 		auxEvent->paquetes.push_back(paquete);
 	}
 }
 
-void NPCeventSystem::readCondiciones(JSONObject obj, NPCevent* auxEvent) {
+Paquete* NPCeventSystem::readPacage(JSONObject& paqObj)
+{
+	PaqueteBuilder paqBuild(gm().getScene(ecs::sc::MAIN_SCENE));
+
+	bool legal = true;
+
+	auto hasLegal = paqObj["legal"];
+	if (hasLegal != nullptr)
+		legal = hasLegal->AsBool();
+
+	std::string rem = paqBuild.remitenteRND();
+	auto hasRemitente = paqObj["remitente"];
+	if (hasRemitente != nullptr)
+		rem = hasRemitente->AsString();
+
+	Distrito dist;
+	auto hasDistrito = paqObj["distrito"];
+	if (hasDistrito != nullptr)
+	{
+		dist = (Distrito)generalData().fromStringToDistrito(
+			hasDistrito->AsString());
+	}
+	else {
+		dist = (Distrito)sdlutils().rand().nextInt(0, generalData().getTubesAmount());
+	}
+
+	//determinamos la calle
+	Calle calle;
+	auto hasCalle = paqObj["calle"];
+	if (hasCalle != nullptr)
+	{
+		calle = generalData().stringToCalle(hasCalle->AsString());
+	}
+	else {
+		calle = (Calle)sdlutils().rand().nextInt(0, 3);
+	}
+
+	//nombre de la calle
+	std::string nombreCalle;
+	if (calle == Erronea || dist == Erroneo)
+	{
+		int rnd = sdlutils().rand().nextInt(0, paqBuild.distritoCalle_[Erroneo].size());
+		nombreCalle = paqBuild.distritoCalle_[Erroneo][rnd];
+	}
+	else
+		nombreCalle = paqBuild.distritoCalle_[dist][(int)calle];
+
+	//tipo de paquete y que sello va a llevar
+	TipoPaquete tipo;
+	auto hasTipo = paqObj["tipoPaquete"];
+	if (hasTipo != nullptr)
+	{
+		tipo = generalData().stringToTipoPaquete(hasTipo->AsString());
+	}
+	else {
+		tipo = (TipoPaquete)sdlutils().rand().nextInt(0, 5);
+	}
+
+
+	//determinar si es fragil
+	bool fragil = false;
+	auto hasFragil = paqObj["fragil"];
+	if (hasFragil != nullptr)
+		fragil = hasFragil->AsBool();
+
+
+	// determina si el paquete tiene peso cuanto pesa
+	int peso = 0;
+	NivelPeso nivelPeso = Ninguno;
+	auto hasNivelPeso = paqObj["peso"];
+	if (hasNivelPeso != nullptr)
+	{
+		nivelPeso = generalData().stringToNivelPeso(hasNivelPeso->AsString());
+		auto hasPesoKG = paqObj["pesoKG"];
+		if (hasPesoKG != nullptr)
+			peso = hasPesoKG->AsNumber();
+	}
+
+	return new Paquete(dist, calle, nombreCalle, rem, tipo, legal,nivelPeso, peso, fragil);
+}
+
+void NPCeventSystem::readCondiciones(JSONObject& obj, NPCevent* auxEvent) {
 	std::vector<Condition> condicionesDeTodos;
 
 	auto hasRemitente = obj.find("remitente");
@@ -382,7 +296,7 @@ void NPCeventSystem::readCondiciones(JSONObject obj, NPCevent* auxEvent) {
 	auxEvent->condiciones.push_back(condicionesDeTodos);
 }
 
-void NPCeventSystem::readCondicionesEspecificos(JSONObject obj, NPCevent* auxEvent) {
+void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEvent) {
 	int i = 0;
 	for (auto paq : obj)
 	{
@@ -459,7 +373,7 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject obj, NPCevent* auxEve
 	}
 }
 
-void NPCeventSystem::readNPCevent(JSONObject eventObject, int personaje, int index) {
+void NPCeventSystem::readNPCevent(JSONObject& eventObject, int personaje, int index) {
 	NPCevent* auxEvent = new NPCevent();
 
 	auxEvent->personaje = (npc::Personaje)personaje;
@@ -500,7 +414,7 @@ void NPCeventSystem::readNPCevent(JSONObject eventObject, int personaje, int ind
 		}
 		else
 			throw std::runtime_error("Fallo cargando paquetes de evento");
-
+		//Leemos las condiciones
 		auto condicionesArray = currentEvent.find("condiciones");
 		if (condicionesArray != currentEvent.end())
 		{
@@ -555,7 +469,7 @@ void NPCeventSystem::readNPCEventData() {
 	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/npcData.json"));
 
 	if (jsonFile == nullptr || !jsonFile->IsObject()) {
-		throw "Something went wrong while load/parsing npcData";
+		throw std::runtime_error("Something went wrong while load/parsing npcData");
 	}
 
 	JSONObject root = jsonFile->AsObject();
@@ -586,3 +500,5 @@ void NPCeventSystem::readNPCEventData() {
 		jValueRoot = nullptr;
 	}
 }
+
+

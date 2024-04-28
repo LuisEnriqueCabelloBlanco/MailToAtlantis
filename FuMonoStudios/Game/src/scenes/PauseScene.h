@@ -1,4 +1,5 @@
 #pragma once
+#include <utils/checkML.h>
 #include "../architecture/Scene.h"
 #include "../architecture/ecs.h"
 
@@ -13,6 +14,5 @@ namespace ecs {
         virtual ~PauseScene();
 
         void init() override;
-        void leaveMenu();
     };
 }

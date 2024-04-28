@@ -1,7 +1,14 @@
+#include <utils/checkML.h>
 #include <sistemas/NPC.h>
 #include <architecture/GeneralData.h>
 #include <sdlutils/SDLUtils.h>
+#include <sistemas/NPCeventSystem.h>
+#include <sistemas/NPCevent.h>
 using namespace npc;
+npc::NPCMenorData::~NPCMenorData()
+{
+
+}
 // NPC MENOR
 NPCMenorData::NPCMenorData(Felicidad Felicidad, std::vector<bool> DiasDanEvento) {
 	felicidad = Felicidad;
@@ -119,6 +126,10 @@ NPCevent* NPCMenorData::getEvent() {
 
 // NPC GRANDE
 
+npc::NPCMayorData::~NPCMayorData()
+{
+}
+
 NPCMayorData::NPCMayorData(Felicidad Felicidad) {
 	felicidad = Felicidad;
 	postConversation = false;
@@ -161,3 +172,9 @@ NPCevent* npc::NPCMayorData::getEvent()
 	return events[numMisionesAceptadas];
 }
 
+npc::NPCdata::~NPCdata()
+{
+	for (auto ev : events) {
+		delete ev;
+	}
+}
