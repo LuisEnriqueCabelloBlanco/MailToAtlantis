@@ -1,9 +1,9 @@
 {
   "Vagabundo": {
-    "Felicidad": "Normal",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
-    "EventosCompletados": [1,2,2,2,2],
+    "Felicidad": "",
+    "FelicidadNum": 51,
+    "numMisionesAceptadas": 1,
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -21,7 +21,7 @@
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice",
+          "remitente": "Albama Ice2",
           "distrito": "Demeter",
           "tipoPaquete": "Alimento"
         },
@@ -38,7 +38,7 @@
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Albama Ice3"
         },
         "condiciones": {
           "remitente": "Albama Ice"

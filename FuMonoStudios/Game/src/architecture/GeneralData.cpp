@@ -416,7 +416,7 @@ void GeneralData::writeNPCData() {
 		for (int i = 0; i < data->eventosCompletados.size(); i++)
 		{
 			// si ha sido completado
-			if (data->eventosCompletados[i].first)
+			if (data->eventosCompletados[i].first && data->eventosCompletados[i].second != 0)
 			{
 				newEventosString += std::to_string(data->eventosCompletados[i].second) += ",";
 			}

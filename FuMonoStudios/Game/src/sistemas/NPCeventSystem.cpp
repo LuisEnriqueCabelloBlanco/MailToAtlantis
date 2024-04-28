@@ -70,7 +70,7 @@ void NPCeventSystem::minigameOver() {
 		NPCdata* data = generalData().getNPCData(event->personaje);
 		data->eventosCompletados[event->numEvento].first = true;
 		data->eventosCompletados[event->numEvento].second = 
-			generalData().getDay() * event->completed ? 1 : -1;
+			generalData().getDay() * (event->completed ? 1 : -1);
 		if (event->completed)
 		{
 #ifdef _DEBUG

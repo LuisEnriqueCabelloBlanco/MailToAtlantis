@@ -168,8 +168,8 @@ NPCevent* npc::NPCMayorData::getEvent()
 		return nullptr;
 
 	postConversation = true;
-	numMisionesAceptadas++;
 	return events[numMisionesAceptadas];
+	numMisionesAceptadas++;
 }
 
 npc::NPCdata::~NPCdata()
