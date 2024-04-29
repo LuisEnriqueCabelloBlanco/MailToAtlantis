@@ -70,7 +70,8 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 void NPCMenorData::setupDayData() {
 	postConversation = false;
 	iteration = 1;
-	giveEvent = diasDanEvento[generalData().getDay() - 1];
+	int day = generalData().getDay() - 1;
+	giveEvent = diasDanEvento[day];
 	if (misionAceptada) {
 		numMisionesAceptadas++;
 	}

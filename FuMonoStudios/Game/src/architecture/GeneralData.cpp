@@ -71,6 +71,22 @@ void GeneralData::loadSaveFile()
 	dinero_ = root.find("Dinero")->second->AsNumber();
 }
 
+void GeneralData::newGame()
+{
+	dia_ = 1;
+	dinero_ = INITIAL_MONEY;
+
+	for (int i = 0; i < 7; i++)
+	{
+		NPCdata* data = getNPCData((Personaje)i);
+		data->felicidad = NoHabladoAun;
+		data->numFelicidad = 50;
+		int numEventos = i < 2 ? 14 : 5;
+		data->eventosCompletados = std::vector<std::pair<bool, int>>(numEventos, std::make_pair(false, 0));
+		data->numMisionesAceptadas = 0;
+	}
+}
+
 void GeneralData::updateMoney()
 {
 	int rightPackages = corrects_;

@@ -200,6 +200,7 @@ public:
 	/// </summary>
 	void saveGame();
 
+	void newGame();
 private:
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }
