@@ -305,6 +305,7 @@ void GeneralData::readNPCData() {
 		if (i < 2) // npc grandes
 		{
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
+			data->events = std::vector<NPCevent*>(14, nullptr);
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
 			npcData.emplace((Personaje)i,data);
@@ -321,6 +322,7 @@ void GeneralData::readNPCData() {
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(j + 1))->second->AsBool());
 			}
 			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
+			data->events = std::vector<NPCevent*>(5, nullptr);
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
 			npcData.emplace((Personaje)i,data);

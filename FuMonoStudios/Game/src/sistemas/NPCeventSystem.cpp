@@ -490,6 +490,171 @@ void NPCeventSystem::readNPCEventData() {
 		}
 		jValueRoot = nullptr;
 	}
+
+}
+
+void NPCeventSystem::createSpecificPaquete(JSONObject paqObj, NPCevent* auxEvent) {
+
+	PaqueteBuilder paqBuild(gm().getScene(ecs::sc::MAIN_SCENE));
+
+	bool legal = true;
+
+	std::string rem = paqBuild.remitenteRND();
+	auto hasRemitente = paqObj.find("remitente");
+	if (hasRemitente != paqObj.end())
+		rem = hasRemitente->second->AsString();
+
+	Distrito dist = (Distrito)sdlutils().rand().nextInt(0, generalData().getTubesAmount());
+	auto hasDistrito = paqObj.find("distrito");
+	if (hasDistrito != paqObj.end())
+	{
+
+		dist = (Distrito)generalData().fromStringToDistrito(
+			hasDistrito->second->AsString());
+
+		if (legal && dist == Erroneo)
+			legal = false;
+	}
+
+	Calle calle = (Calle)sdlutils().rand().nextInt(0, 3);
+	auto hasCalle = paqObj.find("calle");
+	if (hasCalle != paqObj.end())
+	{
+		calle = generalData().stringToCalle(hasCalle->second->AsString());
+
+		if (legal && calle == Erronea)
+			legal = false;
+	}
+
+	TipoPaquete tipo = (TipoPaquete)sdlutils().rand().nextInt(0, 5);
+	auto hasTipo = paqObj.find("tipoPaquete");
+	if (hasTipo != paqObj.end())
+	{
+		tipo = generalData().stringToTipoPaquete(hasTipo->second->AsString());
+	}
+
+	int peso = 0;
+	NivelPeso nivelPeso = Ninguno;
+	bool fragil = false;
+
+	if (generalData().getPaqueteLevel() > 1)
+	{
+		fragil = sdlutils().rand().nextInt(0, 10);
+		fragil = fragil < 2;
+		auto hasFragil = paqObj.find("fragil");
+		if (hasFragil != paqObj.end())
+			fragil = hasFragil->second->AsBool();
+
+		if (generalData().getPaqueteLevel() > 2)
+		{
+			// esto toma los valores brutamente del json
+			nivelPeso = paqBuild.pesoRND(20, 30, peso);
+			auto hasNivelPeso = paqObj.find("peso");
+			if (hasNivelPeso != paqObj.end())
+			{
+				nivelPeso = generalData().stringToNivelPeso(hasNivelPeso->second->AsString());
+			}
+
+			auto hasPesoKG = paqObj.find("pesoKG");
+			if (hasPesoKG != paqObj.end())
+				peso = hasPesoKG->second->AsNumber();
+
+		}
+	}
+
+	auto hasLegal = paqObj.find("legal");
+	if (hasLegal != paqObj.end())
+		legal = hasLegal->second->AsBool();
+
+	std::string nombreCalle;
+	if (calle == Erronea || dist == Erroneo)
+	{
+		//Cambiarlo por el sistema de calles err�neas una vez est�
+		//Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
+		//Y meterle un randomizador para que de esas pille la que m�s le guste
+		//Tipo, haces distritoCalle_[Erroneo][rand]
+		//dir = "(CALLE INVENTADA)";
+		int rnd = sdlutils().rand().nextInt(0, paqBuild.distritoCalle_[Erroneo].size());
+		nombreCalle = paqBuild.distritoCalle_[Erroneo][rnd];
+	}
+	else
+		nombreCalle = paqBuild.distritoCalle_[dist][(int)calle];
+
+	Paquete* paquete = new Paquete(dist, calle, nombreCalle, rem, tipo, legal,
+		nivelPeso, peso, fragil);
+
+	auxEvent->paquetes.push_back(paquete);
+
+}
+
+void NPCeventSystem::checkSpecificPaquete(JSONObject pqConditions, NPCevent* auxEvent, int i) {
+
+	auto hasRemitente = pqConditions.find("remitente");
+	if (hasRemitente != pqConditions.end()) {
+		std::string aux = hasRemitente->second->AsString();
+		auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
+			return p->getRemitente() == aux;
+			});
+	}
+
+	auto hasDistrito = pqConditions.find("distrito");
+	if (hasDistrito != pqConditions.end()) {
+
+		Distrito aux = (Distrito)generalData().fromStringToDistrito(hasDistrito->second->AsString());
+		auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
+			return p->getDistrito() == aux;
+			});
+	}
+
+	auto hasCalle = pqConditions.find("calleMarcada");
+	if (hasCalle != pqConditions.end()) {
+		Calle aux = (Calle)generalData().stringToCalle(hasCalle->second->AsString());
+		auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
+			return p->getCalleMarcada() == aux;
+			});
+	}
+
+	auto hasTipo = pqConditions.find("tipoPaquete");
+	if (hasTipo != pqConditions.end()) {
+		TipoPaquete aux = generalData().stringToTipoPaquete(hasTipo->second->AsString());
+		auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
+			return p->getTipo() == aux;
+			});
+	}
+
+	auto hasPeso = pqConditions.find("peso");
+	if (hasPeso != pqConditions.end()) {
+		NivelPeso aux = generalData().stringToNivelPeso(hasPeso->second->AsString());
+		auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
+			return p->getPeso() == aux;
+			});
+	}
+
+	auto hasPesoKG = pqConditions.find("pesoKG");
+	if (hasPesoKG != pqConditions.end()) {
+		int aux = hasPesoKG->second->AsNumber();
+		auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
+			return p->getCantidadPeso() == aux;
+			});
+	}
+
+	auto hasLegal = pqConditions.find("legal");
+	if (hasLegal != pqConditions.end()) {
+		bool aux = hasLegal->second->AsBool();
+		auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
+			return p->correcto() == aux;
+			});
+	}
+
+
+	auto hasFragil = pqConditions.find("fragil");
+	if (hasFragil != pqConditions.end()) {
+		bool aux = hasFragil->second->AsBool();
+		auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
+			return aux && p->getFragil() && p->getEnvuelto();
+			});
+	}
+
 }
 
 
