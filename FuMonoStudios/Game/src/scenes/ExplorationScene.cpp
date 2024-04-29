@@ -151,6 +151,8 @@ void ecs::ExplorationScene::update() {
 
 void ecs::ExplorationScene::close() {
 	clearScene();
+	delete rightTex;
+	delete leftTex;
 	diario_->setAlive(false);
 }
 
@@ -263,7 +265,7 @@ void ecs::ExplorationScene::createDiario() {
 	auto caraFelTr = caraFel->addComponent<Transform>(267, 28, 28, 28);
 	caraFelTr->setParent(diario_->getComponent<Transform>());
 	caraFelicidad = caraFel->addComponent<RenderImage>();
-	caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadNormal"));
+	caraFelicidad->setTexture(nullptr);
 
 	setupDiarioPages();
 
@@ -401,19 +403,29 @@ void ecs::ExplorationScene::setupDiarioPages() {
 	if (diarioVacio)
 		textureVec.push_back(&sdlutils().images().at("bookTest"));
 
+	diario_->getComponent<RenderImage>()->getVector()->clear();
 	diario_->getComponent<RenderImage>()->setVector(textureVec);
 
 	if (!diarioVacio)
 	{
+		delete rightPageRnd->getTexture();
+		rightPageRnd->setVector(std::vector<Texture*>(1, nullptr));
+		delete leftPageRnd->getTexture();		
+		leftPageRnd->setVector(std::vector<Texture*>(1, nullptr));
+
 		currentDiarioPage = 0;
-		leftPageRnd->setTexture(new Texture(sdlutils().renderer(),
-			diarioText_[currentDiarioPage], sdlutils().fonts().at("simpleHandmade20"),
-			build_sdlcolor(0x00000000ff), 245));
+		leftTex = new Texture(sdlutils().renderer(),
+			diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage],
+			sdlutils().fonts().at("simpleHandmade20"),
+			build_sdlcolor(0x00000000ff), 245);
+		leftPageRnd->setTexture(leftTex);
 		leftPageTr->setWidth(leftPageRnd->getTexture()->width());
 		leftPageTr->setHeith(leftPageRnd->getTexture()->height());
-		rightPageRnd->setTexture(new Texture(sdlutils().renderer(),
-			diarioText_[currentDiarioPage + 1], sdlutils().fonts().at("simpleHandmade20"),
-			build_sdlcolor(0x00000000ff), 245));
+		 rightTex = new Texture(sdlutils().renderer(),
+			diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage + 1],
+			sdlutils().fonts().at("simpleHandmade20"),
+			build_sdlcolor(0x00000000ff), 245);
+		rightPageRnd->setTexture(rightTex);
 		rightPageTr->setWidth(rightPageRnd->getTexture()->width());
 		rightPageTr->setHeith(rightPageRnd->getTexture()->height());
 	}
@@ -446,25 +458,31 @@ void ecs::ExplorationScene::changeDiarioPages(bool forward) {
 	if (texFound)
 		changeCaraFelicidad(generalData().getNPCData((Personaje)(i - 1)));
 
-	Texture* oldTex = leftPageRnd->getTexture();
-	if (oldTex != nullptr)	
-		delete oldTex;
-
-	leftPageRnd->setTexture(new Texture(sdlutils().renderer(),
-		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage ], 
+	delete rightPageRnd->getTexture();
+	rightPageRnd->setVector(std::vector<Texture*>(1, nullptr));
+	delete leftPageRnd->getTexture();
+	leftPageRnd->setVector(std::vector<Texture*>(1, nullptr));
+	
+	leftTex = new Texture(sdlutils().renderer(),
+		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage],
 		sdlutils().fonts().at("simpleHandmade20"),
-		build_sdlcolor(0x00000000ff), 245));
+		build_sdlcolor(0x00000000ff), 245);
+	leftPageRnd->setTexture(leftTex);
 	leftPageTr->setWidth(leftPageRnd->getTexture()->width());
 	leftPageTr->setHeith(leftPageRnd->getTexture()->height());
-	rightPageRnd->setTexture(new Texture(sdlutils().renderer(),
-		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage+ 1], 
+	rightTex = new Texture(sdlutils().renderer(),
+		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage + 1],
 		sdlutils().fonts().at("simpleHandmade20"),
-		build_sdlcolor(0x00000000ff), 245));
+		build_sdlcolor(0x00000000ff), 245);
+	rightPageRnd->setTexture(rightTex);
 	rightPageTr->setWidth(rightPageRnd->getTexture()->width());
 	rightPageTr->setHeith(rightPageRnd->getTexture()->height());
 }
 
 void ecs::ExplorationScene::changeCaraFelicidad(NPCdata* data) {
+	if (caraFelicidad->getTexture() != nullptr)
+		caraFelicidad->getVector()->clear();
+	caraFelicidad->setVector(std::vector<Texture*>(1, nullptr));
 	switch (data->felicidad) {
 	case Minima:
 		caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadMinimo"));

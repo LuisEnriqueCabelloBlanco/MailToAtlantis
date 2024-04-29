@@ -42,6 +42,10 @@ Texture* RenderImage::getTexture() {
 	return texturesVector_[currentTextureIndx_];
 }
 
+std::vector<Texture*>* RenderImage::getVector() {
+	return &texturesVector_;
+}
+
 void RenderImage::nextTexture()
 {
 	if (currentTextureIndx_ < texturesVector_.size()-1) {

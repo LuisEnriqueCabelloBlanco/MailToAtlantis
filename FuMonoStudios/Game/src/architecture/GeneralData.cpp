@@ -47,17 +47,18 @@ GeneralData::GeneralData()
 }
 
 GeneralData::~GeneralData() {
-	delete npcEventSys;
+	
+	for (auto& npc : npcData) {
+		delete npc.second;
+		npc.second = nullptr;
+	}
 	for (auto obj : intObjData) {
 		delete obj;
 	}
 	for (auto package : paquetesNPCs) {
 		delete package;
 	}
-	for (auto& npc : npcData) {
-		delete npc.second;
-		npc.second = nullptr;
-	}
+	delete npcEventSys;
 }
 
 void GeneralData::loadSaveFile()
@@ -307,6 +308,7 @@ void GeneralData::readNPCData() {
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
+			data->events = std::vector<NPCevent*>(14, nullptr);
 			JSONArray eventosCompletados = jObject.find("EventosCompletados")->second->AsArray();
 			int k = 0;
 			for (auto it : eventosCompletados)
@@ -332,6 +334,7 @@ void GeneralData::readNPCData() {
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(j + 1))->second->AsBool());
 			}
 			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
+			data->events = std::vector<NPCevent*>(5, nullptr);
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
 			JSONArray eventosCompletados = jObject.find("EventosCompletados")->second->AsArray();

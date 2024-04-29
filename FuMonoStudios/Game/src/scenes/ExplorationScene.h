@@ -198,6 +198,8 @@ namespace ecs {
 		RenderImage* rightPageRnd;
 		Transform* rightPageTr;
 		RenderImage* caraFelicidad;
+		Texture* rightTex;
+		Texture* leftTex;
     };
 }
 

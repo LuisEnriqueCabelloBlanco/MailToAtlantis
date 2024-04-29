@@ -12,9 +12,6 @@ NPCeventSystem::NPCeventSystem() {
 }
 
 NPCeventSystem::~NPCeventSystem() {
-	for (auto it : activeEventsNPCs) {
-		delete it;
-	}
 	for (auto it : paquetesNPCs) {
 		
 	}
@@ -465,7 +462,7 @@ void NPCeventSystem::readNPCevent(JSONObject& eventObject, int personaje, int in
 	else
 		throw std::runtime_error("Evento sin recompensas / no recompensa mal especificado");
 
-	generalData().getNPCData((npc::Personaje)personaje)->events.push_back(auxEvent);
+	generalData().getNPCData((npc::Personaje)personaje)->events[index] = (auxEvent);
 }
 
 /* Para los eventos debemos especificar sus condiciones. Eso lo haremos añadiendo
