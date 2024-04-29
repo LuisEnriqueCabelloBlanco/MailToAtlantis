@@ -1,9 +1,9 @@
 {
   "Vagabundo": {
     "Felicidad": "Normal",
-    "FelicidadNum": 51,
+    "FelicidadNum": 50,
     "numMisionesAceptadas": 1,
-    "EventosCompletados": [],
+    "EventosCompletados": [2],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -18,10 +18,9 @@
         "textoDiario": "no se usa"
       },
       "2": {
-        "numPaquetes": 1,
+        "numPaquetes": 2,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice2",
           "distrito": "Demeter",
           "tipoPaquete": "Alimento"
         },
@@ -38,13 +37,16 @@
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice3"
+          "remitente": "Anemos Togakawa",
+          "distrito": "Artemisa",
+          "legal" : false
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Anemos Togakawa",
+          "tuboSeleccionado": "Artemisa"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario3 "
+        "textoDiario": "Ha mandado un paquete a Artemisa. Probablemente el paquete este mal sellado o sea ilegal..."
       },
       "4": {
         "numPaquetes": 1,
@@ -181,10 +183,10 @@
     }
   },
   "Secretario": {
-    "Felicidad": "Mala",
+    "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
-    "EventosCompletados": [1,2],
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -357,7 +359,7 @@
     }
   },
   "Campesino": {
-    "Felicidad": "Buena",
+    "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
     "DiasConEvento": {
@@ -461,7 +463,7 @@
     }
   },
   "Artesano": {
-    "Felicidad": "Maxima",
+    "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
     "DiasConEvento": {
@@ -562,7 +564,7 @@
     }
   },
   "Tarotisa": {
-    "Felicidad": "Minima",
+    "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
     "DiasConEvento": {
