@@ -387,28 +387,27 @@ void ecs::MainScene::createBalanza() {
 void ecs::MainScene::createBalanzaDigital() {
 	// Balanza
 	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanza = factory_->createImage(Vector2D(0, -52), Vector2D(sdlutils().images().at("balanzaDigA").width(), sdlutils().images().at("balanzaDigA").height()), &sdlutils().images().at("balanzaDigA"));
+	Entity* balanza = factory_->createImage(Vector2D(0, -44), Vector2D(sdlutils().images().at("balanzaDigA").width(), sdlutils().images().at("balanzaDigA").height()), &sdlutils().images().at("balanzaDigA"));
 	Transform* balanzaTr = balanza->getComponent<Transform>();
 	balanza->addComponent<MoverTransform>();
-	balanzaTr->setScale(0.4);
+	balanzaTr->setScale(0.35);
 	Balanza* balanzaComp = balanza->addComponent<Balanza>();
 
 	// BalanzaBase
 	factory_->setLayer(ecs::layer::BALANZABASE);
-	Entity* baseBalanza = factory_->createImage(Vector2D(1000, 400), Vector2D(sdlutils().images().at("balanzaDigB").width(), sdlutils().images().at("balanzaDigB").height()), &sdlutils().images().at("balanzaDigB"));
+	Entity* baseBalanza = factory_->createImage(Vector2D(1050, 435), Vector2D(sdlutils().images().at("balanzaDigB").width(), sdlutils().images().at("balanzaDigB").height()), &sdlutils().images().at("balanzaDigB"));
 	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
-	balanzaBaseTr->setScale(0.4);
+	balanzaBaseTr->setScale(0.35);
 	baseBalanza->addComponent<Gravity>();
-	baseBalanza->addComponent<Depth>();
+	//baseBalanza->addComponent<Depth>();
 
 	////Añadir los numeros del peso
 	std::string msg = "0";
 	factory_->setLayer(ecs::layer::NUMBERS);
-	factory_->createLabel(Vector2D(1050, 640), msg, 50);
+	factory_->createLabel(Vector2D(1220, 593), msg, 50);
 
 	// Seteamos padres
 	balanzaTr->setParent(balanzaBaseTr);
-	//balanzaFlechaTr->setParent(balanzaBaseTr);
 
 	
 	Trigger* balanzaTri = balanza->addComponent<Trigger>();
@@ -418,7 +417,7 @@ void ecs::MainScene::createBalanzaDigital() {
 		std::string msg = std::to_string(balanzaComp->getPaquetePeso());
 		removeEntitiesByLayer(ecs::layer::NUMBERS);
 		factory_->setLayer(ecs::layer::NUMBERS);
-		factory_->createLabel(Vector2D(1040, 890), msg, 50);
+		factory_->createLabel(Vector2D(1245, 593), msg, 50);
 		
 		}, generalData().DropIn);
 	
@@ -427,7 +426,7 @@ void ecs::MainScene::createBalanzaDigital() {
 		std::string msg2 = "0";
 		removeEntitiesByLayer(ecs::layer::NUMBERS);
 		factory_->setLayer(ecs::layer::NUMBERS);
-		factory_->createLabel(Vector2D(1050, 890), msg2, 50);
+		factory_->createLabel(Vector2D(1270, 593), msg2, 50);
 		}, generalData().PickUp);
 
 	factory_->setLayer(ecs::layer::DEFAULT);

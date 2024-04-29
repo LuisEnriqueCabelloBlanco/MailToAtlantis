@@ -94,6 +94,7 @@ namespace ecs {
 			MINIMANUAL,
 			BALANZABASE,
 			BALANZA,
+			NUMBERS,
 			PACKAGE,
 			INFO_PACKAGE,
 			INK,
@@ -106,7 +107,7 @@ namespace ecs {
 			MANUAL,
 			FOREGROUND,
 			UI,
-			NUMBERS,
+			
 			_LAST_LAYER
 		};
 		constexpr layerId maxLayerId = _LAST_LAYER;
