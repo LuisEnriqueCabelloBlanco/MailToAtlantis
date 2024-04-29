@@ -5,7 +5,6 @@
 #include <fstream>
 #ifdef DEV_TOOLS
 #include <imgui.h>
-#include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
 #endif // DEV_TOOLS
 #include "../sdlutils/SDLUtils.h"
@@ -24,13 +23,13 @@
 #include "../components/RotarTransform.h"
 #include "../architecture/Time.h"
 #include "../architecture/GameConstants.h"
-#include "../components/SelfDestruct.h"
 #include "../architecture/GeneralData.h"
 #include "../sistemas/ComonObjectsFactory.h"
 #include "../components/Depth.h"
 #include <QATools/DataCollector.h>
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
+#include "../sistemas/PipeManager.h"
 #include "../sistemas/SoundEmiter.h"
 #include <components/HoverSensorComponent.h>
 #include <components/HoverLayerComponent.h>
@@ -46,11 +45,13 @@ ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 	timeToAdd_ = 5;
 #endif // DEV_TOOLS
 	mPaqBuild_ = new PaqueteBuilder(this);
+	mPipeMngr_ = new PipeManager();
 }
 
 ecs::MainScene::~MainScene()
 {
 	delete mPaqBuild_;
+	delete mPipeMngr_;
 }
 
 
@@ -100,6 +101,8 @@ void ecs::MainScene::init()
 #endif // _DEBUG
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
 	timer_ = MINIGAME_TIME;
+	timerPaused_ = true;
+
 	// Fondo
 	factory_->setLayer(layer::BACKGROUND);
 	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
@@ -108,19 +111,23 @@ void ecs::MainScene::init()
 	//for (int i = 0; i < 7; i++) {
 	//	createTubo((pq::Distrito)i);
 	//}
+	mPipeMngr_->init();
 
 	
 	createMiniManual();
 	createSpaceManual();
 
-	createClock();
+	//createClock(); empieza a girar desde que se entra a la escena y queremos que lo haga cuando entres al trabajo
 
 	createGarbage();
 
-	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
-	createCharacter({ 500, 300 }, "Campesino", 0.2f);
-
-	createPaquete(generalData().getPaqueteLevel());
+	int dia = generalData().getDay();
+	if (dia % 4 == 2 || dia == 1 || dia == 3 || dia == 5 || dia == 8) //basura lo se pero la progresion es la que hay, por lo menos he podido hacer aritmetica modular para los eventos del jefe al ser constantes
+	{
+		createCharacter({ 500, 250 }, "Jefe",0.35f);
+	}
+	else
+		startWork();
 
 	//creacion de las herramientas
 	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
@@ -147,7 +154,6 @@ void ecs::MainScene::init()
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(generalData().getDay());
-
 }
 
 void ecs::MainScene::close() {
@@ -380,7 +386,7 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 		layerHover->addOutCall([hilight]() {hilight->lightOff(); });
 
 		Trigger* tuboTri = tuboEnt->addComponent<Trigger>();
-		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this);
+		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this, mPipeMngr_);
 	}
 	else {
 		//factory_->setLayer(layer::UI);
@@ -561,7 +567,7 @@ void ecs::MainScene::createGarbage()
 	papelera->addComponent<Transform>(0, 650, 204, 247);
 	papelera->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
 	Trigger* papTrig = papelera->addComponent<Trigger>();
-	papelera->addComponent<PackageChecker>(Erroneo, this);
+	papelera->addComponent<PackageChecker>(Erroneo, this, mPipeMngr_);
 }
 #ifdef DEV_TOOLS
 
@@ -661,34 +667,53 @@ void ecs::MainScene::createPaquete (int lv) {
 
 
 ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
-
 	ComonObjectsFactory factory(this);
 
 	Texture* characterTexture = &sdlutils().images().at(character);
 	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
 
-	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
-	//Actualmente los personajes no tienen memoria, si queremos esto har�a falta a�adrile un parametro
+	CallbackClickeable funcPress;
 
-	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
-	CallbackClickeable funcPress = [this, character]() {
-		dialogMngr_.startConversation(character);
-		dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(1)); //esta movida se cambiara por las cosas del senor jefe
+	int dia = generalData().getDay();
+
+	std::string jsonPath;
+	if (dia % 4 == 2) //evento aleatorio
+	{
+		jsonPath = "recursos/data/eventosjefe.json";
+		dialogMngr_.init(this, jsonPath);
+		mWorkRes.init();
+		funcPress = [this, character]() { //no queremos hacer un start conversation
+			WorkEvent eventoJefe = mWorkRes.getRandomEvent();
+			dialogMngr_.setDialogueEntitiesActive(true);
+			dialogMngr_.setDialogues(eventoJefe.dialogue);
+			mPipeMngr_->activateEvent(eventoJefe);
 		};
-	//si queremos anadir un callback para que ocurra algo cuando se acaba el dialogo 
-	dialogMngr_.setEndDialogueCallback([this](){
-#ifdef _DEBUG
-		std::cout << "Los callbacks de final de dialogo funcionan";
-#endif // _DEBUG
+	}
+	else //nuevo distrito/mecanica
+	{
+		jsonPath = "recursos/data/dialogos.json";
+		dialogMngr_.init(this, jsonPath);
+		funcPress = [this, character]() {
+			std::string dia = "Dia" + std::to_string(generalData().getDay());
+			dialogMngr_.setDialogueEntitiesActive(true);
+			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), dia);
+		};
+	}
 
-	});
+	dialogMngr_.init(this, jsonPath);
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
+	dialogMngr_.setEndDialogueCallback([characterEnt, this]{
+		characterEnt->setAlive(false); //bye bye jefe
+		startWork();
+	});
 
 	return characterEnt;
 }
 
 void ecs::MainScene::startWork()
 {
-	
+	timerPaused_ = false;
+	createPaquete(generalData().getPaqueteLevel());
+	createClock();
 }

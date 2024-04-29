@@ -1,20 +1,61 @@
 {
   "images": [
-    {"id": "placeHolder","file": "recursos/images/SDL_logo.png"},
-    {"id": "boxTest","file": "recursos/images/Box.png"},
-    {"id": "selloTest","file": "recursos/images/Sello.png"},
-    {"id": "bookTest","file": "recursos/images/Book.png"},
-    {"id": "book1","file": "recursos/images/Book_Index.png"},
-    {"id": "book2","file": "recursos/images/Book_InfoGeneral.png"},
-    {"id": "book3","file": "recursos/images/Book_InfoCodigos.png"},
-    {"id": "book4","file": "recursos/images/Book_InfoCalles_0.png"},
-    {"id": "book5","file": "recursos/images/Book_InfoCalles_1.png"},
-    {"id": "book6","file": "recursos/images/Book_InfoCalles_2.png"},
-    {"id": "book7","file": "recursos/images/Book_InfoCalles_3.png"},
-    {"id": "book8","file": "recursos/images/Book_InfoSellos.png"},
-    {"id": "book9","file": "recursos/images/Book_InfoPesos.png"},
-    {"id": "book10","file": "recursos/images/Book_InfoEmbalado.png"},
-
+    {
+      "id": "placeHolder",
+      "file": "recursos/images/SDL_logo.png"
+    },
+    {
+      "id": "boxTest",
+      "file": "recursos/images/Box.png"
+    },
+    {
+      "id": "selloTest",
+      "file": "recursos/images/Sello.png"
+    },
+    {
+      "id": "bookTest",
+      "file": "recursos/images/Book.png"
+    },
+    {
+      "id": "book1",
+      "file": "recursos/images/Book_Index.png"
+    },
+    {
+      "id": "book2",
+      "file": "recursos/images/Book_InfoGeneral.png"
+    },
+    {
+      "id": "book3",
+      "file": "recursos/images/Book_InfoCodigos.png"
+    },
+    {
+      "id": "book4",
+      "file": "recursos/images/Book_InfoCalles_0.png"
+    },
+    {
+      "id": "book5",
+      "file": "recursos/images/Book_InfoCalles_1.png"
+    },
+    {
+      "id": "book6",
+      "file": "recursos/images/Book_InfoCalles_2.png"
+    },
+    {
+      "id": "book7",
+      "file": "recursos/images/Book_InfoCalles_3.png"
+    },
+    {
+      "id": "book8",
+      "file": "recursos/images/Book_InfoSellos.png"
+    },
+    {
+      "id": "book9",
+      "file": "recursos/images/Book_InfoPesos.png"
+    },
+    {
+      "id": "book10",
+      "file": "recursos/images/Book_InfoEmbalado.png"
+    },
     {"id": "diario1", "file": "recursos/images/Diario0.png"},
     {"id": "diario2", "file": "recursos/images/Diario1.png"},
     {"id": "diario3", "file": "recursos/images/Diario2.png"},
@@ -40,18 +81,50 @@
     {"id": "Apolo","file": "recursos/images/Apolo.png"},
     {"id": "Poseidon","file": "recursos/images/Poseidon.png"},
     {"id": "fondoMainMenu","file": "recursos/images/FONDO_MENU_INICIO_v2.png"},
-
-    {"id": "sellador0","file": "recursos/images/selladorRojo.png"},
-    {"id": "sellador1","file": "recursos/images/selladorAzul.png"},
-    {"id": "sellador2","file": "recursos/images/selladorVerde.png"},
-    {"id": "selladorM","file": "recursos/images/selladorM.png"},
-    {"id": "sello0","file": "recursos/images/SelloRojo.png"},
-    {"id": "sello1","file": "recursos/images/SelloAzul.png"},
-    {"id": "sello2","file": "recursos/images/SelloVerde.png"},
-    {"id": "selloM","file": "recursos/images/SelloM.png"},
-    {"id": "tinta0","file": "recursos/images/tintaRoja.png"},
-    {"id": "tinta1","file": "recursos/images/tintaAzul.png"},
-    {"id": "tinta2","file": "recursos/images/tintaVerde.png"},
+    {
+      "id": "sellador0",
+      "file": "recursos/images/selladorRojo.png"
+    },
+    {
+      "id": "sellador1",
+      "file": "recursos/images/selladorAzul.png"
+    },
+    {
+      "id": "sellador2",
+      "file": "recursos/images/selladorVerde.png"
+    },
+    {
+      "id": "selladorM",
+      "file": "recursos/images/selladorM.png"
+    },
+    {
+      "id": "sello0",
+      "file": "recursos/images/SelloRojo.png"
+    },
+    {
+      "id": "sello1",
+      "file": "recursos/images/SelloAzul.png"
+    },
+    {
+      "id": "sello2",
+      "file": "recursos/images/SelloVerde.png"
+    },
+    {
+      "id": "selloM",
+      "file": "recursos/images/SelloM.png"
+    },
+    {
+      "id": "tinta0",
+      "file": "recursos/images/tintaRoja.png"
+    },
+    {
+      "id": "tinta1",
+      "file": "recursos/images/tintaAzul.png"
+    },
+    {
+      "id": "tinta2",
+      "file": "recursos/images/tintaVerde.png"
+    },
 
     {
       "id": "press",
@@ -193,17 +266,39 @@
       "file": "recursos/images/cruz.png"
     },
 
-    {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
-    {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
-    {"id": "exclamacion","file": "recursos/images/Exclamacion.png"},
-    
-    {"id": "ruta1","file": "recursos/images/route1.png"},
-    {"id": "ruta2","file": "recursos/images/route2.png"},
-    {"id": "ruta3","file": "recursos/images/route3.png"},
-    {"id": "ruta4","file": "recursos/images/route4.png"},
-    
-    {"id": "fondoFinalTrabajo","file": "recursos/images/FondoEndWork.png"},
+    {
+      "id": "puntoRojo",
+      "file": "recursos/images/PuntoRojo.png"
+    },
+    {
+      "id": "lineaRoja",
+      "file": "recursos/images/lineaRoja.png"
+    },
+    {
+      "id": "exclamacion",
+      "file": "recursos/images/Exclamacion.png"
+    },
+    {
+      "id": "ruta1",
+      "file": "recursos/images/route1.png"
+    },
+    {
+      "id": "ruta2",
+      "file": "recursos/images/route2.png"
+    },
+    {
+      "id": "ruta3",
+      "file": "recursos/images/route3.png"
+    },
+    {
+      "id": "ruta4",
+      "file": "recursos/images/route4.png"
+    },
 
+    {
+      "id": "fondoFinalTrabajo",
+      "file": "recursos/images/FondoEndWork.png"
+    },
     {"id": "title","file": "recursos/images/titulo.png"},
     {"id": "fondoOficina","file": "recursos/images/OficinaProyectosDesenfocada.png"},
     {"id": "cinta","file": "recursos/images/Cinta.png"},
@@ -213,10 +308,6 @@
     {"id": "balanzaA","file": "recursos/images/balanzaA.png"},
     {"id": "balanzaB","file": "recursos/images/balanzaB.png"},
     {"id": "balanzaDigital","file": "recursos/images/balanza2.png"},
-
-
-
-
     {
       "id": "fondoFinalTrabajo",
       "file": "recursos/images/FondoEndWork.png"
@@ -350,7 +441,6 @@
     {
       "id": "Jefe",
       "file": "recursos/images/JefeOficina.png"
-
     },
     {
       "id": "reloj",

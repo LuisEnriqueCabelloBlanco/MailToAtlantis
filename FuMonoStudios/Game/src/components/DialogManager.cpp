@@ -107,7 +107,7 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     JSONValue* jsonEntry = nullptr;
 
     const std::string& stringDialogSel = dialogSelectionToString(ds);
-
+    auto a =generalData().getDay();
     jsonEntry = root[stringDialogSel];
     if (jsonEntry != nullptr)
     {
@@ -194,6 +194,15 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     }
 }
 
+void DialogManager::setDialogues(std::string& dialogo) //mirar en el .h por que no es const juro que tiene sentido
+{
+    dialogs_.clear();
+
+    fixText(dialogo);
+
+    dialogs_.push_back(dialogo);
+}
+
 void DialogManager::startConversation(const std::string& character)
 {
     if(canStartConversation)
@@ -205,7 +214,7 @@ void DialogManager::startConversation(const std::string& character)
         std::pair<const std::string, int> aux = data->getDialogueInfo(); 
 
 
-        setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
+        setDialogues((DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
 
         setDialogueEntitiesActive(true);
 
@@ -223,16 +232,11 @@ void DialogManager::startConversationWithObj(const std::string& interactableObj)
 {
     if (canStartConversation)
     {
-        auto obj = generalData().stringToObj(interactableObj); //de que objeto queremos el dialogo
-        auto data = generalData().getObjData(obj); //data de dicho objeto
+        const std::string aux1 = std::to_string(generalData().getDay());
 
-        // activamos los dialogos correspondientes
-        const std::string aux = data->getDialogueInfo();
-        const std::string aux2 = std::to_string(generalData().getDay());
+        const std::string aux2 = std::to_string(sdlutils().rand().nextInt(0, 3));
 
-        const std::string aux3 = std::to_string(sdlutils().rand().nextInt(0, 3));
-
-        setDialogues((DialogManager::DialogSelection)(generalData().stringToObj(interactableObj) + 10), aux+aux2+aux3);
+        setDialogues((DialogManager::DialogSelection)(generalData().stringToObjInt(interactableObj) + 10), "Texto"+interactableObj+aux1+aux2);
 
         setDialogueEntitiesActive(true);
 
@@ -338,8 +342,8 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
     case Contable:
         aux = "Contable";
         break;
-    case JefeOficina:
-        aux = "JefeOficina";
+    case Jefe:
+        aux = "Jefe";
         break;
     case Tutorial:
         aux = "Tutorial";

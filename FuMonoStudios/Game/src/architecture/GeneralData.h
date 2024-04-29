@@ -48,30 +48,14 @@ public:
 	Felicidad stringToFelicidad(const std::string& str);
 	std::string felicidadToString(Felicidad);
 
-	
-	/// <summary>
-	/// enum con el nombre de todos los Objetos Interactuables
-	/// </summary>
-	enum InteractableObj {
-		CasaGrande, CartelOficina, Muro, //Hestia
-		TiendaPociones, TiendaBolas, TiendaJarrones, //Artemisa
-		Molino, Arbol, Carreta, //Demeter
-		PulpoCartel, TiendaCeramica, TiendaEsculturas, //Hefesto
-		TiendaDerecha, PanteonIzq, PanteonDer, //Hermes
-		Panteon, Edificios, Charco, //Apolo
-		Casa1, Casa2 //Poseidon
-	};
-
 	enum MoveType{DropIn, PickUp};
 
 	/// <summary>
 	/// Estructura que almacena la informacion de los objetos interactuables
 	/// </summary>
 	struct IntObjsData {
-		IntObjsData(InteractableObj text);
-		InteractableObj objId;
-		virtual const std::string getDialogueInfo();
-
+		IntObjsData(std::string text);
+		std::string objId;
 	};
 	/// <summary>
 	/// Carga los datos de los npc es decir: Felicidad, Misiones pendientes, Eventos
@@ -95,17 +79,6 @@ public:
 	void incrementarFelicidad(Personaje p, int felicidadIncr);
 
 	NPCeventSystem* npcEventSys = nullptr;
-
-	/// <summary>
-	/// Obtiene los datos de los objetos interactuables
-	/// </summary>
-	void readIntObjData();
-	/// <summary>
-	/// Devuelve los datos del objeto solicitado
-	/// </summary>
-	/// <param name="intobj"></param>
-	/// <returns></returns>
-	IntObjsData* getObjData(InteractableObj intobj);
 
 private:
 	/// <summary>
@@ -198,8 +171,8 @@ public:
 	Personaje stringToPersonaje(const std::string& pers);
 
 	//Textos objetos
-	const std::string objetoToString(InteractableObj pers);
-	InteractableObj stringToObj(const std::string& obj);
+	const std::string intObjetoToString(int pers);
+	int stringToObjInt(const std::string& obj);
 
 	//Textos distritos
 	std::string fromDistritoToString(int i);
@@ -226,6 +199,7 @@ public:
 	/// Guarda el juego
 	/// </summary>
 	void saveGame();
+
 private:
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }
