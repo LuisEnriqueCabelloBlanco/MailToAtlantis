@@ -178,6 +178,9 @@ public:
 	int getRent();
 	void setRent(int rent);
 
+	//Texturas personajes
+	const Texture* personajeToTexture(Personaje pers);
+
 	//Textos personajes
 	const std::string personajeToString(Personaje pers);
 	Personaje stringToPersonaje(const std::string& pers);

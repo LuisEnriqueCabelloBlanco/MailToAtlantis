@@ -1,5 +1,7 @@
 #include "Finales.h"
 #include <json/JSON.h>
+#include "sistemas/ComonObjectsFactory.h"
+#include "sdlutils/SDLUtils.h"
 
 Finales::Finales()
 {
@@ -10,11 +12,10 @@ Finales::Finales()
     if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
         throw "Something went wrong while load/parsing dialogues";
     }
-    // we know the root is JSONObject
+    // Inicializamos root_
     JSONObject root = jValueRoot->AsObject();
 
-    
-    //Obtenemos el numero de personajes
+    // Obtenemos el numero de personajes
     int numNpc = std::numeric_limits<enum Personaje>::max();
 
     // Cargamos endTexts_
@@ -45,7 +46,20 @@ void Finales::loadFinal(ecs::Scene escene, Personaje npc, Felicidad felicidad)
 {
     std::string texto = endTexts_[{npc, felicidad}];
 
-    
+    ComonObjectsFactory* factory = escene.getFactory();
+
+    factory->setLayer(ecs::layer::UI);
+
+    // Entidad periodico
+    Texture* periodicoTex = &sdlutils().images().at("periodico");
+    ecs::Entity* periodico = factory->createImage(Vector2D(30, 110), Vector2D(periodicoTex->width(), periodicoTex->height()), periodicoTex);
+    Transform* periodicoTr = periodico->getComponent<Transform>();
+    periodicoTr->setScale(0.5);
+    periodicoTr->setPos(100,100);
+
+    // Entidad imagenNpc
+    Texture* imagenNpcTex = &sdlutils().images().at("-------");
+    ecs::Entity* imagenNpc = factory->createImage(Vector2D(30, 110), Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
 }
 
 std::string Finales::getFinal(Personaje npc, Felicidad nivelFelicidad) {

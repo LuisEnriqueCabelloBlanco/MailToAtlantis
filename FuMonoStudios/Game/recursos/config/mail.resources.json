@@ -365,7 +365,8 @@
     {
       "id": "luz",
       "file": "recursos/images/luz.png"
-    }
+    },
+    {"id": "periodico","file": "recursos/images/PeriodicoPNGNuevo.png"}
   ],
   "fonts": [
     {

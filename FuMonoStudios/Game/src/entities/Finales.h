@@ -1,7 +1,6 @@
 #pragma once
 #include <architecture/GeneralData.h>
 #include <architecture/Scene.h>
-//#include <tuple>
 
 class Finales
 {
@@ -11,7 +10,7 @@ public:
 	~Finales() {};
 
 	// Carga el final en forma de periodico en la escena que desees.
-	void loadFinal(Personaje npc, Felicidad nivelFelicidad, Scene scene);
+	void loadFinal(ecs::Scene escene, Personaje npc, Felicidad felicidad);
 
 	// Devuelve el texto del final que desees
 	std::string getFinal(Personaje npc, Felicidad nivelFelicidad);

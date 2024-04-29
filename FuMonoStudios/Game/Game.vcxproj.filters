@@ -70,6 +70,7 @@
     <ClCompile Include="src\sistemas\NPCeventSystem.cpp" />
     <ClCompile Include="src\scenes\EndGameScene.cpp" />
     <ClCompile Include="src\sistemas\NPC.cpp" />
+    <ClCompile Include="src\sistemas\NPCevent.cpp" />
     <ClCompile Include="src\entities\Finales.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +179,7 @@
     <ClInclude Include="src\sistemas\NPCeventSystem.h" />
     <ClInclude Include="src\scenes\EndGameScene.h" />
     <ClInclude Include="src\sistemas\NPC.h" />
+    <ClInclude Include="src\sistemas\NPCevent.h" />
     <ClInclude Include="src\entities\Finales.h" />
   </ItemGroup>
   <ItemGroup>
