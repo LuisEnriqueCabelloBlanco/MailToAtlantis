@@ -25,7 +25,7 @@ public:
 	/// </summary>
 	/// <param name="indx"></param>
 	inline void setTextureIndx(int indx) { 
-		assert(texturesVector_.size() < indx);
+		assert(texturesVector_.size() > indx);
 		currentTextureIndx_ = indx; 
 	};
 	/// <summary>

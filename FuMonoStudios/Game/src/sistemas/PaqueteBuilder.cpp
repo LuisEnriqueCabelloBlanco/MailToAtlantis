@@ -126,6 +126,7 @@ ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle call
 	addVisualElements(base);
 	selectRandomRoute();
 	base->addComponent<Wrap>(40, 0, route, selectedRouteIndex);
+
 	return base;
 }
 

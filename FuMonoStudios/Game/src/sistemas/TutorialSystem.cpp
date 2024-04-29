@@ -199,7 +199,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			delayedCallback(1, [this] {
 				activateDialogue(false);
 				delayedCallback(1, [this] {
-					scene_->createFragilTool();
+					scene_->createCinta();
 					});
 				});
 			break;
