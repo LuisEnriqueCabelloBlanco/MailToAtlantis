@@ -1,3 +1,4 @@
+#include <utils/checkML.h>
 #include "EndWorkScene.h"
 #include "../architecture/GeneralData.h"
 #include "../architecture/Entity.h"
@@ -99,7 +100,7 @@ void EndWorkScene::animTextos(ecs::Entity* texto) {
 	texto->setActive(true);
 }
 void EndWorkScene::animNumeros(ecs::Entity* number) {
-	std::cout << "Anim numeros";
+
 }
 
 void EndWorkScene::createButtons()

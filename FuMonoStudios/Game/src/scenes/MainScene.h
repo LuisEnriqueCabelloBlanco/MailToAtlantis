@@ -1,17 +1,21 @@
 #pragma once
+#include <utils/checkML.h>
 #include "../architecture/Game.h"
 #include "../architecture/Scene.h"
 #include "../components/Transform.h"
 #include "../components/Paquete.h"
 #include <components/Herramientas.h>
 #include "../sistemas/PaqueteBuilder.h"
+#include "../sistemas/PipeManager.h"
 #include "components/DialogManager.h"
+#include "sistemas/WorkRestrictionsSystem.h"
 
 namespace ecs {
     class Game;
     class MainScene :public Scene
     {
     public:
+        __SC_DECL__(ecs::sc::MAIN_SCENE)
         MainScene();
         virtual ~MainScene();
 
@@ -25,7 +29,7 @@ namespace ecs {
         void createErrorMessage(Paquete* paqComp, bool, bool);
         void createExclamationPoint();
     private:
-        void createManual();
+        void createManual(int NumPages);
         void createMiniManual();
         void createSpaceManual();
         void createMultipleStamp();
@@ -78,7 +82,10 @@ namespace ecs {
 
         //El pinche paquete builder para no crear uno en cada paquete
         PaqueteBuilder* mPaqBuild_;
-        
+
+        PipeManager* mPipeMngr_;
+
+        WorkRestrictionsSystem mWorkRes;
     };
 }
 

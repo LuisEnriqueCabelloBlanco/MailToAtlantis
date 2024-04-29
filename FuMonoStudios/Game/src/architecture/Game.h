@@ -12,9 +12,9 @@
 
 
 #ifdef _DEBUG
-#define DEV_TOOLS
+//#define DEV_TOOLS
 #endif // _DEBUG
-#define QA_TOOLS
+//#define QA_TOOLS
 
 
 
@@ -40,7 +40,11 @@ public:
 	/// <param name="scene">Id de la escena a matar</param>
 	void killScene(ecs::sc::sceneId scene);
 
-	// metodo que permite coger una escena
+	/// <summary>
+	/// Devuelve el puntero a una escena especificada
+	/// </summary>
+	/// <param name="sc"></param>
+	/// <returns></returns>
 	ecs::Scene* getScene(ecs::sc::sceneId sc) {
 		return gameScenes_.at(sc);
 	}
@@ -50,10 +54,22 @@ public:
 	/// <param name="scene1"></param>
 	/// <param name="scene2"></param>
 	void requestChangeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2);
-
-	inline void writeMessage() {
-		std::cout << "Funcionaaaaaaaaa" << std::endl;
-	};
+	/// <summary>
+	/// Despausa el juego
+	/// </summary>
+	inline void unpauseGame() {
+		gamePaused_ = false;
+	}
+	/// <summary>
+	/// Indica si el juego esta pausado
+	/// </summary>
+	/// <returns></returns>
+	inline bool gamePaused() {
+		return gamePaused_;
+	}
+	/// <summary>
+	/// Para la ejecucion del juego
+	/// </summary>
 	void endGame() { exit_ = true; }
 private:
 	/// <summary>
@@ -63,8 +79,17 @@ private:
 	/// <param name="scene2"></param>
 	void changeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2);
 
+	/// <summary>
+	/// Llama al update de cada entidad
+	/// </summary>
 	void update();
+	/// <summary>
+	/// Llama al render de cada entidad
+	/// </summary>
 	void render();
+	/// <summary>
+	/// Destruye todas las entidades que esten marcadas como alive false
+	/// </summary>
 	void refresh();
 
 	/// <summary>
@@ -76,14 +101,30 @@ private:
 	/// </summary>
 	std::array<ecs::Scene*, ecs::sc::maxSceneId> gameScenes_;
 	bool exit_;
+	/// <summary>
+	/// Puntero a la ventana de sdl
+	/// </summary>
 	SDL_Window* window_;
+	/// <summary>
+	/// Puntero al renderer de sdl
+	/// </summary>
 	SDL_Renderer* renderer_;
 
+	/// <summary>
+	/// Indica si en el frame se debe hacer la operacion de cambiar de escena
+	/// </summary>
 	bool sceneChange_;
-	ecs::sc::sceneId scene1_, scene2_; //una guarrada lo se, pero ahora mismo quiero que el juego no explote, ya se hara bonito
+	/// <summary>
+	/// Indica si el juego esta pausado
+	/// </summary>
+	bool gamePaused_;
+	/// <summary>
+	/// Id de las escenas a cambiar
+	/// </summary>
+	ecs::sc::sceneId scene1_, scene2_;
 
-
-	std::list<std::function<void(void)>> requets;
+	//las dos variables de mas adelante no estan en uso tal vez se use mas adelante
+	std::queue<std::function<void(void)>> requets;
 
 	float autoRecodTime = 0;
 };

@@ -82,8 +82,6 @@ private:
 	//Variables que debe modificar el jugador
 	pq::Calle calleMarcada_;		//Variable que indica para qu� distrito ha sido etiquetado el paquete
 	bool envuelto_;			//Variable que indica si est� envuelto o no el paquete
-	int routeID; //ID de la ruta de la caja creada
-
-	Scene* scene_;
+	//int routeID; //ID de la ruta de la caja creada
 };
 

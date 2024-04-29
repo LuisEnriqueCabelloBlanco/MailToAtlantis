@@ -1,10 +1,12 @@
+#include <utils/checkML.h>
 #include "MainScene.h"
 #include "../architecture/Entity.h"
 #include <iostream>
 #include <fstream>
+#ifdef DEV_TOOLS
 #include <imgui.h>
-#include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
+#endif // DEV_TOOLS
 #include "../sdlutils/SDLUtils.h"
 #include "../components/Transform.h"
 #include "../components/Render.h"
@@ -21,13 +23,14 @@
 #include "../components/RotarTransform.h"
 #include "../architecture/Time.h"
 #include "../architecture/GameConstants.h"
-#include "../components/SelfDestruct.h"
 #include "../architecture/GeneralData.h"
 #include "../sistemas/ComonObjectsFactory.h"
 #include "../components/Depth.h"
 #include <QATools/DataCollector.h>
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
+#include "../sistemas/PipeManager.h"
+#include "../sistemas/SoundEmiter.h"
 #include <components/HoverSensorComponent.h>
 #include <components/HoverLayerComponent.h>
 #include <components/RenderWithLight.h>
@@ -42,17 +45,25 @@ ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 	timeToAdd_ = 5;
 #endif // DEV_TOOLS
 	mPaqBuild_ = new PaqueteBuilder(this);
+	mPipeMngr_ = new PipeManager();
 }
 
 ecs::MainScene::~MainScene()
 {
 	delete mPaqBuild_;
+	delete mPipeMngr_;
 }
 
 
 void ecs::MainScene::update()
 {
 	Scene::update();
+	if (gm().gamePaused()) {
+		timerPaused_ = true;
+	}
+	else {
+		timerPaused_ = false;
+	}
 	if (!timerPaused_)
 	{
 		if (timer_ > 0) {
@@ -85,10 +96,13 @@ void ecs::MainScene::init()
 
 	generalData().npcEventSys->shuffleNPCqueue();
 	generalData().npcEventSys->debugPaquetesInQueue();
-
+#ifdef _DEBUG
 	std::cout << "Hola Main" << std::endl;
+#endif // _DEBUG
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
 	timer_ = MINIGAME_TIME;
+	timerPaused_ = true;
+
 	// Fondo
 	factory_->setLayer(layer::BACKGROUND);
 	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
@@ -97,25 +111,25 @@ void ecs::MainScene::init()
 	//for (int i = 0; i < 7; i++) {
 	//	createTubo((pq::Distrito)i);
 	//}
+	mPipeMngr_->init();
 
-	createManual();
+	
 	createMiniManual();
 	createSpaceManual();
 
-	createClock();
-
-	createInks();
-
-
-	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
-	createCinta();
+	//createClock(); empieza a girar desde que se entra a la escena y queremos que lo haga cuando entres al trabajo
 
 	createGarbage();
-	createBalanzaDigital();
-	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
-	createCharacter({ 400, 300 }, "Campesino", 0.1f);
 
-	createPaquete(generalData().getPaqueteLevel());
+	createBalanzaDigital();
+
+	int dia = generalData().getDay();
+	if (dia % 4 == 2 || dia == 1 || dia == 3 || dia == 5 || dia == 8) //basura lo se pero la progresion es la que hay, por lo menos he podido hacer aritmetica modular para los eventos del jefe al ser constantes
+	{
+		createCharacter({ 500, 250 }, "Jefe",0.35f);
+	}
+	else
+		startWork();
 
 	//creacion de las herramientas
 	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
@@ -133,14 +147,15 @@ void ecs::MainScene::init()
 			createTubo((pq::Distrito)z , false);
 	}
 
-	sdlutils().musics().at("office").play();
+	/*sdlutils().musics().at("office").play();
 	sdlutils().musics().at("office").setMusicVolume(50);
 	sdlutils().musics().at("printer").play();
-	sdlutils().musics().at("printer").setMusicVolume(50);
+	sdlutils().musics().at("printer").setMusicVolume(50);*/
+	SoundEmiter::instance()->playMusic("office");
+	SoundEmiter::instance()->playMusic("printer");
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(generalData().getDay());
-
 }
 
 void ecs::MainScene::close() {
@@ -200,6 +215,7 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		createStamp(SelloCalleA);
 
 		createInks();
+
 	}
 
 	if (dia >= 5) {
@@ -216,15 +232,19 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 
 	if (dia < 3 && dia >= 1) {
 		generalData().setPaqueteLevel(0);
+		createManual(8);
 	}
 	else if (dia < 5 && dia >= 3) {
 		generalData().setPaqueteLevel(1);
+		createManual(8);
 	}
 	else if (dia < 8 && dia >= 5) {
 		generalData().setPaqueteLevel(2);
+		createManual(9);
 	}
 	else if (dia < 15 && dia >= 8) {
 		generalData().setPaqueteLevel(3);
+		createManual(10);
 	}
 
 }
@@ -260,7 +280,7 @@ void ecs::MainScene::createStamp(TipoHerramienta type)
 	constexpr float STAMPSIZE = 1;
 	
 	factory_->setLayer(layer::STAMP);
-	auto stamp = factory_->createImage(Vector2D(300, 300),
+	auto stamp = factory_->createImage(Vector2D(350, 700),
 		Vector2D(sdlutils().images().at("sellador" + std::to_string(type)).width() * STAMPSIZE, sdlutils().images().at("sellador" + std::to_string(type)).height() * STAMPSIZE),
 		& sdlutils().images().at("sellador" + std::to_string(type)));
 
@@ -304,33 +324,34 @@ void ecs::MainScene::createCinta() {
 }
 
 void ecs::MainScene::createBalanza() {
+
+	float scale = 0.3;
+
 	// Balanza
 	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanza = factory_->createImage(Vector2D(50, 230), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
+	Entity* balanza = factory_->createImage(Vector2D(30, 110), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
 	Transform* balanzaTr = balanza->getComponent<Transform>();
 	balanza->addComponent<MoverTransform>();
-	balanzaTr->setScale(0.5);
+	balanzaTr->setScale(scale);
 	Balanza* balanzaComp = balanza->addComponent<Balanza>();
 
 	// BalanzaB
 	factory_->setLayer(ecs::layer::BALANZA);
 	Entity* balanzaB = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaB").width(), sdlutils().images().at("balanzaB").height()), &sdlutils().images().at("balanzaB"));
 	Transform* balanzaBTr = balanzaB->getComponent<Transform>();
-	balanzaBTr->setScale(0.5);
+	balanzaBTr->setScale(scale);
 
 	// BalanzaBase
 	factory_->setLayer(ecs::layer::BALANZABASE);
-	Entity* baseBalanza = factory_->createImage(Vector2D(400, 400), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
+	Entity* baseBalanza = factory_->createImage(Vector2D(1100, 300), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
 	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
-	balanzaBaseTr->setScale(0.5);
-	baseBalanza->addComponent<Gravity>();
-	//baseBalanza->addComponent<Depth>();
+	balanzaBaseTr->setScale(scale);
 
 	// BalanzaFlecha
 	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanzaFlecha = factory_->createImage(Vector2D(70, 20), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(45, 20), Vector2D(sdlutils().images().at("balanzaFlecha2").width(), sdlutils().images().at("balanzaFlecha2").height()), &sdlutils().images().at("balanzaFlecha2"));
 	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
-	balanzaFlechaTr->setScale(0.5);
+	balanzaFlechaTr->setScale(scale);
 	RotarTransform* rotComp = balanzaFlecha->addComponent<RotarTransform>();
 
 	// Seteamos padres
@@ -400,8 +421,8 @@ void ecs::MainScene::createBalanzaDigital() {
 void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 	constexpr float TUBE_WIDTH = 138;
 	constexpr float TUBE_HEITH = 282;
-	constexpr float TUBES_X_OFFSET = 200;
-	constexpr float DISTANCE_BETWEEN_TUBES = 220;
+	constexpr float TUBES_X_OFFSET = 50;
+	constexpr float DISTANCE_BETWEEN_TUBES = 280;
 	factory_->setLayer(ecs::layer::DEFAULT);
 
 	auto tubeTexture = &sdlutils().images().at("tubo" + std::to_string(dist + 1));
@@ -417,7 +438,7 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 		layerHover->addOutCall([hilight]() {hilight->lightOff(); });
 
 		Trigger* tuboTri = tuboEnt->addComponent<Trigger>();
-		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this);
+		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this, mPipeMngr_);
 	}
 	else {
 		//factory_->setLayer(layer::UI);
@@ -434,17 +455,17 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 }
 
 
-void ecs::MainScene::createManual()
+void ecs::MainScene::createManual(int NumPages)
 {
-	constexpr int MANUALNUMPAGES = 10;
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 
 	Texture* buttonTexture = &sdlutils().images().at("cambioPag");
 	//creado array de texturas par el libro
 	std::vector<Texture*> bookTextures;
-	bookTextures.reserve(MANUALNUMPAGES);
-	for (int i = 1; i <= MANUALNUMPAGES; i++) {
+
+	bookTextures.reserve(NumPages);
+	for (int i = 1; i <= NumPages; i++) {
 		bookTextures.emplace_back(&sdlutils().images().at("book"+std::to_string(i)));
 	}
 	factory_->setLayer(ecs::layer::MANUAL);
@@ -480,8 +501,8 @@ void ecs::MainScene::createMiniManual() {
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
 
-	float minimanualX = 1200;
-	float minimanualY = 500;
+	float minimanualX = 1450;
+	float minimanualY = 525;
 
 	factory_->setLayer(ecs::layer::MINIMANUAL);
 
@@ -560,7 +581,7 @@ void ecs::MainScene::createSpaceManual() {
 
 	Texture* bookTextures = &sdlutils().images().at("atrilManual");
 	
-	auto baseManual = factory_->createImage(Vector2D(1200, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
+	auto baseManual = factory_->createImage(Vector2D(1450, 525), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
 	
 	Transform* manualTransform = baseManual->getComponent<Transform>();
 	RenderImage* manualRender = baseManual->getComponent<RenderImage>();
@@ -595,10 +616,10 @@ void ecs::MainScene::createGarbage()
 	/*TDOO Meter en un metdo */
 	// papelera
 	Entity* papelera = addEntity(ecs::layer::BIN);
-	papelera->addComponent<Transform>(50, 650, 100, 150);
+	papelera->addComponent<Transform>(0, 650, 204, 247);
 	papelera->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
 	Trigger* papTrig = papelera->addComponent<Trigger>();
-	papelera->addComponent<PackageChecker>(Erroneo, this);
+	papelera->addComponent<PackageChecker>(Erroneo, this, mPipeMngr_);
 }
 #ifdef DEV_TOOLS
 
@@ -698,31 +719,53 @@ void ecs::MainScene::createPaquete (int lv) {
 
 
 ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
-
 	ComonObjectsFactory factory(this);
 
 	Texture* characterTexture = &sdlutils().images().at(character);
 	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
 
-	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
-	//Actualmente los personajes no tienen memoria, si queremos esto har�a falta a�adrile un parametro
+	CallbackClickeable funcPress;
 
-	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
-	CallbackClickeable funcPress = [this, character]() {
-		dialogMngr_.startConversation(character);
-		dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(1)); //esta movida se cambiara por las cosas del senor jefe
+	int dia = generalData().getDay();
+
+	std::string jsonPath;
+	if (dia % 4 == 2) //evento aleatorio
+	{
+		jsonPath = "recursos/data/eventosjefe.json";
+		dialogMngr_.init(this, jsonPath);
+		mWorkRes.init();
+		funcPress = [this, character]() { //no queremos hacer un start conversation
+			WorkEvent eventoJefe = mWorkRes.getRandomEvent();
+			dialogMngr_.setDialogueEntitiesActive(true);
+			dialogMngr_.setDialogues(eventoJefe.dialogue);
+			mPipeMngr_->activateEvent(eventoJefe);
 		};
-	//si queremos anadir un callback para que ocurra algo cuando se acaba el dialogo 
-	dialogMngr_.setEndDialogueCallback([this](){
-		std::cout << "Los callbacks de final de dialogo funcionan";
-	});
+	}
+	else //nuevo distrito/mecanica
+	{
+		jsonPath = "recursos/data/dialogos.json";
+		dialogMngr_.init(this, jsonPath);
+		funcPress = [this, character]() {
+			std::string dia = "Dia" + std::to_string(generalData().getDay());
+			dialogMngr_.setDialogueEntitiesActive(true);
+			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), dia);
+		};
+	}
+
+	dialogMngr_.init(this, jsonPath);
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
+	dialogMngr_.setEndDialogueCallback([characterEnt, this]{
+		characterEnt->setAlive(false); //bye bye jefe
+		startWork();
+	});
 
 	return characterEnt;
 }
 
 void ecs::MainScene::startWork()
 {
-	
+	timerPaused_ = false;
+	createPaquete(generalData().getPaqueteLevel());
+	createClock();
 }

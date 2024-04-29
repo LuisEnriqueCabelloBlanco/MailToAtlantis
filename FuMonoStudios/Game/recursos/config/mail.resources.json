@@ -56,54 +56,25 @@
       "id": "book10",
       "file": "recursos/images/Book_InfoEmbalado.png"
     },
-
-
-
-    {
-      "id": "flechaTest",
-      "file": "recursos/images/flecha.png"
-    },
-    {
-      "id": "cambioPag",
-      "file": "recursos/images/NextPage.png"
-    },
-    {
-      "id": "botonTrabajar",
-      "file": "recursos/images/placeholderTrabajar.png"
-    },
-    {
-      "id": "Demeter",
-      "file": "recursos/images/Demeter.png"
-    },
-    {
-      "id": "Hefesto",
-      "file": "recursos/images/Hefesto.png"
-    },
-    {
-      "id": "Hestia",
-      "file": "recursos/images/Hestia.png"
-    },
-    {
-      "id": "Artemisa",
-      "file": "recursos/images/Artemisa2.png"
-    },
-    {
-      "id": "Hermes",
-      "file": "recursos/images/Hermes.png"
-    },
-    {
-      "id": "Apolo",
-      "file": "recursos/images/Apolo.png"
-    },
-    {
-      "id": "Poseidon",
-      "file": "recursos/images/Poseidon.png"
-    },
-    {
-      "id": "fondoMainMenu",
-      "file": "recursos/images/FONDO_MENU_INICIO_v2.png"
-    },
-
+    {"id": "diario1", "file": "recursos/images/Diario0.png"},
+    {"id": "diario2", "file": "recursos/images/Diario1.png"},
+    {"id": "diario3", "file": "recursos/images/Diario2.png"},
+    {"id": "diario4", "file": "recursos/images/Diario3.png"},
+    {"id": "diario5", "file": "recursos/images/Diario4.png"},
+    {"id": "diario6", "file": "recursos/images/Diario5.png"},
+    {"id": "diario7", "file": "recursos/images/Diario6.png"},
+    
+    {"id": "flechaTest","file": "recursos/images/flecha.png"},
+    {"id": "cambioPag","file": "recursos/images/NextPage.png"},
+    {"id": "botonTrabajar","file": "recursos/images/placeholderTrabajar.png"},
+    {"id": "Demeter","file": "recursos/images/Demeter.png"},
+    {"id": "Hefesto","file": "recursos/images/Hefesto.png"},
+    {"id": "Hestia","file": "recursos/images/Hestia.png"},
+    {"id": "Artemisa","file": "recursos/images/Artemisa2.png"},
+    {"id": "Hermes","file": "recursos/images/Hermes.png"},
+    {"id": "Apolo","file": "recursos/images/Apolo.png"},
+    {"id": "Poseidon","file": "recursos/images/Poseidon.png"},
+    {"id": "fondoMainMenu","file": "recursos/images/FONDO_MENU_INICIO_v2.png"},
     {
       "id": "sellador0",
       "file": "recursos/images/selladorRojo.png"
@@ -301,7 +272,6 @@
       "id": "exclamacion",
       "file": "recursos/images/Exclamacion.png"
     },
-
     {
       "id": "ruta1",
       "file": "recursos/images/route1.png"
@@ -323,35 +293,14 @@
       "id": "fondoFinalTrabajo",
       "file": "recursos/images/FondoEndWork.png"
     },
-
-    {
-      "id": "title",
-      "file": "recursos/images/titulo.png"
-    },
-    {
-      "id": "fondoOficina",
-      "file": "recursos/images/OficinaProyectosDesenfocada.png"
-    },
-    {
-      "id": "cinta",
-      "file": "recursos/images/Cinta.png"
-    },
-    {
-      "id": "baseBalanza",
-      "file": "recursos/images/BaseBalanza.png"
-    },
-    {
-      "id": "balanzaFlecha",
-      "file": "recursos/images/balanzaFlecha.png"
-    },
-    {
-      "id": "balanzaA",
-      "file": "recursos/images/balanzaA.png"
-    },
-    {
-      "id": "balanzaB",
-      "file": "recursos/images/balanzaB.png"
-    },
+    {"id": "title","file": "recursos/images/titulo.png"},
+    {"id": "fondoOficina","file": "recursos/images/OficinaProyectosDesenfocada.png"},
+    {"id": "cinta","file": "recursos/images/Cinta.png"},
+    {"id": "baseBalanza","file": "recursos/images/BaseBalanza.png"},
+    {"id": "balanzaFlecha","file": "recursos/images/balanzaFlecha.png"},
+    {"id": "balanzaFlecha2","file": "recursos/images/balanzaFlecha2.png"},
+    {"id": "balanzaA","file": "recursos/images/balanzaA.png"},
+    {"id": "balanzaB","file": "recursos/images/balanzaB.png"},
     {
       "id": "balanzaDigA",
       "file": "recursos/images/balanza2Arriba.png"
@@ -360,8 +309,6 @@
       "id": "balanzaDigB",
       "file": "recursos/images/balanza2Abajo.png"
     },
-
-
     {
       "id": "fondoFinalTrabajo",
       "file": "recursos/images/FondoEndWork.png"
@@ -408,6 +355,9 @@
       "id": "puntoVerde",
       "file": "recursos/images/PuntoVerde.png"
     },
+
+    {"id": "carta","file": "recursos/images/carta.png"},
+
 
 
 
@@ -489,7 +439,10 @@
       "id": "Soldado",
       "file": "recursos/images/Abakand Istacoz.png"
     },
-
+    {
+      "id": "Jefe",
+      "file": "recursos/images/JefeOficina.png"
+    },
     {
       "id": "reloj",
       "file": "recursos/images/Reloj.png"
@@ -550,6 +503,11 @@
     {
       "id": "roboto50",
       "file": "recursos/fonts/Roboto-Thin.ttf",
+      "size": 50
+    },
+    {
+      "id": "simpleHandmade50",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
       "size": 50
     }
   ],
