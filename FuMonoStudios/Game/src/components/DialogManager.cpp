@@ -223,16 +223,11 @@ void DialogManager::startConversationWithObj(const std::string& interactableObj)
 {
     if (canStartConversation)
     {
-        auto obj = generalData().stringToObj(interactableObj); //de que objeto queremos el dialogo
-        auto data = generalData().getObjData(obj); //data de dicho objeto
+        const std::string aux1 = std::to_string(generalData().getDay());
 
-        // activamos los dialogos correspondientes
-        const std::string aux = data->getDialogueInfo();
-        const std::string aux2 = std::to_string(generalData().getDay());
+        const std::string aux2 = std::to_string(sdlutils().rand().nextInt(0, 3));
 
-        const std::string aux3 = std::to_string(sdlutils().rand().nextInt(0, 3));
-
-        setDialogues((DialogManager::DialogSelection)(generalData().stringToObj(interactableObj) + 10), aux+aux2+aux3);
+        setDialogues((DialogManager::DialogSelection)(generalData().stringToObjInt(interactableObj) + 10), "Texto"+interactableObj+aux1+aux2);
 
         setDialogueEntitiesActive(true);
 
