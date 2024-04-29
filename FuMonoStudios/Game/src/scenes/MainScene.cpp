@@ -221,8 +221,8 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 void ecs::MainScene::updateToolsPerDay(int dia)
 {
-	//GeneralData::instance ()->setUpgradeValue (ecs::upg::BALANZA_UPGRADE, true);
-	//dia = 5;
+	GeneralData::instance ()->setUpgradeValue (ecs::upg::BALANZA_UPGRADE, true);
+	dia = 5;
 	if(dia == 0)
 		return;	
 	
@@ -395,11 +395,11 @@ void ecs::MainScene::createBalanzaDigital() {
 
 	// BalanzaBase
 	factory_->setLayer(ecs::layer::BALANZABASE);
-	Entity* baseBalanza = factory_->createImage(Vector2D(800, 600), Vector2D(sdlutils().images().at("balanzaDigB").width(), sdlutils().images().at("balanzaDigB").height()), &sdlutils().images().at("balanzaDigB"));
+	Entity* baseBalanza = factory_->createImage(Vector2D(1000, 400), Vector2D(sdlutils().images().at("balanzaDigB").width(), sdlutils().images().at("balanzaDigB").height()), &sdlutils().images().at("balanzaDigB"));
 	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
 	balanzaBaseTr->setScale(0.4);
 	baseBalanza->addComponent<Gravity>();
-	//baseBalanza->addComponent<Depth>();
+	baseBalanza->addComponent<Depth>();
 
 	////Añadir los numeros del peso
 	std::string msg = "0";
