@@ -1,7 +1,7 @@
 {
   "Vagabundo": {
-    "Felicidad": "Normal",
-    "FelicidadNum": 50,
+    "Felicidad": "",
+    "FelicidadNum": 51,
     "numMisionesAceptadas": 1,
     "EventosCompletados": [2],
     "Eventos": {
@@ -31,7 +31,7 @@
           "tipoPaquete": "Alimento"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Anemos me ha contado que lleva mucho tiempo sin comer nada bueno y me ha pedido un paquete de comida de Demeter.\nDebo redirigir un paquete de alimentos de Demeter al de Hestia"
+        "textoDiario": "Me ha contado que lleva mucho tiempo sin comer bien y me ha pedido un paquete de comida de Demeter.\nDebo redirigir un paquete de alimentos de Demeter a Hestia"
       },
       "3": {
         "numPaquetes": 1,
@@ -46,7 +46,7 @@
           "tuboSeleccionado": "Artemisa"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Ha mandado un paquete a Artemisa. Probablemente el paquete este mal sellado o sea ilegal..."
+        "textoDiario": "Ha mandado un paquete a Artemisa. Seguramente el paquete este mal sellado o sea ilegal..."
       },
       "4": {
         "numPaquetes": 1,
@@ -185,7 +185,7 @@
   "Secretario": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "numMisionesAceptadas": 1,
     "EventosCompletados": [],
     "Eventos": {
       "1": {
@@ -361,7 +361,7 @@
   "Campesino": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -465,7 +465,7 @@
   "Artesano": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -566,7 +566,7 @@
   "Tarotisa": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -669,7 +669,7 @@
   "Soldado": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -764,7 +764,7 @@
   "Contable": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": false,
