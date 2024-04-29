@@ -1,4 +1,5 @@
 #pragma once
+#include <utils/checkML.h>
 #include "../architecture/Game.h"
 #include "../architecture/Scene.h"
 #include "../components/Transform.h"
@@ -14,6 +15,7 @@ namespace ecs {
     class MainScene :public Scene
     {
     public:
+        __SC_DECL__(ecs::sc::MAIN_SCENE)
         MainScene();
         virtual ~MainScene();
 
@@ -27,7 +29,7 @@ namespace ecs {
         void createErrorMessage(Paquete* paqComp, bool, bool);
         void createExclamationPoint();
     private:
-        void createManual();
+        void createManual(int NumPages);
         void createMiniManual();
         void createSpaceManual();
         void createMultipleStamp();

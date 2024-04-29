@@ -1,3 +1,4 @@
+#include <utils/checkML.h>
 #include "Scene.h"
 #include "Entity.h"
 #include "../components/Transform.h"
@@ -13,7 +14,9 @@ namespace ecs {
 	Scene::~Scene() {
 		clearScene();
 		delete factory_;
-		//std::cout << "Se Destruyo correctamente la escena"<<std::endl;
+#ifdef _DEBUG
+		std::cout << "Se Destruyo correctamente la escena"<<std::endl;
+#endif // _DEBUG
 	}
 
 	void Scene::init()
@@ -24,9 +27,6 @@ namespace ecs {
 		clearScene();
 	}
 	void Scene::update() {
-		//std::cout << "Hola" << std::endl;
-		
-		//for (auto& ly : objs_) {
 		for (int i = 0; i < objs_.size();i++ ) {
 			for (int j = 0; j < objs_[i].size();j++) {
 				auto e = objs_[i][j];
@@ -101,11 +101,11 @@ namespace ecs {
 				SDL_Rect rect2 = (*it)->getComponent<Transform>()->getRect();
 
 				if (SDL_HasIntersection(&rect1, &rect2)) {
-
-					e->getComponent<Trigger>()->touchEntity((*it));
-
-					ret = true;
-
+					auto trig = e->getComponent<Trigger>();
+					if (trig != nullptr) {
+						trig->touchEntity((*it));
+						ret = true;
+					}
 				}
 
 			}

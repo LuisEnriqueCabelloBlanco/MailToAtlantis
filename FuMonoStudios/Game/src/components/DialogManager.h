@@ -1,6 +1,6 @@
 // dialog_manager.h
 #pragma once
-
+#include <utils/checkML.h>
 #include <functional>
 #include <string>
 #include <vector>
@@ -21,7 +21,7 @@ Clase que genera los dialogos que se van a escribir
 Carga los dialogos del json dialogos.json
 
 Para cargar una entrada en el json, debemos usar el enum DialogSelection.
-Este sistema irá añadiendo los strings al dialogComponent.
+Este sistema irï¿½ aï¿½adiendo los strings al dialogComponent.
 En caso de ser un npc, tambien hara que sus dialogos cambien, en funcion de
 si ya le has hablado etc
 
@@ -52,8 +52,20 @@ Hay 3 tipos de setDialogues en funcion de las necesidades del dialog.json
 class DialogManager {
 public:
     // aqui se elije que rama de dialogo escojer dentro del json
+    enum DialogSelection {
+        Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable,
+        JefeOficina, Tutorial, BryantMyers,
+        CasaGrande, CartelOficina, Muro, //Hestia
+        TiendaPociones, TiendaBolas, TiendaJarrones, //Artemisa
+        Molino, Arbol, Carreta, //Demeter
+        PulpoCartel, TiendaCeramica, TiendaEsculturas, //Hefesto
+        TiendaDerecha, PanteonIzq, PanteonDer, //Hermes
+        Panteon, Edificios, Charco, //Apolo
+        Casa1, Casa2 //Poseidon
+    };
 
     DialogManager();
+    ~DialogManager();
 
     //init que por defecto pone el path del json de los dialogos
     void init(ecs::Scene* scene); 
@@ -69,7 +81,7 @@ public:
 
     /// <summary>
     /// Avanza al siguente dialogo. 
-    /// Si ya está en el ultimo diálogo devuelve false y resetea
+    /// Si ya estï¿½ en el ultimo diï¿½logo devuelve false y resetea
     /// el index a 0
     /// </summary>
     bool nextDialog();
@@ -81,6 +93,7 @@ public:
     void setDialogues(std::string& dialogo); //no se pasa por const porque la modificamos con el fixText, no te preocupes cleon
 
     void startConversation(const std::string& character);
+    void startConversationWithObj(const std::string& interactableObj);
 
     //para quitar la caja de texto y el propio texto
     void closeDialogue();
@@ -105,7 +118,7 @@ private:
     std::string jsonPath;
 
     /// <summary>
-    /// Vector donde se almacenan todos los diálogos que se van a soltar
+    /// Vector donde se almacenan todos los diï¿½logos que se van a soltar
     /// </summary>
     std::vector<std::string> dialogs_;
 

@@ -19,6 +19,7 @@ public:
 	void initComponent() override;
 	void addInCall(std::function<void()> hoverCall);
 	void addOutCall(std::function<void()> hoverCall);
+	void addDestoryCall(std::function<void()> destroyCall);
 
 private:
 	void activateInCalls();
@@ -28,5 +29,6 @@ private:
 	Transform* mTr_;
 	std::list<std::function<void()>> inCalls_;
 	std::list<std::function<void()>> outCalls_;
+	std::list<std::function<void()>> destroyCalls_;
 };
 
