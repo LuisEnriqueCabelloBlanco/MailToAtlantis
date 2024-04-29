@@ -142,15 +142,15 @@ void ecs::MainScene::init()
 	int numTubos = generalData().getTubesAmount(); // coge el numero de tubos que están desbloqueados
 	int j = 0;
 	for (int i = 0;i < numTubos; i++) {
-		createTubo((pq::Distrito)i, true);
+		tubos.push_back(createTubo((pq::Distrito)i, true));
 		j++;
 	}
 	//Creación de paquetes bloqueados
 	for (int z = j; z < 7 ; ++z) { //grande jose la los numeros magicos te la sabes
 		if(j==6)
-			createTubo((pq::Distrito)z, true);
+			tubos.push_back(createTubo((pq::Distrito)z, true));
 		else
-			createTubo((pq::Distrito)z , false);
+			tubos.push_back(createTubo((pq::Distrito)z , false));
 	}
 
 	/*sdlutils().musics().at("office").play();
@@ -175,11 +175,12 @@ void ecs::MainScene::close() {
 	sdlutils().musics().at("printer").haltMusic();
 }
 
-void ecs::MainScene::createClock() {
+ecs::Entity* ecs::MainScene::createClock() {
 	Entity* clock = addEntity(ecs::layer::BACKGROUND);
 	clock->addComponent<ClockAux>(MINIGAME_TIME);
+	return clock;
 }
-void ecs::MainScene::createBolaCristal() {	 
+ecs::Entity* ecs::MainScene::createBolaCristal() {
 	int tamano = 3;
 	std::vector<Texture*> ballTextures;
 	ballTextures.reserve(tamano);
@@ -188,7 +189,8 @@ void ecs::MainScene::createBolaCristal() {
 	}
 	Entity* bola = factory_->createMultiTextureImage(Vector2D(700, 500), Vector2D(150, 200), ballTextures);
 	bolaCrist_ = bola->addComponent<CristalBall>(bola->getComponent<RenderImage>());
-	std::cout << "QsjndaskjnsdanjUeso\n";
+	
+	return bola;
 }
 
 void ecs::MainScene::createInks() {
@@ -199,7 +201,7 @@ void ecs::MainScene::createInks() {
 
 }
 
-void ecs::MainScene::createOneInk(TipoHerramienta type) {
+ecs::Entity* ecs::MainScene::createOneInk(TipoHerramienta type) {
 	Entity* ink = factory_->createImage(Vector2D(70 + 150 * type, 950), Vector2D(125, 73), &sdlutils().images().at("tinta"+std::to_string(type)));
 	Trigger* inkATri = ink->addComponent<Trigger>();
 
@@ -221,6 +223,8 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 		}
 
 	}, generalData().DropIn);
+
+	return ink;
 
 }
 
@@ -293,9 +297,9 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 	factory_->setLayer(layer::DEFAULT);
 }
 
-void ecs::MainScene::createStamp(TipoHerramienta type)
+ecs::Entity* ecs::MainScene::createStamp(TipoHerramienta type)
 {
-	if (type > 2) return;
+	if (type > 2) return nullptr;
 	constexpr float STAMPSIZE = 1;
 	
 	factory_->setLayer(layer::STAMP);
@@ -311,6 +315,8 @@ void ecs::MainScene::createStamp(TipoHerramienta type)
 	herrSelladorA->setFunctionality(type);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
+
+	return stamp;
 }
 
 void ecs::MainScene::createMultipleStamp()
@@ -331,7 +337,7 @@ void ecs::MainScene::createMultipleStamp()
 	factory_->setLayer(ecs::layer::DEFAULT);
 }
 
-void ecs::MainScene::createCinta() {
+ecs::Entity* ecs::MainScene::createCinta() {
 
 	factory_->setLayer(ecs::layer::TAPE);
 	Entity* cinta;
@@ -342,6 +348,7 @@ void ecs::MainScene::createCinta() {
 	cinta->addComponent<Depth>();
 	factory_->setLayer(ecs::layer::DEFAULT);
 
+	return cinta;
 }
 
 std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createBalanza() {
@@ -457,7 +464,7 @@ void ecs::MainScene::createBalanzaDigital() {
 
 }
 
-void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
+ecs::Entity* ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 	constexpr float TUBE_WIDTH = 138;
 	constexpr float TUBE_HEITH = 282;
 	constexpr float TUBES_X_OFFSET = 50;
@@ -491,6 +498,8 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 		tubeTexture->modColor(100, 100, 100);
 
 	}
+
+	return tuboEnt;
 }
 
 
@@ -561,9 +570,11 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int N
 
 	return mapSol;
 
+	return manualEnt_;
+
 }
 
-void ecs::MainScene::createMiniManual() {
+ecs::Entity* ecs::MainScene::createMiniManual() {
 
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
@@ -637,9 +648,10 @@ void ecs::MainScene::createMiniManual() {
 
 	miniManualEnt_->setActive(false);
 
+	return miniManualEnt_;
 }
 
-void ecs::MainScene::createSpaceManual() {
+ecs::Entity* ecs::MainScene::createSpaceManual() {
 
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
@@ -675,10 +687,12 @@ void ecs::MainScene::createSpaceManual() {
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 	
+
+	return baseManual;
 }
 
 
-void ecs::MainScene::createGarbage()
+ecs::Entity* ecs::MainScene::createGarbage()
 {
 	/*TDOO Meter en un metdo */
 	// papelera
@@ -687,6 +701,8 @@ void ecs::MainScene::createGarbage()
 	papelera->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
 	Trigger* papTrig = papelera->addComponent<Trigger>();
 	papelera->addComponent<PackageChecker>(Erroneo, this, mPipeMngr_);
+
+	return papelera;
 }
 #ifdef DEV_TOOLS
 
