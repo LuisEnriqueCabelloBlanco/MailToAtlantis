@@ -18,8 +18,8 @@ void WorkRestrictionsSystem::init()
 tb::WorkEvent WorkRestrictionsSystem::getRandomEvent()
 {
     auto& rand = sdlutils().rand();
-    int event = rand.nextInt(1, 5); //cambiar el segundo valor por el ultimo evento que haya en el json
-    return getEvent(event);
+    int event = rand.nextInt(0, 3); //cambiar el segundo valor por el ultimo evento que haya en el json + 1 (el random es exclusivo del segundo numero)
+    return getEvent(0);
 }
 
 tb::WorkEvent WorkRestrictionsSystem::getEvent(int selection)
@@ -44,9 +44,6 @@ tb::WorkEvent WorkRestrictionsSystem::getEvent(int selection)
 
     switch (event.id)
     {
-        case BLOCK_PIPE:
-            eventBlockPipe(event, jObject);
-            break;
         case SWAP_PIPE:
             eventSwapPipe(event, jObject);
             break;
@@ -61,11 +58,6 @@ tb::WorkEvent WorkRestrictionsSystem::getEvent(int selection)
     return event;
 }
 
-void WorkRestrictionsSystem::eventBlockPipe(WorkEvent& event, JSONObject jObject)
-{
-    event.block_pipe_data.targetPipe = (Distrito)generalData().fromStringToDistrito(jObject["target"]->AsString());
-}
-
 void WorkRestrictionsSystem::eventSwapPipe(WorkEvent& event, JSONObject jObject)
 {
     event.swap_pipe_data.targetPipe = (Distrito)generalData().fromStringToDistrito(jObject["target"]->AsString());
@@ -73,6 +65,7 @@ void WorkRestrictionsSystem::eventSwapPipe(WorkEvent& event, JSONObject jObject)
     aux.swapActive = jObject["swapActive"]->AsBool();
     aux.originalDis = jObject["originalDis"]->AsBool();
     aux.changedDis = (Distrito)generalData().fromStringToDistrito(jObject["dest"]->AsString());
+    event.swap_pipe_data.blockedPipe = (Distrito)generalData().fromStringToDistrito(jObject["target"]->AsString());
     event.swap_pipe_data.dest = aux;
 }
 

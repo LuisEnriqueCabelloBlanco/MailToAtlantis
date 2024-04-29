@@ -1,32 +1,34 @@
 {
-  "Evento1": {
-    "dialogo": "Hoy no hay paquetes a Hestia crack",
+  "Evento0": {
+    "dialogo": "Hoy los paquetes de Demeter se envian a traves de Hestia",
     "id": 0,
-    "target": "Hestia"
-  },
-  "Evento2": {
-    "dialogo": "Hestia a Demeter",
-    "id": 1,
     "target": "Hestia",
     "swapActive": true,
-    "originalDis":  true,
-    "dest": "Demeter"
+    "originalDis": true,
+    "dest": "Demeter",
+    "blocked": "Demeter"
   },
-  "Evento3": {
-    "dialogo": "Hestia no come hoy",
-    "id": 2,
+  "Evento1": {
+    "dialogo": "Hoy el distrito de Hestia no debe recibir paquetes de alimentos",
+    "id": 1,
     "target": "Hestia",
-    "ban":  "Alimento"
+    "ban": "Alimento"
   },
-  "Evento4": {
-    "dialogo": "Si pesas mas que el peso medio y vas a Hestia a tomar por culo",
-    "id": 3,
+  "Evento2": {
+    "dialogo": "Si hoy pesas mas que el peso mediano y vas a Hestia a tomar por culo",
+    "id": 2,
     "target": "Hestia",
     "weightRestricted": true,
     "singleType": true,
     "typeToWeight": "Alimento",
     "minOrMax": 1,
     "peso": "Medio"
+  },
+  "Evento3": {
+
+  },
+  "Evento4": {
+
   },
   "Evento5": {
 

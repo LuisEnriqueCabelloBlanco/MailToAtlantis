@@ -28,8 +28,6 @@ namespace tb {
 
 
 	enum restrictionId {
-
-		BLOCK_PIPE,
 		SWAP_PIPE,
 		BAN_TYPE_IN_PIPE,
 		WEIGHT_RESTRICT_PIPE
@@ -45,12 +43,8 @@ namespace tb {
 			struct
 			{
 				Distrito targetPipe;
-			} block_pipe_data;
-
-			struct
-			{
-				Distrito targetPipe;
 				SwappedPipe dest;
+				Distrito blockedPipe;
 			} swap_pipe_data;
 
 			struct

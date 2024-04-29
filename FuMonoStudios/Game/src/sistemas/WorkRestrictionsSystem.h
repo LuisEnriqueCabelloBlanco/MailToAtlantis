@@ -16,7 +16,6 @@ public:
     tb::WorkEvent getEvent(int selection);
 private:
     std::string jsonPath;
-    void eventBlockPipe(WorkEvent& event, JSONObject jsonObj);
     void eventSwapPipe(WorkEvent& event, JSONObject jsonObj);
     void eventBanType(WorkEvent& event, JSONObject jsonObj);
     void eventWeightRes(WorkEvent& event, JSONObject jsonObj);
