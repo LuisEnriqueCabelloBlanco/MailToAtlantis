@@ -11,7 +11,6 @@
 #include "Game.h"
 #include "../sistemas/NPCeventSystem.h"
 
-
 GeneralData::GeneralData()
 {
 	// Esto habra que cargarlo desde un archivo de guardado
@@ -466,7 +465,7 @@ void GeneralData::unlockMejoraPersonaje(Personaje p) {
 
 }
 
-const Texture* GeneralData::personajeToTexture(Personaje pers)
+Texture* GeneralData::personajeToTexture(Personaje pers)
 {
 	Texture* texture = nullptr;
 	switch (pers) {

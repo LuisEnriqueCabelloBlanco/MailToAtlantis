@@ -2,6 +2,7 @@
 #include <json/JSON.h>
 #include "sistemas/ComonObjectsFactory.h"
 #include "sdlutils/SDLUtils.h"
+#include "architecture/GeneralData.h"
 
 Finales::Finales()
 {
@@ -28,12 +29,12 @@ Finales::Finales()
         if (jsonEntry != nullptr)
         {
             auto data = jsonEntry->AsObject();
-            endTexts_[{npc, Minima}] = data["Mini"]->AsString();
-            endTexts_[{npc, Mala}] = data["Mala"]->AsString();
-            endTexts_[{npc, Normal}] = data["Normal"]->AsString();
-            endTexts_[{npc, Buena}] = data["Buena"]->AsString();
-            endTexts_[{npc, Maxima}] = data["Maxima"]->AsString();
-            endTexts_[{npc, NoHabladoAun}] = "No hablaste con este Personaje";
+            endTexts_[npc][Minima] = data["Mini"]->AsString();
+            endTexts_[npc][Mala] = data["Mala"]->AsString();
+            endTexts_[npc][Normal] = data["Normal"]->AsString();
+            endTexts_[npc][Buena] = data["Buena"]->AsString();
+            endTexts_[npc][Maxima] = data["Maxima"]->AsString();
+            endTexts_[npc][NoHabladoAun] = "No hablaste con este Personaje";
         }
         else
         {
@@ -44,7 +45,7 @@ Finales::Finales()
 
 void Finales::loadFinal(ecs::Scene escene, Personaje npc, Felicidad felicidad)
 {
-    std::string texto = endTexts_[{npc, felicidad}];
+    std::string texto = endTexts_[npc][felicidad];
 
     ComonObjectsFactory* factory = escene.getFactory();
 
@@ -58,10 +59,10 @@ void Finales::loadFinal(ecs::Scene escene, Personaje npc, Felicidad felicidad)
     periodicoTr->setPos(100,100);
 
     // Entidad imagenNpc
-    Texture* imagenNpcTex = &sdlutils().images().at("-------");
+    Texture* imagenNpcTex = generalData().personajeToTexture(npc);
     ecs::Entity* imagenNpc = factory->createImage(Vector2D(30, 110), Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
 }
 
 std::string Finales::getFinal(Personaje npc, Felicidad nivelFelicidad) {
-    return endTexts_[{npc, Minima}];
+    return endTexts_[npc][Minima];
 }

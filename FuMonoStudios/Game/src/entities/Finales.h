@@ -15,6 +15,6 @@ public:
 	// Devuelve el texto del final que desees
 	std::string getFinal(Personaje npc, Felicidad nivelFelicidad);
 private:
-	std::unordered_map<std::pair<Personaje, Felicidad> , std::string> endTexts_;
+	std::unordered_map<Personaje, std::unordered_map<Felicidad,std::string>> endTexts_;
 };
 

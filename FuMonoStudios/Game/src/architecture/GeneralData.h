@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "sdlutils/Texture.h"
 
 class DialogManager;
 class PaqueteBuilder;
@@ -179,7 +180,7 @@ public:
 	void setRent(int rent);
 
 	//Texturas personajes
-	const Texture* personajeToTexture(Personaje pers);
+	Texture* personajeToTexture(Personaje pers);
 
 	//Textos personajes
 	const std::string personajeToString(Personaje pers);
