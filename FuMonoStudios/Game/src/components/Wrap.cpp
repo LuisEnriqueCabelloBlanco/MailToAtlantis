@@ -235,7 +235,7 @@ void Wrap::restartRoute() {
 	wrapFase = 0;
 
 	if (!wrapped) {
-		mul_->setTexture(0);
+		mul_->setTextureIndx(0);
 	}
 
 

@@ -100,7 +100,7 @@ void ecs::TutorialScene::createManual() {
 		if (tutorialSys_->canPassPagesManual)
 		{
 			manualRender->nextTexture();
-			const Texture* tex = manualRender->getTexture();
+			const Texture* tex = manualRender->getCurrentTexture();
 			if (tex == &sdlutils().images().at("book3"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
 			else if (tex == &sdlutils().images().at("book4"))
@@ -118,7 +118,7 @@ void ecs::TutorialScene::createManual() {
 		if (tutorialSys_->canPassPagesManual)
 		{
 			manualRender->previousTexture();
-			const Texture* tex = manualRender->getTexture();
+			const Texture* tex = manualRender->getCurrentTexture();
 			if (tex == &sdlutils().images().at("book3"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
 			else if (tex == &sdlutils().images().at("book4"))
