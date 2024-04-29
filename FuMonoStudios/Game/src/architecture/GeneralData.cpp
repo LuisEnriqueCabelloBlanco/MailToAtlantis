@@ -98,7 +98,7 @@ int GeneralData::calcularDineroGanado()
 		totalRightMoney = rightPackages * WRITE_PACAGES_VALUE;
 	}
 	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::FALLOS_UPGRADE)) failsMargin_ = 2;
-	failsMargin_ = 0;
+	else failsMargin_ = 0;
 	if (fails_ < failsMargin_) {
 		wrongPackages = 0;
 	}

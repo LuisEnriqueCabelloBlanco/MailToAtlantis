@@ -181,7 +181,7 @@ void ecs::MainScene::createBolaCristal() {
 	for (int i = 1; i <= tamano; i++) {
 		ballTextures.emplace_back(&sdlutils().images().at("bola" + std::to_string(i)));
 	}
-	Entity* bola = factory_->createMultiTextureImage(Vector2D(500, 500), Vector2D(150, 200), ballTextures);
+	Entity* bola = factory_->createMultiTextureImage(Vector2D(700, 500), Vector2D(150, 200), ballTextures);
 	bolaCrist_ = bola->addComponent<CristalBall>(bola->getComponent<RenderImage>());
 	std::cout << "QsjndaskjnsdanjUeso\n";
 }
@@ -220,7 +220,7 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 }
 
 void ecs::MainScene::updateToolsPerDay(int dia)
-{	
+{		
 	if(dia == 0)
 		return;	
 	
