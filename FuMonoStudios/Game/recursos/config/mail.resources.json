@@ -63,7 +63,13 @@
     {"id": "diario5", "file": "recursos/images/Diario4.png"},
     {"id": "diario6", "file": "recursos/images/Diario5.png"},
     {"id": "diario7", "file": "recursos/images/Diario6.png"},
-    
+    {"id": "caraFelicidadMinimo", "file": "recursos/images/caraFelicidadMinimo.png"},
+    {"id": "caraFelicidadMalo", "file": "recursos/images/caraFelicidadMalo.png"},
+    {"id": "caraFelicidadNormal", "file": "recursos/images/caraFelicidadNormal.png"},
+    {"id": "caraFelicidadBueno", "file": "recursos/images/caraFelicidadBueno.png"},
+    {"id": "caraFelicidadMaxima", "file": "recursos/images/caraFelicidadMaxima.png"},
+
+
     {"id": "flechaTest","file": "recursos/images/flecha.png"},
     {"id": "cambioPag","file": "recursos/images/NextPage.png"},
     {"id": "botonTrabajar","file": "recursos/images/placeholderTrabajar.png"},
@@ -118,6 +124,18 @@
     {
       "id": "tinta2",
       "file": "recursos/images/tintaVerde.png"
+    },
+    {
+      "id": "bola1",
+      "file": "recursos/images/BolaCristalError.png"
+    },
+    {
+      "id": "bola2",
+      "file": "recursos/images/BolaCristalNada.png"
+    },
+    {
+      "id": "bola3",
+      "file": "recursos/images/BolaCristalCorrecto.png"
     },
 
     {
@@ -296,6 +314,7 @@
     {"id": "title","file": "recursos/images/titulo.png"},
     {"id": "fondoOficina","file": "recursos/images/OficinaProyectosDesenfocada.png"},
     {"id": "cinta","file": "recursos/images/Cinta.png"},
+    {"id": "cintaRapida","file": "recursos/images/CintaRapida.png"},
     {"id": "baseBalanza","file": "recursos/images/BaseBalanza.png"},
     {"id": "balanzaFlecha","file": "recursos/images/balanzaFlecha.png"},
     {"id": "balanzaFlecha2","file": "recursos/images/balanzaFlecha2.png"},
@@ -506,9 +525,14 @@
       "size": 50
     },
     {
-      "id": "simpleHandmade50",
+      "id": "simpleHandmade20",
       "file": "recursos/fonts/SimpleHandmade.ttf",
-      "size": 50
+      "size": 20
+    },
+    {
+      "id": "simpleHandmadeTuneado20",
+      "file": "recursos/fonts/SimpleHandmadeTuneado.ttf",
+      "size": 20
     }
   ],
   "sounds": [

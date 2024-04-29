@@ -1,6 +1,5 @@
 #pragma once
 #include <functional>
-#include "../json/JSON.h"
 #include "json/JSONValue.h"
 #include "../components/Paquete.h"
 #include <sistemas/NPCevent.h>
@@ -25,17 +24,13 @@ public:
 	Paquete* getPaqueteNPC();
 	void addPaqueteNPC(Paquete* p);
 	// comprueba si el paquete cumple la condicion de algun evento
-	void checkPaqueteSent(Paquete* p);
+	void checkPaqueteSent(Paquete* p, Distrito tubo);
 
 	// llamar al final del minijuego y si se ha cumplido un evento, dar recompensas
 	void minigameOver();
 
 	// lee datos desde el json, llamado al crear generalData
 	void readNPCEventData();
-
-	void createSpecificPaquete(JSONObject paqObj, NPCevent* auxEvent);
-
-	void checkSpecificPaquete(JSONObject paqObj, NPCevent* auxEvent, int i);
 
 	void shuffleNPCqueue();
 private:
