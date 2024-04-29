@@ -51,6 +51,7 @@ ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 ecs::MainScene::~MainScene()
 {
 	delete mPaqBuild_;
+	delete mPipeMngr_;
 }
 
 
