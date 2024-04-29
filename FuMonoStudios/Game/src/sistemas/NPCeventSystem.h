@@ -1,6 +1,5 @@
 #pragma once
 #include <functional>
-#include "../json/JSON.h"
 #include "json/JSONValue.h"
 #include "../components/Paquete.h"
 #include <sistemas/NPCevent.h>
@@ -32,10 +31,6 @@ public:
 
 	// lee datos desde el json, llamado al crear generalData
 	void readNPCEventData();
-
-	void createSpecificPaquete(JSONObject paqObj, NPCevent* auxEvent);
-
-	void checkSpecificPaquete(JSONObject paqObj, NPCevent* auxEvent, int i);
 
 	void shuffleNPCqueue();
 private:
