@@ -1,4 +1,5 @@
 #pragma once
+#include <utils/checkML.h>
 #include "ecs.h"
 //#include "Entity.h"
 
@@ -7,7 +8,7 @@ namespace ecs {
 
 	class Entity;
 	/// <summary>
-	/// Clase abstracta para todos los componentes del juego
+	/// Clase base para todos los componentes del juego
 	/// </summary>
 	class Component {
 	public:
@@ -25,10 +26,19 @@ namespace ecs {
 		/// (util para llamar a otros componentes)
 		/// </summary>
 		virtual void initComponent() {};
+		/// <summary>
+		/// se llama cada frame
+		/// </summary>
 		virtual void update() {};
+		/// <summary>
+		/// encargado de renderizar
+		/// </summary>
 		virtual void render() const {};
 	protected:
-		Entity* ent_; //Entidad a la que el componente pertenece
+		/// <summary>
+		/// entidad a la que pertenece el componente
+		/// </summary>
+		Entity* ent_; 
 	};
 }
 

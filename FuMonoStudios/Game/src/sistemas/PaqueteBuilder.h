@@ -1,4 +1,5 @@
 #pragma once
+#include <utils/checkML.h>
 #include "../architecture/Entity.h"
 #include <stdlib.h>
 #include "../sdlutils/VirtualTimer.h"
@@ -23,16 +24,16 @@ constexpr int PESO_CARTA = 2;	//Peso carta
 // Miguel: En el futuro haremos que salgan un poco desviados de su
 // posición original para que parezcan más orgánicos los paquetes
 // posicion y tama�o Tipo sellos
-constexpr int TIPO_SELLO_POS_X = 20;
-constexpr int TIPO_SELLO_POS_Y = 80;
+constexpr int TIPO_SELLO_POS_X = 10;
+constexpr int TIPO_SELLO_POS_Y = 60;
 constexpr int TIPO_SELLO_SIZE = 80;
 // posicion y tama�o Fragil sellos
-constexpr int FRAGIL_SELLO_POS_X = 150;
-constexpr int FRAGIL_SELLO_POS_Y = 150;
+constexpr int FRAGIL_SELLO_POS_X = 100;
+constexpr int FRAGIL_SELLO_POS_Y = 60;
 constexpr int FRAGIL_SELLO_SIZE = 80;
 // posicion y tama�o Peso sellos
-constexpr int PESO_SELLO_POS_X = 200;
-constexpr int PESO_SELLO_POS_Y = 200;
+constexpr int PESO_SELLO_POS_X = 190;
+constexpr int PESO_SELLO_POS_Y = 60;
 constexpr int PESO_SELLO_SIZE = 80;
 
 //Escala del paquete 
@@ -48,9 +49,7 @@ public:
 	//Método al que se llama que devuelve un Paquete generado aleatoriamente 
 	ecs::Entity* buildPackage(int level, ecs::Scene*);
 	//Método al que se llama que devuelve una Carta generada aleatoriamente 
-	ecs::Entity* cartaRND(ecs::Scene*);
-
-
+	void cartaRND(ecs::Entity* packageBase);
 
 	ecs::Entity* customPackage(pq::Distrito, pq::Calle, const std::string& remitente, pq::TipoPaquete, bool correcto = true, 
 		pq::NivelPeso nivPeso = pq::Ninguno, int peso = 0,
@@ -77,7 +76,7 @@ private:
 	pq::NivelPeso pesoRND(int probPeso, int probError, int& peso);	//Método que elige si un paquete tiene peso, y si es erróneo, devolviendo un peso para el paquete con la variable "peso"
 	std::string remitenteRND();			//Método que elige un nombre random de Remitente
 
-	ecs::Entity* buildBasePackage(ecs::Scene* mScene);
+	ecs::Entity* buildBasePackage(ecs::Scene* mScene, bool esCarta);
 	void stdRandPackage(ecs::Entity*, int);
 	void paqueteNPC(ecs::Entity*);
 	/// <summary>

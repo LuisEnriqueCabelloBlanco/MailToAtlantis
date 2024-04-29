@@ -1,3 +1,4 @@
+#include <utils/checkML.h>
 #include "PaqueteBuilder.h"
 #include "../components/Transform.h"
 #include "../architecture/Entity.h"
@@ -7,6 +8,7 @@
 #include "../sdlutils/InputHandler.h"
 #include "../json/JSON.h"
 #include "../sistemas/NPCeventSystem.h"
+#include "../components/RenderWithLight.h"
 
 
 PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
@@ -46,26 +48,39 @@ PaqueteBuilder::~PaqueteBuilder() {
 
 ecs::Entity* PaqueteBuilder::buildPackage(int level, ecs::Scene* mScene) {
 	
-	auto packageBase = buildBasePackage(mScene);
+
+	ecs::Entity* packageBase;
 	
-	//decision de si el paquete que saldr� es de NPC
-	if (!shouldBuildNPCPackage()) {
-		stdRandPackage(packageBase, level);
+	int rnd = sdlutils().rand().nextInt(0, 2);
+
+	if (rnd == 0) {
+		packageBase = buildBasePackage(mScene, true);
+		cartaRND(packageBase);
 	}
 	else {
-		paqueteNPC(packageBase);
+		packageBase = buildBasePackage(mScene, false);
+	
+		//decision de si el paquete que saldr� es de NPC
+		if (!shouldBuildNPCPackage()) {
+
+			stdRandPackage(packageBase, level);
+		}
+		else {
+			paqueteNPC(packageBase);
+		}
 	}
 
 	return packageBase;
 }
 
-ecs::Entity* PaqueteBuilder::cartaRND(ecs::Scene* mScene) {
-	ecs::Entity* ent = mScene->addEntity();
+void PaqueteBuilder::cartaRND(ecs::Entity* packageBase) {
 
 	pq::Distrito toDist = distritoRND();
 	pq::Calle toDir = calleRND(10);
 	std::string dir;
-	if (toDir == Erronea)
+
+
+	if (toDir == Erronea || toDist == Erroneo)
 	{
 		//Cambiarlo por el sistema de calles err�neas una vez est�
 		//Simplemente ser�a meterlas en el mismo json, en el distrito erroneo y modificar el getStreetsFromJson
@@ -76,9 +91,12 @@ ecs::Entity* PaqueteBuilder::cartaRND(ecs::Scene* mScene) {
 		dir = distritoCalle_[Erroneo][rnd];
 	}
 	else
-		dir = distritoCalle_[toDist][toDir];
-	ent->addComponent<Paquete>(distritoRND(), calleRND(20),dir, remitenteRND(), tipoRND(), true, pq::NivelPeso::Ninguno, PESO_CARTA, false, true);
-	return ent;
+		dir = distritoCalle_[toDist][(int)toDir];
+
+
+	Paquete* carta = packageBase->addComponent<Paquete>(toDist, toDir, dir, remitenteRND(), pq::TipoPaquete::Carta, false, pq::NivelPeso::Ninguno, PESO_CARTA, false, true);
+	addVisualElements(packageBase);
+
 }
 
 void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
@@ -99,7 +117,7 @@ ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle call
 	//Idea para el que lea esto, usamos este metodo para crear los paquetes de npcs y luego añadirlos al vector que hay en el GeneralData.h
 	//En cuyo caso sería buena idea añadirle una variable al método que sea un identificador de cual personaje vamos a añadirle o no felicidad con su paquete
 
-	auto base = buildBasePackage(mScene_);
+	auto base = buildBasePackage(mScene_, false);
 	std::string dir = "";
 	if (distrito != Erroneo && calle != Erronea) {
 		dir = distritoCalle_[distrito][calle];
@@ -111,12 +129,20 @@ ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle call
 	return base;
 }
 
-ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene)
+ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene, bool esCarta)
 {
 	ComonObjectsFactory* factory = mScene->getFactory();
 	factory->setLayer(ecs::layer::PACKAGE);
 
-	Texture* texturaPaquet = &sdlutils().images().at("boxTest");
+
+	Texture* texturaPaquet;
+	if (!esCarta) {
+				texturaPaquet = &sdlutils().images().at("boxTest");
+
+	}
+	else {
+		texturaPaquet = &sdlutils().images().at("carta");
+	}
 	//ENVOLTURA
 	//se puede rellenar con un for
 	std::vector<Texture*> textures = {
@@ -127,10 +153,13 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene)
 		&sdlutils().images().at("caja100")
 	};
 	auto packageBase = factory->createMultiTextureImage(Vector2D(1600.0f, 600.0f), Vector2D(320.5f, 245.5), textures);
+
+
 	//interaccion y fisicas
 	packageBase->addComponent<Depth>();
 	packageBase->addComponent<Gravity>();
 	DragAndDrop* drgPq = packageBase->addComponent<DragAndDrop>(true, "arrastrar");
+	
 	//herramientas
 
 	Trigger* packTRI_ = packageBase->getComponent<Trigger>();
@@ -149,7 +178,8 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene)
 		{
 			herrEnt->interact(packageBase);
 		}
-		}, generalData().DropIn);
+
+	}, generalData().DropIn);
 
 	packageBase->addComponent<MoverTransform>(packageBase->getComponent<Transform>()->getPos() - Vector2D(200, 0),
 		1, Easing::EaseOutBack)->disable();
@@ -401,51 +431,73 @@ void PaqueteBuilder::addVisualElements(ecs::Entity* paq) {
 
 	//Creamos la entidad de direcci�n y remitente
 	createVisualDirections(paq, paqComp);
+	if (!paqComp->isCarta()) {
+		//Creamos la entidad Tipo sello 
+		pq::TipoPaquete miTipo = paqComp->getTipo();
+		std::string tipoString = (miTipo == pq::Alimento ? "selloAlimento" :
+			miTipo == pq::Medicinas ? "selloMedicinas" :
+			miTipo == pq::Joyas ? "selloJoyas" :
+			miTipo == pq::Materiales ? "selloMateriales" :
+			miTipo == pq::Armamento ? "selloArmamento" : "Desconocido");
+		if (!paqComp->getSelloCorrecto()) {
+			std::string rnd = std::to_string(sdlutils().rand().nextInt(0, 3));
+			tipoString += "F" + rnd;
+		}
+		crearSello(paq, tipoString, TIPO_SELLO_POS_X, TIPO_SELLO_POS_Y, TIPO_SELLO_SIZE, TIPO_SELLO_SIZE);
 
-	//Creamos la entidad Tipo sello 
-	pq::TipoPaquete miTipo = paqComp->getTipo();
-	std::string tipoString = (miTipo == pq::Alimento ? "selloAlimento" :
-		miTipo == pq::Medicinas ? "selloMedicinas" :
-		miTipo == pq::Joyas ? "selloJoyas" :
-		miTipo == pq::Materiales ? "selloMateriales" :
-		miTipo == pq::Armamento ? "selloArmamento" : "Desconocido");
-	if (!paqComp->getSelloCorrecto()) {
-		std::string rnd = std::to_string(sdlutils().rand().nextInt(0, 3));		
-		tipoString += "F" + rnd;		
-	}
-	crearSello(paq, tipoString, TIPO_SELLO_POS_X, TIPO_SELLO_POS_Y, TIPO_SELLO_SIZE, TIPO_SELLO_SIZE);
+		//Creamos la entidad Peso sello 
+		pq::NivelPeso miPeso = paqComp->getPeso();
+		if (miPeso != pq::Ninguno) {
+			tipoString = (miTipo == pq::Bajo ? "selloPesoBajo" :
+				miTipo == pq::Medio ? "selloPesoMedio" :
+				miTipo == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");
+			crearSello(paq, tipoString, PESO_SELLO_POS_X, PESO_SELLO_POS_Y, PESO_SELLO_SIZE, PESO_SELLO_SIZE);
+		}
+		//Creamos la entidad Fragil sello 
+		bool fragil = paqComp->getFragil();
+		if (fragil) {
+			crearSello(paq, "selloFragil", FRAGIL_SELLO_POS_X, FRAGIL_SELLO_POS_Y, FRAGIL_SELLO_SIZE, FRAGIL_SELLO_SIZE);
+		}
 
-	//Creamos la entidad Peso sello 
-	pq::NivelPeso miPeso = paqComp->getPeso();
-	if (miPeso != pq::Ninguno) {
-		tipoString = (miTipo == pq::Bajo ? "selloPesoBajo" :
-			miTipo == pq::Medio ? "selloPesoMedio" :
-			miTipo == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");
-		crearSello(paq, tipoString, PESO_SELLO_POS_X, PESO_SELLO_POS_Y, PESO_SELLO_SIZE, PESO_SELLO_SIZE);
 	}
-	//Creamos la entidad Fragil sello 
-	bool fragil = paqComp->getFragil();
-	if (fragil) {
-		crearSello(paq, "selloFragil", FRAGIL_SELLO_POS_X, FRAGIL_SELLO_POS_Y, FRAGIL_SELLO_SIZE, FRAGIL_SELLO_SIZE);
-	}
+	
 }
 
 void PaqueteBuilder::createVisualDirections(ecs::Entity* paq, Paquete* paqComp) {
 	// Texto distrito y calle
+	
 	ecs::Entity* distritoEnt = paq->getMngr()->addEntity(ecs::layer::INFO_PACKAGE);
 	Texture* distritoTex = new Texture(sdlutils().renderer(), paqComp->getDirecction(), *directionsFont, build_sdlcolor(0x000000ff), 500);
 	createdTextures.push_back(distritoTex);
-	Transform* distritoTr = distritoEnt->addComponent<Transform>(10, 165, 200, 50);
-	RenderImage* distritoRender = distritoEnt->addComponent<RenderImage>(distritoTex);
-	distritoTr->setParent(paq->getComponent<Transform>());
+
+	if (paqComp->isCarta()) {
+		Transform* distritoTr = distritoEnt->addComponent<Transform>(10, 140, 240, 60);
+		RenderImage* distritoRender = distritoEnt->addComponent<RenderImage>(distritoTex);
+		distritoTr->setParent(paq->getComponent<Transform>());
+	}	
+	else {
+		Transform* distritoTr = distritoEnt->addComponent<Transform>(10, 140, 240, 60);
+		RenderImage* distritoRender = distritoEnt->addComponent<RenderImage>(distritoTex);
+		distritoTr->setParent(paq->getComponent<Transform>());
+	}
+
 
 	// Texto remitente
 	ecs::Entity* remitenteEnt = paq->getMngr()->addEntity(ecs::layer::INFO_PACKAGE);
 	Texture* remitenteTex = new Texture(sdlutils().renderer(), "Rte: " + paqComp->getRemitente(), *directionsFont, build_sdlcolor(0x000000ff), 500);
 	createdTextures.push_back(remitenteTex);
-	Transform* remitenteTr = remitenteEnt->addComponent<Transform>(10, 215, 150, 25);
-	RenderImage* remitenteRender = remitenteEnt->addComponent<RenderImage>(remitenteTex);
-	remitenteTr->setParent(paq->getComponent<Transform>());
+
+	if (paqComp->isCarta()) {
+		Transform* remitenteTr = remitenteEnt->addComponent<Transform>(10, 200, 200, 35);
+		RenderImage* remitenteRender = remitenteEnt->addComponent<RenderImage>(remitenteTex);
+		remitenteTr->setParent(paq->getComponent<Transform>());
+	}
+	else {
+		Transform* remitenteTr = remitenteEnt->addComponent<Transform>(10, 200, 200, 35);
+		RenderImage* remitenteRender = remitenteEnt->addComponent<RenderImage>(remitenteTex);
+		remitenteTr->setParent(paq->getComponent<Transform>());
+	}
+
 }
 
 void PaqueteBuilder::crearSello(ecs::Entity* paq,const std::string& texKey, int x, int y, int width, int height) {

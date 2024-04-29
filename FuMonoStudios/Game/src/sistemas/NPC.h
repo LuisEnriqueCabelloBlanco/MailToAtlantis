@@ -1,4 +1,5 @@
 #pragma once
+#include <utils/checkML.h>
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -10,7 +11,7 @@ namespace npc {
 
 	// enum con el nombre de todos los NPC
 	enum Personaje {
-		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable
+		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable, Jefe
 	};
 
 
@@ -21,7 +22,8 @@ namespace npc {
 		{Artesano,"Artesano"},
 		{Tarotisa, "Tarotisa"},
 		{Soldado, "Soldado"},
-		{Contable, "Contable"}
+		{Contable, "Contable"},
+        {Jefe, "Jefe"}
 	};
 
 	const std::unordered_map<Felicidad, std::string> happinessToString = {
@@ -51,7 +53,7 @@ namespace npc {
 	// Y LOS EVENTOS DE CADA NPC, AUN NO ESTA IMPLEMENTADO, SOLO ESTA PUESTO
 	// LO DE LOS DIALOGOS
 	struct NPCdata {
-
+		virtual ~NPCdata();
 		Personaje npcId;
 		Felicidad felicidad;
 		virtual std::pair<const std::string, int> getDialogueInfo() = 0;
@@ -70,6 +72,7 @@ namespace npc {
 
 
 	struct NPCMenorData : public NPCdata {
+		virtual ~NPCMenorData();
 		NPCMenorData(Felicidad Felicidad, std::vector<bool> DiasDanEvento);
 
 		std::pair<const std::string, int> getDialogueInfo() override;
@@ -91,6 +94,7 @@ namespace npc {
 	};
 
 	struct NPCMayorData : public NPCdata {
+		virtual ~NPCMayorData();
 		NPCMayorData(Felicidad Felicidad);
 
 		std::pair<const std::string, int> getDialogueInfo() override;

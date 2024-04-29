@@ -1,3 +1,4 @@
+#include "utils/checkML.h"
 #include <iostream>
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -5,7 +6,6 @@
 #include <string>
 #include "architecture/Game.h"
 #include "sdlutils/SDLUtils.h"
-#include "utils/checkML.h"
 #include "../rapidCSV/rapidcsv.h"
 
 

@@ -3,8 +3,11 @@
 #pragma once
 
 #include <iostream>
+#ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
+#endif // DEV_TOOLS
+
 #include <SDL.h>
 #include <array>
 
@@ -70,7 +73,10 @@ public:
 		clearState();
 		while (SDL_PollEvent(&event)) {
 			update(event);
+#ifdef DEV_TOOLS
 			ImGui_ImplSDL2_ProcessEvent(&event);
+#endif // DEV_TOOLS
+
 		}
 	}
 
