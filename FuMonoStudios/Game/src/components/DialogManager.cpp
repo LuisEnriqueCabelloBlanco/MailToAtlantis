@@ -342,8 +342,8 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
     case Contable:
         aux = "Contable";
         break;
-    case JefeOficina:
-        aux = "JefeOficina";
+    case Jefe:
+        aux = "Jefe";
         break;
     case Tutorial:
         aux = "Tutorial";

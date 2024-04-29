@@ -693,7 +693,9 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 		jsonPath = "recursos/data/dialogos.json";
 		dialogMngr_.init(this, jsonPath);
 		funcPress = [this, character]() {
-			dialogMngr_.startConversation(character);
+			std::string dia = "Dia" + std::to_string(generalData().getDay());
+			dialogMngr_.setDialogueEntitiesActive(true);
+			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), dia);
 		};
 	}
 

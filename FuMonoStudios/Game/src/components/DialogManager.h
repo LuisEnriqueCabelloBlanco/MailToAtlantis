@@ -107,6 +107,7 @@ public:
     void setDialogueEntitiesActive(bool onoff);
 private:
     void fixText(std::string& text);
+
     std::string dialogSelectionToString(DialogSelection ds);
 
     bool isNPC(const DialogSelection ds);

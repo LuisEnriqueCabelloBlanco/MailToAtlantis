@@ -1010,8 +1010,17 @@
     ]
   },
   "Jefe": {
-    "Presentacion": [
-      "Vivu es malo"
+    "Dia1": [
+      "dia1"
+    ],
+    "Dia3": [
+      "dia3"
+    ],
+    "Dia5": [
+      "dia5"
+    ],
+    "Dia8": [
+      "dia8"
     ]
   },
     "CasaGrande": {
