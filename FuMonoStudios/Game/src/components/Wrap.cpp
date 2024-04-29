@@ -112,8 +112,8 @@ void Wrap::update() {
 		//primero se comprueba que la caja este tocando con la cinta
 		if (tapeEnt != nullptr) {
 
-			//despues se comprueba que la cinta esta tocando con el ratón
-			//a futuro si se ve un bug se podria añadir que además el ratón este pulsado pero no debería hacer falta
+			//despues se comprueba que la cinta esta tocando con el ratï¿½n
+			//a futuro si se ve un bug se podria aï¿½adir que ademï¿½s el ratï¿½n este pulsado pero no deberï¿½a hacer falta
 			SDL_Rect tapeRect = tapeEnt->getComponent<Transform>()->getRect();
 
 			if (SDL_PointInRect(&point, &tapeRect)) {
@@ -184,6 +184,9 @@ void Wrap::update() {
 						mul_->nextTexture ();
 						wrapFase++;
 
+						tr_->setActiveChildren(false);
+						wrapped = true;
+						ent_->getComponent<Paquete>()->envolver();
 					}
 
 					//Si se ha recorrido toda la ruta se comprueba si quedan repeticiones de patron. En caso contrario se da por envalado

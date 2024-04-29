@@ -1,9 +1,11 @@
+#include <utils/checkML.h>
 #include "ClockAux.h"
 #include "../architecture/Entity.h"
 #include "../architecture/Scene.h"
 #include "../components/Render.h"
 #include "../components/Transform.h"
 #include "../architecture/Time.h"
+#include "../architecture/Game.h"
 
 ClockAux::ClockAux(float MinigameTime) {
 	minigameTime = MinigameTime;
@@ -22,7 +24,7 @@ ClockAux::~ClockAux() {
 void ClockAux::initComponent() {
 	ecs::Scene* mngr = ent_->getMngr();
 
-	ent_->addComponent<Transform>(1340, 510, 210, 140, 0);
+	ent_->addComponent<Transform>(350, 510, 210, 140, 0);
 	clockRender = ent_->addComponent<RenderImage>(&sdlutils().images().at("reloj"));
 
 	ecs::Entity* manecillaL = mngr->addEntity(ecs::layer::BACKGROUND);
@@ -37,33 +39,35 @@ void ClockAux::initComponent() {
 }
 
 void ClockAux::update() {
-	timeMultiplier = (1440 / minigameTime) * Time::getDeltaTime();
+	if (!gm().gamePaused()) {
+		timeMultiplier = (1440 / minigameTime) * Time::getDeltaTime();
 
-	// numeros que aplicados hacen representar bien las horas y minutos
-	float x = ((minutes - 15) / 9.55);
-	float y = ((hours - 6) / 3.82);
+		// numeros que aplicados hacen representar bien las horas y minutos
+		float x = ((minutes - 15) / 9.55);
+		float y = ((hours - 6) / 3.82);
 
-	trManecillaL->setPos(clockCenter.getX() + offsetL.getX() + radiusManL * cos(x),
-		clockCenter.getY() + offsetL.getY() + radiusManL * sin(x));
-	trManecillaL->setRotation(90 + x * CONST_ROT);
+		trManecillaL->setPos(clockCenter.getX() + offsetL.getX() + radiusManL * cos(x),
+			clockCenter.getY() + offsetL.getY() + radiusManL * sin(x));
+		trManecillaL->setRotation(90 + x * CONST_ROT);
 
-	trManecillaS->setPos(clockCenter.getX() + offsetS.getX() + radiusManS * cos(y),
-		clockCenter.getY() + offsetS.getY() + radiusManS * sin(y));
-	trManecillaS->setRotation(y * CONST_ROT);
+		trManecillaS->setPos(clockCenter.getX() + offsetS.getX() + radiusManS * cos(y),
+			clockCenter.getY() + offsetS.getY() + radiusManS * sin(y));
+		trManecillaS->setRotation(y * CONST_ROT);
 
-	minutes += timeMultiplier * 1;
-	hours += timeMultiplier * 0.01666;
+		minutes += timeMultiplier * 1;
+		hours += timeMultiplier * 0.01666;
 
 
-	if (hours > 18)
-	{
-		timerLowTime = sdlutils().currRealTime();
-
-		if (timerLowTime > timeToUpdateLowTime)
+		if (hours > 18)
 		{
-			clockRender->setTexture(&sdlutils().images().at(lowTimeFlag ? "reloj2" : "reloj"));
-			timeToUpdateLowTime = sdlutils().currRealTime() + timeBetweenLowTime;
-			lowTimeFlag = !lowTimeFlag;
+			timerLowTime = sdlutils().currRealTime();
+
+			if (timerLowTime > timeToUpdateLowTime)
+			{
+				clockRender->setTexture(&sdlutils().images().at(lowTimeFlag ? "reloj2" : "reloj"));
+				timeToUpdateLowTime = sdlutils().currRealTime() + timeBetweenLowTime;
+				lowTimeFlag = !lowTimeFlag;
+			}
 		}
 	}
 

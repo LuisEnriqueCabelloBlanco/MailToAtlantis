@@ -1,4 +1,5 @@
 #pragma once
+#include <utils/checkML.h>
 #include <string>
 #include <unordered_map>
 #include "../utils/Singleton.h"
@@ -26,6 +27,7 @@ public:
 	void setMusicVolume(int volume);
 
 	void playMusic(std::string song);
+	void haltMusic(std::string song);
 private:
 	void processSoundListJSON();
 
@@ -36,5 +38,14 @@ private:
 	/// Mapa de los soundPulls. La clave es el nombre del sonido y el int es cuántos sonidos hay en esa pull.
 	/// </summary>
 	std::unordered_map<std::string, std::pair<int, bool>> soundPulls_;
+
+	/// <summary>
+	/// Mapa de las canciones
+	/// </summary>
+	std::unordered_map<std::string, bool> activeSongs_;
 };
 
+
+inline SoundEmiter& soundEmiter() {
+	return *SoundEmiter::instance();
+}

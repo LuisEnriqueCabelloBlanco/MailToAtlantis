@@ -37,6 +37,7 @@
     <ClCompile Include="src\scenes\EndWorkScene.cpp" />
     <ClCompile Include="src\sistemas\ComonObjectsFactory.cpp" />
     <ClCompile Include="src\components\SelfDestruct.cpp" />
+    <ClCompile Include="src\scenes\ConfigScene.cpp" />
     <ClCompile Include="src\utils\Collisions.cpp">
       <Filter>utilsSource</Filter>
     </ClCompile>
@@ -61,6 +62,7 @@
     <ClCompile Include="src\sistemas\SoundEmiter.cpp" />
     <ClCompile Include="src\scenes\TutorialScene.cpp" />
     <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
+    <ClCompile Include="src\sistemas\PipeManager.cpp" />
     <ClCompile Include="src\components\HoverSensorComponent.cpp" />
     <ClCompile Include="src\components\HoverLayerComponent.cpp" />
     <ClCompile Include="src\components\Balanza.cpp" />
@@ -148,6 +150,7 @@
       <Filter>componetsHeader</Filter>
     </ClInclude>
     <ClInclude Include="src\utils\checkML.h" />
+    <ClInclude Include="src\scenes\ConfigScene.h" />
     <ClInclude Include="ImGui\imconfig.h" />
     <ClInclude Include="ImGui\imgui.h" />
     <ClInclude Include="ImGui\imgui_internal.h" />
@@ -168,6 +171,7 @@
     <ClInclude Include="src\sistemas\SoundEmiter.h" />
     <ClInclude Include="src\scenes\TutorialScene.h" />
     <ClInclude Include="src\sistemas\TutorialSystem.h" />
+    <ClInclude Include="src\sistemas\PipeManager.h" />
     <ClInclude Include="src\components\HoverSensorComponent.h" />
     <ClInclude Include="src\components\HoverLayerComponent.h" />
     <ClInclude Include="src\components\Balanza.h" />
@@ -202,6 +206,8 @@
     <None Include="recursos\config\sounds.json" />
     <None Include="recursos\data\saveFile.json" />
     <None Include="recursos\data\eventosjefe.json" />
+    <None Include="recursos\data\intObjsData.json" />
+    <None Include="recursos\config\mail.config.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="recursos\images\Alimentos.png" />

@@ -1,3 +1,4 @@
+#include <utils/checkML.h>
 #include "DialogComponent.h"
 #include "../architecture/Entity.h"
 #include "../sdlutils/InputHandler.h"

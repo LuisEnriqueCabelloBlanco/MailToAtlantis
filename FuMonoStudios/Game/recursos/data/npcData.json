@@ -335,7 +335,7 @@
     }
   },
   "Campesino": {
-    "Felicidad": "NoHabladoAun",
+    "Felicidad": "Normal",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
     "DiasConEvento": {
@@ -355,7 +355,7 @@
       "14": false
     },
     "Eventos": {
-      
+
       "1": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
@@ -529,7 +529,7 @@
     }
   },
   "Tarotisa": {
-    "Felicidad": "NoHabladoAun",
+    "Felicidad": "Normal",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
     "DiasConEvento": {
@@ -664,28 +664,28 @@
         "numPaquetes": 3,
         "numPaquetesParaCompletar": 3,
         "paquetes": {
-            "distrito": "Artemisa",
-            "tipoPaquete": "Medicinas"
+          "distrito": "Artemisa",
+          "tipoPaquete": "Medicinas"
         },
         "condiciones": {
-            "distrito": "Hestia",
-            "tipoPaquete": "Medicinas"
+          "distrito": "Hestia",
+          "tipoPaquete": "Medicinas"
         },
-        "recompensa":{
+        "recompensa": {
           "1": "Soldado++++",
           "2": "Secretario-",
           "3": "Tarotisa--"
-        } 
+        }
       },
       "3": {
         "numPaquetes": 2,
         "numPaquetesParaCompletar": 2,
         "paquetes": {
-            "tipoPaquete": "Alimento"
+          "tipoPaquete": "Alimento"
         },
         "condiciones": {
-            "tipoPaquete": "Alimento",
-            "distrito": "Hestia"
+          "tipoPaquete": "Alimento",
+          "distrito": "Hestia"
         },
         "recompensa": "Soldado++"
       },
@@ -708,7 +708,7 @@
           "distrito": "Hermes"
         },
         "condiciones": {
-          "distrito":"Apolo"
+          "distrito": "Apolo"
         },
         "recompensa": "Soldado++++"
       }
@@ -739,10 +739,10 @@
         "numPaquetes": 3,
         "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "tipoPaquete":"Alimento"
+          "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "tipoPaquete":"Alimento",
+          "tipoPaquete": "Alimento",
           "distrito": "Hermes"
         },
         "recompensa": "Contable+++"

@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <utils/checkML.h>
 #include "../architecture/Scene.h"
 #include "../components/DialogManager.h"
 #include "../sistemas/ComonObjectsFactory.h"
@@ -98,7 +99,7 @@ namespace ecs {
         ExplorationScene();
         virtual ~ExplorationScene();
         void init() override;
-        //virtual void close() override {}
+		virtual void close() override;
         void render();
 		void update();
 
@@ -136,6 +137,8 @@ namespace ecs {
 
 		ecs::Entity* createWorkButton(Vector2D pos, Vector2D scale);
 
+		void createDiario();
+
 		/// <summary>
 		/// Metodo factoria para characters
 		/// </summary>
@@ -152,6 +155,8 @@ namespace ecs {
 		/// </summary>
 		void updateNavegavility();
 		ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
+
+		ecs::Entity* createInteractableObj(Vector2D pos, const std::string& character, float scaleX, float scaleY);
         
 		//VARIABLES
 
@@ -176,6 +181,7 @@ namespace ecs {
 		bool canStartConversation;
 
 		ecs::Entity* boton_Trabajo;
+		ecs::Entity* diario_;
     };
 }
 

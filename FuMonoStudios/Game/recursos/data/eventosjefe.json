@@ -1,614 +1,103 @@
 {
-  "Vagabundo": {
-    "Presentacion": [
-      "Ey perdona! Tienes alguna monedilla de sobra para alguien que est$a pasando un mal d$ia?",
-      "No tienes nada verdad... Ah si t$u eres el notas ese que ha salido corriendo de la oficina de correos!",
-      "Vaya liada has hecho, ha llegado tu jefe y est$a que hecha humo contigo... Si es que tendr$ia que ser yo el que te ayude a ti !",
-      "Oye amigo perdona por los modales, que llevo mucho tiempo sin que nadie se pare conmigo a hablar y se me est$a olvidando comportarme.",
-      "Me llamo Anemos, un placer conocerte.",
-      "Bueno, va siendo hora de dejarte que tu coleguita te est$a esperando en la puerta para darte la chapa."
-    ],
-    "FelicidadMinima": [
-      "felicidadMinima vagabundo"
-    ],
-    "FelicidadMaxima": [
-      "felicidadMaxima vagabundo"
-    ],
-    "Dia1": [
-      "dia1"
-    ],
-    "PostConversacionDia1": [
-      "postConvDia1"
-    ],
-    "Dia2": [
-      "dia2"
-    ],
-    "PostConversacionDia2": [
-      "postConvDia2"
-    ],
-    "Dia3": [
-      "dia3"
-    ],
-    "PostConversacionDia3": [
-      "postConvDia3"
-    ],
-    "Dia4": [
-      "dia4"
-    ],
-    "PostConversacionDia4": [
-      "postConvDia4"
-    ],
-    "Dia5": [
-      "dia5"
-    ],
-    "PostConversacionDia5": [
-      "postConvDia5"
-    ],
-    "Dia6": [
-      "dia6"
-    ],
-    "PostConversacionDia6": [
-      "postConvDia6"
-    ],
-    "Dia7": [
-      "dia7"
-    ],
-    "PostConversacionDia7": [
-      "postConvDia7"
-    ],
-    "Dia8": [
-      "dia8"
-    ],
-    "PostConversacionDia8": [
-      "postConvDia8"
-    ],
-    "Dia9": [
-      "dia9"
-    ],
-    "PostConversacionDia9": [
-      "postConvDia9"
-    ],
-    "Dia10": [
-      "dia10"
-    ],
-    "PostConversacionDia10": [
-      "postConvDia10"
-    ],
-    "Dia11": [
-      "dia11"
-    ],
-    "PostConversacionDia11": [
-      "postConvDia11"
-    ],
-    "Dia12": [
-      "dia12"
-    ],
-    "PostConversacionDia12": [
-      "postConvDia12"
-    ],
-    "Dia13": [
-      "dia13"
-    ],
-    "PostConversacionDia13": [
-      "postConvDia13"
-    ],
-    "Dia14": [
-      "dia14"
-    ],
-    "PostConversacionDia14": [
-      "postConvDia14"
-    ]
+  "Evento1": {
+    "dialogo": "Hoy no hay paquetes a Hestia crack",
+    "id": 0,
+    "target": "Hestia"
   },
-  "Secretario": {
-    "Presentacion": [
-      "Buenos d$ias Jones. Supongo que ya sabr$as quien soy.",
-      "Dado que tienes una buena cara de confusi$on tendr$e que presentarme. Soy Gargafiel Mustaki, secretario del rey.",
-      "El rey precisa de tus servicios, pero de forma especial y extraordinaria. Es por eso que se ha tomado la molestia de llamarte hasta aqu$i.",
-      "Que d$onde est$a el rey dices? El rey no se va a salir de su gran palacio por t$i. No eres tan importante. Adem$as, el rey nunca sale de su palacio por riesgos de atentado terrorista.",
-      "Es una persona demasiado importante como para que sea asesinada.",
-      "Tengo entendido que recientemente huiste de tu trabajo y estabas teniendo un rendimiento sub$optimo. Que no se repita. Si te portas bien, el rey se portar$a bien contigo.",
-      "Este reinado valora mucho a sus ciudadanos, pero m$as que eso, valora la lealtad. La lealtad y la fidelidad al rey por encima de todo. Espero que lo tengas en cuenta."
-    ],
-    "FelicidadMinima": [
-      "FelicidadMinima"
-    ],
-    "FelicidadMaxima": [
-      "FelicidadMaxima"
-    ],
-    "Dia1": [
-      "dia1"
-    ],
-    "PostConversacionDia1": [
-      "postConvDia1"
-    ],
-    "Dia2": [
-      "dia2"
-    ],
-    "PostConversacionDia2": [
-      "postConvDia2"
-    ],
-    "Dia3": [
-      "dia3"
-    ],
-    "PostConversacionDia3": [
-      "postConvDia3"
-    ],
-    "Dia4": [
-      "dia4"
-    ],
-    "PostConversacionDia4": [
-      "postConvDia4"
-    ],
-    "Dia5": [
-      "dia5"
-    ],
-    "PostConversacionDia5": [
-      "postConvDia5"
-    ],
-    "Dia6": [
-      "dia6"
-    ],
-    "PostConversacionDia6": [
-      "postConvDia6"
-    ],
-    "Dia7": [
-      "dia7"
-    ],
-    "PostConversacionDia7": [
-      "postConvDia7"
-    ],
-    "Dia8": [
-      "dia8"
-    ],
-    "PostConversacionDia8": [
-      "postConvDia8"
-    ],
-    "Dia9": [
-      "dia9"
-    ],
-    "PostConversacionDia9": [
-      "postConvDia9"
-    ],
-    "Dia10": [
-      "dia10"
-    ],
-    "PostConversacionDia10": [
-      "postConvDia10"
-    ],
-    "Dia11": [
-      "dia11"
-    ],
-    "PostConversacionDia11": [
-      "postConvDia11"
-    ],
-    "Dia12": [
-      "dia12"
-    ],
-    "PostConversacionDia12": [
-      "postConvDia12"
-    ],
-    "Dia13": [
-      "dia13"
-    ],
-    "PostConversacionDia13": [
-      "postConvDia13"
-    ],
-    "Dia14": [
-      "dia14"
-    ],
-    "PostConversacionDia14": [
-      "postConvDia14"
-    ]
+  "Evento2": {
+    "dialogo": "Hestia a Demeter",
+    "id": 1,
+    "target": "Hestia",
+    "swapActive": true,
+    "originalDis":  true,
+    "dest": "Demeter"
   },
-  "Campesino": {
-    "Presentacion": [
-      "Yyyyyy, pos como es que saliste corriendo el otro dia macho...",
-      "Buena la has liado, contento tienes a tu jefe...",
-      "Anda toma esto, que es de mi cosecha, a ver si te ayuda un poco hoy que tienes cara de muerto. Aunque no me extranya despu$es de todo el jaleo del otro d$ia.",
-      "*Pruebas algo, sabe raro*",
-      "Por cierto que no me hab$ia presentado, soy Pancracio Warawa. Un gusto hijo.",
-      "Venga a pasar buena noche, y espabila que la vida te va ha comer!",
-      " $Ultimamente me la l$ias cada 2 por 3 con mi mercanc$ia!"
-    ],
-    "FelicidadMinima": [
-      "Felicidad minima Campesino"
-    ],
-    "FelicidadMaxima": [
-      "Felicidad maxima Campesino"
-    ],
-    "Eventos": {
-      "1": [
-        "1evento"
-      ],
-      "2": [
-        "2evento"
-      ],
-      "3": [
-        "3evento"
-      ],
-      "4": [
-        "4evento"
-      ],
-      "5": [
-        "5evento"
-      ]
-    },
-    "GenericoMalo": {
-      "1": [
-        "1malo"
-      ],
-      "2": [
-        "2malo"
-      ],
-      "3": [
-        "3malo"
-      ]
-    },
-    "GenericoNormal": {
-      "1": [
-        "1normal"
-      ],
-      "2": [
-        "2normal"
-      ],
-      "3": [
-        "3normal"
-      ]
-    },
-    "GenericoBueno": {
-      "1": [
-        "1bueno"
-      ],
-      "2": [
-        "2bueno"
-      ],
-      "3": [
-        "3bueno"
-      ]
-    }
+  "Evento3": {
+    "dialogo": "Hestia no come hoy",
+    "id": 2,
+    "target": "Hestia",
+    "ban":  "Alimento"
   },
-  "Artesano": {
-    "Presentacion": [
-      "Hola querido! Bienvenido a mi humilde taller! En qu$e puedo ayudarte hoy?",
-      "Espera... Tu debes de ser el nuevo verdad? Soy Paulino Tinteiros, el maestro de estos mares.",
-      "Mis tent$aculos son como pinceles y mis obras ser$an el patrimonio de Atlantis al paso de los anyos!"
-    ],
-    "FelicidadMinima": [
-      "Felicidad minima Artesano"
-    ],
-    "FelicidadMaxima": [
-      "Felicidad maxima Artesano"
-    ],
-    "Eventos": {
-      "1": [
-        "1evento"
-      ],
-      "2": [
-        "2evento"
-      ],
-      "3": [
-        "3evento"
-      ],
-      "4": [
-        "4evento"
-      ],
-      "5": [
-        "5evento"
-      ]
-    },
-    "GenericoMalo": {
-      "1": [
-        "1malo"
-      ],
-      "2": [
-        "2malo"
-      ],
-      "3": [
-        "3malo"
-      ]
-    },
-    "GenericoNormal": {
-      "1": [
-        "1normal"
-      ],
-      "2": [
-        "2normal"
-      ],
-      "3": [
-        "3normal"
-      ]
-    },
-    "GenericoBueno": {
-      "1": [
-        "1bueno"
-      ],
-      "2": [
-        "2bueno"
-      ],
-      "3": [
-        "3bueno"
-      ]
-    }
+  "Evento4": {
+    "dialogo": "Si pesas mas que el peso medio y vas a Hestia a tomar por culo",
+    "id": 3,
+    "target": "Hestia",
+    "weightRestricted": true,
+    "singleType": true,
+    "typeToWeight": "Alimento",
+    "minOrMax": 1,
+    "peso": "Medio"
   },
-  "Tarotisa": {
-    "Presentacion": [
-      "Bendita la carne fresca, que tenemos por aqu$i. Joven tu debes ser nuevo en el reino, o me equivoco?",
-      "No hace falta que respondas. Yo nunca me equivoco. Sabes porque?, por que puedo ver el futuro.",
-      "Mi nombre es Abigail Ampoule y soy una reconocida tarotista.",
-      "Secretos, enganyos, enfermedades y todo lo dem$as, nada puede escapar de mi conocimiento, la luz de mi cabeza me muestra cualquier cosa.",
-      "Ven a verme siempre que te preocupe algo, yo siempre estoy aqu$i para las pobres almas sin rumbo ni ambiciones."
-    ],
-    "FelicidadMinima": [
-      "Felicidad minima Tarotisa"
-    ],
-    "FelicidadMaxima": [
-      "Felicidad maxima Tarotisa"
-    ],
-    "Eventos": {
-      "1": [
-        "1evento"
-      ],
-      "2": [
-        "2evento"
-      ],
-      "3": [
-        "3evento"
-      ],
-      "4": [
-        "4evento"
-      ],
-      "5": [
-        "5evento"
-      ]
-    },
-    "GenericoMalo": {
-      "1": [
-        "1malo"
-      ],
-      "2": [
-        "2malo"
-      ],
-      "3": [
-        "3malo"
-      ]
-    },
-    "GenericoNormal": {
-      "1": [
-        "1normal"
-      ],
-      "2": [
-        "2normal"
-      ],
-      "3": [
-        "3normal"
-      ]
-    },
-    "GenericoBueno": {
-      "1": [
-        "1bueno"
-      ],
-      "2": [
-        "2bueno"
-      ],
-      "3": [
-        "3bueno"
-      ]
-    }
-  },
-  "Soldado": {
-    "Presentacion": [
-      "Saludos! Me llamo Abakand Istacoz, soldado del glorioso ej$ercito de Atlantis.",
-      "Eres nuevo por aqu$i? Debo decirte que el deber me ha llevado a servir en el distrito de Apolo",
-      "Aunque mi coraz$on anhelaba proteger los distritos exteriores, como Hestia, donde crec$i.",
-      "Mi pasado es tan resistente como mi armadura, y mi deber es velar por la paz, incluso cuando la tarea me resulta desalentadora."
-    ],
-    "FelicidadMinima": [
-      "Felicidad minima Soldado"
-    ],
-    "FelicidadMaxima": [
-      "Felicidad maxima Soldado"
-    ],
-    "Eventos": {
-      "1": [
-        "1evento"
-      ],
-      "2": [
-        "2evento"
-      ],
-      "3": [
-        "3evento"
-      ],
-      "4": [
-        "4evento"
-      ],
-      "5": [
-        "5evento"
-      ]
-    },
-    "GenericoMalo": {
-      "1": [
-        "1malo"
-      ],
-      "2": [
-        "2malo"
-      ],
-      "3": [
-        "3malo"
-      ]
-    },
-    "GenericoNormal": {
-      "1": [
-        "1normal"
-      ],
-      "2": [
-        "2normal"
-      ],
-      "3": [
-        "3normal"
-      ]
-    },
-    "GenericoBueno": {
-      "1": [
-        "1bueno"
-      ],
-      "2": [
-        "2bueno"
-      ],
-      "3": [
-        "3bueno"
-      ]
-    }
-  },
-  "Contable": {
-    "Presentacion": [
-      "Anda hola, debes ser nuevo por aqui, mi nombre es Glover Globus, CEO principal de la empresa Globinterprise.",
-      "Principalmente nos encargamos de mediar entre la compra y venta de los anillos exteriores e interiores a cambio de una comisi$on.",
-      "Basicamente les compramos los productos a los campesinos y los artesanos y se los vendemos a los nobles.",
-      "La verdad que no nos podemos quejar jiji.",
-      "Bueno espero verte por aqui m$as de seguido, un placer pimpollo."
-    ],
-    "FelicidadMinima": [
-      "Felicidad minima Artesano"
-    ],
-    "FelicidadMaxima": [
-      "Felicidad maxima Artesano"
-    ],
-    "Eventos": {
-      "1": [
-        "1evento"
-      ],
-      "2": [
-        "2evento"
-      ],
-      "3": [
-        "3evento"
-      ],
-      "4": [
-        "4evento"
-      ],
-      "5": [
-        "5evento"
-      ]
-    },
-    "GenericoMalo": {
-      "1": [
-        "1malo"
-      ],
-      "2": [
-        "2malo"
-      ],
-      "3": [
-        "3malo"
-      ]
-    },
-    "GenericoNormal": {
-      "1": [
-        "1normal"
-      ],
-      "2": [
-        "2normal"
-      ],
-      "3": [
-        "3normal"
-      ]
-    },
-    "GenericoBueno": {
-      "1": [
-        "1bueno"
-      ],
-      "2": [
-        "2bueno"
-      ],
-      "3": [
-        "3bueno"
-      ]
-    }
-  },
-  "Tutorial": {
-    "0": [
-      "Bienvenido a tu oficina de trabajo. Aqu$i es donde vigilamos que todos los paquetes salgan bien.",
-      "Por si se te ha olvidado, te recordar$e como se trabaja. Ver$as que es muy sencillo."
-    ],
-    "1": [
-      "Sabes qui$en es Alba?",
-      "Tu puta madre calva. "
-    ],
-    "2": [
-      "En el manual est$a todo lo que necesitas saber sobre los paquetes que te ir$an llegando.",
-      "Vamos a hacer un ejemplo con un paquete que esta al caer."
+  "Evento5": {
 
-    ],
-    "3": [
-      "El paquete est$a repleto de informaci$on $util, abajo a la izquierda est$a el remitente, es decir, quien ha mandado el paquete."
-    ],
-    "4": [
-      "Justo arriba est$a el c$odigo postal y la calle. Estos dos nos sirven para saber a que tubo mandar el paquete."
-    ],
-    "5": [
-      "Debemos primero saber a que tubo debemos mandar este paquete. Los tubos representan cada uno un distrito y su simbolo esta representado en el manual.",
-      "Vamos a buscar el codigo postal del distrito en la pagina del manual sobre codigos postales."
-    ],
-    "6": [
-      "En la p$agina izquierda se ven los c$odigos postales y sus distritos correspondientes. Este paquete tiene el c$odigo 001, por lo que ir$a al distrito de Hestia, el primer tubo",
-      "Antes de poder mandar el paquete, tenemos que sellar con un color el paquete en funcion de su calle. Vamos a la pagina de Hestia para saber que color escoger."
-    ],
-    "7": [
-      "Como ves en la p$agina, hay 3 calles con 3 colores. Hay que sellar el paquete con el color correspondiente de su calle",
-      "Para poder sellarlo, tenemos que usar el sello que puedes ver en la parte abajo izquierda de la mesa y mojarlo en uno de los tres cubos",
-      "En el paquete tenemos la calle 'Gambon III', que tiene el color verde, as$i que vamos a mojar el sello en el cubo verde y estamparlo en el paquete."
-    ],
-    "8": [
-      "Una vez sellado, ya podemos mandarlo al tubo. Arrastra el paquete hasta el tubo de color rojo, el de Hestia."
-    ],
-    "9": [
-      "Ahora toca volver a hacerlo con este otro paquete. Este tiene el codigo 011. Vamos a buscar su distrito en el manual."
-    ],
-    "10": [
-      "Es del distrito de Demeter. Vamos a su p$agina."
-    ],
-    "11": [
-      "Como vemos, es de la calle Camino del Calamar, as$i que sellaremos con el color azul."
-    ],
-    "12": [
-      "Ahora lo metemos al tubo con su mismo s$imbolo, el de color verde."
-    ],
-    "13": [
-      "Hemos probado ya con los paquetes simples. Sin embargo, la gente en esta ciudad no lo hacen todo bien.",
-      "Tenemos que comprobar que los paquetes son legales, que tengan el sello reglamentario y la calle est$e bien puesta.",
-      "Fijate que este paquete que acaba de llegar tiene un sello raro. Vamos a buscarlo en la p$agina de los sellos."
-    ],
-    "14": [
-      "Parece que el sello rojo de Armamento del paquete no coincide con el del manual. Este paquete entonces va directo a la basura.",
-      "Arrastralo hasta la basura para eliminarlo. Es importante que elimines los ilegales, sino te penalizaremos."
-    ],
-    "15": [
-      "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
-      "No te preocupes que no te voy a penalizar... Tranquilo...",
-      "Coge este paquete, que en principio est$a bien reglamentado, y mandalo a la basura."
-    ],
-    "16": [
-      "Fijate que te ha salido una notita explicando tu error. Cada paquete correcto son 20 dolares, y cada paquete err$oneo son 30 dolares, que van subiendo seg$un tus fallos.",
-      "Espero no ver muchas notitas cuando trabajes... El anterior a ti le hacia demasiados favores a la gente de la ciudad y acababa no ganando nada..."
-    ],
-    "17": [
-      "Vale esta es la $ultima cosa que tengo que explicarte. Para ello vas a necesitar la herramienta que te acabo de soltar en la mesa",
-      "Algunos paquetes pueden contener cosas muy delicadas, y sus propietarios les ponen un sello de fr$agil para que nosotros lo embalemos bien.",
-      "Para poder embalarlo, coge la herramienta de embalar, y sigue la ruta de puntos que ver$as al ponerlo por encima del paquete. Sigue la ruta y se quedar$a niquelado."
-    ],
-    "18": [
-      "Muy bien hecho. Ahora aplica lo que hemos aprendido, ponle su sello y mandalo por su tubo correspondiente."
-    ],
-    "19": [
-      "Muy bien, veo que ya te vas acordando. Ya estas listo para poder trabajar."
-    ]
   },
-  "BryantMyers": {
-    "EsclavaRemix": [
-      "Bryant myers",
-      "Hoy de nuevo te voy a veeer",
-      "si llama pichea el cell",
-      "estamos fumando marihuana",
-      "hoy seras mi esclava en el cuarto de un motel"
-    ]
+  "Evento6": {
+
+  },
+  "Evento7": {
+
+  },
+  "Evento8": {
+
+  },
+  "Evento9": {
+
+  },
+  "Evento10": {
+
+  },
+  "Evento11": {
+
+  },
+  "Evento12": {
+
+  },
+  "Evento13": {
+
+  },
+  "Evento14": {
+
+  },
+  "Evento15": {
+
+  },
+  "Evento16": {
+
+  },
+  "Evento17": {
+
+  },
+  "Evento18": {
+
+  },
+  "Evento19": {
+
+  },
+  "Evento20": {
+
+  },
+  "Evento21": {
+
+  },
+  "Evento22": {
+
+  },
+  "Evento23": {
+
+  },
+  "Evento24": {
+
+  },
+  "Evento25": {
+
+  },
+  "Evento26": {
+
+  },
+  "Evento27": {
+
+  },
+  "Evento28": {
+
   }
 }

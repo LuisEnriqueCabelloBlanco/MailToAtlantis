@@ -10,6 +10,9 @@ HoverSensorComponent::HoverSensorComponent():mTr_(nullptr), inCalls_(),inside_(f
 
 HoverSensorComponent::~HoverSensorComponent()
 {
+	for (auto func : destroyCalls_) {
+		func();
+	}
 }
 
 void HoverSensorComponent::update()
@@ -44,6 +47,11 @@ void HoverSensorComponent::addInCall(std::function<void()> hoverCall)
 void HoverSensorComponent::addOutCall(std::function<void()> hoverCall)
 {
 	outCalls_.push_back(hoverCall);
+}
+
+void HoverSensorComponent::addDestoryCall(std::function<void()> destroyCall)
+{
+	destroyCalls_.push_back(destroyCall);
 }
 
 void HoverSensorComponent::activateInCalls()
