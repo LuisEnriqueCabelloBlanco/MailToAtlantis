@@ -188,17 +188,7 @@ public:
 
 	//Textos peso
 	const std::string nivelPesoToString(NivelPeso nivel);
-	NivelPeso stringToNivelPeso(const std::string& nivel);
-
-	//Los métodos para acceder a las herramientas que te pueden dar los NPCs
-	void aquireSelloMulticolor() { selloMulticolor = true; }
-	bool getSelloMulticolor() { return selloMulticolor; }
-	void aquireEnvolverRapido() { envolverRapido = true; }
-	bool getEnvolverRapido() { return envolverRapido; }
-	void aquireVariosFallos() { variosFallos = true; failsMargin_ = 2; }
-	bool getVariosFallos() { return variosFallos; }
-	void aquireBolaCristal() { bolaCristal = true; }
-	bool getBolaCristal() { return bolaCristal; }
+	NivelPeso stringToNivelPeso(const std::string& nivel);							
 
 	void unlockMejoraPersonaje(Personaje p);
 	/// <summary>
@@ -272,11 +262,6 @@ private:
 	/// Vector con las mejoras desbloqueadas hasta el momento
 	/// </summary>
 	std::vector<bool> upgrades_;
-	//Aqui van las variables que indican si se han conseguido las herramientas especiales de los NPCs
-	bool selloMulticolor = false;
-	bool envolverRapido = false;
-	bool variosFallos = false;
-	bool bolaCristal = false;
 
 };
 

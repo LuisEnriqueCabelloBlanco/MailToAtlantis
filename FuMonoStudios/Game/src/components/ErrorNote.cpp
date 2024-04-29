@@ -28,7 +28,7 @@ ErrorNote::ErrorNote(Paquete* p, bool basura, bool tuboIncorrecto) {
 			text_ = "Ese paquete no debería haber sido envuelto\n";
 		}
 	}	
-	if (GeneralData::instance()->getVariosFallos()) {
+	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::FALLOS_UPGRADE)) {
 		if (GeneralData::instance()->getFails() == 1) {
 			text_ += "No se penaliza";
 		}

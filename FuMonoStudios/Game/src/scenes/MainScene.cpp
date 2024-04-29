@@ -114,7 +114,7 @@ void ecs::MainScene::init()
 	//}	
 
 	//La bola de cristal se tiene que crear antes que el primer paquete
-	if (GeneralData::instance()->getBolaCristal()) createBolaCristal();	  //Este es la bola de cristal. Si el jugador la ha desbloqueado, esta aparecerá en la oficina				
+	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BOLA_UPGRADE)) createBolaCristal();	  //Este es la bola de cristal. Si el jugador la ha desbloqueado, esta aparecerá en la oficina				
 	//}
 	mPipeMngr_->init();
 
@@ -220,12 +220,12 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 }
 
 void ecs::MainScene::updateToolsPerDay(int dia)
-{		
+{	
 	if(dia == 0)
 		return;	
-
+	
 	if (dia >= 1) {
-		if (GeneralData::instance()->getSelloMulticolor()) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina								
+		if (GeneralData::instance()->getUpgradeValue(ecs::upg::SELLO_UPGRADE)) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina								
 		else createStamp(SelloCalleA);
 
 		createInks();
@@ -327,7 +327,7 @@ void ecs::MainScene::createCinta() {
 
 	factory_->setLayer(ecs::layer::TAPE);
 	Entity* cinta;
-	if(GeneralData::instance()->getEnvolverRapido()) cinta = factory_->createImage (Vector2D (560, 500), Vector2D (100, 150), &sdlutils ().images ().at ("cintaRapida"));
+	if(GeneralData::instance ()->getUpgradeValue (ecs::upg::ENVOLVER_UPGRADE)) cinta = factory_->createImage (Vector2D (560, 500), Vector2D (100, 150), &sdlutils ().images ().at ("cintaRapida"));
 	else cinta = factory_->createImage (Vector2D (560, 500), Vector2D (100, 150), &sdlutils ().images ().at ("cinta"));
 	cinta->addComponent<Gravity>();
 	cinta->addComponent<DragAndDrop>("arrastrar");
@@ -695,7 +695,7 @@ void ecs::MainScene::createPaquete (int lv) {
 	auto pac = mPaqBuild_->buildPackage(lv, this);
 	pac->getComponent<MoverTransform>()->enable();
 
-	if (GeneralData::instance()->getBolaCristal() && bolaCrist_!= nullptr) {
+	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BOLA_UPGRADE) && bolaCrist_!= nullptr) {
 		int rnd = sdlutils().rand().nextInt(0, 4);		
 		if(rnd !=1) bolaCrist_->check(pac->getComponent<Paquete>(), true);
 		else bolaCrist_->check(pac->getComponent<Paquete>(), false);

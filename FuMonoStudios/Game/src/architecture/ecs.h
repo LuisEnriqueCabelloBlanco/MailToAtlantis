@@ -70,6 +70,10 @@ namespace ecs {
 		enum upgradeId : scUpg_t {
 			MONEY_UPGRADE,
 			SELLO_UPGRADE,
+			ENVOLVER_UPGRADE,
+			BOLA_UPGRADE,
+			FALLOS_UPGRADE,
+			BALANZA_UPGRADE,
 			_LAST_UPGRADE
 		};
 		constexpr upgradeId maxUpgradeId = _LAST_UPGRADE;

@@ -117,12 +117,12 @@ void Wrap::update() {
 			SDL_Rect tapeRect = tapeEnt->getComponent<Transform>()->getRect();
 
 			if (SDL_PointInRect(&point, &tapeRect)) {
-				if (GeneralData::instance ()->getEnvolverRapido ()) {
+				if (GeneralData::instance ()->getUpgradeValue (ecs::upg::ENVOLVER_UPGRADE)) {					
 					wrapped = true;
 					ent_->getComponent<Paquete> ()->envolver ();
-					for (int i = 0; i < 4; i++)mul_->nextTexture ();					
+					for (int i = 0; i < 4; i++)mul_->nextTexture ();									
 				}
-				else {
+				else {					
 					paqComp_->puntosRojos (routeSelectedID);
 					switch (routeSelectedID) {
 					case 0:
@@ -179,13 +179,12 @@ void Wrap::update() {
 					if ((routePointsDone == totalPointsRoute / 4 && wrapFase < 1)
 						|| (routePointsDone == totalPointsRoute / 2 && wrapFase < 2)
 						|| (routePointsDone == (totalPointsRoute * 3) / 4 && wrapFase < 3)
-						|| (routePointsDone == totalPointsRoute && wrapFase < 4)) {
-
+						|| (routePointsDone == totalPointsRoute && wrapFase < 4)) {						
 						mul_->nextTexture ();
 						wrapFase++;
 
 						tr_->setActiveChildren(false);
-						wrapped = true;
+						//wrapped = true;
 						ent_->getComponent<Paquete>()->envolver();
 					}
 
