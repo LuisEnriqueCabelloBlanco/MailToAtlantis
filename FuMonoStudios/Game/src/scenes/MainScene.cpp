@@ -124,9 +124,7 @@ void ecs::MainScene::init()
 
 	//createClock(); empieza a girar desde que se entra a la escena y queremos que lo haga cuando entres al trabajo
 
-	createGarbage();
-
-	createBalanzaDigital();
+	createGarbage();	
 
 	int dia = generalData().getDay();
 	if (dia % 4 == 2 || dia == 1 || dia == 3 || dia == 5 || dia == 8) //basura lo se pero la progresion es la que hay, por lo menos he podido hacer aritmetica modular para los eventos del jefe al ser constantes
@@ -222,7 +220,9 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 }
 
 void ecs::MainScene::updateToolsPerDay(int dia)
-{		
+{
+	//GeneralData::instance ()->setUpgradeValue (ecs::upg::BALANZA_UPGRADE, true);
+	//dia = 5;
 	if(dia == 0)
 		return;	
 	
@@ -235,7 +235,8 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 	}
 
 	if (dia >= 5) {
-		createBalanza();
+		if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BALANZA_UPGRADE)) createBalanzaDigital ();
+		else createBalanza();
 	}
 
 	if (dia >= 8) {				
@@ -394,7 +395,7 @@ void ecs::MainScene::createBalanzaDigital() {
 
 	// BalanzaBase
 	factory_->setLayer(ecs::layer::BALANZABASE);
-	Entity* baseBalanza = factory_->createImage(Vector2D(800, 850), Vector2D(sdlutils().images().at("balanzaDigB").width(), sdlutils().images().at("balanzaDigB").height()), &sdlutils().images().at("balanzaDigB"));
+	Entity* baseBalanza = factory_->createImage(Vector2D(800, 600), Vector2D(sdlutils().images().at("balanzaDigB").width(), sdlutils().images().at("balanzaDigB").height()), &sdlutils().images().at("balanzaDigB"));
 	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
 	balanzaBaseTr->setScale(0.4);
 	baseBalanza->addComponent<Gravity>();
@@ -403,7 +404,7 @@ void ecs::MainScene::createBalanzaDigital() {
 	////Añadir los numeros del peso
 	std::string msg = "0";
 	factory_->setLayer(ecs::layer::NUMBERS);
-	factory_->createLabel(Vector2D(1050, 890), msg, 50);
+	factory_->createLabel(Vector2D(1050, 640), msg, 50);
 
 	// Seteamos padres
 	balanzaTr->setParent(balanzaBaseTr);

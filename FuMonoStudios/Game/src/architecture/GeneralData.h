@@ -190,10 +190,6 @@ public:
 	const std::string nivelPesoToString(NivelPeso nivel);
 	NivelPeso stringToNivelPeso(const std::string& nivel);							
 
-	//Balanza digital
-	void adquireBalanzaDigital() { balanzaDigital = true; }
-	bool getBalanzaDigital() { return balanzaDigital; }
-
 	void unlockMejoraPersonaje(Personaje p);
 	/// <summary>
 	/// Guarda el juego
@@ -265,8 +261,7 @@ private:
 	/// <summary>
 	/// Vector con las mejoras desbloqueadas hasta el momento
 	/// </summary>
-	std::vector<bool> upgrades_;
-	bool balanzaDigital = false;
+	std::vector<bool> upgrades_;	
 
 };
 
