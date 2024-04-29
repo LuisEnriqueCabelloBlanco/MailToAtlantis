@@ -42,7 +42,6 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 	else if (giveEvent)
 	{
 		tipo = "Eventos";
-		iterationNum = selectedEvent.first + 1;
 	}
 	else
 	{
@@ -72,8 +71,11 @@ void NPCMenorData::setupDayData() {
 	postConversation = false;
 	iteration = 1;
 	giveEvent = diasDanEvento[generalData().getDay() - 1];
-
-	// comprobar si hemos completado todos los eventos
+	if (misionAceptada) {
+		numMisionesAceptadas++;
+	}
+	misionAceptada = false;
+	/*// comprobar si hemos completado todos los eventos
 	bool npcCompleted = true;
 	int i = 0;
 	while (npcCompleted && i < eventosCompletados.size())
@@ -98,7 +100,7 @@ void NPCMenorData::setupDayData() {
 		int seleccion = eventosNoCompletados[sdlutils().rand().nextInt(0, eventosCompletados.size())];
 		selectedEvent.first = seleccion;
 		selectedEvent.second = events[seleccion];
-	}
+	}*/
 }
 
 void NPCMenorData::activateEvent() {
@@ -120,8 +122,7 @@ NPCevent* NPCMenorData::getEvent() {
 		return nullptr;
 
 	postConversation = true;
-	numMisionesAceptadas++;
-	return selectedEvent.second;
+	return events[numMisionesAceptadas];
 }
 
 // NPC GRANDE
@@ -160,6 +161,10 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 
 void NPCMayorData::setupDayData() {
 	postConversation = false;
+	if (misionAceptada) {
+		numMisionesAceptadas++;
+	}
+	misionAceptada = false;
 }
 
 NPCevent* npc::NPCMayorData::getEvent()
@@ -169,7 +174,6 @@ NPCevent* npc::NPCMayorData::getEvent()
 
 	postConversation = true;
 	return events[numMisionesAceptadas];
-	numMisionesAceptadas++;
 }
 
 npc::NPCdata::~NPCdata()

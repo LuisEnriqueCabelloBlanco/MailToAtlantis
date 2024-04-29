@@ -68,6 +68,8 @@ namespace npc {
 		// el primero es si ha sido completado, el segundo es si ha sido succesful
 		std::vector<std::pair<bool, int>> eventosCompletados;
 		bool postConversation;
+
+		bool misionAceptada;
 	};
 
 #pragma region NPCdata
@@ -87,7 +89,6 @@ namespace npc {
 		void deactivateEvent();
 
 		std::vector<bool> diasDanEvento;
-		std::pair<int, NPCevent*> selectedEvent;
 
 		bool giveEvent;
 		int iteration;
