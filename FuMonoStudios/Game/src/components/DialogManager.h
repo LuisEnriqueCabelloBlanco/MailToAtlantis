@@ -87,9 +87,9 @@ public:
     bool nextDialog();
     
     // Establece los dialogos del tipo introducido mirar arriba para saber cual usar
-    void setDialogues(const GeneralData::DialogSelection ds, const std::string& tipoDialogo, int dialogueSelection);
-    void setDialogues(const GeneralData::DialogSelection ds, const std::string& t) { setDialogues(ds, t, -1); }
-    void setDialogues(const GeneralData::DialogSelection ds) { setDialogues(ds, "NULL", -1); }
+    void setDialogues(const DialogSelection ds, const std::string& tipoDialogo, int dialogueSelection);
+    void setDialogues(const DialogSelection ds, const std::string& t) { setDialogues(ds, t, -1); }
+    void setDialogues(const DialogSelection ds) { setDialogues(ds, "NULL", -1); }
     void setDialogues(std::string& dialogo); //no se pasa por const porque la modificamos con el fixText, no te preocupes cleon
 
     void startConversation(const std::string& character);
@@ -107,8 +107,9 @@ public:
     void setDialogueEntitiesActive(bool onoff);
 private:
     void fixText(std::string& text);
+    std::string dialogSelectionToString(DialogSelection ds);
 
-    bool isNPC(const GeneralData::DialogSelection ds);
+    bool isNPC(const DialogSelection ds);
 
 
 

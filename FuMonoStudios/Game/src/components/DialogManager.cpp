@@ -88,7 +88,7 @@ bool DialogManager::nextDialog() {
     return isEndOfConversation;
 }
 
-void DialogManager::setDialogues(const GeneralData::DialogSelection ds, const std::string& tipoDialogo, int dialogueIteration)
+void DialogManager::setDialogues(const DialogSelection ds, const std::string& tipoDialogo, int dialogueIteration)
 {
     //eliminamos los dialogos anteriores
     dialogs_.clear();
@@ -106,7 +106,7 @@ void DialogManager::setDialogues(const GeneralData::DialogSelection ds, const st
     JSONObject root = jValueRoot->AsObject();
     JSONValue* jsonEntry = nullptr;
 
-    const std::string& stringDialogSel = generalData().dialogSelectionToString(ds);
+    const std::string& stringDialogSel = dialogSelectionToString(ds);
     auto a =generalData().getDay();
     jsonEntry = root[stringDialogSel];
     if (jsonEntry != nullptr)
@@ -184,7 +184,7 @@ void DialogManager::setDialogues(const GeneralData::DialogSelection ds, const st
 
             if (isNPC(ds))
             {
-                generalData().getNPCData(generalData().stringToPersonaje(generalData().dialogSelectionToString(ds)))->iterateDialogues();
+                generalData().getNPCData(generalData().stringToPersonaje(dialogSelectionToString(ds)))->iterateDialogues();
             }
         }
     }
@@ -214,7 +214,7 @@ void DialogManager::startConversation(const std::string& character)
         std::pair<const std::string, int> aux = data->getDialogueInfo(); 
 
 
-        setDialogues((GeneralData::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
+        setDialogues((DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
 
         setDialogueEntitiesActive(true);
 
@@ -392,7 +392,7 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
     return aux;
 }
 
-bool DialogManager::isNPC(const GeneralData::DialogSelection ds)
+bool DialogManager::isNPC(const DialogSelection ds)
 {
     return ds < 7;
 }

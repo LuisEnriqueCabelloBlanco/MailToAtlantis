@@ -211,7 +211,6 @@ public:
 	/// </summary>
 	void saveGame();
 
-    std::string dialogSelectionToString(DialogSelection ds);
 private:
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }

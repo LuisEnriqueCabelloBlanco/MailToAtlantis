@@ -455,7 +455,7 @@ void TutorialSystem::createArrow() {
 
 void TutorialSystem::activateDialogue(bool dialogBoxInBottom) {
 	dialogMngr_.setDialogueEntitiesActive(true);
-	dialogMngr_.setDialogues(GeneralData::Tutorial, std::to_string(tutorialIteration));
+	dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(tutorialIteration));
 	dialogMngr_.setEndDialogueCallback([this]{
 		stopEvent(currentEvent);
 	});
