@@ -28,6 +28,7 @@ public:
 	DragAndDrop(bool usingClosestEnt, SimpleCallback func, std::string sound);
 
 	~DragAndDrop();
+	static bool enableDrag;
 
 	void initComponent() override;
 
