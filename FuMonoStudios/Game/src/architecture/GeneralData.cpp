@@ -332,31 +332,6 @@ void GeneralData::readNPCData() {
 		npcEventSys = new NPCeventSystem();
 }
 
-void GeneralData::readIntObjData() {
-	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/intObjsData.json"));
-
-	if (jsonFile == nullptr || !jsonFile->IsObject()) {
-		throw "Something went wrong while load/parsing intObjsData";
-	}
-
-	JSONObject root = jsonFile->AsObject();
-	JSONValue* jValueRoot = nullptr;
-
-	// cargamos los objetos
-
-	for (int i = 0; i < 20; i++)
-	{
-		std::string aux = intObjetoToString(i);
-		jValueRoot = root[aux];
-
-		JSONObject jObject = jValueRoot->AsObject();
-		std::string textosStr = jObject.find("Textos")->second->AsString();
-
-		intObjData.push_back(new IntObjsData(textosStr));
-		jValueRoot = nullptr;
-	}
-}
-
 void GeneralData::writeNPCData() {
 	std::ifstream archivo("recursos/data/npcData.json");
 
@@ -758,11 +733,4 @@ GeneralData::IntObjsData::IntObjsData(std::string text)
 	objId = text;
 }
 
-GeneralData::IntObjsData* GeneralData::getObjData(std::string intobj)
-{
-	IntObjsData* obj = nullptr;
-	obj = intObjData[stringToObjInt(intobj)];
-
-	return obj;
-}
 #pragma endregion
