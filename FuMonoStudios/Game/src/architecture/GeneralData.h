@@ -80,17 +80,6 @@ public:
 
 	NPCeventSystem* npcEventSys = nullptr;
 
-	/// <summary>
-	/// Obtiene los datos de los objetos interactuables
-	/// </summary>
-	void readIntObjData();
-	/// <summary>
-	/// Devuelve los datos del objeto solicitado
-	/// </summary>
-	/// <param name="intobj"></param>
-	/// <returns></returns>
-	IntObjsData* getObjData(std::string intobj);
-
 private:
 	/// <summary>
 	/// vector que contiene los datos de todos los objetos interactuables

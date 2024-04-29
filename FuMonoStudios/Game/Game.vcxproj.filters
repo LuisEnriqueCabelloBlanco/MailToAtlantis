@@ -72,6 +72,8 @@
     <ClCompile Include="src\scenes\EndGameScene.cpp" />
     <ClCompile Include="src\sistemas\NPC.cpp" />
     <ClCompile Include="src\entities\CristalBall.cpp" />
+    <ClCompile Include="src\sistemas\NPCevent.cpp" />
+    <ClCompile Include="src\sistemas\WorkRestrictionsSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -181,6 +183,8 @@
     <ClInclude Include="src\scenes\EndGameScene.h" />
     <ClInclude Include="src\sistemas\NPC.h" />
     <ClInclude Include="src\entities\CristalBall.h" />
+    <ClInclude Include="src\sistemas\NPCevent.h" />
+    <ClInclude Include="src\sistemas\WorkRestrictionsSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\DialogManager.cpp" />
@@ -206,7 +210,6 @@
     <None Include="recursos\config\sounds.json" />
     <None Include="recursos\data\saveFile.json" />
     <None Include="recursos\data\eventosjefe.json" />
-    <None Include="recursos\data\intObjsData.json" />
     <None Include="recursos\config\mail.config.json" />
   </ItemGroup>
   <ItemGroup>
