@@ -21,10 +21,17 @@
       "no se usa"
     ],
     "Dia2": [
-      "dia2"
+      " $!Viejo amigo! $?C$omo te va la vida?",
+      " $?Que nos conocimos ayer? Ah bueno. Eso no quita que pueda tener aprecio por mi nuevo amigo.",
+      "De hecho te aprecio tanto que te voy a pedir un favorcillo de nada. Ver$as, llevo comiendo fatal mucho tiempo y no sabes lo que dar$ia yo por un buen filete.",
+      "Un jugoso y delicioso filete... Es lo $unico que deseo en esta vida...",
+      "Me ha contado uno de los campesinos de por aqu$i que hoy iban a mandar un encargo al distrito Demeter, much$isimos paquetes repletos de comida.",
+      "Y digo yo, que si son muchos por uno que se extrav$ie no pasar$a nada...",
+      "Si no te es mucha molestia mand$amelo al distrito de Hestia y lo recoger$e en su nombre.",
+      "Filete..."
     ],
     "PostConversacionDia2": [
-      "postConvDia2"
+      "Apreciar$ia mucho si me dirigieses un paquetillo de comida de esos de Demeter a Hestia, $!Ser$ias el mejor amigo que uno puede tener!"
     ],
     "Dia3": [
       "dia3"

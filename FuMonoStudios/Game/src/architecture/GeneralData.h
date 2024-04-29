@@ -188,11 +188,7 @@ public:
 
 	//Textos peso
 	const std::string nivelPesoToString(NivelPeso nivel);
-	NivelPeso stringToNivelPeso(const std::string& nivel);
-
-	//Los métodos para acceder a las herramientas que te pueden dar los NPCs
-	inline void aquireSelloMulticolor() { selloMulticolor = true; }
-	inline bool getSelloMulticolor() { return selloMulticolor; }
+	NivelPeso stringToNivelPeso(const std::string& nivel);							
 
 	void unlockMejoraPersonaje(Personaje p);
 	/// <summary>
@@ -266,8 +262,7 @@ private:
 	/// Vector con las mejoras desbloqueadas hasta el momento
 	/// </summary>
 	std::vector<bool> upgrades_;
-	//Aqui van las variables que indican si se han conseguido las herramientas especiales de los NPCs
-	bool selloMulticolor = false; //Sello multicolor debe estar debtro de updates
+
 };
 
 inline GeneralData& generalData() {

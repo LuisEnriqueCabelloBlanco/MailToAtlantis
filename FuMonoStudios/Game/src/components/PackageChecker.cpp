@@ -93,7 +93,7 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 				
 		}
 
-		generalData().npcEventSys->checkPaqueteSent(ent->getComponent<Paquete>());
+		generalData().npcEventSys->checkPaqueteSent(ent->getComponent<Paquete>(),toDis_);
 
 #ifdef QA_TOOLS
 
