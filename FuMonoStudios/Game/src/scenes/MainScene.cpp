@@ -404,7 +404,7 @@ void ecs::MainScene::createBalanzaDigital() {
 	////Añadir los numeros del peso
 	std::string msg = "0";
 	factory_->setLayer(ecs::layer::NUMBERS);
-	factory_->createLabel(Vector2D(1220, 593), msg, 50);
+	factory_->createLabel(Vector2D(1270, 593), msg, 50);
 
 	// Seteamos padres
 	balanzaTr->setParent(balanzaBaseTr);
@@ -413,11 +413,21 @@ void ecs::MainScene::createBalanzaDigital() {
 	Trigger* balanzaTri = balanza->addComponent<Trigger>();
 
 	balanzaTri->addCallback([this, balanzaComp, balanza](ecs::Entity* entRect){
-			balanzaComp->initAnimationsDigital(entRect, balanza); 
-		std::string msg = std::to_string(balanzaComp->getPaquetePeso());
-		removeEntitiesByLayer(ecs::layer::NUMBERS);
-		factory_->setLayer(ecs::layer::NUMBERS);
-		factory_->createLabel(Vector2D(1245, 593), msg, 50);
+		balanzaComp->initAnimationsDigital(entRect, balanza); 
+	std::string msg;
+		int peso = balanzaComp->getPaquetePeso();
+		if (peso >= 0) {
+			msg = std::to_string(peso);
+			removeEntitiesByLayer(ecs::layer::NUMBERS);
+			factory_->setLayer(ecs::layer::NUMBERS);
+			factory_->createLabel(Vector2D(1245, 593), msg, 50);
+		}
+		else {
+			msg = "0";
+			removeEntitiesByLayer(ecs::layer::NUMBERS);
+			factory_->setLayer(ecs::layer::NUMBERS);
+			factory_->createLabel(Vector2D(1270, 593), msg, 50);
+		}
 		
 		}, generalData().DropIn);
 	
