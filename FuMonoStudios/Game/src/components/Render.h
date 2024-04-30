@@ -20,15 +20,7 @@ public:
 	void initComponent() override;
 	void render() const;
 	/// <summary>
-	/// cambia a la textura indicada por el indice
-	/// </summary>
-	/// <param name="indx"></param>
-	inline void setTextureIndx(int indx) { 
-		assert(texturesVector_.size() > indx);
-		currentTextureIndx_ = indx; 
-	};
-	/// <summary>
-	/// cambia la textura de la posicion inicada del array de texturas
+	/// cambia la textura 0 (esto es temporal)
 	/// </summary>
 	/// <param name="texture"></param>
 	inline void setTexture(Texture* texture) {texturesVector_[0] = texture; };

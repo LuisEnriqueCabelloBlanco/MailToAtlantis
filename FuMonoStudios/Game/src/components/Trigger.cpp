@@ -68,22 +68,6 @@ void Trigger::addCallback(Callback event, int moveType) {
 
 }
 
-void Trigger::clearCallback(int moveType)
-{
-
-	if (moveType == generalData().DropIn) {
-
-		eventList_.clear();
-
-	}
-	else if (moveType == generalData().PickUp) {
-
-		eventListPickUp_.clear();
-
-	}
-
-}
-
 //activa los eventos de todas las entidades que tenga asociadas (que este tocando)
 //NOTA: en un futuro serï¿½ necesario implementar un sistema de layers para diferenciar que cosa puede tocar a que cosa
 bool Trigger::activateEventsFromEntities(int moveType) {

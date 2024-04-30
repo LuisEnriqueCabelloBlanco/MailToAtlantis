@@ -15,7 +15,6 @@
 #include "../components/Trigger.h"
 #include <string>
 #include <list>
-#include <unordered_map>
 #include "../sdlutils/Texture.h"
 #include "../components/PackageChecker.h"
 #include "../components/Gravity.h"
@@ -140,15 +139,15 @@ void ecs::MainScene::init()
 	int numTubos = generalData().getTubesAmount(); // coge el numero de tubos que están desbloqueados
 	int j = 0;
 	for (int i = 0;i < numTubos; i++) {
-		tubos.push_back(createTubo((pq::Distrito)i, true));
+		createTubo((pq::Distrito)i, true);
 		j++;
 	}
 	//Creación de paquetes bloqueados
 	for (int z = j; z < 7 ; ++z) { //grande jose la los numeros magicos te la sabes
 		if(j==6)
-			tubos.push_back(createTubo((pq::Distrito)z, true));
+			createTubo((pq::Distrito)z, true);
 		else
-			tubos.push_back(createTubo((pq::Distrito)z , false));
+			createTubo((pq::Distrito)z , false);
 	}
 
 	/*sdlutils().musics().at("office").play();
@@ -171,12 +170,11 @@ void ecs::MainScene::close() {
 	sdlutils().musics().at("printer").haltMusic();
 }
 
-ecs::Entity* ecs::MainScene::createClock() {
+void ecs::MainScene::createClock() {
 	Entity* clock = addEntity(ecs::layer::BACKGROUND);
 	clock->addComponent<ClockAux>(MINIGAME_TIME);
-	return clock;
 }
-ecs::Entity* ecs::MainScene::createBolaCristal() {
+void ecs::MainScene::createBolaCristal() {	 
 	int tamano = 3;
 	std::vector<Texture*> ballTextures;
 	ballTextures.reserve(tamano);
@@ -185,8 +183,7 @@ ecs::Entity* ecs::MainScene::createBolaCristal() {
 	}
 	Entity* bola = factory_->createMultiTextureImage(Vector2D(700, 500), Vector2D(150, 200), ballTextures);
 	bolaCrist_ = bola->addComponent<CristalBall>(bola->getComponent<RenderImage>());
-	
-	return bola;
+	std::cout << "QsjndaskjnsdanjUeso\n";
 }
 
 void ecs::MainScene::createInks() {
@@ -197,7 +194,7 @@ void ecs::MainScene::createInks() {
 
 }
 
-ecs::Entity* ecs::MainScene::createOneInk(TipoHerramienta type) {
+void ecs::MainScene::createOneInk(TipoHerramienta type) {
 	Entity* ink = factory_->createImage(Vector2D(70 + 150 * type, 950), Vector2D(125, 73), &sdlutils().images().at("tinta"+std::to_string(type)));
 	Trigger* inkATri = ink->addComponent<Trigger>();
 
@@ -219,8 +216,6 @@ ecs::Entity* ecs::MainScene::createOneInk(TipoHerramienta type) {
 		}
 
 	}, generalData().DropIn);
-
-	return ink;
 
 }
 
@@ -293,9 +288,9 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 	factory_->setLayer(layer::DEFAULT);
 }
 
-ecs::Entity* ecs::MainScene::createStamp(TipoHerramienta type)
+void ecs::MainScene::createStamp(TipoHerramienta type)
 {
-	if (type > 2) return nullptr;
+	if (type > 2) return;
 	constexpr float STAMPSIZE = 1;
 	
 	factory_->setLayer(layer::STAMP);
@@ -311,8 +306,6 @@ ecs::Entity* ecs::MainScene::createStamp(TipoHerramienta type)
 	herrSelladorA->setFunctionality(type);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
-
-	return stamp;
 }
 
 void ecs::MainScene::createMultipleStamp()
@@ -333,7 +326,7 @@ void ecs::MainScene::createMultipleStamp()
 	factory_->setLayer(ecs::layer::DEFAULT);
 }
 
-ecs::Entity* ecs::MainScene::createCinta() {
+void ecs::MainScene::createCinta() {
 
 	factory_->setLayer(ecs::layer::TAPE);
 	Entity* cinta;
@@ -344,12 +337,9 @@ ecs::Entity* ecs::MainScene::createCinta() {
 	cinta->addComponent<Depth>();
 	factory_->setLayer(ecs::layer::DEFAULT);
 
-	return cinta;
 }
 
-std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createBalanza() {
-
-	std::unordered_map<std::string, ecs::Entity*> mapSol;
+void ecs::MainScene::createBalanza() {
 
 	float scale = 0.3;
 
@@ -392,13 +382,6 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createBalanza() {
 	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(entRect, rotComp); }, generalData().PickUp);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
-
-	mapSol.insert({ "balanza", balanza });
-	mapSol.insert({ "balanzaB", balanzaB });
-	mapSol.insert({ "baseBalanza", baseBalanza });
-	mapSol.insert({ "balanzaFlecha", balanzaFlecha });
-
-	return mapSol;
 }
 
 void ecs::MainScene::createBalanzaDigital() {
@@ -460,7 +443,7 @@ void ecs::MainScene::createBalanzaDigital() {
 
 }
 
-ecs::Entity* ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
+void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 	constexpr float TUBE_WIDTH = 138;
 	constexpr float TUBE_HEITH = 282;
 	constexpr float TUBES_X_OFFSET = 50;
@@ -494,16 +477,11 @@ ecs::Entity* ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 		tubeTexture->modColor(100, 100, 100);
 
 	}
-
-	return tuboEnt;
 }
 
 
-std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int NumPages)
+void ecs::MainScene::createManual(int NumPages)
 {
-
-	std::unordered_map<std::string, Entity*> mapSol;
-
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 
@@ -541,7 +519,6 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int N
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
-	/*
 	//Creacion de botones de indices
 
 	if (true) { //PLACE HOLDER HASTA LOS BOOLS DE JULIAN
@@ -558,17 +535,10 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int N
 
 
 	}
-	*/
-	
-	mapSol.insert({ "manual", manualEnt_ });
-	mapSol.insert({ "right", right });
-	mapSol.insert({ "left", left });
-
-	return mapSol;
 
 }
 
-ecs::Entity* ecs::MainScene::createMiniManual() {
+void ecs::MainScene::createMiniManual() {
 
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
@@ -642,10 +612,9 @@ ecs::Entity* ecs::MainScene::createMiniManual() {
 
 	miniManualEnt_->setActive(false);
 
-	return miniManualEnt_;
 }
 
-ecs::Entity* ecs::MainScene::createSpaceManual() {
+void ecs::MainScene::createSpaceManual() {
 
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
@@ -681,12 +650,10 @@ ecs::Entity* ecs::MainScene::createSpaceManual() {
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 	
-
-	return baseManual;
 }
 
 
-ecs::Entity* ecs::MainScene::createGarbage()
+void ecs::MainScene::createGarbage()
 {
 	/*TDOO Meter en un metdo */
 	// papelera
@@ -695,8 +662,6 @@ ecs::Entity* ecs::MainScene::createGarbage()
 	papelera->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
 	Trigger* papTrig = papelera->addComponent<Trigger>();
 	papelera->addComponent<PackageChecker>(Erroneo, this, mPipeMngr_);
-
-	return papelera;
 }
 #ifdef DEV_TOOLS
 
