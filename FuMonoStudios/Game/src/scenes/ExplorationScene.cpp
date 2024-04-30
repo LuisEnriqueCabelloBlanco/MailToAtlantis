@@ -607,8 +607,10 @@ void ecs::ExplorationScene::createObjects(int place) {
 	}
 	auto& characters = pl.at(placeName).myCharacters;
 	for (int i = 0; i < pl.at(placeName).myCharacters.size(); ++i) {
-		lugares[placeName].addObjects(createCharacter(characters[i].pos,
-			characters[i].name_, characters[i].scale_));
+		if (generalData().getNPCData(generalData().stringToPersonaje(characters[i].name_))->felicidad != npc::SeFue) {
+			lugares[placeName].addObjects(createCharacter(characters[i].pos,
+				characters[i].name_, characters[i].scale_));
+		}
 	}
 
 	auto& intObjs = pl.at(placeName).myInteractableObjs;
