@@ -15,6 +15,7 @@
 #include "../components/Trigger.h"
 #include <string>
 #include <list>
+#include <unordered_map>
 #include "../sdlutils/Texture.h"
 #include "../components/PackageChecker.h"
 #include "../components/Gravity.h"
@@ -343,7 +344,9 @@ void ecs::MainScene::createCinta() {
 
 }
 
-void ecs::MainScene::createBalanza() {
+std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createBalanza() {
+
+	std::unordered_map<std::string, ecs::Entity*> mapSol;
 
 	float scale = 0.3;
 
@@ -386,6 +389,13 @@ void ecs::MainScene::createBalanza() {
 	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(entRect, rotComp); }, generalData().PickUp);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
+
+	mapSol.insert({ "balanza", balanza });
+	mapSol.insert({ "balanzaB", balanzaB });
+	mapSol.insert({ "baseBalanza", baseBalanza });
+	mapSol.insert({ "balanzaFlecha", balanzaFlecha });
+
+	return mapSol;
 }
 
 void ecs::MainScene::createBalanzaDigital() {
@@ -484,8 +494,11 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 }
 
 
-void ecs::MainScene::createManual(int NumPages)
+std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int NumPages)
 {
+
+	std::unordered_map<std::string, Entity*> mapSol;
+
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 
@@ -523,6 +536,7 @@ void ecs::MainScene::createManual(int NumPages)
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
+	/*
 	//Creacion de botones de indices
 
 	if (true) { //PLACE HOLDER HASTA LOS BOOLS DE JULIAN
@@ -539,6 +553,13 @@ void ecs::MainScene::createManual(int NumPages)
 
 
 	}
+	*/
+	
+	mapSol.insert({ "manual", manualEnt_ });
+	mapSol.insert({ "right", right });
+	mapSol.insert({ "left", left });
+
+	return mapSol;
 
 }
 

@@ -42,17 +42,16 @@ namespace ecs {
 		void createMiniManual();
 		void createSpaceManual();
 
-		void createStamp(TipoHerramienta type);
-		void createClock();
-		void createInks();
-		void createOneInk(TipoHerramienta type);
+		ecs::Entity* createMiniManual() override;
+		std::unordered_map<std::string, ecs::Entity*> createManual(int NumPages) override;
+		std::unordered_map<std::string, ecs::Entity*> createBalanza() override;
 
 		ecs::Entity* createTubo(pq::Distrito dist, bool); // empiezan desactivados
 		std::vector<ecs::Entity*> tubos;
 		void deactivateTubos();
 		void activateTubos();
 
-		void createGarbage(); // empieza desactivada
+		ecs::Entity* createGarbage() override; // empieza desactivada
 		void activateGarbage();
 		void deactivateGarbage();
 		ecs::Entity* garbage_;

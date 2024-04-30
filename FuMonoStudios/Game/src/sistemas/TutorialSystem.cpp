@@ -57,11 +57,11 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 		#pragma region Manual
 		case TutorialEvent::Introduction:
 			canPassPagesManual = false;
-			canDrag = false;
+			DragAndDrop::enableDrag = false;
 			activateDialogue(false);
 			break;
 		case TutorialEvent::SacaElManual1:
-			canDrag = false;
+			DragAndDrop::enableDrag = false;
 			activateDialogue(false);
 			arrow_->setActive(true);
 			
@@ -80,7 +80,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::SacaElManual2:
-			canDrag = false;
+			DragAndDrop::enableDrag = false;
 			activateDialogue(false);
 			break;
 
@@ -88,7 +88,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		#pragma region Primer Paquete
 		case TutorialEvent::PaqueteEnsenarRemitente:
-			canDrag = false;
+			DragAndDrop::enableDrag = false;
 			scene_->createPackage(ecs::TutorialScene::Primero);
 			delayedCallback(1, [this]() {
 				activateDialogue(false);
@@ -133,7 +133,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		#pragma region Segundo Paquete
 		case TutorialEvent::EntraSegundoPaquete:
-			canDrag = false;
+			DragAndDrop::enableDrag = false;
 			scene_->createPackage(ecs::TutorialScene::Segundo);
 			delayedCallback(1, [this]() {
 				scene_->deactivateTubos();
@@ -154,7 +154,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		#pragma region Tercer Paquete
 		case TutorialEvent::EntraTercerPaquete:
-			canDrag = true; // CAMBIAR A TRUE PARA EMPEZAR DESDE MAS ADELANTE
+			DragAndDrop::enableDrag = true; // CAMBIAR A TRUE PARA EMPEZAR DESDE MAS ADELANTE
 			canPassPagesManual = false;
 			scene_->deactivateTubos();
 			scene_->createPackage(ecs::TutorialScene::Tercero);
@@ -174,7 +174,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		#pragma region Paquete Fallar Aposta
 		case TutorialEvent::EntraCuartoPaquete:
-			canDrag = false;
+			DragAndDrop::enableDrag = false;
 			activateDialogue(false);
 			delayedCallback(1.5, [this] {
 				scene_->createPackage(ecs::TutorialScene::FallarAposta);
@@ -206,7 +206,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		#pragma region Paquete fragil
 		case TutorialEvent::EntraPaqueteFragil:
-			canDrag = false;
+			DragAndDrop::enableDrag = false;
 			waitingWrapComp = scene_->createPackage(ecs::TutorialScene::Fragil)->getComponent<Wrap>();
 			delayedCallback(1, [this] {
 				activateDialogue(false);
@@ -217,12 +217,12 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			break;
 
 		case TutorialEvent::SellarFragil:
-			canDrag = false;
+			DragAndDrop::enableDrag = false;
 			activateDialogue(false);
 			break;
 
 		case TutorialEvent::EnviarFragil:
-			canDrag = false;
+			DragAndDrop::enableDrag = false;
 			activateDialogue(false);
 			break;
 		#pragma endregion
@@ -247,7 +247,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::SacaElManual1:
-			canDrag = true;
+			DragAndDrop::enableDrag = true;
 			
 			addActionListener(Action::SacarManual, [this]() {
 				activateEvent(TutorialEvent::SacaElManual2);
@@ -280,7 +280,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 				scene_->getManualTransform()->getPos().getY() + (scene_->getManualTransform()->getHeigth() * 0.85));
 			
 			addActionListener(Action::PaginaCodigosPostales, [this]() {
-				canDrag = false;
+				DragAndDrop::enableDrag = false;
 				canPassPagesManual = false;
 				activateEvent(TutorialEvent::BuscarPaginaHestia);
 				});
@@ -293,7 +293,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			break;
 		case TutorialEvent::EnsenarSellos:
 			arrow_->setActive(false);
-			canDrag = true;
+			DragAndDrop::enableDrag = true;
 			addActionListener(Action::PaqueteEstampado, [this]() {
 				activateEvent(TutorialEvent::EnsenarTubos);
 				});
@@ -322,7 +322,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			addActionListener(Action::PaqueteEstampado, [this]() {
 				activateEvent(TutorialEvent::EnviarSegundoPaquete);
 				});
-			canDrag = true;
+			DragAndDrop::enableDrag = true;
 			break;
 		case TutorialEvent::EnviarSegundoPaquete:
 			scene_->activateTubos();
@@ -354,7 +354,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::EnPaginaInfoSellos:
-			canDrag = true;
+			DragAndDrop::enableDrag = true;
 			scene_->activateGarbage();
 			addActionListener(Action::Basura, [this] {
 				activateEvent(TutorialEvent::Fin);
@@ -407,7 +407,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 #pragma region Paquete Fragil
 		case TutorialEvent::EntraPaqueteFragil:
 
-			canDrag = true;
+			DragAndDrop::enableDrag = true;
 			canPassPagesManual = true;
 			scene_->activateTubos();
 			addActionListener(Action::PaqueteEstampado, [this] {
@@ -419,7 +419,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			break;
 
 		case TutorialEvent::SellarFragil:
-			canDrag = true;
+			DragAndDrop::enableDrag = true;
 			waitingEmbalaje = true;
 			addActionListener(Action::Embalado, [this]() {
 				delayedCallback(1, [this] {
@@ -429,7 +429,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			break;
 
 		case TutorialEvent::EnviarFragil:
-			canDrag = true;
+			DragAndDrop::enableDrag = true;
 			waitingEmbalaje = true;
 			addActionListener(Action::PaqueteEnviado, [this]() {
 				delayedCallback(1, [this] {

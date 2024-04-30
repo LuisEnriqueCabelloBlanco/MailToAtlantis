@@ -298,6 +298,65 @@ void ecs::TutorialScene::activateTubos() {
 	}
 }
 
+//manual, roght, left
+std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createManual(int NumPages)
+{
+
+	std::unordered_map<std::string, ecs::Entity*> mapSol = MainScene::createManual(NumPages);
+
+	RenderImage* mRen = mapSol["manual"]->getComponent<RenderImage>();
+
+	Clickeable* rClick = mapSol["right"]->getComponent<Clickeable>();
+
+	Clickeable* lClick = mapSol["left"]->getComponent<Clickeable>();
+
+	rClick->addEvent([mRen, this]() {
+		if (tutorialSys_->canPassPagesManual)
+		{
+			const Texture* tex = mRen->getCurrentTexture();
+			if (tex == &sdlutils().images().at("book3"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
+			else if (tex == &sdlutils().images().at("book4"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
+			else if (tex == &sdlutils().images().at("book5"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
+			else if (tex == &sdlutils().images().at("book8"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
+		}
+	});
+
+	lClick->addEvent([mRen, this]() {
+		if (tutorialSys_->canPassPagesManual)
+		{
+			const Texture* tex = mRen->getCurrentTexture();
+			if (tex == &sdlutils().images().at("book3"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
+			else if (tex == &sdlutils().images().at("book4"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
+			else if (tex == &sdlutils().images().at("book5"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
+			else if (tex == &sdlutils().images().at("book8"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
+		}
+	});
+
+
+	return mapSol;
+}
+
+std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createBalanza()
+{
+
+	std::unordered_map<std::string, ecs::Entity*> mapSol = MainScene::createBalanza();
+
+	Trigger* balTri = mapSol["balanza"]->getComponent<Trigger>();
+
+	balTri->addCallback([this](ecs::Entity* entRect) {balanzaUsed = true; }, generalData().PickUp);
+
+	return mapSol;
+
+}
+
 void ecs::TutorialScene::deactivateTubos() {
 	for (int i = 0; i < 7; i++)
 	{
@@ -306,25 +365,29 @@ void ecs::TutorialScene::deactivateTubos() {
 	}
 }
 
-void ecs::TutorialScene::createGarbage()
+ecs::Entity* ecs::TutorialScene::createGarbage()
 {
-	garbage_ = addEntity(ecs::layer::BIN);
-	garbage_->addComponent<Transform>(50, 650, 100, 150);
-	garbage_->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
+	garbage_ = MainScene::createGarbage();
+
+	Trigger* papTrig = garbage_->addComponent<Trigger>();
+	papTrig->addCallback([this](ecs::Entity* e) {
+		if (e->getComponent<Paquete>() != nullptr)
+		tutorialSys_->registerAction(TutorialSystem::Basura);
+	}, generalData().DropIn);
+
+	return garbage_;
 }
 
 void ecs::TutorialScene::activateGarbage() {
-	Trigger* papTrig = garbage_->addComponent<Trigger>();
-	papTrig->addCallback([this](ecs::Entity* e) {
-		if(e->getComponent<Paquete>() != nullptr)
-		tutorialSys_->registerAction(TutorialSystem::Basura);
-		}, generalData().DropIn);
+
 	garbage_->addComponent<PackageChecker>(Erroneo, this, mPipeMngr_);
+
 }
 
 void ecs::TutorialScene::deactivateGarbage() {
+
 	garbage_->removeComponent<PackageChecker>();
-	garbage_->removeComponent<Trigger>();
+
 }
 
 void ecs::TutorialScene::createClock() {
