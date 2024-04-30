@@ -58,22 +58,25 @@ ecs::MainScene::~MainScene()
 void ecs::MainScene::update()
 {
 	Scene::update();
-	if (gm().gamePaused()) {
-		timerPaused_ = true;
-	}
-	else {
-		timerPaused_ = false;
-	}
-	if (!timerPaused_)
-	{
-		if (timer_ > 0) {
-			timer_ -= Time::getDeltaTime();
+	if (!dialogoPendiente) {
+		if (gm().gamePaused()) {
+			timerPaused_ = true;
 		}
-		else
+		else {
+			timerPaused_ = false;
+		}
+		if (!timerPaused_)
 		{
-			gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
+			if (timer_ > 0) {
+				timer_ -= Time::getDeltaTime();
+			}
+			else
+			{
+				gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
+			}
 		}
 	}
+	
 	dialogMngr_.update();
 
 }
@@ -102,8 +105,6 @@ void ecs::MainScene::init()
 #endif // _DEBUG
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
 	timer_ = MINIGAME_TIME;
-	timerPaused_ = true;
-
 	// Fondo
 	factory_->setLayer(layer::BACKGROUND);
 	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
@@ -528,7 +529,7 @@ void ecs::MainScene::createManual(int NumPages)
 
 		std::vector<int> indexTextures = { 2, 3, 6, 7, 8 };
 
-		auto pagCodigos = [manualRender]() { manualRender->setTexture(2); };
+		auto pagCodigos = [manualRender]() { manualRender->setTextureIndx(2); };
 		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonIndexSize, buttonTexture, pagCodigos);
 		indexCodigos->getComponent<Transform>()->setParent(manualTransform);
 		factory_->addHoverColorMod(indexCodigos);
@@ -767,6 +768,7 @@ void ecs::MainScene::createPaquete (int lv) {
 
 
 ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
+	dialogoPendiente = true;
 	ComonObjectsFactory factory(this);
 
 	Texture* characterTexture = &sdlutils().images().at(character);
@@ -813,7 +815,7 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 
 void ecs::MainScene::startWork()
 {
-	timerPaused_ = false;
+	dialogoPendiente = false;
 	createPaquete(generalData().getPaqueteLevel());
 	createClock();
 }
