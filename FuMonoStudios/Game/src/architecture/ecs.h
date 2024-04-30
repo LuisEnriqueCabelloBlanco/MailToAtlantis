@@ -74,6 +74,7 @@ namespace ecs {
 			BOLA_UPGRADE,
 			FALLOS_UPGRADE,
 			BALANZA_UPGRADE,
+			MANUAL_UPGRADE,
 			_LAST_UPGRADE
 		};
 		constexpr upgradeId maxUpgradeId = _LAST_UPGRADE;

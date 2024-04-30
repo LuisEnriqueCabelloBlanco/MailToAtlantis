@@ -528,6 +528,9 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, character]() {
+		if (generalData().getNPCData(generalData().stringToPersonaje(character))->felicidad == npc::Maxima) {
+			generalData().unlockUpgrade(generalData().stringToPersonaje(character));
+		}
 	    dialogMngr_.startConversation(character);
 
 		auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
