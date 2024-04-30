@@ -34,6 +34,8 @@ public:
 
 	void addCallback(Callback event, int moveType);
 
+	void clearCallback(int moveType);
+
 	bool activateEventsFromEntities(int moveType);
 
 	bool activateEventFromClosestEntity(int moveType);

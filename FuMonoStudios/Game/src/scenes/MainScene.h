@@ -29,28 +29,29 @@ namespace ecs {
         void createPaquete(int lv);
         void createErrorMessage(Paquete* paqComp, bool, bool);
         void createExclamationPoint();
-    private:
-        void createManual(int NumPages);
-        void createMiniManual();
-        void createSpaceManual();
+
+    protected:
+        virtual std::unordered_map<std::string, ecs::Entity*> createManual(int NumPages);
+        virtual ecs::Entity* createMiniManual();
+        ecs::Entity* createSpaceManual();
         void createMultipleStamp();
         void createBalanzaDigital();
 
         //void createTubo(Paquete::Distrito dist, bool desbloqueado);
 
-        void createClock();
-        void createBolaCristal();
+        ecs::Entity* createClock();
+        ecs::Entity* createBolaCristal();
 
 
         //void createSelladores();
-        void createGarbage();
-        void createCinta();
-        void createBalanza();
-        void createTubo(pq::Distrito dist, bool);
-        void createStamp(TipoHerramienta type);
+        virtual ecs::Entity* createGarbage();
+        ecs::Entity* createCinta();
+        virtual std::unordered_map<std::string, ecs::Entity*> createBalanza();
+        ecs::Entity* createTubo(pq::Distrito dist, bool);
+        ecs::Entity* createStamp(TipoHerramienta type);
         
         void createInks();
-        void createOneInk(TipoHerramienta type);
+        ecs::Entity* createOneInk(TipoHerramienta type);
 
         void updateToolsPerDay(int dia);
 
@@ -61,6 +62,7 @@ namespace ecs {
         bool timerPaused_;
 
         DialogManager dialogMngr_;
+        
         
         ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
 
@@ -81,6 +83,8 @@ namespace ecs {
 
         Entity* manualEnt_;
         Entity* miniManualEnt_;
+
+        std::vector<ecs::Entity*> tubos;
 
         CristalBall* bolaCrist_;
 
