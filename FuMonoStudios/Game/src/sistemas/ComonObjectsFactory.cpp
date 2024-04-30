@@ -80,7 +80,7 @@ void ComonObjectsFactory::addHoverColorMod(ecs::Entity* entity, SDL_Color c)
 		hover = entity->addComponent<HoverSensorComponent>();
 	}
 	//posiblemente meter en un metodo que agregue esta propiedad
-	auto texture = entity->getComponent<RenderImage>()->getCurrentTexture();
+	auto texture = entity->getComponent<RenderImage>()->getTexture();
 	hover->addInCall([texture, c]() {texture->modColor(c.r, c.g, c.b); });
 	hover->addOutCall([texture]() {texture->modColor(255, 255, 255); });
 	hover->addDestoryCall([texture]() {texture->modColor(255, 255, 255); });

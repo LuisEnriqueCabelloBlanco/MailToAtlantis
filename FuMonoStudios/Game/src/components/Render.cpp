@@ -38,7 +38,7 @@ void RenderImage::render() const {
 
 }
 
-Texture* RenderImage::getCurrentTexture() {
+Texture* RenderImage::getTexture() {
 	return texturesVector_[currentTextureIndx_];
 }
 

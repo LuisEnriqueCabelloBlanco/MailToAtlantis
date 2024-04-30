@@ -66,7 +66,6 @@ namespace ecs {
 
         void startWork();
 
-        bool dialogoPendiente;
 #ifdef DEV_TOOLS
         bool nextPacageCorrect_;
         bool stampsUnloked_;

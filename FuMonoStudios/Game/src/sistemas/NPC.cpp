@@ -32,10 +32,10 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 			tipo = "Presentacion";
 			break;
 		case Minima:
-			tipo = "FelicidadMinima";
+			tipo = "FelicidadMinimo";
 			break;
 		case Maxima:
-			tipo = "FelicidadMaxima";
+			tipo = "FelicidadMaximo";
 			break;
 		}
 	}
