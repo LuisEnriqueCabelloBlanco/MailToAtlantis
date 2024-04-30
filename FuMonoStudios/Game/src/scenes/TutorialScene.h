@@ -34,11 +34,13 @@ namespace ecs {
 	private:
 
 		ecs::Entity* createMiniManual() override;
+		std::unordered_map<std::string, ecs::Entity*> createManual(int NumPages) override;
+		std::unordered_map<std::string, ecs::Entity*> createBalanza() override;
 
 		void deactivateTubos();
 		void activateTubos();
 
-		void createGarbage(); // empieza desactivada
+		ecs::Entity* createGarbage() override; // empieza desactivada
 		void activateGarbage();
 		void deactivateGarbage();
 		ecs::Entity* garbage_;

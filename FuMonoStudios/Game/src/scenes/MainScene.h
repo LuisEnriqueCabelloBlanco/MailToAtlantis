@@ -31,7 +31,7 @@ namespace ecs {
         void createExclamationPoint();
 
     protected:
-        virtual ecs::Entity* createManual(int NumPages);
+        virtual std::unordered_map<std::string, ecs::Entity*> createManual(int NumPages);
         virtual ecs::Entity* createMiniManual();
         ecs::Entity* createSpaceManual();
         void createMultipleStamp();
@@ -43,9 +43,9 @@ namespace ecs {
 
 
         //void createSelladores();
-        ecs::Entity* createGarbage();
+        virtual ecs::Entity* createGarbage();
         ecs::Entity* createCinta();
-        ecs::Entity* createBalanza();
+        virtual std::unordered_map<std::string, ecs::Entity*> createBalanza();
         ecs::Entity* createTubo(pq::Distrito dist, bool);
         ecs::Entity* createStamp(TipoHerramienta type);
         
