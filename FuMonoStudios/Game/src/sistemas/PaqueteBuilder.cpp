@@ -51,7 +51,7 @@ ecs::Entity* PaqueteBuilder::buildPackage(int level, ecs::Scene* mScene) {
 
 	ecs::Entity* packageBase;
 	
-	int rnd = sdlutils().rand().nextInt(0, 2);
+	int rnd = sdlutils().rand().nextInt(0, 6);
 
 	if (rnd == 0) {
 		packageBase = buildBasePackage(mScene, true);

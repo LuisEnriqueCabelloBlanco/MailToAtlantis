@@ -73,6 +73,7 @@
     <ClCompile Include="src\sistemas\NPC.cpp" />
     <ClCompile Include="src\sistemas\NPCevent.cpp" />
     <ClCompile Include="src\sistemas\WorkRestrictionsSystem.cpp" />
+    <ClCompile Include="src\sistemas\SpecialObjectsFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="src\sistemas\NPC.h" />
     <ClInclude Include="src\sistemas\NPCevent.h" />
     <ClInclude Include="src\sistemas\WorkRestrictionsSystem.h" />
+    <ClInclude Include="src\sistemas\SpecialObjectsFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\DialogManager.cpp" />

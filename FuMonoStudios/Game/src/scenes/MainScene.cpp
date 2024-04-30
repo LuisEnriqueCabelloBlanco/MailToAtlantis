@@ -46,12 +46,14 @@ ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 #endif // DEV_TOOLS
 	mPaqBuild_ = new PaqueteBuilder(this);
 	mPipeMngr_ = new PipeManager();
+	specialFactory_ = new SpecialObjectsFactory(this);
 }
 
 ecs::MainScene::~MainScene()
 {
 	delete mPaqBuild_;
 	delete mPipeMngr_;
+	delete specialFactory_;
 }
 
 
@@ -151,6 +153,9 @@ void ecs::MainScene::init()
 	sdlutils().musics().at("printer").setMusicVolume(50);*/
 	SoundEmiter::instance()->playMusic("office");
 	SoundEmiter::instance()->playMusic("printer");
+
+
+	specialFactory_->makeObject(SpecialObjectsFactory::ListaNombresDia5Vagabundo);
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(generalData().getDay());

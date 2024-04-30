@@ -9,6 +9,7 @@
 #include "../sistemas/PipeManager.h"
 #include "components/DialogManager.h"
 #include "sistemas/WorkRestrictionsSystem.h"
+#include "../sistemas/SpecialObjectsFactory.h"
 
 namespace ecs {
     class Game;
@@ -85,6 +86,8 @@ namespace ecs {
         PipeManager* mPipeMngr_;
 
         WorkRestrictionsSystem mWorkRes;
+
+        SpecialObjectsFactory* specialFactory_;
     };
 }
 

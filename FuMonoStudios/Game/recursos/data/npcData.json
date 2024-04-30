@@ -52,25 +52,57 @@
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Anemos Togakawa",
+          "distrito": "Hefesto",
+          "legal": false
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Anemos Togakawa",
+          "tuboSeleccionado": "Hefesto"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": "Vagabundo+++++",
+        "textoDiario": "Dice que ha encontrado una pepita de oro y que sera millonario. Tengo que asegurarme que el paquete llegue a su destino, aunque la verdad que la pepita es bastante falsa..."
       },
       "5": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 4,
+        "numPaquetesParaCompletar": 4,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "1":{
+            "remitente": "Francis Gomorra"
+          },
+          "2":{
+            "remitente": "Demetrius DC"
+          },
+          "3":{
+            "remitente": "Anna Gomorra"
+          },
+          "4":{
+            "remitente": "Silvio Peralta"
+          }
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "1":{
+            "remitente": "Francis Gomorra",
+            "tuboSeleccionado": "Basura"
+          },
+          "2":{
+            "remitente": "Demetrius DC",
+            "tuboSeleccionado": "Basura"
+          },
+          "3":{
+            "remitente": "Anna Gomorra",
+            "tuboSeleccionado": "Basura"
+          },
+          "4":{
+            "remitente": "Silvio Peralta",
+            "tuboSeleccionado": "Basura"
+          }
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+          "1": "Vagabundo+++++",
+          "2": "$Vagabundo--------------------"
+        },
+        "textoDiario": "Me ha dado un papel con un sello de un grupo llamado 'lechuzas'. Tiene una serie de nombres, y unas instrucciones."
       },
       "6": {
         "numPaquetes": 1,
@@ -81,7 +113,10 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+",
+        "recompensa": {
+          "1": "Vagabundo+++++",
+          "2": "$Vagabundo--------------------"
+        },
         "textoDiario": "Texto diario"
       },
       "7": {

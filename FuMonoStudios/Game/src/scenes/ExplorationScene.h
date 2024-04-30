@@ -193,13 +193,13 @@ namespace ecs {
 		std::vector<int> pagesByCharacter;
 		int currentDiarioPage;
 		ecs::Entity* diario_;
-		RenderImage* leftPageRnd;
-		Transform* leftPageTr;
-		RenderImage* rightPageRnd;
-		Transform* rightPageTr;
-		RenderImage* caraFelicidad;
-		Texture* rightTex;
-		Texture* leftTex;
+		RenderImage* leftPageRnd = nullptr;
+		Transform* leftPageTr = nullptr;
+		RenderImage* rightPageRnd = nullptr;
+		Transform* rightPageTr = nullptr;
+		RenderImage* caraFelicidad = nullptr;
+		Texture* rightTex = nullptr;
+		Texture* leftTex = nullptr;
     };
 }
 

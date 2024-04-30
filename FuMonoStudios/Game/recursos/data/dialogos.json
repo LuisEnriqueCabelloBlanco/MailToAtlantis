@@ -35,7 +35,7 @@
     ],
     "Dia3": [
       " $!Buenos d$ias amigo! $?Qu$e tal est$as?",
-      " $!Hoy es un d$ia especial amigo! Me he despertado y no me han robado el cart$on, eso tiene que ser una bendici$on de Dios de que lo estoy haciendo bien. JA JA JA !",
+      " $!Hoy estoy muy agradecido amigo! Me he despertado y no me han robado el cart$on, eso tiene que ser una bendici$on de Dios de que lo estoy haciendo bien. JA JA JA !",
       "Ver$as, hoy he mandado un paquete a unos colegas del distrito de Artemisa, y me gustar$ia que llegara de una pieza.",
       "Igual esta un poco mal sellado o el cart$on esta un poquito reventado... pero es que con los recursos que tengo tampoco puedo hacer mucho..."
     ],
@@ -43,10 +43,14 @@
       "Como te dec$ia, les he mandado a unos colegas un paquete. El paquete va hacia Artemisa, $!Recu$erdalo amigo!"
     ],
     "Dia4": [
-      "dia4"
+      " $!Gran amigo! $$?C$omo te va todo?",
+      " $!Hoy es mi d$ia de suerte socio! No vas a creer lo que he encontrado rebuscando en la basura. $!Mira!",
+      "*Te muestra una bola del tama$%o de una u$%a. Tiene un color dorado brillante. Se nota que es falsa*",
+      " $!Estoy que me salgo! Se lo voy a mandar a un joyero para que me diga cuanto vale, lo mandare por paquete, no me la robes eh...",
+      " $!Voy a ser rico!"
     ],
     "PostConversacionDia4": [
-      "postConvDia4"
+      " $!Vaya pepita que me he encontrado chaval! $!Esto seguro me saca de esta miseria!"
     ],
     "Dia5": [
       "dia5"
