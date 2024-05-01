@@ -48,13 +48,16 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 			Paquete* paqComp = paq->getComponent<Paquete>();			
 			paqComp->sellarCalle(paq->getComponent<Paquete>()->getCalle(), ent_->getComponent<Transform>(), true);		
 			SoundEmiter::instance()->playSound("stamp");
-			ent_->addComponent<MoverTransform>(Vector2D(350, 800), 0.5, EaseOutBack);
+			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
 			ent_->getComponent<MoverTransform>()->enable();
 			};
 		break;
 	
 	}
+#ifdef _DEBUG
 	std::cout << "El tipo de herramienta es: " << tipo << std::endl;
+#endif // _DEBUG
+
 }
 void Herramientas::interact(ecs::Entity* paquete) {
 	funcion_(paquete);

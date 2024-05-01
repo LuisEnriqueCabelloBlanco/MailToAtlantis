@@ -6,12 +6,16 @@
 #include "../components/Clickeable.h"
 
 /*
-Clase a la que llamar para crear objetos que se crean frecuentemente (para no andar copiando y pegando codigo
-a lo tonto)
-
+Clase a la que llamar para crear objetos que se crean frecuentemente
+Tales como:
+	-Imagenes
+	-Textos
+	-Botones
 Los metodos devuelven un puntero a la entidad por si se le quiere aplicar mas operaciones en tras crearlo
-*/
 
+Existen otras operaciones como los setters de capa y fuente para determinar que se va a usar (como si fuera openGL)
+Ademas de operaciones para aniadir funcionalidad a las entidades como detecciones de hover o iluminacion en el hover
+*/
 class ComonObjectsFactory
 {
 public:
@@ -36,17 +40,42 @@ public:
 	/// <param name="textures"></param>
 	/// <returns></returns>
 	ecs::Entity* createMultiTextureImage(const Vector2D& pos, const Vector2D& size, const std::vector<Texture*>& textures);
+	/// <summary>
+	/// Crea un objeto que contiene varias imágenes si no se le añade tamaño 
+	/// se asume el tamaño de la primera textura pasada
+	/// </summary>
+	/// <param name="pos"></param>
+	/// <param name="textures"></param>
+	/// <returns></returns>
 	ecs::Entity* createMultiTextureImage(const Vector2D& pos, const std::vector<Texture*>& textures);
 	/// <summary>
-	/// crea un objeto que contiene texto
+	///  crea un objeto que contiene texto
 	/// </summary>
-	/// <param name="scene"></param>
+	/// <param name="pos"></param>
 	/// <param name="text"></param>
 	/// <param name="fontSize"></param>
-	/// <param name="pos"></param>
+	/// <param name="textColor"></param>
 	/// <returns></returns>
 	ecs::Entity* createLabel(const Vector2D& pos,const std::string& text, int fontSize, SDL_Color textColor = build_sdlcolor(0x000000ff));
+	/// <summary>
+	/// crea un objeto que contiene texto con warp text
+	/// </summary>
+	/// <param name="pos"></param>
+	/// <param name="width">ancho maximo que va a ocupar el texto</param>
+	/// <param name="text"></param>
+	/// <param name="fontSize"></param>
+	/// <param name="textColor"></param>
+	/// <returns></returns>
 	ecs::Entity* createLabel(const Vector2D& pos, Uint32 width, const std::string& text, int fontSize, SDL_Color textColor = build_sdlcolor(0x000000ff));
+	/// <summary>
+	/// crea un objeto que contiene texto y ajusta su ancho 
+	/// </summary>
+	/// <param name="pos"></param>
+	/// <param name="size">espacio que ocupa al etiqueta (el acho ajusta el warp del texto)</param>
+	/// <param name="text"></param>
+	/// <param name="fontSize"></param>
+	/// <param name="textColor"></param>
+	/// <returns></returns>
 	ecs::Entity* createLabel(const Vector2D& pos, const Vector2D& size, const std::string& text, int fontSize, SDL_Color textColor= build_sdlcolor(0x000000ff));
 	/// <summary>
 	/// Crea un objeto que es una imagen
@@ -123,7 +152,9 @@ private:
 	/// nombre de la fuente que se usara al crear texturas de texto
 	/// </summary>
 	std::string fontName_;
-
+	/// <summary>
+	/// Vector de texturas creadas que se elimnaran al destruir la instancia de la clase
+	/// </summary>
 	std::vector<Texture*> createdTextures;
 };
 

@@ -100,7 +100,7 @@ void EndWorkScene::animTextos(ecs::Entity* texto) {
 	texto->setActive(true);
 }
 void EndWorkScene::animNumeros(ecs::Entity* number) {
-	std::cout << "Anim numeros";
+
 }
 
 void EndWorkScene::createButtons()

@@ -21,10 +21,17 @@
       "no se usa"
     ],
     "Dia2": [
-      "dia2"
+      " $!Viejo amigo! $?C$omo te va la vida?",
+      " $?Que nos conocimos ayer? Ah bueno. Eso no quita que pueda tener aprecio por mi nuevo amigo.",
+      "De hecho te aprecio tanto que te voy a pedir un favorcillo de nada. Ver$as, llevo comiendo fatal mucho tiempo y no sabes lo que dar$ia yo por un buen filete.",
+      "Un jugoso y delicioso filete... Es lo $unico que deseo en esta vida...",
+      "Me ha contado uno de los campesinos de por aqu$i que hoy iban a mandar un encargo al distrito Demeter, much$isimos paquetes repletos de comida.",
+      "Y digo yo, que si son muchos por uno que se extrav$ie no pasar$a nada...",
+      "Si no te es mucha molestia mand$amelo al distrito de Hestia y lo recoger$e en su nombre.",
+      "Filete..."
     ],
     "PostConversacionDia2": [
-      "postConvDia2"
+      "Apreciar$ia mucho si me dirigieses un paquetillo de comida de esos de Demeter a Hestia, $!Ser$ias el mejor amigo que uno puede tener!"
     ],
     "Dia3": [
       "dia3"
@@ -1007,6 +1014,20 @@
       "si llama pichea el cell",
       "estamos fumando marihuana",
       "hoy seras mi esclava en el cuarto de un motel"
+    ]
+  },
+  "Jefe": {
+    "Dia1": [
+      "dia1"
+    ],
+    "Dia3": [
+      "dia3"
+    ],
+    "Dia5": [
+      "dia5"
+    ],
+    "Dia8": [
+      "dia8"
     ]
   },
     "CasaGrande": {
@@ -2108,129 +2129,129 @@
         "TextoCharco142": [ "Charco142" ]
     },
     "casa1": {
-        "TextoCasa100": [ "Mondongo00" ],
-        "TextoCasa101": [ "Mondongo01" ],
-        "TextoCasa102": [ "Mondongo02" ],
-        
-        "TextoCasa110": [ "Mondongo10" ],
-        "TextoCasa111": [ "Mondongo11" ],
-        "TextoCasa112": [ "Mondongo12" ],
-        
-        "TextoCasa120": [ "Mondongo20" ],
-        "TextoCasa121": [ "Mondongo21" ],
-        "TextoCasa122": [ "Mondongo22" ],
-        
-        "TextoCasa130": [ "Mondongo30" ],
-        "TextoCasa131": [ "Mondongo31" ],
-        "TextoCasa132": [ "Mondongo32" ],
-        
-        "TextoCasa140": [ "Mondongo40" ],
-        "TextoCasa141": [ "Mondongo41" ],
-        "TextoCasa142": [ "Mondongo42" ],
-        
-        "TextoCasa150": [ "Mondongo50" ],
-        "TextoCasa151": [ "Mondongo51" ],
-        "TextoCasa152": [ "Mondongo52" ],
-        
-        "TextoCasa160": [ "Mondongo60" ],
-        "TextoCasa161": [ "Mondongo61" ],
-        "TextoCasa162": [ "Mondongo62" ],
-        
-        "TextoCasa170": [ "Mondongo70" ],
-        "TextoCasa171": [ "Mondongo71" ],
-        "TextoCasa172": [ "Mondongo72" ],
-        
-        "TextoCasa180": [ "Mondongo80" ],
-        "TextoCasa181": [ "Mondongo81" ],
-        "TextoCasa182": [ "Mondongo82" ],
-        
-        "TextoCasa190": [ "Mondongo90" ],
-        "TextoCasa191": [ "Mondongo91" ],
-        "TextoCasa192": [ "Mondongo92" ],
-        
-        "TextoCasa1100": [ "Mondongo100" ],
-        "TextoCasa1101": [ "Mondongo101" ],
-        "TextoCasa1102": [ "Mondongo102" ],
-        
-        "TextoCasa1110": [ "Mondongo110" ],
-        "TextoCasa1111": [ "Mondongo111" ],
-        "TextoCasa1112": [ "Mondongo112" ],
-        
-        "TextoCasa1120": [ "Mondongo120" ],
-        "TextoCasa1121": [ "Mondongo121" ],
-        "TextoCasa1122": [ "Mondongo122" ],
-        
-        "TextoCasa1130": [ "Mondongo130" ],
-        "TextoCasa1131": [ "Mondongo131" ],
-        "TextoCasa1132": [ "Mondongo132" ],
-        
-        "TextoCasa1140": [ "Mondongo140" ],
-        "TextoCasa1141": [ "Mondongo141" ],
-        "TextoCasa1142": [ "Mondongo142" ]
+        "Textocasa100": [ "Mondongo00" ],
+        "Textocasa101": [ "Mondongo01" ],
+        "Textocasa102": [ "Mondongo02" ],
+              
+        "Textocasa110": [ "Mondongo10" ],
+        "Textocasa111": [ "Mondongo11" ],
+        "Textocasa112": [ "Mondongo12" ],
+              
+        "Textocasa120": [ "Mondongo20" ],
+        "Textocasa121": [ "Mondongo21" ],
+        "Textocasa122": [ "Mondongo22" ],
+              
+        "Textocasa130": [ "Mondongo30" ],
+        "Textocasa131": [ "Mondongo31" ],
+        "Textocasa132": [ "Mondongo32" ],
+              
+        "Textocasa140": [ "Mondongo40" ],
+        "Textocasa141": [ "Mondongo41" ],
+        "Textocasa142": [ "Mondongo42" ],
+              
+        "Textocasa150": [ "Mondongo50" ],
+        "Textocasa151": [ "Mondongo51" ],
+        "Textocasa152": [ "Mondongo52" ],
+              
+        "Textocasa160": [ "Mondongo60" ],
+        "Textocasa161": [ "Mondongo61" ],
+        "Textocasa162": [ "Mondongo62" ],
+              
+        "Textocasa170": [ "Mondongo70" ],
+        "Textocasa171": [ "Mondongo71" ],
+        "Textocasa172": [ "Mondongo72" ],
+              
+        "Textocasa180": [ "Mondongo80" ],
+        "Textocasa181": [ "Mondongo81" ],
+        "Textocasa182": [ "Mondongo82" ],
+              
+        "Textocasa190": [ "Mondongo90" ],
+        "Textocasa191": [ "Mondongo91" ],
+        "Textocasa192": [ "Mondongo92" ],
+              
+        "Textocasa1100": [ "Mondongo100" ],
+        "Textocasa1101": [ "Mondongo101" ],
+        "Textocasa1102": [ "Mondongo102" ],
+              
+        "Textocasa1110": [ "Mondongo110" ],
+        "Textocasa1111": [ "Mondongo111" ],
+        "Textocasa1112": [ "Mondongo112" ],
+              
+        "Textocasa1120": [ "Mondongo120" ],
+        "Textocasa1121": [ "Mondongo121" ],
+        "Textocasa1122": [ "Mondongo122" ],
+              
+        "Textocasa1130": [ "Mondongo130" ],
+        "Textocasa1131": [ "Mondongo131" ],
+        "Textocasa1132": [ "Mondongo132" ],
+              
+        "Textocasa1140": [ "Mondongo140" ],
+        "Textocasa1141": [ "Mondongo141" ],
+        "Textocasa1142": [ "Mondongo142" ]
     },
     "casa2": {
-        "TextoCasa2": [
+        "Textocasa2": [
             "Mondongo2",
             ":("
         ],
-        "TextoCasa200": [ "Mondongo200" ],
-        "TextoCasa201": [ "Mondongo201" ],
-        "TextoCasa202": [ "Mondongo202" ],
-        
-        "TextoCasa210": [ "Mondongo210" ],
-        "TextoCasa211": [ "Mondongo211" ],
-        "TextoCasa212": [ "Mondongo212" ],
-        
-        "TextoCasa220": [ "Mondongo220" ],
-        "TextoCasa221": [ "Mondongo221" ],
-        "TextoCasa222": [ "Mondongo222" ],
-        
-        "TextoCasa230": [ "Mondongo230" ],
-        "TextoCasa231": [ "Mondongo231" ],
-        "TextoCasa232": [ "Mondongo232" ],
-        
-        "TextoCasa240": [ "Mondongo240" ],
-        "TextoCasa241": [ "Mondongo241" ],
-        "TextoCasa242": [ "Mondongo242" ],
-        
-        "TextoCasa250": [ "Mondongo250" ],
-        "TextoCasa251": [ "Mondongo251" ],
-        "TextoCasa252": [ "Mondongo252" ],
-        
-        "TextoCasa260": [ "Mondongo260" ],
-        "TextoCasa261": [ "Mondongo261" ],
-        "TextoCasa262": [ "Mondongo262" ],
-        
-        "TextoCasa270": [ "Mondongo270" ],
-        "TextoCasa271": [ "Mondongo271" ],
-        "TextoCasa272": [ "Mondongo272" ],
-        
-        "TextoCasa280": [ "Mondongo280" ],
-        "TextoCasa281": [ "Mondongo281" ],
-        "TextoCasa282": [ "Mondongo282" ],
-        
-        "TextoCasa290": [ "Mondongo290" ],
-        "TextoCasa291": [ "Mondongo291" ],
-        "TextoCasa292": [ "Mondongo292" ],
-        
-        "TextoCasa2100": [ "Mondongo2100" ],
-        "TextoCasa2101": [ "Mondongo2101" ],
-        "TextoCasa2102": [ "Mondongo2102" ],
-        
-        "TextoCasa2110": [ "Mondongo2110" ],
-        "TextoCasa2111": [ "Mondongo2111" ],
-        "TextoCasa2112": [ "Mondongo2112" ],
-        
-        "TextoCasa2120": [ "Mondongo2120" ],
-        "TextoCasa2121": [ "Mondongo2121" ],
-        "TextoCasa2122": [ "Mondongo2122" ],
-        
-        "TextoCasa2130": [ "Mondongo2130" ],
-        "TextoCasa2131": [ "Mondongo2131" ],
-        "TextoCasa2132": [ "Mondongo2132" ],
-        
-        "TextoCasa2140": [ "Mondongo140" ],
-        "TextoCasa2141": [ "Mondongo141" ],
-        "TextoCasa2142": [ "Mondongo142" ]
+        "Textocasa200": [ "Mondongo200" ],
+        "Textocasa201": [ "Mondongo201" ],
+        "Textocasa202": [ "Mondongo202" ],
+
+        "Textocasa210": [ "Mondongo210" ],
+        "Textocasa211": [ "Mondongo211" ],
+        "Textocasa212": [ "Mondongo212" ],
+
+        "Textocasa220": [ "Mondongo220" ],
+        "Textocasa221": [ "Mondongo221" ],
+        "Textocasa222": [ "Mondongo222" ],
+
+        "Textocasa230": [ "Mondongo230" ],
+        "Textocasa231": [ "Mondongo231" ],
+        "Textocasa232": [ "Mondongo232" ],
+
+        "Textocasa240": [ "Mondongo240" ],
+        "Textocasa241": [ "Mondongo241" ],
+        "Textocasa242": [ "Mondongo242" ],
+
+        "Textocasa250": [ "Mondongo250" ],
+        "Textocasa251": [ "Mondongo251" ],
+        "Textocasa252": [ "Mondongo252" ],
+
+        "Textocasa260": [ "Mondongo260" ],
+        "Textocasa261": [ "Mondongo261" ],
+        "Textocasa262": [ "Mondongo262" ],
+
+        "Textocasa270": [ "Mondongo270" ],
+        "Textocasa271": [ "Mondongo271" ],
+        "Textocasa272": [ "Mondongo272" ],
+
+        "Textocasa280": [ "Mondongo280" ],
+        "Textocasa281": [ "Mondongo281" ],
+        "Textocasa282": [ "Mondongo282" ],
+
+        "Textocasa290": [ "Mondongo290" ],
+        "Textocasa291": [ "Mondongo291" ],
+        "Textocasa292": [ "Mondongo292" ],
+
+        "Textocasa2100": [ "Mondongo2100" ],
+        "Textocasa2101": [ "Mondongo2101" ],
+        "Textocasa2102": [ "Mondongo2102" ],
+
+        "Textocasa2110": [ "Mondongo2110" ],
+        "Textocasa2111": [ "Mondongo2111" ],
+        "Textocasa2112": [ "Mondongo2112" ],
+
+        "Textocasa2120": [ "Mondongo2120" ],
+        "Textocasa2121": [ "Mondongo2121" ],
+        "Textocasa2122": [ "Mondongo2122" ],
+
+        "Textocasa2130": [ "Mondongo2130" ],
+        "Textocasa2131": [ "Mondongo2131" ],
+        "Textocasa2132": [ "Mondongo2132" ],
+
+        "Textocasa2140": [ "Mondongo140" ],
+        "Textocasa2141": [ "Mondongo141" ],
+        "Textocasa2142": [ "Mondongo142" ]
     }
 }

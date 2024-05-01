@@ -106,10 +106,40 @@ void Paquete::sellarCalle(Calle sello, Transform* trSellador, bool multicolor) {
 		
 		//creamos transform y colocamos el sello en el centro del sellador
 		float scale = 0.2f;
+
+		float x;
+
+		float y;
+
+		if (posSellador.getX() + selloEntTex->width() / 2 * scale - paqTr->getPos().getX() < 0) {
+
+			x = (selloEntTex->width() / 2) * scale;
+
+		}
+		else if (posSellador.getX() + selloEntTex->width() / 2 * scale - paqTr->getPos().getX() > paqTr->getWidth() - selloEntTex->width() / 2 * scale) {
+
+			x = paqTr->getWidth() - selloEntTex->width() * scale;
+		}
+		else {
+			x = posSellador.getX() + selloEntTex->width() / 2 * scale - paqTr->getPos().getX();
+		}
+
+		if (posSellador.getY() + selloEntTex->height() / 2 * scale - paqTr->getPos().getY() < 0) {
+
+			y = (selloEntTex->height() / 2) * scale;
+
+		}
+		else if (posSellador.getY() + selloEntTex->height() / 2 * scale - paqTr->getPos().getY() > paqTr->getHeigth() - selloEntTex->height() / 2 * scale) {
+
+			y = paqTr->getHeigth() - selloEntTex->height() * scale;
+		}
+		else {
+			y = posSellador.getY() + selloEntTex->height() / 2 * scale - paqTr->getPos().getY();
+		}
+
 		Transform* selloEntTr = selloEnt->addComponent<Transform>
-			(posSellador.getX() + selloEntTex->width() / 2 * scale - paqTr->getPos().getX(),
-			posSellador.getY() + selloEntTex->height() / 2 * scale - paqTr->getPos().getY(),
-			selloEntTex->width() * scale, selloEntTex->height() * scale);
+			(x, y, selloEntTex->width() * scale, selloEntTex->height() * scale);
+
 		selloEnt->addComponent<RenderImage>(selloEntTex);
 		selloEntTr->setParent(paqTr);
 	}

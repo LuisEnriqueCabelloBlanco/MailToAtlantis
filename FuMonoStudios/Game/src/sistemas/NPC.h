@@ -7,11 +7,11 @@
 class NPCevent;
 namespace npc {
 	// enum con tipos de felicidad
-	enum Felicidad { Minima, Mala, Normal, Buena, Maxima, NoHabladoAun };
+	enum Felicidad { SeFue, Minima, Mala, Normal, Buena, Maxima, NoHabladoAun };
 
 	// enum con el nombre de todos los NPC
 	enum Personaje {
-		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable
+		Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable, Jefe
 	};
 
 
@@ -22,11 +22,12 @@ namespace npc {
 		{Artesano,"Artesano"},
 		{Tarotisa, "Tarotisa"},
 		{Soldado, "Soldado"},
-		{Contable, "Contable"}
+		{Contable, "Contable"},
+        {Jefe, "Jefe"}
 	};
 
 	const std::unordered_map<Felicidad, std::string> happinessToString = {
-		{Minima, "Mínima"},
+		{Minima, "Mï¿½nima"},
 		{Mala, "Mala"},
 		{Normal, "Normal"},
 		{Buena, "Buena"},
@@ -34,10 +35,10 @@ namespace npc {
 		{NoHabladoAun, "No Hablado Aun"}
 	};
 
-	// Los datos de los NPC deben actualizarse al acabar cada día.
-	// Recogen datos sobre su felicidad, así como que dialogo deben enseñar.
-	// Al iniciarse, su felicidad estará en NoHabladoAun, y al sacar su
-	// primer diálogo cambiará a Normal.
+	// Los datos de los NPC deben actualizarse al acabar cada dï¿½a.
+	// Recogen datos sobre su felicidad, asï¿½ como que dialogo deben enseï¿½ar.
+	// Al iniciarse, su felicidad estarï¿½ en NoHabladoAun, y al sacar su
+	// primer diï¿½logo cambiarï¿½ a Normal.
 	// NPC MENORES: El bool giveEvent dicta si debe dar evento (true) o dar
 	// un dialogo generico (false). El int iteration itera sobre los 3 posibles
 	// dialogos genericos que tiene el personaje.
@@ -45,7 +46,7 @@ namespace npc {
 	// ha hablado con el una vez, y sacara el dialogo mas corto que sale despues
 	// del dialogo original de ese dia.
 	// 
-	// Al acabar el día se debe llamar a setupDayData() para reiniciar las 
+	// Al acabar el dï¿½a se debe llamar a setupDayData() para reiniciar las 
 	// variables y ajustar datos segun el dia
 	// 
 	// NOTA IMPORTANTE: POSBILEMENTE SE PONDRA AQUI EL TEMA DE LAS CONDICIONES
@@ -64,6 +65,11 @@ namespace npc {
 		int numFelicidad;
 		int numMisionesAceptadas;
 		std::vector<NPCevent*> events;
+		// el primero es si ha sido completado, el segundo es si ha sido succesful
+		std::vector<std::pair<bool, int>> eventosCompletados;
+		bool postConversation;
+
+		bool misionAceptada;
 	};
 
 #pragma region NPCdata
@@ -83,13 +89,9 @@ namespace npc {
 		void deactivateEvent();
 
 		std::vector<bool> diasDanEvento;
-		std::pair<int, NPCevent*> selectedEvent;
-
-		std::vector<bool> eventosCompletados;
 
 		bool giveEvent;
 		int iteration;
-		bool postConversation;
 	};
 
 	struct NPCMayorData : public NPCdata {
@@ -100,7 +102,5 @@ namespace npc {
 		void iterateDialogues() override {};
 		void setupDayData() override;
 		NPCevent* getEvent() override;
-	private:
-		bool postConversation;
 	};
 }

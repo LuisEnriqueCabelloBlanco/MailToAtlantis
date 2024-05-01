@@ -154,7 +154,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\entities\CristalBall.cpp" />
+    <ClCompile Include="src\sistemas\PipeManager.cpp" />
     <ClCompile Include="src\scenes\ConfigScene.cpp" />
+    <ClCompile Include="src\sistemas\NPCevent.cpp" />
     <ClCompile Include="src\sistemas\NPCeventSystem.cpp" />
     <ClCompile Include="src\components\HoverLayerComponent.cpp" />
     <ClCompile Include="src\components\HoverSensorComponent.cpp" />
@@ -219,9 +222,13 @@
     <ClCompile Include="src\architecture\Time.cpp" />
     <ClCompile Include="src\scenes\TutorialScene.cpp" />
     <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
+    <ClCompile Include="src\sistemas\WorkRestrictionsSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\entities\CristalBall.h" />
+    <ClInclude Include="src\sistemas\PipeManager.h" />
     <ClInclude Include="src\scenes\ConfigScene.h" />
+    <ClInclude Include="src\sistemas\NPCevent.h" />
     <ClInclude Include="src\sistemas\NPCeventSystem.h" />
     <ClInclude Include="src\components\HoverLayerComponent.h" />
     <ClInclude Include="src\components\HoverSensorComponent.h" />
@@ -300,6 +307,7 @@
     <ClInclude Include="src\architecture\Time.h" />
     <ClInclude Include="src\scenes\TutorialScene.h" />
     <ClInclude Include="src\sistemas\TutorialSystem.h" />
+    <ClInclude Include="src\sistemas\WorkRestrictionsSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties.props" />
@@ -310,7 +318,6 @@
     <None Include="recursos\config\sounds.json" />
     <None Include="recursos\data\dialogos.json" />
     <None Include="recursos\data\eventosjefe.json" />
-    <None Include="recursos\data\intObjsData.json" />
     <None Include="recursos\data\npcData.json" />
     <None Include="recursos\data\saveFile.json" />
     <None Include="recursos\dialogos\dialogos.json" />

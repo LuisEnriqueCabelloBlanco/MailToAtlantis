@@ -21,7 +21,7 @@ Clase que genera los dialogos que se van a escribir
 Carga los dialogos del json dialogos.json
 
 Para cargar una entrada en el json, debemos usar el enum DialogSelection.
-Este sistema irá añadiendo los strings al dialogComponent.
+Este sistema irï¿½ aï¿½adiendo los strings al dialogComponent.
 En caso de ser un npc, tambien hara que sus dialogos cambien, en funcion de
 si ya le has hablado etc
 
@@ -81,7 +81,7 @@ public:
 
     /// <summary>
     /// Avanza al siguente dialogo. 
-    /// Si ya está en el ultimo diálogo devuelve false y resetea
+    /// Si ya estï¿½ en el ultimo diï¿½logo devuelve false y resetea
     /// el index a 0
     /// </summary>
     bool nextDialog();
@@ -90,6 +90,7 @@ public:
     void setDialogues(const DialogSelection ds, const std::string& tipoDialogo, int dialogueSelection);
     void setDialogues(const DialogSelection ds, const std::string& t) { setDialogues(ds, t, -1); }
     void setDialogues(const DialogSelection ds) { setDialogues(ds, "NULL", -1); }
+    void setDialogues(std::string& dialogo); //no se pasa por const porque la modificamos con el fixText, no te preocupes cleon
 
     void startConversation(const std::string& character);
     void startConversationWithObj(const std::string& interactableObj);
@@ -107,7 +108,7 @@ public:
 private:
     void fixText(std::string& text);
 
-    std::string dialogSelectionToString(const DialogSelection ds);
+    std::string dialogSelectionToString(DialogSelection ds);
 
     bool isNPC(const DialogSelection ds);
 
@@ -119,7 +120,7 @@ private:
     std::string jsonPath;
 
     /// <summary>
-    /// Vector donde se almacenan todos los diálogos que se van a soltar
+    /// Vector donde se almacenan todos los diï¿½logos que se van a soltar
     /// </summary>
     std::vector<std::string> dialogs_;
 

@@ -51,7 +51,7 @@ ecs::Entity* PaqueteBuilder::buildPackage(int level, ecs::Scene* mScene) {
 
 	ecs::Entity* packageBase;
 	
-	int rnd = sdlutils().rand().nextInt(0, 2);
+	int rnd = sdlutils().rand().nextInt(0, 10);
 
 	if (rnd == 0) {
 		packageBase = buildBasePackage(mScene, true);
@@ -178,7 +178,8 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene, bool esCarta)
 		{
 			herrEnt->interact(packageBase);
 		}
-		}, generalData().DropIn);
+
+	}, generalData().DropIn);
 
 	packageBase->addComponent<MoverTransform>(packageBase->getComponent<Transform>()->getPos() - Vector2D(200, 0),
 		1, Easing::EaseOutBack)->disable();

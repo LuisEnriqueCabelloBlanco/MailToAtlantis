@@ -41,6 +41,8 @@ void ecs::TutorialScene::init() {
 	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
 		&sdlutils().images().at("fondoOficina"));
 
+	mPipeMngr_->init();
+
 	createManual();
 	createMiniManual();
 	createSpaceManual();
@@ -268,7 +270,7 @@ void ecs::TutorialScene::activateTubos() {
 	for (int i = 0; i < 7; i++)
 	{
 		Trigger* tuboTri = tubos[i]->addComponent<Trigger>();
-		PackageChecker* tuboCheck = tubos[i]->addComponent<PackageChecker>(Distrito(i), this);
+		PackageChecker* tuboCheck = tubos[i]->addComponent<PackageChecker>(Distrito(i), this, mPipeMngr_);
 	}
 }
 
@@ -293,7 +295,7 @@ void ecs::TutorialScene::activateGarbage() {
 		if(e->getComponent<Paquete>() != nullptr)
 		tutorialSys_->registerAction(TutorialSystem::Basura);
 		}, generalData().DropIn);
-	garbage_->addComponent<PackageChecker>(Erroneo, this);
+	garbage_->addComponent<PackageChecker>(Erroneo, this, mPipeMngr_);
 }
 
 void ecs::TutorialScene::deactivateGarbage() {
@@ -455,7 +457,7 @@ void ecs::TutorialScene::createBalanza() {
 
 	// BalanzaFlecha
 	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanzaFlecha = factory_->createImage(Vector2D(45, 20), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(45, 20), Vector2D(sdlutils().images().at("balanzaFlecha2").width(), sdlutils().images().at("balanzaFlecha2").height()), &sdlutils().images().at("balanzaFlecha2"));
 	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
 	balanzaFlechaTr->setScale(scale);
 	RotarTransform* rotComp = balanzaFlecha->addComponent<RotarTransform>();

@@ -14,14 +14,14 @@
 #include "../sistemas/SoundEmiter.h";
 #include "../sistemas/NPCeventSystem.h"
 
-PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc) : 
-	toDis_(dis), extraCond_(),mainSc_(sc), tutSc_(nullptr)
+PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc, PipeManager* mngr) : 
+	toDis_(dis),mainSc_(sc), tutSc_(nullptr), mManager_(mngr)
 {
 
 }
 
-PackageChecker::PackageChecker(pq::Distrito dis, ecs::TutorialScene* sc) :
-	toDis_(dis), extraCond_(), tutSc_(sc), mainSc_(nullptr)
+PackageChecker::PackageChecker(pq::Distrito dis, ecs::TutorialScene* sc, PipeManager* mngr) :
+	toDis_(dis), tutSc_(sc), mainSc_(nullptr), mManager_(mngr)
 {
 
 }
@@ -39,15 +39,16 @@ void PackageChecker::initComponent()
 	tri->addCallback(call, generalData().DropIn);
 }
 
-void PackageChecker::addCondition(Condition newCond)
+/*void PackageChecker::addCondition(Condition newCond)
 {
 	extraCond_.push_back(newCond);
-}
+}*/
 
 bool PackageChecker::checkPackage(Paquete* package)
 {	
-	bool correctPack = package->correcto() && checkAdditionalConditions(package);		
-	return  (correctPack && package->bienSellado()) || (!correctPack && toDis_ == pq::Erroneo);
+	/*bool correctPack = package->correcto() && checkAdditionalConditions(package);
+	return  (correctPack && package->bienSellado()) || (!correctPack && toDis_ == pq::Erroneo);*/
+	return mManager_->checkPackage(package, toDis_);
 }
 
 void PackageChecker::checkEntity(ecs::Entity* ent)
@@ -95,7 +96,7 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 				
 		}
 
-		generalData().npcEventSys->checkPaqueteSent(ent->getComponent<Paquete>());
+		generalData().npcEventSys->checkPaqueteSent(ent->getComponent<Paquete>(),toDis_);
 
 #ifdef QA_TOOLS
 
@@ -116,6 +117,7 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 	}
 }
 
+/*
 bool PackageChecker::checkAdditionalConditions(Paquete* package)
 {
 	bool aditional = true;
@@ -125,7 +127,7 @@ bool PackageChecker::checkAdditionalConditions(Paquete* package)
 		}
 	}
 	return aditional;
-}
+}*/
 
 
 
