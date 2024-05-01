@@ -540,7 +540,7 @@ void ecs::MainScene::createManual(int NumPages)
 		std::vector<int> indexTextures = { 2, 3, 6, 7, 8 };
 
 		auto pagCodigos = [manualRender]() { manualRender->setTexture(2); };
-		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonIndexSize, buttonTexture, pagCodigos);
+		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonIndexSize, buttonTexture, pagCodigos, "page");
 		indexCodigos->getComponent<Transform>()->setParent(manualTransform);
 		factory_->addHoverColorMod(indexCodigos);
 

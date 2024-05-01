@@ -275,14 +275,14 @@ void ecs::ExplorationScene::createDiario() {
 	ecs::Entity* pasarPagIzq = factory_->createImageButton(Vector2D(43,315),Vector2D(40,40), 
 		&sdlutils().images().at("cambioPag"), [this]() {
 			changeDiarioPages(false);
-		});
+		}, "page");
 	pasarPagIzq->getComponent<Transform>()->setParent(diario_->getComponent<Transform>());
 	pasarPagIzq->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
 
 	ecs::Entity* pasarPagDer = factory_->createImageButton(Vector2D(516, 315), Vector2D(40, 40),
 		&sdlutils().images().at("cambioPag"), [this]() {
 			changeDiarioPages(true);
-		});
+		}, "page");
 	pasarPagDer->getComponent<Transform>()->setParent(diario_->getComponent<Transform>());
 
 	factory_->setLayer(ecs::layer::DEFAULT);

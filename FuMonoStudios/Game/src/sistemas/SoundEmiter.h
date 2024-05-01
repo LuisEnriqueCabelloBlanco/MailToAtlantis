@@ -38,6 +38,7 @@ private:
 	void processSoundListJSON();
 
 	void haltAllSounds();
+	void haltAllMusic();
 
 	int soundVolume_;
 	int musicVolume_;
