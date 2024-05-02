@@ -92,10 +92,6 @@ void Game::run()
 		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_F)) {
 			sdlutils().toggleFullScreen();
 		}
-		if (ih().isKeyDown(SDL_SCANCODE_P)) {
-			loadScene(ecs::sc::PAUSE_SCENE);
-			gamePaused_ = true;
-		}
 		/*if (ih().isKeyDown(SDL_SCANCODE_P)) {
 			loadScene(ecs::sc::PAUSE_SCENE);
 			gamePaused_ = true;

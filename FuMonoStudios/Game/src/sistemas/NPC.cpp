@@ -33,6 +33,7 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 			break;
 		case Minima:
 			tipo = "FelicidadMinima";
+			felicidad = SeFue;
 			break;
 		case Maxima:
 			tipo = "FelicidadMaxima";
@@ -147,7 +148,11 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 		postConversation = true;
 		break;
 	case Minima:
-		aux = "FelicidadMinimo";
+		aux = "FelicidadMinima";
+		felicidad = SeFue;
+		break;
+	case Maxima:
+		aux = "FelicidadMaxima";
 		break;
 	default:
 		aux = postConversation ?

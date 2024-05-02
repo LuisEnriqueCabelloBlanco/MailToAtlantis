@@ -51,7 +51,7 @@ ecs::Entity* PaqueteBuilder::buildPackage(int level, ecs::Scene* mScene) {
 
 	ecs::Entity* packageBase;
 	
-	int rnd = sdlutils().rand().nextInt(0, 2);
+	int rnd = sdlutils().rand().nextInt(0, 10);
 
 	if (rnd == 0) {
 		packageBase = buildBasePackage(mScene, true);
@@ -126,7 +126,6 @@ ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle call
 	addVisualElements(base);
 	selectRandomRoute();
 	base->addComponent<Wrap>(40, 0, route, selectedRouteIndex);
-
 	return base;
 }
 

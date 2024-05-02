@@ -1,6 +1,6 @@
 #pragma once
 #include "../architecture/Component.h"
-
+#include "../sistemas/ComonObjectsFactory.h"
 class RotarTransform;
 class Transform;
 
@@ -17,8 +17,15 @@ public:
 	void initAnimations(ecs::Entity* paquete, ecs::Entity* balanzaB, RotarTransform* flechaRotComp);
 	void finishAnimatios(ecs::Entity* paquete, RotarTransform* flechaRotComp);
 
+	//Balanza Digital
+	void initAnimationsDigital(ecs::Entity* paquete, ecs::Entity* balanzaB);
+	void finishAnimatiosDigital(ecs::Entity* paquete);
+	int getPaquetePeso() {return paquetePeso_;};
+
 private:
 	Transform* myTransform_;
 	bool startAnimation;
+	ComonObjectsFactory* factory_;
+	int paquetePeso_;
 };
 

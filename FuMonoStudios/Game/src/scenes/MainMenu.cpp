@@ -71,7 +71,14 @@ void ecs::MainMenu::init()
 	factory_->addHilghtOnHover(loadSave);
 	factory_->addHoverColorMod(loadSave);
 
-	auto exit = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 700), "Salir", 50, [this]() {
+	auto ajustes = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 700), "Configuracion", 50, [this]() {
+		sdlutils().musics().at("mainMenu").haltMusic();
+	gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::CONFIG_SCENE);
+		}, textColor);
+	factory_->addHilghtOnHover(ajustes);
+	factory_->addHoverColorMod(ajustes);
+
+	auto exit = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 800), "Salir", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().endGame();
 		},textColor);

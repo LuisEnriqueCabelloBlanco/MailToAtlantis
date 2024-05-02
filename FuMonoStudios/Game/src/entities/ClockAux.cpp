@@ -12,6 +12,7 @@ ClockAux::ClockAux(float MinigameTime) {
 	hours = 0;
 	minutes = 0;
 	timeMultiplier = (1440 / MinigameTime) * Time::getDeltaTime();
+	trManecillaL = nullptr;
 	trManecillaS = nullptr;
 	lowTimeFlag = false;
 }
@@ -26,9 +27,9 @@ void ClockAux::initComponent() {
 	ent_->addComponent<Transform>(350, 510, 210, 140, 0);
 	clockRender = ent_->addComponent<RenderImage>(&sdlutils().images().at("reloj"));
 
-	/*ecs::Entity* manecillaL = mngr->addEntity(ecs::layer::BACKGROUND);
+	ecs::Entity* manecillaL = mngr->addEntity(ecs::layer::BACKGROUND);
 	trManecillaL = manecillaL->addComponent<Transform>(1430, 555, 25, 40);
-	manecillaL->addComponent<RenderImage>(&sdlutils().images().at("manecillaL"));*/
+	manecillaL->addComponent<RenderImage>(&sdlutils().images().at("manecillaL"));
 
 	ecs::Entity* manecillaS = mngr->addEntity(ecs::layer::BACKGROUND);
 	trManecillaS = manecillaS->addComponent<Transform>(1435, 580, 25, 15, 0);
@@ -45,9 +46,9 @@ void ClockAux::update() {
 		float x = ((minutes - 15) / 9.55);
 		float y = ((hours - 6) / 3.82);
 
-		/*trManecillaL->setPos(clockCenter.getX() + offsetL.getX() + radiusManL * cos(x),
+		trManecillaL->setPos(clockCenter.getX() + offsetL.getX() + radiusManL * cos(x),
 			clockCenter.getY() + offsetL.getY() + radiusManL * sin(x));
-		trManecillaL->setRotation(90 + x * CONST_ROT);*/
+		trManecillaL->setRotation(90 + x * CONST_ROT);
 
 		trManecillaS->setPos(clockCenter.getX() + offsetS.getX() + radiusManS * cos(y),
 			clockCenter.getY() + offsetS.getY() + radiusManS * sin(y));

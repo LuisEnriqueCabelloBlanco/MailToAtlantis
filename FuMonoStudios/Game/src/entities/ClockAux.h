@@ -29,7 +29,7 @@ private:
     float hours;
     float minutes;
     Vector2D clockCenter;
-    //Transform* trManecillaL;
+    Transform* trManecillaL;
     Transform* trManecillaS;
     // numeros magicos para que roten las manecillas en el centro del reloj (no tocar)
     const float CONST_ROT = 57.3;
