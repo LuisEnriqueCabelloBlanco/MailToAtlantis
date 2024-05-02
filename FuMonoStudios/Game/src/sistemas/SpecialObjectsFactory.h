@@ -9,17 +9,18 @@ class DragAndDrop;
 class SpecialObjectsFactory
 {
 public:
-	enum NombreObjeto {
-		ListaNombresDia5Vagabundo
-	};
+	
 
 	SpecialObjectsFactory(ecs::Scene* scene);
 	~SpecialObjectsFactory();
 
-
-	ecs::Entity* makeObject(NombreObjeto obj);
+	// llamar al empezar el dia y elegira que objetos especiales poner
+	void setupDayObjects();
 private:
-	ecs::Entity* makeListaVagabundo();
+
+	void makePapelAgujeros();
+
+	void makeListaVagabundo();
 
 	ecs::Scene* scene;
 

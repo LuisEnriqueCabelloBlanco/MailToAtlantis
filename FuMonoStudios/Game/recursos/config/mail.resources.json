@@ -239,8 +239,10 @@
       "id": "selloPesoMedio",
       "file": "recursos/images/PesoMedio.png"
     },
-
-
+    {
+      "id": "papelAgujeros",
+      "file": "recursos/images/PapelAgujeros.png"
+    },
     {
       "id": "notaError",
       "file": "recursos/images/notaError.png"

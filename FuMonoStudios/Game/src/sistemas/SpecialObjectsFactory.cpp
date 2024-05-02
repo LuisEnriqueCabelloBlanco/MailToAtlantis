@@ -13,18 +13,19 @@ SpecialObjectsFactory::~SpecialObjectsFactory() {
 		delete t;
 }
 
-ecs::Entity* SpecialObjectsFactory::makeObject(NombreObjeto obj) {
-	ecs::Entity* ent = nullptr;
-	switch (obj)
-	{
-	case ListaNombresDia5Vagabundo:
-		ent = makeListaVagabundo();
-		break;
-	}
-	return ent;
+
+
+void SpecialObjectsFactory::setupDayObjects() {
+
+	// lista vagabundo
+	if (generalData().getNPCData(Vagabundo)->numMisionesAceptadas == 4 && generalData().getNPCData(Vagabundo)->postConversation)
+		makeListaVagabundo();
+	if ((generalData().getNPCData(Vagabundo)->numMisionesAceptadas == 4 ||
+		generalData().getNPCData(Vagabundo)->numMisionesAceptadas == 5) && generalData().getNPCData(Vagabundo)->postConversation)
+		makePapelAgujeros();
 }
 
-ecs::Entity* SpecialObjectsFactory::makeListaVagabundo() {
+void SpecialObjectsFactory::makeListaVagabundo() {
 	ecs::Entity* ent = scene->addEntity(ecs::layer::OFFICEELEMENTS);
 
 	Transform* tr = ent->addComponent<Transform>(1200,600, 250, 400);
@@ -44,6 +45,13 @@ ecs::Entity* SpecialObjectsFactory::makeListaVagabundo() {
 	RenderImage* textoRnd = texto->addComponent<RenderImage>(textTexture);
 	textoTr->setWidth(textoRnd->getTexture()->width());
 	textoTr->setHeith(textoRnd->getTexture()->height());
+}
 
-	return ent;
+void SpecialObjectsFactory::makePapelAgujeros() {
+	ecs::Entity* ent = scene->addEntity(ecs::layer::OFFICEELEMENTS);
+	Transform* tr = ent->addComponent<Transform>(1400, 600, 320, 245);
+	ent->addComponent<RenderImage>(&sdlutils().images().at("papelAgujeros"));
+	ent->addComponent<DragAndDrop>(false, "arrastrar");
+	ent->addComponent<Gravity>();
+	ent->addComponent<Depth>();
 }

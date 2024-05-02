@@ -159,11 +159,10 @@ void ecs::MainScene::init()
 	SoundEmiter::instance()->playMusic("office");
 	SoundEmiter::instance()->playMusic("printer");
 
-
-	specialFactory_->makeObject(SpecialObjectsFactory::ListaNombresDia5Vagabundo);
-
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(generalData().getDay());
+
+	specialFactory_->setupDayObjects();
 }
 
 void ecs::MainScene::close() {
