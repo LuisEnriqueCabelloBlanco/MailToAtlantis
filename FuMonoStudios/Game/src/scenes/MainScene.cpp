@@ -77,6 +77,7 @@ void ecs::MainScene::update()
 		}
 	}
 	dialogMngr_.update();
+
 }
 
 void ecs::MainScene::render()
@@ -112,6 +113,10 @@ void ecs::MainScene::init()
 
 	//for (int i = 0; i < 7; i++) {
 	//	createTubo((pq::Distrito)i);
+	//}	
+
+	//La bola de cristal se tiene que crear antes que el primer paquete
+	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BOLA_UPGRADE)) createBolaCristal();	  //Este es la bola de cristal. Si el jugador la ha desbloqueado, esta aparecerá en la oficina				
 	//}
 	mPipeMngr_->init();
 
@@ -121,7 +126,7 @@ void ecs::MainScene::init()
 
 	//createClock(); empieza a girar desde que se entra a la escena y queremos que lo haga cuando entres al trabajo
 
-	createGarbage();
+	createGarbage();	
 
 	int dia = generalData().getDay();
 	if (dia % 4 == 2 || dia == 1 || dia == 3 || dia == 5 || dia == 8) //basura lo se pero la progresion es la que hay, por lo menos he podido hacer aritmetica modular para los eventos del jefe al ser constantes
@@ -174,6 +179,17 @@ void ecs::MainScene::createClock() {
 	Entity* clock = addEntity(ecs::layer::BACKGROUND);
 	clock->addComponent<ClockAux>(MINIGAME_TIME);
 }
+void ecs::MainScene::createBolaCristal() {	 
+	int tamano = 3;
+	std::vector<Texture*> ballTextures;
+	ballTextures.reserve(tamano);
+	for (int i = 1; i <= tamano; i++) {
+		ballTextures.emplace_back(&sdlutils().images().at("bola" + std::to_string(i)));
+	}
+	Entity* bola = factory_->createMultiTextureImage(Vector2D(700, 500), Vector2D(150, 200), ballTextures);
+	bolaCrist_ = bola->addComponent<CristalBall>(bola->getComponent<RenderImage>());
+	std::cout << "QsjndaskjnsdanjUeso\n";
+}
 
 void ecs::MainScene::createInks() {
 
@@ -210,25 +226,25 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 void ecs::MainScene::updateToolsPerDay(int dia)
 {
+	GeneralData::instance ()->setUpgradeValue (ecs::upg::BALANZA_UPGRADE, true);
+	dia = 5;
 	if(dia == 0)
-		return;
-
-
+		return;	
+	
 	if (dia >= 1) {
-		createStamp(SelloCalleA);
+		if (GeneralData::instance()->getUpgradeValue(ecs::upg::SELLO_UPGRADE)) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina								
+		else createStamp(SelloCalleA);
 
 		createInks();
 
 	}
 
 	if (dia >= 5) {
-		createBalanza();
+		if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BALANZA_UPGRADE)) createBalanzaDigital ();
+		else createBalanza();
 	}
 
-	if (dia >= 8) {
-		//if(GeneralData::instance()->getSelloMulticolor()) 
-		//createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
-		//createExclamationPoint();		//Ignorad esto, está aquí para hacer pruebas. Lo quito en cuanto funcione -Javier
+	if (dia >= 8) {				
 		createCinta();
 	}
 
@@ -303,7 +319,7 @@ void ecs::MainScene::createMultipleStamp()
 
 	Entity* stamp = addEntity(ecs::layer::STAMP);
 	Texture* StampTex = &sdlutils().images().at("selladorM");			
-	Transform* tr_ = stamp->addComponent<Transform>(500, 300, StampTex->width(), StampTex->height());	
+	Transform* tr_ = stamp->addComponent<Transform>(300, 300, StampTex->width(), StampTex->height());
 	stamp->addComponent<RenderImage>(StampTex);
 	stamp->addComponent<Gravity>();
 	stamp->addComponent<Depth>();
@@ -318,7 +334,9 @@ void ecs::MainScene::createMultipleStamp()
 void ecs::MainScene::createCinta() {
 
 	factory_->setLayer(ecs::layer::TAPE);
-	Entity* cinta = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("cinta"));
+	Entity* cinta;
+	if(GeneralData::instance ()->getUpgradeValue (ecs::upg::ENVOLVER_UPGRADE)) cinta = factory_->createImage (Vector2D (560, 500), Vector2D (100, 150), &sdlutils ().images ().at ("cintaRapida"));
+	else cinta = factory_->createImage (Vector2D (560, 500), Vector2D (100, 150), &sdlutils ().images ().at ("cinta"));
 	cinta->addComponent<Gravity>();
 	cinta->addComponent<DragAndDrop>("arrastrar");
 	cinta->addComponent<Depth>();
@@ -369,6 +387,65 @@ void ecs::MainScene::createBalanza() {
 	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(entRect, rotComp); }, generalData().PickUp);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
+}
+
+void ecs::MainScene::createBalanzaDigital() {
+	// Balanza
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanza = factory_->createImage(Vector2D(0, -44), Vector2D(sdlutils().images().at("balanzaDigA").width(), sdlutils().images().at("balanzaDigA").height()), &sdlutils().images().at("balanzaDigA"));
+	Transform* balanzaTr = balanza->getComponent<Transform>();
+	balanza->addComponent<MoverTransform>();
+	balanzaTr->setScale(0.35);
+	Balanza* balanzaComp = balanza->addComponent<Balanza>();
+
+	// BalanzaBase
+	factory_->setLayer(ecs::layer::BALANZABASE);
+	Entity* baseBalanza = factory_->createImage(Vector2D(1050, 435), Vector2D(sdlutils().images().at("balanzaDigB").width(), sdlutils().images().at("balanzaDigB").height()), &sdlutils().images().at("balanzaDigB"));
+	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
+	balanzaBaseTr->setScale(0.35);
+	baseBalanza->addComponent<Gravity>();
+	//baseBalanza->addComponent<Depth>();
+
+	////Añadir los numeros del peso
+	std::string msg = "0";
+	factory_->setLayer(ecs::layer::NUMBERS);
+	factory_->createLabel(Vector2D(1270, 593), msg, 50);
+
+	// Seteamos padres
+	balanzaTr->setParent(balanzaBaseTr);
+
+	
+	Trigger* balanzaTri = balanza->addComponent<Trigger>();
+
+	balanzaTri->addCallback([this, balanzaComp, balanza](ecs::Entity* entRect){
+		balanzaComp->initAnimationsDigital(entRect, balanza); 
+	std::string msg;
+		int peso = balanzaComp->getPaquetePeso();
+		if (peso >= 0) {
+			msg = std::to_string(peso);
+			removeEntitiesByLayer(ecs::layer::NUMBERS);
+			factory_->setLayer(ecs::layer::NUMBERS);
+			factory_->createLabel(Vector2D(1245, 593), msg, 50);
+		}
+		else {
+			msg = "0";
+			removeEntitiesByLayer(ecs::layer::NUMBERS);
+			factory_->setLayer(ecs::layer::NUMBERS);
+			factory_->createLabel(Vector2D(1270, 593), msg, 50);
+		}
+		
+		}, generalData().DropIn);
+	
+	balanzaTri->addCallback([this, balanzaComp](ecs::Entity* entRect) {
+		balanzaComp->finishAnimatiosDigital(entRect); 
+		std::string msg2 = "0";
+		removeEntitiesByLayer(ecs::layer::NUMBERS);
+		factory_->setLayer(ecs::layer::NUMBERS);
+		factory_->createLabel(Vector2D(1270, 593), msg2, 50);
+		}, generalData().PickUp);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+
 }
 
 void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
@@ -446,6 +523,23 @@ void ecs::MainScene::createManual(int NumPages)
 	factory_->addHoverColorMod(left);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
+
+	//Creacion de botones de indices
+
+	if (true) { //PLACE HOLDER HASTA LOS BOOLS DE JULIAN
+
+		Vector2D buttonIndexSize(20, 40);
+		factory_->setLayer(ecs::layer::FOREGROUND);
+
+		std::vector<int> indexTextures = { 2, 3, 6, 7, 8 };
+
+		auto pagCodigos = [manualRender]() { manualRender->setTexture(2); };
+		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonIndexSize, buttonTexture, pagCodigos);
+		indexCodigos->getComponent<Transform>()->setParent(manualTransform);
+		factory_->addHoverColorMod(indexCodigos);
+
+
+	}
 
 }
 
@@ -667,6 +761,12 @@ void ecs::MainScene::makeControlsWindow()
 void ecs::MainScene::createPaquete (int lv) {
 	auto pac = mPaqBuild_->buildPackage(lv, this);
 	pac->getComponent<MoverTransform>()->enable();
+
+	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BOLA_UPGRADE) && bolaCrist_!= nullptr) {
+		int rnd = sdlutils().rand().nextInt(0, 4);		
+		if(rnd !=1) bolaCrist_->check(pac->getComponent<Paquete>(), true);
+		else bolaCrist_->check(pac->getComponent<Paquete>(), false);
+	}
 }
 
 

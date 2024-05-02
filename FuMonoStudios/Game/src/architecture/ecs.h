@@ -34,6 +34,7 @@ namespace ecs {
 			CLOCKAUX,
 			BALANZA,
 			ROTARTRANSFORM,
+			CRISTALBALL,
 			// do not remove this
 			_LAST_CMP_ID
 		};
@@ -69,6 +70,11 @@ namespace ecs {
 		enum upgradeId : scUpg_t {
 			MONEY_UPGRADE,
 			SELLO_UPGRADE,
+			ENVOLVER_UPGRADE,
+			BOLA_UPGRADE,
+			FALLOS_UPGRADE,
+			BALANZA_UPGRADE,
+			MANUAL_UPGRADE,
 			_LAST_UPGRADE
 		};
 		constexpr upgradeId maxUpgradeId = _LAST_UPGRADE;
@@ -89,6 +95,7 @@ namespace ecs {
 			MINIMANUAL,
 			BALANZABASE,
 			BALANZA,
+			NUMBERS,
 			PACKAGE,
 			INFO_PACKAGE,
 			INK,
@@ -101,6 +108,7 @@ namespace ecs {
 			MANUAL,
 			FOREGROUND,
 			UI,
+			
 			_LAST_LAYER
 		};
 		constexpr layerId maxLayerId = _LAST_LAYER;

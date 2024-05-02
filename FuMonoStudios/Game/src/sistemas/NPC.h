@@ -7,7 +7,7 @@
 class NPCevent;
 namespace npc {
 	// enum con tipos de felicidad
-	enum Felicidad { Minima, Mala, Normal, Buena, Maxima, NoHabladoAun };
+	enum Felicidad { SeFue, Minima, Mala, Normal, Buena, Maxima, NoHabladoAun };
 
 	// enum con el nombre de todos los NPC
 	enum Personaje {

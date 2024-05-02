@@ -88,7 +88,7 @@ void GeneralData::newGame()
 }
 
 void GeneralData::updateMoney()
-{
+{	
 	int rightPackages = corrects_;
 	int wrongPackages = fails_;
 	//funcion de ejemplo seguramente haya que cambiarlo
@@ -107,12 +107,22 @@ int GeneralData::calcularDineroGanado()
 	int rightPackages = corrects_;
 	int wrongPackages = fails_;
 	int totalRightMoney = 0;
+
 	if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
 		totalRightMoney = rightPackages * (WRITE_PACAGES_VALUE + 10);
 	}
 	else {
 		totalRightMoney = rightPackages * WRITE_PACAGES_VALUE;
 	}
+	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::FALLOS_UPGRADE)) failsMargin_ = 2;
+	else failsMargin_ = 0;
+	if (fails_ < failsMargin_) {
+		wrongPackages = 0;
+	}
+	else {
+		wrongPackages -= failsMargin_;
+	}
+	
 	return 		totalRightMoney - (wrongPackages * WRONG_PACAGES_VALUE);
 }
 

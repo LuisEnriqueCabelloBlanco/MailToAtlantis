@@ -117,6 +117,7 @@ namespace ecs {
 		/// si se usa para crear texturas esta se encarga de destruirlas mas adelante
 		/// </summary>
 		ComonObjectsFactory* factory_;
+	
 	};
 }
 

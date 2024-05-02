@@ -71,6 +71,7 @@
     <ClCompile Include="src\sistemas\NPCeventSystem.cpp" />
     <ClCompile Include="src\scenes\EndGameScene.cpp" />
     <ClCompile Include="src\sistemas\NPC.cpp" />
+    <ClCompile Include="src\entities\CristalBall.cpp" />
     <ClCompile Include="src\sistemas\NPCevent.cpp" />
     <ClCompile Include="src\sistemas\WorkRestrictionsSystem.cpp" />
     <ClCompile Include="src\sistemas\SpecialObjectsFactory.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="src\sistemas\NPCeventSystem.h" />
     <ClInclude Include="src\scenes\EndGameScene.h" />
     <ClInclude Include="src\sistemas\NPC.h" />
+    <ClInclude Include="src\entities\CristalBall.h" />
     <ClInclude Include="src\sistemas\NPCevent.h" />
     <ClInclude Include="src\sistemas\WorkRestrictionsSystem.h" />
     <ClInclude Include="src\sistemas\SpecialObjectsFactory.h" />

@@ -4,6 +4,7 @@
 #include "../architecture/Scene.h"
 #include "../components/Transform.h"
 #include "../components/Paquete.h"
+#include "../entities/CristalBall.h"
 #include <components/Herramientas.h>
 #include "../sistemas/PaqueteBuilder.h"
 #include "../sistemas/PipeManager.h"
@@ -34,10 +35,12 @@ namespace ecs {
         void createMiniManual();
         void createSpaceManual();
         void createMultipleStamp();
+        void createBalanzaDigital();
 
         //void createTubo(Paquete::Distrito dist, bool desbloqueado);
 
         void createClock();
+        void createBolaCristal();
 
 
         //void createSelladores();
@@ -79,6 +82,8 @@ namespace ecs {
 
         Entity* manualEnt_;
         Entity* miniManualEnt_;
+
+        CristalBall* bolaCrist_;
 
         //El pinche paquete builder para no crear uno en cada paquete
         PaqueteBuilder* mPaqBuild_;
