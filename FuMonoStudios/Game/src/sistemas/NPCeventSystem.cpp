@@ -65,16 +65,17 @@ void NPCeventSystem::minigameOver() {
 	{
 		std::cout << "Event " << (event->completed ? "completed" : "failed");
 		NPCdata* data = generalData().getNPCData(event->personaje);
-		data->eventosCompletados[event->numEvento].first = true;
-		data->eventosCompletados[event->numEvento].second = 
+		data->eventosCompletados[event->numEvento-1].first = true;
+		data->eventosCompletados[event->numEvento-1].second = 
 			generalData().getDay() * (event->completed ? 1 : -1);
+
+		procesarStringRecompensas(event->completed, event->recompensas);
 		if (event->completed)
 		{
 #ifdef _DEBUG
 			std::cout << "Event completed";
 #endif // _DEBUG
 
-			procesarStringRecompensas(event->recompensas);
 		}
 	}
 
@@ -90,31 +91,42 @@ void NPCeventSystem::activateEvent(NPCevent* e) {
 	activeEventsNPCs.push_back(e);
 }
 
-void NPCeventSystem::procesarStringRecompensas(std::vector<std::string>& vec) {
+void NPCeventSystem::procesarStringRecompensas(bool completed, std::vector<std::string>& vec) {
 
 	for (std::string& reward : vec) {
-		// si tiene un sumar o restar
-		if (reward.find("+") != std::string::npos || reward.find("-") != std::string::npos)
+		if (completed)
 		{
-			int index = reward.find_first_of("+-");
-			std::string personajeString = reward.substr(0, index);
-			int felicidadIncrement = reward.size() - index;
-			if (reward.find("-") != std::string::npos)
-				felicidadIncrement = -felicidadIncrement;
+			// si tiene un sumar o restar
+			if (reward.find("+") != std::string::npos || reward.find("-") != std::string::npos)
+			{
+				int index = reward.find_first_of("+-");
+				std::string personajeString = reward.substr(0, index);
+				int felicidadIncrement = reward.size() - index;
+				if (reward.find("-") != std::string::npos)
+					felicidadIncrement = -felicidadIncrement;
 
-			npc::Personaje aux = generalData().stringToPersonaje(personajeString);
+				npc::Personaje aux = generalData().stringToPersonaje(personajeString);
 
-			generalData().incrementarFelicidad(aux, felicidadIncrement);
+				generalData().incrementarFelicidad(aux, felicidadIncrement);
+			}
 		}
-		else if (reward.find("$") != std::string::npos)
+		else 
 		{
-			int index = reward.find_first_of("$");
+			if (reward.find("$") != std::string::npos)
+			{
+				int index = reward.find_first_of("$");
 
-			std::string personajeString = reward.substr(index + 1, reward.size());
+				std::string personajeString = reward.substr(index + 1, reward.size());
 
-			npc::Personaje aux = generalData().stringToPersonaje(personajeString);
+				npc::Personaje aux = generalData().stringToPersonaje(personajeString);
 
-			generalData().unlockMejoraPersonaje(aux);
+				index = reward.find_first_of("+-");
+				personajeString = reward.substr(0, index);
+				int felicidadIncrement = reward.size() - index;
+				if (reward.find("-") != std::string::npos)
+					felicidadIncrement = -felicidadIncrement;
+				generalData().incrementarFelicidad(aux, felicidadIncrement);
+			}
 		}
 	}
 }
