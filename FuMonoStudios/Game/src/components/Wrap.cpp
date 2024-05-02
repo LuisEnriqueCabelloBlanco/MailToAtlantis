@@ -183,7 +183,7 @@ void Wrap::update() {
 						mul_->nextTexture ();
 						wrapFase++;
 
-						tr_->setActiveChildren(false);
+						
 						//wrapped = true;
 						ent_->getComponent<Paquete>()->envolver();
 					}
@@ -198,7 +198,7 @@ void Wrap::update() {
 						repTimes--;
 
 						if (repTimes < 0) {
-
+							tr_->setActiveChildren(false);
 							wrapped = true;
 							ent_->getComponent<Paquete> ()->envolver ();
 						}
