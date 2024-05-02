@@ -87,7 +87,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 #pragma endregion
 
 		#pragma region Primer Paquete
-		case TutorialEvent::PaqueteEnse�arRemitente:
+		case TutorialEvent::PaqueteEnsenarRemitente:
 			canDrag = false;
 			scene_->createPackage(ecs::TutorialScene::Primero);
 			delayedCallback(1, [this]() {
@@ -98,7 +98,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 					});
 				});
 			break;
-		case TutorialEvent::PaqueteEnse�arCodigoPostal:
+		case TutorialEvent::PaqueteEnsenarCodigoPostal:
 			activateDialogue(false);
 			arrow_->getComponent<Transform>()->setPos(1340, 680);
 			break;
@@ -112,7 +112,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			canPassPagesManual = false;
 			activateDialogue(false);
 			break;
-		case TutorialEvent::Ense�arSellos:
+		case TutorialEvent::EnsenarSellos:
 			canPassPagesManual = false;
 			activateDialogue(true);
 			arrow_->setActive(true);
@@ -124,7 +124,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 				arrow_->getComponent<MoverTransform>()->enable();
 				});
 			break;
-		case TutorialEvent::Ense�arTubos:
+		case TutorialEvent::EnsenarTubos:
 			canDrag = false;
 			canPassPagesManual = true;
 			activateDialogue(false);
@@ -256,17 +256,17 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::SacaElManual2:
-				activateEvent(TutorialEvent::PaqueteEnse�arRemitente);
+				activateEvent(TutorialEvent::PaqueteEnsenarRemitente);
 			break;
 #pragma endregion
 
 		#pragma region Primer Paquete
-		case TutorialEvent::PaqueteEnse�arRemitente:
+		case TutorialEvent::PaqueteEnsenarRemitente:
 			delayedCallback(0.5, [this]() {
-				activateEvent(TutorialEvent::PaqueteEnse�arCodigoPostal);
+				activateEvent(TutorialEvent::PaqueteEnsenarCodigoPostal);
 				});
 			break;
-		case TutorialEvent::PaqueteEnse�arCodigoPostal:
+		case TutorialEvent::PaqueteEnsenarCodigoPostal:
 			delayedCallback(0.5, [this]() {
 					activateEvent(TutorialEvent::PaqueteBuscarPaginaCodigosPostales);
 				});
@@ -288,17 +288,17 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 		case TutorialEvent::BuscarPaginaHestia:
 			canPassPagesManual = true;
 			addActionListener(Action::PaginaDistritoHestia, [this]() {
-				activateEvent(TutorialEvent::Ense�arSellos);
+				activateEvent(TutorialEvent::EnsenarSellos);
 				});
 			break;
-		case TutorialEvent::Ense�arSellos:
+		case TutorialEvent::EnsenarSellos:
 			arrow_->setActive(false);
 			canDrag = true;
 			addActionListener(Action::PaqueteEstampado, [this]() {
-				activateEvent(TutorialEvent::Ense�arTubos);
+				activateEvent(TutorialEvent::EnsenarTubos);
 				});
 			break;
-		case TutorialEvent::Ense�arTubos:
+		case TutorialEvent::EnsenarTubos:
 			canDrag = true;
 			scene_->activateTubos();
 			addActionListener(Action::PaqueteEnviado, [this]() {
