@@ -29,6 +29,11 @@ void ecs::ConfigScene::init()
 	std::cout << "Hola Config" << std::endl;
 	sdlutils().clearRenderer();
 
+	Entity* fondo = addEntity(ecs::layer::BACKGROUND);
+	Texture* texturaFondo = &sdlutils().images().at("fondoAjustes");
+	Transform* transformFondo = fondo->addComponent<Transform>(0.0f, 0.0f, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
+	RenderImage* renderFondo = fondo->addComponent<RenderImage>(texturaFondo);
+
 	//boton para volver al menu
 	CallbackClickeable funcPress = [this]() {
 		gm().requestChangeScene(ecs::sc::CONFIG_SCENE, ecs::sc::MENU_SCENE);
@@ -63,12 +68,23 @@ void ecs::ConfigScene::init()
 
 		audioValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParam(1)), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
 		audioValueEnt_->getComponent<RenderImage>()->setTexture(audioValueTexture_);
-
 	};
 	factory_->createTextuButton({ 400,600 }, "(-)", 50, funcPress2);
 
 	// Boton (+) para el parametro de audio
-	factory_->createTextuButton({ 600,600 }, "(+)", 50, funcPress2);
+	CallbackClickeable funcPress3 = [this]() {
+		generalData().changeParamID(1, true);
+		//updateValue(audioValueTexture_, audioValueEnt_, 1);
+		if (audioValueTexture_ != nullptr)
+		{
+			delete audioValueTexture_;
+			audioValueTexture_ = nullptr;
+		}
+
+		audioValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParam(1)), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+		audioValueEnt_->getComponent<RenderImage>()->setTexture(audioValueTexture_);
+	};
+	factory_->createTextuButton({ 600,600 }, "(+)", 50, funcPress3);
 }
 
 //No usar de momento este método porque peta el programa aunque tenga la misma función que lo que pasa en los callbacks

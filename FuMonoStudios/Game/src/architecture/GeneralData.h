@@ -80,17 +80,6 @@ public:
 
 	NPCeventSystem* npcEventSys = nullptr;
 
-	/// <summary>
-	/// Obtiene los datos de los objetos interactuables
-	/// </summary>
-	void readIntObjData();
-	/// <summary>
-	/// Devuelve los datos del objeto solicitado
-	/// </summary>
-	/// <param name="intobj"></param>
-	/// <returns></returns>
-	IntObjsData* getObjData(std::string intobj);
-
 private:
 	/// <summary>
 	/// vector que contiene los datos de todos los objetos interactuables
@@ -134,6 +123,32 @@ public:
 
 	inline bool getUpgradeValue(ecs::upg::upgradeId upgrade) {
 		return upgrades_[upgrade];
+	}
+
+	inline void unlockUpgrade(npc::Personaje pers) {
+		switch (pers) {
+		case Vagabundo: 
+			setUpgradeValue(ecs::upg::SELLO_UPGRADE, true);
+			break;
+		case Tarotisa:
+			setUpgradeValue(ecs::upg::BOLA_UPGRADE, true);
+			break;
+		case Artesano:
+			setUpgradeValue(ecs::upg::ENVOLVER_UPGRADE, true);
+			break;
+		case Campesino:
+			setUpgradeValue(ecs::upg::BALANZA_UPGRADE, true);
+			break;
+		case Contable:
+			setUpgradeValue(ecs::upg::MONEY_UPGRADE, true);
+			break;
+		case Soldado:
+			setUpgradeValue(ecs::upg::FALLOS_UPGRADE, true);
+			break;
+		case Secretario:
+			setUpgradeValue(ecs::upg::MANUAL_UPGRADE, true);
+			break;
+		}
 	}
 
 	void setFinalID(int final); //Cambia el ID del final
@@ -199,11 +214,7 @@ public:
 
 	//Textos peso
 	const std::string nivelPesoToString(NivelPeso nivel);
-	NivelPeso stringToNivelPeso(const std::string& nivel);
-
-	//Los métodos para acceder a las herramientas que te pueden dar los NPCs
-	inline void aquireSelloMulticolor() { selloMulticolor = true; }
-	inline bool getSelloMulticolor() { return selloMulticolor; }
+	NivelPeso stringToNivelPeso(const std::string& nivel);							
 
 	void unlockMejoraPersonaje(Personaje p);
 	/// <summary>
@@ -276,9 +287,8 @@ private:
 	/// <summary>
 	/// Vector con las mejoras desbloqueadas hasta el momento
 	/// </summary>
-	std::vector<bool> upgrades_;
-	//Aqui van las variables que indican si se han conseguido las herramientas especiales de los NPCs
-	bool selloMulticolor = false; //Sello multicolor debe estar debtro de updates
+	std::vector<bool> upgrades_;	
+
 };
 
 inline GeneralData& generalData() {

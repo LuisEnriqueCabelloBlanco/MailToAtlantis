@@ -12,11 +12,8 @@ NPCeventSystem::NPCeventSystem() {
 }
 
 NPCeventSystem::~NPCeventSystem() {
-	for (auto it : activeEventsNPCs) {
-		delete it;
-	}
 	for (auto it : paquetesNPCs) {
-		delete it;
+		
 	}
 }
 
@@ -38,7 +35,7 @@ bool NPCeventSystem::areTherePaquetesNPC() {
 	return paquetesNPCs.size() != 0;
 }
 
-void NPCeventSystem::checkPaqueteSent(Paquete* p) {
+void NPCeventSystem::checkPaqueteSent(Paquete* p, Distrito tubo) {
 	for (NPCevent* event : activeEventsNPCs) {
 
 		for (auto conditionVec : event->condiciones) {
@@ -50,6 +47,9 @@ void NPCeventSystem::checkPaqueteSent(Paquete* p) {
 				valid = conditionVec[i](p);
 				i++;
 			}
+
+			if (event->usingCondicionTubo)
+				valid = event->condicionTubo(tubo);
 
 			if (valid && i >= conditionVec.size() && conditionVec.size() > 0)
 			{
@@ -63,6 +63,11 @@ void NPCeventSystem::minigameOver() {
 
 	for (NPCevent* event : activeEventsNPCs)
 	{
+		std::cout << "Event " << (event->completed ? "completed" : "failed");
+		NPCdata* data = generalData().getNPCData(event->personaje);
+		data->eventosCompletados[event->numEvento].first = true;
+		data->eventosCompletados[event->numEvento].second = 
+			generalData().getDay() * (event->completed ? 1 : -1);
 		if (event->completed)
 		{
 #ifdef _DEBUG
@@ -315,6 +320,14 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 				});
 		}
 
+		auto hasTubo = pqConditions.find("tuboSeleccionado");
+		if (hasTubo != pqConditions.end()) {
+			auxEvent->usingCondicionTubo = true;
+			Distrito aux = (Distrito)generalData().fromStringToDistrito(hasTubo->second->AsString());
+			auxEvent->condicionTubo = ([aux](Distrito tubo) -> bool{
+					return tubo == aux;
+				});
+		}
 		auto hasCalle = pqConditions.find("calleMarcada");
 		if (hasCalle != pqConditions.end()) {
 			Calle aux = (Calle)generalData().stringToCalle(hasCalle->second->AsString());
@@ -355,7 +368,7 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 				});
 		}
 
-
+		
 		auto hasFragil = pqConditions.find("fragil");
 		if (hasFragil != pqConditions.end()) {
 			bool aux = hasFragil->second->AsBool();
@@ -371,9 +384,13 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 void NPCeventSystem::readNPCevent(JSONObject& eventObject, int personaje, int index) {
 	NPCevent* auxEvent = new NPCevent();
 
+	auxEvent->personaje = (npc::Personaje)personaje;
+	auxEvent->numEvento = index;
+
 	JSONObject currentEvent = eventObject.find(std::to_string(index + 1))->second->AsObject();
 	auxEvent->numPaquetes = currentEvent.find("numPaquetes")->second->AsNumber();
 	auxEvent->numPaquetesToComplete = currentEvent.find("numPaquetesParaCompletar")->second->AsNumber();
+	auxEvent->textoDiario = currentEvent.find("textoDiario")->second->AsString();
 
 	// Si es especial, nos saltamos el resto
 	auto isSpecial = currentEvent.find("special");
@@ -445,7 +462,7 @@ void NPCeventSystem::readNPCevent(JSONObject& eventObject, int personaje, int in
 	else
 		throw std::runtime_error("Evento sin recompensas / no recompensa mal especificado");
 
-	generalData().getNPCData((npc::Personaje)personaje)->events.push_back(auxEvent);
+	generalData().getNPCData((npc::Personaje)personaje)->events[index] = (auxEvent);
 }
 
 /* Para los eventos debemos especificar sus condiciones. Eso lo haremos añadiendo

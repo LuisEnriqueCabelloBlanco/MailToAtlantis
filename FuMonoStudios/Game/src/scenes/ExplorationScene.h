@@ -6,7 +6,10 @@
 #include <list>
 
 constexpr float SCALE_NPCS = 0.25;
+constexpr int MAX_CHAR_LEN_LEFT_DIARIO = 370;
+constexpr int MAX_CHAR_LEN_RIGHT_DIARIO = 406;
 class NPCeventSystem;
+class RenderImage;
 
 namespace ecs {
 
@@ -181,7 +184,22 @@ namespace ecs {
 		bool canStartConversation;
 
 		ecs::Entity* boton_Trabajo;
+
+		void addDiarioEvent(NPCevent* event);
+		void setupDiarioPages();
+		void changeDiarioPages(bool forward);
+		void changeCaraFelicidad(NPCdata* data);
+		std::vector<std::string> diarioText_;
+		std::vector<int> pagesByCharacter;
+		int currentDiarioPage;
 		ecs::Entity* diario_;
+		RenderImage* leftPageRnd;
+		Transform* leftPageTr;
+		RenderImage* rightPageRnd;
+		Transform* rightPageTr;
+		RenderImage* caraFelicidad;
+		Texture* rightTex;
+		Texture* leftTex;
     };
 }
 

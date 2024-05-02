@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\entities\CristalBall.cpp" />
     <ClCompile Include="src\sistemas\PipeManager.cpp" />
     <ClCompile Include="src\scenes\ConfigScene.cpp" />
     <ClCompile Include="src\sistemas\NPCevent.cpp" />
@@ -224,6 +225,7 @@
     <ClCompile Include="src\sistemas\WorkRestrictionsSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\entities\CristalBall.h" />
     <ClInclude Include="src\sistemas\PipeManager.h" />
     <ClInclude Include="src\scenes\ConfigScene.h" />
     <ClInclude Include="src\sistemas\NPCevent.h" />
@@ -316,7 +318,6 @@
     <None Include="recursos\config\sounds.json" />
     <None Include="recursos\data\dialogos.json" />
     <None Include="recursos\data\eventosjefe.json" />
-    <None Include="recursos\data\intObjsData.json" />
     <None Include="recursos\data\npcData.json" />
     <None Include="recursos\data\saveFile.json" />
     <None Include="recursos\dialogos\dialogos.json" />

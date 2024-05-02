@@ -24,7 +24,7 @@ public:
 	Paquete* getPaqueteNPC();
 	void addPaqueteNPC(Paquete* p);
 	// comprueba si el paquete cumple la condicion de algun evento
-	void checkPaqueteSent(Paquete* p);
+	void checkPaqueteSent(Paquete* p, Distrito tubo);
 
 	// llamar al final del minijuego y si se ha cumplido un evento, dar recompensas
 	void minigameOver();

@@ -16,7 +16,7 @@ NPCMenorData::NPCMenorData(Felicidad Felicidad, std::vector<bool> DiasDanEvento)
 	diasDanEvento = DiasDanEvento;
 	giveEvent = false;
 	postConversation = false;
-	eventosCompletados = std::vector<bool>(5,false);
+	eventosCompletados = std::vector<std::pair<bool,int>>(5,std::make_pair(false,0));
 }
 
 std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
@@ -32,17 +32,17 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 			tipo = "Presentacion";
 			break;
 		case Minima:
-			tipo = "FelicidadMinimo";
+			tipo = "FelicidadMinima";
+			felicidad = SeFue;
 			break;
 		case Maxima:
-			tipo = "FelicidadMaximo";
+			tipo = "FelicidadMaxima";
 			break;
 		}
 	}
 	else if (giveEvent)
 	{
 		tipo = "Eventos";
-		iterationNum = selectedEvent.first + 1;
 	}
 	else
 	{
@@ -72,13 +72,16 @@ void NPCMenorData::setupDayData() {
 	postConversation = false;
 	iteration = 1;
 	giveEvent = diasDanEvento[generalData().getDay() - 1];
-
-	// comprobar si hemos completado todos los eventos
+	if (misionAceptada) {
+		numMisionesAceptadas++;
+	}
+	misionAceptada = false;
+	/*// comprobar si hemos completado todos los eventos
 	bool npcCompleted = true;
 	int i = 0;
 	while (npcCompleted && i < eventosCompletados.size())
 	{
-		npcCompleted = eventosCompletados[i];
+		npcCompleted = eventosCompletados[i].first;
 		i++;
 	}
 	if (npcCompleted)
@@ -91,14 +94,14 @@ void NPCMenorData::setupDayData() {
 		std::vector<int> eventosNoCompletados;
 		for (int i = 0; i < eventosCompletados.size(); i++)
 		{
-			if (!eventosCompletados[i])
+			if (!eventosCompletados[i].first)
 				eventosNoCompletados.push_back(i);
 		}
 
 		int seleccion = eventosNoCompletados[sdlutils().rand().nextInt(0, eventosCompletados.size())];
 		selectedEvent.first = seleccion;
 		selectedEvent.second = events[seleccion];
-	}
+	}*/
 }
 
 void NPCMenorData::activateEvent() {
@@ -120,8 +123,7 @@ NPCevent* NPCMenorData::getEvent() {
 		return nullptr;
 
 	postConversation = true;
-	numMisionesAceptadas++;
-	return selectedEvent.second;
+	return events[numMisionesAceptadas];
 }
 
 // NPC GRANDE
@@ -133,6 +135,7 @@ npc::NPCMayorData::~NPCMayorData()
 NPCMayorData::NPCMayorData(Felicidad Felicidad) {
 	felicidad = Felicidad;
 	postConversation = false;
+	eventosCompletados = std::vector<std::pair<bool, int>>(14, std::make_pair(false, 0));
 }
 
 std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
@@ -145,7 +148,11 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 		postConversation = true;
 		break;
 	case Minima:
-		aux = "FelicidadMinimo";
+		aux = "FelicidadMinima";
+		felicidad = SeFue;
+		break;
+	case Maxima:
+		aux = "FelicidadMaxima";
 		break;
 	default:
 		aux = postConversation ?
@@ -159,6 +166,10 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 
 void NPCMayorData::setupDayData() {
 	postConversation = false;
+	if (misionAceptada) {
+		numMisionesAceptadas++;
+	}
+	misionAceptada = false;
 }
 
 NPCevent* npc::NPCMayorData::getEvent()
@@ -167,7 +178,6 @@ NPCevent* npc::NPCMayorData::getEvent()
 		return nullptr;
 
 	postConversation = true;
-	numMisionesAceptadas++;
 	return events[numMisionesAceptadas];
 }
 
