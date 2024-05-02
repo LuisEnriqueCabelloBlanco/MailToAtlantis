@@ -1,6 +1,6 @@
 #include "WorkRestrictionsSystem.h"
 
-WorkRestrictionsSystem::WorkRestrictionsSystem() : jsonPath("")
+WorkRestrictionsSystem::WorkRestrictionsSystem() : jsonPath(""), numEvents(28)
 {
 
 }
@@ -18,8 +18,16 @@ void WorkRestrictionsSystem::init()
 tb::WorkEvent WorkRestrictionsSystem::getRandomEvent()
 {
     auto& rand = sdlutils().rand();
-    int event = rand.nextInt(0, 3); //cambiar el segundo valor por el ultimo evento que haya en el json + 1 (el random es exclusivo del segundo numero)
-    return getEvent(0);
+    int selection = rand.nextInt(0, numEvents); //cambiar el segundo valor por el ultimo evento que haya en el json + 1 (el random es exclusivo del segundo numero)
+    tb::WorkEvent event = getEvent(selection);
+
+    while(!isEventValid(event)) //mientras el evento no sea valido para ese dia (por contener mas mecanicas o distritos de los desbloqueados actualmente) se hace reroll del evento
+    {
+        selection = rand.nextInt(0, numEvents);
+        event = getEvent(selection);
+    }
+
+    return event;
 }
 
 tb::WorkEvent WorkRestrictionsSystem::getEvent(int selection)
@@ -39,6 +47,7 @@ tb::WorkEvent WorkRestrictionsSystem::getEvent(int selection)
     jsonEntry = root[eventSelection];
     JSONObject jObject = jsonEntry->AsObject();
 
+    event.validDay = jObject["validDay"]->AsNumber();
     event.dialogue = jObject["dialogo"]->AsString();
     event.id = (tb::restrictionId)jObject["id"]->AsNumber();
 
@@ -85,4 +94,9 @@ void WorkRestrictionsSystem::eventWeightRes(WorkEvent& event, JSONObject jObject
     auxW.minOrMax = jObject["minOrMax"]->AsNumber();
     auxW.x = generalData().stringToNivelPeso(jObject["peso"]->AsString());
     event.weight_res_pipe_data.restrictions = auxW;
+}
+
+bool WorkRestrictionsSystem::isEventValid(WorkEvent& event)
+{
+    return generalData().getDay() >= event.validDay;
 }

@@ -34,6 +34,7 @@ namespace tb {
 	};
 
 	struct WorkEvent {
+		int validDay;
 		std::string dialogue;
 		restrictionId id;
 		// if we use union we save memory, but then use only primitive

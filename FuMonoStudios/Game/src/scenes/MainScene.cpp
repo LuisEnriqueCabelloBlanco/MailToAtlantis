@@ -782,11 +782,8 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 		jsonPath = "recursos/data/eventosjefe.json";
 		dialogMngr_.init(this, jsonPath);
 		mWorkRes.init();
-		funcPress = [this, character]() { //no queremos hacer un start conversation
-			WorkEvent eventoJefe = mWorkRes.getRandomEvent();
-			dialogMngr_.setDialogueEntitiesActive(true);
-			dialogMngr_.setDialogues(eventoJefe.dialogue);
-			mPipeMngr_->activateEvent(eventoJefe);
+		funcPress = [this]() {
+			newWorkEvent();
 		};
 	}
 	else //nuevo distrito/mecanica
@@ -816,4 +813,12 @@ void ecs::MainScene::startWork()
 	timerPaused_ = false;
 	createPaquete(generalData().getPaqueteLevel());
 	createClock();
+}
+
+void ecs::MainScene::newWorkEvent()
+{
+	WorkEvent eventoJefe = mWorkRes.getRandomEvent();
+	dialogMngr_.setDialogueEntitiesActive(true);
+	dialogMngr_.setDialogues(eventoJefe.dialogue);
+	mPipeMngr_->activateEvent(eventoJefe);
 }
