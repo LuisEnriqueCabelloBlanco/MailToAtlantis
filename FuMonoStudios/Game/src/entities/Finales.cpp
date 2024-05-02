@@ -43,7 +43,7 @@ Finales::Finales()
     }
 }
 
-void Finales::loadFinal(ecs::Scene escene, Personaje npc, Felicidad felicidad)
+void Finales::inicializarFinal(ecs::Scene escene, Personaje npc, Felicidad felicidad)
 {
     std::string texto = endTexts_[npc][felicidad];
 
@@ -53,14 +53,38 @@ void Finales::loadFinal(ecs::Scene escene, Personaje npc, Felicidad felicidad)
 
     // Entidad periodico
     Texture* periodicoTex = &sdlutils().images().at("periodico");
-    ecs::Entity* periodico = factory->createImage(Vector2D(30, 110), Vector2D(periodicoTex->width(), periodicoTex->height()), periodicoTex);
-    Transform* periodicoTr = periodico->getComponent<Transform>();
+    periodico_ = factory->createImage(Vector2D(30, 110), Vector2D(periodicoTex->width(), periodicoTex->height()), periodicoTex);
+    Transform* periodicoTr = periodico_->getComponent<Transform>();
     periodicoTr->setScale(0.5);
-    periodicoTr->setPos(100,100);
+    periodicoTr->setPos(100, 100);
 
     // Entidad imagenNpc
     Texture* imagenNpcTex = generalData().personajeToTexture(npc);
-    ecs::Entity* imagenNpc = factory->createImage(Vector2D(30, 110), Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
+    imagenNpc_ = factory->createImage(Vector2D(30, 110), Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
+    
+    // Generamos Dialogo
+}
+
+void Finales::updateFinal(ecs::Scene escene, Personaje npc, Felicidad felicidad)
+{
+    if (periodico_ != nullptr) {
+        std::string texto = endTexts_[npc][felicidad];
+
+        ComonObjectsFactory* factory = escene.getFactory();
+        factory->setLayer(ecs::layer::UI);
+
+        // Actualizamos la imagenNpc
+        Texture* imagenNpcTex = generalData().personajeToTexture(npc);
+        imagenNpc_ = factory->createImage(Vector2D(30, 110), Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
+        
+        // Generamos dialogo
+    }
+}
+
+void Finales::deleteFinal()
+{
+    delete periodico_;
+    delete imagenNpc_;
 }
 
 std::string Finales::getFinal(Personaje npc, Felicidad nivelFelicidad) {
