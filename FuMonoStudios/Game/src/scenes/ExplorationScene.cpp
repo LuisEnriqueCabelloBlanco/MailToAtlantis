@@ -150,9 +150,9 @@ void ecs::ExplorationScene::update() {
 }
 
 void ecs::ExplorationScene::close() {
-	clearScene();
 	delete rightTex;
 	delete leftTex;
+	clearScene();
 	diario_->setAlive(false);
 }
 
@@ -352,7 +352,8 @@ void ecs::ExplorationScene::setupDiarioPages() {
 				j++;
 			}
 
-			
+			DialogManager a; 
+			a.fixText(textoPersonaje);
 
 			j = 0;
 			while (textoPersonaje.size() > 0) {

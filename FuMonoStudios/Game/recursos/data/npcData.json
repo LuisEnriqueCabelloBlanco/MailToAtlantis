@@ -1,9 +1,9 @@
 {
   "Vagabundo": {
-    "Felicidad": "",
-    "FelicidadNum": 51,
-    "numMisionesAceptadas": 1,
-    "EventosCompletados": [2],
+    "Felicidad": "Buena",
+    "FelicidadNum": 70,
+    "numMisionesAceptadas": 4,
+    "EventosCompletados": [2,3,4,5],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -102,7 +102,7 @@
           "1": "Vagabundo+++++",
           "2": "$Vagabundo--------------------"
         },
-        "textoDiario": "Me ha dado un papel con un sello de un grupo llamado 'lechuzas'. Tiene una serie de nombres, y unas instrucciones."
+        "textoDiario": "Me ha dado un papel con un sello de un grupo llamado 'lechuzas'. Tiene una serie de nombres, y unas instrucciones. Tambien un papel con agujeros."
       },
       "6": {
         "numPaquetes": 1,
@@ -117,7 +117,7 @@
           "1": "Vagabundo+++++",
           "2": "$Vagabundo--------------------"
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Me ha dicho que aun tengo una prueba que superar hasta poder ser de fiar. Tengo que eliminar el paquete del 'Buitre'. Seguramente tenga que usar el papel con agujeros para ello."
       },
       "7": {
         "numPaquetes": 1,
@@ -129,7 +129,7 @@
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "textoDiario": "Ha sido publicado un libro llamado 'CRITIAS'. Habla sobre la existencia de humanos en la superficie. Segun el libro, Poseidon estaba enfadado con Atlantis, y les hundio bajo el mar durante un milenio como castigo. Si el libro es verdadero, llevan 995 a&%os hundidos. Anemos esta que se sale, me ha pedido que mueva un paquete de comida de Hermes a Hestia."
       },
       "8": {
         "numPaquetes": 1,
@@ -141,7 +141,7 @@
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "textoDiario": "Anemos se ha dado cuenta de que su pez estaba tieso. Lo quiere llevar a enterrar a Hermes, tendre que asegurarme de que el paquete llega seguro."
       },
       "9": {
         "numPaquetes": 1,
