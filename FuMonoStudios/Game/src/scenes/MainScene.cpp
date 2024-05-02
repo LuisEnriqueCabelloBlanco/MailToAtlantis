@@ -570,8 +570,6 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int N
 
 	return mapSol;
 
-	return manualEnt_;
-
 }
 
 ecs::Entity* ecs::MainScene::createMiniManual() {

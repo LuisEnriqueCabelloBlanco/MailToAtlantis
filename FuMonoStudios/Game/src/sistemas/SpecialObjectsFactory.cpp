@@ -43,8 +43,8 @@ void SpecialObjectsFactory::makeListaVagabundo() {
 		build_sdlcolor(0x00000000ff), 250);
 	createdTextures.push_back(textTexture);
 	RenderImage* textoRnd = texto->addComponent<RenderImage>(textTexture);
-	textoTr->setWidth(textoRnd->getTexture()->width());
-	textoTr->setHeith(textoRnd->getTexture()->height());
+	textoTr->setWidth(textoRnd->getCurrentTexture()->width());
+	textoTr->setHeith(textoRnd->getCurrentTexture()->height());
 }
 
 void SpecialObjectsFactory::makePapelAgujeros() {
