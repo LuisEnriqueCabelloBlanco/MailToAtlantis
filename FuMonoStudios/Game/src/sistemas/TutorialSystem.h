@@ -30,9 +30,9 @@ using SimpleCallback = std::function<void()>;
 class TutorialSystem
 {
 public:
-	enum TutorialEvent { Introduction, SacaElManual1, SacaElManual2, PaqueteEnseñarRemitente,
-	PaqueteEnseñarCodigoPostal, PaqueteBuscarPaginaCodigosPostales, BuscarPaginaHestia,
-	EnseñarSellos, EnseñarTubos, EntraSegundoPaquete, SegundoBuscarPaginaDistritos, 
+	enum TutorialEvent { Introduction, SacaElManual1, SacaElManual2, PaqueteEnsenarRemitente,
+	PaqueteEnsenarCodigoPostal, PaqueteBuscarPaginaCodigosPostales, BuscarPaginaHestia,
+	EnsenarSellos, EnsenarTubos, EntraSegundoPaquete, SegundoBuscarPaginaDistritos, 
 	SellarSegundoPaquete, EnviarSegundoPaquete, EntraCuartoPaquete, ExplicacionFalloAposta, 
 	EntraTercerPaquete, EnPaginaInfoSellos,
 	EntraPaquetePeso, EnviarPaquetePeso, 
