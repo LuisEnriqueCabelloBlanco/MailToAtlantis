@@ -65,7 +65,7 @@ void WorkRestrictionsSystem::eventSwapPipe(WorkEvent& event, JSONObject jObject)
     aux.swapActive = jObject["swapActive"]->AsBool();
     aux.originalDis = jObject["originalDis"]->AsBool();
     aux.changedDis = (Distrito)generalData().fromStringToDistrito(jObject["dest"]->AsString());
-    event.swap_pipe_data.blockedPipe = (Distrito)generalData().fromStringToDistrito(jObject["target"]->AsString());
+    event.swap_pipe_data.blockedPipe = (Distrito)generalData().fromStringToDistrito(jObject["blocked"]->AsString());
     event.swap_pipe_data.dest = aux;
 }
 
