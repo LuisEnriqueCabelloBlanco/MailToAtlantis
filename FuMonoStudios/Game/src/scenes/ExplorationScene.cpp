@@ -239,7 +239,20 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 	e->addComponent<Transform>(pos.getX(), pos.getY(), scale.getX(), scale.getY());
 	auto clickableBotonTrabajar = e->addComponent<Clickeable>();
 	CallbackClickeable funcPress = [this]() {
-		gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+		if (generalData().getDay() == 1 ||
+			generalData().getDay() == 3 ||
+			generalData().getDay() == 5 ||
+			generalData().getDay() == 8) {
+
+			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+
+		}
+		else {
+
+			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+
+		}
+		
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
 	return e;

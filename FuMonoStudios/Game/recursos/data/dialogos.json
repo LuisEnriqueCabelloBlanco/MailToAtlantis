@@ -1049,36 +1049,43 @@
       "Ahora lo metemos al tubo con su mismo s$imbolo, el de color verde."
     ],
     "13": [
-      "Hemos probado ya con los paquetes simples. Sin embargo, la gente en esta ciudad no lo hacen todo bien.",
+      "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
+      "No te preocupes que no te voy a penalizar... Tranquilo...",
+      "Coge este paquete, que en principio est$a bien reglamentado, y mandalo a la basura.",
+      "La basura es el tubo negro de la derecha, cualquier paquete que no cumpla lo establecido ira ah$i."
+    ],
+    "14": [
+      "Fijate que te ha salido una notita explicando tu error. Cada paquete correcto son 20 dolares m$as en tu cuenta, y cada paquete err$oneo son 30 dolares menos.",
+      "Espero no ver muchas notitas cuando trabajes... El anterior a ti le hacia demasiados favores a la gente de la ciudad y acababa no ganando nada..."
+    ],
+    "15": [
+      "Paco, Paco, dios mio que desgracia, a aparecido una red de trafico de sellos falsos en el reino.",
+      "Si la gente empieza a vender sellos que no sean mios, una gran parte de las ganancias se perdera, pero no te preocupes que aqu$i estoy yo para ense$%arte a detectarlos",
       "Tenemos que comprobar que los paquetes son legales, que tengan el sello reglamentario y la calle est$e bien puesta.",
       "Fijate que este paquete que acaba de llegar tiene un sello raro. Vamos a buscarlo en la p$agina de los sellos."
     ],
-    "14": [
-      "Parece que el sello rojo de Armamento del paquete no coincide con el del manual. Este paquete entonces va directo a la basura.",
-      "Arrastralo hasta la basura para eliminarlo. Es importante que elimines los ilegales, sino te penalizaremos."
-    ],
-    "15": [
-      "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
-      "No te preocupes que no te voy a penalizar... Tranquilo...",
-      "Coge este paquete, que en principio est$a bien reglamentado, y mandalo a la basura."
-    ],
     "16": [
-      "Fijate que te ha salido una notita explicando tu error. Cada paquete correcto son 20 dolares, y cada paquete err$oneo son 30 dolares, que van subiendo seg$un tus fallos.",
-      "Espero no ver muchas notitas cuando trabajes... El anterior a ti le hacia demasiados favores a la gente de la ciudad y acababa no ganando nada..."
+      "Parece que el sello rojo de Armamento del paquete no coincide con el del manual. Este paquete entonces va directo a la basura.",
+      "Arrastralo hasta la basura para eliminarlo. Es importante que elimines los ilegales, sino te penalizare economicamente."
     ],
+    
     "17":[
-      "Aqui no acaba la cosa, varios de los paquetes que debes enviar contendran un sello de pesado por motivos de seguridad a la hora de transportarlos.",
+      "Hola Paco, espero que no te hayas acomodado porque he tenido una nueva idea que ayudara al negocio",
+      "Se ve que &ultimamente la gente trata de mandar m&as y m&as cosas juntas para ahorrarse el dinero de varios env&ios",
+      "Esto ha provocado que muchos de mis repartidores se da%&en la espalda llevando esos paquetes al no estar seguros de su peso desde el inicio",
+      "Por eso ahora, varios de los paquetes que debes enviar contendran un sello de pesado por motivos de seguridad a la hora de transportarlos.",
       "Estos sello indican el peso del paquete, pudiendo ser bajo, medio y alto. En el manual tienes unas paginas que explican la diferencia de sellos.",
-      "El problema es que los habitantes no son muy espabilados asi que tendras que asegurarte con la balanaza que el sello de pesado corresponde a su peso",
+      "El problema es que los habitantes no son muy espabilados asi que tendras que asegurarte con la balanaza que el sello de pesado corresponde a su peso.",
       "Para ello fijate en la region a donde apunta la flecha al colocar el paquete en la balanza."
     ],
     "18":[
       "Como ves este paquete esta correcto, por lo cual pon sus sellos correspondientes y envialo."
     ],
     "19": [
-      "Vale esta es la $ultima cosa que tengo que explicarte. Para ello vas a necesitar la herramienta que te acabo de soltar en la mesa",
-      "Algunos paquetes pueden contener cosas muy delicadas, y sus propietarios les ponen un sello de fr$agil para que nosotros lo embalemos bien.",
-      "Antes de embalarlo sera mejor que le pongas sello, ya que una vez embalado no podras ver sus caracteristicas."
+      "Vale Paco, espero que esta sea la $ultima cosa que tengo que explicarte. Han metido desde palacio una nueva normativa para ciertos envios debido a las quejas de la gente",
+      "Algunos paquetes pueden contener cosas muy delicadas y como se ve que mis empleados no son demasiado delicados, ahora nos obligan a embalar todos los paquetes",
+      "con un sello especifico de fragilidad. Para ello tendras que usar la nueva herramienta que te he dejado en la mesa",
+      "PERO OJO, antes de embalarlo sera mejor que le pongas sello de calle y compruebes todo lo dem$as, ya que una vez embalado no podras ver sus caracter$isticas."
     ],
     "20": [
       "Para poder embalarlo, coge la herramienta de embalar, y sigue la ruta de puntos que ver$as al ponerlo por encima del paquete.",
@@ -1088,7 +1095,7 @@
       "Por $ultimo envia el paquete y abras terminado"
     ],
     "22": [
-      "Muy bien, veo que ya te vas acordando. Ya estas listo para poder trabajar."
+      "Muy bien, por hoy has aprendido sufiente. Ahora mueve ese culo y ponte a trabajar."
     ]
   },
   "BryantMyers": {
