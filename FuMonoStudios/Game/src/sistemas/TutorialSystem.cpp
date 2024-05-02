@@ -9,14 +9,7 @@
 
 TutorialSystem::TutorialSystem(ecs::TutorialScene* scene) {
 	scene_ = scene;
-	tutorialIteration = 0;
-	DragAndDrop::enableDrag = true;
-	waitingCallback = false;
-	waitingEmbalaje = false;
-	waitingPesado = false;
-
-	dialogMngr_.init(scene);
-	createArrow();
+	
 }
 
 TutorialSystem::~TutorialSystem() {
@@ -190,7 +183,26 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 		case TutorialEvent::ExplicacionFalloAposta:
 			activateDialogue(true);
 			break;
-#pragma endregion
+		#pragma endregion
+
+		#pragma region Paquete pesado
+		case TutorialEvent::EntraPaquetePeso:
+
+			DragAndDrop::enableDrag = false;
+			scene_->createPackage(ecs::TutorialScene::BalanzaTut);
+			delayedCallback(1, [this] {
+				activateDialogue(false);
+			delayedCallback(1, [this] {
+				scene_->createBalanza();
+				});
+				});
+			break;
+
+		case TutorialEvent::EnviarPaquetePeso:
+			DragAndDrop::enableDrag = false;
+			activateDialogue(false);
+			break;
+		#pragma endregion
 
 		#pragma region Paquete fragil
 		case TutorialEvent::EntraPaqueteFragil:
@@ -213,25 +225,9 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			DragAndDrop::enableDrag = false;
 			activateDialogue(false);
 			break;
-#pragma endregion
+		#pragma endregion
 
-		#pragma region Paquete pesado
-		case TutorialEvent::EntraPaquetePeso:
-
-			DragAndDrop::enableDrag = false;
-			scene_->createPackage(ecs::TutorialScene::BalanzaTut);
-			delayedCallback(1, [this] {
-				activateDialogue(false);
-			delayedCallback(1, [this] {
-				scene_->createBalanza();
-				});
-			});
-			break;
-
-		case TutorialEvent::EnviarPaquetePeso:
-			DragAndDrop::enableDrag = false;
-			activateDialogue(false);
-			break;
+		
 
 		case TutorialEvent::Fin:
 			activateDialogue(false);
@@ -331,7 +327,21 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 		case TutorialEvent::EnviarSegundoPaquete:
 			scene_->activateTubos();
 			addActionListener(Action::PaqueteEnviado, [this]() {
-				activateEvent(TutorialEvent::EntraTercerPaquete);
+				activateEvent(TutorialEvent::EntraCuartoPaquete);
+				});
+			break;
+#pragma endregion
+
+#pragma region Paquete Fallar Aposta
+		case TutorialEvent::EntraCuartoPaquete:
+			DragAndDrop::enableDrag = true;
+			addActionListener(Action::Basura, [this] {
+				activateEvent(TutorialEvent::ExplicacionFalloAposta);
+				});
+			break;
+		case TutorialEvent::ExplicacionFalloAposta:
+			delayedCallback(1, [this] {
+				activateEvent(TutorialEvent::Fin);
 				});
 			break;
 #pragma endregion
@@ -347,26 +357,54 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			DragAndDrop::enableDrag = true;
 			scene_->activateGarbage();
 			addActionListener(Action::Basura, [this] {
-				activateEvent(TutorialEvent::EntraCuartoPaquete);
+				activateEvent(TutorialEvent::Fin);
 				});
 			break;
 #pragma endregion
 
-		#pragma region Paquete Fallar Aposta
-		case TutorialEvent::EntraCuartoPaquete:
+
+
+#pragma region Paquete Peso
+		case TutorialEvent::EntraPaquetePeso:
+
 			DragAndDrop::enableDrag = true;
-			addActionListener(Action::Basura, [this] {
-				activateEvent(TutorialEvent::ExplicacionFalloAposta);
+			canPassPagesManual = true;
+			waitingPesado = true;
+			scene_->deactivateTubos();
+			scene_->deactivateGarbage();
+
+			arrow_->setActive(true);
+
+			// animacion de la flecha
+			arrow_->getComponent<Transform>()->setPos(1350, 625);
+			arrow_->getComponent<Transform>()->setRotation(130);
+			arrow_->addComponent<MoverTransform>(Vector2D(1150, 425), 1, Easing::EaseOutBack);
+			arrow_->getComponent<MoverTransform>()->enable();
+
+			addActionListener(Action::Pesado, [this]() {
+				delayedCallback(1, [this] {
+					activateEvent(TutorialSystem::EnviarPaquetePeso);
+			arrow_->setActive(false);
+					});
 				});
+
 			break;
-		case TutorialEvent::ExplicacionFalloAposta:
-			delayedCallback(1, [this] {
-				activateEvent(TutorialEvent::EntraPaquetePeso);
+
+		case TutorialEvent::EnviarPaquetePeso:
+
+			DragAndDrop::enableDrag = true;
+			canPassPagesManual = true;
+			scene_->activateGarbage();
+			scene_->activateTubos();
+			addActionListener(Action::PaqueteEnviado, [this] {
+				delayedCallback(1, [this] {
+					activateEvent(TutorialSystem::Fin);
+					});
 				});
 			break;
 #pragma endregion
 
-		#pragma region Paquete Fragil
+#pragma region Paquete Fragil
 		case TutorialEvent::EntraPaqueteFragil:
 
 			DragAndDrop::enableDrag = true;
@@ -401,51 +439,47 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			break;
 #pragma endregion
 
-		case TutorialEvent::EntraPaquetePeso:
-
-			DragAndDrop::enableDrag = true;
-			canPassPagesManual = true;
-			waitingPesado = true;
-			scene_->deactivateTubos();
-			scene_->deactivateGarbage();
-
-			arrow_->setActive(true);
-
-			// animacion de la flecha
-			arrow_->getComponent<Transform>()->setPos(1350, 625);
-			arrow_->getComponent<Transform>()->setRotation(130);
-			arrow_->addComponent<MoverTransform>(Vector2D(1150, 425), 1, Easing::EaseOutBack);
-			arrow_->getComponent<MoverTransform>()->enable();
-
-			addActionListener(Action::Pesado, [this]() {
-				delayedCallback(1, [this] {
-					activateEvent(TutorialSystem::EnviarPaquetePeso);
-					arrow_->setActive(false);
-					});
-			});
-
-			break;
-
-		case TutorialEvent::EnviarPaquetePeso:
-
-			DragAndDrop::enableDrag = true;
-			canPassPagesManual = true;
-			scene_->activateGarbage();
-			scene_->activateTubos();
-			addActionListener(Action::PaqueteEnviado, [this] {
-				delayedCallback(1, [this] {
-					activateEvent(TutorialSystem::EntraPaqueteFragil);
-					});
-				});
-			break;
-
-
 		case TutorialEvent::Fin:
-			gm().requestChangeScene(ecs::sc::TUTORIAL_SCENE, ecs::sc::MENU_SCENE);
+		
+			gm().requestChangeScene(ecs::sc::TUTORIAL_SCENE, ecs::sc::MAIN_SCENE);
 			// MANDAR A OTRA ESCENA O LO QUE QUERAMOS HACER
 
 			break;
 	}
+}
+
+void TutorialSystem::init()
+{
+
+	if (generalData().getDay() == 1) {
+
+		tutorialIteration = Introduction;
+
+	}
+	else if (generalData().getDay() == 3) {
+
+		tutorialIteration = EntraTercerPaquete;
+
+	}
+	else if (generalData().getDay() == 5) {
+
+		tutorialIteration = EntraPaquetePeso;
+
+	}
+	else if (generalData().getDay() == 8) {
+
+		tutorialIteration = EntraPaqueteFragil;
+
+	}
+	tutorialIteration = 0;
+	DragAndDrop::enableDrag = true;
+	waitingCallback = false;
+	waitingEmbalaje = false;
+	waitingPesado = false;
+
+	dialogMngr_.init(scene_);
+	createArrow();
+
 }
 
 void TutorialSystem::createArrow() {

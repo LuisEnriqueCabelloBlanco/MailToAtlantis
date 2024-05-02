@@ -15,6 +15,7 @@
 ecs::TutorialScene::TutorialScene() : MainScene(), balanzaUsed(false) {
 
 	tutorialSys_ = new TutorialSystem(this);
+
 	mPaqBuild_ = new PaqueteBuilder(this);
 	
 }
@@ -34,6 +35,9 @@ void ecs::TutorialScene::render() {
 }
 
 void ecs::TutorialScene::init() {
+
+	tutorialSys_->init();
+
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
 
 	//fondo
@@ -66,7 +70,27 @@ void ecs::TutorialScene::init() {
 		tubos.push_back(createTubo((pq::Distrito)z, true));
 	}
 
-	tutorialSys_->activateEvent(TutorialSystem::Introduction);
+	if (generalData().getDay() == 1) {
+
+		tutorialSys_->activateEvent(TutorialSystem::Introduction);
+
+	}
+	else if (generalData().getDay() == 3) {
+
+		tutorialSys_->activateEvent(TutorialSystem::EntraTercerPaquete);
+
+	}
+	else if (generalData().getDay() == 5) {
+
+		tutorialSys_->activateEvent(TutorialSystem::EntraPaquetePeso);
+
+	}
+	else if (generalData().getDay() == 8) {
+
+		tutorialSys_->activateEvent(TutorialSystem::EntraPaqueteFragil);
+
+	}
+	
 }
 
 void ecs::TutorialScene::close() {
@@ -227,9 +251,7 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 	else
 		paquete = mPaqBuild_->buildPackage(1, this);
 
-	paquete->removeComponent<DragAndDrop>();
-	paquete->removeComponent<Trigger>();
-	paquete->addComponent<DragAndDropTutorial>(true, tutorialSys_,"arrastrar");
+
 	paquete->getComponent<Trigger>()->addCallback([paquete, this](ecs::Entity* entRec) {
 
 		auto& ihdlr = ih();

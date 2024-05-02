@@ -33,8 +33,8 @@ public:
 	enum TutorialEvent { Introduction, SacaElManual1, SacaElManual2, PaqueteEnseñarRemitente,
 	PaqueteEnseñarCodigoPostal, PaqueteBuscarPaginaCodigosPostales, BuscarPaginaHestia,
 	EnseñarSellos, EnseñarTubos, EntraSegundoPaquete, SegundoBuscarPaginaDistritos, 
-	SellarSegundoPaquete, EnviarSegundoPaquete, EntraTercerPaquete, EnPaginaInfoSellos,
-	EntraCuartoPaquete, ExplicacionFalloAposta, 
+	SellarSegundoPaquete, EnviarSegundoPaquete, EntraCuartoPaquete, ExplicacionFalloAposta, 
+	EntraTercerPaquete, EnPaginaInfoSellos,
 	EntraPaquetePeso, EnviarPaquetePeso, 
 	EntraPaqueteFragil, SellarFragil, EnviarFragil,
 	Fin};
@@ -52,6 +52,7 @@ public:
 	void activateEvent(TutorialEvent event);
 	void stopEvent(TutorialEvent event);
 
+	void init();
 
 	void update();
 
