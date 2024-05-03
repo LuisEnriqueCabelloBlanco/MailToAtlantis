@@ -34,76 +34,161 @@
       "Apreciar$ia mucho si me dirigieses un paquetillo de comida de esos de Demeter a Hestia, $!Ser$ias el mejor amigo que uno puede tener!"
     ],
     "Dia3": [
-      "dia3"
+      " $!Buenos d$ias amigo! $?Qu$e tal est$as?",
+      " $!Hoy estoy muy agradecido amigo! Me he despertado y no me han robado el cart$on, eso tiene que ser una bendici$on de Dios de que lo estoy haciendo bien. JA JA JA !",
+      "Ver$as, hoy he mandado un paquete a unos colegas del distrito de Artemisa, y me gustar$ia que llegara de una pieza.",
+      "Igual esta un poco mal sellado o el cart$on esta un poquito reventado... pero es que con los recursos que tengo tampoco puedo hacer mucho..."
     ],
     "PostConversacionDia3": [
-      "postConvDia3"
+      "Como te dec$ia, les he mandado a unos colegas un paquete. El paquete va hacia Artemisa, $!Recu$erdalo amigo!"
     ],
     "Dia4": [
-      "dia4"
+      " $!Gran amigo! $$?C$omo te va todo?",
+      " $!Hoy es mi d$ia de suerte socio! No vas a creer lo que he encontrado rebuscando en la basura. $!Mira!",
+      "*Te muestra una bola del tama$%o de una u$%a. Tiene un color dorado brillante. Se nota que es falsa*",
+      " $!Estoy que me salgo! Se lo voy a mandar a un joyero para que me diga cuanto vale, lo mandare por paquete, no me la robes eh...",
+      " $!Voy a ser rico!"
     ],
     "PostConversacionDia4": [
-      "postConvDia4"
+      " $!Vaya pepita que me he encontrado chaval! $!Esto seguro me saca de esta miseria!"
     ],
     "Dia5": [
-      "dia5"
+      " $!Ey amigo!",
+      "Resulta que la joya era falsa... No veas que bajona llevo...",
+      "Toma, ya no la quiero, te la regalo. Haz lo que quieras con ella.",
+      "Ya que somos amigos inseparables y me has ayudado tanto, $?te puedo preguntar algo?",
+      "$?Que opinas del rey? $?Crees que es justo con su pueblo? $?Crees que los campesinos nos merecemos estos tratos? $?Crees de verdad que este es el rey que nos merecemos?",
+      "No deber$iamos hablar de esto. Primero tengo que saber si puedo confiar en t$i.",
+      "Toma esto.",
+      "*Recibes dos papeles con un sello de una lechuza. Contiene instrucciones sobre algo*",
+      "Cumplelo y seguiremos hablando. Ni se te ocurra decir que te lo he dado yo.",
+      "La lechuza aguarda. Ahora vete y haz como que no te he dado nada. Disimula.",
+      " $!Hasta luego coleguita! $!Disfruta de tu d$ia de trabajo!"
     ],
     "PostConversacionDia5": [
-      "postConvDia5"
+      "Ya sabes lo que hay que hacer. No hables m$as conmigo hoy, que nos van a pillar."
     ],
     "Dia6": [
-      "dia6"
+      " $!Colega! $!Cuanto te he hechado de menos!",
+      " $!Mira amigo! $!Tengo una nueva mascota! ",
+      "*Te acerca un pez anaranjado metido en una bolsa llena de agua. Se nota que el pez no se mueve*",
+      "Se llama 'Pescaito'. Es un poco holgaz$an, le gusta mucho dormir. Lleva durmiendo desde ayer, $?increible eh?",
+      "Encima come poqu$isimo. No me cuesta nada mantenerle. $!Mira como flota el chaval! $!Que arte!",
+      "Vale ahora en serio. Para saber si de verdad podemos confiar en t$i tenemos que comprobar que est$as capacitado mentalmente. Tienes ya las herramientas para cumplir esta prueba",
+      "Debes eliminar al 'Buitre'. Su paquete debe ir a la basura.",
+      "Recuerda que estamos trabajando por una buena causa. No nos falles.",
+      "La lechuza aguarda. Ve y haz como que no te he dicho nada."
     ],
     "PostConversacionDia6": [
-      "postConvDia6"
+      "Recuerda, debes eliminar al 'Buitre'. Tienes un papel que te servir$a para reconocerlo."
     ],
     "Dia7": [
-      "dia7"
+      " $!Benditos los oc$eanos! $!Dime que has le$ido el nuevo papel de las lechuzas!",
+      " $!Por fin se dan cuenta! $!Mi padre ten$ia raz$on! La gente va a abrir los ojos por fin.",
+      "Ver$as amigo, yo siempre he sabido que los humanos han existido, mi padre me ense$%$o sobre ellos y le mataron por compartir ese conocimiento.",
+      "Ahora toda la poblaci$on lo sabe, y tarde o temprano se revelar$a la corrupci$on de este rey maldito que ha tratado de ocultar la verdad a su pueblo.",
+      "No te voy a mentir amigo, has jugado un papel muy clave en este movimiento de revelaci$on. Gracias a t$i, hemos conseguido unir por mensajer$ia a toda la secta de la lechuza y sacar este libro a la luz.",
+      "Jones, ayudame a mi y a las lechuzas a salvar al pueblo de este rey. Si sigues ayud$andonos, te revelar$e la verdad de las lechuzas.",
+      " $!Ahora a celebrar amigo! $!Vamos a beber hasta quedarnos ciegos!",
+      " $!Redirige a este distrito de Hestia alg$un paquetillo con comida de Hermes, que hoy estamos de celebraci$on y hay que comer como cerdos!"
     ],
     "PostConversacionDia7": [
-      "postConvDia7"
+      " $!Redirige a este distrito de Hestia alg$un paquetillo con comida de Hermes, que hoy estamos de celebraci$on y hay que comer como cerdos!"
     ],
     "Dia8": [
-      "dia8"
+      " $!Hola gran amigo!",
+      "Tengo una mala noticia... 'Pescaito'... Ha muerto...",
+      " $?C$omo dices? $?Que por eso dorm$ia tanto?",
+      "Bueno eso da igual... Tenemos que darle una despedida digna. Pescaito no puede ser enterrado en tierras tan nauseabundas como est$as. El siempre se ha merecido vivir con la nobleza.",
+      "Lo voy a mandar en paquete. No me quedan sellos, tengo que ir a comprar, as$i que si ves mi paquete, no lo tires a la basura y m$andalo al distrito de Hermes. S$i el de Hermes. Un distrito digno de 'Pescaito'.",
+      "C$omo te voy a echar de menos 'Pescaito'..."
     ],
     "PostConversacionDia8": [
-      "postConvDia8"
+      "Debemos darle una digna despedida... M$anda a 'Pescaito' a Hermes... Siempre supe que merec$ia estar con la nobleza..."
     ],
     "Dia9": [
-      "dia9"
+      " $!Coleguita! $!C$omo est$as!",
+      " $$!Hoy es el gran d$ia amigo! Hoy se van a empezar a mover los engranajes de la sociedad de Atlantis. Y necesitamos de tu gran ayuda.",
+      "Toma esta lista. Van a pasar bastantes paquetes ilegales. Necesitamos que pasen a$un as$i. Aseg$urate que todos los paquetes de la lista de nombres pasan y te contar$e la verdad. Mi verdad.",
+      "El porqu$e de nuestra lucha y nuestra esperanza. Pero primero necesitamos fiarnos de ti al 100 por 100",
+      "Ahora ve a trabajar y no nos decepciones. La lechuza aguarda."
     ],
     "PostConversacionDia9": [
-      "postConvDia9"
+      "La lista es de paquetes ilegales que necesitamos que pasen. C$umplelo y sabremos que eres de fiar."
     ],
     "Dia10": [
-      "dia10"
+      " $!Pero mira quien es! $!Mi gran amigo Jones!",
+      "Jones, hoy nos has demostrado que puedes pertenecer a nosotros.",
+      "Hemos pasado mucho juntos, gran amigo, no nos conocemos de mucho pero s$e mucho sobre t$i, y ahora falta, que t$u sepas sobre m$i.",
+      "Ver$as Jones quiero hacerte una pregunta. Como la que te hice cuando te estaba conociendo. $?T$u alguna vez has visto al rey en persona? $?Le has llegado a ver con tus propios ojos? Exacto.",
+      " $!El rey no existe, amigo! $!El rey es falso! $!El rey ha muerto! $!Es todo una gran farsa! $!Nos han enga$%ado a todos, TODOS!",
+      " $?Jones alguna vez te has preguntado que hac$ia yo antes de ser un vagabundo? $?El c$omo he acabado aqu$i?",
+      "Mi padre era el rey Jones. As$i es, yo soy el heredero leg$itimo al trono.",
+      "Mi padre era un buen rey, ten$ia a todo el pueblo contento y creaba grandes avances para la sociedad. Todo di$o un vuelco cuando encontr$o unos libros enterrados muy antiguos. Era el 'Critias', el libro que habla de los humanos de la superficie.",
+      "Ahora ya conocemos el libro, pero se encontr$o cuando yo solo ten$ia 10 a$%os. Mi padre lo habl$o con Gargafiel, el secretario del rey, y le coment$o de revelarlo a la poblaci$on para mentalizarse para el resurgimiento en 25 a$%os.",
+      "Tuvieron un choque de opiniones. Esto nunca pasaba.",
+      "Gargafiel cre$ia que la sociedad no pod$ia saber de esto, que eramos superiores a los humanos, y que revelarlo era causar caos. Lo cre$ia tan fuertemente que lleg$o a traicionar a mi padre.",
+      " $El tom$o un frasco de veneno de un comerciante corrupto, y enrabietado envenen$o a mi padre. A mi me ech$o del palacio y me hizo ver como un loco al pueblo. Esto me llev$o a vivir de mala forma en este sucio distrito.",
+      "Para cubrir su gran mentira, dijo que estaba protegiendo al rey de unos posibles atentados terroristas, y que no pod$ia salir en p$ublico.",
+      " $!Est$a reinando ileg$itimamente Jones! $!Encima su corrupci$on nos afecta negativamente a todos! $!Esto debe parar!",
+      "Para esto estamos las lechuzas. Unos pocos seguidores del rey se dieron cuenta que esta situaci$on ol$ia a chamusquina y se reun$ian en privado. Hab$ia esperanza.",
+      "Entonces conoc$i a un campesino com$un que me habl$o de las lechuzas, le cont$e mi situaci$on y al principio no me cre$ia.",
+      "Pero le ense$%$e mi marca del brazo. Mira. Esta marca solo la tenemos el linaje de los reyes. Fue ah$i cuando me un$i a las lechuzas.",
+      " $!Lucha por mi causa Jones! $!Por nuestra causa! $!Debemos liberar a nuestro pueblo Jones",
+      "As$i me gusta amigo. Ahora vamos a la siguiente parte de nuestro plan. Asesinar a Gargafiel.",
+      "Seg$un tengo entendido, ya te dejan enviar paquetes al distrito de Poseid$on. Eso nos ser$a muy $util. No defraudes a tu jefe o nuestro plan se ir$a al garete.",
+      "Necesitamos recursos. Manda al distrito de Hestia al menos 3 paquetes de joyas que vayan dirigido al distrito de Poseid$on. Necesitamos dinero.",
+      "Una vez tengamos recursos, compraremos un buen veneno. Vamos a matar a ese impostor. Y despu$es, invadiremos el templo y tomaremos el gobierno.",
+      "Ahora a trabajar, gran amigo. No defraudaremos."
     ],
     "PostConversacionDia10": [
-      "postConvDia10"
+      "Conf$ia en mi, amigo. Necesitamos dinero, necesitamos al menos 3 paquetes de joyas que vayan a Poseid$on en Hestia."
     ],
     "Dia11": [
-      "dia11"
+       " $!Hombre Jones!",
+       " $!Nuestro plan va de maravilla! Falta el tema de los recursos. Necesitamos muchas flores y especias chungas para el veneno.",
+      "Tengo entendido que en el distrito de Hermes se mueven muchos paquetes con lo que necesitamos. Redirige al distrito de Hefesto 2 paquetes de materiales que pesen menos de 15kg. Es decir, ligeros.",
+      " $?Qu$e porque los mandamos a Hefesto? All$i est$a nuestra base de operaciones porque tenemos a todos los artesanos all$i, adem$as, tambi$en haremos all$i el veneno. Eh esto no se lo cuentes a nadie eh, secreto secreto.",
+      "Venga Jones, $!Manos a la obra!"
     ],
     "PostConversacionDia11": [
-      "postConvDia11"
+      "Necesitamos paquetes de materiales. Manda 2 paquetes que pesen menos de 15 kg que sean de materiales a Hefesto."
     ],
     "Dia12": [
-      "dia12"
+      " $!Gran amigo! $!Qu$e bien te veo!",
+      "Ya tenemos el veneno fabricado. Muchas gracias por tu ayuda, Jones.",
+      "Ahora tenemos que mandarlo. Un tal 'Grog Koroth' va a mandar el paquete con el veneno desde Dem$eter.",
+      "Seguramente el paquete ir$a sin sello. El chaval es un genio para hacer venenos pero para poner un sello le fallan las luces...",
+      "En resumen, redirige el paquete de 'Grog Koroth' y m$andalo al de Hestia.",
+      " $!Chao gran amigo!"
     ],
     "PostConversacionDia12": [
-      "postConvDia12"
+      "Necesitamos que pase el paquete del creador del veneno, 'Grog Koroth'"
     ],
     "Dia13": [
-      "dia13"
+      " $!Amiguito del alma! $!Que bueno es verte!",
+      "Hemos llegado ya a la parte final del plan Jones. Tenemos que ahora poner al pueblo a punto de revoluci$on.",
+      "Vamos a redirigir una serie de paquetes. Tenemos unos paquetes especiales que contienen instrucciones, estos pesan poqu$isimo.",
+      "Paquetes ligeros, es decir que pesan menos de 15kg, originalmente ven$ian aqu$i, a Hestia. Ahora, m$andalos a Apolo, donde tengo a gente que los repartir$a por la ciudad. Ser$an 3 en total.",
+      "$!Vamos amigo! $!Lo vamos a conseguir!"
     ],
     "PostConversacionDia13": [
-      "postConvDia13"
+      "Recuerda colega, 3 paquetes ligeros, es decir de menos de 15kg, redir$igelos a Apolo."
     ],
     "Dia14": [
-      "dia14"
+      " $!Jones, amigo! $!Hoy es el d$ia!",
+      "Se acab$o dormir en el suelo, se acab$o los malos salarios de los campesinos, se acab$o la vida de soberbia de la nobleza, se acab$o la injusticia...",
+      "Se acab$o la tiran$ia de este secretario del rey. Se va a acabar todo y va a empezar la nueva era, una era donde prosperaremos como sociedad, hasta juntarnos con los humanos y convivir con ellos cuando Atlantis resurja en 5 a$os.",
+      "Ahora el plan. Va a llegar un paquete enviado de las lechuzas al distrito de Poseid$on. Su nombre es 'Francis Dupart'. Recuerda su nombre.",
+      "Toma. El veneno que hemos estado trabajando. $echalo sobre la apertura del paquete. El secretario tiene una mala man$ia de abrir los paquetes con la boca. En verdad le pega, con esa bocaza que me lleva... Ah$i le pillaremos.",
+      "Solo a ese paquete, repito, SOLO A ESE PAQUETE. Debes echar los polvos sobre la estampa de Poseid$on. Ten cuidado de no tocarlo tu tambi$en.",
+      "Luego mandalo y acaba el trabajo. Luego ven a verme y nos esconderemos hasta m$inimo un d$ia. Tenemos que asegurarnos de que ha muerto, sino vaya sorpresita nos llevar$iamos.",
+      "Venga Jones. Conf$io en t$i y tu conf$ias en m$i. Hemos pasado mucho juntos. A la gloria juntos. O a la miseria juntos.",
+      " $!Venga amigo! $!A trabajar!",
+      " $!Recuerda compa$%ero! $!El nombre es 'Francis Dupart'!"
     ],
     "PostConversacionDia14": [
-      "postConvDia14"
+      " $!Recuerda comp! $!El nombre es 'Francis Dupart'!"
     ]
   },
   "Secretario": {
@@ -224,7 +309,6 @@
       "ves como Pancracio empieza a desmoronarse",
       "Vete, vete y no vuelvas, ya no tengo huerto, no tengo familia, NO TENGO AMIGOS, no tengo nada.",
       "Vete, vete, vete..."
-
     ],
     "FelicidadMaxima": [
       "Felicidad maxima Campesino"

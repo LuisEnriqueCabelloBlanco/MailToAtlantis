@@ -1,5 +1,6 @@
 #pragma once
 #include "../architecture/Component.h"
+#include <assert.h>
 
 class Transform;
 class Texture;
@@ -20,13 +21,29 @@ public:
 	void initComponent() override;
 	void render() const;
 	/// <summary>
-	/// cambia la textura 0 (esto es temporal)
+	/// cambia a la textura indicada por el indice
+	/// </summary>
+	/// <param name="indx"></param>
+	inline void setTextureIndx(int indx) { 
+		assert(texturesVector_.size() > indx);
+		currentTextureIndx_ = indx; 
+	};
+	/// <summary>
+	/// cambia la textura de la posicion inicada del array de texturas
 	/// </summary>
 	/// <param name="texture"></param>
-	inline void setTexture(Texture* texture) {texturesVector_[0] = texture; };
-	inline void setTexture(int indx) { currentTextureIndx_ = indx; };
+	/// <param name="indx"></param>
+	inline void setTexture(Texture* texture, int indx = 0) {
+		assert(texturesVector_.size() > indx);
+		texturesVector_[indx] = texture;
+	}
+	/// <summary>
+	/// aniade una textura al final de array de texturas
+	/// </summary>
+	/// <param name="texture"></param>
+	inline void addTexture(Texture* texture) { texturesVector_.push_back(texture); }
 	inline void setVector(const std::vector<Texture*>& textures) { texturesVector_ = textures; }
-	Texture* getTexture();
+	Texture* getCurrentTexture();
 	std::vector<Texture*>* getVector();
 	void nextTexture();
 	void previousTexture();

@@ -55,6 +55,9 @@ public:
 		pq::NivelPeso nivPeso = pq::Ninguno, int peso = 0,
 		bool fragil = false, bool carta = false);
 
+
+	void init();
+
 	PaqueteBuilder(ecs::Scene*);
 
 	~PaqueteBuilder();

@@ -20,7 +20,7 @@ namespace ecs {
 	/// Tiene metodos para anadir direcciones al lugar (necesita un string y una instancia de lugar), un booleano
 	/// que indica si cierto lugar (indicado con el string del mapa) es navegable, un getPlaceFromDirection 
 	/// que devuelve un puntero apuntando la posicion de memoria de un lugar del mapa de direcciones (se usa para 
-	/// moverte por el mapa) y un getTexture (se usa para renderizar el background en el mapa).
+	/// moverte por el mapa) y un getCurrentTexture (se usa para renderizar el background en el mapa).
 	/// No hay destructora porque no se genera nueva memoria dinamica.
 	/// </summary>
 	/// 
@@ -53,7 +53,7 @@ namespace ecs {
 		/// Metodo que devuelve la textura del fondo para poder renderizarla
 		/// </summary>
 		/// <returns></returns>
-		Texture* getTexture() const { return backGround_; };
+		Texture* getCurrentTexture() const { return backGround_; };
 
 		void changeActivationObjects(bool state);
 
@@ -189,17 +189,18 @@ namespace ecs {
 		void setupDiarioPages();
 		void changeDiarioPages(bool forward);
 		void changeCaraFelicidad(NPCdata* data);
+		void makeDiaryPages();
 		std::vector<std::string> diarioText_;
 		std::vector<int> pagesByCharacter;
 		int currentDiarioPage;
 		ecs::Entity* diario_;
-		RenderImage* leftPageRnd;
-		Transform* leftPageTr;
-		RenderImage* rightPageRnd;
-		Transform* rightPageTr;
-		RenderImage* caraFelicidad;
-		Texture* rightTex;
-		Texture* leftTex;
+		RenderImage* leftPageRnd = nullptr;
+		Transform* leftPageTr = nullptr;
+		RenderImage* rightPageRnd = nullptr;
+		Transform* rightPageTr = nullptr;
+		RenderImage* caraFelicidad = nullptr;
+		Texture* rightTex = nullptr;
+		Texture* leftTex = nullptr;
     };
 }
 

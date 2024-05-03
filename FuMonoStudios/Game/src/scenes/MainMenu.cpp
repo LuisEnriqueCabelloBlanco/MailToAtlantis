@@ -58,6 +58,7 @@ void ecs::MainMenu::init()
 
 	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Nueva partida", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
+		generalData().newGame();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
 		},textColor);
 	factory_->addHilghtOnHover(start);
