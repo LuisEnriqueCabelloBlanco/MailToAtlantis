@@ -37,6 +37,7 @@ public:
 	void update() override;
 	void enable();
 	void disable() { enable_ = false; }
+	bool isEnabled() { return enable_; }
 
 	inline void setEasing(Easing easing) { easing_ = easing; }
 	inline void setFinalPos(const Vector2D& pos) { finalPos_ = pos; }

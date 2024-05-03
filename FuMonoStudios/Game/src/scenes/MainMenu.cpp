@@ -26,11 +26,13 @@ ecs::MainMenu::~MainMenu()
 
 void ecs::MainMenu::init()
 {
+#ifdef _DEBUG
 	std::cout << "Hola Menu" << std::endl;
+#endif // _DEBUG
+
 	//generalData().updateFelicidadPersonajes();
 	sdlutils().clearRenderer();
 
-	//Font* fuente = new Font("recursos/fonts/ARIAL.ttf", 50);
 	Entity* fondo = addEntity(ecs::layer::BACKGROUND);
 	Texture* texturaFondo = &sdlutils().images().at("fondoMainMenu");
 	Transform* transformFondo = fondo->addComponent<Transform>(0.0f, 0.0f, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
@@ -46,7 +48,7 @@ void ecs::MainMenu::init()
 	auto tuto = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH- 700, 400), "Tutorial", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::TUTORIAL_SCENE);
-		},textColor);
+		}, "click", textColor);
 	factory_->addHilghtOnHover(tuto);
 	factory_->addHoverColorMod(tuto);
 
@@ -54,7 +56,7 @@ void ecs::MainMenu::init()
 	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Nueva partida", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
-		},textColor);
+		},"click", textColor);
 	factory_->addHilghtOnHover(start);
 	factory_->addHoverColorMod(start);
 
@@ -62,14 +64,14 @@ void ecs::MainMenu::init()
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
 		generalData().loadSaveFile();
-		}, textColor);
-	factory_->addHilghtOnHover(start);
-	factory_->addHoverColorMod(start);
+		}, "click", textColor);
+	factory_->addHilghtOnHover(loadSave);
+	factory_->addHoverColorMod(loadSave);
 
 	auto exit = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 700), "Salir", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().endGame();
-		},textColor);
+		}, "click", textColor);
 	factory_->addHilghtOnHover(exit);
 	factory_->addHoverColorMod(exit);
 }

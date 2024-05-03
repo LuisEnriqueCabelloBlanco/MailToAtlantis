@@ -1,11 +1,15 @@
 ﻿#pragma once
+#include <utils/checkML.h>
 #include "../architecture/Scene.h"
 #include "../components/DialogManager.h"
 #include "../sistemas/ComonObjectsFactory.h"
 #include <list>
 
 constexpr float SCALE_NPCS = 0.25;
+constexpr int MAX_CHAR_LEN_LEFT_DIARIO = 370;
+constexpr int MAX_CHAR_LEN_RIGHT_DIARIO = 406;
 class NPCeventSystem;
+class RenderImage;
 
 namespace ecs {
 
@@ -98,7 +102,7 @@ namespace ecs {
         ExplorationScene();
         virtual ~ExplorationScene();
         void init() override;
-        //virtual void close() override {}
+		virtual void close() override;
         void render();
 		void update();
 
@@ -136,6 +140,8 @@ namespace ecs {
 
 		ecs::Entity* createWorkButton(Vector2D pos, Vector2D scale);
 
+		void createDiario();
+
 		/// <summary>
 		/// Metodo factoria para characters
 		/// </summary>
@@ -152,6 +158,8 @@ namespace ecs {
 		/// </summary>
 		void updateNavegavility();
 		ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
+
+		ecs::Entity* createInteractableObj(Vector2D pos, const std::string& character, float scaleX, float scaleY);
         
 		//VARIABLES
 
@@ -176,6 +184,22 @@ namespace ecs {
 		bool canStartConversation;
 
 		ecs::Entity* boton_Trabajo;
+
+		void addDiarioEvent(NPCevent* event);
+		void setupDiarioPages();
+		void changeDiarioPages(bool forward);
+		void changeCaraFelicidad(NPCdata* data);
+		std::vector<std::string> diarioText_;
+		std::vector<int> pagesByCharacter;
+		int currentDiarioPage;
+		ecs::Entity* diario_;
+		RenderImage* leftPageRnd;
+		Transform* leftPageTr;
+		RenderImage* rightPageRnd;
+		Transform* rightPageTr;
+		RenderImage* caraFelicidad;
+		Texture* rightTex;
+		Texture* leftTex;
     };
 }
 

@@ -103,6 +103,13 @@ void DragAndDrop::update() {
 		else if (ihdlr.mouseButtonUpEvent()) {
 			
 			if (dragging_) {
+
+				if (draggingSound_ != "") 
+				{
+					std::cout << "nodragging \n";
+					SoundEmiter::instance()->haltSound(draggingSound_);
+				}
+
 				// reactivamos la gravedad
 				if (grav_ != nullptr) {
 					grav_->setActive(true);
@@ -123,7 +130,7 @@ void DragAndDrop::update() {
 
 				}
 
-				SoundEmiter::instance()->haltSound(draggingSound_);
+				
 				// si has asignado callback se activa
 				if (usingCallback_)
 					func_();
@@ -136,11 +143,12 @@ void DragAndDrop::update() {
 		//Arrastre del objeto
 		if (dragging_) {
 
-			if (latestPoint_.first != point.x || latestPoint_.second != point.y)
-				SoundEmiter::instance()->muteSingleSound(draggingSound_, false);
-			else
-				SoundEmiter::instance()->muteSingleSound(draggingSound_, true);
-
+			if (draggingSound_ != "") {
+				if (latestPoint_.first != point.x || latestPoint_.second != point.y)
+					SoundEmiter::instance()->muteSingleSound(draggingSound_, false);
+				else
+					SoundEmiter::instance()->muteSingleSound(draggingSound_, true);
+			}
 
 			latestPoint_.first = point.x;
 			latestPoint_.second = point.y;

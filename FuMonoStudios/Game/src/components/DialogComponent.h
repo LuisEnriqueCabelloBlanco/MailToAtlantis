@@ -1,4 +1,5 @@
 #pragma once
+#include <utils/checkML.h>
 #include "../architecture/Component.h"
 #include "DialogManager.h"
 #include "../sdlutils/Font.h"

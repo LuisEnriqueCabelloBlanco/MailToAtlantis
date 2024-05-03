@@ -1,8 +1,12 @@
+#include <utils/checkML.h>
 #include "../components/DialogManager.h"
 #include "GeneralData.h"
 #include "../json/JSON.h"
 #include "../json/JSONValue.h"
 #include "../sdlutils/RandomNumberGenerator.h"
+
+#include "../architecture/ecs.h"
+#include "../sistemas/SoundEmiter.h"
 #include "../sistemas/PaqueteBuilder.h"
 #include "Game.h"
 #include "../sistemas/NPCeventSystem.h"
@@ -19,10 +23,41 @@ GeneralData::GeneralData()
 	dia_ = INITIAL_DAY;
 	rent_ = 75;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
+	upgrades_.resize(ecs::upg::_LAST_UPGRADE);
+	for (auto upg : upgrades_) {
+		upg = false;
+	}
+	//upgrades_[ecs::upg::MONEY_UPGRADE] = true;
 
+	/*if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
+		std::cout << "Mejora de dinero desbloqueada" << std::endl;
+	}
+	else {
+		std::cout << "Mejora de dinero NO desbloqueada" << std::endl;
+	}*/
+#ifdef _DEBUG
+	std::cout << "Tamanyo vector de mejoras: " << upgrades_.size() << std::endl;
+#endif // _DEBUG
+	paramAjustes_[0] = 50;
+#ifdef _DEBUG
+	std::cout << "Volumen SFX: " << paramAjustes_[0] << std::endl;
+#endif // _DEBUG
+	soundEmiter().setSoundVolumes(paramAjustes_[0]);
+	//readNPCData();
 }
 
 GeneralData::~GeneralData() {
+	
+	for (auto& npc : npcData) {
+		delete npc.second;
+		npc.second = nullptr;
+	}
+	for (auto obj : intObjData) {
+		delete obj;
+	}
+	for (auto package : paquetesNPCs) {
+		delete package;
+	}
 	delete npcEventSys;
 }
 
@@ -37,7 +72,7 @@ void GeneralData::loadSaveFile()
 }
 
 void GeneralData::updateMoney()
-{
+{	
 	int rightPackages = corrects_;
 	int wrongPackages = fails_;
 	//funcion de ejemplo seguramente haya que cambiarlo
@@ -47,6 +82,7 @@ void GeneralData::updateMoney()
 	if (corrects_ < 0) {
 		rightPackages = 0;
 	}
+
 	dinero_ += calcularDineroGanado() - rent_;
 }
 
@@ -54,7 +90,24 @@ int GeneralData::calcularDineroGanado()
 {
 	int rightPackages = corrects_;
 	int wrongPackages = fails_;
-	return (rightPackages * WRITE_PACAGES_VALUE) - (wrongPackages * WRONG_PACAGES_VALUE);
+	int totalRightMoney = 0;
+
+	if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
+		totalRightMoney = rightPackages * (WRITE_PACAGES_VALUE + 10);
+	}
+	else {
+		totalRightMoney = rightPackages * WRITE_PACAGES_VALUE;
+	}
+	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::FALLOS_UPGRADE)) failsMargin_ = 2;
+	else failsMargin_ = 0;
+	if (fails_ < failsMargin_) {
+		wrongPackages = 0;
+	}
+	else {
+		wrongPackages -= failsMargin_;
+	}
+	
+	return 		totalRightMoney - (wrongPackages * WRONG_PACAGES_VALUE);
 }
 
 void GeneralData::resetMoney()
@@ -66,17 +119,24 @@ void GeneralData::resetMoney()
 
 void GeneralData::setFinalID(int final) {
 	finalID_ = final;
+#ifdef _DEBUG
 	std::cout << "El ID del final del juego es: " << finalID_ << std::endl;
+#endif // _DEBUG
+
 }
 
 int GeneralData::getFinalID() {
+#ifdef _DEBUG
 	std::cout << "El ID del final del juego que quieres obtener es: " << finalID_ << std::endl;
+#endif // _DEBUG
 	return finalID_;
 }
 
 void GeneralData::setRent(int rent) {
 	rent_ = rent;
+#ifdef _DEBUG
 	std::cout << "el nuevo alquiler es: " << rent_ << std::endl;
+#endif // _DEBUG
 }
 
 int GeneralData::getRent() {
@@ -211,6 +271,23 @@ int GeneralData::getPaqueteLevel() {
 	return paqueteLvl_;
 }
 
+void GeneralData::changeParamID(int i, bool suma) {
+	if (suma) {
+		paramAjustes_[i] += 10;
+		if (paramAjustes_[i] >= 100) {
+			paramAjustes_[i] = 100;
+		}
+	}
+	else {
+		paramAjustes_[i] -= 10;
+		if (paramAjustes_[i] <= 0) {
+			paramAjustes_[i] = 0;
+		}
+	}
+#ifdef _DEBUG
+	std::cout << "El valor del parametro ahora es: " << paramAjustes_[i] << std::endl;
+#endif // _DEBUG
+}
 void GeneralData::setPaqueteLevel(int lvl) {
 	paqueteLvl_ = lvl;
 }
@@ -241,7 +318,19 @@ void GeneralData::readNPCData() {
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
-			npcData[(Personaje)i] = data;
+			data->events = std::vector<NPCevent*>(14, nullptr);
+			JSONArray eventosCompletados = jObject.find("EventosCompletados")->second->AsArray();
+			int k = 0;
+			for (auto it : eventosCompletados)
+			{
+				data->eventosCompletados[k].first = true;
+				data->eventosCompletados[k].second = it->AsNumber();
+				k++;
+			}
+			for (int z = k; z < 14; z++)
+				data->eventosCompletados[z] = std::make_pair(false, 0);
+
+			npcData.emplace((Personaje)i, data);
 		}
 		else
 		{
@@ -250,11 +339,26 @@ void GeneralData::readNPCData() {
 			JSONObject jDiasEvento = jObject.find("DiasConEvento")->second->AsObject();
 
 			// leemos los 14 booleanos
-			for (int i = 0; i < 14; i++)
+			for (int j = 0; j < 14; j++)
 			{
-				diasDanEventos.push_back(jDiasEvento.find(std::to_string(i + 1))->second->AsBool());
+				diasDanEventos.push_back(jDiasEvento.find(std::to_string(j + 1))->second->AsBool());
 			}
-			npcData[(Personaje)i] = new NPCMenorData(stringToFelicidad(felicidadStr),diasDanEventos);
+			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
+			data->events = std::vector<NPCevent*>(5, nullptr);
+			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
+			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
+			JSONArray eventosCompletados = jObject.find("EventosCompletados")->second->AsArray();
+			int k = 0;
+			for (auto it : eventosCompletados)
+			{
+				data->eventosCompletados[k].first = true;
+				data->eventosCompletados[k].second = it->AsNumber();
+				k++;
+			}
+			for (int z = k; z < 5; z++)
+				data->eventosCompletados[z] = std::make_pair(false, 0);
+
+			npcData.emplace((Personaje)i,data);
 		}
 		jValue = nullptr;
 	}
@@ -268,7 +372,6 @@ void GeneralData::writeNPCData() {
 
 	if (!archivo.is_open())
 	{
-		std::cout << "Error al abrir npcData.json" << std::endl;
 		throw std::runtime_error("Error al abrir npcData.json");
 	}
 
@@ -295,13 +398,29 @@ void GeneralData::writeNPCData() {
 		int posMisionesAc = contenido.find("numMisionesAceptadas", posPersonaje) + 23;
 		contenido.replace(posMisionesAc, (contenido.find('\n', posMisionesAc)) - posMisionesAc,
 			std::to_string(data->numMisionesAceptadas) + ",");
+
+		int posEventosCompletados = contenido.find("EventosCompletados", posPersonaje) + 21;
+		std::string newEventosString = "[";
+		for (int i = 0; i < data->eventosCompletados.size(); i++)
+		{
+			// si ha sido completado
+			if (data->eventosCompletados[i].first && data->eventosCompletados[i].second != 0)
+			{
+				newEventosString += std::to_string(data->eventosCompletados[i].second) += ",";
+			}
+		}
+		if (newEventosString[newEventosString.size() - 1] == ',')
+			newEventosString.pop_back();
+		newEventosString += "],";
+		contenido.replace(posEventosCompletados, (contenido.find('\n', posEventosCompletados)) - 
+			posEventosCompletados, newEventosString);
+
 	}
 
 	// Abrir el archivo en modo de escritura
 	std::ofstream archivoSalida("recursos/data/npcData.json");
 
 	if (!archivoSalida.is_open()) {
-		std::cout << "Error al abrir el archivo npcData.json para escritura." << std::endl;
 		throw std::runtime_error("Error al escribir npcData.json");
 	}
 	
@@ -316,7 +435,6 @@ void GeneralData::saveGame() {
 
 	if (!archivo.is_open())
 	{
-		std::cout << "Error al abrir saveFile.json" << std::endl;
 		throw std::runtime_error("Error al abrir saveFile.json");
 	}
 
@@ -343,7 +461,6 @@ void GeneralData::saveGame() {
 	std::ofstream archivoSalida("recursos/data/saveFile.json");
 
 	if (!archivoSalida.is_open()) {
-		std::cout << "Error al abrir el archivo saveFile.json para escritura." << std::endl;
 		throw std::runtime_error("Error al escribir saveFile.json");
 	}
 
@@ -400,29 +517,118 @@ const std::string GeneralData::personajeToString(Personaje pers) {
 		case Contable:
 			aux = "Contable";
 			break;
+	    case Jefe:
+			aux = "Jefe";
+		    break;
 	}
 	return aux;
 }
 
 Personaje GeneralData::stringToPersonaje(const std::string& pers) {
-	Personaje aux;
+	Personaje aux = Vagabundo;
 	// no deja hacer switch y es una cochinada pero es la unica forma de hacerlo
 	//se puede usar un hasmap
 	if (pers == "Vagabundo")
-		aux = Vagabundo;
+		aux = npc::Vagabundo;
 	else if (pers == "Secretario")
-		aux = Secretario;
+		aux = npc::Secretario;
 	else if (pers == "Campesino")
-		aux = Campesino;
+		aux = npc::Campesino;
 	else if (pers == "Artesano")
-		aux = Artesano;
+		aux = npc::Artesano;
 	else if (pers == "Tarotisa")
-		aux = Tarotisa;
+		aux = npc::Tarotisa;
 	else if (pers == "Soldado")
-		aux = Soldado;
+		aux = npc::Soldado;
 	else if (pers == "Contable")
-		aux = Contable;
+		aux = npc::Contable;
+	else if (pers == "Jefe")
+		aux = npc::Jefe;
 	
+	return aux;
+}
+
+const std::string GeneralData::intObjetoToString(int pers) {
+
+	std::string aux = "";
+	switch (pers) {
+
+		//Hestia
+	case 0: aux = "CasaGrande"; break;
+	case 1: aux = "CartelOficina"; break;
+	case 2: aux = "Muro"; break;
+
+		//Artemisa
+	case 3: aux = "TiendaPociones"; break;
+	case 4: aux = "TiendaBolas"; break;
+	case 5: aux = "TiendaJarrones"; break;
+
+		//Demeter
+	case 6: aux = "Molino"; break;
+	case 7: aux = "Arbol"; break;
+	case 8: aux = "Carreta"; break;
+
+		//Hefesto
+	case 9: aux = "PulpoCartel"; break;
+	case 10: aux = "TiendaCeramica"; break;
+	case 11: aux = "TiendaEsculturas"; break;
+
+		//Hermes
+	case 12: aux = "TiendaDerecha"; break;
+	case 13: aux = "PanteonIzq"; break;
+	case 14: aux = "PanteonDer"; break;
+
+		//Apolo
+	case 15: aux = "Panteon"; break;
+	case 16: aux = "Edificios"; break;
+	case 17: aux = "Charco"; break;
+
+		//Poseidon
+	case 18: aux = "casa1"; break;
+	case 19: aux = "casa2"; break;
+
+	default: break;
+	}
+	return aux;
+}
+
+int GeneralData::stringToObjInt(const std::string& pers) {
+	int aux = 0;
+	
+	//Hestia
+	if (pers == "CasaGrande") aux = 0;
+	else if (pers == "CartelOficina") aux = 1;
+	else if (pers == "Muro") aux = 2;
+
+	//Artemisa
+	else if (pers == "TiendaPociones") aux = 3;
+	else if (pers == "TiendaBolas") aux = 4;
+	else if (pers == "TiendaJarrones") aux = 5;
+
+	//Demeter
+	else if (pers == "Molino") aux = 6;
+	else if (pers == "Arbol") aux = 7;
+	else if (pers == "Carreta") aux = 8;
+
+	//Hefesto
+	else if (pers == "PulpoCartel") aux = 9;
+	else if (pers == "TiendaCeramica") aux = 10;
+	else if (pers == "TiendaEsculturas") aux = 11;
+
+	//Hermes
+	else if (pers == "TiendaDerecha") aux = 12;
+	else if (pers == "PanteonIzq") aux = 13;
+	else if (pers == "PanteonDer") aux = 14;
+
+	//Apolo
+	else if (pers == "Panteon") aux = 15;
+	else if (pers == "Edificios") aux = 16;
+	else if (pers == "Charco") aux = 17;
+
+	//Poseidon
+	else if (pers == "casa1") aux = 18;
+	else if (pers == "casa2") aux = 19;
+
 	return aux;
 }
 
@@ -561,6 +767,8 @@ NivelPeso GeneralData::stringToNivelPeso(const std::string& nivel)
 	return aux;
 }
 
+
+
 // Struct NPCdata
 #pragma region NPCdata
 
@@ -570,6 +778,11 @@ NPCdata* GeneralData::getNPCData(Personaje personaje) {
 	npc = npcData[personaje];
 
 	return npc;
+}
+
+GeneralData::IntObjsData::IntObjsData(std::string text)
+{
+	objId = text;
 }
 
 #pragma endregion

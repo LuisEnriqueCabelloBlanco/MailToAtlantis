@@ -1,10 +1,12 @@
+#include <utils/checkML.h>
 #include "MainScene.h"
 #include "../architecture/Entity.h"
 #include <iostream>
 #include <fstream>
+#ifdef DEV_TOOLS
 #include <imgui.h>
-#include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
+#endif // DEV_TOOLS
 #include "../sdlutils/SDLUtils.h"
 #include "../components/Transform.h"
 #include "../components/Render.h"
@@ -21,13 +23,13 @@
 #include "../components/RotarTransform.h"
 #include "../architecture/Time.h"
 #include "../architecture/GameConstants.h"
-#include "../components/SelfDestruct.h"
 #include "../architecture/GeneralData.h"
 #include "../sistemas/ComonObjectsFactory.h"
 #include "../components/Depth.h"
 #include <QATools/DataCollector.h>
 #include "../components/ErrorNote.h"
 #include "../entities/ClockAux.h"
+#include "../sistemas/PipeManager.h"
 #include "../sistemas/SoundEmiter.h"
 #include <components/HoverSensorComponent.h>
 #include <components/HoverLayerComponent.h>
@@ -35,7 +37,7 @@
 #include "../components/NPCExclamation.h"
 #include "../sistemas/NPCeventSystem.h"
 
-ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
+ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), clockMusic(0)
 {
 	timer_ = MINIGAME_TIME;
 #ifdef DEV_TOOLS
@@ -43,28 +45,47 @@ ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
 	timeToAdd_ = 5;
 #endif // DEV_TOOLS
 	mPaqBuild_ = new PaqueteBuilder(this);
+	mPipeMngr_ = new PipeManager();
 }
 
 ecs::MainScene::~MainScene()
 {
 	delete mPaqBuild_;
+	delete mPipeMngr_;
 }
 
 
 void ecs::MainScene::update()
 {
 	Scene::update();
+	if (gm().gamePaused()) {
+		timerPaused_ = true;
+	}
+	else {
+		timerPaused_ = false;
+	}
 	if (!timerPaused_)
 	{
 		if (timer_ > 0) {
 			timer_ -= Time::getDeltaTime();
+			if (timer_ <= MINIGAME_TIME / 4 && clockMusic == 0) {
+				SoundEmiter::instance()->playMusic("clockSlow");
+				clockMusic++;
+			}
+			if (timer_ <= MINIGAME_TIME / 10 && clockMusic == 1) {
+				SoundEmiter::instance()->haltMusic("clockSlow");
+				SoundEmiter::instance()->playMusic("clockFast");
+				clockMusic++;
+			}
 		}
 		else
 		{
 			gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
 		}
+		
 	}
 	dialogMngr_.update();
+
 }
 
 void ecs::MainScene::render()
@@ -86,10 +107,13 @@ void ecs::MainScene::init()
 
 	generalData().npcEventSys->shuffleNPCqueue();
 	generalData().npcEventSys->debugPaquetesInQueue();
-
+#ifdef _DEBUG
 	std::cout << "Hola Main" << std::endl;
+#endif // _DEBUG
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
 	timer_ = MINIGAME_TIME;
+	timerPaused_ = true;
+
 	// Fondo
 	factory_->setLayer(layer::BACKGROUND);
 	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
@@ -97,26 +121,28 @@ void ecs::MainScene::init()
 
 	//for (int i = 0; i < 7; i++) {
 	//	createTubo((pq::Distrito)i);
-	//}
+	//}	
 
-	createManual();
+	//La bola de cristal se tiene que crear antes que el primer paquete
+	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BOLA_UPGRADE)) createBolaCristal();	  //Este es la bola de cristal. Si el jugador la ha desbloqueado, esta aparecerá en la oficina				
+	//}
+	mPipeMngr_->init();
+
+	
 	createMiniManual();
 	createSpaceManual();
 
-	createClock();
+	//createClock(); empieza a girar desde que se entra a la escena y queremos que lo haga cuando entres al trabajo
 
-	createInks();
+	createGarbage();	
 
-
-	//QUITAR ESTO PARA LA VERSION FINAL, ESTO ES PARA FACILITAR LA DEMO
-	createCinta();
-
-	createGarbage();
-
-	dialogMngr_.init(this, "recursos/data/eventosjefe.json");
-	createCharacter({ 400, 300 }, "Campesino", 0.1f);
-
-	createPaquete(generalData().getPaqueteLevel());
+	int dia = generalData().getDay();
+	if (dia % 4 == 2 || dia == 1 || dia == 3 || dia == 5 || dia == 8) //basura lo se pero la progresion es la que hay, por lo menos he podido hacer aritmetica modular para los eventos del jefe al ser constantes
+	{
+		createCharacter({ 500, 250 }, "Jefe",0.35f);
+	}
+	else
+		startWork();
 
 	//creacion de las herramientas
 	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
@@ -143,13 +169,13 @@ void ecs::MainScene::init()
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(generalData().getDay());
-
 }
 
 void ecs::MainScene::close() {
 	ecs::Scene::close();
 	generalData().npcEventSys->minigameOver();
 	generalData().updateMoney();
+	SoundEmiter::instance()->close();
 
 	sdlutils().musics().at("office").haltMusic();
 	sdlutils().musics().at("printer").haltMusic();
@@ -158,6 +184,17 @@ void ecs::MainScene::close() {
 void ecs::MainScene::createClock() {
 	Entity* clock = addEntity(ecs::layer::BACKGROUND);
 	clock->addComponent<ClockAux>(MINIGAME_TIME);
+}
+void ecs::MainScene::createBolaCristal() {	 
+	int tamano = 3;
+	std::vector<Texture*> ballTextures;
+	ballTextures.reserve(tamano);
+	for (int i = 1; i <= tamano; i++) {
+		ballTextures.emplace_back(&sdlutils().images().at("bola" + std::to_string(i)));
+	}
+	Entity* bola = factory_->createMultiTextureImage(Vector2D(700, 500), Vector2D(150, 200), ballTextures);
+	bolaCrist_ = bola->addComponent<CristalBall>(bola->getComponent<RenderImage>());
+	std::cout << "QsjndaskjnsdanjUeso\n";
 }
 
 void ecs::MainScene::createInks() {
@@ -195,39 +232,44 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 void ecs::MainScene::updateToolsPerDay(int dia)
 {
+	GeneralData::instance ()->setUpgradeValue (ecs::upg::BALANZA_UPGRADE, true);
+	dia = 5;
 	if(dia == 0)
-		return;
-
-
+		return;	
+	
 	if (dia >= 1) {
-		createStamp(SelloCalleA);
+		if (GeneralData::instance()->getUpgradeValue(ecs::upg::SELLO_UPGRADE)) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina								
+		else createStamp(SelloCalleA);
 
 		createInks();
+
 	}
 
 	if (dia >= 5) {
-		createBalanza();
+		if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BALANZA_UPGRADE)) createBalanzaDigital ();
+		else createBalanza();
 	}
 
-	if (dia >= 8) {
-		//if(GeneralData::instance()->getSelloMulticolor()) 
-		//createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina				
-		//createExclamationPoint();		//Ignorad esto, está aquí para hacer pruebas. Lo quito en cuanto funcione -Javier
+	if (dia >= 8) {				
 		createCinta();
 	}
 
 
 	if (dia < 3 && dia >= 1) {
 		generalData().setPaqueteLevel(0);
+		createManual(8);
 	}
 	else if (dia < 5 && dia >= 3) {
 		generalData().setPaqueteLevel(1);
+		createManual(8);
 	}
 	else if (dia < 8 && dia >= 5) {
 		generalData().setPaqueteLevel(2);
+		createManual(9);
 	}
 	else if (dia < 15 && dia >= 8) {
 		generalData().setPaqueteLevel(3);
+		createManual(10);
 	}
 
 }
@@ -263,7 +305,7 @@ void ecs::MainScene::createStamp(TipoHerramienta type)
 	constexpr float STAMPSIZE = 1;
 	
 	factory_->setLayer(layer::STAMP);
-	auto stamp = factory_->createImage(Vector2D(300, 300),
+	auto stamp = factory_->createImage(Vector2D(350, 700),
 		Vector2D(sdlutils().images().at("sellador" + std::to_string(type)).width() * STAMPSIZE, sdlutils().images().at("sellador" + std::to_string(type)).height() * STAMPSIZE),
 		& sdlutils().images().at("sellador" + std::to_string(type)));
 
@@ -283,7 +325,7 @@ void ecs::MainScene::createMultipleStamp()
 
 	Entity* stamp = addEntity(ecs::layer::STAMP);
 	Texture* StampTex = &sdlutils().images().at("selladorM");			
-	Transform* tr_ = stamp->addComponent<Transform>(500, 300, StampTex->width(), StampTex->height());	
+	Transform* tr_ = stamp->addComponent<Transform>(300, 300, StampTex->width(), StampTex->height());
 	stamp->addComponent<RenderImage>(StampTex);
 	stamp->addComponent<Gravity>();
 	stamp->addComponent<Depth>();
@@ -298,7 +340,9 @@ void ecs::MainScene::createMultipleStamp()
 void ecs::MainScene::createCinta() {
 
 	factory_->setLayer(ecs::layer::TAPE);
-	Entity* cinta = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at("cinta"));
+	Entity* cinta;
+	if(GeneralData::instance ()->getUpgradeValue (ecs::upg::ENVOLVER_UPGRADE)) cinta = factory_->createImage (Vector2D (560, 500), Vector2D (100, 150), &sdlutils ().images ().at ("cintaRapida"));
+	else cinta = factory_->createImage (Vector2D (560, 500), Vector2D (100, 150), &sdlutils ().images ().at ("cinta"));
 	cinta->addComponent<Gravity>();
 	cinta->addComponent<DragAndDrop>("arrastrar");
 	cinta->addComponent<Depth>();
@@ -307,33 +351,34 @@ void ecs::MainScene::createCinta() {
 }
 
 void ecs::MainScene::createBalanza() {
+
+	float scale = 0.3;
+
 	// Balanza
 	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanza = factory_->createImage(Vector2D(50, 230), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
+	Entity* balanza = factory_->createImage(Vector2D(30, 110), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
 	Transform* balanzaTr = balanza->getComponent<Transform>();
 	balanza->addComponent<MoverTransform>();
-	balanzaTr->setScale(0.5);
+	balanzaTr->setScale(scale);
 	Balanza* balanzaComp = balanza->addComponent<Balanza>();
 
 	// BalanzaB
 	factory_->setLayer(ecs::layer::BALANZA);
 	Entity* balanzaB = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaB").width(), sdlutils().images().at("balanzaB").height()), &sdlutils().images().at("balanzaB"));
 	Transform* balanzaBTr = balanzaB->getComponent<Transform>();
-	balanzaBTr->setScale(0.5);
+	balanzaBTr->setScale(scale);
 
 	// BalanzaBase
 	factory_->setLayer(ecs::layer::BALANZABASE);
-	Entity* baseBalanza = factory_->createImage(Vector2D(400, 400), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
+	Entity* baseBalanza = factory_->createImage(Vector2D(1100, 300), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
 	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
-	balanzaBaseTr->setScale(0.5);
-	baseBalanza->addComponent<Gravity>();
-	//baseBalanza->addComponent<Depth>();
+	balanzaBaseTr->setScale(scale);
 
 	// BalanzaFlecha
 	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanzaFlecha = factory_->createImage(Vector2D(70, 20), Vector2D(sdlutils().images().at("balanzaFlecha").width(), sdlutils().images().at("balanzaFlecha").height()), &sdlutils().images().at("balanzaFlecha"));
+	Entity* balanzaFlecha = factory_->createImage(Vector2D(45, 20), Vector2D(sdlutils().images().at("balanzaFlecha2").width(), sdlutils().images().at("balanzaFlecha2").height()), &sdlutils().images().at("balanzaFlecha2"));
 	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
-	balanzaFlechaTr->setScale(0.5);
+	balanzaFlechaTr->setScale(scale);
 	RotarTransform* rotComp = balanzaFlecha->addComponent<RotarTransform>();
 
 	// Seteamos padres
@@ -350,11 +395,70 @@ void ecs::MainScene::createBalanza() {
 	factory_->setLayer(ecs::layer::DEFAULT);
 }
 
+void ecs::MainScene::createBalanzaDigital() {
+	// Balanza
+	factory_->setLayer(ecs::layer::BALANZA);
+	Entity* balanza = factory_->createImage(Vector2D(0, -44), Vector2D(sdlutils().images().at("balanzaDigA").width(), sdlutils().images().at("balanzaDigA").height()), &sdlutils().images().at("balanzaDigA"));
+	Transform* balanzaTr = balanza->getComponent<Transform>();
+	balanza->addComponent<MoverTransform>();
+	balanzaTr->setScale(0.35);
+	Balanza* balanzaComp = balanza->addComponent<Balanza>();
+
+	// BalanzaBase
+	factory_->setLayer(ecs::layer::BALANZABASE);
+	Entity* baseBalanza = factory_->createImage(Vector2D(1050, 435), Vector2D(sdlutils().images().at("balanzaDigB").width(), sdlutils().images().at("balanzaDigB").height()), &sdlutils().images().at("balanzaDigB"));
+	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
+	balanzaBaseTr->setScale(0.35);
+	baseBalanza->addComponent<Gravity>();
+	//baseBalanza->addComponent<Depth>();
+
+	////Añadir los numeros del peso
+	std::string msg = "0";
+	factory_->setLayer(ecs::layer::NUMBERS);
+	factory_->createLabel(Vector2D(1270, 593), msg, 50);
+
+	// Seteamos padres
+	balanzaTr->setParent(balanzaBaseTr);
+
+	
+	Trigger* balanzaTri = balanza->addComponent<Trigger>();
+
+	balanzaTri->addCallback([this, balanzaComp, balanza](ecs::Entity* entRect){
+		balanzaComp->initAnimationsDigital(entRect, balanza); 
+	std::string msg;
+		int peso = balanzaComp->getPaquetePeso();
+		if (peso >= 0) {
+			msg = std::to_string(peso);
+			removeEntitiesByLayer(ecs::layer::NUMBERS);
+			factory_->setLayer(ecs::layer::NUMBERS);
+			factory_->createLabel(Vector2D(1245, 593), msg, 50);
+		}
+		else {
+			msg = "0";
+			removeEntitiesByLayer(ecs::layer::NUMBERS);
+			factory_->setLayer(ecs::layer::NUMBERS);
+			factory_->createLabel(Vector2D(1270, 593), msg, 50);
+		}
+		
+		}, generalData().DropIn);
+	
+	balanzaTri->addCallback([this, balanzaComp](ecs::Entity* entRect) {
+		balanzaComp->finishAnimatiosDigital(entRect); 
+		std::string msg2 = "0";
+		removeEntitiesByLayer(ecs::layer::NUMBERS);
+		factory_->setLayer(ecs::layer::NUMBERS);
+		factory_->createLabel(Vector2D(1270, 593), msg2, 50);
+		}, generalData().PickUp);
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+
+}
+
 void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 	constexpr float TUBE_WIDTH = 138;
 	constexpr float TUBE_HEITH = 282;
-	constexpr float TUBES_X_OFFSET = 200;
-	constexpr float DISTANCE_BETWEEN_TUBES = 220;
+	constexpr float TUBES_X_OFFSET = 50;
+	constexpr float DISTANCE_BETWEEN_TUBES = 280;
 	factory_->setLayer(ecs::layer::DEFAULT);
 
 	auto tubeTexture = &sdlutils().images().at("tubo" + std::to_string(dist + 1));
@@ -370,7 +474,7 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 		layerHover->addOutCall([hilight]() {hilight->lightOff(); });
 
 		Trigger* tuboTri = tuboEnt->addComponent<Trigger>();
-		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this);
+		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this, mPipeMngr_);
 	}
 	else {
 		//factory_->setLayer(layer::UI);
@@ -387,17 +491,17 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 }
 
 
-void ecs::MainScene::createManual()
+void ecs::MainScene::createManual(int NumPages)
 {
-	constexpr int MANUALNUMPAGES = 10;
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 
 	Texture* buttonTexture = &sdlutils().images().at("cambioPag");
 	//creado array de texturas par el libro
 	std::vector<Texture*> bookTextures;
-	bookTextures.reserve(MANUALNUMPAGES);
-	for (int i = 1; i <= MANUALNUMPAGES; i++) {
+
+	bookTextures.reserve(NumPages);
+	for (int i = 1; i <= NumPages; i++) {
 		bookTextures.emplace_back(&sdlutils().images().at("book"+std::to_string(i)));
 	}
 	factory_->setLayer(ecs::layer::MANUAL);
@@ -414,17 +518,34 @@ void ecs::MainScene::createManual()
 	Vector2D buttonSize(40, 40);
 	factory_->setLayer(ecs::layer::FOREGROUND);
 	auto next = [manualRender]() {manualRender->nextTexture();};
-	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
+	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next, "page");
 	right->getComponent<Transform>()->setParent(manualTransform);
 	factory_->addHoverColorMod(right);
 
 	auto previous = [manualRender]() {manualRender->previousTexture();};
-	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous);
+	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous, "page");
 	left->getComponent<Transform>()->setParent(manualTransform);
 	left->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
 	factory_->addHoverColorMod(left);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
+
+	//Creacion de botones de indices
+
+	if (true) { //PLACE HOLDER HASTA LOS BOOLS DE JULIAN
+
+		Vector2D buttonIndexSize(20, 40);
+		factory_->setLayer(ecs::layer::FOREGROUND);
+
+		std::vector<int> indexTextures = { 2, 3, 6, 7, 8 };
+
+		auto pagCodigos = [manualRender]() { manualRender->setTexture(2); };
+		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonIndexSize, buttonTexture, pagCodigos, "page");
+		indexCodigos->getComponent<Transform>()->setParent(manualTransform);
+		factory_->addHoverColorMod(indexCodigos);
+
+
+	}
 
 }
 
@@ -433,8 +554,8 @@ void ecs::MainScene::createMiniManual() {
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
 
-	float minimanualX = 1200;
-	float minimanualY = 500;
+	float minimanualX = 1450;
+	float minimanualY = 525;
 
 	factory_->setLayer(ecs::layer::MINIMANUAL);
 
@@ -513,7 +634,7 @@ void ecs::MainScene::createSpaceManual() {
 
 	Texture* bookTextures = &sdlutils().images().at("atrilManual");
 	
-	auto baseManual = factory_->createImage(Vector2D(1200, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
+	auto baseManual = factory_->createImage(Vector2D(1450, 525), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
 	
 	Transform* manualTransform = baseManual->getComponent<Transform>();
 	RenderImage* manualRender = baseManual->getComponent<RenderImage>();
@@ -548,10 +669,10 @@ void ecs::MainScene::createGarbage()
 	/*TDOO Meter en un metdo */
 	// papelera
 	Entity* papelera = addEntity(ecs::layer::BIN);
-	papelera->addComponent<Transform>(50, 650, 100, 150);
+	papelera->addComponent<Transform>(0, 650, 204, 247);
 	papelera->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
 	Trigger* papTrig = papelera->addComponent<Trigger>();
-	papelera->addComponent<PackageChecker>(Erroneo, this);
+	papelera->addComponent<PackageChecker>(Erroneo, this, mPipeMngr_);
 }
 #ifdef DEV_TOOLS
 
@@ -646,36 +767,64 @@ void ecs::MainScene::makeControlsWindow()
 void ecs::MainScene::createPaquete (int lv) {
 	auto pac = mPaqBuild_->buildPackage(lv, this);
 	pac->getComponent<MoverTransform>()->enable();
+
+	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BOLA_UPGRADE) && bolaCrist_!= nullptr) {
+		int rnd = sdlutils().rand().nextInt(0, 4);		
+		if(rnd !=1) bolaCrist_->check(pac->getComponent<Paquete>(), true);
+		else bolaCrist_->check(pac->getComponent<Paquete>(), false);
+	}
 }
 
 
 
 ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
-
 	ComonObjectsFactory factory(this);
 
 	Texture* characterTexture = &sdlutils().images().at(character);
 	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
 
-	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
-	//Actualmente los personajes no tienen memoria, si queremos esto har�a falta a�adrile un parametro
+	CallbackClickeable funcPress;
 
-	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
-	CallbackClickeable funcPress = [this, character]() {
-		dialogMngr_.startConversation(character);
-		dialogMngr_.setDialogues(DialogManager::Tutorial, std::to_string(1)); //esta movida se cambiara por las cosas del senor jefe
+	int dia = generalData().getDay();
+
+	std::string jsonPath;
+	if (dia % 4 == 2) //evento aleatorio
+	{
+		jsonPath = "recursos/data/eventosjefe.json";
+		dialogMngr_.init(this, jsonPath);
+		mWorkRes.init();
+		funcPress = [this, character]() { //no queremos hacer un start conversation
+			WorkEvent eventoJefe = mWorkRes.getRandomEvent();
+			dialogMngr_.setDialogueEntitiesActive(true);
+			dialogMngr_.setDialogues(eventoJefe.dialogue);
+			mPipeMngr_->activateEvent(eventoJefe);
 		};
-	//si queremos anadir un callback para que ocurra algo cuando se acaba el dialogo 
-	dialogMngr_.setEndDialogueCallback([this](){
-		std::cout << "Los callbacks de final de dialogo funcionan";
-	});
+	}
+	else //nuevo distrito/mecanica
+	{
+		jsonPath = "recursos/data/dialogos.json";
+		dialogMngr_.init(this, jsonPath);
+		funcPress = [this, character]() {
+			std::string dia = "Dia" + std::to_string(generalData().getDay());
+			dialogMngr_.setDialogueEntitiesActive(true);
+			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), dia);
+		};
+	}
 
-	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
+	dialogMngr_.init(this, jsonPath);
+
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "click");
+	dialogMngr_.setEndDialogueCallback([characterEnt, this]{
+		characterEnt->setAlive(false); //bye bye jefe
+		startWork();
+	});
 
 	return characterEnt;
 }
 
 void ecs::MainScene::startWork()
 {
-	
+	timerPaused_ = false;
+	createPaquete(generalData().getPaqueteLevel());
+	createClock();
 }

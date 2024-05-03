@@ -1,3 +1,4 @@
+#include <utils/checkML.h>
 #include "PauseScene.h"
 #include "../architecture/Entity.h"
 #include <iostream>
@@ -26,33 +27,32 @@ void ecs::PauseScene::init()
 
 	//Font* fuente = new Font("recursos/fonts/ARIAL.ttf", 50);
 
-	Texture* texturaBoton = new Texture(sdlutils().renderer(), "Pulsa para volver al juego", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
 	Entity* BotonPress = addEntity();
+	Texture* texturaBoton = new Texture(sdlutils().renderer(), "Pulsa para volver al juego", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
 
 	Transform* transformBoton = BotonPress->addComponent<Transform>(400, 600, texturaBoton->width(), texturaBoton->height());
 	RenderImage* renderBoton = BotonPress->addComponent<RenderImage>(texturaBoton);
 
-	auto clickerPress = BotonPress->addComponent<Clickeable>();
+	Clickeable* clickerPress = BotonPress->addComponent<Clickeable>("click");
+
 
 	
-	CallbackClickeable funcPress = [this]() {
+	CallbackClickeable funcPress = [this, BotonPress]() {
 		try {
-			leaveMenu();
-		
+			BotonPress->setAlive(false);
+			std::cout << "eliminamos el boton" << std::endl;
+			gm().unpauseGame();
+			gm().requestChangeScene(ecs::sc::PAUSE_SCENE, ecs::sc::NULL_SCENE);
+			std::cout << "salimos de la pausa" << std::endl;
 		}
 		catch (const std::exception& e) {
 			std::cerr << "Error in funcPress callback: " << e.what() << std::endl;
 		}
 	};
-	if (clickerPress) {
+	if (clickerPress != nullptr) {
 		clickerPress->addEvent(funcPress);
 	}
 	else {
 		std::cerr << "clickerPress is nullptr!" << std::endl;
 	}
-}
-
-void ecs::PauseScene::leaveMenu() {
-	gm().killScene(ecs::sc::PAUSE_SCENE);
-
 }

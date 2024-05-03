@@ -1,3 +1,4 @@
+#include <utils/checkML.h>
 #include "ComonObjectsFactory.h"
 #include "../components/Transform.h"
 #include "../components/Render.h"
@@ -57,18 +58,19 @@ ecs::Entity* ComonObjectsFactory::createImage(const Vector2D& pos, Texture* text
 	return createImage(pos, Vector2D(texture->width(), texture->height()), texture);
 }
 
-ecs::Entity* ComonObjectsFactory::createImageButton(const Vector2D& pos, const Vector2D& size, Texture* texture, CallbackClickeable call)
+ecs::Entity* ComonObjectsFactory::createImageButton(const Vector2D& pos, const Vector2D& size, Texture* texture, 
+	CallbackClickeable call, std::string soundClick)
 {
 	auto entity = createImage(pos,size,texture);
-	makeButton(entity, call);
+	makeButton(entity, call, soundClick);
 	return entity;
 }
 
 ecs::Entity* ComonObjectsFactory::createTextuButton(const Vector2D& pos, const std::string text, int fontSize, CallbackClickeable call, 
-	SDL_Color textColor)
+	std::string soundClick, SDL_Color textColor)
 {
 	auto entity = createLabel(pos, text, fontSize,textColor);
-	makeButton(entity, call);
+	makeButton(entity, call, soundClick);
 	return entity;
 }
 
@@ -82,6 +84,7 @@ void ComonObjectsFactory::addHoverColorMod(ecs::Entity* entity, SDL_Color c)
 	auto texture = entity->getComponent<RenderImage>()->getTexture();
 	hover->addInCall([texture, c]() {texture->modColor(c.r, c.g, c.b); });
 	hover->addOutCall([texture]() {texture->modColor(255, 255, 255); });
+	hover->addDestoryCall([texture]() {texture->modColor(255, 255, 255); });
 }
 
 void ComonObjectsFactory::addHilghtOnHover(ecs::Entity* entity)
@@ -116,9 +119,9 @@ Texture* ComonObjectsFactory::createTextTexture(const std::string& text, int fon
 	return nText;
 }
 
-void ComonObjectsFactory::makeButton(ecs::Entity* entity, CallbackClickeable call)
+void ComonObjectsFactory::makeButton(ecs::Entity* entity, CallbackClickeable call, std::string clickSound)
 {
-	auto click = entity->addComponent<Clickeable>();
+	auto click = entity->addComponent<Clickeable>(clickSound);
 	click->addEvent(call);
 }
 

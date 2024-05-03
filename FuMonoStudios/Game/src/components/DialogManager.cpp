@@ -1,4 +1,5 @@
 // dialog_manager.cpp
+#include <utils/checkML.h>
 #include "DialogManager.h"
 #include <fstream>
 
@@ -13,6 +14,10 @@
 DialogManager::DialogManager() : currentDialogIndex_(0),boxBackground(nullptr), textDialogue(nullptr), endDialogueCallback(nullptr)
 {
 
+}
+
+DialogManager::~DialogManager()
+{
 }
 
 
@@ -102,7 +107,7 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     JSONValue* jsonEntry = nullptr;
 
     const std::string& stringDialogSel = dialogSelectionToString(ds);
-
+    auto a =generalData().getDay();
     jsonEntry = root[stringDialogSel];
     if (jsonEntry != nullptr)
     {
@@ -189,6 +194,15 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     }
 }
 
+void DialogManager::setDialogues(std::string& dialogo) //mirar en el .h por que no es const juro que tiene sentido
+{
+    dialogs_.clear();
+
+    fixText(dialogo);
+
+    dialogs_.push_back(dialogo);
+}
+
 void DialogManager::startConversation(const std::string& character)
 {
     if(canStartConversation)
@@ -200,13 +214,33 @@ void DialogManager::startConversation(const std::string& character)
         std::pair<const std::string, int> aux = data->getDialogueInfo(); 
 
 
-        setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
+        setDialogues((DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
 
         setDialogueEntitiesActive(true);
 
 
         std::cout << "jefe otro dialogo que este tenia un agujero\n";
+#ifdef QA_TOOLS
         dataCollector().recordNPC(charac + 1, aux.second, generalData().getNPCData(charac)->felicidad);
+#endif // QA_TOOLS
+
+        canStartConversation = false;
+    }
+}
+
+void DialogManager::startConversationWithObj(const std::string& interactableObj)
+{
+    if (canStartConversation)
+    {
+        const std::string aux1 = std::to_string(generalData().getDay());
+
+        const std::string aux2 = std::to_string(sdlutils().rand().nextInt(0, 3));
+
+        setDialogues((DialogManager::DialogSelection)(generalData().stringToObjInt(interactableObj) + 10), "Texto"+interactableObj+aux1+aux2);
+
+        setDialogueEntitiesActive(true);
+
+        std::cout << "jefe otro dialogo que este tenia un agujero\n";
         canStartConversation = false;
     }
 }
@@ -308,8 +342,8 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
     case Contable:
         aux = "Contable";
         break;
-    case JefeOficina:
-        aux = "JefeOficina";
+    case Jefe:
+        aux = "Jefe";
         break;
     case Tutorial:
         aux = "Tutorial";
@@ -317,6 +351,43 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
     case BryantMyers:
         aux = "EsclavaRemix";
         break;
+
+    //Dialogos objetos distritos
+        //Hestia
+    case CasaGrande: aux = "CasaGrande"; break;
+    case CartelOficina: aux = "CartelOficina"; break;
+    case Muro: aux = "Muro"; break;
+
+        //Artemisa
+    case TiendaPociones: aux = "TiendaPociones"; break;
+    case TiendaBolas: aux = "TiendaBolas"; break;
+    case TiendaJarrones: aux = "TiendaJarrones"; break;
+
+        //Demeter
+    case Molino: aux = "Molino"; break;
+    case Arbol: aux = "Arbol"; break;
+    case Carreta: aux = "Carreta"; break;
+
+        //Hefesto
+    case PulpoCartel: aux = "PulpoCartel"; break;
+    case TiendaCeramica: aux = "TiendaCeramica"; break;
+    case TiendaEsculturas: aux = "TiendaEsculturas"; break;
+
+        //Hermes
+    case TiendaDerecha: aux = "TiendaDerecha"; break;
+    case PanteonIzq: aux = "PanteonIzq"; break;
+    case PanteonDer: aux = "PanteonDer"; break;
+
+        //Apolo
+    case Panteon: aux = "Panteon"; break;
+    case Edificios: aux = "Edificios"; break;
+    case Charco: aux = "Charco"; break;
+
+        //Poseidon
+    case Casa1: aux = "casa1"; break;
+    case Casa2: aux = "casa2"; break;
+
+    //default: break;
     }
     return aux;
 }

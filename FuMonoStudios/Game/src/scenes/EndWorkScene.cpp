@@ -1,3 +1,4 @@
+#include <utils/checkML.h>
 #include "EndWorkScene.h"
 #include "../architecture/GeneralData.h"
 #include "../architecture/Entity.h"
@@ -99,7 +100,7 @@ void EndWorkScene::animTextos(ecs::Entity* texto) {
 	texto->setActive(true);
 }
 void EndWorkScene::animNumeros(ecs::Entity* number) {
-	std::cout << "Anim numeros";
+
 }
 
 void EndWorkScene::createButtons()
@@ -110,7 +111,7 @@ void EndWorkScene::createButtons()
 	if (money > 0) {
 		// Boton nuevo dia
 		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
-		factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Nuevo dia", 50, call);
+		factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Nuevo dia", 50, call, "click");
 		// Sonido
 		sdlutils().soundEffects().at("MoneyProfits").play();
 		generalData().resetFailsCorrects();
@@ -120,7 +121,7 @@ void EndWorkScene::createButtons()
 	{
 		// Boton nueva partida
 		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
-		factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Nueva Partida", 50, call);
+		factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Nueva Partida", 50, call, "click");
 		// Sonido
 		sdlutils().soundEffects().at("LoseMoney").play();
 		// Texto

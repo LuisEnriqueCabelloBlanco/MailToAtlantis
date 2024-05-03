@@ -1,20 +1,73 @@
 {
   "images": [
-    {"id": "placeHolder","file": "recursos/images/SDL_logo.png"},
-    {"id": "boxTest","file": "recursos/images/Box.png"},
-    {"id": "selloTest","file": "recursos/images/Sello.png"},
-    {"id": "bookTest","file": "recursos/images/Book.png"},
-    {"id": "book1","file": "recursos/images/Book_Index.png"},
-    {"id": "book2","file": "recursos/images/Book_InfoGeneral.png"},
-    {"id": "book3","file": "recursos/images/Book_InfoCodigos.png"},
-    {"id": "book4","file": "recursos/images/Book_InfoCalles_0.png"},
-    {"id": "book5","file": "recursos/images/Book_InfoCalles_1.png"},
-    {"id": "book6","file": "recursos/images/Book_InfoCalles_2.png"},
-    {"id": "book7","file": "recursos/images/Book_InfoCalles_3.png"},
-    {"id": "book8","file": "recursos/images/Book_InfoSellos.png"},
-    {"id": "book9","file": "recursos/images/Book_InfoPesos.png"},
-    {"id": "book10","file": "recursos/images/Book_InfoEmbalado.png"},
-
+    {
+      "id": "placeHolder",
+      "file": "recursos/images/SDL_logo.png"
+    },
+    {
+      "id": "boxTest",
+      "file": "recursos/images/Box.png"
+    },
+    {
+      "id": "selloTest",
+      "file": "recursos/images/Sello.png"
+    },
+    {
+      "id": "bookTest",
+      "file": "recursos/images/Book.png"
+    },
+    {
+      "id": "book1",
+      "file": "recursos/images/Book_Index.png"
+    },
+    {
+      "id": "book2",
+      "file": "recursos/images/Book_InfoGeneral.png"
+    },
+    {
+      "id": "book3",
+      "file": "recursos/images/Book_InfoCodigos.png"
+    },
+    {
+      "id": "book4",
+      "file": "recursos/images/Book_InfoCalles_0.png"
+    },
+    {
+      "id": "book5",
+      "file": "recursos/images/Book_InfoCalles_1.png"
+    },
+    {
+      "id": "book6",
+      "file": "recursos/images/Book_InfoCalles_2.png"
+    },
+    {
+      "id": "book7",
+      "file": "recursos/images/Book_InfoCalles_3.png"
+    },
+    {
+      "id": "book8",
+      "file": "recursos/images/Book_InfoSellos.png"
+    },
+    {
+      "id": "book9",
+      "file": "recursos/images/Book_InfoPesos.png"
+    },
+    {
+      "id": "book10",
+      "file": "recursos/images/Book_InfoEmbalado.png"
+    },
+    {"id": "diario1", "file": "recursos/images/Diario0.png"},
+    {"id": "diario2", "file": "recursos/images/Diario1.png"},
+    {"id": "diario3", "file": "recursos/images/Diario2.png"},
+    {"id": "diario4", "file": "recursos/images/Diario3.png"},
+    {"id": "diario5", "file": "recursos/images/Diario4.png"},
+    {"id": "diario6", "file": "recursos/images/Diario5.png"},
+    {"id": "diario7", "file": "recursos/images/Diario6.png"},
+    {"id": "caraFelicidadMinimo", "file": "recursos/images/caraFelicidadMinimo.png"},
+    {"id": "caraFelicidadMalo", "file": "recursos/images/caraFelicidadMalo.png"},
+    {"id": "caraFelicidadNormal", "file": "recursos/images/caraFelicidadNormal.png"},
+    {"id": "caraFelicidadBueno", "file": "recursos/images/caraFelicidadBueno.png"},
+    {"id": "caraFelicidadMaxima", "file": "recursos/images/caraFelicidadMaxima.png"},
 
 
     {"id": "flechaTest","file": "recursos/images/flecha.png"},
@@ -28,18 +81,62 @@
     {"id": "Apolo","file": "recursos/images/Apolo.png"},
     {"id": "Poseidon","file": "recursos/images/Poseidon.png"},
     {"id": "fondoMainMenu","file": "recursos/images/FONDO_MENU_INICIO_v2.png"},
-
-    {"id": "sellador0","file": "recursos/images/selladorRojo.png"},
-    {"id": "sellador1","file": "recursos/images/selladorAzul.png"},
-    {"id": "sellador2","file": "recursos/images/selladorVerde.png"},
-    {"id": "selladorM","file": "recursos/images/selladorM.png"},
-    {"id": "sello0","file": "recursos/images/SelloRojo.png"},
-    {"id": "sello1","file": "recursos/images/SelloAzul.png"},
-    {"id": "sello2","file": "recursos/images/SelloVerde.png"},
-    {"id": "selloM","file": "recursos/images/SelloM.png"},
-    {"id": "tinta0","file": "recursos/images/tintaRoja.png"},
-    {"id": "tinta1","file": "recursos/images/tintaAzul.png"},
-    {"id": "tinta2","file": "recursos/images/tintaVerde.png"},
+    {
+      "id": "sellador0",
+      "file": "recursos/images/selladorRojo.png"
+    },
+    {
+      "id": "sellador1",
+      "file": "recursos/images/selladorAzul.png"
+    },
+    {
+      "id": "sellador2",
+      "file": "recursos/images/selladorVerde.png"
+    },
+    {
+      "id": "selladorM",
+      "file": "recursos/images/selladorM.png"
+    },
+    {
+      "id": "sello0",
+      "file": "recursos/images/SelloRojo.png"
+    },
+    {
+      "id": "sello1",
+      "file": "recursos/images/SelloAzul.png"
+    },
+    {
+      "id": "sello2",
+      "file": "recursos/images/SelloVerde.png"
+    },
+    {
+      "id": "selloM",
+      "file": "recursos/images/SelloM.png"
+    },
+    {
+      "id": "tinta0",
+      "file": "recursos/images/tintaRoja.png"
+    },
+    {
+      "id": "tinta1",
+      "file": "recursos/images/tintaAzul.png"
+    },
+    {
+      "id": "tinta2",
+      "file": "recursos/images/tintaVerde.png"
+    },
+    {
+      "id": "bola1",
+      "file": "recursos/images/BolaCristalError.png"
+    },
+    {
+      "id": "bola2",
+      "file": "recursos/images/BolaCristalNada.png"
+    },
+    {
+      "id": "bola3",
+      "file": "recursos/images/BolaCristalCorrecto.png"
+    },
 
     {
       "id": "press",
@@ -181,25 +278,56 @@
       "file": "recursos/images/cruz.png"
     },
 
-    {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
-    {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
-    {"id": "exclamacion","file": "recursos/images/Exclamacion.png"},
-    
-    {"id": "ruta1","file": "recursos/images/route1.png"},
-    {"id": "ruta2","file": "recursos/images/route2.png"},
-    {"id": "ruta3","file": "recursos/images/route3.png"},
-    {"id": "ruta4","file": "recursos/images/route4.png"},
-    
-    {"id": "fondoFinalTrabajo","file": "recursos/images/FondoEndWork.png"},
+    {
+      "id": "puntoRojo",
+      "file": "recursos/images/PuntoRojo.png"
+    },
+    {
+      "id": "lineaRoja",
+      "file": "recursos/images/lineaRoja.png"
+    },
+    {
+      "id": "exclamacion",
+      "file": "recursos/images/Exclamacion.png"
+    },
+    {
+      "id": "ruta1",
+      "file": "recursos/images/route1.png"
+    },
+    {
+      "id": "ruta2",
+      "file": "recursos/images/route2.png"
+    },
+    {
+      "id": "ruta3",
+      "file": "recursos/images/route3.png"
+    },
+    {
+      "id": "ruta4",
+      "file": "recursos/images/route4.png"
+    },
 
+    {
+      "id": "fondoFinalTrabajo",
+      "file": "recursos/images/FondoEndWork.png"
+    },
     {"id": "title","file": "recursos/images/titulo.png"},
     {"id": "fondoOficina","file": "recursos/images/OficinaProyectosDesenfocada.png"},
     {"id": "cinta","file": "recursos/images/Cinta.png"},
+    {"id": "cintaRapida","file": "recursos/images/CintaRapida.png"},
     {"id": "baseBalanza","file": "recursos/images/BaseBalanza.png"},
     {"id": "balanzaFlecha","file": "recursos/images/balanzaFlecha.png"},
+    {"id": "balanzaFlecha2","file": "recursos/images/balanzaFlecha2.png"},
     {"id": "balanzaA","file": "recursos/images/balanzaA.png"},
     {"id": "balanzaB","file": "recursos/images/balanzaB.png"},
-
+    {
+      "id": "balanzaDigA",
+      "file": "recursos/images/balanza2Arriba.png"
+    },
+    {
+      "id": "balanzaDigB",
+      "file": "recursos/images/balanza2Abajo.png"
+    },
     {
       "id": "fondoFinalTrabajo",
       "file": "recursos/images/FondoEndWork.png"
@@ -246,6 +374,9 @@
       "id": "puntoVerde",
       "file": "recursos/images/PuntoVerde.png"
     },
+
+    {"id": "carta","file": "recursos/images/carta.png"},
+
 
 
 
@@ -327,7 +458,10 @@
       "id": "Soldado",
       "file": "recursos/images/Abakand Istacoz.png"
     },
-
+    {
+      "id": "Jefe",
+      "file": "recursos/images/JefeOficina.png"
+    },
     {
       "id": "reloj",
       "file": "recursos/images/Reloj.png"
@@ -356,6 +490,16 @@
       "size": 50
     },
     {
+      "id": "arial70",
+      "file": "recursos/fonts/ARIAL.ttf",
+      "size": 70
+    },
+    {
+      "id": "arial75",
+      "file": "recursos/fonts/ARIAL.ttf",
+      "size": 75
+    },
+    {
       "id": "arial80",
       "file": "recursos/fonts/ARIAL.ttf",
       "size": 80
@@ -379,20 +523,30 @@
       "id": "roboto50",
       "file": "recursos/fonts/Roboto-Thin.ttf",
       "size": 50
+    },
+    {
+      "id": "simpleHandmade20",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 20
+    },
+    {
+      "id": "simpleHandmadeTuneado20",
+      "file": "recursos/fonts/SimpleHandmadeTuneado.ttf",
+      "size": 20
     }
   ],
   "sounds": [
     {
-      "id": "click",
+      "id": "click0",
       "file": "recursos/sounds/click.wav"
+    },
+    {
+      "id": "click1",
+      "file": "recursos/sounds/click1.wav"
     },
     {
       "id": "arrastrar0",
       "file": "recursos/sounds/arrastrar.wav"
-    },
-    {
-      "id": "choque",
-      "file": "recursos/sounds/choque.wav"
     },
     {
       "id": "MoneyProfits",
@@ -407,16 +561,16 @@
       "file": "recursos/sounds/GuiImpact.wav"
     },
     {
-      "id": "choque2",
-      "file": "recursos/sounds/choque.wav"
-    },
-    {
-      "id": "choque0",
+      "id": "thud0",
       "file": "recursos/sounds/thud0.wav"
     },
     {
-      "id": "choque1",
+      "id": "choque0",
       "file": "recursos/sounds/cardboardDrop.wav"
+    },
+    {
+      "id": "choque1",
+      "file": "recursos/sounds/cardboardDrop1.wav"
     },
     {
       "id": "tubo0",
@@ -437,24 +591,52 @@
     {
       "id": "ink0",
       "file": "recursos/sounds/changeInks.wav"
+    },
+    {
+      "id": "ink1",
+      "file": "recursos/sounds/changeInks1.wav"
+    },
+    {
+      "id": "ink2",
+      "file": "recursos/sounds/changeInks2.wav"
+    },
+    {
+      "id": "page0",
+      "file": "recursos/sounds/paginas.wav"
+    },
+    {
+      "id": "page1",
+      "file": "recursos/sounds/paginas1.wav"
+    },
+    {
+      "id": "page2",
+      "file": "recursos/sounds/paginas2.wav"
     }
   ],
   "musics": [
     {
       "id": "trabajo",
-      "file": "recursos/sounds/imperial_march.wav"
+      "file": "recursos/musics/imperial_march.wav"
     },
     {
       "id": "mainMenu",
-      "file": "recursos/sounds/DQOverture.wav"
+      "file": "recursos/musics/DQOverture.wav"
     },
     {
       "id": "office",
-      "file": "recursos/sounds/office.wav"
+      "file": "recursos/musics/office.wav"
     },
     {
       "id": "printer",
-      "file": "recursos/sounds/printer.wav"
+      "file": "recursos/musics/printer.wav"
+    },
+    {
+      "id": "clockSlow",
+      "file": "recursos/musics/tictacLento.wav"
+    },
+    {
+      "id": "clockFast",
+      "file": "recursos/musics/tictacRapido.wav"
     }
   ]
 }
