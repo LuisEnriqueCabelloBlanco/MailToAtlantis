@@ -24,9 +24,9 @@ int main(int argc, char* argv[]) {
 	catch(std::runtime_error e){
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", e.what(), sdlutils().window());
 	}
-	/*catch (std::exception e) {
+	catch (std::exception e) {
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", e.what(), sdlutils().window());
-	}*/
+	}
 
 	return 0;
 }
