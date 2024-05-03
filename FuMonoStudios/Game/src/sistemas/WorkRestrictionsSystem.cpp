@@ -47,10 +47,19 @@ tb::WorkEvent WorkRestrictionsSystem::getEvent(int selection)
     jsonEntry = root[eventSelection];
     JSONObject jObject = jsonEntry->AsObject();
 
+    //guardamos en el evento los parametros comunes a todos los tipos de eventos
     event.validDay = jObject["validDay"]->AsNumber();
+    ///<summary>
+    /// Soy consciente de que podriamos haber hecho un sistema de plantillas con strings que se rellenasen automaticamente acorde a los parametros
+    /// del evento y que ademas seria relativamente simple.
+    /// Teniendo en cuenta la cantidad de cosas que tengo que hacer y que cuando me di cuenta de que era mas sencillo de lo que pensaba ya tenia
+    /// hecho esto, pues asi lo deje (como justificacion extra, esta forma te deja que los dialogos de los eventos sean todos completamente
+    /// diferentes unos de otros (aunque ahora mismo todos siguen la misma plantilla))
+    ///</summary>
     event.dialogue = jObject["dialogo"]->AsString();
     event.id = (tb::restrictionId)jObject["id"]->AsNumber();
 
+    //en base al tipo de evento rellenamos unos parametros u otros
     switch (event.id)
     {
         case SWAP_PIPE:
@@ -98,5 +107,5 @@ void WorkRestrictionsSystem::eventWeightRes(WorkEvent& event, JSONObject& jObjec
 
 bool WorkRestrictionsSystem::isEventValid(WorkEvent& event)
 {
-    return generalData().getDay() >= event.validDay;
+    return generalData().getDay() >= event.validDay; //Devolvemos si un evento es valido para el dia en el que estamos comparando el dia actual con el dia a partir del cual un evento se puede usar, si es menor es que no podemos hacer ese evento (por falta de una mecanica o de un distrito desbloqueado). 
 }
