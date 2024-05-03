@@ -130,7 +130,7 @@ void ecs::MainScene::init()
 	createGarbage();	
 
 	int dia = generalData().getDay();
-	if (dia % 4 == 2) //basura lo se pero la progresion es la que hay, por lo menos he podido hacer aritmetica modular para los eventos del jefe al ser constantes
+	if (dia % 4 == 2) //hay un evento de trabajo del jefe cada 4 dias empezando por el dia 2, esto habria que hacerlo con constantes mejor en vez de numeros magicos 
 	{
 		createCharacter({ 500, 250 }, "Jefe",0.35f);
 	}
