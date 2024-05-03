@@ -67,7 +67,7 @@ tb::WorkEvent WorkRestrictionsSystem::getEvent(int selection)
     return event;
 }
 
-void WorkRestrictionsSystem::eventSwapPipe(WorkEvent& event, JSONObject jObject)
+void WorkRestrictionsSystem::eventSwapPipe(WorkEvent& event, JSONObject& jObject)
 {
     event.swap_pipe_data.targetPipe = (Distrito)generalData().fromStringToDistrito(jObject["target"]->AsString());
     SwappedPipe aux;
@@ -78,13 +78,13 @@ void WorkRestrictionsSystem::eventSwapPipe(WorkEvent& event, JSONObject jObject)
     event.swap_pipe_data.dest = aux;
 }
 
-void WorkRestrictionsSystem::eventBanType(WorkEvent& event, JSONObject jObject)
+void WorkRestrictionsSystem::eventBanType(WorkEvent& event, JSONObject& jObject)
 {
     event.ban_type_pipe_data.targetPipe = (Distrito)generalData().fromStringToDistrito(jObject["target"]->AsString());
     event.ban_type_pipe_data.ban = generalData().stringToTipoPaquete(jObject["ban"]->AsString());
 }
 
-void WorkRestrictionsSystem::eventWeightRes(WorkEvent& event, JSONObject jObject)
+void WorkRestrictionsSystem::eventWeightRes(WorkEvent& event, JSONObject& jObject)
 {
     event.weight_res_pipe_data.targetPipe = (Distrito)generalData().fromStringToDistrito(jObject["target"]->AsString());
     WeightRestriction auxW;
