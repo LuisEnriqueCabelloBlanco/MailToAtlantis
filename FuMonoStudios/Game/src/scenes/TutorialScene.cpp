@@ -16,13 +16,13 @@ ecs::TutorialScene::TutorialScene() : MainScene(), balanzaUsed(false) {
 
 	tutorialSys_ = new TutorialSystem(this);
 
-	mPaqBuild_ = new PaqueteBuilder(this);
+	//mPaqBuild_ = new PaqueteBuilder(this);
 	
 }
 
 ecs::TutorialScene::~TutorialScene() {
 	delete tutorialSys_;
-	delete mPaqBuild_;
+	//delete mPaqBuild_;
 }
 
 void ecs::TutorialScene::update() {
