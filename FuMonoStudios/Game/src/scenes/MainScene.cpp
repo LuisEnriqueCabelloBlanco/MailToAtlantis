@@ -130,7 +130,7 @@ void ecs::MainScene::init()
 	createGarbage();	
 
 	int dia = generalData().getDay();
-	if (dia % 4 == 2 || dia == 1 || dia == 3 || dia == 5 || dia == 8) //basura lo se pero la progresion es la que hay, por lo menos he podido hacer aritmetica modular para los eventos del jefe al ser constantes
+	if (dia % 4 == 2) //basura lo se pero la progresion es la que hay, por lo menos he podido hacer aritmetica modular para los eventos del jefe al ser constantes
 	{
 		createCharacter({ 500, 250 }, "Jefe",0.35f);
 	}
@@ -806,39 +806,21 @@ void ecs::MainScene::createPaquete (int lv) {
 
 
 ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
+
+	std::string jsonPath = "recursos/data/eventosjefe.json";
+	dialogMngr_.init(this, jsonPath);
+
+	mWorkRes.init();
+
 	ComonObjectsFactory factory(this);
 
 	Texture* characterTexture = &sdlutils().images().at(character);
 	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
 
-	CallbackClickeable funcPress;
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, [this]() {
+		newWorkEvent();
+		});
 
-	int dia = generalData().getDay();
-
-	std::string jsonPath;
-	if (dia % 4 == 2) //evento aleatorio
-	{
-		jsonPath = "recursos/data/eventosjefe.json";
-		dialogMngr_.init(this, jsonPath);
-		mWorkRes.init();
-		funcPress = [this]() {
-			newWorkEvent();
-		};
-	}
-	else //nuevo distrito/mecanica
-	{
-		jsonPath = "recursos/data/dialogos.json";
-		dialogMngr_.init(this, jsonPath);
-		funcPress = [this, character]() {
-			std::string dia = "Dia" + std::to_string(generalData().getDay());
-			dialogMngr_.setDialogueEntitiesActive(true);
-			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), dia);
-		};
-	}
-
-	dialogMngr_.init(this, jsonPath);
-
-	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
 	dialogMngr_.setEndDialogueCallback([characterEnt, this]{
 		characterEnt->setAlive(false); //bye bye jefe
 		startWork();
