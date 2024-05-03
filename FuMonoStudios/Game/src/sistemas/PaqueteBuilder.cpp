@@ -11,38 +11,36 @@
 #include "../components/RenderWithLight.h"
 
 
-void PaqueteBuilder::init()
+std::unordered_map<Distrito, std::vector<std::string>> PaqueteBuilder::distritoCalle_;
+std::vector<std::string> PaqueteBuilder::names;
+std::vector<std::string> PaqueteBuilder::surnames;
+std::vector<std::list<int>> PaqueteBuilder::allRoutes;
+
+void PaqueteBuilder::initdata()
 {
-	std::string filename = "recursos/config/mail.direcctions.json";
-	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(filename));
+	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(DIR_SETTINGS_PATH));
 
 	// check it was loaded correctly
 	// the root must be a JSON object
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while load/parsing '" + filename + "'";
+		throw "Something went wrong while load/parsing '" + DIR_SETTINGS_PATH + "'";
 	}
 	// we know the root is JSONObject
 	JSONObject root = jValueRoot->AsObject();
 
-	getStreetsFromJSON(root, Demeter, "Demeter");
-	getStreetsFromJSON(root, Hefesto, "Hefesto");
-	getStreetsFromJSON(root, Hestia, "Hestia");
-	getStreetsFromJSON(root, Artemisa, "Artemisa");
-	getStreetsFromJSON(root, Hermes, "Hermes");
-	getStreetsFromJSON(root, Apolo, "Apolo");
-	getStreetsFromJSON(root, Poseidon, "Poseidon");
-	getStreetsFromJSON(root, Erroneo, "Erroneo");
+
+	for (int i = 0; i <= MAX_DISTRICTS; i++) {
+		getStreetsFromJSON(root, (Distrito)i);
+	}
 
 	getNamesFromJSON();
 	getRoutesFromJSON();
-
+	
 }
 
 PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
 	srand(sdlutils().currRealTime());
 	directionsFont = &sdlutils().fonts().at("arial40");
-
-	init();
 }
 
 PaqueteBuilder::~PaqueteBuilder() {
@@ -384,10 +382,10 @@ std::string PaqueteBuilder::remitenteRND() {
 	return sol;	
 }
 
-void PaqueteBuilder::getStreetsFromJSON(JSONObject& root, Distrito dist, const std::string& distString)
+void PaqueteBuilder::getStreetsFromJSON(JSONObject& root, Distrito dist)
 {
 	JSONValue* jValue = nullptr;
-	jValue = root[distString];
+	jValue = root[generalData().fromDistritoToString(dist)];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			distritoCalle_[dist].reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
@@ -566,7 +564,9 @@ void PaqueteBuilder::selectRandomRoute() {
 		route = allRoutes[rd];
 		selectedRouteIndex = rd;
 	}
+#ifdef _DEBUG
 	else {
 		std::cerr << "No routes available to select from." << std::endl;
 	}
+#endif // _DEBUG
 }

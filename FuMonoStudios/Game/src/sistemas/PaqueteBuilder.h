@@ -15,32 +15,7 @@
 #include <json/JSONValue.h>
 
 
-constexpr int PESADO_MAX = 75;	//Límite del peso máximo de paquetes pesados 
-constexpr int MEDIO_MAX = 50;	//Límite del peso máximo de paquetes de peso medio 
-constexpr int LIGERO_MAX = 25;	//Límite del peso máximo de paquetes ligeros
-constexpr int PAQUETE_MIN = 10;	//Límite del peso mínimo de paquetes ligeros
-constexpr int PESO_CARTA = 2;	//Peso carta
 
-// Miguel: En el futuro haremos que salgan un poco desviados de su
-// posición original para que parezcan más orgánicos los paquetes
-// posicion y tama�o Tipo sellos
-constexpr int TIPO_SELLO_POS_X = 10;
-constexpr int TIPO_SELLO_POS_Y = 60;
-constexpr int TIPO_SELLO_SIZE = 80;
-// posicion y tama�o Fragil sellos
-constexpr int FRAGIL_SELLO_POS_X = 100;
-constexpr int FRAGIL_SELLO_POS_Y = 60;
-constexpr int FRAGIL_SELLO_SIZE = 80;
-// posicion y tama�o Peso sellos
-constexpr int PESO_SELLO_POS_X = 190;
-constexpr int PESO_SELLO_POS_Y = 60;
-constexpr int PESO_SELLO_SIZE = 80;
-
-//Escala del paquete 
-constexpr float PAQUETE_SIZE = 0.25f;
-
-const std::string DIFF_SETTINGS_PATH = "recursos/config/mail.dificulty.json";
-const std::string REMITENT_SETTINGS_PATH = "recursos/config/mail.destinatarios.json";
 
 class PaqueteBuilder
 {
@@ -56,7 +31,7 @@ public:
 		bool fragil = false, bool carta = false);
 
 
-	void init();
+	static void initdata();
 
 	PaqueteBuilder(ecs::Scene*);
 
@@ -94,13 +69,20 @@ private:
 	/// <param name="filename">direccion del fichero json</param>
 	/// <param name="dist">valor enum del distritio al que pertenece</param>
 	/// <param name="distString">valor string del distrito al que pertenece</param>
-	void getStreetsFromJSON(JSONObject& root, Distrito dist,const std::string& distString);
-	void getNamesFromJSON();
+	static void getStreetsFromJSON(JSONObject& root, Distrito dist);
+	/// <summary>
+	/// Carga los nombres y apellidos que pueden salir en los paquetes
+	/// </summary>
+	static void getNamesFromJSON();
 
-	//Metodo para leer todos los patrones de empaquetado del JSON
-	void getRoutesFromJSON();
+	/// <summary>
+	/// Metodo para leer todos los patrones de empaquetado del JSON
+	/// </summary>
+	static void getRoutesFromJSON();
 
-	//Elije una ruta random del JSON
+	/// <summary>
+	/// Selecciona una ruta de las que estan en la lista de rutas
+	/// </summary>
 	void selectRandomRoute();
 
 	DifficultySettings getLevelSetings(int lvl);
@@ -120,25 +102,31 @@ private:
 	ecs::Scene* mScene_;
 
 	//Ruta con los distintos puntos por los que debe pasar el ratón
+
+	/// <summary>
+	/// Puntero a la ruta con los distintos puntos por los que debe pasar el ratón
+	/// </summary>
 	std::list<int> route;
 
-	//Vector para almacenar las rutas leídas del JSON
-	std::vector<std::list<int>> allRoutes;
+	/// <summary>
+	/// Almacena las rutas de la cinta de envalar para los paquetes
+	/// </summary>
+	static std::vector<std::list<int>> allRoutes;
 
 	//Indice de la ruta en el array de allRoutes
 	int selectedRouteIndex;
 
-	/*
-	*TODO: Meter estos datos en el paquete builder
-	*/
+	/*Se hacen estáticos estos atributos ya que comparten el mismo valor entre todas
+	las instancias. Se podria hacer tal vez en una clase auxiliar que se encargue solo de esto? tal vez pero por ahora es un hotfix
+	Firmado Luis*/
 	/// <summary>
 	/// mapa que relaciona cada distrito con su calle
 	/// usado para la generacion del string de la direccion
 	/// </summary>
-	std::unordered_map<Distrito, std::vector<std::string>> distritoCalle_;
+	static std::unordered_map<Distrito, std::vector<std::string>> distritoCalle_;
 	/// <summary>
 	/// vectores con nombres y apellidos para generar nombres de remitentes
 	/// </summary>	
-	std::vector<std::string> names;
-	std::vector<std::string> surnames;
+	static std::vector<std::string> names;
+	static std::vector<std::string> surnames;
 };

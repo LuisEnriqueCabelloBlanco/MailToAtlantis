@@ -36,7 +36,7 @@ class Wrap : public ecs::Component {
 public:
 	__CMP_DECL__(ecs::cmp::WRAP);
 
-	Wrap(float spaceAux, int repTimesAux, std::list<int> routeAux, int routeIndex);
+	Wrap(float spaceAux, int repTimesAux, const std::list<int>& routeAux, int routeIndex);
 
 	Wrap(float spaceAux, int repTimesAux);
 
@@ -78,7 +78,6 @@ private:
 	RenderImage* renderImage_ = nullptr;
 
 	std::vector<Line> linesDrawn; // Almacena las líneas dibujadas
-	SDL_Renderer* renderer;
 
 	//Ruta con los distintos puntos por los que debe pasar el ratón
 	std::list<int> route;

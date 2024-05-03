@@ -30,6 +30,7 @@ Game::Game() :exit_(false) {
 	SDLUtils::init("Mail To Atlantis", 1152, 648, "recursos/config/mail.resources.json");
 	Config::init("recursos/config/mail.config.json");
 	GeneralData::init();
+	PaqueteBuilder::initdata();
 
 	auto& sdl = *SDLUtils::instance();
 
