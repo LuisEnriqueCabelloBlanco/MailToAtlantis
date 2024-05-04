@@ -59,6 +59,7 @@ public:
 	bool canDrag;
 	bool canPassPagesManual;
 private:
+
 	ecs::TutorialScene* scene_;
 
 	DialogManager dialogMngr_;

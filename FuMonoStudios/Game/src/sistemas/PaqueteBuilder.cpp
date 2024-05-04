@@ -11,10 +11,8 @@
 #include "../components/RenderWithLight.h"
 
 
-PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
-	srand(sdlutils().currRealTime());
-	directionsFont = &sdlutils().fonts().at("arial40");
-
+void PaqueteBuilder::init()
+{
 	std::string filename = "recursos/config/mail.direcctions.json";
 	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(filename));
 
@@ -37,6 +35,14 @@ PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
 
 	getNamesFromJSON();
 	getRoutesFromJSON();
+
+}
+
+PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
+	srand(sdlutils().currRealTime());
+	directionsFont = &sdlutils().fonts().at("arial40");
+
+	init();
 }
 
 PaqueteBuilder::~PaqueteBuilder() {
@@ -126,6 +132,7 @@ ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle call
 	addVisualElements(base);
 	selectRandomRoute();
 	base->addComponent<Wrap>(40, 0, route, selectedRouteIndex);
+
 	return base;
 }
 
@@ -380,7 +387,6 @@ std::string PaqueteBuilder::remitenteRND() {
 void PaqueteBuilder::getStreetsFromJSON(JSONObject& root, Distrito dist, const std::string& distString)
 {
 	JSONValue* jValue = nullptr;
-
 	jValue = root[distString];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {

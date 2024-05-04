@@ -123,7 +123,7 @@ void ecs::ExplorationScene::initDirectionsDefaultMap()
 void ecs::ExplorationScene::render()
 {
 
-	actualPlace_->getTexture()->render(rect_);
+	actualPlace_->getCurrentTexture()->render(rect_);
 	Scene::render();
 
 #ifdef DEV_TOOLS
@@ -300,6 +300,8 @@ void ecs::ExplorationScene::createDiario() {
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
+
+	//Animacion para sacar y meter el diario
 	diario_->addComponent<MoverTransform>(Easing::EaseOutBack);
 	HoverSensorComponent* hoverComp = diario_->addComponent<HoverSensorComponent>();
 	hoverComp->addInCall([this]() {
@@ -322,6 +324,7 @@ void ecs::ExplorationScene::createDiario() {
 
 void ecs::ExplorationScene::setupDiarioPages() {
 	diarioText_.clear();
+	int day = generalData().getDay();
 	pagesByCharacter = std::vector<int>(7, 0);
 	RenderImage* rendComp = diario_->getComponent<RenderImage>();
 	if (rendComp == nullptr)
@@ -330,6 +333,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 	std::vector<Texture*> textureVec;
 	int firstPersonaje = -1;
 	bool diarioVacio = true;
+	//recorremos todos los personajes
 	for (int i = 0; i < 7; i++) {
 		NPCdata* data = generalData().getNPCData((npc::Personaje)i);
 		if (data->felicidad != NoHabladoAun)
@@ -337,6 +341,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 			diarioVacio = false;
 			//procesamos los textos
 			std::string textoPersonaje = "";
+			//contador de las paginas del personaje
 			int j = 0;
 			bool eventoCompletado = true;
 			while (eventoCompletado && j < data->eventosCompletados.size()) {
@@ -346,9 +351,9 @@ void ecs::ExplorationScene::setupDiarioPages() {
 					textoPersonaje = textoPersonaje + "- Dia ";
 					if (data->eventosCompletados[j].second == 0) // si el evento es de hoy
 					{
-						textoPersonaje = textoPersonaje + std::to_string(generalData().getDay()) +
+						textoPersonaje = textoPersonaje + std::to_string(day) +
 							textoCompletado + "\n" + 
-							data->events[(generalData().getDay() - 1)]->textoDiario + "\n";
+							data->events[day - 1]->textoDiario + "\n";
 					}
 					else
 					{
@@ -388,7 +393,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 			}
 
 			pagesByCharacter[i] = j;
-			// añadimos pag vacia para que no quede desparejo
+			// si el numero de paginas es impar añadimos pag vacia para que no quede desparejo
 			if (j % 2 != 0) {
 				diarioText_.push_back(" ");
 				pagesByCharacter[i]++;
@@ -422,26 +427,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 
 	if (!diarioVacio)
 	{
-		delete rightPageRnd->getTexture();
-		rightPageRnd->setVector(std::vector<Texture*>(1, nullptr));
-		delete leftPageRnd->getTexture();		
-		leftPageRnd->setVector(std::vector<Texture*>(1, nullptr));
-
-		currentDiarioPage = 0;
-		leftTex = new Texture(sdlutils().renderer(),
-			diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage],
-			sdlutils().fonts().at("simpleHandmade20"),
-			build_sdlcolor(0x00000000ff), 245);
-		leftPageRnd->setTexture(leftTex);
-		leftPageTr->setWidth(leftPageRnd->getTexture()->width());
-		leftPageTr->setHeith(leftPageRnd->getTexture()->height());
-		 rightTex = new Texture(sdlutils().renderer(),
-			diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage + 1],
-			sdlutils().fonts().at("simpleHandmade20"),
-			build_sdlcolor(0x00000000ff), 245);
-		rightPageRnd->setTexture(rightTex);
-		rightPageTr->setWidth(rightPageRnd->getTexture()->width());
-		rightPageTr->setHeith(rightPageRnd->getTexture()->height());
+		makeDiaryPages();
 	}
 
 	if (firstPersonaje == -1)
@@ -464,7 +450,7 @@ void ecs::ExplorationScene::changeDiarioPages(bool forward) {
 	
 	int i = 0;
 	bool texFound = false;
-	Texture* tex = diario_->getComponent<RenderImage>()->getTexture();
+	Texture* tex = diario_->getComponent<RenderImage>()->getCurrentTexture();
 	while (!texFound && i < 7) {
 		texFound = tex == &sdlutils().images().at("diario" + std::to_string(i + 1));
 		i++;
@@ -472,29 +458,11 @@ void ecs::ExplorationScene::changeDiarioPages(bool forward) {
 	if (texFound)
 		changeCaraFelicidad(generalData().getNPCData((Personaje)(i - 1)));
 
-	delete rightPageRnd->getTexture();
-	rightPageRnd->setVector(std::vector<Texture*>(1, nullptr));
-	delete leftPageRnd->getTexture();
-	leftPageRnd->setVector(std::vector<Texture*>(1, nullptr));
-	
-	leftTex = new Texture(sdlutils().renderer(),
-		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage],
-		sdlutils().fonts().at("simpleHandmade20"),
-		build_sdlcolor(0x00000000ff), 245);
-	leftPageRnd->setTexture(leftTex);
-	leftPageTr->setWidth(leftPageRnd->getTexture()->width());
-	leftPageTr->setHeith(leftPageRnd->getTexture()->height());
-	rightTex = new Texture(sdlutils().renderer(),
-		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage + 1],
-		sdlutils().fonts().at("simpleHandmade20"),
-		build_sdlcolor(0x00000000ff), 245);
-	rightPageRnd->setTexture(rightTex);
-	rightPageTr->setWidth(rightPageRnd->getTexture()->width());
-	rightPageTr->setHeith(rightPageRnd->getTexture()->height());
+	makeDiaryPages();
 }
 
 void ecs::ExplorationScene::changeCaraFelicidad(NPCdata* data) {
-	if (caraFelicidad->getTexture() != nullptr)
+	if (caraFelicidad->getCurrentTexture() != nullptr)
 		caraFelicidad->getVector()->clear();
 	caraFelicidad->setVector(std::vector<Texture*>(1, nullptr));
 	switch (data->felicidad) {
@@ -514,6 +482,32 @@ void ecs::ExplorationScene::changeCaraFelicidad(NPCdata* data) {
 		caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadMaxima"));
 		break;
 	}
+}
+
+void ecs::ExplorationScene::makeDiaryPages()
+{
+	//todo este proceso se puede hacer mucho mas secillo si se delega el trabajo a la common objects factory que tiene un sistema para
+	//gestionar las texturas que se crean dinámicamente en el código
+	delete rightPageRnd->getCurrentTexture();
+	rightPageRnd->setVector(std::vector<Texture*>(1, nullptr));
+	delete leftPageRnd->getCurrentTexture();
+	leftPageRnd->setVector(std::vector<Texture*>(1, nullptr));
+
+	currentDiarioPage = 0;
+	leftTex = new Texture(sdlutils().renderer(),
+		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage],
+		sdlutils().fonts().at("simpleHandmade20"),
+		build_sdlcolor(0x00000000ff), 245);
+	leftPageRnd->setTexture(leftTex);
+	leftPageTr->setWidth(leftTex->width());
+	leftPageTr->setHeith(leftTex->height());
+	rightTex = new Texture(sdlutils().renderer(),
+		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage + 1],
+		sdlutils().fonts().at("simpleHandmade20"),
+		build_sdlcolor(0x00000000ff), 245);
+	rightPageRnd->setTexture(rightTex);
+	rightPageTr->setWidth(rightTex->width());
+	rightPageTr->setHeith(rightTex->height());
 }
 
 void ecs::ExplorationScene::addDiarioEvent(NPCevent* event)
@@ -571,8 +565,6 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
-	
-	//return characterEnt;
 
 	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
 
