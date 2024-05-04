@@ -1,5 +1,6 @@
 #pragma once
 #include "../architecture/Component.h"
+#include "../sdlutils/Texture.h"
 
 class Transform;
 class Texture;
