@@ -73,6 +73,7 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 		}
 		mover->enable();
 
+		
 		ent->addComponent<SelfDestruct>(1,[this](){
 			if (mainSc_ != nullptr)
 				mainSc_->createPaquete(generalData().getPaqueteLevel());

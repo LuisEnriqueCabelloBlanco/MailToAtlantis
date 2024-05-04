@@ -56,7 +56,7 @@ public:
     // aqui se elije que rama de dialogo escojer dentro del json
     enum DialogSelection {
         Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable,
-        JefeOficina, Tutorial, BryantMyers,
+        JefeOficina, Tutorial, Intro,
         CasaGrande, CartelOficina, Muro, //Hestia
         TiendaPociones, TiendaBolas, TiendaJarrones, //Artemisa
         Molino, Arbol, Carreta, //Demeter
@@ -116,8 +116,11 @@ private:
 
     bool isNPC(const DialogSelection ds);
 
+    void createBox();
 
+    void createText();
 
+    ecs::Scene* scene_;
     /// <summary>
     /// path del archivo json, si no se especifica por defecto sera el de dialogos
     /// </summary>
