@@ -4,10 +4,7 @@
 #include "../components/Transform.h"
 #include <components/Herramientas.h>
 #include "../sistemas/PaqueteBuilder.h"
-#include "../sistemas/PipeManager.h"
 #include "components/DialogManager.h"
-#include "sistemas/WorkRestrictionsSystem.h"
-#include "../sistemas/SpecialObjectsFactory.h"
 
 namespace ecs
 {
@@ -23,7 +20,7 @@ namespace ecs
         void init() override;
     protected:
 
-        void nextIteration(int it);
+        void updateIteration(int it);
 
         void updateIntroDialogue();
 
@@ -32,6 +29,10 @@ namespace ecs
         ecs::Entity* createGarbage();
 
         void createIntroPackage();
+
+        ecs::Entity* createBottle();
+
+        void nextIteration();
 
         int introIteration;
 
@@ -42,14 +43,9 @@ namespace ecs
 
         PaqueteBuilder* mPaqBuild_;
 
-        PipeManager* mPipeMngr_;
-
-        WorkRestrictionsSystem mWorkRes;
-
-        SpecialObjectsFactory* specialFactory_;
-
         DialogManager mDialogManager;
 
         ecs::Entity* tubo_;
+        ecs::Entity* bottle_;
     };
 }

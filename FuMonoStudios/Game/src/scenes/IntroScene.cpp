@@ -18,19 +18,15 @@
 #include "../sistemas/PipeManager.h"
 #include "components/SelfDestruct.h"
 
-ecs::IntroScene::IntroScene() : introIteration(0), waitingCallback(false), tubo_(nullptr)
+ecs::IntroScene::IntroScene() : introIteration(0), waitingCallback(false), mPaqBuild_(nullptr), tubo_(nullptr), bottle_(nullptr)
 {
 	mPaqBuild_ = new PaqueteBuilder(this);
-	mPipeMngr_ = new PipeManager();
-	specialFactory_ = new SpecialObjectsFactory(this);
 	mDialogManager.init(this, "recursos/data/dialogos.json");
 }
 
 ecs::IntroScene::~IntroScene()
 {
 	delete mPaqBuild_;
-	delete mPipeMngr_;
-	delete specialFactory_;
 }
 
 void ecs::IntroScene::update()
@@ -51,10 +47,10 @@ void ecs::IntroScene::update()
 void ecs::IntroScene::init()
 {
 	factory_->setLayer(layer::BACKGROUND);
-	nextIteration(introIteration);
+	updateIteration(introIteration);
 }
 
-void ecs::IntroScene::nextIteration(int it)
+void ecs::IntroScene::updateIteration(int it)
 {
     switch (it)
     {
@@ -100,19 +96,20 @@ void ecs::IntroScene::nextIteration(int it)
 				});
 		    break;
         case 6: //aparece la botella
-			delayedCallback(1.0f, [this]
+			delayedCallback(0.5f, [this]
 				{
-					createIntroPackage(); //sustituir por crear botella
+					bottle_ = createBottle(); //sustituir por crear botella
 				});
 			break;
 		case 7: //QUEEEEEEEEEEEEEE COMO QUE LA BOTELLA VIENE DE LA ATLANTIDA?!?!?1?!?!?11?!?!?
-			delayedCallback(1.0f, [this]
+			delayedCallback(0.25f, [this]
 				{
 					updateIntroDialogue();
 				});
 			break;
         case 8: //pantalla en negro con carta e infodumping de lo que sea se haya inventado esta gente para que el prota acabe en la atlantida
 			tubo_->setAlive(false);
+			bottle_->setAlive(false);
 			factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
 				&sdlutils().images().at("blackScreen"));
 			factory_->createImage(Vector2D(LOGICAL_RENDER_WIDTH/2 - 600/2, 50), Vector2D(600, 800), &sdlutils().images().at("notaError"));
@@ -121,6 +118,11 @@ void ecs::IntroScene::nextIteration(int it)
 					updateIntroDialogue();
 				});
 		    break;
+        case 9:
+			gm().requestChangeScene(ecs::sc::INTRO_SCENE, ecs::sc::EXPLORE_SCENE);
+		    break;
+		default:
+			break;
     }
 }
 
@@ -130,8 +132,7 @@ void ecs::IntroScene::updateIntroDialogue()
 	mDialogManager.setDialogues(DialogManager::Intro, std::to_string(introIteration));
 	mDialogManager.setEndDialogueCallback([this]
 		{
-			introIteration++;
-			nextIteration(introIteration);
+			nextIteration();
 		});
 }
 
@@ -155,8 +156,7 @@ ecs::Entity* ecs::IntroScene::createGarbage()
 			e->getComponent<MoverTransform>()->setMoveTime(1);
 			e->getComponent<MoverTransform>()->enable();
 		    e->addComponent<SelfDestruct>(1);
-			introIteration++;
-		    nextIteration(introIteration);
+			nextIteration();
 		}, generalData().DropIn);
 	return papelera;
 }
@@ -168,4 +168,30 @@ void ecs::IntroScene::createIntroPackage()
 	factory_->setLayer(ecs::layer::PACKAGE);
 	package = mPaqBuild_->buildPackage(0, this);
 	package->getComponent<MoverTransform>()->enable();
+}
+
+ecs::Entity* ecs::IntroScene::createBottle()
+{
+	auto bottle = factory_->createImage(Vector2D(1600.0f, 600.0f), Vector2D(100, 100),
+		&sdlutils().images().at("puntoRojo"));
+
+	bottle->addComponent<Clickeable>();
+	bottle->getComponent<Clickeable>()->addEvent([this]
+		{
+			nextIteration();
+		});
+
+	auto movComp = bottle->addComponent<MoverTransform>();
+	movComp->setEasing(Easing::EaseOutCubic);
+	movComp->setFinalPos(bottle->getComponent<Transform>()->getPos() + Vector2D(-600, 0));
+	movComp->setMoveTime(1.7f);
+	movComp->enable();
+
+	return bottle;
+}
+
+void ecs::IntroScene::nextIteration()
+{
+	introIteration++;
+	updateIteration(introIteration);
 }
