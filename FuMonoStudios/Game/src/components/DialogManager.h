@@ -114,8 +114,11 @@ private:
 
     bool isNPC(const DialogSelection ds);
 
+    void createBox();
 
+    void createText();
 
+    ecs::Scene* scene_;
     /// <summary>
     /// path del archivo json, si no se especifica por defecto sera el de dialogos
     /// </summary>

@@ -55,18 +55,21 @@ void ecs::IntroScene::updateIteration(int it)
     switch (it)
     {
         case 0: //pantalla en negro dialogo de introduccion
+			factory_->setLayer(layer::BACKGROUND);
 			factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
 				&sdlutils().images().at("blackScreen"));
+			factory_->setLayer(ecs::layer::DEFAULT);
 			delayedCallback(0.5f, [this]
 				{
 					updateIntroDialogue();
 				});
 			break;
         case 1: //oficina, se explica el trabajo de paco
+			factory_->setLayer(layer::BACKGROUND);
 			factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
 				&sdlutils().images().at("fondoOficina"));
+			factory_->setLayer(ecs::layer::DEFAULT);
 			tubo_ = createGarbage();
-			//introIteration = 7; esto es solo para probar las cosas de mas adelante de la intro sin comermela entera
 			delayedCallback(0.5f, [this]
 				{
 					updateIntroDialogue();
@@ -145,6 +148,7 @@ void ecs::IntroScene::delayedCallback(float time, SimpleCallback call) {
 
 ecs::Entity* ecs::IntroScene::createGarbage()
 {
+	factory_->setLayer(layer::OFFICEELEMENTS);
 	Entity* papelera = addEntity(ecs::layer::BIN);
 	papelera->addComponent<Transform>(0, 650, 204, 247);
 	papelera->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
@@ -158,6 +162,7 @@ ecs::Entity* ecs::IntroScene::createGarbage()
 		    e->addComponent<SelfDestruct>(1);
 			nextIteration();
 		}, generalData().DropIn);
+	factory_->setLayer(ecs::layer::DEFAULT);
 	return papelera;
 }
 
@@ -168,10 +173,12 @@ void ecs::IntroScene::createIntroPackage()
 	factory_->setLayer(ecs::layer::PACKAGE);
 	package = mPaqBuild_->buildPackage(0, this);
 	package->getComponent<MoverTransform>()->enable();
+	factory_->setLayer(ecs::layer::DEFAULT);
 }
 
 ecs::Entity* ecs::IntroScene::createBottle()
 {
+	factory_->setLayer(ecs::layer::PACKAGE);
 	auto bottle = factory_->createImage(Vector2D(1600.0f, 600.0f), Vector2D(100, 100),
 		&sdlutils().images().at("puntoRojo"));
 
@@ -186,7 +193,7 @@ ecs::Entity* ecs::IntroScene::createBottle()
 	movComp->setFinalPos(bottle->getComponent<Transform>()->getPos() + Vector2D(-600, 0));
 	movComp->setMoveTime(1.7f);
 	movComp->enable();
-
+	factory_->setLayer(ecs::layer::DEFAULT);
 	return bottle;
 }
 
