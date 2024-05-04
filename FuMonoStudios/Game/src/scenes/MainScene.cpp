@@ -811,13 +811,10 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 	dialogMngr_.init(this, jsonPath);
 
 	mWorkRes.init();
-
-	ComonObjectsFactory factory(this);
-
 	Texture* characterTexture = &sdlutils().images().at(character);
 	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
 
-	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, [this]() {
+	ecs::Entity* characterEnt = factory_->createImageButton(pos, size, characterTexture, [this]() {
 		newWorkEvent();
 		});
 
