@@ -100,7 +100,7 @@ void PaqueteBuilder::cartaRND(ecs::Entity* packageBase) {
 		dir = distritoCalle_[toDist][(int)toDir];
 
 
-	Paquete* carta = packageBase->addComponent<Paquete>(toDist, toDir, dir, remitenteRND(), pq::TipoPaquete::Carta, false, pq::NivelPeso::Ninguno, PESO_CARTA, false, true);
+	Paquete* carta = packageBase->addComponent<Paquete>(toDist, toDir, dir, remitenteRND(), pq::TipoPaquete::Carta, true, pq::NivelPeso::Ninguno, PESO_CARTA, false, true);
 	addVisualElements(packageBase);
 
 }
