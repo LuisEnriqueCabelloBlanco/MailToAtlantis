@@ -69,6 +69,8 @@ namespace ecs {
 
         void startWork();
 
+        void newWorkEvent();
+
 #ifdef DEV_TOOLS
         bool nextPacageCorrect_;
         bool stampsUnloked_;
