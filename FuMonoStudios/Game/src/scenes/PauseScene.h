@@ -2,8 +2,8 @@
 #ifndef DEV_TOOLS
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
-#include "../architecture/Scene.h"
-#include "../architecture/ecs.h"
+#include <architecture/Scene.h>
+#include <architecture/ecs.h>
 
 class Game;
 

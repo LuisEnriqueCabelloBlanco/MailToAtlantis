@@ -2,8 +2,8 @@
 #ifndef DEV_TOOLS
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
-#include "../sdlutils/SDLUtils.h"
-#include "ecs.h"
+#include <sdlutils/SDLUtils.h>
+#include <architecture/ecs.h>
 #include <vector>
 #include <array>
 #include <queue>

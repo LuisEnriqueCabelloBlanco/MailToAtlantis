@@ -1,16 +1,16 @@
-
-#include "../sdlutils/InputHandler.h"
-#include "DragAndDrop.h"
-#include "Transform.h"
-#include "Gravity.h"
-#include "Trigger.h"
-#include "../architecture/Entity.h"
+#include <sdlutils/InputHandler.h>
+#include <sdlutils/SDLUtils.h>
+#include <components/DragAndDrop.h>
+#include <components/Transform.h>
+#include <components/Gravity.h>
+#include <components/Trigger.h>
+#include <architecture/Entity.h>
 #include <architecture/GameConstants.h>
-#include "../architecture/GeneralData.h"
-#include "../sistemas/SoundEmiter.h"
-
+#include <architecture/GeneralData.h>
+#include <sistemas/SoundEmiter.h>
 #include <SDL.h>
 #include <assert.h>
+
 bool DragAndDrop::enableDrag = true;
 DragAndDrop::DragAndDrop() : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
 usingCallback_(false), usingOnlyClosestEnt_(false), usingOwnCallback_(false)

@@ -6,9 +6,9 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 #include <string>
-#include "architecture/Game.h"
-#include "sdlutils/SDLUtils.h"
-#include "../rapidCSV/rapidcsv.h"
+#include <architecture/Game.h>
+#include <sdlutils/SDLUtils.h>
+#include <../rapidCSV/rapidcsv.h>
 
 
 

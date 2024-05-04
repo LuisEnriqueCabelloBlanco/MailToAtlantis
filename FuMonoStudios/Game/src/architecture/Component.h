@@ -2,8 +2,7 @@
 #ifndef DEV_TOOLS
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
-#include "ecs.h"
-//#include "Entity.h"
+#include <architecture/ecs.h>
 
 class Manager;
 namespace ecs {

@@ -3,7 +3,7 @@
 #include <list>
 #include <functional>
 
-#include "../architecture/Component.h"
+#include <architecture/Component.h>
 
 class Transform;
 

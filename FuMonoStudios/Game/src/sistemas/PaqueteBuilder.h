@@ -3,18 +3,11 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "../architecture/Entity.h"
-#include <stdlib.h>
-#include "../sdlutils/VirtualTimer.h"
 #include "../architecture/GeneralData.h"
 #include "../components/Wrap.h"
-#include "../components/Gravity.h"
-#include "../components/Depth.h"
-#include "../components/Trigger.h"
-#include "../components/Herramientas.h"
 #include "../components/MoverTransform.h"
 #include <components/Paquete.h>
 #include <json/JSON.h>
-#include <json/JSONValue.h>
 
 
 

@@ -3,15 +3,14 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "PaqueteBuilder.h"
-#include "../components/Transform.h"
-#include "../architecture/Entity.h"
-#include "../components/Render.h"
-#include "../architecture/GameConstants.h"
+#include <components/Transform.h>
+#include <architecture/Entity.h>
+#include <components/Render.h>
+#include <architecture/GameConstants.h>
 #include <sistemas/ComonObjectsFactory.h>
-#include "../json/JSON.h"
-#include "../sistemas/NPCeventSystem.h"
-#include "../components/RenderWithLight.h"
-
+#include <json/JSON.h>
+#include <sistemas/NPCeventSystem.h>
+#include <components/Herramientas.h>
 
 std::unordered_map<Distrito, std::vector<std::string>> PaqueteBuilder::distritoCalle_;
 std::vector<std::string> PaqueteBuilder::names;

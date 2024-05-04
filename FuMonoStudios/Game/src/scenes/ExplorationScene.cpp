@@ -6,31 +6,24 @@
 #include <utils/checkML.h>
 #endif // DEV_TOOLS
 #include "ExplorationScene.h"
-#include "../architecture/Entity.h"
+#include <architecture/Entity.h>
 #include <iostream>
-#include "../sdlutils/SDLUtils.h"
-#include "../components/Transform.h"
-#include "../components/Render.h"
-#include "../components/Clickeable.h"
-#include "../components/DragAndDrop.h"
-#include "../components/Trigger.h"
-#include "../architecture/Game.h"
-#include "../architecture/Config.h"
-#include "../architecture/GeneralData.h"
+#include <sdlutils/SDLUtils.h>
+#include <components/Transform.h>
+#include <components/Render.h>
+#include <components/Clickeable.h>
+#include <architecture/Game.h>
+#include <architecture/Config.h>
+#include <architecture/GeneralData.h>
 #include <string>
-#include "../sdlutils/Texture.h"
-#include "../components/DialogComponent.h"
-#include "../sistemas/ComonObjectsFactory.h"
-#include "../architecture/GeneralData.h"
-#include "../components/DelayedCallback.h"
+#include <sdlutils/Texture.h>
+#include <components/DialogComponent.h>
+#include <sistemas/ComonObjectsFactory.h>
 #include <architecture/GameConstants.h>
 #include <QATools/DataCollector.h>
-
-
-#include "../sistemas/NPCeventSystem.h"
-#include "../components/HoverSensorComponent.h"
-#include "../components/MoverTransform.h"
-#include <components/RenderWithLight.h>
+#include <sistemas/NPCeventSystem.h>
+#include <components/HoverSensorComponent.h>
+#include <components/MoverTransform.h>
 
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {

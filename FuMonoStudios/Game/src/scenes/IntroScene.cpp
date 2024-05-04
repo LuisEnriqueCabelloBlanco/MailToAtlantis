@@ -1,22 +1,20 @@
 #include "IntroScene.h"
 #include <utils/checkML.h>
-#include "MainScene.h"
-#include "../architecture/Entity.h"
-#include "../sdlutils/SDLUtils.h"
-#include "../components/Transform.h"
-#include "../components/Render.h"
-#include "../components/Clickeable.h"
-#include "../components/DragAndDrop.h"
-#include "../components/Trigger.h"
+#include <architecture/Entity.h>
+#include <sdlutils/SDLUtils.h>
+#include <components/Transform.h>
+#include <components/Render.h>
+#include <components/Clickeable.h>
+#include <components/DragAndDrop.h>
+#include <components/Trigger.h>
 #include <string>
-#include "../components/MoverTransform.h"
-#include "../architecture/GameConstants.h"
-#include "../architecture/GeneralData.h"
-#include "../sistemas/ComonObjectsFactory.h"
+#include <components/MoverTransform.h>
+#include <architecture/GameConstants.h>
+#include <architecture/GeneralData.h>
+#include <sistemas/ComonObjectsFactory.h>
 #include <QATools/DataCollector.h>
-#include "../entities/ClockAux.h"
-#include "../sistemas/PipeManager.h"
-#include "components/SelfDestruct.h"
+#include <entities/ClockAux.h>
+#include <components/SelfDestruct.h>
 
 ecs::IntroScene::IntroScene() : introIteration(0), waitingCallback(false), mPaqBuild_(nullptr), tubo_(nullptr), bottle_(nullptr)
 {

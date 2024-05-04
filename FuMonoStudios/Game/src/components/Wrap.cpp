@@ -1,11 +1,10 @@
 #include "Wrap.h"
-#include "Transform.h"
+#include <components/Transform.h>
 
-#include "../architecture/Entity.h"
-#include "../sdlutils/InputHandler.h"
-#include "../json/JSON.h"
-#include "../sdlutils/Texture.h"
-#include "../sdlutils/SDLUtils.h"
+#include <architecture/Entity.h>
+#include <sdlutils/InputHandler.h>
+#include <json/JSON.h>
+#include <sdlutils/SDLUtils.h>
 
 #include <SDL.h>
 #include <vector>

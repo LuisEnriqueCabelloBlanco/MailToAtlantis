@@ -5,13 +5,14 @@
 #include "DialogManager.h"
 #include <fstream>
 
-#include "DelayedCallback.h"
-#include "DialogComponent.h"
-#include "Render.h"
-#include "../json/JSON.h"
-#include "../json/JSONValue.h"
-#include "QATools/DataCollector.h"
-#include "sistemas/ComonObjectsFactory.h"
+#include <components/DelayedCallback.h>
+#include <components/DialogComponent.h>
+#include <components/Render.h>
+#include <json/JSON.h>
+#include <json/JSONValue.h>
+#include <QATools/DataCollector.h>
+#include <sistemas/ComonObjectsFactory.h>
+#include <architecture/GameConstants.h>
 
 DialogManager::DialogManager() : scene_(nullptr), currentDialogIndex_(0),boxBackground(nullptr), textDialogue(nullptr), endDialogueCallback(nullptr)
 {

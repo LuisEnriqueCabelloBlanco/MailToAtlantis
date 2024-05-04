@@ -3,7 +3,7 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "EndGameScene.h"
-#include "../sistemas/ComonObjectsFactory.h"
+#include <sistemas/ComonObjectsFactory.h>
 #include <vector>
 #include <json/JSON.h>
 #include <architecture/GeneralData.h>

@@ -10,21 +10,21 @@
 #endif // DEV_TOOLS
 #include <SDL.h>
 #include <algorithm>
-#include "../scenes/MainScene.h"
-#include "../scenes/ConfigScene.h"
-#include "../scenes/MainMenu.h"
-#include "../scenes/PauseScene.h"
-#include "../scenes/ExplorationScene.h"
-#include "../scenes/EndWorkScene.h"
-#include "../scenes/PauseScene.h"
+#include <scenes/MainScene.h>
+#include <scenes/ConfigScene.h>
+#include <scenes/MainMenu.h>
+#include <scenes/PauseScene.h>
+#include <scenes/ExplorationScene.h>
+#include <scenes/EndWorkScene.h>
 #include <scenes/EndGameScene.h>
-#include "../scenes/TutorialScene.h"
-#include "Time.h"
-#include "GeneralData.h"
+#include <scenes/TutorialScene.h>
+#include <scenes/IntroScene.h>
+#include <architecture/Time.h>
+#include <architecture/GeneralData.h>
 #include <iostream>
 #include <QATools/DataCollector.h>
-#include "../sistemas/SoundEmiter.h"
-#include "scenes/IntroScene.h"
+#include <architecture/GameConstants.h>
+#include <sistemas/SoundEmiter.h>
 
 Game::Game() :exit_(false) {
 	SDLUtils::init("Mail To Atlantis", 1152, 648, "recursos/config/mail.resources.json");

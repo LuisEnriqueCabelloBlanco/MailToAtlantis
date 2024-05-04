@@ -2,12 +2,12 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "TutorialSystem.h"
-#include "../components/Render.h"
-#include "../scenes/TutorialScene.h"
-#include "../components/DialogManager.h"
-#include "../components/DialogComponent.h"
-#include "../components/MoverTransform.h"
-#include "../components/Wrap.h"
+#include <components/Render.h>
+#include <scenes/TutorialScene.h>
+#include <components/DialogManager.h>
+#include <components/MoverTransform.h>
+#include <components/Wrap.h>
+#include <architecture/Game.h>
 
 TutorialSystem::TutorialSystem(ecs::TutorialScene* scene) {
 	scene_ = scene;

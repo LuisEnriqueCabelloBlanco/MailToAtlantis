@@ -1,6 +1,5 @@
 #include "MoverTransform.h"
-#include "../architecture/Entity.h"
-#include <architecture/Time.h>
+#include <architecture/Entity.h>
 
 MoverTransform::MoverTransform(Easing Easing):finalPos_(Vector2D(0,0)), movTime_(0),
 easing_(Easing), timer_(0), mTr_(nullptr), usingCallback(false), call_(), enable_(false)

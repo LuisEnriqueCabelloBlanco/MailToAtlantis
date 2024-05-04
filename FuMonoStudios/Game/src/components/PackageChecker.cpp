@@ -7,7 +7,6 @@
 #include "Paquete.h"
 #include "SelfDestruct.h"
 #include "../architecture/GeneralData.h"
-#include <list>
 #include <functional>
 #include <components/ErrorNote.h>
 #include <QATools/DataCollector.h>

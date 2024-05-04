@@ -1,8 +1,8 @@
 #pragma once
-#include "../architecture/Component.h"
+#include <architecture/Component.h>
 #include <functional>
 #include "Paquete.h"
-#include "../architecture/Entity.h"
+#include <architecture/Entity.h>
 
 using Callback = std::function<void(ecs::Entity*)>;
 

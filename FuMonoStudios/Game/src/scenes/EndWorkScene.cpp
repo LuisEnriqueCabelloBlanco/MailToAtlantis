@@ -2,16 +2,14 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "EndWorkScene.h"
-#include "../architecture/GeneralData.h"
-#include "../architecture/Entity.h"
+#include <architecture/GeneralData.h>
+#include <architecture/Entity.h>
 #include <string>
-#include "../components/Transform.h"
-#include "../components/Render.h"
-#include "../sistemas/ComonObjectsFactory.h"
-#include "../components/Paquete.h"
-#include "../components/Clickeable.h"
-#include "../architecture/Game.h"
-#include "../components/MoverTransform.h"
+#include <sistemas/ComonObjectsFactory.h>
+#include <components/Paquete.h>
+#include <architecture/Game.h>
+#include <components/MoverTransform.h>
+#include <architecture/GameConstants.h>
 
 EndWorkScene::EndWorkScene():Scene() {
 }

@@ -1,10 +1,10 @@
 #pragma once
 #include <utils/checkML.h>
-#include "../architecture/Scene.h"
-#include "../components/Transform.h"
+#include <architecture/Scene.h>
+#include <components/Transform.h>
 #include <components/Herramientas.h>
-#include "../sistemas/PaqueteBuilder.h"
-#include "components/DialogManager.h"
+#include <sistemas/PaqueteBuilder.h>
+#include <components/DialogManager.h>
 
 namespace ecs
 {

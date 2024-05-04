@@ -2,12 +2,12 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "NPCeventSystem.h"
-#include "../json/JSON.h"
+#include <json/JSON.h>
 #include <random>
 #include <algorithm>
-#include "../architecture/GeneralData.h"
-#include "../sistemas/PaqueteBuilder.h"
-#include "../architecture/Game.h"
+#include <architecture/GeneralData.h>
+#include <sistemas/PaqueteBuilder.h>
+#include <architecture/Game.h>
 
 NPCeventSystem::NPCeventSystem() {
 	readNPCEventData();

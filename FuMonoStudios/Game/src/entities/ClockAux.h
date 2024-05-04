@@ -2,8 +2,8 @@
 #ifndef DEV_TOOLS
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
-#include "../architecture/Component.h"
-#include "../utils/Vector2D.h"
+#include <architecture/Component.h>
+#include <utils/Vector2D.h>
 
 class ecs::Entity;
 class Transform;

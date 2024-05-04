@@ -1,9 +1,9 @@
-#include "../sdlutils/InputHandler.h"
-#include "Clickeable.h"
+#include <sdlutils/InputHandler.h>
+#include <components/Clickeable.h>
 
-#include "Transform.h"
-#include "Trigger.h"
-#include "../architecture/Entity.h"
+#include <components/Transform.h>
+#include <components/Trigger.h>
+#include <architecture/Entity.h>
 #include <SDL.h>
 #include <assert.h>
 

@@ -5,11 +5,13 @@
 #include "ecs.h"
 #include <algorithm>
 #include <array>
-#include "Component.h"
-#include "Scene.h"
-#include "../components/Trigger.h"
-#include "../components/Transform.h"
-#include "../components/DragAndDrop.h"
+#include <architecture/Component.h>
+#include <architecture/Scene.h>
+#include <components/Trigger.h>
+#include <components/Transform.h>
+#include <components/DragAndDrop.h>
+#include <components/Gravity.h>
+#include <components/Depth.h>
 //class Manager;
 
 namespace ecs {

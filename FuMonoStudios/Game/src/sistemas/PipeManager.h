@@ -1,5 +1,5 @@
 #pragma once
-#include "../components/Paquete.h"
+#include <components/Paquete.h>
 #include <vector>
 
 namespace tb {

@@ -1,6 +1,6 @@
 #include "SelfDestruct.h"
-#include "../sdlutils/SDLUtils.h";
-#include "../architecture/Entity.h";
+#include <sdlutils/SDLUtils.h>
+#include <architecture/Entity.h>
 
 SelfDestruct::SelfDestruct(float TimeToDestroy) {
 	timeToDestroy_ = TimeToDestroy * 1000;

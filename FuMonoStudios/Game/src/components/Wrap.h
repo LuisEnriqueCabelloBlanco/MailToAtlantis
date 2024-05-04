@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../architecture/Component.h"
+#include <architecture/Component.h>
 #include <components/Render.h>
-#include "Paquete.h"
-#include "../architecture/Entity.h"
+#include <components/Paquete.h>
+#include <architecture/Entity.h>
 
 #include <functional>
 #include <list>

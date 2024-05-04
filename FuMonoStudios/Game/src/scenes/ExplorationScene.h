@@ -2,10 +2,10 @@
 #ifndef DEV_TOOLS
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
-#include "../architecture/Scene.h"
-#include "../components/DialogManager.h"
-#include "../sistemas/ComonObjectsFactory.h"
-#include <list>
+#include <architecture/Scene.h>
+#include <components/DialogManager.h>
+#include <sistemas/ComonObjectsFactory.h>
+#include <architecture/GeneralData.h>
 
 constexpr int MAX_CHAR_LEN_LEFT_DIARIO = 370;
 constexpr int MAX_CHAR_LEN_RIGHT_DIARIO = 406;

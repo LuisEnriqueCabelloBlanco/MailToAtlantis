@@ -6,9 +6,7 @@
 #include <functional>
 #include <string>
 #include <vector>
-#include <iostream>
-#include "../architecture/GeneralData.h"
-#include "../architecture/Scene.h"
+#include <architecture/Scene.h>
 
 /*
 - - - - - - - COMO SE USA - - - - - - - - -

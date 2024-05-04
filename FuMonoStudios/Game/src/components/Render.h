@@ -1,5 +1,5 @@
 #pragma once
-#include "../architecture/Component.h"
+#include <architecture/Component.h>
 #include <assert.h>
 
 class Transform;

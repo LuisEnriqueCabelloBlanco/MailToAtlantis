@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../architecture/Component.h"
+#include <architecture/Component.h>
 #include <functional>
 #include <list>
 

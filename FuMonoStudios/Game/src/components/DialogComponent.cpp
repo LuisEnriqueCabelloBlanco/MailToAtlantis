@@ -1,17 +1,16 @@
-#include "../sdlutils/InputHandler.h"
+#include <sdlutils/InputHandler.h>
 #ifndef DEV_TOOLS
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "DialogComponent.h"
-#include "../architecture/Entity.h"
-#include "../sdlutils/Font.h"
-#include "../sdlutils/Texture.h"
-#include "DialogManager.h"
-#include "Transform.h"
-#include "Render.h"
-#include "DelayedCallback.h"
-#include "../scenes/ExplorationScene.h"
-#include "../scenes/TutorialScene.h"
+#include <architecture/Entity.h>
+#include <sdlutils/Font.h>
+#include <sdlutils/Texture.h>
+#include <components/DialogManager.h>
+#include <components/Transform.h>
+#include <components/Render.h>
+#include <components/DelayedCallback.h>
+#include <scenes/TutorialScene.h>
 
 DialogComponent::DialogComponent(DialogManager* manager): 
 	mTr_(nullptr), mRend_(nullptr),
@@ -19,7 +18,7 @@ DialogComponent::DialogComponent(DialogManager* manager):
 	canSkip(true), endDialogue(false)
 {
 	mDialogMngr_ = manager;
-	mFont_ = new Font("recursos/fonts/ARIAL.ttf", 40);
+	mFont_ = &sdlutils().fonts().at("arial40");
 }
 
 
