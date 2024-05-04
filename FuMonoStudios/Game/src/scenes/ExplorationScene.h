@@ -7,7 +7,6 @@
 #include "../sistemas/ComonObjectsFactory.h"
 #include <list>
 
-constexpr float SCALE_NPCS = 0.25;
 constexpr int MAX_CHAR_LEN_LEFT_DIARIO = 370;
 constexpr int MAX_CHAR_LEN_RIGHT_DIARIO = 406;
 class NPCeventSystem;
@@ -31,14 +30,14 @@ namespace ecs {
 		//constructoras
 		Lugar() : ents_(),backGround_(nullptr),navegable_(false) {};
 
-		Lugar(Texture* t, bool n) : ents_(), backGround_(t), navegable_(n) /*character(c)*/ {};
+		Lugar(Distrito id,Texture* t, bool n) : ents_(), backGround_(t), navegable_(n),placeID_(id) /*character(c)*/ {};
 
 		/// <summary>
 		/// Metodo para anadir direcciones al mapa del lugar
 		/// </summary>
 		/// <param name="placeDir"></param>
 		/// <param name="place"></param>
-		void addDirections(Distrito placeDir, Lugar* place);
+		void addDirections(Lugar* place);
 
 		/// <summary>
 		/// Metodo para comprobar la navegabilidad a ciero lugar
@@ -80,9 +79,12 @@ namespace ecs {
 		/// <param name="value"></param>
 		void setNavegability(bool value = true);
 
-
-
+		inline Distrito getID() { return placeID_; };
 	private:
+		/// <summary>
+		/// Identificador de el distrito
+		/// </summary>
+		Distrito placeID_;
 		//Puntero a la textura del fondo
 		Texture* backGround_;
 

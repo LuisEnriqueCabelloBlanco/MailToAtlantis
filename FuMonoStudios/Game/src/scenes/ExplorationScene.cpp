@@ -73,7 +73,7 @@ void ecs::ExplorationScene::initPlacesDefaultMap()
 
 		std::string placeName = generalData().fromDistritoToString(i);
 
-		lugares.insert({ (Distrito) i, Lugar(&sdlutils().images().at(placeName), false) });
+		lugares.insert({ (Distrito) i, Lugar((Distrito)i, & sdlutils().images().at(placeName), false)});
 	}
 	
 }
@@ -81,34 +81,34 @@ void ecs::ExplorationScene::initPlacesDefaultMap()
 void ecs::ExplorationScene::initDirectionsDefaultMap()
 {
 	//Hestia
-	lugares[pq::Distrito::Hestia].addDirections(Hefesto, &lugares[pq::Hefesto]);
-	lugares[pq::Distrito::Hestia].addDirections(Artemisa, &lugares[pq::Artemisa]);
+	lugares[pq::Distrito::Hestia].addDirections(&lugares[pq::Hefesto]);
+	lugares[pq::Distrito::Hestia].addDirections(&lugares[pq::Artemisa]);
 
 	//Artemisa
-	lugares[pq::Distrito::Artemisa].addDirections(Demeter, &lugares[pq::Demeter]);
-	lugares[pq::Distrito::Artemisa].addDirections(Hestia, & lugares[pq::Hestia]);
+	lugares[pq::Distrito::Artemisa].addDirections(&lugares[pq::Demeter]);
+	lugares[pq::Distrito::Artemisa].addDirections(&lugares[pq::Hestia]);
 
 	//Demeter
-	lugares[pq::Distrito::Demeter].addDirections(Hermes, &lugares[pq::Hermes]);
-	lugares[pq::Distrito::Demeter].addDirections(Hefesto, &lugares[pq::Hefesto]);
-	lugares[pq::Distrito::Demeter].addDirections(Artemisa, &lugares[pq::Artemisa]);
+	lugares[pq::Distrito::Demeter].addDirections(&lugares[pq::Hermes]);
+	lugares[pq::Distrito::Demeter].addDirections(&lugares[pq::Hefesto]);
+	lugares[pq::Distrito::Demeter].addDirections(&lugares[pq::Artemisa]);
 
 	//Hefesto
-	lugares[pq::Distrito::Hefesto].addDirections(Demeter, &lugares[pq::Demeter]);
-	lugares[pq::Distrito::Hefesto].addDirections(Hestia, &lugares[pq::Hestia]);
-	lugares[pq::Distrito::Hefesto].addDirections(Hermes, &lugares[pq::Hermes]);
+	lugares[pq::Distrito::Hefesto].addDirections(&lugares[pq::Demeter]);
+	lugares[pq::Distrito::Hefesto].addDirections(&lugares[pq::Hestia]);
+	lugares[pq::Distrito::Hefesto].addDirections(&lugares[pq::Hermes]);
 
 	//Hermes
-	lugares[pq::Distrito::Hermes].addDirections(Demeter, &lugares[pq::Demeter]);
-	lugares[pq::Distrito::Hermes].addDirections(Hefesto, &lugares[pq::Hefesto]);
-	lugares[pq::Distrito::Hermes].addDirections(Apolo, &lugares[pq::Apolo]);
+	lugares[pq::Distrito::Hermes].addDirections(&lugares[pq::Demeter]);
+	lugares[pq::Distrito::Hermes].addDirections(&lugares[pq::Hefesto]);
+	lugares[pq::Distrito::Hermes].addDirections(&lugares[pq::Apolo]);
 
 	//Apolo
-	lugares[pq::Distrito::Apolo].addDirections(Hermes, &lugares[pq::Hermes]);
-	lugares[pq::Distrito::Apolo].addDirections(Poseidon, &lugares[pq::Poseidon]);
+	lugares[pq::Distrito::Apolo].addDirections(&lugares[pq::Hermes]);
+	lugares[pq::Distrito::Apolo].addDirections(&lugares[pq::Poseidon]);
 
 	//Poseidon
-	lugares[pq::Distrito::Poseidon].addDirections(Apolo, &lugares[pq::Apolo]);
+	lugares[pq::Distrito::Poseidon].addDirections(&lugares[pq::Apolo]);
 }
 
 void ecs::ExplorationScene::render()
@@ -633,9 +633,9 @@ void ecs::ExplorationScene::createObjects(int place) {
 
 //LUGAR__________________________________________________________________________________________
 
-void ecs::Lugar::addDirections(Distrito placeDir, Lugar* place)
+void ecs::Lugar::addDirections(Lugar* place)
 {
-	directions_[placeDir] = place;
+	directions_[place->getID()] = place;
 }
 
 bool ecs::Lugar::navigate(Distrito placeDir)
