@@ -78,10 +78,6 @@ void Game::run()
 			changeScene(scene1_, scene2_);
 			sceneChange_ = false;
 		}
-		//SDL_Event e;
-		//while (SDL_PollEvent(&e)) {
-		//	ImGui_ImplSDL2_ProcessEvent(&e);
-		//}
 		refresh();
 		ih().refresh();
 		Uint32 startTime = sdlutils().virtualTimer().currTime();
@@ -111,10 +107,6 @@ void Game::run()
 		sdlutils().presentRenderer();
 
 		Time::deltaTime_ = (sdlutils().virtualTimer().currTime() - startTime) / 1000.0;
-		/*if (sdlutils().virtualTimer().currTime()/1000 > autoRecodTime) {
-			dataCollector().record();
-			autoRecodTime++;
-		}*/
 	}
 #ifdef DEV_TOOLS
 	ImGui_ImplSDLRenderer2_Shutdown();
@@ -122,11 +114,6 @@ void Game::run()
 	ImGui::DestroyContext();
 #endif // DEV_TOOLS
 }
-
-//void Game::writeMessage() {
-//
-//	
-//}
 
 /// <summary>
 /// Carga la escena indicada por el Id

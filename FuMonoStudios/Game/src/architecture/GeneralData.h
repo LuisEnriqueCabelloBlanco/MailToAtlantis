@@ -284,7 +284,7 @@ private:
 	/// </summary>
 	std::vector<Paquete*> paquetesNPCs;
 	/// <summary>
-	/// Luis: no se que hace realmente este vector si alguien sabe especificar que lo ponga porfavor y gracias
+	/// Vector que almacena que distritos están desbloqueados
 	/// </summary>
 	std::vector<std::string> placesToActive_;
 	/// <summary>
