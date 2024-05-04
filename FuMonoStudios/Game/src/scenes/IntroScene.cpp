@@ -116,7 +116,7 @@ void ecs::IntroScene::updateIteration(int it)
 			bottle_->setAlive(false);
 			factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
 				&sdlutils().images().at("blackScreen"));
-			factory_->createImage(Vector2D(LOGICAL_RENDER_WIDTH/2 - 600/2, 50), Vector2D(600, 800), &sdlutils().images().at("notaError"));
+			factory_->createImage(Vector2D(LOGICAL_RENDER_WIDTH/2 - 600/2, 50), Vector2D(600, 800), &sdlutils().images().at("cartaAtlantida"));
 			delayedCallback(0.25f, [this]
 				{
 					updateIntroDialogue();
