@@ -1,4 +1,6 @@
-#include "utils/checkML.h"
+#ifndef DEV_TOOLS
+#include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include <iostream>
 #include <SDL.h>
 #include <SDL_ttf.h>

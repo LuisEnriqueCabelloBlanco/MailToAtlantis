@@ -1,11 +1,13 @@
+#include <sdlutils/InputHandler.h>
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "EndGameScene.h"
 #include "../sistemas/ComonObjectsFactory.h"
 #include <vector>
 #include <json/JSON.h>
 #include <architecture/GeneralData.h>
 #include <string>
-#include <sdlutils/InputHandler.h>
 #include <components/Render.h>
 #include <architecture/Game.h>
 
@@ -27,18 +29,6 @@ EndGameScene::EndGameScene()
     for (int i = 0; i < 7; i++) {
         loadEnd((Personaje)i, root);
     }
-    
-  /*  std::vector<Texture*> texturesArray = {
-        &sdlutils().images().at("placeHolder"),
-        &sdlutils().images().at("placeHolder"),
-        &sdlutils().images().at("placeHolder"),
-        &sdlutils().images().at("placeHolder"),
-        &sdlutils().images().at("placeHolder"),
-        &sdlutils().images().at("placeHolder"),
-        &sdlutils().images().at("placeHolder"),
-    };
-    factory_->setLayer(ecs::layer::BACKGROUND);
-    endImage_ = factory_->createMultiTextureImage(Vector2D(0, 0), Vector2D(600, 600), texturesArray);*/
    
 }
 

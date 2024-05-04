@@ -1,4 +1,6 @@
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "EndWorkScene.h"
 #include "../architecture/GeneralData.h"
 #include "../architecture/Entity.h"

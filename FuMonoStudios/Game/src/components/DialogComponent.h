@@ -1,5 +1,7 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "../architecture/Component.h"
 #include "DialogManager.h"
 #include "../sdlutils/Font.h"

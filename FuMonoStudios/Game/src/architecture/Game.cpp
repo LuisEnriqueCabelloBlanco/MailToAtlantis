@@ -1,16 +1,15 @@
 #include "Game.h"
 #include <list>
-
+#include "../sdlutils/InputHandler.h"
 #ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
-#endif // DEV_TOOLS
-
+#else
 #include <utils/checkML.h>
+#endif // DEV_TOOLS
 #include <SDL.h>
 #include <algorithm>
-#include "../sdlutils/InputHandler.h"
 #include "../scenes/MainScene.h"
 #include "../scenes/ConfigScene.h"
 #include "../scenes/MainMenu.h"
@@ -93,16 +92,6 @@ void Game::run()
 		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_F)) {
 			sdlutils().toggleFullScreen();
 		}
-		/*if (ih().isKeyDown(SDL_SCANCODE_P)) {
-			loadScene(ecs::sc::PAUSE_SCENE);
-			gamePaused_ = true;
-		}
-		if (ih().isKeyDown(SDL_SCANCODE_E)) {
-			changeScene(ecs::sc::MENU_SCENE, ecs::sc::MAIN_SCENE);
-		}
-		if (ih().isKeyDown(SDL_SCANCODE_W)) {
-			changeScene(ecs::sc::MAIN_SCENE, ecs::sc::MENU_SCENE);
-		}*/
 #ifdef QA_TOOLS
 		if (ih().mouseButtonDownEvent()&&ih().getMouseButtonState(0)) {
 			dataCollector().clicks()++;

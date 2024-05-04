@@ -1,7 +1,9 @@
+#include "../sdlutils/InputHandler.h"
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "DialogComponent.h"
 #include "../architecture/Entity.h"
-#include "../sdlutils/InputHandler.h"
 #include "../sdlutils/Font.h"
 #include "../sdlutils/Texture.h"
 #include "DialogManager.h"

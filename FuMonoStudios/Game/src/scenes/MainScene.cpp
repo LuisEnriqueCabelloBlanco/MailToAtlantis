@@ -1,12 +1,13 @@
+#ifdef DEV_TOOLS
+#include <imgui.h>
+#include <imgui_impl_sdlrenderer2.h>
+#else
 #include <utils/checkML.h>
+#endif // DEV_TOOLS
 #include "MainScene.h"
 #include "../architecture/Entity.h"
 #include <iostream>
 #include <fstream>
-#ifdef DEV_TOOLS
-#include <imgui.h>
-#include <imgui_impl_sdlrenderer2.h>
-#endif // DEV_TOOLS
 #include "../sdlutils/SDLUtils.h"
 #include "../components/Transform.h"
 #include "../components/Render.h"
@@ -487,16 +488,7 @@ ecs::Entity* ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this, mPipeMngr_);
 	}
 	else {
-		//factory_->setLayer(layer::UI);
-		/*auto tubeTr = tuboEnt->getComponent<Transform>();
-
-		auto cross = factory_->createImage(Vector2D(0, 120),
-			Vector2D(tubeTr->getWidth(), tubeTr->getWidth()),
-			&sdlutils().images().at("cruz"));
-
-		cross->getComponent<Transform>()->setParent(tubeTr);*/
 		tubeTexture->modColor(100, 100, 100);
-
 	}
 
 	return tuboEnt;

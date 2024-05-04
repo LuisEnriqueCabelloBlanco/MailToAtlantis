@@ -1,5 +1,7 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include <functional>
 #include <components/Paquete.h>
 using Condition = std::function<bool(Paquete*)>;

@@ -1,11 +1,13 @@
+#include "../sdlutils/InputHandler.h"
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "PaqueteBuilder.h"
 #include "../components/Transform.h"
 #include "../architecture/Entity.h"
 #include "../components/Render.h"
 #include "../architecture/GameConstants.h"
 #include <sistemas/ComonObjectsFactory.h>
-#include "../sdlutils/InputHandler.h"
 #include "../json/JSON.h"
 #include "../sistemas/NPCeventSystem.h"
 #include "../components/RenderWithLight.h"

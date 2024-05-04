@@ -1,4 +1,10 @@
+#ifdef DEV_TOOLS
+#include <imgui.h>
+#include <imgui_impl_sdl2.h>
+#include <imgui_impl_sdlrenderer2.h>
+#else
 #include <utils/checkML.h>
+#endif // DEV_TOOLS
 #include "ExplorationScene.h"
 #include "../architecture/Entity.h"
 #include <iostream>
@@ -20,11 +26,6 @@
 #include <architecture/GameConstants.h>
 #include <QATools/DataCollector.h>
 
-#ifdef DEV_TOOLS
-#include <imgui.h>
-#include <imgui_impl_sdl2.h>
-#include <imgui_impl_sdlrenderer2.h>
-#endif // DEV_TOOLS
 
 #include "../sistemas/NPCeventSystem.h"
 #include "../components/HoverSensorComponent.h"

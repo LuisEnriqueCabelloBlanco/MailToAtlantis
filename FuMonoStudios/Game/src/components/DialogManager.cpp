@@ -1,5 +1,7 @@
 // dialog_manager.cpp
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "DialogManager.h"
 #include <fstream>
 

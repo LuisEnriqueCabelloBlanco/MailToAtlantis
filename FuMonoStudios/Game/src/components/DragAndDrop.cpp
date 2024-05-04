@@ -1,11 +1,10 @@
 
+#include "../sdlutils/InputHandler.h"
 #include "DragAndDrop.h"
-
 #include "Transform.h"
 #include "Gravity.h"
 #include "Trigger.h"
 #include "../architecture/Entity.h"
-#include "../sdlutils/InputHandler.h"
 #include <architecture/GameConstants.h>
 #include "../architecture/GeneralData.h"
 #include "../sistemas/SoundEmiter.h"

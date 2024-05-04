@@ -1,4 +1,6 @@
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "TutorialSystem.h"
 #include "../components/Render.h"
 #include "../scenes/TutorialScene.h"

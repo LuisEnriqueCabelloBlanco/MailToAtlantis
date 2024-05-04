@@ -1,5 +1,4 @@
 #pragma once
-
 #include "../architecture/Component.h"
 #include <functional>
 #include <string>

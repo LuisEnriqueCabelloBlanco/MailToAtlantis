@@ -1,5 +1,7 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include <string>
 #include <architecture/Scene.h>
 #include "../architecture/Entity.h"
