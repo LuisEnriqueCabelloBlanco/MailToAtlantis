@@ -348,8 +348,8 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
     case Tutorial:
         aux = "Tutorial";
         break;
-    case BryantMyers:
-        aux = "EsclavaRemix";
+    case Intro:
+        aux = "Intro";
         break;
 
     //Dialogos objetos distritos

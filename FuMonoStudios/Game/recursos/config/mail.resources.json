@@ -80,7 +80,11 @@
     {"id": "Hermes","file": "recursos/images/Hermes.png"},
     {"id": "Apolo","file": "recursos/images/Apolo.png"},
     {"id": "Poseidon","file": "recursos/images/Poseidon.png"},
-    {"id": "fondoMainMenu","file": "recursos/images/FONDO_MENU_INICIO_v2.png"},
+    {
+      "id": "fondoMainMenu",
+      "file": "recursos/images/FONDO_MENU_INICIO_v2.png"
+    },
+    {"id": "blackScreen","file": "recursos/images/pantallanegra.png"},
     {
       "id": "sellador0",
       "file": "recursos/images/selladorRojo.png"

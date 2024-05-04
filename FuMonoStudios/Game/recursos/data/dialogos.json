@@ -1107,18 +1107,22 @@
       "hoy seras mi esclava en el cuarto de un motel"
     ]
   },
-  "Jefe": {
-    "Dia1": [
-      "dia1"
+  "Intro": {
+    "0": [
+      "Esta es la aventura de Paco Jones..."
     ],
-    "Dia3": [
-      "dia3"
+    "1": [
+      "Paco era un hombre comun y corriente con una vida ordinaria y con un trabajo repetitivo y aburrido.",
+      "Trabajaba en correos y solamente tenia un trabajo: coger los paquetes que le llegaban y mandarlos por un tubo. "
     ],
-    "Dia5": [
-      "dia5"
+    "5": [
+      "Hacia esto todos los dias y estaba harto de ello, ansiaba una oportunidad de escapar de su monotona vida", "Hasta que un dia algo que no era un paquete corriente llego a su oficina..."
     ],
-    "Dia8": [
-      "dia8"
+    "7": [
+      "Paco abrio la extrana botella, y dentro encontro una carta que decia venir de la Atlantida"
+    ],
+    "8": [
+      "En la carta ponia bla bla bla y habia un mapa que marcaba la ubicacion de la Atlantida"
     ]
   },
     "CasaGrande": {

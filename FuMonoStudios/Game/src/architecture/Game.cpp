@@ -25,6 +25,7 @@
 #include <iostream>
 #include <QATools/DataCollector.h>
 #include "../sistemas/SoundEmiter.h"
+#include "scenes/IntroScene.h"
 
 Game::Game() :exit_(false) {
 	SDLUtils::init("Mail To Atlantis", 1152, 648, "recursos/config/mail.resources.json");
@@ -42,7 +43,7 @@ Game::Game() :exit_(false) {
 	SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
 
 	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),
-		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new EndGameScene(),new ecs::TutorialScene(), new ecs::ConfigScene()};
+		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new EndGameScene(),new ecs::TutorialScene(), new ecs::ConfigScene(), new ecs::IntroScene};
 	gamePaused_ = false;
 
 	loadScene(ecs::sc::MENU_SCENE);
