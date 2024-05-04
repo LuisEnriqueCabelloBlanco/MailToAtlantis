@@ -67,7 +67,7 @@ void ecs::IntroScene::updateIteration(int it)
         case 1: //oficina, se explica el trabajo de paco
 			factory_->setLayer(layer::BACKGROUND);
 			factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
-				&sdlutils().images().at("fondoOficina"));
+				&sdlutils().images().at("fondoTutorial"));
 			factory_->setLayer(ecs::layer::DEFAULT);
 			tubo_ = createGarbage();
 			delayedCallback(0.5f, [this]
@@ -101,7 +101,7 @@ void ecs::IntroScene::updateIteration(int it)
         case 6: //aparece la botella
 			delayedCallback(0.5f, [this]
 				{
-					bottle_ = createBottle(); //sustituir por crear botella
+					bottle_ = createBottle();
 				});
 			break;
 		case 7: //QUEEEEEEEEEEEEEE COMO QUE LA BOTELLA VIENE DE LA ATLANTIDA?!?!?1?!?!?11?!?!?
@@ -171,7 +171,7 @@ void ecs::IntroScene::createIntroPackage()
 	Entity* package;
 	DragAndDrop::enableDrag = true;
 	factory_->setLayer(ecs::layer::PACKAGE);
-	package = mPaqBuild_->buildPackage(0, this);
+	package = mPaqBuild_->buildPackage(0, this); //TODO: que los paquetes sean custom y tengan los nombres de Cleon, Rome y Fumono Studios
 	package->getComponent<MoverTransform>()->enable();
 	factory_->setLayer(ecs::layer::DEFAULT);
 }

@@ -85,6 +85,7 @@
       "file": "recursos/images/FONDO_MENU_INICIO_v2.png"
     },
     {"id": "blackScreen","file": "recursos/images/pantallanegra.png"},
+    {"id": "fondoTutorial","file": "recursos/images/fondoTutorial.png"},
     {
       "id": "sellador0",
       "file": "recursos/images/selladorRojo.png"
