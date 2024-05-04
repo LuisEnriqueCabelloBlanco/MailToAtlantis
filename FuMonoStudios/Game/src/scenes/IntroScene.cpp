@@ -107,6 +107,7 @@ void ecs::IntroScene::updateIteration(int it)
 		case 7: //QUEEEEEEEEEEEEEE COMO QUE LA BOTELLA VIENE DE LA ATLANTIDA?!?!?1?!?!?11?!?!?
 			delayedCallback(0.25f, [this]
 				{
+					bottle_->getComponent<RenderImage>()->nextTexture();
 					updateIntroDialogue();
 				});
 			break;
@@ -179,8 +180,8 @@ void ecs::IntroScene::createIntroPackage()
 ecs::Entity* ecs::IntroScene::createBottle()
 {
 	factory_->setLayer(ecs::layer::PACKAGE);
-	auto bottle = factory_->createImage(Vector2D(1600.0f, 600.0f), Vector2D(100, 100),
-		&sdlutils().images().at("puntoRojo"));
+	auto bottle = factory_->createMultiTextureImage(Vector2D(1600.0f, 550.0f), Vector2D(450, 300), { &sdlutils().images().at("botella1"), &sdlutils().images().at("botella2") }
+);
 
 	bottle->addComponent<Clickeable>();
 	bottle->getComponent<Clickeable>()->addEvent([this]
@@ -190,7 +191,7 @@ ecs::Entity* ecs::IntroScene::createBottle()
 
 	auto movComp = bottle->addComponent<MoverTransform>();
 	movComp->setEasing(Easing::EaseOutCubic);
-	movComp->setFinalPos(bottle->getComponent<Transform>()->getPos() + Vector2D(-600, 0));
+	movComp->setFinalPos(bottle->getComponent<Transform>()->getPos() + Vector2D(-900, 0));
 	movComp->setMoveTime(1.7f);
 	movComp->enable();
 	factory_->setLayer(ecs::layer::DEFAULT);
