@@ -405,7 +405,7 @@
           "1": "Secretario+++++",
           "2": "Secretario-----"
         },
-        "textoDiario": "Gargafiel esta que hecha humos, no creo que me de ninguna recompensa. Debe recomponer la sociedad para evitar un revuelo por el nuevo texto 'Critias' que alenta a la poblaci$on a unirse a los humanos. Me ha pedido que reenvie unos tres paquetes con su nombre al distrito de Poseidón."
+        "textoDiario": "Gargafiel esta que hecha humos, no creo que me de ninguna recompensa. Debe recomponer la sociedad para evitar un revuelo por el nuevo texto 'Critias' que alenta a la poblaci$on a unirse a los humanos. Me ha pedido que reenvie unos tres paquetes con su nombre al distrito de Poseid$on."
       },
       "8": {
         "numPaquetes": 3,
@@ -443,7 +443,7 @@
           "2": "Secretario-----",
           "3": "Vagabundo--------------------"
         },
-        "textoDiario": "Me ha pasado una lista con nombres de gente de las lechuzas. Debo mandar sus paquetes a Apolo, donde los analizará."
+        "textoDiario": "Me ha pasado una lista con nombres de gente de las lechuzas. Debo mandar sus paquetes a Apolo, donde los analizar$a."
       },
       "9": {
         "numPaquetes": 1,
