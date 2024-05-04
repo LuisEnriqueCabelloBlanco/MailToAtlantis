@@ -188,7 +188,7 @@
       " $!Recuerda compa$%ero! $!El nombre es 'Francis Dupart'!"
     ],
     "PostConversacionDia14": [
-      " $!Recuerda comp! $!El nombre es 'Francis Dupart'!"
+      " $!Recuerda compa$%ero! $!El nombre es 'Francis Dupart'!"
     ]
   },
   "Secretario": {
@@ -232,22 +232,47 @@
       "postConvDia4"
     ],
     "Dia5": [
-      "dia5"
+      "Buenos días Jones. Supongo que ya sabrás quien soy.",
+      "Dado que tienes una buena cara de confusión tendré que presentarme. Soy Gargafiel Mustaki, secretario del rey.",
+      "El rey precisa de tus servicios, pero de forma especial y extraordinaria. Es por eso que se ha tomado la molestia de llamarte hasta aquí.",
+      " $¿Que dónde está el rey dices? El rey no se va a tomar la molestia de salir de su palacio por tí. Además, el rey nunca sale de su palacio por riesgos de atentado terrorista. Es una persona demasiado importante como para que sea asesinada.",
+      "Tengo entendido que recientemente huiste de tu trabajo y estabas teniendo un rendimiento subóptimo. Que no se repita. Si te portas bien, el rey se portará bien contigo.",
+      "Este reinado valora mucho a sus ciudadanos, pero más que eso, valora la lealtad. La lealtad y la fidelidad al rey por encima de todo. Espero que lo tengas en cuenta.",
+      "Sin embargo no todo ciudadano parece respetar al rey... Tenemos entendido que existe un grupo oculto que se hacen llamar “las lechuzas”, y son una panda de herejes ineptos que se juntan para tramar contra el rey y hablar de cosas que no deberían...",
+      " $Ultimamente se están mandando entre ellos muchos paquetitos y cartitas de más.",
+      "Suelen venir sellados con Alimentos y van hacia el distrito de Apolo, todo paquete que veas con estas condiciones destruyelo. Al menos tres de ellos.",
+      "Sé un buen chico obediente y no falles al rey. La lealtad recompensa.",
+      "Venga, ahora vete a trabajar, tengo cosas que hacer."
     ],
     "PostConversacionDia5": [
-      "postConvDia5"
+      "Jones, necesito que elimines paquetes de las lechuzas. Paquetes sellados con alimentos y que van hacia Apolo."
     ],
     "Dia6": [
-      "dia6"
+      "Hola de nuevo. Hoy necesito un encargo un tanto especial.",
+      "Se están moviendo cargas ilegales de comida entre los distritos interiores. Te estoy hablando de los de Apolo y Hermes.",
+      "Supongo que ya sabes lo que hay que hacer. Elimina 3 paquetes de comida que se muevan hacia Apolo o Hermes.",
+      "Estos comerciantes... Se creen muy listillos pasándose cosas así por el correo... Se creen que no los vemos...",
+      "El rey tiene ojos en todos lados. Sí, a ti también te vigilamos Jones, no me mires así.",
+      "Venga Jones, hazlo y mañana te daré algo a cambio. Así verás que ser leal recompensa."
     ],
     "PostConversacionDia6": [
-      "postConvDia6"
+      "Jones, elimina los paquetes ilegales de comida que vayan a Apolo o Hermes. Si me ayudas, te dar$e mañana una recompensa."
     ],
     "Dia7": [
-      "dia7"
+      "Maldito bastardo Jones! $!$?Has sido tú el que ha publicado ese papel?! $!$?HAS SIDO TÚ?",
+      "No... Es imposible que hayas sido tú... Tienen que haber sido las lechuzas esas...",
+      "Perdón por incriminarte. El rey y yo estamos hartos de que salgan mentiras a la luz para dar una falsa esperanza al pueblo.",
+      "Sabes de sobra que el rey quiere lo mejor para el pueblo, y esparcir falsa información y encima culpando al rey de no haberla revelado...",
+      "Tenemos que actuar rápido. Nos va a tocar sacar alguna explicación a esta farsa.",
+      "Voy a mandar unos paquetes importantes a unas personas del distrito Poseidón, sin embargo, me han robado los sellos de Poseidón y he tenido que poner de Apolo. Simplemente redirígelos a Apolo y ya me encargo yo de moverlos.",
+      "Jones, no quiero que te creas las mentiras de las lechuzas. Poseidón no nos ha castigado, Poseidón nos está poniendo a prueba. Poseidón nos creó como raza superior a los humanos y nos recluye en el fondo del mar como desafío.",
+      "No podemos juntarnos con los humanos porque ellos nos rechazar$an por ser los hijos de Poseid$on y nos tendr$an envidia. Por eso ese librito no vale de nada.",
+      "Y en cuanto nuestra especie surja de los mares, nos ayudará a reconquistar lo que nos merecemos, la superficie.",
+      " $!Pero esto la gente no lo entiende! ¡Cómo vamos a darle la espalda al gran Poseidón! ¡Habría que colgarlos en la soga a todos estos herejes!",
+      "Jones, espero que no seas uno de ellos. Ayúdame y formar$as parte de los mejores hijos de Poseid$on. Debemos superar la prueba que nos est$a sometiendo, pues esto debe ser una prueba."
     ],
     "PostConversacionDia7": [
-      "postConvDia7"
+      "Necesito que reenvies mis paquetes hacia Poseid$on. Tienen sello de Apolo y mi nombre. Son 3 aproximadamente."
     ],
     "Dia8": [
       "dia8"

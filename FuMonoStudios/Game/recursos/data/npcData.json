@@ -318,8 +318,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario1"
+        "recompensa": "Secretario+",
+        "textoDiario": "no se usa"
       },
       "2": {
         "numPaquetes": 1,
@@ -330,8 +330,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario2"
+        "recompensa": "Secretario+",
+        "textoDiario": "no se usa"
       },
       "3": {
         "numPaquetes": 1,
@@ -342,8 +342,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": "Secretario+",
+        "textoDiario": "no se usa"
       },
       "4": {
         "numPaquetes": 1,
@@ -354,20 +354,26 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": "Secretario+",
+        "textoDiario": "no se usa"
       },
       "5": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 4,
+        "numPaquetesParaCompletar": 3,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Alimento",
+          "distrito": "Apolo"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Alimento",
+          "distrito": "Apolo",
+          "tuboSeleccionado": "Basura"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+          "1": "Secretario+++++",
+          "2": "Secretario-----"
+        },
+        "textoDiario": "El secretario necesita que elimine paquetes de un grupo llamado 'lechuzas'. Tengo que mandar a la basura 3 paquetes de alimentos que vayan hacia Apolo."
       },
       "6": {
         "numPaquetes": 1,
@@ -379,7 +385,7 @@
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "textoDiario": "Se est$an pasando paquetes ilegales de comida en Apolo y Hermes. Debo eliminar 3 paquetes de comida que vayan a Apolo o a Hermes. Dice que si cumplo esta tarea, ma$%ana me dar$a una recompensa."
       },
       "7": {
         "numPaquetes": 1,
@@ -391,7 +397,7 @@
           "remitente": "Albama Ice"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "textoDiario": "Gargafiel esta que hecha humos, no creo que me de ninguna recompensa. Debe recomponer la sociedad para evitar un revuelo por el nuevo texto 'Critias' que alenta a la poblaci$on a unirse a los humanos."
       },
       "8": {
         "numPaquetes": 1,
