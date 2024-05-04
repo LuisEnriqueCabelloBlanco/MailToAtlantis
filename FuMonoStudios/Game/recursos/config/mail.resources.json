@@ -86,6 +86,9 @@
     },
     {"id": "blackScreen","file": "recursos/images/pantallanegra.png"},
     {"id": "fondoTutorial","file": "recursos/images/fondoTutorial.png"},
+    {"id": "botella1","file": "recursos/images/Botella1.png"},
+    {"id": "botella2","file": "recursos/images/Botella2.png"},
+    {"id": "cartaAtlantida","file": "recursos/images/CartaAtlantida.png"},
     {
       "id": "sellador0",
       "file": "recursos/images/selladorRojo.png"
