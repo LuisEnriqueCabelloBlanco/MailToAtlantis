@@ -4,7 +4,7 @@
 #include <array>
 #include <utils/Singleton.h>
 #include <architecture/ecs.h>
-#include "Config.h"
+#include <architecture/Config.h>
 #include <architecture/Scene.h>
 #include <functional>
 

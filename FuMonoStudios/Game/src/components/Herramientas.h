@@ -1,7 +1,7 @@
 #pragma once
 #include <architecture/Component.h>
 #include <functional>
-#include "Paquete.h"
+#include <components/Paquete.h>
 #include <architecture/Entity.h>
 
 using Callback = std::function<void(ecs::Entity*)>;
