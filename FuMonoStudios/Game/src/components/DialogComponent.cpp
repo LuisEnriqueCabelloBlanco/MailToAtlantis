@@ -24,7 +24,6 @@ DialogComponent::DialogComponent(DialogManager* manager):
 
 DialogComponent::~DialogComponent()
 {
-	delete mFont_;
 	delete mTexture_;
 }
 

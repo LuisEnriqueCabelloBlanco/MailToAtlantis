@@ -1,6 +1,6 @@
 #include "Game.h"
 #include <list>
-#include "../sdlutils/InputHandler.h"
+#include <sdlutils/InputHandler.h>
 #ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>

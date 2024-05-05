@@ -2,7 +2,7 @@
 #ifndef DEV_TOOLS
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
-#include "ecs.h"
+#include <architecture/ecs.h>
 #include <algorithm>
 #include <array>
 #include <architecture/Component.h>
