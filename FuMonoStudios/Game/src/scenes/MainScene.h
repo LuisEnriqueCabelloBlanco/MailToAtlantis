@@ -65,7 +65,8 @@ namespace ecs {
 
         DialogManager dialogMngr_;
         
-        
+        ecs::Entity* jefe_;
+
         ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
 
         void startWork();

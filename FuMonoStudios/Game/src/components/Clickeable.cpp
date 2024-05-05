@@ -9,7 +9,7 @@
 
 
 
-Clickeable::Clickeable(): mTr_(nullptr), eventsWhenClick_() {
+Clickeable::Clickeable(): mTr_(nullptr), eventsWhenClick_(), canClick_(true) {
 
 }
 
@@ -36,7 +36,7 @@ void Clickeable::update() {
 
 	auto& ihdlr = ih();
 
-	if (ihdlr.mouseButtonDownEvent()) {
+	if (ihdlr.mouseButtonDownEvent() && canClick_) {
 
 		SDL_Rect* mRect_ = &mTr_->getRect();
 		SDL_Point point{ ihdlr.getMousePos().first, ihdlr.getMousePos().second };

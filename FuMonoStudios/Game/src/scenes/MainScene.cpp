@@ -38,7 +38,7 @@
 #include <components/NPCExclamation.h>
 #include <sistemas/NPCeventSystem.h>
 
-ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
+ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), jefe_(nullptr)
 {
 	timer_ = MINIGAME_TIME;
 #ifdef DEV_TOOLS
@@ -132,7 +132,7 @@ void ecs::MainScene::init()
 	int dia = generalData().getDay();
 	if (dia % 4 == 2) //hay un evento de trabajo del jefe cada 4 dias empezando por el dia 2, esto habria que hacerlo con constantes mejor en vez de numeros magicos 
 	{
-		createCharacter({ 500, 250 }, "Jefe",0.35f);
+		jefe_ = createCharacter({ 500, 250 }, "Jefe",0.35f);
 	}
 	else
 		startWork();
@@ -805,12 +805,13 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 	Texture* characterTexture = &sdlutils().images().at(character);
 	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
 
-	ecs::Entity* characterEnt = factory_->createImageButton(pos, size, characterTexture, [this]() {
+	ecs::Entity* characterEnt = factory_->createImageButton(pos, size, characterTexture, [this, characterEnt]() {
+		jefe_->getComponent<Clickeable>()->toggleClick(false);
 		newWorkEvent();
 		});
 
 	dialogMngr_.setEndDialogueCallback([characterEnt, this]{
-		characterEnt->setAlive(false); //bye bye jefe
+		jefe_->setAlive(false); //bye bye jefe
 		startWork();
 	});
 
