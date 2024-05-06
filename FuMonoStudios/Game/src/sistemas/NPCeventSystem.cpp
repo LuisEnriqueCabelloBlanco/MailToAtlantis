@@ -1,22 +1,21 @@
-﻿#include <utils/checkML.h>
+﻿#ifndef DEV_TOOLS
+#include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "NPCeventSystem.h"
-#include "../json/JSON.h"
+#include <json/JSON.h>
 #include <random>
 #include <algorithm>
-#include "../architecture/GeneralData.h"
-#include "../sistemas/PaqueteBuilder.h"
-#include "../architecture/Game.h"
+#include <architecture/GeneralData.h>
+#include <sistemas/PaqueteBuilder.h>
+#include <architecture/Game.h>
 
 NPCeventSystem::NPCeventSystem() {
 	readNPCEventData();
 }
 
 NPCeventSystem::~NPCeventSystem() {
-	for (auto it : activeEventsNPCs) {
-		delete it;
-	}
 	for (auto it : paquetesNPCs) {
-		delete it;
+		
 	}
 }
 
@@ -38,7 +37,7 @@ bool NPCeventSystem::areTherePaquetesNPC() {
 	return paquetesNPCs.size() != 0;
 }
 
-void NPCeventSystem::checkPaqueteSent(Paquete* p) {
+void NPCeventSystem::checkPaqueteSent(Paquete* p, Distrito tubo) {
 	for (NPCevent* event : activeEventsNPCs) {
 
 		for (auto conditionVec : event->condiciones) {
@@ -50,6 +49,9 @@ void NPCeventSystem::checkPaqueteSent(Paquete* p) {
 				valid = conditionVec[i](p);
 				i++;
 			}
+
+			if (event->usingCondicionTubo)
+				valid = event->condicionTubo(tubo);
 
 			if (valid && i >= conditionVec.size() && conditionVec.size() > 0)
 			{
@@ -63,13 +65,21 @@ void NPCeventSystem::minigameOver() {
 
 	for (NPCevent* event : activeEventsNPCs)
 	{
+#ifdef _DEBUG
+		std::cout << "Event " << (event->completed ? "completed" : "failed");
+#endif // _DEBUG
+		NPCdata* data = generalData().getNPCData(event->personaje);
+		data->eventosCompletados[event->numEvento-1].first = true;
+		data->eventosCompletados[event->numEvento-1].second = 
+			generalData().getDay() * (event->completed ? 1 : -1);
+
+		procesarStringRecompensas(event->completed, event->recompensas);
 		if (event->completed)
 		{
 #ifdef _DEBUG
 			std::cout << "Event completed";
 #endif // _DEBUG
 
-			procesarStringRecompensas(event->recompensas);
 		}
 	}
 
@@ -85,31 +95,42 @@ void NPCeventSystem::activateEvent(NPCevent* e) {
 	activeEventsNPCs.push_back(e);
 }
 
-void NPCeventSystem::procesarStringRecompensas(std::vector<std::string>& vec) {
+void NPCeventSystem::procesarStringRecompensas(bool completed, std::vector<std::string>& vec) {
 
 	for (std::string& reward : vec) {
-		// si tiene un sumar o restar
-		if (reward.find("+") != std::string::npos || reward.find("-") != std::string::npos)
+		if (completed)
 		{
-			int index = reward.find_first_of("+-");
-			std::string personajeString = reward.substr(0, index);
-			int felicidadIncrement = reward.size() - index;
-			if (reward.find("-") != std::string::npos)
-				felicidadIncrement = -felicidadIncrement;
+			// si tiene un sumar o restar
+			if (reward.find("+") != std::string::npos || reward.find("-") != std::string::npos)
+			{
+				int index = reward.find_first_of("+-");
+				std::string personajeString = reward.substr(0, index);
+				int felicidadIncrement = reward.size() - index;
+				if (reward.find("-") != std::string::npos)
+					felicidadIncrement = -felicidadIncrement;
 
-			npc::Personaje aux = generalData().stringToPersonaje(personajeString);
+				npc::Personaje aux = generalData().stringToPersonaje(personajeString);
 
-			generalData().incrementarFelicidad(aux, felicidadIncrement);
+				generalData().incrementarFelicidad(aux, felicidadIncrement);
+			}
 		}
-		else if (reward.find("$") != std::string::npos)
+		else 
 		{
-			int index = reward.find_first_of("$");
+			if (reward.find("$") != std::string::npos)
+			{
+				int index = reward.find_first_of("$");
 
-			std::string personajeString = reward.substr(index + 1, reward.size());
+				std::string personajeString = reward.substr(index + 1, reward.size());
 
-			npc::Personaje aux = generalData().stringToPersonaje(personajeString);
+				npc::Personaje aux = generalData().stringToPersonaje(personajeString);
 
-			generalData().unlockMejoraPersonaje(aux);
+				index = reward.find_first_of("+-");
+				personajeString = reward.substr(0, index);
+				int felicidadIncrement = reward.size() - index;
+				if (reward.find("-") != std::string::npos)
+					felicidadIncrement = -felicidadIncrement;
+				generalData().incrementarFelicidad(aux, felicidadIncrement);
+			}
 		}
 	}
 }
@@ -315,6 +336,14 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 				});
 		}
 
+		auto hasTubo = pqConditions.find("tuboSeleccionado");
+		if (hasTubo != pqConditions.end()) {
+			auxEvent->usingCondicionTubo = true;
+			Distrito aux = (Distrito)generalData().fromStringToDistrito(hasTubo->second->AsString());
+			auxEvent->condicionTubo = ([aux](Distrito tubo) -> bool{
+					return tubo == aux;
+				});
+		}
 		auto hasCalle = pqConditions.find("calleMarcada");
 		if (hasCalle != pqConditions.end()) {
 			Calle aux = (Calle)generalData().stringToCalle(hasCalle->second->AsString());
@@ -355,7 +384,7 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 				});
 		}
 
-
+		
 		auto hasFragil = pqConditions.find("fragil");
 		if (hasFragil != pqConditions.end()) {
 			bool aux = hasFragil->second->AsBool();
@@ -371,9 +400,13 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 void NPCeventSystem::readNPCevent(JSONObject& eventObject, int personaje, int index) {
 	NPCevent* auxEvent = new NPCevent();
 
+	auxEvent->personaje = (npc::Personaje)personaje;
+	auxEvent->numEvento = index;
+
 	JSONObject currentEvent = eventObject.find(std::to_string(index + 1))->second->AsObject();
 	auxEvent->numPaquetes = currentEvent.find("numPaquetes")->second->AsNumber();
 	auxEvent->numPaquetesToComplete = currentEvent.find("numPaquetesParaCompletar")->second->AsNumber();
+	auxEvent->textoDiario = currentEvent.find("textoDiario")->second->AsString();
 
 	// Si es especial, nos saltamos el resto
 	auto isSpecial = currentEvent.find("special");
@@ -445,7 +478,7 @@ void NPCeventSystem::readNPCevent(JSONObject& eventObject, int personaje, int in
 	else
 		throw std::runtime_error("Evento sin recompensas / no recompensa mal especificado");
 
-	generalData().getNPCData((npc::Personaje)personaje)->events.push_back(auxEvent);
+	generalData().getNPCData((npc::Personaje)personaje)->events[index] = (auxEvent);
 }
 
 /* Para los eventos debemos especificar sus condiciones. Eso lo haremos añadiendo

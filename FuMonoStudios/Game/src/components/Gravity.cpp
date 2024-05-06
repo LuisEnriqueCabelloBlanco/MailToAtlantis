@@ -1,8 +1,8 @@
 #include "Gravity.h"
-#include "Transform.h"
-#include "../architecture/Entity.h"
-#include "../architecture/Time.h"
-#include "../sistemas/SoundEmiter.h"
+#include <components/Transform.h>
+#include <architecture/Entity.h>
+#include <architecture/Time.h>
+#include <sistemas/SoundEmiter.h>
 
 const float Gravity::GRAVITY_LIMIT = 625.0f;
 const float MIN_SPEED_SOUND = 5.0f;

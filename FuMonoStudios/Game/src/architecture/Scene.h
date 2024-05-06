@@ -1,7 +1,9 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../sdlutils/SDLUtils.h"
-#include "ecs.h"
+#endif // !DEV_TOOLS
+#include <sdlutils/SDLUtils.h>
+#include <architecture/ecs.h>
 #include <vector>
 #include <array>
 #include <queue>
@@ -117,6 +119,7 @@ namespace ecs {
 		/// si se usa para crear texturas esta se encarga de destruirlas mas adelante
 		/// </summary>
 		ComonObjectsFactory* factory_;
+	
 	};
 }
 

@@ -1,6 +1,6 @@
 #include "Herramientas.h"
-#include "Transform.h"
-#include "MoverTransform.h"
+#include <components/Transform.h>
+#include <components/MoverTransform.h>
 
 Herramientas::Herramientas() {
 	multicolorStamp = false;
@@ -43,7 +43,7 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 		funcion_ = [this](ecs::Entity* paq) {
 			Paquete* paqComp = paq->getComponent<Paquete>();			
 			paqComp->sellarCalle(paq->getComponent<Paquete>()->getCalle(), ent_->getComponent<Transform>(), true);			
-			ent_->addComponent<MoverTransform>(Vector2D(350, 800), 0.5, EaseOutBack);
+			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
 			ent_->getComponent<MoverTransform>()->enable();
 			};
 		break;

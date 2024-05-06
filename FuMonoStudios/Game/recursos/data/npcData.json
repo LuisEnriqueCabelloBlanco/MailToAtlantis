@@ -1,164 +1,293 @@
 {
   "Vagabundo": {
-    "Felicidad": "Normal",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "Felicidad": "Buena",
+    "FelicidadNum": 70,
+    "numMisionesAceptadas": 4,
+    "EventosCompletados": [2,3,4,5],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "1": {
-            "remitente": "nashe",
-            "distrito": "Hestia",
-            "calle": "C1",
-            "tipoPaquete": "Armamento"
-          }
+          "remitente": "no se usa"
         },
         "condiciones": {
-          "1": {
-            "remitente": "nashe",
-            "distrito": "Hestia",
-            "calleMarcada": "C3",
-            "tipoPaquete": "Armamento"
-          }
+          "remitente" : "no se usa"
         },
         "recompensa": {
-          "1": "Vagabundo+",
-          "2": "Secretario-"
-        }
+          "1": "Vagabundo+++++",
+          "2": "$Vagabundo-----"
+        },
+        "textoDiario": "no se usa"
       },
       "2": {
-        "numPaquetes": 1,
+        "numPaquetes": 2,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "distrito": "Demeter",
+          "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Albama Ice",
+          "distrito": "Demeter",
+          "tuboSeleccionado": "Hestia",
+          "tipoPaquete": "Alimento"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": {
+          "1": "Vagabundo+++++",
+          "2": "$Vagabundo-----"
+        },
+        "textoDiario": "Me ha contado que lleva mucho tiempo sin comer bien y me ha pedido un paquete de comida de Demeter.\nDebo redirigir un paquete de alimentos de Demeter a Hestia"
       },
       "3": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Anemos Togakawa",
+          "distrito": "Artemisa",
+          "legal" : false
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Anemos Togakawa",
+          "tuboSeleccionado": "Artemisa"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": {
+          "1": "Vagabundo+++++",
+          "2": "$Vagabundo-----"
+        },
+        "textoDiario": "Ha mandado un paquete a Artemisa. Seguramente el paquete este mal sellado o sea ilegal..."
       },
       "4": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Anemos Togakawa",
+          "distrito": "Hefesto",
+          "legal": false
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Anemos Togakawa",
+          "tuboSeleccionado": "Hefesto"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": {
+          "1": "Vagabundo+++++",
+          "2": "$Vagabundo-----"
+        },
+        "textoDiario": "Dice que ha encontrado una pepita de oro y que sera millonario. Tengo que asegurarme que el paquete llegue a su destino, aunque la verdad que la pepita es bastante falsa..."
       },
       "5": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 4,
+        "numPaquetesParaCompletar": 4,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "1":{
+            "remitente": "Francis Gomorra"
+          },
+          "2":{
+            "remitente": "Demetrius DC"
+          },
+          "3":{
+            "remitente": "Anna Gomorra"
+          },
+          "4":{
+            "remitente": "Silvio Peralta"
+          }
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "1":{
+            "remitente": "Francis Gomorra",
+            "tuboSeleccionado": "Basura"
+          },
+          "2":{
+            "remitente": "Demetrius DC",
+            "tuboSeleccionado": "Basura"
+          },
+          "3":{
+            "remitente": "Anna Gomorra",
+            "tuboSeleccionado": "Basura"
+          },
+          "4":{
+            "remitente": "Silvio Peralta",
+            "tuboSeleccionado": "Basura"
+          }
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": {
+          "1": "Vagabundo++++++++",
+          "2": "$Vagabundo--------------------"
+        },
+        "textoDiario": "Me ha dado un papel con un sello de un grupo llamado 'lechuzas'. Tiene una serie de nombres, y unas instrucciones. Tambien un papel con agujeros."
       },
       "6": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Vito Perenne",
+          "distrito": "Hestia",
+          "calle" : "C1"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Vito Perenne"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": {
+          "1": "Vagabundo++++++++",
+          "2": "$Vagabundo--------------------"
+        },
+        "textoDiario": "Me ha dicho que aun tengo una prueba que superar hasta poder ser de fiar. Tengo que eliminar el paquete del 'Buitre'. Seguramente tenga que usar el papel con agujeros para ello."
       },
       "7": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Alimento",
+          "distrito": "Demeter"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "tuboSeleccionado": "Hestia",
+          "tipoPaquete": "Alimento"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": {
+          "1": "Vagabundo+++++",
+          "2": "$Vagabundo-----"
+        },
+        "textoDiario": "Ha sido publicado un libro llamado 'CRITIAS'. Habla sobre la existencia de humanos en la superficie. Segun el libro, Poseidon estaba enfadado con Atlantis, y les hundio bajo el mar durante un milenio como castigo. Si el libro es verdadero, llevan 995 a&%os hundidos. Anemos esta que se sale, me ha pedido que mueva un paquete de comida de Hermes a Hestia."
       },
       "8": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Anemos Togakawa",
+          "distrito": "Hermes",
+          "legal" : false
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Anemos Togakawa",
+          "tuboSeleccionado": "Hermes"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": {
+          "1": "Vagabundo+++++",
+          "2": "$Vagabundo-----"
+        },
+        "textoDiario": "Anemos se ha dado cuenta de que su pez estaba tieso. Lo quiere llevar a enterrar a Hermes, tendre que asegurarme de que el paquete llega seguro."
       },
       "9": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 4,
+        "numPaquetesParaCompletar": 4,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "1":{
+            "remitente": "Albama Ice",
+            "distrito": "Apolo",
+            "legal": false
+          },
+          "2":{
+            "remitente": "Demetrius DC",
+            "distrito": "Demeter",
+            "legal": false
+          },
+          "3":{
+            "remitente": "Anchoa Mendez",
+            "distrito": "Hestia",
+            "legal": false
+          },
+          "4":{
+            "remitente": "Almeyo Puristo",
+            "distrito": "Hermes",
+            "legal": false
+          }
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "1":{
+            "remitente": "Albama Ice",
+            "tuboSeleccionado": "Apolo"
+          },
+          "2":{
+            "remitente": "Demetrius DC",
+            "tuboSeleccionado": "Demeter"
+          },
+          "3":{
+            "remitente": "Anchoa Mendez",
+            "tuboSeleccionado": "Hestia"
+          },
+          "4":{
+            "remitente": "Almeyo Puristo",
+            "tuboSeleccionado": "Hermes"
+          }
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": {
+          "1": "Vagabundo+++++",
+          "2": "$Vagabundo--------------------"
+        },
+        "textoDiario": "Anemos dice que me contar$a su verdad y me unir$e a las lechuzas si cumplo est$a misi$on. Tengo que pasar una lista de paquetes ilegales. Hoy no voy a cobrar casi nada..."
       },
       "10": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 5,
+        "numPaquetesParaCompletar": 3,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Joyas",
+          "distrito": "Poseidon"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Joyas",
+          "distrito": "Poseidon",
+          "tuboSeleccionado": "Hestia"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": {
+          "1": "Vagabundo+++++",
+          "2": "$Vagabundo-----"
+        },
+        "textoDiario": "Ahora s$e la verdad. Anemos es el verdadero heredero al trono, y el secretario del rey solo es un impostor. Las lechuzas tienen un plan para fabricar un veneno y causar una revoluci$on. Si quiero ayudar a las lechuzas, debo reenviar paquetes de joyas de Poseid$on a Hestia, al menos tres."
       },
       "11": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 4,
+        "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "distrito": "Hermes",
+          "peso": "Bajo",
+          "pesoKG": 10
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "tuboSeleccionado": "Hefesto",
+          "distrito":"Hermes",
+          "peso": "Bajo"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": {
+          "1": "Vagabundo+++++",
+          "2": "$Vagabundo-----"
+        },
+        "textoDiario": "Anemos me ha pedido materiales para el veneno. Debo reenviar 2 paquetes ligeros, osea, que pesen menos de 15kg que vayan a Hermes y mandarlos a Hefesto."
       },
       "12": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Grog Koroth",
+          "legal": false
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Grog Koroth"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": {
+          "1": "Vagabundo+++++",
+          "2": "$Vagabundo-----"
+        },
+        "textoDiario": "El veneno est$a hecho. Tengo que asegurarme que pasa bien, lo mandar$a un tal 'Grog Koroth'. Vaya nombre."
       },
       "13": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 4,
+        "numPaquetesParaCompletar": 3,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "distrito": "Hestia",
+          "peso": "Bajo",
+          "pesoKG": 10
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "distrito": "Hestia",
+          "peso": "Bajo",
+          "tuboSeleccionado": "Apolo"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": {
+          "1": "Vagabundo+++++",
+          "2": "$Vagabundo-----"
+        },
+        "textoDiario": "Van a repartir las lechuzas instrucciones por toda la ciudad. Ser$an 3 paquetes ligeros que van dirigidos a Hestia. Debo mandarlos a Apolo, donde se redistribuir$an."
       },
       "14": {
         "numPaquetes": 1,
@@ -169,14 +298,16 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       }
     }
   },
   "Secretario": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "numMisionesAceptadas": 1,
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -187,7 +318,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario1"
       },
       "2": {
         "numPaquetes": 1,
@@ -198,7 +330,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario2"
       },
       "3": {
         "numPaquetes": 1,
@@ -209,7 +342,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "4": {
         "numPaquetes": 1,
@@ -220,7 +354,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "5": {
         "numPaquetes": 1,
@@ -231,7 +366,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "6": {
         "numPaquetes": 1,
@@ -242,7 +378,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "7": {
         "numPaquetes": 1,
@@ -253,7 +390,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "8": {
         "numPaquetes": 1,
@@ -264,7 +402,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "9": {
         "numPaquetes": 1,
@@ -275,7 +414,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "10": {
         "numPaquetes": 1,
@@ -286,7 +426,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "11": {
         "numPaquetes": 1,
@@ -297,7 +438,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "12": {
         "numPaquetes": 1,
@@ -308,7 +450,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "13": {
         "numPaquetes": 1,
@@ -319,7 +462,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       },
       "14": {
         "numPaquetes": 1,
@@ -330,14 +474,15 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+"
+        "recompensa": "Vagabundo+",
+        "textoDiario": "Texto diario"
       }
     }
   },
   "Campesino": {
-    "Felicidad": "Normal",
+    "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -354,8 +499,8 @@
       "13": false,
       "14": false
     },
+    "EventosCompletados": [],
     "Eventos": {
-      
       "1": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
@@ -371,7 +516,8 @@
           "calleMarcada": "C3",
           "tipoPaquete": "Alimento"
         },
-        "recompensa": "Campesino+++++"
+        "recompensa": "Campesino+++++",
+        "textoDiario": "Texto diario"
       },
       "2": {
         "numPaquetes": 2,
@@ -384,7 +530,8 @@
           "distrito": "Demeter",
           "tipoPaquete": "Materiales"
         },
-        "recompensa": "Campesino++++"
+        "recompensa": "Campesino++++",
+        "textoDiario": "Texto diario"
       },
       "3": {
         "numPaquetes": 2,
@@ -397,7 +544,8 @@
           "distrito": "Hestia",
           "tipoPaquete": "Alimento"
         },
-        "recompensa": "Campesino++"
+        "recompensa": "Campesino++",
+        "textoDiario": "Texto diario"
       },
       "4": {
         "numPaquetes": 3,
@@ -410,7 +558,8 @@
           "distrito": "Demeter",
           "tipoPaquete": "Medicinas"
         },
-        "recompensa": "Campesino+++"
+        "recompensa": "Campesino+++",
+        "textoDiario": "Texto diario"
       },
       "5": {
         "numPaquetes": 1,
@@ -429,14 +578,15 @@
           "peso": "Bajo",
           "pesoKG": 100
         },
-        "recompensa": "Campesino+++++"
+        "recompensa": "Campesino+++++",
+        "textoDiario": "Texto diario"
       }
     }
   },
   "Artesano": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -453,6 +603,7 @@
       "13": false,
       "14": false
     },
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 2,
@@ -464,7 +615,8 @@
           "tipoPaquete": "Materiales",
           "distrito": "Hefesto"
         },
-        "recompensa": "Artesano++"
+        "recompensa": "Artesano++",
+        "textoDiario": "Texto diario"
       },
       "2": {
         "numPaquetes": 2,
@@ -476,7 +628,8 @@
           "tipoPaquete": "Joyas",
           "distrito": "Hefesto"
         },
-        "recompensa": "Artesano+++"
+        "recompensa": "Artesano+++",
+        "textoDiario": "Texto diario"
       },
       "3": {
         "numPaquetes": 3,
@@ -488,7 +641,8 @@
           "tipoPaquete": "Alimento",
           "distrito": "Hefesto"
         },
-        "recompensa": "Artesano++"
+        "recompensa": "Artesano++",
+        "textoDiario": "Texto diario"
       },
       "4": {
         "numPaquetes": 1,
@@ -507,7 +661,8 @@
           "peso": "Medio",
           "pesoKG": 10
         },
-        "recompensa": "Artesano++++"
+        "recompensa": "Artesano++++",
+        "textoDiario": "Texto diario"
       },
       "5": {
         "numPaquetes": 1,
@@ -524,14 +679,15 @@
           "tipoPaquete": "Materiales",
           "fragil": true
         },
-        "recompensa": "Artesano+++++"
+        "recompensa": "Artesano+++++",
+        "textoDiario": "Texto diario"
       }
     }
   },
   "Tarotisa": {
-    "Felicidad": "Normal",
+    "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -548,6 +704,7 @@
       "13": true,
       "14": false
     },
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -559,7 +716,8 @@
           "tipoPaquete": "Joyas",
           "distrito": "Artemisa"
         },
-        "recompensa": "Tarotisa++"
+        "recompensa": "Tarotisa++",
+        "textoDiario": "Texto diario"
       },
       "2": {
         "numPaquetes": 1,
@@ -571,7 +729,8 @@
           "tipoPaquete": "Armamento",
           "distrito": "Artemisa"
         },
-        "recompensa": "Tarotisa+++"
+        "recompensa": "Tarotisa+++",
+        "textoDiario": "Texto diario"
       },
       "3": {
         "numPaquetes": 1,
@@ -590,7 +749,8 @@
           "peso": "Alto",
           "pesoKG": 10
         },
-        "recompensa": "Tarotisa+++"
+        "recompensa": "Tarotisa+++",
+        "textoDiario": "Texto diario"
       },
       "4": {
         "numPaquetes": 2,
@@ -605,7 +765,8 @@
           "tipoPaquete": "Medicinas",
           "distrito": "Erroneo"
         },
-        "recompensa": "Tarotisa++++"
+        "recompensa": "Tarotisa++++",
+        "textoDiario": "Texto diario"
       },
       "5": {
         "numPaquetes": 4,
@@ -621,14 +782,15 @@
         "recompensa": {
           "1": "Tarotisa+++",
           "2": "Contable--"
-        }
+        },
+        "textoDiario": "Texto diario"
       }
     }
   },
   "Soldado": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -645,6 +807,7 @@
       "13": false,
       "14": true
     },
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 3,
@@ -658,36 +821,39 @@
           "peso": "Alto",
           "pesoKG": 100
         },
-        "recompensa": "Soldado+++"
+        "recompensa": "Soldado+++",
+        "textoDiario": "Texto diario"
       },
       "2": {
         "numPaquetes": 3,
         "numPaquetesParaCompletar": 3,
         "paquetes": {
-            "distrito": "Artemisa",
-            "tipoPaquete": "Medicinas"
+          "distrito": "Artemisa",
+          "tipoPaquete": "Medicinas"
         },
         "condiciones": {
-            "distrito": "Hestia",
-            "tipoPaquete": "Medicinas"
+          "distrito": "Hestia",
+          "tipoPaquete": "Medicinas"
         },
-        "recompensa":{
+        "recompensa": {
           "1": "Soldado++++",
           "2": "Secretario-",
           "3": "Tarotisa--"
-        } 
+        },
+        "textoDiario": "Texto diario"
       },
       "3": {
         "numPaquetes": 2,
         "numPaquetesParaCompletar": 2,
         "paquetes": {
-            "tipoPaquete": "Alimento"
+          "tipoPaquete": "Alimento"
         },
         "condiciones": {
-            "tipoPaquete": "Alimento",
-            "distrito": "Hestia"
+          "tipoPaquete": "Alimento",
+          "distrito": "Hestia"
         },
-        "recompensa": "Soldado++"
+        "recompensa": "Soldado++",
+        "textoDiario": "Texto diario"
       },
       "4": {
         "numPaquetes": 2,
@@ -699,7 +865,8 @@
           "tipoPaquete": "Armamento",
           "distrito": "Artemisa"
         },
-        "recompensa": "Soldado++"
+        "recompensa": "Soldado++",
+        "textoDiario": "Texto diario"
       },
       "5": {
         "numPaquetes": 3,
@@ -708,16 +875,17 @@
           "distrito": "Hermes"
         },
         "condiciones": {
-          "distrito":"Apolo"
+          "distrito": "Apolo"
         },
-        "recompensa": "Soldado++++"
+        "recompensa": "Soldado++++",
+        "textoDiario": "Texto diario"
       }
     }
   },
   "Contable": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -734,18 +902,20 @@
       "13": true,
       "14": true
     },
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 3,
         "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "tipoPaquete":"Alimento"
+          "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "tipoPaquete":"Alimento",
+          "tipoPaquete": "Alimento",
           "distrito": "Hermes"
         },
-        "recompensa": "Contable+++"
+        "recompensa": "Contable+++",
+        "textoDiario": "Texto diario"
       },
       "2": {
         "numPaquetes": 1,
@@ -756,7 +926,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Contable++"
+        "recompensa": "Contable++",
+        "textoDiario": "Texto diario"
       },
       "3": {
         "numPaquetes": 1,
@@ -772,7 +943,8 @@
           "distrito": "Apolo",
           "fragil": true
         },
-        "recompensa": "Contable++++"
+        "recompensa": "Contable++++",
+        "textoDiario": "Texto diario"
       },
       "4": {
         "numPaquetes": 1,
@@ -785,7 +957,8 @@
           "tipoPaquete": "Joyas",
           "distrito": "Hermes"
         },
-        "recompensa": "Contable++++"
+        "recompensa": "Contable++++",
+        "textoDiario": "Texto diario"
       },
       "5": {
         "numPaquetes": 2,
@@ -798,7 +971,8 @@
           "remitente": "Glover Globus",
           "distrito": "Hermes"
         },
-        "recompensa": "Contable++"
+        "recompensa": "Contable++",
+        "textoDiario": "Texto diario"
       }
     }
   }

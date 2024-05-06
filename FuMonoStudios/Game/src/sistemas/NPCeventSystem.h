@@ -1,7 +1,7 @@
 #pragma once
 #include <functional>
-#include "json/JSONValue.h"
-#include "../components/Paquete.h"
+#include <json/JSONValue.h>
+#include <components/Paquete.h>
 #include <sistemas/NPCevent.h>
 
 
@@ -24,7 +24,7 @@ public:
 	Paquete* getPaqueteNPC();
 	void addPaqueteNPC(Paquete* p);
 	// comprueba si el paquete cumple la condicion de algun evento
-	void checkPaqueteSent(Paquete* p);
+	void checkPaqueteSent(Paquete* p, Distrito tubo);
 
 	// llamar al final del minijuego y si se ha cumplido un evento, dar recompensas
 	void minigameOver();
@@ -34,7 +34,7 @@ public:
 
 	void shuffleNPCqueue();
 private:
-	void procesarStringRecompensas(std::vector<std::string>& vec);
+	void procesarStringRecompensas(bool completed, std::vector<std::string>& vec);
 
 	void readNPCevent(JSONObject& eventObject, int personaje, int index);
 

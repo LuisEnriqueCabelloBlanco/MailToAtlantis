@@ -3,7 +3,7 @@
 #include <list>
 #include <functional>
 
-#include "../architecture/Component.h"
+#include <architecture/Component.h>
 
 class Transform;
 
@@ -33,6 +33,8 @@ public:
 	void touchEntity(ecs::Entity* ent);
 
 	void addCallback(Callback event, int moveType);
+
+	void clearCallback(int moveType);
 
 	bool activateEventsFromEntities(int moveType);
 

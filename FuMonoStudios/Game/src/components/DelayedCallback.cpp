@@ -1,6 +1,6 @@
 #include "DelayedCallback.h"
-#include "../sdlutils/SDLUtils.h"
-#include "../architecture/Entity.h"
+#include <sdlutils/SDLUtils.h>
+#include <architecture/Entity.h>
 
 DelayedCallback::DelayedCallback(float time, SimpleCallback call) 
 	: Component() {

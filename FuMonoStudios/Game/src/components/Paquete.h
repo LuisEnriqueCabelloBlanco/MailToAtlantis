@@ -1,14 +1,12 @@
 #pragma once
 
-#include "../architecture/Component.h"
-#include "../architecture/GeneralData.h"
-#include <unordered_map>
+#include <architecture/Component.h>
+#include <architecture/GeneralData.h>
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <vector>
-#include "../utils/Vector2D.h"
-#include "Transform.h"
+#include <utils/Vector2D.h>
+#include <components/Transform.h>
 
 
 class Scene;

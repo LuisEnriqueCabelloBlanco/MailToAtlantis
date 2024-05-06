@@ -45,7 +45,6 @@
       <Filter>utilsSource</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui.cpp" />
-    <ClCompile Include="ImGui\imgui_demo.cpp" />
     <ClCompile Include="ImGui\imgui_draw.cpp" />
     <ClCompile Include="ImGui\imgui_tables.cpp" />
     <ClCompile Include="ImGui\imgui_widgets.cpp" />
@@ -62,6 +61,7 @@
     <ClCompile Include="src\sistemas\SoundEmiter.cpp" />
     <ClCompile Include="src\scenes\TutorialScene.cpp" />
     <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
+    <ClCompile Include="src\sistemas\PipeManager.cpp" />
     <ClCompile Include="src\components\HoverSensorComponent.cpp" />
     <ClCompile Include="src\components\HoverLayerComponent.cpp" />
     <ClCompile Include="src\components\Balanza.cpp" />
@@ -70,8 +70,11 @@
     <ClCompile Include="src\sistemas\NPCeventSystem.cpp" />
     <ClCompile Include="src\scenes\EndGameScene.cpp" />
     <ClCompile Include="src\sistemas\NPC.cpp" />
+    <ClCompile Include="src\entities\CristalBall.cpp" />
     <ClCompile Include="src\sistemas\NPCevent.cpp" />
-    <ClCompile Include="src\entities\Final.cpp" />
+    <ClCompile Include="src\sistemas\WorkRestrictionsSystem.cpp" />
+    <ClCompile Include="src\sistemas\SpecialObjectsFactory.cpp" />
+    <ClCompile Include="src\scenes\IntroScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -171,6 +174,7 @@
     <ClInclude Include="src\sistemas\SoundEmiter.h" />
     <ClInclude Include="src\scenes\TutorialScene.h" />
     <ClInclude Include="src\sistemas\TutorialSystem.h" />
+    <ClInclude Include="src\sistemas\PipeManager.h" />
     <ClInclude Include="src\components\HoverSensorComponent.h" />
     <ClInclude Include="src\components\HoverLayerComponent.h" />
     <ClInclude Include="src\components\Balanza.h" />
@@ -179,8 +183,11 @@
     <ClInclude Include="src\sistemas\NPCeventSystem.h" />
     <ClInclude Include="src\scenes\EndGameScene.h" />
     <ClInclude Include="src\sistemas\NPC.h" />
+    <ClInclude Include="src\entities\CristalBall.h" />
     <ClInclude Include="src\sistemas\NPCevent.h" />
-    <ClInclude Include="src\entities\Final.h" />
+    <ClInclude Include="src\sistemas\WorkRestrictionsSystem.h" />
+    <ClInclude Include="src\sistemas\SpecialObjectsFactory.h" />
+    <ClInclude Include="src\scenes\IntroScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\DialogManager.cpp" />
@@ -206,7 +213,6 @@
     <None Include="recursos\config\sounds.json" />
     <None Include="recursos\data\saveFile.json" />
     <None Include="recursos\data\eventosjefe.json" />
-    <None Include="recursos\data\intObjsData.json" />
     <None Include="recursos\config\mail.config.json" />
   </ItemGroup>
   <ItemGroup>

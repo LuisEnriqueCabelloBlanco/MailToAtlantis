@@ -1,35 +1,29 @@
-#include <utils/checkML.h>
-#include "ExplorationScene.h"
-#include "../architecture/Entity.h"
-#include <iostream>
-#include "../sdlutils/SDLUtils.h"
-#include "../components/Transform.h"
-#include "../components/Render.h"
-#include "../components/Clickeable.h"
-#include "../components/DragAndDrop.h"
-#include "../components/Trigger.h"
-#include "../architecture/Game.h"
-#include "../architecture/Config.h"
-#include "../architecture/GeneralData.h"
-#include <string>
-#include "../sdlutils/Texture.h"
-#include "../components/DialogComponent.h"
-#include "../sistemas/ComonObjectsFactory.h"
-#include "../architecture/GeneralData.h"
-#include "../components/DelayedCallback.h"
-#include <architecture/GameConstants.h>
-#include <QATools/DataCollector.h>
-
 #ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
+#else
+#include <utils/checkML.h>
 #endif // DEV_TOOLS
-
-#include "../sistemas/NPCeventSystem.h"
-#include "../components/HoverSensorComponent.h"
-#include "../components/MoverTransform.h"
-#include <components/RenderWithLight.h>
+#include "ExplorationScene.h"
+#include <architecture/Entity.h>
+#include <iostream>
+#include <sdlutils/SDLUtils.h>
+#include <components/Transform.h>
+#include <components/Render.h>
+#include <components/Clickeable.h>
+#include <architecture/Game.h>
+#include <architecture/Config.h>
+#include <architecture/GeneralData.h>
+#include <string>
+#include <sdlutils/Texture.h>
+#include <components/DialogComponent.h>
+#include <sistemas/ComonObjectsFactory.h>
+#include <architecture/GameConstants.h>
+#include <QATools/DataCollector.h>
+#include <sistemas/NPCeventSystem.h>
+#include <components/HoverSensorComponent.h>
+#include <components/MoverTransform.h>
 
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
@@ -38,12 +32,12 @@ ecs::ExplorationScene::ExplorationScene() :Scene()
 
 ecs::ExplorationScene::~ExplorationScene()
 {
-
+	delete leftTex;
+	delete rightTex;
 }
 
 void ecs::ExplorationScene::init()
 {
-	generalData().readIntObjData();
 	rect_ = build_sdlrect(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 	canStartConversation = true;
 #ifdef _DEBUG
@@ -55,15 +49,8 @@ void ecs::ExplorationScene::init()
 	generalData().updateDia();
 	updateNavegavility();
 	initDirectionsDefaultMap();
-
-	//for (auto& e : objs_) {
-	//	for (auto en : e){
-	//			en->setAlive(false);
-
-	//	}
-	//}
 	clearScene();
-	actualPlace_ = &lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)];
+	actualPlace_ = &lugares[Hestia];
 
 	createObjects(pq::Distrito::Hestia);
 
@@ -80,10 +67,7 @@ void ecs::ExplorationScene::initPlacesDefaultMap()
 
 		std::string placeName = generalData().fromDistritoToString(i);
 
-		Lugar aux = Lugar(&sdlutils().images().at(placeName), false);
-
-		lugares.insert({ placeName, aux });
-
+		lugares.insert({ (Distrito) i, Lugar((Distrito)i, & sdlutils().images().at(placeName), false)});
 	}
 	
 }
@@ -91,40 +75,40 @@ void ecs::ExplorationScene::initPlacesDefaultMap()
 void ecs::ExplorationScene::initDirectionsDefaultMap()
 {
 	//Hestia
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)].addDirections("Hefesto", &lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)].addDirections("Artemisa", &lugares[generalData().fromDistritoToString(pq::Distrito::Artemisa)]);
+	lugares[pq::Distrito::Hestia].addDirections(&lugares[pq::Hefesto]);
+	lugares[pq::Distrito::Hestia].addDirections(&lugares[pq::Artemisa]);
 
 	//Artemisa
-	lugares[generalData().fromDistritoToString(pq::Distrito::Artemisa)].addDirections("Demeter", &lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Artemisa)].addDirections("Hestia", &lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)]);
+	lugares[pq::Distrito::Artemisa].addDirections(&lugares[pq::Demeter]);
+	lugares[pq::Distrito::Artemisa].addDirections(&lugares[pq::Hestia]);
 
 	//Demeter
-	lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)].addDirections("Hermes", &lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)].addDirections("Hefesto", &lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)].addDirections("Artemisa", &lugares[generalData().fromDistritoToString(pq::Distrito::Artemisa)]);
+	lugares[pq::Distrito::Demeter].addDirections(&lugares[pq::Hermes]);
+	lugares[pq::Distrito::Demeter].addDirections(&lugares[pq::Hefesto]);
+	lugares[pq::Distrito::Demeter].addDirections(&lugares[pq::Artemisa]);
 
 	//Hefesto
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)].addDirections("Demeter", &lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)].addDirections("Hestia", &lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)].addDirections("Hermes", &lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)]);
+	lugares[pq::Distrito::Hefesto].addDirections(&lugares[pq::Demeter]);
+	lugares[pq::Distrito::Hefesto].addDirections(&lugares[pq::Hestia]);
+	lugares[pq::Distrito::Hefesto].addDirections(&lugares[pq::Hermes]);
 
 	//Hermes
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)].addDirections("Demeter", &lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)].addDirections("Hefesto", &lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)].addDirections("Apolo", &lugares[generalData().fromDistritoToString(pq::Distrito::Apolo)]);
+	lugares[pq::Distrito::Hermes].addDirections(&lugares[pq::Demeter]);
+	lugares[pq::Distrito::Hermes].addDirections(&lugares[pq::Hefesto]);
+	lugares[pq::Distrito::Hermes].addDirections(&lugares[pq::Apolo]);
 
 	//Apolo
-	lugares[generalData().fromDistritoToString(pq::Distrito::Apolo)].addDirections("Hermes", &lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Apolo)].addDirections("Poseidon", &lugares[generalData().fromDistritoToString(pq::Distrito::Poseidon)]);
+	lugares[pq::Distrito::Apolo].addDirections(&lugares[pq::Hermes]);
+	lugares[pq::Distrito::Apolo].addDirections(&lugares[pq::Poseidon]);
 
 	//Poseidon
-	lugares[generalData().fromDistritoToString(pq::Distrito::Poseidon)].addDirections("Apolo", &lugares[generalData().fromDistritoToString(pq::Distrito::Apolo)]);
+	lugares[pq::Distrito::Poseidon].addDirections(&lugares[pq::Apolo]);
 }
 
 void ecs::ExplorationScene::render()
 {
-
-	actualPlace_->getTexture()->render(rect_);
+	
+	actualPlace_->getCurrentTexture()->render(rect_);
 	Scene::render();
 
 #ifdef DEV_TOOLS
@@ -142,7 +126,7 @@ void ecs::ExplorationScene::update() {
 
 	if (placeToGo >= 0 && placeToGo < generalData().getNumDistritos()) {
 
-		navigate(generalData().fromDistritoToString(placeToGo));
+		navigate((Distrito)placeToGo);
 		createObjects(placeToGo);
 		placeToGo = -1;		
 		
@@ -151,11 +135,13 @@ void ecs::ExplorationScene::update() {
 }
 
 void ecs::ExplorationScene::close() {
+	delete rightTex;
+	delete leftTex;
 	clearScene();
 	diario_->setAlive(false);
 }
 
-void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin const
+void ecs::ExplorationScene::navigate(Distrito placeDir) 
 {
 
 	//QA: ALMACENAR EN ORDEN LOS LUGARES QUE HA RECORRIDO EN CADA FASE DE EXPLORACION EL JUGADOR
@@ -189,7 +175,7 @@ void ecs::ExplorationScene::makeDataWindow()
 #endif // DEV_TOOLS
 }
 
-ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string place, float scale, int flip)
+ecs::Entity* ecs::ExplorationScene::createNavegationsArrow(Vector2D pos, std::string place, float scale, int flip)
 {
 	//para crear la flecha a hefesto
 	factory_->setLayer(ecs::layer::FOREGROUND);
@@ -197,7 +183,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 
 	int placeID = generalData().fromStringToDistrito(place);
 
-	if(placeID < lugares.size() && lugares[place].isNavegable())
+	if(placeID < lugares.size() && lugares[(Distrito)placeID].isNavegable())
 		sujetaplazas = &sdlutils().images().at("cartel" + place);
 	else
 		sujetaplazas = &sdlutils().images().at("cruz");
@@ -205,7 +191,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	Vector2D size{ sujetaplazas->width() * scale, sujetaplazas->height() * scale };
 	
 	CallbackClickeable cosa = [this, place, placeID]() {
-		if (actualPlace_->navigate(place)) {
+		if (actualPlace_->navigate((Distrito)placeID)) {
 			dialogMngr_.closeDialogue();
 			actualPlace_->changeActivationObjects(false);
 			placeToGo = placeID;
@@ -238,7 +224,20 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 	e->addComponent<Transform>(pos.getX(), pos.getY(), scale.getX(), scale.getY());
 	auto clickableBotonTrabajar = e->addComponent<Clickeable>();
 	CallbackClickeable funcPress = [this]() {
-		gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+		if (generalData().getDay() == 1 ||
+			generalData().getDay() == 3 ||
+			generalData().getDay() == 5 ||
+			generalData().getDay() == 8) {
+
+			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+
+		}
+		else {
+
+			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+
+		}
+		
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
 	return e;
@@ -247,7 +246,47 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 void ecs::ExplorationScene::createDiario() {
 	diario_ = addEntity(ecs::layer::UI);
 	diario_->addComponent<Transform>(1300, 1000, 600, 400);
-	diario_->addComponent<RenderImage>(&sdlutils().images().at("diario1"));
+
+	// texto
+	ecs::Entity* textoDiarioLeft = addEntity(ecs::layer::UI);
+	leftPageTr = textoDiarioLeft->addComponent<Transform>(55, 80, 1, 1);
+	leftPageTr->setParent(diario_->getComponent<Transform>());
+	leftPageRnd = textoDiarioLeft->addComponent<RenderImage>();
+
+	ecs::Entity* textoDiarioRight = addEntity(ecs::layer::UI);
+	rightPageTr = textoDiarioRight->addComponent<Transform>(307, 40, 1, 1);
+	rightPageTr->setParent(diario_->getComponent<Transform>());
+	rightPageRnd = textoDiarioRight->addComponent<RenderImage>();
+
+	//carita felicidad
+	ecs::Entity* caraFel = addEntity(ecs::layer::UI);
+	auto caraFelTr = caraFel->addComponent<Transform>(267, 28, 28, 28);
+	caraFelTr->setParent(diario_->getComponent<Transform>());
+	caraFelicidad = caraFel->addComponent<RenderImage>();
+	caraFelicidad->setTexture(nullptr);
+
+	setupDiarioPages();
+
+	// botones de pasar pagina
+
+	factory_->setLayer(ecs::layer::UI);
+	ecs::Entity* pasarPagIzq = factory_->createImageButton(Vector2D(43,315),Vector2D(40,40), 
+		&sdlutils().images().at("cambioPag"), [this]() {
+			changeDiarioPages(false);
+		});
+	pasarPagIzq->getComponent<Transform>()->setParent(diario_->getComponent<Transform>());
+	pasarPagIzq->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
+
+	ecs::Entity* pasarPagDer = factory_->createImageButton(Vector2D(516, 315), Vector2D(40, 40),
+		&sdlutils().images().at("cambioPag"), [this]() {
+			changeDiarioPages(true);
+		});
+	pasarPagDer->getComponent<Transform>()->setParent(diario_->getComponent<Transform>());
+
+	factory_->setLayer(ecs::layer::DEFAULT);
+
+
+	//Animacion para sacar y meter el diario
 	diario_->addComponent<MoverTransform>(Easing::EaseOutBack);
 	HoverSensorComponent* hoverComp = diario_->addComponent<HoverSensorComponent>();
 	hoverComp->addInCall([this]() {
@@ -265,14 +304,209 @@ void ecs::ExplorationScene::createDiario() {
 			comp->enable();
 	});
 
-	// texto
-	ecs::Entity* textoDiario = addEntity(ecs::layer::UI);
-	Transform* textTr = textoDiario->addComponent<Transform>(50, 50, 300, 600);
-	textTr->setParent(diario_->getComponent<Transform>());
-	RenderImage* textRnd = textoDiario->addComponent<RenderImage>();
-	factory_->setFont("simpleHandmade");
-	textRnd->setTexture(factory_->createTextTexture("Anemos", 50, build_sdlcolor(0x00000000ff), 20));
-	factory_->setFont("arial");
+	
+}
+
+void ecs::ExplorationScene::setupDiarioPages() {
+	diarioText_.clear();
+	int day = generalData().getDay();
+	pagesByCharacter = std::vector<int>(7, 0);
+	RenderImage* rendComp = diario_->getComponent<RenderImage>();
+	if (rendComp == nullptr)
+		rendComp = diario_->addComponent<RenderImage>();
+
+	std::vector<Texture*> textureVec;
+	int firstPersonaje = -1;
+	bool diarioVacio = true;
+	//recorremos todos los personajes
+	for (int i = 0; i < 7; i++) {
+		NPCdata* data = generalData().getNPCData((npc::Personaje)i);
+		if (data->felicidad != NoHabladoAun)
+		{
+			diarioVacio = false;
+			//procesamos los textos
+			std::string textoPersonaje = "";
+			//contador de las paginas del personaje
+			int j = 0;
+			bool eventoCompletado = true;
+			while (eventoCompletado && j < data->eventosCompletados.size()) {
+				eventoCompletado = data->eventosCompletados[j].first;
+				if (eventoCompletado) {
+					std::string textoCompletado = " (EN CURSO)";
+					textoPersonaje = textoPersonaje + "- Dia ";
+					if (data->eventosCompletados[j].second == 0) // si el evento es de hoy
+					{
+						textoPersonaje = textoPersonaje + std::to_string(day) +
+							textoCompletado + "\n" + 
+							data->events[day - 1]->textoDiario + "\n";
+					}
+					else
+					{
+						if (data->eventosCompletados[j].second > 0)
+							textoCompletado = " (COMPLETADO)";
+						else
+							textoCompletado = " (FALLIDO)";
+
+						textoPersonaje = textoPersonaje + std::to_string(std::abs(data->eventosCompletados[j].second))
+							+ "- " + textoCompletado + "\n"
+							+ data->events[abs(data->eventosCompletados[j].second) - 1]->textoDiario + "\n";
+					}
+				}
+				j++;
+			}
+
+			DialogManager a; 
+			a.fixText(textoPersonaje);
+
+			j = 0;
+			while (textoPersonaje.size() > 0) {
+				int maxLen = j % 2 == 0 ? MAX_CHAR_LEN_LEFT_DIARIO : MAX_CHAR_LEN_RIGHT_DIARIO;
+				std::string provisionalSubstring = textoPersonaje.substr(0, maxLen);
+				int numSaltosLinea = 0;
+				for (int i = 0; i < provisionalSubstring.size(); i++) {
+					if (provisionalSubstring[i] == '\n')
+						numSaltosLinea++;
+				}
+				maxLen = maxLen - (numSaltosLinea * 13);
+
+				diarioText_.push_back(textoPersonaje.substr(0, maxLen));
+				if (textoPersonaje.size() < maxLen)
+					textoPersonaje.clear();
+				else
+					textoPersonaje = textoPersonaje.substr(maxLen);
+				j++;
+			}
+
+			pagesByCharacter[i] = j;
+			// si el numero de paginas es impar añadimos pag vacia para que no quede desparejo
+			if (j % 2 != 0) {
+				diarioText_.push_back(" ");
+				pagesByCharacter[i]++;
+			}
+				
+			if (firstPersonaje == -1)
+				firstPersonaje = i;
+
+			//ponemos sus paginas
+			if (j == 0) // tiene que haber una aunque no haya texto
+			{
+				textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
+				diarioText_.push_back(" ");
+				diarioText_.push_back(" ");
+			}
+			else
+			{
+				for (int k = 0; k < j; k++) {
+					if (k % 2 == 0)
+						textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
+				}
+			}
+		}
+	}
+
+	if (diarioVacio)
+		textureVec.push_back(&sdlutils().images().at("bookTest"));
+
+	diario_->getComponent<RenderImage>()->getVector()->clear();
+	diario_->getComponent<RenderImage>()->setVector(textureVec);
+
+	if (!diarioVacio)
+	{
+		makeDiaryPages();
+	}
+
+	if (firstPersonaje == -1)
+		caraFelicidad->setTexture(nullptr);
+	else
+		changeCaraFelicidad(generalData().getNPCData((Personaje)firstPersonaje));
+}
+
+void ecs::ExplorationScene::changeDiarioPages(bool forward) {
+	if (forward) {
+		diario_->getComponent<RenderImage>()->nextTexture();
+		if (currentDiarioPage < diarioText_.size() - 2)
+			currentDiarioPage = currentDiarioPage + 2;
+	}
+	else {
+		diario_->getComponent<RenderImage>()->previousTexture();
+		if (currentDiarioPage > 0)
+			currentDiarioPage = currentDiarioPage - 2;
+	}
+	
+	int i = 0;
+	bool texFound = false;
+	Texture* tex = diario_->getComponent<RenderImage>()->getCurrentTexture();
+	while (!texFound && i < 7) {
+		texFound = tex == &sdlutils().images().at("diario" + std::to_string(i + 1));
+		i++;
+	}
+	if (texFound)
+		changeCaraFelicidad(generalData().getNPCData((Personaje)(i - 1)));
+
+	makeDiaryPages();
+}
+
+void ecs::ExplorationScene::changeCaraFelicidad(NPCdata* data) {
+	if (caraFelicidad->getCurrentTexture() != nullptr)
+		caraFelicidad->getVector()->clear();
+	caraFelicidad->setVector(std::vector<Texture*>(1, nullptr));
+	switch (data->felicidad) {
+	case Minima:
+		caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadMinimo"));
+		break;
+	case Mala:
+		caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadMalo"));
+		break;
+	case Normal:
+		caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadNormal"));
+		break;
+	case Buena:
+		caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadBueno"));
+		break;
+	case Maxima:
+		caraFelicidad->setTexture(&sdlutils().images().at("caraFelicidadMaxima"));
+		break;
+	}
+}
+
+void ecs::ExplorationScene::makeDiaryPages()
+{
+	//todo este proceso se puede hacer mucho mas secillo si se delega el trabajo a la common objects factory que tiene un sistema para
+	//gestionar las texturas que se crean dinámicamente en el código
+	delete rightPageRnd->getCurrentTexture();
+	rightPageRnd->setVector(std::vector<Texture*>(1, nullptr));
+	delete leftPageRnd->getCurrentTexture();
+	leftPageRnd->setVector(std::vector<Texture*>(1, nullptr));
+
+	currentDiarioPage = 0;
+	leftTex = new Texture(sdlutils().renderer(),
+		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage],
+		sdlutils().fonts().at("simpleHandmade20"),
+		build_sdlcolor(0x00000000ff), 245);
+	leftPageRnd->setTexture(leftTex);
+	leftPageTr->setWidth(leftTex->width());
+	leftPageTr->setHeith(leftTex->height());
+	rightTex = new Texture(sdlutils().renderer(),
+		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage + 1],
+		sdlutils().fonts().at("simpleHandmade20"),
+		build_sdlcolor(0x00000000ff), 245);
+	rightPageRnd->setTexture(rightTex);
+	rightPageTr->setWidth(rightTex->width());
+	rightPageTr->setHeith(rightTex->height());
+}
+
+void ecs::ExplorationScene::addDiarioEvent(NPCevent* event)
+{
+	NPCdata* data = generalData().getNPCData(event->personaje);
+	int i = 0;
+	while (i < data->eventosCompletados.size())
+	{
+		if (!data->eventosCompletados[i].first)
+			break;
+		i++;
+	}
+	generalData().getNPCData(event->personaje)->eventosCompletados[i] = std::make_pair(true, 0);
+	setupDiarioPages();
 }
 
 ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
@@ -287,6 +521,9 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, character]() {
+		if (generalData().getNPCData(generalData().stringToPersonaje(character))->felicidad == npc::Maxima) {
+			generalData().unlockUpgrade(generalData().stringToPersonaje(character));
+		}
 	    dialogMngr_.startConversation(character);
 
 		auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
@@ -304,6 +541,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 					generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
 				}
 				generalData().npcEventSys->activateEvent(event);
+				addDiarioEvent(event);
 				generalData().npcEventSys->shuffleNPCqueue();
 			}
 		}
@@ -312,8 +550,6 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
-	
-	//return characterEnt;
 
 	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
 
@@ -339,7 +575,7 @@ void ecs::ExplorationScene::setNavegabilityOfPlace(int place, bool value)
 {
 	if(place < lugares.size())
 	{
-		lugares[generalData().fromDistritoToString(place)].setNavegability(value);
+		lugares[(Distrito)place].setNavegability(value);
 	}
 }
 
@@ -350,25 +586,28 @@ void ecs::ExplorationScene::updateNavegavility()
 }
 
 void ecs::ExplorationScene::createObjects(int place) {
-
-	auto& pl = config().places();
-
+	//Seleccion del lugar deseado
 	std::string placeName = generalData().fromDistritoToString(place);
+	auto& pl = config().places().at(placeName);
+	Lugar& dist = lugares[(Distrito)place];
 
-	auto& arrows = pl.at(placeName).myArrows;
-	for (int i = 0; i < pl.at(placeName).myArrows.size(); ++i) {
-		lugares[placeName].addObjects(createNavegationsArrows(arrows[i].pos,
+
+	auto& arrows = pl.myArrows;
+	for (int i = 0; i < pl.myArrows.size(); ++i) {
+		dist.addObject(createNavegationsArrow(arrows[i].pos,
 			arrows[i].destination_, arrows[i].scale_, arrows[i].flip_));
 	}
-	auto& characters = pl.at(placeName).myCharacters;
-	for (int i = 0; i < pl.at(placeName).myCharacters.size(); ++i) {
-		lugares[placeName].addObjects(createCharacter(characters[i].pos,
-			characters[i].name_, characters[i].scale_));
+	auto& characters = pl.myCharacters;
+	for (int i = 0; i < pl.myCharacters.size(); ++i) {
+		if (generalData().getNPCData(generalData().stringToPersonaje(characters[i].name_))->felicidad != npc::SeFue) {
+			dist.addObject(createCharacter(characters[i].pos,
+				characters[i].name_, characters[i].scale_));
+		}
 	}
 
-	auto& intObjs = pl.at(placeName).myInteractableObjs;
-	for (int i = 0; i < pl.at(placeName).myInteractableObjs.size(); ++i) {
-		lugares[placeName].addObjects(createInteractableObj(intObjs[i].pos,
+	auto& intObjs = pl.myInteractableObjs;
+	for (int i = 0; i < pl.myInteractableObjs.size(); ++i) {
+		dist.addObject(createInteractableObj(intObjs[i].pos,
 			intObjs[i].name_, intObjs[i].scaleX_, intObjs[i].scaleY_));
 	}
 
@@ -376,7 +615,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 		//boton ir a trabajar
 		boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
 
-		lugares[placeName].addObjects(boton_Trabajo);
+		dist.addObject(boton_Trabajo);
 
 		//PLACEHOLDER_BOTON_GUARDADO
 		factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
@@ -388,17 +627,17 @@ void ecs::ExplorationScene::createObjects(int place) {
 
 //LUGAR__________________________________________________________________________________________
 
-void ecs::Lugar::addDirections(std::string placeDir, Lugar* place)
+void ecs::Lugar::addDirections(Lugar* place)
 {
-	directions_[placeDir] = place;
+	directions_[place->getID()] = place;
 }
 
-bool ecs::Lugar::navigate(std::string placeDir)
+bool ecs::Lugar::navigate(Distrito placeDir)
 {
 	return directions_.count(placeDir) && directions_.at(placeDir)->navegable_;
 }
 
-ecs::Lugar* ecs::Lugar::getPlaceFromDirection(std::string placeDir)
+ecs::Lugar* ecs::Lugar::getPlaceFromDirection(Distrito placeDir)
 {
 	return directions_[placeDir];
 }
@@ -410,7 +649,7 @@ void ecs::Lugar::changeActivationObjects(bool state)
 	}
 }
 
-void ecs::Lugar::addObjects(ecs::Entity* e)
+void ecs::Lugar::addObject(ecs::Entity* e)
 {
 	ents_.push_back(e);
 }

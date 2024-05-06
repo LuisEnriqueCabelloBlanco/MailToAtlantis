@@ -1,42 +1,47 @@
-#include <utils/checkML.h>
-#include "PaqueteBuilder.h"
-#include "../components/Transform.h"
-#include "../architecture/Entity.h"
-#include "../components/Render.h"
-#include "../architecture/GameConstants.h"
-#include <sistemas/ComonObjectsFactory.h>
 #include "../sdlutils/InputHandler.h"
-#include "../json/JSON.h"
-#include "../sistemas/NPCeventSystem.h"
-#include "../components/RenderWithLight.h"
+#ifndef DEV_TOOLS
+#include <utils/checkML.h>
+#endif // !DEV_TOOLS
+#include "PaqueteBuilder.h"
+#include <components/Transform.h>
+#include <architecture/Entity.h>
+#include <components/Render.h>
+#include <architecture/GameConstants.h>
+#include <sistemas/ComonObjectsFactory.h>
+#include <json/JSON.h>
+#include <sistemas/NPCeventSystem.h>
+#include <components/Herramientas.h>
 
+std::unordered_map<Distrito, std::vector<std::string>> PaqueteBuilder::distritoCalle_;
+std::vector<std::string> PaqueteBuilder::names;
+std::vector<std::string> PaqueteBuilder::surnames;
+std::vector<std::list<int>> PaqueteBuilder::allRoutes;
 
-PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
-	srand(sdlutils().currRealTime());
-	directionsFont = &sdlutils().fonts().at("arial40");
-
-	std::string filename = "recursos/config/mail.direcctions.json";
-	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(filename));
+void PaqueteBuilder::initdata()
+{
+	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(DIR_SETTINGS_PATH));
 
 	// check it was loaded correctly
 	// the root must be a JSON object
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while load/parsing '" + filename + "'";
+		throw "Something went wrong while load/parsing '" + DIR_SETTINGS_PATH + "'";
 	}
 	// we know the root is JSONObject
 	JSONObject root = jValueRoot->AsObject();
 
-	getStreetsFromJSON(root, Demeter, "Demeter");
-	getStreetsFromJSON(root, Hefesto, "Hefesto");
-	getStreetsFromJSON(root, Hestia, "Hestia");
-	getStreetsFromJSON(root, Artemisa, "Artemisa");
-	getStreetsFromJSON(root, Hermes, "Hermes");
-	getStreetsFromJSON(root, Apolo, "Apolo");
-	getStreetsFromJSON(root, Poseidon, "Poseidon");
-	getStreetsFromJSON(root, Erroneo, "Erroneo");
+
+	for (int i = 0; i <= MAX_DISTRICTS; i++) {
+		getStreetsFromJSON(root, (Distrito)i);
+	}
 
 	getNamesFromJSON();
 	getRoutesFromJSON();
+	
+}
+
+PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
+	srand(sdlutils().currRealTime());
+	directionsFont = &sdlutils().fonts().at("arial40");
 }
 
 PaqueteBuilder::~PaqueteBuilder() {
@@ -51,7 +56,7 @@ ecs::Entity* PaqueteBuilder::buildPackage(int level, ecs::Scene* mScene) {
 
 	ecs::Entity* packageBase;
 	
-	int rnd = sdlutils().rand().nextInt(0, 2);
+	int rnd = sdlutils().rand().nextInt(0, 10);
 
 	if (rnd == 0) {
 		packageBase = buildBasePackage(mScene, true);
@@ -94,7 +99,7 @@ void PaqueteBuilder::cartaRND(ecs::Entity* packageBase) {
 		dir = distritoCalle_[toDist][(int)toDir];
 
 
-	Paquete* carta = packageBase->addComponent<Paquete>(toDist, toDir, dir, remitenteRND(), pq::TipoPaquete::Carta, false, pq::NivelPeso::Ninguno, PESO_CARTA, false, true);
+	Paquete* carta = packageBase->addComponent<Paquete>(toDist, toDir, dir, remitenteRND(), pq::TipoPaquete::Carta, true, pq::NivelPeso::Ninguno, PESO_CARTA, false, true);
 	addVisualElements(packageBase);
 
 }
@@ -126,6 +131,7 @@ ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle call
 	addVisualElements(base);
 	selectRandomRoute();
 	base->addComponent<Wrap>(40, 0, route, selectedRouteIndex);
+
 	return base;
 }
 
@@ -377,11 +383,10 @@ std::string PaqueteBuilder::remitenteRND() {
 	return sol;	
 }
 
-void PaqueteBuilder::getStreetsFromJSON(JSONObject& root, Distrito dist, const std::string& distString)
+void PaqueteBuilder::getStreetsFromJSON(JSONObject& root, Distrito dist)
 {
 	JSONValue* jValue = nullptr;
-
-	jValue = root[distString];
+	jValue = root[generalData().fromDistritoToString(dist)];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			distritoCalle_[dist].reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
@@ -560,7 +565,9 @@ void PaqueteBuilder::selectRandomRoute() {
 		route = allRoutes[rd];
 		selectedRouteIndex = rd;
 	}
+#ifdef _DEBUG
 	else {
 		std::cerr << "No routes available to select from." << std::endl;
 	}
+#endif // _DEBUG
 }

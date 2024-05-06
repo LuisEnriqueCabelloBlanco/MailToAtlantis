@@ -1,20 +1,61 @@
 {
   "images": [
-    {"id": "placeHolder","file": "recursos/images/SDL_logo.png"},
-    {"id": "boxTest","file": "recursos/images/Box.png"},
-    {"id": "selloTest","file": "recursos/images/Sello.png"},
-    {"id": "bookTest","file": "recursos/images/Book.png"},
-    {"id": "book1","file": "recursos/images/Book_Index.png"},
-    {"id": "book2","file": "recursos/images/Book_InfoGeneral.png"},
-    {"id": "book3","file": "recursos/images/Book_InfoCodigos.png"},
-    {"id": "book4","file": "recursos/images/Book_InfoCalles_0.png"},
-    {"id": "book5","file": "recursos/images/Book_InfoCalles_1.png"},
-    {"id": "book6","file": "recursos/images/Book_InfoCalles_2.png"},
-    {"id": "book7","file": "recursos/images/Book_InfoCalles_3.png"},
-    {"id": "book8","file": "recursos/images/Book_InfoSellos.png"},
-    {"id": "book9","file": "recursos/images/Book_InfoPesos.png"},
-    {"id": "book10","file": "recursos/images/Book_InfoEmbalado.png"},
-
+    {
+      "id": "placeHolder",
+      "file": "recursos/images/SDL_logo.png"
+    },
+    {
+      "id": "boxTest",
+      "file": "recursos/images/Box.png"
+    },
+    {
+      "id": "selloTest",
+      "file": "recursos/images/Sello.png"
+    },
+    {
+      "id": "bookTest",
+      "file": "recursos/images/Book.png"
+    },
+    {
+      "id": "book1",
+      "file": "recursos/images/Book_Index.png"
+    },
+    {
+      "id": "book2",
+      "file": "recursos/images/Book_InfoGeneral.png"
+    },
+    {
+      "id": "book3",
+      "file": "recursos/images/Book_InfoCodigos.png"
+    },
+    {
+      "id": "book4",
+      "file": "recursos/images/Book_InfoCalles_0.png"
+    },
+    {
+      "id": "book5",
+      "file": "recursos/images/Book_InfoCalles_1.png"
+    },
+    {
+      "id": "book6",
+      "file": "recursos/images/Book_InfoCalles_2.png"
+    },
+    {
+      "id": "book7",
+      "file": "recursos/images/Book_InfoCalles_3.png"
+    },
+    {
+      "id": "book8",
+      "file": "recursos/images/Book_InfoSellos.png"
+    },
+    {
+      "id": "book9",
+      "file": "recursos/images/Book_InfoPesos.png"
+    },
+    {
+      "id": "book10",
+      "file": "recursos/images/Book_InfoEmbalado.png"
+    },
     {"id": "diario1", "file": "recursos/images/Diario0.png"},
     {"id": "diario2", "file": "recursos/images/Diario1.png"},
     {"id": "diario3", "file": "recursos/images/Diario2.png"},
@@ -22,7 +63,13 @@
     {"id": "diario5", "file": "recursos/images/Diario4.png"},
     {"id": "diario6", "file": "recursos/images/Diario5.png"},
     {"id": "diario7", "file": "recursos/images/Diario6.png"},
-    
+    {"id": "caraFelicidadMinimo", "file": "recursos/images/caraFelicidadMinimo.png"},
+    {"id": "caraFelicidadMalo", "file": "recursos/images/caraFelicidadMalo.png"},
+    {"id": "caraFelicidadNormal", "file": "recursos/images/caraFelicidadNormal.png"},
+    {"id": "caraFelicidadBueno", "file": "recursos/images/caraFelicidadBueno.png"},
+    {"id": "caraFelicidadMaxima", "file": "recursos/images/caraFelicidadMaxima.png"},
+
+
     {"id": "flechaTest","file": "recursos/images/flecha.png"},
     {"id": "cambioPag","file": "recursos/images/NextPage.png"},
     {"id": "botonTrabajar","file": "recursos/images/placeholderTrabajar.png"},
@@ -33,19 +80,71 @@
     {"id": "Hermes","file": "recursos/images/Hermes.png"},
     {"id": "Apolo","file": "recursos/images/Apolo.png"},
     {"id": "Poseidon","file": "recursos/images/Poseidon.png"},
-    {"id": "fondoMainMenu","file": "recursos/images/FONDO_MENU_INICIO_v2.png"},
-
-    {"id": "sellador0","file": "recursos/images/selladorRojo.png"},
-    {"id": "sellador1","file": "recursos/images/selladorAzul.png"},
-    {"id": "sellador2","file": "recursos/images/selladorVerde.png"},
-    {"id": "selladorM","file": "recursos/images/selladorM.png"},
-    {"id": "sello0","file": "recursos/images/SelloRojo.png"},
-    {"id": "sello1","file": "recursos/images/SelloAzul.png"},
-    {"id": "sello2","file": "recursos/images/SelloVerde.png"},
-    {"id": "selloM","file": "recursos/images/SelloM.png"},
-    {"id": "tinta0","file": "recursos/images/tintaRoja.png"},
-    {"id": "tinta1","file": "recursos/images/tintaAzul.png"},
-    {"id": "tinta2","file": "recursos/images/tintaVerde.png"},
+    {
+      "id": "fondoMainMenu",
+      "file": "recursos/images/FONDO_MENU_INICIO_v2.png"
+    },
+    {"id": "blackScreen","file": "recursos/images/pantallanegra.png"},
+    {"id": "fondoTutorial","file": "recursos/images/fondoTutorial.png"},
+    {"id": "botella1","file": "recursos/images/Botella1.png"},
+    {"id": "botella2","file": "recursos/images/Botella2.png"},
+    {"id": "cartaAtlantida","file": "recursos/images/CartaAtlantida.png"},
+    {
+      "id": "sellador0",
+      "file": "recursos/images/selladorRojo.png"
+    },
+    {
+      "id": "sellador1",
+      "file": "recursos/images/selladorAzul.png"
+    },
+    {
+      "id": "sellador2",
+      "file": "recursos/images/selladorVerde.png"
+    },
+    {
+      "id": "selladorM",
+      "file": "recursos/images/selladorM.png"
+    },
+    {
+      "id": "sello0",
+      "file": "recursos/images/SelloRojo.png"
+    },
+    {
+      "id": "sello1",
+      "file": "recursos/images/SelloAzul.png"
+    },
+    {
+      "id": "sello2",
+      "file": "recursos/images/SelloVerde.png"
+    },
+    {
+      "id": "selloM",
+      "file": "recursos/images/SelloM.png"
+    },
+    {
+      "id": "tinta0",
+      "file": "recursos/images/tintaRoja.png"
+    },
+    {
+      "id": "tinta1",
+      "file": "recursos/images/tintaAzul.png"
+    },
+    {
+      "id": "tinta2",
+      "file": "recursos/images/tintaVerde.png"
+    },
+    {
+      "id": "bola1",
+      "file": "recursos/images/BolaCristalError.png"
+    },
+    {
+      "id": "bola2",
+      "file": "recursos/images/BolaCristalNada.png"
+    },
+    {
+      "id": "bola3",
+      "file": "recursos/images/BolaCristalCorrecto.png"
+    },
 
     {
       "id": "press",
@@ -148,8 +247,10 @@
       "id": "selloPesoMedio",
       "file": "recursos/images/PesoMedio.png"
     },
-
-
+    {
+      "id": "papelAgujeros",
+      "file": "recursos/images/PapelAgujeros.png"
+    },
     {
       "id": "notaError",
       "file": "recursos/images/notaError.png"
@@ -187,30 +288,56 @@
       "file": "recursos/images/cruz.png"
     },
 
-    {"id": "puntoRojo","file": "recursos/images/PuntoRojo.png"},
-    {"id": "lineaRoja","file": "recursos/images/lineaRoja.png"},
-    {"id": "exclamacion","file": "recursos/images/Exclamacion.png"},
-    
-    {"id": "ruta1","file": "recursos/images/route1.png"},
-    {"id": "ruta2","file": "recursos/images/route2.png"},
-    {"id": "ruta3","file": "recursos/images/route3.png"},
-    {"id": "ruta4","file": "recursos/images/route4.png"},
-    
-    {"id": "fondoFinalTrabajo","file": "recursos/images/FondoEndWork.png"},
+    {
+      "id": "puntoRojo",
+      "file": "recursos/images/PuntoRojo.png"
+    },
+    {
+      "id": "lineaRoja",
+      "file": "recursos/images/lineaRoja.png"
+    },
+    {
+      "id": "exclamacion",
+      "file": "recursos/images/Exclamacion.png"
+    },
+    {
+      "id": "ruta1",
+      "file": "recursos/images/route1.png"
+    },
+    {
+      "id": "ruta2",
+      "file": "recursos/images/route2.png"
+    },
+    {
+      "id": "ruta3",
+      "file": "recursos/images/route3.png"
+    },
+    {
+      "id": "ruta4",
+      "file": "recursos/images/route4.png"
+    },
 
+    {
+      "id": "fondoFinalTrabajo",
+      "file": "recursos/images/FondoEndWork.png"
+    },
     {"id": "title","file": "recursos/images/titulo.png"},
     {"id": "fondoOficina","file": "recursos/images/OficinaProyectosDesenfocada.png"},
     {"id": "cinta","file": "recursos/images/Cinta.png"},
+    {"id": "cintaRapida","file": "recursos/images/CintaRapida.png"},
     {"id": "baseBalanza","file": "recursos/images/BaseBalanza.png"},
     {"id": "balanzaFlecha","file": "recursos/images/balanzaFlecha.png"},
     {"id": "balanzaFlecha2","file": "recursos/images/balanzaFlecha2.png"},
     {"id": "balanzaA","file": "recursos/images/balanzaA.png"},
     {"id": "balanzaB","file": "recursos/images/balanzaB.png"},
-    {"id": "balanzaDigital","file": "recursos/images/balanza2.png"},
-
-
-
-
+    {
+      "id": "balanzaDigA",
+      "file": "recursos/images/balanza2Arriba.png"
+    },
+    {
+      "id": "balanzaDigB",
+      "file": "recursos/images/balanza2Abajo.png"
+    },
     {
       "id": "fondoFinalTrabajo",
       "file": "recursos/images/FondoEndWork.png"
@@ -223,6 +350,10 @@
     {
       "id": "fondoOficina",
       "file": "recursos/images/OficinaProyectosDesenfocada.png"
+    },
+    {
+      "id": "fondoAjustes",
+      "file": "recursos/images/FONDO_MENU_INICIO_v2.png"
     },
     {
       "id": "cinta",
@@ -344,7 +475,6 @@
     {
       "id": "Jefe",
       "file": "recursos/images/JefeOficina.png"
-
     },
     {
       "id": "reloj",
@@ -375,6 +505,16 @@
       "size": 50
     },
     {
+      "id": "arial70",
+      "file": "recursos/fonts/ARIAL.ttf",
+      "size": 70
+    },
+    {
+      "id": "arial75",
+      "file": "recursos/fonts/ARIAL.ttf",
+      "size": 75
+    },
+    {
       "id": "arial80",
       "file": "recursos/fonts/ARIAL.ttf",
       "size": 80
@@ -400,9 +540,14 @@
       "size": 50
     },
     {
-      "id": "simpleHandmade50",
+      "id": "simpleHandmade20",
       "file": "recursos/fonts/SimpleHandmade.ttf",
-      "size": 50
+      "size": 20
+    },
+    {
+      "id": "simpleHandmadeTuneado20",
+      "file": "recursos/fonts/SimpleHandmadeTuneado.ttf",
+      "size": 20
     }
   ],
   "sounds": [

@@ -1,8 +1,8 @@
 #pragma once
-#include "../architecture/Component.h"
-#include "../utils/Vector2D.h"
+#include <architecture/Component.h>
+#include <utils/Vector2D.h>
 #include <SDL.h>
-#include "../sdlutils/SDLUtils.h"
+#include <sdlutils/SDLUtils.h>
 
 class Depth;
 

@@ -1,7 +1,7 @@
 #include "NPCExclamation.h"
-#include "../architecture/Entity.h"
-#include "../components/Render.h"
-#include "../components/MoverTransform.h"
+#include <architecture/Entity.h>
+#include <components/Render.h>
+#include <components/MoverTransform.h>
 NPCExclamation::NPCExclamation() {			
  }
 NPCExclamation::~NPCExclamation() {

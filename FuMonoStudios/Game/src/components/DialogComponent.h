@@ -1,9 +1,10 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../architecture/Component.h"
-#include "DialogManager.h"
-#include "../sdlutils/Font.h"
-#include <string>
+#endif // !DEV_TOOLS
+#include <architecture/Component.h>
+#include <components/DialogManager.h>
+#include <sdlutils/Font.h>
 /*
 TODO:
 Reestructurar toda la gestion de los dialogos

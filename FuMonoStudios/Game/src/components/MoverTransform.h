@@ -1,8 +1,8 @@
 #pragma once
-#include "../architecture/Component.h"
-#include "../sdlutils/SDLutils.h"
-#include "Transform.h"
-#include "DragAndDrop.h"
+#include <architecture/Component.h>
+#include <sdlutils/SDLUtils.h>
+#include <components/Transform.h>
+#include <components/DragAndDrop.h>
 
 // El easing EaseOutBack recomendado para la entrada
 // del paquete por la derecha 

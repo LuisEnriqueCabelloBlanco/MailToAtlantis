@@ -1,5 +1,5 @@
-#include "HoverSensorComponent.h"
 #include <sdlutils/InputHandler.h>
+#include "HoverSensorComponent.h"
 #include <SDL.h>
 #include <components/Transform.h>
 #include <architecture/Entity.h>

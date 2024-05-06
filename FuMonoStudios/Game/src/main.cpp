@@ -1,12 +1,14 @@
-#include "utils/checkML.h"
+#ifndef DEV_TOOLS
+#include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include <iostream>
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 #include <string>
-#include "architecture/Game.h"
-#include "sdlutils/SDLUtils.h"
-#include "../rapidCSV/rapidcsv.h"
+#include <architecture/Game.h>
+#include <sdlutils/SDLUtils.h>
+#include <../rapidCSV/rapidcsv.h>
 
 
 

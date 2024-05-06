@@ -1,15 +1,15 @@
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../components/DialogManager.h"
+#endif // !DEV_TOOLS
 #include "GeneralData.h"
-#include "../json/JSON.h"
-#include "../json/JSONValue.h"
-#include "../sdlutils/RandomNumberGenerator.h"
-
-#include "../architecture/ecs.h"
-#include "../sistemas/SoundEmiter.h"
-#include "../sistemas/PaqueteBuilder.h"
-#include "Game.h"
-#include "../sistemas/NPCeventSystem.h"
+#include <json/JSON.h>
+#include <sdlutils/RandomNumberGenerator.h>
+#include <architecture/ecs.h>
+#include <sistemas/SoundEmiter.h>
+#include <sistemas/PaqueteBuilder.h>
+#include <architecture/Game.h>
+#include <sistemas/NPCeventSystem.h>
+#include <architecture/GameConstants.h>
 
 GeneralData::GeneralData()
 {
@@ -46,17 +46,18 @@ GeneralData::GeneralData()
 }
 
 GeneralData::~GeneralData() {
-	delete npcEventSys;
+	
+	for (auto& npc : npcData) {
+		delete npc.second;
+		npc.second = nullptr;
+	}
 	for (auto obj : intObjData) {
 		delete obj;
 	}
 	for (auto package : paquetesNPCs) {
 		delete package;
 	}
-	for (auto& npc : npcData) {
-		delete npc.second;
-		npc.second = nullptr;
-	}
+	delete npcEventSys;
 }
 
 void GeneralData::loadSaveFile()
@@ -69,8 +70,24 @@ void GeneralData::loadSaveFile()
 	dinero_ = root.find("Dinero")->second->AsNumber();
 }
 
-void GeneralData::updateMoney()
+void GeneralData::newGame()
 {
+	dia_ = 1;
+	dinero_ = INITIAL_MONEY;
+
+	for (int i = 0; i < 7; i++)
+	{
+		NPCdata* data = getNPCData((Personaje)i);
+		data->felicidad = NoHabladoAun;
+		data->numFelicidad = 50;
+		int numEventos = i < 2 ? 14 : 5;
+		data->eventosCompletados = std::vector<std::pair<bool, int>>(numEventos, std::make_pair(false, 0));
+		data->numMisionesAceptadas = 0;
+	}
+}
+
+void GeneralData::updateMoney()
+{	
 	int rightPackages = corrects_;
 	int wrongPackages = fails_;
 	//funcion de ejemplo seguramente haya que cambiarlo
@@ -89,12 +106,22 @@ int GeneralData::calcularDineroGanado()
 	int rightPackages = corrects_;
 	int wrongPackages = fails_;
 	int totalRightMoney = 0;
+
 	if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
 		totalRightMoney = rightPackages * (WRITE_PACAGES_VALUE + 10);
 	}
 	else {
 		totalRightMoney = rightPackages * WRITE_PACAGES_VALUE;
 	}
+	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::FALLOS_UPGRADE)) failsMargin_ = 2;
+	else failsMargin_ = 0;
+	if (fails_ < failsMargin_) {
+		wrongPackages = 0;
+	}
+	else {
+		wrongPackages -= failsMargin_;
+	}
+	
 	return 		totalRightMoney - (wrongPackages * WRONG_PACAGES_VALUE);
 }
 
@@ -307,7 +334,19 @@ void GeneralData::readNPCData() {
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
-			npcData.emplace((Personaje)i,data);
+			data->events = std::vector<NPCevent*>(14, nullptr);
+			JSONArray eventosCompletados = jObject.find("EventosCompletados")->second->AsArray();
+			int k = 0;
+			for (auto it : eventosCompletados)
+			{
+				data->eventosCompletados[k].first = true;
+				data->eventosCompletados[k].second = it->AsNumber();
+				k++;
+			}
+			for (int z = k; z < 14; z++)
+				data->eventosCompletados[z] = std::make_pair(false, 0);
+
+			npcData.emplace((Personaje)i, data);
 		}
 		else
 		{
@@ -321,8 +360,20 @@ void GeneralData::readNPCData() {
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(j + 1))->second->AsBool());
 			}
 			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
+			data->events = std::vector<NPCevent*>(5, nullptr);
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
+			JSONArray eventosCompletados = jObject.find("EventosCompletados")->second->AsArray();
+			int k = 0;
+			for (auto it : eventosCompletados)
+			{
+				data->eventosCompletados[k].first = true;
+				data->eventosCompletados[k].second = it->AsNumber();
+				k++;
+			}
+			for (int z = k; z < 5; z++)
+				data->eventosCompletados[z] = std::make_pair(false, 0);
+
 			npcData.emplace((Personaje)i,data);
 		}
 		jValue = nullptr;
@@ -330,31 +381,6 @@ void GeneralData::readNPCData() {
 
 	if (npcEventSys == nullptr)
 		npcEventSys = new NPCeventSystem();
-}
-
-void GeneralData::readIntObjData() {
-	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/intObjsData.json"));
-
-	if (jsonFile == nullptr || !jsonFile->IsObject()) {
-		throw "Something went wrong while load/parsing intObjsData";
-	}
-
-	JSONObject root = jsonFile->AsObject();
-	JSONValue* jValueRoot = nullptr;
-
-	// cargamos los objetos
-
-	for (int i = 0; i < 20; i++)
-	{
-		std::string aux = intObjetoToString(i);
-		jValueRoot = root[aux];
-
-		JSONObject jObject = jValueRoot->AsObject();
-		std::string textosStr = jObject.find("Textos")->second->AsString();
-
-		intObjData.push_back(new IntObjsData(textosStr));
-		jValueRoot = nullptr;
-	}
 }
 
 void GeneralData::writeNPCData() {
@@ -388,6 +414,23 @@ void GeneralData::writeNPCData() {
 		int posMisionesAc = contenido.find("numMisionesAceptadas", posPersonaje) + 23;
 		contenido.replace(posMisionesAc, (contenido.find('\n', posMisionesAc)) - posMisionesAc,
 			std::to_string(data->numMisionesAceptadas) + ",");
+
+		int posEventosCompletados = contenido.find("EventosCompletados", posPersonaje) + 21;
+		std::string newEventosString = "[";
+		for (int i = 0; i < data->eventosCompletados.size(); i++)
+		{
+			// si ha sido completado
+			if (data->eventosCompletados[i].first && data->eventosCompletados[i].second != 0)
+			{
+				newEventosString += std::to_string(data->eventosCompletados[i].second) += ",";
+			}
+		}
+		if (newEventosString[newEventosString.size() - 1] == ',')
+			newEventosString.pop_back();
+		newEventosString += "],";
+		contenido.replace(posEventosCompletados, (contenido.find('\n', posEventosCompletados)) - 
+			posEventosCompletados, newEventosString);
+
 	}
 
 	// Abrir el archivo en modo de escritura
@@ -519,6 +562,9 @@ const std::string GeneralData::personajeToString(Personaje pers) {
 		case Contable:
 			aux = "Contable";
 			break;
+	    case Jefe:
+			aux = "Jefe";
+		    break;
 	}
 	return aux;
 }
@@ -528,19 +574,21 @@ Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 	// no deja hacer switch y es una cochinada pero es la unica forma de hacerlo
 	//se puede usar un hasmap
 	if (pers == "Vagabundo")
-		aux = Vagabundo;
+		aux = npc::Vagabundo;
 	else if (pers == "Secretario")
-		aux = Secretario;
+		aux = npc::Secretario;
 	else if (pers == "Campesino")
-		aux = Campesino;
+		aux = npc::Campesino;
 	else if (pers == "Artesano")
-		aux = Artesano;
+		aux = npc::Artesano;
 	else if (pers == "Tarotisa")
-		aux = Tarotisa;
+		aux = npc::Tarotisa;
 	else if (pers == "Soldado")
-		aux = Soldado;
+		aux = npc::Soldado;
 	else if (pers == "Contable")
-		aux = Contable;
+		aux = npc::Contable;
+	else if (pers == "Jefe")
+		aux = npc::Jefe;
 	
 	return aux;
 }
@@ -782,11 +830,4 @@ GeneralData::IntObjsData::IntObjsData(std::string text)
 	objId = text;
 }
 
-GeneralData::IntObjsData* GeneralData::getObjData(std::string intobj)
-{
-	IntObjsData* obj = nullptr;
-	obj = intObjData[stringToObjInt(intobj)];
-
-	return obj;
-}
 #pragma endregion

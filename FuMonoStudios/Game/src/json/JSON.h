@@ -25,7 +25,9 @@
 #ifndef _JSON_H_
 #define _JSON_H_
 
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include <vector>
 #include <string>
 #include <map>
