@@ -129,6 +129,8 @@ void ecs::MainScene::init()
 
 	createGarbage();	
 
+	createTubes();
+
 	int dia = generalData().getDay();
 	if (dia % 4 == 2) //hay un evento de trabajo del jefe cada 4 dias empezando por el dia 2, esto habria que hacerlo con constantes mejor en vez de numeros magicos 
 	{
@@ -138,20 +140,7 @@ void ecs::MainScene::init()
 		startWork();
 
 	//creacion de las herramientas
-	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
-	int numTubos = generalData().getTubesAmount(); // coge el numero de tubos que están desbloqueados
-	int j = 0;
-	for (int i = 0;i < numTubos; i++) {
-		tubos.push_back(createTubo((pq::Distrito)i, true));
-		j++;
-	}
-	//Creación de paquetes bloqueados
-	for (int z = j; z < 7 ; ++z) { //grande jose la los numeros magicos te la sabes
-		if(j==6)
-			tubos.push_back(createTubo((pq::Distrito)z, true));
-		else
-			tubos.push_back(createTubo((pq::Distrito)z , false));
-	}
+	
 
 	/*sdlutils().musics().at("office").play();
 	sdlutils().musics().at("office").setMusicVolume(50);
@@ -403,6 +392,37 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createBalanza() {
 	mapSol.insert({ "balanzaFlecha", balanzaFlecha });
 
 	return mapSol;
+}
+
+std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createTubes()
+{
+
+	std::unordered_map<std::string, ecs::Entity*> mapTubes;
+
+
+	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
+	int numTubos = generalData().getTubesAmount(); // coge el numero de tubos que están desbloqueados
+	int j = 0;
+	for (int i = 0; i < numTubos; i++) {
+		Entity* tube = createTubo((pq::Distrito)i, true);
+
+		tubos.push_back(tube);
+		std::string name = "tube" + i;
+
+		mapTubes.insert({ name, tube });
+
+		j++;
+	}
+
+	//Creación de paquetes bloqueados
+	for (int z = j; z < 7; ++z) { //grande jose la los numeros magicos te la sabes
+		if (j == 6)
+			tubos.push_back(createTubo((pq::Distrito)z, true));
+		else
+			tubos.push_back(createTubo((pq::Distrito)z, false));
+	}
+
+	return mapTubes;
 }
 
 void ecs::MainScene::createBalanzaDigital() {

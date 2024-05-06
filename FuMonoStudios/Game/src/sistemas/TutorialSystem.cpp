@@ -115,6 +115,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			activateDialogue(false);
 			break;
 		case TutorialEvent::EnsenarSellos:
+			DragAndDrop::enableDrag = true;
 			canPassPagesManual = false;
 			activateDialogue(true);
 			arrow_->setActive(true);
@@ -127,7 +128,6 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::EnsenarTubos:
-			canDrag = false;
 			canPassPagesManual = true;
 			activateDialogue(false);
 			break;
@@ -138,7 +138,6 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			DragAndDrop::enableDrag = false;
 			scene_->createPackage(ecs::TutorialScene::Segundo);
 			delayedCallback(1, [this]() {
-				scene_->deactivateTubos();
 				activateDialogue(false);
 				});
 			break;
@@ -177,6 +176,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 		#pragma region Paquete Fallar Aposta
 		case TutorialEvent::EntraCuartoPaquete:
 			DragAndDrop::enableDrag = false;
+			scene_->activateAllButOneTube(2);
 			activateDialogue(false);
 			delayedCallback(1.5, [this] {
 				scene_->createPackage(ecs::TutorialScene::FallarAposta);
@@ -295,14 +295,13 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			break;
 		case TutorialEvent::EnsenarSellos:
 			arrow_->setActive(false);
-			DragAndDrop::enableDrag = true;
 			addActionListener(Action::PaqueteEstampado, [this]() {
 				activateEvent(TutorialEvent::EnsenarTubos);
 				});
 			break;
 		case TutorialEvent::EnsenarTubos:
-			canDrag = true;
-			scene_->activateTubos();
+			scene_->deactivateAllButOneTube(0);
+			scene_->deactivateGarbage();
 			addActionListener(Action::PaqueteEnviado, [this]() {
 				activateEvent(TutorialEvent::EntraSegundoPaquete);
 				});
@@ -311,6 +310,11 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 
 		#pragma region Segundo Paquete
 		case TutorialEvent::EntraSegundoPaquete:
+
+			DragAndDrop::enableDrag = true;
+			scene_->activateTubos();
+			scene_->deactivateAllButOneTube(2);
+
 			addActionListener(Action::PaginaCodigosPostales, [this]() {
 				activateEvent(TutorialEvent::SegundoBuscarPaginaDistritos);
 				});
@@ -327,7 +331,6 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			DragAndDrop::enableDrag = true;
 			break;
 		case TutorialEvent::EnviarSegundoPaquete:
-			scene_->activateTubos();
 			addActionListener(Action::PaqueteEnviado, [this]() {
 				activateEvent(TutorialEvent::EntraCuartoPaquete);
 				});
@@ -337,6 +340,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 #pragma region Paquete Fallar Aposta
 		case TutorialEvent::EntraCuartoPaquete:
 			DragAndDrop::enableDrag = true;
+			scene_->activateGarbage();
 			addActionListener(Action::Basura, [this] {
 				activateEvent(TutorialEvent::ExplicacionFalloAposta);
 				});
