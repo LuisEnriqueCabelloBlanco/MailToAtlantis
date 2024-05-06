@@ -116,6 +116,14 @@ void ecs::TutorialScene::activateAllButOneTube(int tub)
 
 }
 
+void ecs::TutorialScene::activateOneTube(int tube)
+{
+
+	Trigger* tuboTri = tubos[tube]->addComponent<Trigger>();
+	PackageChecker* tuboCheck = tubos[tube]->addComponent<PackageChecker>(Distrito(tube), this, mPipeMngr_);
+
+}
+
 ecs::Entity* ecs::TutorialScene::createMiniManual()
 {
 	
@@ -246,6 +254,14 @@ void ecs::TutorialScene::deactivateAllButOneTube(int tub)
 		}
 		
 	}
+
+}
+
+void ecs::TutorialScene::deactivateOneTube(int tube)
+{
+
+	tubos[tube]->removeComponent<Trigger>();
+	tubos[tube]->removeComponent<PackageChecker>();
 
 }
 

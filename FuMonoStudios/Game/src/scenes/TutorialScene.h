@@ -42,8 +42,10 @@ namespace ecs {
 
 		void deactivateTubos();
 		void deactivateAllButOneTube(int tube);
+		void deactivateOneTube(int tube);
 		void activateTubos();
 		void activateAllButOneTube(int tube);
+		void activateOneTube(int tube);
 
 		ecs::Entity* createGarbage() override; // empieza desactivada
 
