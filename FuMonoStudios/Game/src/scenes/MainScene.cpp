@@ -38,7 +38,7 @@
 #include <components/NPCExclamation.h>
 #include <sistemas/NPCeventSystem.h>
 
-ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), jefe_(nullptr)
+Scene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), jefe_(nullptr), clockMusic(0)
 {
 	timer_ = MINIGAME_TIME;
 #ifdef DEV_TOOLS
@@ -73,12 +73,22 @@ void ecs::MainScene::update()
 		{
 			if (timer_ > 0) {
 				timer_ -= Time::getDeltaTime();
+        if (timer_ <= MINIGAME_TIME / 4 && clockMusic == 0) {
+				SoundEmiter::instance()->playMusic("clockSlow");
+				clockMusic++;
+			}
+			if (timer_ <= MINIGAME_TIME / 10 && clockMusic == 1) {
+				SoundEmiter::instance()->haltMusic("clockSlow");
+				SoundEmiter::instance()->playMusic("clockFast");
+				clockMusic++;
+			}
 			}
 			else
 			{
 				gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
 			}
 		}
+		
 	}
 
 	dialogMngr_.update();
@@ -163,9 +173,10 @@ void ecs::MainScene::close() {
 	ecs::Scene::close();
 	generalData().npcEventSys->minigameOver();
 	generalData().updateMoney();
+	SoundEmiter::instance()->close();
 
-	sdlutils().musics().at("office").haltMusic();
-	sdlutils().musics().at("printer").haltMusic();
+	//sdlutils().musics().at("office").haltMusic();
+	//sdlutils().musics().at("printer").haltMusic();
 }
 
 ecs::Entity* ecs::MainScene::createClock() {
@@ -208,7 +219,7 @@ ecs::Entity* ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 			if (!stampHerramienta->getMulticolorStamp()) { //Si el sello no es multicolor
 				stampHerramienta->setFunctionality(type);
-
+				SoundEmiter::instance()->playSound("ink");
 				stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
 
 			}
@@ -548,12 +559,12 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int N
 	Vector2D buttonSize(40, 40);
 	factory_->setLayer(ecs::layer::FOREGROUND);
 	auto next = [manualRender]() {manualRender->nextTexture();};
-	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
+	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next, "page");
 	right->getComponent<Transform>()->setParent(manualTransform);
 	factory_->addHoverColorMod(right);
 
 	auto previous = [manualRender]() {manualRender->previousTexture();};
-	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous);
+	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous, "page");
 	left->getComponent<Transform>()->setParent(manualTransform);
 	left->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
 	factory_->addHoverColorMod(left);
@@ -571,7 +582,7 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int N
 		std::vector<int> indexTextures = { 2, 3, 6, 7, 8 };
 
 		auto pagCodigos = [manualRender]() { manualRender->setTextureIndx(2); };
-		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonIndexSize, buttonTexture, pagCodigos);
+		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonIndexSize, buttonTexture, pagCodigos, "page");
 		indexCodigos->getComponent<Transform>()->setParent(manualTransform);
 		factory_->addHoverColorMod(indexCodigos);
 
@@ -834,7 +845,6 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 		jefe_->getComponent<Clickeable>()->toggleClick(false);
 		newWorkEvent();
 		});
-
 	dialogMngr_.setEndDialogueCallback([characterEnt, this]{
 		jefe_->setAlive(false); //bye bye jefe
 		startWork();

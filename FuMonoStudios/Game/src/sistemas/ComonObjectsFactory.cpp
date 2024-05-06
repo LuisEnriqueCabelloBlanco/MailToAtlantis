@@ -60,18 +60,19 @@ ecs::Entity* ComonObjectsFactory::createImage(const Vector2D& pos, Texture* text
 	return createImage(pos, Vector2D(texture->width(), texture->height()), texture);
 }
 
-ecs::Entity* ComonObjectsFactory::createImageButton(const Vector2D& pos, const Vector2D& size, Texture* texture, CallbackClickeable call)
+ecs::Entity* ComonObjectsFactory::createImageButton(const Vector2D& pos, const Vector2D& size, Texture* texture, 
+	CallbackClickeable call, std::string soundClick)
 {
 	auto entity = createImage(pos,size,texture);
-	makeButton(entity, call);
+	makeButton(entity, call, soundClick);
 	return entity;
 }
 
 ecs::Entity* ComonObjectsFactory::createTextuButton(const Vector2D& pos, const std::string text, int fontSize, CallbackClickeable call, 
-	SDL_Color textColor)
+	std::string soundClick, SDL_Color textColor)
 {
 	auto entity = createLabel(pos, text, fontSize,textColor);
-	makeButton(entity, call);
+	makeButton(entity, call, soundClick);
 	return entity;
 }
 
@@ -120,9 +121,9 @@ Texture* ComonObjectsFactory::createTextTexture(const std::string& text, int fon
 	return nText;
 }
 
-void ComonObjectsFactory::makeButton(ecs::Entity* entity, CallbackClickeable call)
+void ComonObjectsFactory::makeButton(ecs::Entity* entity, CallbackClickeable call, std::string clickSound)
 {
-	auto click = entity->addComponent<Clickeable>();
+	auto click = entity->addComponent<Clickeable>(clickSound);
 	click->addEvent(call);
 }
 

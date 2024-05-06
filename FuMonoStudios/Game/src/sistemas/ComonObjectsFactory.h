@@ -96,7 +96,7 @@ public:
 	/// <param name="texture"></param>
 	/// <param name="call"></param>
 	/// <returns></returns>
-	ecs::Entity* createImageButton(const Vector2D& pos, const Vector2D& size, Texture* texture, CallbackClickeable call);
+	ecs::Entity* createImageButton(const Vector2D& pos, const Vector2D& size, Texture* texture, CallbackClickeable call, std::string soundClick);
 	/// <summary>
 	/// crea un boton a partir de un texto pasado y con un callback ya vinculado
 	/// </summary>
@@ -107,7 +107,7 @@ public:
 	/// <param name="textColor"></param>
 	/// <returns></returns>
 	ecs::Entity* createTextuButton(const Vector2D& pos, const std::string text,
-		int fontSize, CallbackClickeable call,SDL_Color textColor = build_sdlcolor(0x000000ff));
+		int fontSize, CallbackClickeable call, std::string soundClick, SDL_Color textColor = build_sdlcolor(0x000000ff));
 
 
 	/// <summary>
@@ -139,7 +139,7 @@ private:
 	/// </summary>
 	/// <param name=""></param>
 	/// <param name="call"></param>
-	void makeButton(ecs::Entity*, CallbackClickeable call);
+	void makeButton(ecs::Entity*, CallbackClickeable call, std::string clickSound);
 
 
 	/// <summary>

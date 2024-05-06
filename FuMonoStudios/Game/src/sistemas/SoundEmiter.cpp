@@ -4,20 +4,31 @@
 #include "SoundEmiter.h"
 #include <sdlutils/SDLUtils.h>
 #include <json/JSON.h>
+#include <exception>
 
-SoundEmiter::SoundEmiter() : soundVolume_(100), musicVolume_(100)
+const int MAX_CHANNELS = 3;
+
+
+SoundEmiter::SoundEmiter() : soundVolume_(100), musicVolume_(100), playInChannel_(0)
 {
 
 }
 
 SoundEmiter::~SoundEmiter()
 {
-
+	haltAllSounds();
 }
 
 void SoundEmiter::init()
 {
 	processSoundListJSON();
+	SoundEffect::setNumberofChannels(MAX_CHANNELS);
+}
+
+void SoundEmiter::close()
+{
+	haltAllSounds();
+	haltAllMusic();
 }
 
 void SoundEmiter::setSoundVolumes(int volume)
@@ -35,48 +46,74 @@ void SoundEmiter::setSoundVolumes(int volume)
 
 void SoundEmiter::muteSingleSound(std::string sound, bool mute)
 {
-	auto it = soundPulls_.at(sound);
-	it.second = mute;
-	for (int i = 0; i < it.first; i++) {
-		std::string fileName = sound + std::to_string(i);
-		if (mute) {
-			sdlutils().soundEffects().at(fileName).setVolume(0);
+	try {
+		auto it = soundPulls_.at(sound);
+		it.mute = mute;
+		for (int i = 0; i < it.amount; i++) {
+			std::string fileName = sound + std::to_string(i);
+			if (mute) {
+				sdlutils().soundEffects().at(fileName).setVolume(0);
+			}
+			else {
+				sdlutils().soundEffects().at(fileName).setVolume(soundVolume_);
+			}
 		}
-		else {
-			sdlutils().soundEffects().at(fileName).setVolume(soundVolume_);
-		}
+	}
+	catch (...) {
+		throw std::exception("No existe ese sonido.");
 	}
 }
 
 void SoundEmiter::playSound(std::string sound)
 {
-	auto it = soundPulls_.at(sound);
-	if (!it.second) {
-		int am = it.first;
-		int rnd = sdlutils().rand().nextInt(0, am);
-		std::string fileName = sound + std::to_string(rnd);
-		sdlutils().soundEffects().at(fileName).setVolume(soundVolume_);
-		sdlutils().soundEffects().at(fileName).play();
+	try {
+		auto it = soundPulls_.at(sound);
+		if (!it.mute) {
+			int am = it.amount;
+			int rnd = sdlutils().rand().nextInt(0, am);
+			std::string fileName = sound + std::to_string(rnd);
+			std::cout << fileName << "\n";
+			sdlutils().soundEffects().at(fileName).setVolume(soundVolume_);
+			sdlutils().soundEffects().at(fileName).play(0, playInChannel_);
+			it.lastChannel = playInChannel_;
+			changeChannel();
+		}
+	}
+	catch (...) {
+		throw std::exception("No existe ese sonido.");
 	}
 }
 
 void SoundEmiter::playSound(std::string sound, float modifier)
 {
-	auto it = soundPulls_.at(sound);
-	if (!it.second) {
-		int am = it.first;
-		int rnd = sdlutils().rand().nextInt(0, am);
-		std::string fileName = sound + std::to_string(rnd);
-		sdlutils().soundEffects().at(fileName).setVolume(soundVolume_ * modifier);
-		sdlutils().soundEffects().at(fileName).play();
+	try {
+		auto it = soundPulls_.at(sound);
+		if (!it.mute) {
+			int am = it.amount;
+			int rnd = sdlutils().rand().nextInt(0, am);
+			std::string fileName = sound + std::to_string(rnd);
+			std::cout << fileName << "\n";
+			sdlutils().soundEffects().at(fileName).setVolume(soundVolume_ * modifier);
+			sdlutils().soundEffects().at(fileName).play(0, playInChannel_);
+			it.lastChannel = playInChannel_;
+			changeChannel();
+		}
+	}
+	catch (...) {
+		throw std::exception("No existe ese sonido.");
 	}
 }
 
 void SoundEmiter::haltSound(std::string sound)
 {
-	int it = soundPulls_.at(sound).first;
-	for (int i = 0; i < it; i++) {
-		sdlutils().soundEffects().at(sound + std::to_string(i)).haltChannel();
+	try {
+		auto it = soundPulls_.at(sound);
+		for (int i = 0; i < it.amount; i++) {
+			sdlutils().soundEffects().at(sound + std::to_string(i)).haltChannel(it.lastChannel);
+		}
+	}
+	catch (...) {
+		throw std::exception("Ha ocurrido un error al intentar detener ese sonido.");
 	}
 }
 
@@ -92,21 +129,31 @@ void SoundEmiter::setMusicVolume(int volume)
 
 void SoundEmiter::playMusic(std::string song)
 {
-	if (activeSongs_.find(song) != activeSongs_.end()) {
-		sdlutils().musics().at(song).play();
-		sdlutils().musics().at(song).setMusicVolume(musicVolume_);
+	try {
+		if (activeSongs_.find(song) != activeSongs_.end()) {
+			sdlutils().musics().at(song).play();
+			sdlutils().musics().at(song).setMusicVolume(musicVolume_);
+		}
+		else {
+			activeSongs_.insert({ song, true });
+			sdlutils().musics().at(song).play();
+			sdlutils().musics().at(song).setMusicVolume(musicVolume_);
+		}
 	}
-	else {
-		activeSongs_.insert({ song, true });
-		sdlutils().musics().at(song).play();
-		sdlutils().musics().at(song).setMusicVolume(musicVolume_);
+	catch (...) {
+		throw std::exception("No existe esa m�sica.");
 	}
 }
 
 void SoundEmiter::haltMusic(std::string song)
 {
-	sdlutils().musics().at(song).haltMusic();
-	activeSongs_.at(song) = false;
+	try {
+		sdlutils().musics().at(song).haltMusic();
+		activeSongs_.at(song) = false;
+	}
+	catch (...) {
+		throw std::exception("No existe esa m�sica.");
+	}
 }
 
 void SoundEmiter::processSoundListJSON()
@@ -116,7 +163,7 @@ void SoundEmiter::processSoundListJSON()
 	// check it was loaded correctly
 	// the root must be a JSON object
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while loading sound pulls";
+		throw std::exception("Something went wrong while loading sound pulls");
 	}
 
 	JSONObject root = jValueRoot->AsObject();
@@ -134,9 +181,33 @@ void SoundEmiter::processSoundListJSON()
 			soundPulls_.insert({ key, {ammount, false} });
 		}
 		else {
-
-			throw "Error uwu";
-
+			throw std::exception("Something went wrong while loading sound");
 		}
 	}
+}
+
+void SoundEmiter::haltAllSounds()
+{
+	for (int i = -1; i < MAX_CHANNELS; i++) {
+		sdlutils().soundEffects().at("click0").haltChannel(i); 
+	}
+}
+
+void SoundEmiter::haltAllMusic()
+{
+	for (auto i = activeSongs_.begin(); i != activeSongs_.end(); i++) {
+		if ((*i).second) {
+			sdlutils().musics().at((*i).first).haltMusic();
+		}
+	}
+}
+
+void SoundEmiter::changeChannel()
+{
+	std::cout << playInChannel_ << " ";
+	playInChannel_++;
+	if (playInChannel_ == MAX_CHANNELS) {
+		playInChannel_ = 0;
+	}
+	std::cout << playInChannel_ << "\n";
 }

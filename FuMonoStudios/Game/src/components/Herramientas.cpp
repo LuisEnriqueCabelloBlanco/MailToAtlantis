@@ -1,6 +1,7 @@
 #include "Herramientas.h"
 #include <components/Transform.h>
 #include <components/MoverTransform.h>
+#include <sistemas/SoundEmitter.h>
 
 Herramientas::Herramientas() {
 	multicolorStamp = false;
@@ -18,6 +19,7 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 		funcion_ = [this](ecs::Entity* paq) {
 			Paquete* paqComp = paq->getComponent<Paquete>();
 			paqComp->sellarCalle(pq::C1, ent_->getComponent<Transform>(), false);
+			SoundEmiter::instance()->playSound("stamp");
 			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
 			ent_->getComponent<MoverTransform>()->enable();
 			};
@@ -26,6 +28,7 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 		funcion_ = [this](ecs::Entity* paq) {
 			Paquete* paqComp = paq->getComponent<Paquete>();
 			paqComp->sellarCalle(pq::C2, ent_->getComponent<Transform>(), false);
+			SoundEmiter::instance()->playSound("stamp");
 			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
 			ent_->getComponent<MoverTransform>()->enable();
 			};
@@ -34,6 +37,7 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 		funcion_ = [this](ecs::Entity* paq) {
 			Paquete* paqComp = paq->getComponent<Paquete>();
 			paqComp->sellarCalle(pq::C3, ent_->getComponent<Transform>(), false);
+			SoundEmiter::instance()->playSound("stamp");
 			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
 			ent_->getComponent<MoverTransform>()->enable();
 			};
@@ -42,7 +46,8 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 		multicolorStamp = true;
 		funcion_ = [this](ecs::Entity* paq) {
 			Paquete* paqComp = paq->getComponent<Paquete>();			
-			paqComp->sellarCalle(paq->getComponent<Paquete>()->getCalle(), ent_->getComponent<Transform>(), true);			
+			paqComp->sellarCalle(paq->getComponent<Paquete>()->getCalle(), ent_->getComponent<Transform>(), true);		
+			SoundEmiter::instance()->playSound("stamp");
 			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
 			ent_->getComponent<MoverTransform>()->enable();
 			};

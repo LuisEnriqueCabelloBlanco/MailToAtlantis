@@ -550,41 +550,107 @@
     }
   ],
   "sounds": [
-    {"id": "click", "file": "recursos/sounds/click.wav"},
-    {"id": "arrastrar0", "file": "recursos/sounds/arrastrar.wav"},
-    {"id": "choque", "file": "recursos/sounds/choque.wav"},
-    {"id": "MoneyProfits", "file": "recursos/sounds/MoneyProfits.wav"},
-    {"id": "LoseMoney", "file": "recursos/sounds/Lose.wav"},
-    {"id": "GuiImpact", "file": "recursos/sounds/GuiImpact.wav"},
     {
-      "id": "choque2",
-      "file": "recursos/sounds/choque.wav"
+      "id": "click0",
+      "file": "recursos/sounds/click.wav"
     },
     {
-      "id": "choque0",
+      "id": "click1",
+      "file": "recursos/sounds/click1.wav"
+    },
+    {
+      "id": "arrastrar0",
+      "file": "recursos/sounds/arrastrar.wav"
+    },
+    {
+      "id": "MoneyProfits",
+      "file": "recursos/sounds/MoneyProfits.wav"
+    },
+    {
+      "id": "LoseMoney",
+      "file": "recursos/sounds/Lose.wav"
+    },
+    {
+      "id": "GuiImpact",
+      "file": "recursos/sounds/GuiImpact.wav"
+    },
+    {
+      "id": "thud0",
       "file": "recursos/sounds/thud0.wav"
     },
     {
-      "id": "choque1",
+      "id": "choque0",
       "file": "recursos/sounds/cardboardDrop.wav"
+    },
+    {
+      "id": "choque1",
+      "file": "recursos/sounds/cardboardDrop1.wav"
+    },
+    {
+      "id": "tubo0",
+      "file": "recursos/sounds/tubochupa.wav"
+    },
+    {
+      "id": "emb_com0",
+      "file": "recursos/sounds/embalajeinicial.wav"
+    },
+    {
+      "id": "emb_cont0",
+      "file": "recursos/sounds/embalajesigue.wav"
+    },
+    {
+      "id": "stamp0",
+      "file": "recursos/sounds/stamp.wav"
+    },
+    {
+      "id": "ink0",
+      "file": "recursos/sounds/changeInks.wav"
+    },
+    {
+      "id": "ink1",
+      "file": "recursos/sounds/changeInks1.wav"
+    },
+    {
+      "id": "ink2",
+      "file": "recursos/sounds/changeInks2.wav"
+    },
+    {
+      "id": "page0",
+      "file": "recursos/sounds/paginas.wav"
+    },
+    {
+      "id": "page1",
+      "file": "recursos/sounds/paginas1.wav"
+    },
+    {
+      "id": "page2",
+      "file": "recursos/sounds/paginas2.wav"
     }
   ],
   "musics": [
     {
       "id": "trabajo",
-      "file": "recursos/sounds/imperial_march.wav"
+      "file": "recursos/musics/imperial_march.wav"
     },
     {
       "id": "mainMenu",
-      "file": "recursos/sounds/DQOverture.wav"
+      "file": "recursos/musics/DQOverture.wav"
     },
     {
       "id": "office",
-      "file": "recursos/sounds/office.wav"
+      "file": "recursos/musics/office.wav"
     },
     {
       "id": "printer",
-      "file": "recursos/sounds/printer.wav"
+      "file": "recursos/musics/printer.wav"
+    },
+    {
+      "id": "clockSlow",
+      "file": "recursos/musics/tictacLento.wav"
+    },
+    {
+      "id": "clockFast",
+      "file": "recursos/musics/tictacRapido.wav"
     }
   ]
 }
