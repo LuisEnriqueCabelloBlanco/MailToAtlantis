@@ -1,6 +1,6 @@
 #pragma once
-#include "../architecture/Component.h"
-#include "Paquete.h"
+#include <architecture/Component.h>
+#include <components/Paquete.h>
 
 class ErrorNote : public ecs::Component
 {

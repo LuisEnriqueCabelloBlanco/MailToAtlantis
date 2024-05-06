@@ -1,5 +1,5 @@
 #pragma once
-#include "../architecture/Component.h"
+#include <architecture/Component.h>
 #include <functional>
 
 using Callback = std::function<void(ecs::Entity*)>;

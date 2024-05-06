@@ -1,7 +1,8 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "ecs.h"
-//#include "Entity.h"
+#endif // !DEV_TOOLS
+#include <architecture/ecs.h>
 
 class Manager;
 namespace ecs {

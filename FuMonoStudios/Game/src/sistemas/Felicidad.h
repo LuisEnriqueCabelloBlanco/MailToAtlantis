@@ -1,5 +1,5 @@
 #pragma once
-#include "../utils/Singleton.h"
+#include <utils/Singleton.h>
 #include <unordered_map>
 
 //enums globales

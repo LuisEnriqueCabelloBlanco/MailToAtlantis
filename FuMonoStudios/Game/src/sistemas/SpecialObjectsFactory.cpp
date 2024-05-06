@@ -1,8 +1,8 @@
 #include "SpecialObjectsFactory.h"
-#include "../components/Render.h"
-#include "../scenes/MainScene.h"
-#include "../sdlutils/SDLUtils.h"
-#include "../components/DragAndDrop.h"
+#include <components/Render.h>
+#include <scenes/MainScene.h>
+#include <sdlutils/SDLUtils.h>
+#include <components/DragAndDrop.h>
 
 SpecialObjectsFactory::SpecialObjectsFactory(ecs::Scene* sc) {
 	scene = sc;

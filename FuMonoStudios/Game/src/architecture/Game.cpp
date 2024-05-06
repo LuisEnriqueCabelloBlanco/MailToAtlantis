@@ -1,35 +1,36 @@
 #include "Game.h"
 #include <list>
-
+#include <sdlutils/InputHandler.h>
 #ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
-#endif // DEV_TOOLS
-
+#else
 #include <utils/checkML.h>
+#endif // DEV_TOOLS
 #include <SDL.h>
 #include <algorithm>
-#include "../sdlutils/InputHandler.h"
-#include "../scenes/MainScene.h"
-#include "../scenes/ConfigScene.h"
-#include "../scenes/MainMenu.h"
-#include "../scenes/PauseScene.h"
-#include "../scenes/ExplorationScene.h"
-#include "../scenes/EndWorkScene.h"
-#include "../scenes/PauseScene.h"
+#include <scenes/MainScene.h>
+#include <scenes/ConfigScene.h>
+#include <scenes/MainMenu.h>
+#include <scenes/PauseScene.h>
+#include <scenes/ExplorationScene.h>
+#include <scenes/EndWorkScene.h>
 #include <scenes/EndGameScene.h>
-#include "../scenes/TutorialScene.h"
-#include "Time.h"
-#include "GeneralData.h"
+#include <scenes/TutorialScene.h>
+#include <scenes/IntroScene.h>
+#include <architecture/Time.h>
+#include <architecture/GeneralData.h>
 #include <iostream>
 #include <QATools/DataCollector.h>
-#include "../sistemas/SoundEmiter.h"
+#include <architecture/GameConstants.h>
+#include <sistemas/SoundEmiter.h>
 
 Game::Game() :exit_(false) {
 	SDLUtils::init("Mail To Atlantis", 1152, 648, "recursos/config/mail.resources.json");
 	Config::init("recursos/config/mail.config.json");
 	GeneralData::init();
+	PaqueteBuilder::initdata();
 
 	auto& sdl = *SDLUtils::instance();
 
@@ -42,7 +43,7 @@ Game::Game() :exit_(false) {
 	SDL_SetWindowFullscreen(window_,SDL_WINDOW_FULLSCREEN_DESKTOP);
 
 	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),
-		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new EndGameScene(),new ecs::TutorialScene(), new ecs::ConfigScene()};
+		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new EndGameScene(),new ecs::TutorialScene(), new ecs::ConfigScene(), new ecs::IntroScene};
 	gamePaused_ = false;
 
 	loadScene(ecs::sc::MENU_SCENE);
@@ -78,10 +79,6 @@ void Game::run()
 			changeScene(scene1_, scene2_);
 			sceneChange_ = false;
 		}
-		//SDL_Event e;
-		//while (SDL_PollEvent(&e)) {
-		//	ImGui_ImplSDL2_ProcessEvent(&e);
-		//}
 		refresh();
 		ih().refresh();
 		Uint32 startTime = sdlutils().virtualTimer().currTime();
@@ -92,16 +89,6 @@ void Game::run()
 		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_F)) {
 			sdlutils().toggleFullScreen();
 		}
-		/*if (ih().isKeyDown(SDL_SCANCODE_P)) {
-			loadScene(ecs::sc::PAUSE_SCENE);
-			gamePaused_ = true;
-		}
-		if (ih().isKeyDown(SDL_SCANCODE_E)) {
-			changeScene(ecs::sc::MENU_SCENE, ecs::sc::MAIN_SCENE);
-		}
-		if (ih().isKeyDown(SDL_SCANCODE_W)) {
-			changeScene(ecs::sc::MAIN_SCENE, ecs::sc::MENU_SCENE);
-		}*/
 #ifdef QA_TOOLS
 		if (ih().mouseButtonDownEvent()&&ih().getMouseButtonState(0)) {
 			dataCollector().clicks()++;
@@ -121,10 +108,6 @@ void Game::run()
 		sdlutils().presentRenderer();
 
 		Time::deltaTime_ = (sdlutils().virtualTimer().currTime() - startTime) / 1000.0;
-		/*if (sdlutils().virtualTimer().currTime()/1000 > autoRecodTime) {
-			dataCollector().record();
-			autoRecodTime++;
-		}*/
 	}
 #ifdef DEV_TOOLS
 	ImGui_ImplSDLRenderer2_Shutdown();
@@ -132,11 +115,6 @@ void Game::run()
 	ImGui::DestroyContext();
 #endif // DEV_TOOLS
 }
-
-//void Game::writeMessage() {
-//
-//	
-//}
 
 /// <summary>
 /// Carga la escena indicada por el Id

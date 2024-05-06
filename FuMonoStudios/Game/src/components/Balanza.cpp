@@ -1,10 +1,9 @@
 #include "Balanza.h"
-#include "../architecture/Entity.h"
-#include "Paquete.h"
-#include "Gravity.h"
-#include "RotarTransform.h"
-#include "MoverTransform.h"
-
+#include <architecture/Entity.h>
+#include <components/Paquete.h>
+#include <components/Gravity.h>
+#include <components/RotarTransform.h>
+#include <components/MoverTransform.h>
 
 Balanza::Balanza()
 {

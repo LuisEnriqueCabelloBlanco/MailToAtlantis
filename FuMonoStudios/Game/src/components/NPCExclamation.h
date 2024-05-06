@@ -1,6 +1,6 @@
 #pragma once
-#include "../architecture/Component.h"
-#include "Transform.h"
+#include <architecture/Component.h>
+#include <components/Transform.h>
 
 class NPCExclamation : public ecs::Component
 {

@@ -1,11 +1,13 @@
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "ClockAux.h"
-#include "../architecture/Entity.h"
-#include "../architecture/Scene.h"
-#include "../components/Render.h"
-#include "../components/Transform.h"
-#include "../architecture/Time.h"
-#include "../architecture/Game.h"
+#include <architecture/Entity.h>
+#include <architecture/Scene.h>
+#include <components/Render.h>
+#include <components/Transform.h>
+#include <architecture/Time.h>
+#include <architecture/Game.h>
 
 ClockAux::ClockAux(float MinigameTime) {
 	minigameTime = MinigameTime;

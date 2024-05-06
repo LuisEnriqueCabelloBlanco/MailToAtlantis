@@ -1,11 +1,13 @@
 #include "Transform.h"
-#include "../sdlutils/InputHandler.h"
+#include <sdlutils/InputHandler.h>
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../architecture/Component.h"
-#include "../utils/Vector2D.h"
-#include "../sdlutils/SDLUtils.h"
-#include "../architecture/Entity.h"
-#include "Depth.h"
+#endif // !DEV_TOOLS
+#include <architecture/Component.h>
+#include <utils/Vector2D.h>
+#include <sdlutils/SDLUtils.h>
+#include <architecture/Entity.h>
+#include <components/Depth.h>
 
 Transform::Transform(float x, float y, float w, float h) : Component(), 
 position_(x, y), width_(w), height_(h), scale_(1), trueScale_(1),parentTr_(nullptr),rotation_(0), childsTr_() {

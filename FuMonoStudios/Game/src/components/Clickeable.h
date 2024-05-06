@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../architecture/Component.h"
+#include <architecture/Component.h>
 #include <functional>
 #include <list>
 
@@ -22,9 +22,12 @@ public:
 
 	void addEvent(CallbackClickeable event );
 
+	void toggleClick(bool onoff) { canClick_ = onoff; }
 private:
 
 	Transform* mTr_;
 
 	std::list<CallbackClickeable> eventsWhenClick_;
+
+	bool canClick_;
 };

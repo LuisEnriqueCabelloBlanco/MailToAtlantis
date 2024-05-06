@@ -1,7 +1,9 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../architecture/Scene.h"
-#include "../architecture/ecs.h"
+#endif // !DEV_TOOLS
+#include <architecture/Scene.h>
+#include <architecture/ecs.h>
 
 class Game;
 

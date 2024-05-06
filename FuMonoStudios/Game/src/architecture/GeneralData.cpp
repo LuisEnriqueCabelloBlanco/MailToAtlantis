@@ -1,15 +1,15 @@
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../components/DialogManager.h"
+#endif // !DEV_TOOLS
 #include "GeneralData.h"
-#include "../json/JSON.h"
-#include "../json/JSONValue.h"
-#include "../sdlutils/RandomNumberGenerator.h"
-
-#include "../architecture/ecs.h"
-#include "../sistemas/SoundEmiter.h"
-#include "../sistemas/PaqueteBuilder.h"
-#include "Game.h"
-#include "../sistemas/NPCeventSystem.h"
+#include <json/JSON.h>
+#include <sdlutils/RandomNumberGenerator.h>
+#include <architecture/ecs.h>
+#include <sistemas/SoundEmiter.h>
+#include <sistemas/PaqueteBuilder.h>
+#include <architecture/Game.h>
+#include <sistemas/NPCeventSystem.h>
+#include <architecture/GameConstants.h>
 
 
 GeneralData::GeneralData()

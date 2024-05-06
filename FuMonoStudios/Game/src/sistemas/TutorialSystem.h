@@ -1,7 +1,9 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../architecture/Entity.h"
-#include "../components/DialogManager.h"
+#endif // !DEV_TOOLS
+#include <architecture/Entity.h>
+#include <components/DialogManager.h>
 #include <functional>
 
 namespace ecs {
