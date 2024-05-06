@@ -61,22 +61,26 @@ ecs::MainScene::~MainScene()
 void ecs::MainScene::update()
 {
 	Scene::update();
-	if (gm().gamePaused()) {
-		timerPaused_ = true;
-	}
-	else {
-		timerPaused_ = false;
-	}
-	if (!timerPaused_)
-	{
-		if (timer_ > 0) {
-			timer_ -= Time::getDeltaTime();
+
+	if (!dialogoPendiente) {
+		if (gm().gamePaused()) {
+			timerPaused_ = true;
 		}
-		else
+		else {
+			timerPaused_ = false;
+		}
+		if (!timerPaused_)
 		{
-			gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
+			if (timer_ > 0) {
+				timer_ -= Time::getDeltaTime();
+			}
+			else
+			{
+				gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
+			}
 		}
 	}
+
 	dialogMngr_.update();
 
 }
@@ -797,6 +801,7 @@ void ecs::MainScene::createPaquete (int lv) {
 
 
 ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
+	dialogoPendiente = true;
 
 	std::string jsonPath = "recursos/data/eventosjefe.json";
 	dialogMngr_.init(this, jsonPath);
@@ -820,7 +825,8 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 
 void ecs::MainScene::startWork()
 {
-	timerPaused_ = false;
+	//timerPaused_ = false;
+	dialogoPendiente = false;
 	createPaquete(generalData().getPaqueteLevel());
 	createClock();
 }

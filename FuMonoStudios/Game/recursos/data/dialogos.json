@@ -1121,9 +1121,9 @@
         "TextoCasaGrande01": [ "Grande01" ],
         "TextoCasaGrande02": [ "Grande02" ],
 
-        "TextoCasaGrande10": [ "Grande10" ],
-        "TextoCasaGrande11": [ "Grande11" ],
-        "TextoCasaGrande12": [ "Grande12" ],
+        "TextoCasaGrande10": [ "Esta casa es Grande10" ],
+        "TextoCasaGrande11": [ "Esta casa no es muy muy muy Grande11" ],
+        "TextoCasaGrande12": [ "Es demasiado aaaaaaaaaaaaa tu Grande12" ],
 
         "TextoCasaGrande20": [ "Grande20" ],
         "TextoCasaGrande21": [ "Grande21" ],
