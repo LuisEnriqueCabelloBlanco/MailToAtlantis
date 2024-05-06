@@ -30,6 +30,7 @@
 #include "../components/HoverSensorComponent.h"
 #include "../components/MoverTransform.h"
 #include <components/RenderWithLight.h>
+#include <sistemas/SoundEmiter.h>
 
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
@@ -153,6 +154,7 @@ void ecs::ExplorationScene::close() {
 	clearScene();
 	delete rightTex;
 	delete leftTex;
+	SoundEmiter::instance()->close();
 	diario_->setAlive(false);
 }
 

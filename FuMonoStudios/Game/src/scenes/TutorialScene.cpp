@@ -11,6 +11,7 @@
 #include "../components/ErrorNote.h"
 #include "../components/Balanza.h"
 #include "../components/RotarTransform.h"
+#include <sistemas/SoundEmiter.h>
 
 ecs::TutorialScene::TutorialScene() : Scene(), balanzaUsed(false) {
 
@@ -69,6 +70,7 @@ void ecs::TutorialScene::init() {
 
 void ecs::TutorialScene::close() {
 	ecs::Scene::close();
+	SoundEmiter::instance()->close();
 }
 
 void ecs::TutorialScene::createManual() {

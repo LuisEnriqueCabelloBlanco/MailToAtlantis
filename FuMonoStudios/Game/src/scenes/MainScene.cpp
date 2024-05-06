@@ -177,8 +177,8 @@ void ecs::MainScene::close() {
 	generalData().updateMoney();
 	SoundEmiter::instance()->close();
 
-	sdlutils().musics().at("office").haltMusic();
-	sdlutils().musics().at("printer").haltMusic();
+	//sdlutils().musics().at("office").haltMusic();
+	//sdlutils().musics().at("printer").haltMusic();
 }
 
 void ecs::MainScene::createClock() {

@@ -26,6 +26,7 @@ void SoundEmiter::init()
 void SoundEmiter::close()
 {
 	haltAllSounds();
+	haltAllMusic();
 }
 
 void SoundEmiter::setSoundVolumes(int volume)
@@ -57,7 +58,7 @@ void SoundEmiter::muteSingleSound(std::string sound, bool mute)
 		}
 	}
 	catch (...) {
-		throw "No existe ese sonido.";
+		throw std::exception("No existe ese sonido.");
 	}
 }
 
@@ -77,7 +78,7 @@ void SoundEmiter::playSound(std::string sound)
 		}
 	}
 	catch (...) {
-		throw "No existe ese sonido.";
+		throw std::exception("No existe ese sonido.");
 	}
 }
 
@@ -97,7 +98,7 @@ void SoundEmiter::playSound(std::string sound, float modifier)
 		}
 	}
 	catch (...) {
-		throw "No existe ese sonido.";
+		throw std::exception("No existe ese sonido.");
 	}
 }
 
@@ -110,7 +111,7 @@ void SoundEmiter::haltSound(std::string sound)
 		}
 	}
 	catch (...) {
-		throw "Ha ocurrido un error al intentar detener ese sonido.";
+		throw std::exception("Ha ocurrido un error al intentar detener ese sonido.");
 	}
 }
 
@@ -138,7 +139,7 @@ void SoundEmiter::playMusic(std::string song)
 		}
 	}
 	catch (...) {
-		throw "No existe esa música.";
+		throw std::exception("No existe esa música.");
 	}
 }
 
@@ -149,7 +150,7 @@ void SoundEmiter::haltMusic(std::string song)
 		activeSongs_.at(song) = false;
 	}
 	catch (...) {
-		throw "No existe esa música.";
+		throw std::exception("No existe esa música.");
 	}
 }
 
@@ -160,7 +161,7 @@ void SoundEmiter::processSoundListJSON()
 	// check it was loaded correctly
 	// the root must be a JSON object
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while loading sound pulls";
+		throw std::exception("Something went wrong while loading sound pulls");
 	}
 
 	JSONObject root = jValueRoot->AsObject();
@@ -178,7 +179,7 @@ void SoundEmiter::processSoundListJSON()
 			soundPulls_.insert({ key, {ammount, false} });
 		}
 		else {
-			throw "Error uwu";
+			throw std::exception("Something went wrong while loading sound");
 		}
 	}
 }
@@ -192,7 +193,11 @@ void SoundEmiter::haltAllSounds()
 
 void SoundEmiter::haltAllMusic()
 {
-
+	for (auto i = activeSongs_.begin(); i != activeSongs_.end(); i++) {
+		if ((*i).second) {
+			sdlutils().musics().at((*i).first).haltMusic();
+		}
+	}
 }
 
 void SoundEmiter::changeChannel()
