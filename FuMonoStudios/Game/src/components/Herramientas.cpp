@@ -1,7 +1,7 @@
 #include "Herramientas.h"
 #include <components/Transform.h>
 #include <components/MoverTransform.h>
-#include <sistemas/SoundEmitter.h>
+#include <sistemas/SoundEmiter.h>
 
 Herramientas::Herramientas() {
 	multicolorStamp = false;

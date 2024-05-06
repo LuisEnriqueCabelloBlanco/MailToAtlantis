@@ -78,7 +78,7 @@ void ecs::MainMenu::init()
 	auto ajustes = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 700), "Configuracion", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 	gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::CONFIG_SCENE);
-		}, textColor);
+		}, "click", textColor);
 	factory_->addHilghtOnHover(ajustes);
 	factory_->addHoverColorMod(ajustes);
 

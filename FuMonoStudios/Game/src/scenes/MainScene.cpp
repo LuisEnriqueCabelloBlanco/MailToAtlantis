@@ -38,7 +38,7 @@
 #include <components/NPCExclamation.h>
 #include <sistemas/NPCeventSystem.h>
 
-Scene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), jefe_(nullptr), clockMusic(0)
+ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), jefe_(nullptr), clockMusic(0)
 {
 	timer_ = MINIGAME_TIME;
 #ifdef DEV_TOOLS
@@ -844,7 +844,7 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 	ecs::Entity* characterEnt = factory_->createImageButton(pos, size, characterTexture, [this, characterEnt]() {
 		jefe_->getComponent<Clickeable>()->toggleClick(false);
 		newWorkEvent();
-		});
+		}, "click");
 	dialogMngr_.setEndDialogueCallback([characterEnt, this]{
 		jefe_->setAlive(false); //bye bye jefe
 		startWork();

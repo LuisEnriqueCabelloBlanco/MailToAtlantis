@@ -86,7 +86,7 @@ void ecs::ConfigScene::init()
 		audioValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParam(1)), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
 		audioValueEnt_->getComponent<RenderImage>()->setTexture(audioValueTexture_);
 	};
-	factory_->createTextuButton({ 600,600 }, "(+)", 50, funcPress3, "click);
+	factory_->createTextuButton({ 600,600 }, "(+)", 50, funcPress3, "click");
 }
 
 //No usar de momento este método porque peta el programa aunque tenga la misma función que lo que pasa en los callbacks

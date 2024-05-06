@@ -561,9 +561,6 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "click");
-	
-	//return characterEnt;
-	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "click");
 
 	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
 
