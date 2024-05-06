@@ -64,6 +64,8 @@ namespace ecs {
         float timer_;
         bool timerPaused_;
 
+        bool dialogoPendiente;
+
         DialogManager dialogMngr_;
         
         ecs::Entity* jefe_;
