@@ -32,7 +32,8 @@ ecs::ExplorationScene::ExplorationScene() :Scene()
 
 ecs::ExplorationScene::~ExplorationScene()
 {
-
+	delete leftTex;
+	delete rightTex;
 }
 
 void ecs::ExplorationScene::init()
