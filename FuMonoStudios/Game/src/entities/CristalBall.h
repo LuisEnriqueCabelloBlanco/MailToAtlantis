@@ -1,5 +1,6 @@
-#include "../components/Paquete.h"
-#include "../components/Render.h"
+#pragma once
+#include <components/Paquete.h>
+#include <components/Render.h>
 
 #pragma once
 class CristalBall : public ecs::Component

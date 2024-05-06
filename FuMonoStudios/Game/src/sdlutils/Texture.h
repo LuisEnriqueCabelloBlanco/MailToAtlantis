@@ -1,7 +1,9 @@
 // This file is part of the course TPV2@UCM - Samir Genaim
 
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include <SDL.h>
 #include <SDL_image.h>
 #include <string>

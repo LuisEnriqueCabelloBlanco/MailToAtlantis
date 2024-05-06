@@ -1,12 +1,11 @@
-#include "../sdlutils/InputHandler.h"
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include <memory>
-#include "../json/JSON.h"
+#endif // !DEV_TOOLS
 #include "Paquete.h"
 #include <iostream>
-#include "../architecture/Entity.h"
-#include "Render.h"
-#include "../architecture/Scene.h"
+#include <architecture/Entity.h>
+#include <components/Render.h>
+#include <architecture/Scene.h>
 #include <bitset>
 
 

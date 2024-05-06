@@ -1,7 +1,7 @@
 #pragma once
 #include <functional>
-#include "json/JSONValue.h"
-#include "../components/Paquete.h"
+#include <json/JSONValue.h>
+#include <components/Paquete.h>
 #include <sistemas/NPCevent.h>
 
 
@@ -34,7 +34,7 @@ public:
 
 	void shuffleNPCqueue();
 private:
-	void procesarStringRecompensas(std::vector<std::string>& vec);
+	void procesarStringRecompensas(bool completed, std::vector<std::string>& vec);
 
 	void readNPCevent(JSONObject& eventObject, int personaje, int index);
 

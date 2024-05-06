@@ -1,43 +1,44 @@
-#include <utils/checkML.h>
-#include "MainScene.h"
-#include "../architecture/Entity.h"
-#include <iostream>
-#include <fstream>
 #ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdlrenderer2.h>
+#else
+#include <utils/checkML.h>
 #endif // DEV_TOOLS
-#include "../sdlutils/SDLUtils.h"
-#include "../components/Transform.h"
-#include "../components/Render.h"
-#include "../components/Clickeable.h"
-#include "../components/DragAndDrop.h"
-#include "../components/Trigger.h"
+#include "MainScene.h"
+#include <architecture/Entity.h>
+#include <iostream>
+#include <fstream>
+#include <sdlutils/SDLUtils.h>
+#include <components/Transform.h>
+#include <components/Render.h>
+#include <components/Clickeable.h>
+#include <components/DragAndDrop.h>
+#include <components/Trigger.h>
 #include <string>
 #include <list>
-#include "../sdlutils/Texture.h"
-#include "../components/PackageChecker.h"
-#include "../components/Gravity.h"
-#include "../components/MoverTransform.h"
-#include "../components/Balanza.h"
-#include "../components/RotarTransform.h"
-#include "../architecture/Time.h"
-#include "../architecture/GameConstants.h"
-#include "../architecture/GeneralData.h"
-#include "../sistemas/ComonObjectsFactory.h"
-#include "../components/Depth.h"
+#include <unordered_map>
+#include <sdlutils/Texture.h>
+#include <components/PackageChecker.h>
+#include <components/Gravity.h>
+#include <components/MoverTransform.h>
+#include <components/Balanza.h>
+#include <components/RotarTransform.h>
+#include <architecture/Time.h>
+#include <architecture/GameConstants.h>
+#include <architecture/GeneralData.h>
+#include <sistemas/ComonObjectsFactory.h>
+#include <components/Depth.h>
 #include <QATools/DataCollector.h>
-#include "../components/ErrorNote.h"
-#include "../entities/ClockAux.h"
-#include "../sistemas/PipeManager.h"
-#include "../sistemas/SoundEmiter.h"
-#include <components/HoverSensorComponent.h>
+#include <components/ErrorNote.h>
+#include <entities/ClockAux.h>
+#include <sistemas/PipeManager.h>
+#include <sistemas/SoundEmiter.h>
 #include <components/HoverLayerComponent.h>
 #include <components/RenderWithLight.h>
-#include "../components/NPCExclamation.h"
-#include "../sistemas/NPCeventSystem.h"
+#include <components/NPCExclamation.h>
+#include <sistemas/NPCeventSystem.h>
 
-ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), clockMusic(0)
+Scene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), jefe_(nullptr), clockMusic(0)
 {
 	timer_ = MINIGAME_TIME;
 #ifdef DEV_TOOLS
@@ -46,29 +47,33 @@ ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), 
 #endif // DEV_TOOLS
 	mPaqBuild_ = new PaqueteBuilder(this);
 	mPipeMngr_ = new PipeManager();
+	specialFactory_ = new SpecialObjectsFactory(this);
 }
 
 ecs::MainScene::~MainScene()
 {
 	delete mPaqBuild_;
 	delete mPipeMngr_;
+	delete specialFactory_;
 }
 
 
 void ecs::MainScene::update()
 {
 	Scene::update();
-	if (gm().gamePaused()) {
-		timerPaused_ = true;
-	}
-	else {
-		timerPaused_ = false;
-	}
-	if (!timerPaused_)
-	{
-		if (timer_ > 0) {
-			timer_ -= Time::getDeltaTime();
-			if (timer_ <= MINIGAME_TIME / 4 && clockMusic == 0) {
+
+	if (!dialogoPendiente) {
+		if (gm().gamePaused()) {
+			timerPaused_ = true;
+		}
+		else {
+			timerPaused_ = false;
+		}
+		if (!timerPaused_)
+		{
+			if (timer_ > 0) {
+				timer_ -= Time::getDeltaTime();
+        if (timer_ <= MINIGAME_TIME / 4 && clockMusic == 0) {
 				SoundEmiter::instance()->playMusic("clockSlow");
 				clockMusic++;
 			}
@@ -77,13 +82,15 @@ void ecs::MainScene::update()
 				SoundEmiter::instance()->playMusic("clockFast");
 				clockMusic++;
 			}
-		}
-		else
-		{
-			gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
+			}
+			else
+			{
+				gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
+			}
 		}
 		
 	}
+
 	dialogMngr_.update();
 
 }
@@ -136,29 +143,18 @@ void ecs::MainScene::init()
 
 	createGarbage();	
 
+	createTubes();
+
 	int dia = generalData().getDay();
-	if (dia % 4 == 2 || dia == 1 || dia == 3 || dia == 5 || dia == 8) //basura lo se pero la progresion es la que hay, por lo menos he podido hacer aritmetica modular para los eventos del jefe al ser constantes
+	if (dia % 4 == 2) //hay un evento de trabajo del jefe cada 4 dias empezando por el dia 2, esto habria que hacerlo con constantes mejor en vez de numeros magicos 
 	{
-		createCharacter({ 500, 250 }, "Jefe",0.35f);
+		jefe_ = createCharacter({ 500, 250 }, "Jefe",0.35f);
 	}
 	else
 		startWork();
 
 	//creacion de las herramientas
-	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
-	int numTubos = generalData().getTubesAmount(); // coge el numero de tubos que están desbloqueados
-	int j = 0;
-	for (int i = 0;i < numTubos; i++) {
-		createTubo((pq::Distrito)i, true);
-		j++;
-	}
-	//Creación de paquetes bloqueados
-	for (int z = j; z < 7 ; ++z) { //grande jose la los numeros magicos te la sabes
-		if(j==6)
-			createTubo((pq::Distrito)z, true);
-		else
-			createTubo((pq::Distrito)z , false);
-	}
+	
 
 	/*sdlutils().musics().at("office").play();
 	sdlutils().musics().at("office").setMusicVolume(50);
@@ -169,6 +165,8 @@ void ecs::MainScene::init()
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(generalData().getDay());
+
+	specialFactory_->setupDayObjects();
 }
 
 void ecs::MainScene::close() {
@@ -181,11 +179,12 @@ void ecs::MainScene::close() {
 	//sdlutils().musics().at("printer").haltMusic();
 }
 
-void ecs::MainScene::createClock() {
+ecs::Entity* ecs::MainScene::createClock() {
 	Entity* clock = addEntity(ecs::layer::BACKGROUND);
 	clock->addComponent<ClockAux>(MINIGAME_TIME);
+	return clock;
 }
-void ecs::MainScene::createBolaCristal() {	 
+ecs::Entity* ecs::MainScene::createBolaCristal() {
 	int tamano = 3;
 	std::vector<Texture*> ballTextures;
 	ballTextures.reserve(tamano);
@@ -194,7 +193,8 @@ void ecs::MainScene::createBolaCristal() {
 	}
 	Entity* bola = factory_->createMultiTextureImage(Vector2D(700, 500), Vector2D(150, 200), ballTextures);
 	bolaCrist_ = bola->addComponent<CristalBall>(bola->getComponent<RenderImage>());
-	std::cout << "QsjndaskjnsdanjUeso\n";
+	
+	return bola;
 }
 
 void ecs::MainScene::createInks() {
@@ -205,7 +205,7 @@ void ecs::MainScene::createInks() {
 
 }
 
-void ecs::MainScene::createOneInk(TipoHerramienta type) {
+ecs::Entity* ecs::MainScene::createOneInk(TipoHerramienta type) {
 	Entity* ink = factory_->createImage(Vector2D(70 + 150 * type, 950), Vector2D(125, 73), &sdlutils().images().at("tinta"+std::to_string(type)));
 	Trigger* inkATri = ink->addComponent<Trigger>();
 
@@ -227,6 +227,8 @@ void ecs::MainScene::createOneInk(TipoHerramienta type) {
 		}
 
 	}, generalData().DropIn);
+
+	return ink;
 
 }
 
@@ -299,9 +301,9 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 	factory_->setLayer(layer::DEFAULT);
 }
 
-void ecs::MainScene::createStamp(TipoHerramienta type)
+ecs::Entity* ecs::MainScene::createStamp(TipoHerramienta type)
 {
-	if (type > 2) return;
+	if (type > 2) return nullptr;
 	constexpr float STAMPSIZE = 1;
 	
 	factory_->setLayer(layer::STAMP);
@@ -317,6 +319,8 @@ void ecs::MainScene::createStamp(TipoHerramienta type)
 	herrSelladorA->setFunctionality(type);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
+
+	return stamp;
 }
 
 void ecs::MainScene::createMultipleStamp()
@@ -337,7 +341,7 @@ void ecs::MainScene::createMultipleStamp()
 	factory_->setLayer(ecs::layer::DEFAULT);
 }
 
-void ecs::MainScene::createCinta() {
+ecs::Entity* ecs::MainScene::createCinta() {
 
 	factory_->setLayer(ecs::layer::TAPE);
 	Entity* cinta;
@@ -348,9 +352,12 @@ void ecs::MainScene::createCinta() {
 	cinta->addComponent<Depth>();
 	factory_->setLayer(ecs::layer::DEFAULT);
 
+	return cinta;
 }
 
-void ecs::MainScene::createBalanza() {
+std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createBalanza() {
+
+	std::unordered_map<std::string, ecs::Entity*> mapSol;
 
 	float scale = 0.3;
 
@@ -393,6 +400,44 @@ void ecs::MainScene::createBalanza() {
 	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(entRect, rotComp); }, generalData().PickUp);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
+
+	mapSol.insert({ "balanza", balanza });
+	mapSol.insert({ "balanzaB", balanzaB });
+	mapSol.insert({ "baseBalanza", baseBalanza });
+	mapSol.insert({ "balanzaFlecha", balanzaFlecha });
+
+	return mapSol;
+}
+
+std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createTubes()
+{
+
+	std::unordered_map<std::string, ecs::Entity*> mapTubes;
+
+
+	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
+	int numTubos = generalData().getTubesAmount(); // coge el numero de tubos que están desbloqueados
+	int j = 0;
+	for (int i = 0; i < numTubos; i++) {
+		Entity* tube = createTubo((pq::Distrito)i, true);
+
+		tubos.push_back(tube);
+		std::string name = "tube" + i;
+
+		mapTubes.insert({ name, tube });
+
+		j++;
+	}
+
+	//Creación de paquetes bloqueados
+	for (int z = j; z < 7; ++z) { //grande jose la los numeros magicos te la sabes
+		if (j == 6)
+			tubos.push_back(createTubo((pq::Distrito)z, true));
+		else
+			tubos.push_back(createTubo((pq::Distrito)z, false));
+	}
+
+	return mapTubes;
 }
 
 void ecs::MainScene::createBalanzaDigital() {
@@ -454,7 +499,7 @@ void ecs::MainScene::createBalanzaDigital() {
 
 }
 
-void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
+ecs::Entity* ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 	constexpr float TUBE_WIDTH = 138;
 	constexpr float TUBE_HEITH = 282;
 	constexpr float TUBES_X_OFFSET = 50;
@@ -477,22 +522,18 @@ void ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this, mPipeMngr_);
 	}
 	else {
-		//factory_->setLayer(layer::UI);
-		/*auto tubeTr = tuboEnt->getComponent<Transform>();
-
-		auto cross = factory_->createImage(Vector2D(0, 120),
-			Vector2D(tubeTr->getWidth(), tubeTr->getWidth()),
-			&sdlutils().images().at("cruz"));
-
-		cross->getComponent<Transform>()->setParent(tubeTr);*/
 		tubeTexture->modColor(100, 100, 100);
-
 	}
+
+	return tuboEnt;
 }
 
 
-void ecs::MainScene::createManual(int NumPages)
+std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int NumPages)
 {
+
+	std::unordered_map<std::string, Entity*> mapSol;
+
 	constexpr float MANUAL_WIDTH = 570;
 	constexpr float MANUAL_HEITH = 359;
 
@@ -530,6 +571,7 @@ void ecs::MainScene::createManual(int NumPages)
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
+	/*
 	//Creacion de botones de indices
 
 	if (true) { //PLACE HOLDER HASTA LOS BOOLS DE JULIAN
@@ -539,17 +581,24 @@ void ecs::MainScene::createManual(int NumPages)
 
 		std::vector<int> indexTextures = { 2, 3, 6, 7, 8 };
 
-		auto pagCodigos = [manualRender]() { manualRender->setTexture(2); };
+		auto pagCodigos = [manualRender]() { manualRender->setTextureIndx(2); };
 		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonIndexSize, buttonTexture, pagCodigos, "page");
 		indexCodigos->getComponent<Transform>()->setParent(manualTransform);
 		factory_->addHoverColorMod(indexCodigos);
 
 
 	}
+	*/
+	
+	mapSol.insert({ "manual", manualEnt_ });
+	mapSol.insert({ "right", right });
+	mapSol.insert({ "left", left });
+
+	return mapSol;
 
 }
 
-void ecs::MainScene::createMiniManual() {
+ecs::Entity* ecs::MainScene::createMiniManual() {
 
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
@@ -623,9 +672,10 @@ void ecs::MainScene::createMiniManual() {
 
 	miniManualEnt_->setActive(false);
 
+	return miniManualEnt_;
 }
 
-void ecs::MainScene::createSpaceManual() {
+ecs::Entity* ecs::MainScene::createSpaceManual() {
 
 	constexpr float MANUAL_WIDTH = 70;
 	constexpr float MANUAL_HEITH = 118;
@@ -661,10 +711,12 @@ void ecs::MainScene::createSpaceManual() {
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 	
+
+	return baseManual;
 }
 
 
-void ecs::MainScene::createGarbage()
+ecs::Entity* ecs::MainScene::createGarbage()
 {
 	/*TDOO Meter en un metdo */
 	// papelera
@@ -673,6 +725,8 @@ void ecs::MainScene::createGarbage()
 	papelera->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
 	Trigger* papTrig = papelera->addComponent<Trigger>();
 	papelera->addComponent<PackageChecker>(Erroneo, this, mPipeMngr_);
+
+	return papelera;
 }
 #ifdef DEV_TOOLS
 
@@ -778,44 +832,21 @@ void ecs::MainScene::createPaquete (int lv) {
 
 
 ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
-	ComonObjectsFactory factory(this);
+	dialogoPendiente = true;
 
+	std::string jsonPath = "recursos/data/eventosjefe.json";
+	dialogMngr_.init(this, jsonPath);
+
+	mWorkRes.init();
 	Texture* characterTexture = &sdlutils().images().at(character);
 	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
 
-	CallbackClickeable funcPress;
-
-	int dia = generalData().getDay();
-
-	std::string jsonPath;
-	if (dia % 4 == 2) //evento aleatorio
-	{
-		jsonPath = "recursos/data/eventosjefe.json";
-		dialogMngr_.init(this, jsonPath);
-		mWorkRes.init();
-		funcPress = [this, character]() { //no queremos hacer un start conversation
-			WorkEvent eventoJefe = mWorkRes.getRandomEvent();
-			dialogMngr_.setDialogueEntitiesActive(true);
-			dialogMngr_.setDialogues(eventoJefe.dialogue);
-			mPipeMngr_->activateEvent(eventoJefe);
-		};
-	}
-	else //nuevo distrito/mecanica
-	{
-		jsonPath = "recursos/data/dialogos.json";
-		dialogMngr_.init(this, jsonPath);
-		funcPress = [this, character]() {
-			std::string dia = "Dia" + std::to_string(generalData().getDay());
-			dialogMngr_.setDialogueEntitiesActive(true);
-			dialogMngr_.setDialogues((DialogManager::DialogSelection)generalData().stringToPersonaje(character), dia);
-		};
-	}
-
-	dialogMngr_.init(this, jsonPath);
-
-	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "click");
+	ecs::Entity* characterEnt = factory_->createImageButton(pos, size, characterTexture, [this, characterEnt]() {
+		jefe_->getComponent<Clickeable>()->toggleClick(false);
+		newWorkEvent();
+		});
 	dialogMngr_.setEndDialogueCallback([characterEnt, this]{
-		characterEnt->setAlive(false); //bye bye jefe
+		jefe_->setAlive(false); //bye bye jefe
 		startWork();
 	});
 
@@ -824,7 +855,16 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 
 void ecs::MainScene::startWork()
 {
-	timerPaused_ = false;
+	//timerPaused_ = false;
+	dialogoPendiente = false;
 	createPaquete(generalData().getPaqueteLevel());
 	createClock();
+}
+
+void ecs::MainScene::newWorkEvent()
+{
+	WorkEvent eventoJefe = mWorkRes.getRandomEvent();
+	dialogMngr_.setDialogueEntitiesActive(true);
+	dialogMngr_.setDialogues(eventoJefe.dialogue);
+	mPipeMngr_->activateEvent(eventoJefe);
 }

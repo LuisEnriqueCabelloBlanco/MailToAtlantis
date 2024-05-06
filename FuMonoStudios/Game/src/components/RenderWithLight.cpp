@@ -1,9 +1,8 @@
 #include "RenderWithLight.h"
-#include "../architecture/Component.h"
-#include "Transform.h"
-#include "../architecture/Entity.h"
-#include "../sdlutils/InputHandler.h"
-#include "Clickeable.h"
+#include <architecture/Component.h>
+#include <components/Transform.h>
+#include <architecture/Entity.h>
+#include <components/Clickeable.h>
 #include <sistemas/ComonObjectsFactory.h>
 
 RenderWithLight::RenderWithLight() : mTr_(nullptr),lightEnt_(nullptr), layer_(ecs::layer::LIGHT) { lTexture_ = &sdlutils().images().at("luz"); }

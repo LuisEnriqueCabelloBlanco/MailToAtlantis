@@ -1,7 +1,7 @@
 #include "Render.h"
-#include "../architecture/Component.h"
-#include "Transform.h"
-#include "../architecture/Entity.h"
+#include <architecture/Component.h>
+#include <components/Transform.h>
+#include <architecture/Entity.h>
 
 RenderImage::RenderImage():RenderImage(nullptr){
 
@@ -38,7 +38,7 @@ void RenderImage::render() const {
 
 }
 
-Texture* RenderImage::getTexture() {
+Texture* RenderImage::getCurrentTexture() {
 	return texturesVector_[currentTextureIndx_];
 }
 

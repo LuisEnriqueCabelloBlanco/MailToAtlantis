@@ -1,9 +1,9 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../utils/Singleton.h"
-#include "../utils/Vector2D.h"
-
-#include <SDL.h>
+#endif // !DEV_TOOLS
+#include <utils/Singleton.h>
+#include <utils/Vector2D.h>
 #include <string>
 #include <vector>
 #include <unordered_map>

@@ -1,40 +1,46 @@
+#include <sdlutils/InputHandler.h>
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "TutorialScene.h"
-#include "../sistemas/PaqueteBuilder.h"
-#include "../sistemas/ComonObjectsFactory.h"
-#include "../components/Transform.h"
-#include "../entities/ClockAux.h"
-#include "../components/DialogComponent.h"
-#include "../components/DelayedCallback.h"
-#include "../sdlutils/InputHandler.h"
-#include "../components/PackageChecker.h"
-#include "../components/ErrorNote.h"
-#include "../components/Balanza.h"
-#include "../components/RotarTransform.h"
+#include <sistemas/PaqueteBuilder.h>
+#include <sistemas/ComonObjectsFactory.h>
+#include <components/Transform.h>
+#include <entities/ClockAux.h>
+#include <components/DialogComponent.h>
+#include <components/DelayedCallback.h>
+#include <components/PackageChecker.h>
+#include <components/ErrorNote.h>
+#include <architecture/GameConstants.h>
 #include <sistemas/SoundEmiter.h>
 
-ecs::TutorialScene::TutorialScene() : Scene(), balanzaUsed(false) {
+ecs::TutorialScene::TutorialScene() : MainScene(), balanzaUsed(false) {
+
 
 	tutorialSys_ = new TutorialSystem(this);
-	mPaqBuild_ = new PaqueteBuilder(this);
+
+	//mPaqBuild_ = new PaqueteBuilder(this);
 	
 }
 
 ecs::TutorialScene::~TutorialScene() {
 	delete tutorialSys_;
-	delete mPaqBuild_;
+	//delete mPaqBuild_;
 }
 
 void ecs::TutorialScene::update() {
-	Scene::update();
+	MainScene::update();
 	tutorialSys_->update();
 }
 
 void ecs::TutorialScene::render() {
-	Scene::render();
+	MainScene::render();
 }
 
 void ecs::TutorialScene::init() {
+
+	tutorialSys_->init();
+
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
 
 	//fondo
@@ -44,11 +50,13 @@ void ecs::TutorialScene::init() {
 
 	mPipeMngr_->init();
 
-	createManual();
+	createManual(10);
 	createMiniManual();
 	createSpaceManual();
 
-	createClock();
+	manualEnt_->setActive(false);
+
+	miniManualEnt_->setActive(true);
 
 	createGarbage();
 
@@ -56,134 +64,84 @@ void ecs::TutorialScene::init() {
 
 	createStamp(SelloCalleA);
 
-	//tubos
-	for (int z = 0; z < 7; ++z) { //grande jose la los numeros magicos te la sabes
-		// bien jose buenos numerazos magicos ahi estamos chaval a funcionar
-		// jose
-		// bien jose
-		// padreas
-		tubos.push_back(createTubo((pq::Distrito)z, true));
-	}
+	createTubes();
 
-	tutorialSys_->activateEvent(TutorialSystem::Introduction);
+	if (generalData().getDay() == 1) {
+
+		tutorialSys_->activateEvent(TutorialSystem::Introduction);
+
+
+	}
+	else if (generalData().getDay() == 3) {
+
+		tutorialSys_->activateEvent(TutorialSystem::EntraTercerPaquete);
+
+	}
+	else if (generalData().getDay() == 5) {
+		tutorialSys_->activateEvent(TutorialSystem::EntraPaquetePeso);
+
+	}
+	else if (generalData().getDay() == 8) {
+
+		tutorialSys_->activateEvent(TutorialSystem::EntraPaqueteFragil);
+
+	}
+	
 }
 
 void ecs::TutorialScene::close() {
 	ecs::Scene::close();
-	SoundEmiter::instance()->close();
+  SoundEmiter::instance()->close();
 }
 
-void ecs::TutorialScene::createManual() {
-	constexpr int MANUALNUMPAGES = 10;
-	constexpr float MANUAL_WIDTH = 570;
-	constexpr float MANUAL_HEITH = 359;
+void ecs::TutorialScene::activateTubos() {
 
-	Texture* buttonTexture = &sdlutils().images().at("cambioPag");
-	//creado array de texturas par el libro
-	std::vector<Texture*> bookTextures;
-	bookTextures.reserve(MANUALNUMPAGES);
-	for (int i = 1; i <= MANUALNUMPAGES; i++) {
-		bookTextures.emplace_back(&sdlutils().images().at("book" + std::to_string(i)));
+	for (int i = 0; i < generalData().getTubesAmount(); i++)
+	{
+		Trigger* tuboTri = tubos[i]->addComponent<Trigger>();
+		PackageChecker* tuboCheck = tubos[i]->addComponent<PackageChecker>(Distrito(i), this, mPipeMngr_);
 	}
-	factory_->setLayer(ecs::layer::MANUAL);
-
-	manualEnt_ = factory_->createMultiTextureImage(Vector2D(500, 500), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
-	Transform* manualTransform = manualEnt_->getComponent<Transform>();
-	RenderImage* manualRender = manualEnt_->getComponent<RenderImage>();
-	manualRender->setVector(bookTextures);
-	manualEnt_->addComponent<Gravity>();
-	manualEnt_->addComponent<DragAndDropTutorial>(false, tutorialSys_, "arrastrar");
-	manualEnt_->addComponent<Depth>();
-
-
-	Vector2D buttonSize(40, 40);
-	factory_->setLayer(ecs::layer::FOREGROUND);
-	auto next = [manualRender, this]() {
-		if (tutorialSys_->canPassPagesManual)
-		{
-			manualRender->nextTexture();
-			const Texture* tex = manualRender->getTexture();
-			if (tex == &sdlutils().images().at("book3"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
-			else if (tex == &sdlutils().images().at("book4"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
-			else if (tex == &sdlutils().images().at("book5"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
-			else if (tex == &sdlutils().images().at("book8"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
-		}
-		};
-	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next, "page");
-	right->getComponent<Transform>()->setParent(manualTransform);
-
-	auto previous = [manualRender, this]() {
-		if (tutorialSys_->canPassPagesManual)
-		{
-			manualRender->previousTexture();
-			const Texture* tex = manualRender->getTexture();
-			if (tex == &sdlutils().images().at("book3"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
-			else if (tex == &sdlutils().images().at("book4"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
-			else if (tex == &sdlutils().images().at("book5"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
-			else if (tex == &sdlutils().images().at("book8"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
-		}
-		};
-	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous, "page");
-	left->getComponent<Transform>()->setParent(manualTransform);
-	left->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
-
-	factory_->setLayer(ecs::layer::DEFAULT);
-
-	manualEnt_->setActive(false);
 }
 
-void ecs::TutorialScene::createMiniManual() {
-	constexpr float MANUAL_WIDTH = 70;
-	constexpr float MANUAL_HEITH = 118;
 
-	float minimanualX = 1450;
-	float minimanualY = 525;
+void ecs::TutorialScene::activateAllButOneTube(int tub)
+{
 
-	factory_->setLayer(ecs::layer::MINIMANUAL);
+	for (int i = 0; i < generalData().getTubesAmount(); i++)
+	{
 
-	Texture* bookTextures = &sdlutils().images().at("miniManual");
+		if (tub != i) {
+			Trigger* tuboTri = tubos[i]->addComponent<Trigger>();
+			PackageChecker* tuboCheck = tubos[i]->addComponent<PackageChecker>(Distrito(i), this, mPipeMngr_);
+		}
+		
+	}
 
-	miniManualEnt_ = factory_->createImage(Vector2D(minimanualX, minimanualY), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
+}
 
-	Transform* manualTransform = miniManualEnt_->getComponent<Transform>();
-	RenderImage* manualRender = miniManualEnt_->getComponent<RenderImage>();
+void ecs::TutorialScene::activateOneTube(int tube)
+{
 
-	miniManualEnt_->addComponent<DragAndDropTutorial>(false, true, tutorialSys_,"arrastrar");
+	Trigger* tuboTri = tubos[tube]->addComponent<Trigger>();
+	PackageChecker* tuboCheck = tubos[tube]->addComponent<PackageChecker>(Distrito(tube), this, mPipeMngr_);
 
-	Trigger* mmTri = miniManualEnt_->getComponent<Trigger>();
+}
 
+ecs::Entity* ecs::TutorialScene::createMiniManual()
+{
+	
+	Entity* mmEnt_ = MainScene::createMiniManual();
 
-	mmTri->addCallback([this, mmTri, manualTransform, minimanualX, minimanualY](ecs::Entity* entRec) {
+	Trigger* mmTri_ = mmEnt_->getComponent<Trigger>();
 
-		if (miniManualEnt_->isActive()) {
+	mmTri_->addCallback([this, mmTri_](ecs::Entity* entRec) {
 
-
-			std::list<ecs::layer::layerId> entTouchingID = mmTri->getEntitiesTouching();
+			std::list<ecs::layer::layerId> entTouchingID = mmTri_->getEntitiesTouching();
 
 			if (entTouchingID.empty()) {
 
-				Transform* manualTR = manualEnt_->getComponent<Transform>();
-
-				Vector2D pos{ manualTransform->getPos().getX() - manualTR->getWidth() / 2, manualTransform->getPos().getY() - manualTR->getHeigth() / 2 };
-
-
-				manualTransform->setPos(minimanualX, minimanualY);
-
-				miniManualEnt_->setActive(false);
-
-				manualEnt_->setActive(true);
 				tutorialSys_->registerAction(TutorialSystem::SacarManual);
 
-				manualTR->setPos(pos);
-				manualEnt_->getComponent<Depth>()->updateChildPos();
 			}
 			else {
 
@@ -195,166 +153,144 @@ void ecs::TutorialScene::createMiniManual() {
 
 				if (it == entTouchingID.end()) {
 
-					manualTransform->setPos(minimanualX, minimanualY);
-					miniManualEnt_->setActive(false);
-
-					manualEnt_->setActive(true);
-
 					tutorialSys_->registerAction(TutorialSystem::SacarManual);
 				}
 			}
+	}, generalData().DropIn);
+
+	return mmEnt_;
+}
+
+//manual, roght, left
+std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createManual(int NumPages)
+{
+
+	std::unordered_map<std::string, ecs::Entity*> mapSol = MainScene::createManual(NumPages);
+
+	RenderImage* mRen = mapSol["manual"]->getComponent<RenderImage>();
+
+	Clickeable* rClick = mapSol["right"]->getComponent<Clickeable>();
+
+	Clickeable* lClick = mapSol["left"]->getComponent<Clickeable>();
+
+	rClick->addEvent([mRen, this]() {
+		if (tutorialSys_->canPassPagesManual)
+		{
+			const Texture* tex = mRen->getCurrentTexture();
+			if (tex == &sdlutils().images().at("book3"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
+			else if (tex == &sdlutils().images().at("book4"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
+			else if (tex == &sdlutils().images().at("book5"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
+			else if (tex == &sdlutils().images().at("book8"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
 		}
-		}, generalData().DropIn);
+	});
 
-
-	factory_->setLayer(ecs::layer::DEFAULT);
-}
-
-void ecs::TutorialScene::createSpaceManual() {
-	constexpr float MANUAL_WIDTH = 70;
-	constexpr float MANUAL_HEITH = 118;
-
-	factory_->setLayer(ecs::layer::BACKGROUND);
-
-	Texture* bookTextures = &sdlutils().images().at("atrilManual");
-
-	auto baseManual = factory_->createImage(Vector2D(1450, 525), Vector2D(MANUAL_WIDTH, MANUAL_HEITH), bookTextures);
-
-	Transform* manualTransform = baseManual->getComponent<Transform>();
-	RenderImage* manualRender = baseManual->getComponent<RenderImage>();
-
-	Trigger* mmTri = baseManual->addComponent<Trigger>();
-
-	mmTri->addCallback([this, manualTransform](ecs::Entity* entRec) {
-
-		if (entRec->getLayer() == ecs::layer::MANUAL && manualEnt_->isActive()) {
-			Transform* manualTR = manualEnt_->getComponent<Transform>();
-			manualTR->setPos(0, 0);
-			manualEnt_->setActive(false);
-			miniManualEnt_->setActive(true);
+	lClick->addEvent([mRen, this]() {
+		if (tutorialSys_->canPassPagesManual)
+		{
+			const Texture* tex = mRen->getCurrentTexture();
+			if (tex == &sdlutils().images().at("book3"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
+			else if (tex == &sdlutils().images().at("book4"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
+			else if (tex == &sdlutils().images().at("book5"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
+			else if (tex == &sdlutils().images().at("book8"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
 		}
-		}, generalData().DropIn);
+	});
 
-	factory_->setLayer(ecs::layer::DEFAULT);
+
+	return mapSol;
 }
 
-ecs::Entity* ecs::TutorialScene::createTubo(pq::Distrito dist, bool unlock) {
-	constexpr float TUBE_WIDTH = 138;
-	constexpr float TUBE_HEITH = 282;
-	constexpr float TUBES_X_OFFSET = 200;
-	constexpr float DISTANCE_BETWEEN_TUBES = 220;
-	factory_->setLayer(ecs::layer::BACKGROUND);
+std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createBalanza()
+{
 
-	Entity* tuboEnt = factory_->createImage(
-		Vector2D(TUBES_X_OFFSET + (DISTANCE_BETWEEN_TUBES * dist), -40),
-		Vector2D(TUBE_WIDTH, TUBE_HEITH),
-		&sdlutils().images().at("tubo" + std::to_string(dist + 1)));
-	if (unlock) {
+	std::unordered_map<std::string, ecs::Entity*> mapSol = MainScene::createBalanza();
 
-		// EMPIEZA DESACTIVADO EL TUBO
-	}
-	else {
-		factory_->setLayer(layer::UI);
-		auto tubeTr = tuboEnt->getComponent<Transform>();
+	Trigger* balTri = mapSol["balanza"]->getComponent<Trigger>();
 
-		auto cross = factory_->createImage(Vector2D(0, 120),
-			Vector2D(tubeTr->getWidth(), tubeTr->getWidth()),
-			&sdlutils().images().at("cruz"));
+	balTri->addCallback([this](ecs::Entity* entRect) {balanzaUsed = true; }, generalData().PickUp);
 
-		cross->getComponent<Transform>()->setParent(tubeTr);
+	return mapSol;
 
-	}
-	return tuboEnt;
 }
 
-void ecs::TutorialScene::activateTubos() {
+std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createTubes()
+{
 
-	for (int i = 0; i < 7; i++)
-	{
-		Trigger* tuboTri = tubos[i]->addComponent<Trigger>();
-		PackageChecker* tuboCheck = tubos[i]->addComponent<PackageChecker>(Distrito(i), this, mPipeMngr_);
+	std::unordered_map<std::string, ecs::Entity*> tubes = MainScene::createTubes();
+
+	for (int i = 0; i < generalData().getTubesAmount(); ++i) {
+
+		std::string name = "tube" + i;
+
+		Trigger* triTub = tubes[name]->getComponent<Trigger>();
+
+		triTub->addCallback([this](ecs::Entity* entRect) { tutorialSys_->registerAction(TutorialSystem::PaqueteEnviado); }, generalData().DropIn);
+
 	}
+
+	return tubes;
 }
 
 void ecs::TutorialScene::deactivateTubos() {
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < generalData().getTubesAmount(); i++)
 	{
 		tubos[i]->removeComponent<Trigger>();
 		tubos[i]->removeComponent<PackageChecker>();
 	}
 }
 
-void ecs::TutorialScene::createGarbage()
+void ecs::TutorialScene::deactivateAllButOneTube(int tub)
 {
-	garbage_ = addEntity(ecs::layer::BIN);
-	garbage_->addComponent<Transform>(50, 650, 100, 150);
-	garbage_->addComponent<RenderImage>(&sdlutils().images().at("papelera"));
+
+	for (int i = 0; i < generalData().getTubesAmount(); i++)
+	{
+		if (i != tub) {
+			tubos[i]->removeComponent<Trigger>();
+			tubos[i]->removeComponent<PackageChecker>();
+		}
+		
+	}
+
+}
+
+void ecs::TutorialScene::deactivateOneTube(int tube)
+{
+
+	tubos[tube]->removeComponent<Trigger>();
+	tubos[tube]->removeComponent<PackageChecker>();
+
+}
+
+ecs::Entity* ecs::TutorialScene::createGarbage()
+{
+	garbage_ = MainScene::createGarbage();
+
+	Trigger* papTrig = garbage_->addComponent<Trigger>();
+	papTrig->addCallback([this](ecs::Entity* e) {
+		if (e->getComponent<Paquete>() != nullptr)
+		tutorialSys_->registerAction(TutorialSystem::Basura);
+	}, generalData().DropIn);
+
+	return garbage_;
 }
 
 void ecs::TutorialScene::activateGarbage() {
-	Trigger* papTrig = garbage_->addComponent<Trigger>();
-	papTrig->addCallback([this](ecs::Entity* e) {
-		if(e->getComponent<Paquete>() != nullptr)
-		tutorialSys_->registerAction(TutorialSystem::Basura);
-		}, generalData().DropIn);
+
 	garbage_->addComponent<PackageChecker>(Erroneo, this, mPipeMngr_);
+
 }
 
 void ecs::TutorialScene::deactivateGarbage() {
+
 	garbage_->removeComponent<PackageChecker>();
-	garbage_->removeComponent<Trigger>();
-}
 
-void ecs::TutorialScene::createClock() {
-	Entity* clock = addEntity(ecs::layer::BACKGROUND);
-	clock->addComponent<ClockAux>(1000);
-}
-
-void ecs::TutorialScene::createInks() {
-	createOneInk(SelloCalleA);
-	createOneInk(SelloCalleB);
-	createOneInk(SelloCalleC);
-}
-
-void ecs::TutorialScene::createOneInk(TipoHerramienta type) {
-	Entity* ink = factory_->createImage(Vector2D(70 + 150 * type, 950), Vector2D(125, 73), &sdlutils().images().at("tinta" + std::to_string(type)));
-	Trigger* inkATri = ink->addComponent<Trigger>();
-
-	inkATri->addCallback([this, type](ecs::Entity* entRec) {
-
-		if (entRec->getLayer() == ecs::layer::STAMP) {
-
-			Herramientas* stampHerramienta = entRec->getComponent<Herramientas>();
-
-			RenderImage* stampRender = entRec->getComponent<RenderImage>();
-
-			stampHerramienta->setFunctionality(type);
-
-			stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
-
-		}
-		}, generalData().DropIn);
-}
-
-void ecs::TutorialScene::createStamp(TipoHerramienta type)
-{
-	if (type > 2) return;
-	constexpr float STAMPSIZE = 1;
-
-	factory_->setLayer(layer::STAMP);
-
-	auto stamp = factory_->createImage(Vector2D(230, 800),
-		Vector2D(sdlutils().images().at("sellador" + std::to_string(type)).width() * STAMPSIZE, sdlutils().images().at("sellador" + std::to_string(type)).height() * STAMPSIZE),
-		&sdlutils().images().at("sellador" + std::to_string(type)));
-
-	stamp->addComponent<Gravity>();
-	stamp->addComponent<Depth>();
-	stamp->addComponent<DragAndDropTutorial>(true, tutorialSys_,"arrastrar");
-
-	Herramientas* herrSelladorA = stamp->addComponent<Herramientas>();
-	herrSelladorA->setFunctionality(type);
-
-	factory_->setLayer(ecs::layer::DEFAULT);
 }
 
 ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
@@ -376,9 +312,7 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 	else
 		paquete = mPaqBuild_->buildPackage(1, this);
 
-	paquete->removeComponent<DragAndDrop>();
-	paquete->removeComponent<Trigger>();
-	paquete->addComponent<DragAndDropTutorial>(true, tutorialSys_,"arrastrar");
+
 	paquete->getComponent<Trigger>()->addCallback([paquete, this](ecs::Entity* entRec) {
 
 		auto& ihdlr = ih();
@@ -422,61 +356,6 @@ void ecs::TutorialScene::createErrorMessage(Paquete* paqComp, bool basura, bool 
 	RenderImage* distritoRender = texto_->addComponent<RenderImage>();
 	distritoRender->setTexture(textureText_);
 	distritoTr->setParent(NotaErronea->getComponent<Transform>());
-}
-
-void ecs::TutorialScene::createFragilTool() {
-	factory_->setLayer(ecs::layer::TAPE);
-	Entity* cinta = factory_->createImage(Vector2D(250, 0), Vector2D(100, 150), &sdlutils().images().at("cinta"));
-	cinta->addComponent<Gravity>();
-	cinta->addComponent<DragAndDropTutorial>(true, tutorialSys_,"arrastrar");
-	cinta->addComponent<Depth>();
-	factory_->setLayer(ecs::layer::DEFAULT);
-}
-
-void ecs::TutorialScene::createBalanza() {
-
-	float scale = 0.3;
-
-	// Balanza
-	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanza = factory_->createImage(Vector2D(30, 110), Vector2D(sdlutils().images().at("balanzaA").width(), sdlutils().images().at("balanzaA").height()), &sdlutils().images().at("balanzaA"));
-	Transform* balanzaTr = balanza->getComponent<Transform>();
-	balanza->addComponent<MoverTransform>();
-	balanzaTr->setScale(scale);
-	Balanza* balanzaComp = balanza->addComponent<Balanza>();
-
-	// BalanzaB
-	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanzaB = factory_->createImage(Vector2D(0, 0), Vector2D(sdlutils().images().at("balanzaB").width(), sdlutils().images().at("balanzaB").height()), &sdlutils().images().at("balanzaB"));
-	Transform* balanzaBTr = balanzaB->getComponent<Transform>();
-	balanzaBTr->setScale(scale);
-
-	// BalanzaBase
-	factory_->setLayer(ecs::layer::BALANZABASE);
-	Entity* baseBalanza = factory_->createImage(Vector2D(1100, 300), Vector2D(sdlutils().images().at("baseBalanza").width(), sdlutils().images().at("baseBalanza").height()), &sdlutils().images().at("baseBalanza"));
-	Transform* balanzaBaseTr = baseBalanza->getComponent<Transform>();
-	balanzaBaseTr->setScale(scale);
-
-	// BalanzaFlecha
-	factory_->setLayer(ecs::layer::BALANZA);
-	Entity* balanzaFlecha = factory_->createImage(Vector2D(45, 20), Vector2D(sdlutils().images().at("balanzaFlecha2").width(), sdlutils().images().at("balanzaFlecha2").height()), &sdlutils().images().at("balanzaFlecha2"));
-	Transform* balanzaFlechaTr = balanzaFlecha->getComponent<Transform>();
-	balanzaFlechaTr->setScale(scale);
-	RotarTransform* rotComp = balanzaFlecha->addComponent<RotarTransform>();
-
-	// Seteamos padres
-	balanzaTr->setParent(balanzaBaseTr);
-	balanzaBTr->setParent(balanzaTr);
-	balanzaFlechaTr->setParent(balanzaBaseTr);
-
-
-	Trigger* balanzaTri = balanza->addComponent<Trigger>();
-
-	balanzaTri->addCallback([this, rotComp, balanzaComp, balanzaB](ecs::Entity* entRect) {balanzaComp->initAnimations(entRect, balanzaB, rotComp); }, generalData().DropIn);
-	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(entRect, rotComp); balanzaUsed = true; }, generalData().PickUp);
-
-	factory_->setLayer(ecs::layer::DEFAULT);
-
 }
 
 void ecs::TutorialScene::packageSent() {

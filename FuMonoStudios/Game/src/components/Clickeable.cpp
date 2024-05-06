@@ -1,18 +1,17 @@
-#include "Clickeable.h"
+#include <sdlutils/InputHandler.h>
+#include <components/Clickeable.h>
 
 #include <components/Transform.h>
 #include <components/Trigger.h>
 #include <architecture/Entity.h>
-#include <sdlutils/InputHandler.h>
-
 #include <SDL.h>
 #include <assert.h>
 
 #include <sistemas/SoundEmiter.h>
 
 
+Clickeable::Clickeable(std::string soundClick): mTr_(nullptr), eventsWhenClick_(), soundWhenClicked_(soundClick), canClick_(true) {
 
-Clickeable::Clickeable(std::string soundClick): mTr_(nullptr), eventsWhenClick_(), soundWhenClicked_(soundClick) {
 
 }
 
@@ -39,14 +38,14 @@ void Clickeable::update() {
 
 	auto& ihdlr = ih();
 
-	if (ihdlr.mouseButtonDownEvent()) {
+	if (ihdlr.mouseButtonDownEvent() && canClick_) {
 
 		SDL_Rect* mRect_ = &mTr_->getRect();
 		SDL_Point point{ ihdlr.getMousePos().first, ihdlr.getMousePos().second };
 
 		if (SDL_PointInRect(&point, mRect_)) {
 			// 
-			//Recorrido por las colbacks a las que est� suscrito este objeto
+			//Recorrido por las callbacks a las que esta suscrito este objeto
 			if (soundWhenClicked_ != "") {
 				SoundEmiter::instance()->playSound(soundWhenClicked_);
 			}

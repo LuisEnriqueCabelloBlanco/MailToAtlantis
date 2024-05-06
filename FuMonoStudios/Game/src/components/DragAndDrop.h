@@ -1,6 +1,5 @@
 #pragma once
-
-#include "../architecture/Component.h"
+#include <architecture/Component.h>
 #include <functional>
 #include <string>
 
@@ -28,6 +27,7 @@ public:
 	DragAndDrop(bool usingClosestEnt, SimpleCallback func, std::string sound);
 
 	~DragAndDrop();
+	static bool enableDrag;
 
 	void initComponent() override;
 

@@ -1,15 +1,15 @@
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../components/DialogManager.h"
+#endif // !DEV_TOOLS
 #include "GeneralData.h"
-#include "../json/JSON.h"
-#include "../json/JSONValue.h"
-#include "../sdlutils/RandomNumberGenerator.h"
-
-#include "../architecture/ecs.h"
-#include "../sistemas/SoundEmiter.h"
-#include "../sistemas/PaqueteBuilder.h"
-#include "Game.h"
-#include "../sistemas/NPCeventSystem.h"
+#include <json/JSON.h>
+#include <sdlutils/RandomNumberGenerator.h>
+#include <architecture/ecs.h>
+#include <sistemas/SoundEmiter.h>
+#include <sistemas/PaqueteBuilder.h>
+#include <architecture/Game.h>
+#include <sistemas/NPCeventSystem.h>
+#include <architecture/GameConstants.h>
 
 
 GeneralData::GeneralData()
@@ -69,6 +69,22 @@ void GeneralData::loadSaveFile()
 
 	dia_ = root.find("Dia")->second->AsNumber();
 	dinero_ = root.find("Dinero")->second->AsNumber();
+}
+
+void GeneralData::newGame()
+{
+	dia_ = 1;
+	dinero_ = INITIAL_MONEY;
+
+	for (int i = 0; i < 7; i++)
+	{
+		NPCdata* data = getNPCData((Personaje)i);
+		data->felicidad = NoHabladoAun;
+		data->numFelicidad = 50;
+		int numEventos = i < 2 ? 14 : 5;
+		data->eventosCompletados = std::vector<std::pair<bool, int>>(numEventos, std::make_pair(false, 0));
+		data->numMisionesAceptadas = 0;
+	}
 }
 
 void GeneralData::updateMoney()

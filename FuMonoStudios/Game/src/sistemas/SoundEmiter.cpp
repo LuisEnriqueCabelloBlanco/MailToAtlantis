@@ -1,7 +1,9 @@
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "SoundEmiter.h"
-#include "../sdlutils/SDLUtils.h"
-#include "../json/JSON.h"
+#include <sdlutils/SDLUtils.h>
+#include <json/JSON.h>
 #include <exception>
 
 const int MAX_CHANNELS = 3;
@@ -139,7 +141,7 @@ void SoundEmiter::playMusic(std::string song)
 		}
 	}
 	catch (...) {
-		throw std::exception("No existe esa música.");
+		throw std::exception("No existe esa mï¿½sica.");
 	}
 }
 
@@ -150,7 +152,7 @@ void SoundEmiter::haltMusic(std::string song)
 		activeSongs_.at(song) = false;
 	}
 	catch (...) {
-		throw std::exception("No existe esa música.");
+		throw std::exception("No existe esa mï¿½sica.");
 	}
 }
 

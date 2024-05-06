@@ -1,15 +1,17 @@
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "ConfigScene.h"
-#include "../architecture/Entity.h"
+#include <architecture/Entity.h>
 #include <iostream>
-#include "../sdlutils/SDLUtils.h"
-#include "../components/Transform.h"
-#include "../components/Render.h"
-#include "../components/Clickeable.h"
-#include "../architecture/Game.h"
+#include <sdlutils/SDLUtils.h>
+#include <components/Transform.h>
+#include <components/Render.h>
+#include <architecture/Game.h>
 #include <string>
-#include "../architecture/GeneralData.h"
+#include <architecture/GeneralData.h>
 #include <sistemas/ComonObjectsFactory.h>
+#include <architecture/GameConstants.h>
 
 //ecs::MainMenu::MainMenu()
 //{
@@ -28,6 +30,11 @@ void ecs::ConfigScene::init()
 {
 	std::cout << "Hola Config" << std::endl;
 	sdlutils().clearRenderer();
+
+	Entity* fondo = addEntity(ecs::layer::BACKGROUND);
+	Texture* texturaFondo = &sdlutils().images().at("fondoAjustes");
+	Transform* transformFondo = fondo->addComponent<Transform>(0.0f, 0.0f, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
+	RenderImage* renderFondo = fondo->addComponent<RenderImage>(texturaFondo);
 
 	//boton para volver al menu
 	CallbackClickeable funcPress = [this]() {
@@ -63,15 +70,26 @@ void ecs::ConfigScene::init()
 
 		audioValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParam(1)), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
 		audioValueEnt_->getComponent<RenderImage>()->setTexture(audioValueTexture_);
-
 	};
 	factory_->createTextuButton({ 400,600 }, "(-)", 50, funcPress2, "click");
 
 	// Boton (+) para el parametro de audio
-	factory_->createTextuButton({ 600,600 }, "(+)", 50, funcPress2, "click");
+	CallbackClickeable funcPress3 = [this]() {
+		generalData().changeParamID(1, true);
+		//updateValue(audioValueTexture_, audioValueEnt_, 1);
+		if (audioValueTexture_ != nullptr)
+		{
+			delete audioValueTexture_;
+			audioValueTexture_ = nullptr;
+		}
+
+		audioValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParam(1)), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+		audioValueEnt_->getComponent<RenderImage>()->setTexture(audioValueTexture_);
+	};
+	factory_->createTextuButton({ 600,600 }, "(+)", 50, funcPress3, "click);
 }
 
-//No usar de momento este método porque peta el programa aunque tenga la misma función que lo que pasa en los callbacks
+//No usar de momento este mÃ©todo porque peta el programa aunque tenga la misma funciÃ³n que lo que pasa en los callbacks
 void ecs::ConfigScene::updateValue(Texture* texture, Entity* entity, int index) {
 
 	if (texture != nullptr)

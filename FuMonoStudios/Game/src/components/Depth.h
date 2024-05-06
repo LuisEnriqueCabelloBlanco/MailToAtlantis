@@ -1,7 +1,7 @@
 #pragma once
-#include "../architecture/Component.h"
-#include "../architecture/Entity.h"
-#include "Transform.h"
+#include <architecture/Component.h>
+#include <architecture/Entity.h>
+#include <components/Transform.h>
 
 class Depth : public ecs::Component
 {

@@ -1,7 +1,8 @@
-#pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../architecture/Scene.h"
-#include "../sdlutils/VirtualTimer.h"
+#endif // !DEV_TOOLS
+#include <architecture/Scene.h>
+#include <sdlutils/VirtualTimer.h>
 
 class EndWorkScene :public ecs::Scene {
 public:

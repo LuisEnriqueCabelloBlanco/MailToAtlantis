@@ -1,17 +1,20 @@
 // dialog_manager.cpp
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "DialogManager.h"
 #include <fstream>
 
-#include "DelayedCallback.h"
-#include "DialogComponent.h"
-#include "Render.h"
-#include "../json/JSON.h"
-#include "../json/JSONValue.h"
-#include "QATools/DataCollector.h"
-#include "sistemas/ComonObjectsFactory.h"
+#include <components/DelayedCallback.h>
+#include <components/DialogComponent.h>
+#include <components/Render.h>
+#include <json/JSON.h>
+#include <json/JSONValue.h>
+#include <QATools/DataCollector.h>
+#include <sistemas/ComonObjectsFactory.h>
+#include <architecture/GameConstants.h>
 
-DialogManager::DialogManager() : currentDialogIndex_(0),boxBackground(nullptr), textDialogue(nullptr), endDialogueCallback(nullptr)
+DialogManager::DialogManager() : scene_(nullptr), currentDialogIndex_(0),boxBackground(nullptr), textDialogue(nullptr), endDialogueCallback(nullptr)
 {
 
 }
@@ -27,21 +30,10 @@ void DialogManager::init(ecs::Scene* scene)
 }
 
 void DialogManager::init(ecs::Scene* scene, const std::string& path) {
+
+    scene_ = scene;
+
     jsonPath = path;
-
-    Vector2D pos = Vector2D(100, LOGICAL_RENDER_HEITH - 250);
-    Vector2D size = Vector2D(LOGICAL_RENDER_WIDTH - 100, 200);
-    scene->getFactory()->setLayer(ecs::layer::UI);
-    boxBackground = scene->getFactory()->createImage(pos, size, &sdlutils().images().at("cuadroDialogo"));
-
-    textDialogue = scene->addEntity(ecs::layer::UI);
-    auto textTr = textDialogue->addComponent<Transform>(100, 40, 80, 100);
-    textTr->setParent(boxBackground->getComponent<Transform>());
-    textDialogue->addComponent<RenderImage>();
-    textDialogue->addComponent<DialogComponent>(this);
-
-
-    setDialogueEntitiesActive(false);
 
     canStartConversation = true;
 
@@ -257,10 +249,22 @@ void DialogManager::closeDialogue()
         endDialogueCallback();
 }
 
-void DialogManager::setDialogueEntitiesActive(bool onoff)
+void DialogManager::setDialogueEntitiesActive(bool onoff) //me sigue pareciendo estupido lo de crear y destruir las cosas constantemente cuando las podemos reutilizar pero bueno si lo quereis asi
 {
-    boxBackground->setActive(onoff);
-    textDialogue->setActive(onoff);
+    /*boxBackground->setActive(onoff);
+    textDialogue->setActive(onoff);*/
+
+    if(onoff)
+    {
+        createBox();
+        createText();
+    }
+    else
+    {
+        boxBackground->setAlive(false);
+        textDialogue->setAlive(false);
+    }
+
 }
 
 void DialogManager::fixText(std::string& text)
@@ -348,8 +352,8 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
     case Tutorial:
         aux = "Tutorial";
         break;
-    case BryantMyers:
-        aux = "EsclavaRemix";
+    case Intro:
+        aux = "Intro";
         break;
 
     //Dialogos objetos distritos
@@ -395,4 +399,23 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
 bool DialogManager::isNPC(const DialogSelection ds)
 {
     return ds < 7;
+}
+
+void DialogManager::createBox()
+{
+    Vector2D pos = Vector2D(100, LOGICAL_RENDER_HEITH - 250);
+    Vector2D size = Vector2D(LOGICAL_RENDER_WIDTH - 100, 200);
+    scene_->getFactory()->setLayer(ecs::layer::UI);
+    boxBackground = scene_->getFactory()->createImage(pos, size, &sdlutils().images().at("cuadroDialogo"));
+    scene_->getFactory()->setLayer(ecs::layer::DEFAULT);
+}
+
+void DialogManager::createText()
+{
+    textDialogue = scene_->addEntity(ecs::layer::UI);
+    auto textTr = textDialogue->addComponent<Transform>(100, 40, 80, 100);
+    textTr->setParent(boxBackground->getComponent<Transform>());
+    textDialogue->addComponent<RenderImage>();
+    textDialogue->addComponent<DialogComponent>(this);
+    scene_->getFactory()->setLayer(ecs::layer::DEFAULT);
 }

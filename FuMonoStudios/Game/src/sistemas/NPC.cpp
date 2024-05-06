@@ -1,8 +1,9 @@
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include <sistemas/NPC.h>
 #include <architecture/GeneralData.h>
 #include <sdlutils/SDLUtils.h>
-#include <sistemas/NPCeventSystem.h>
 #include <sistemas/NPCevent.h>
 using namespace npc;
 npc::NPCMenorData::~NPCMenorData()
@@ -71,7 +72,8 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 void NPCMenorData::setupDayData() {
 	postConversation = false;
 	iteration = 1;
-	giveEvent = diasDanEvento[generalData().getDay() - 1];
+	int day = generalData().getDay() - 1;
+	giveEvent = diasDanEvento[day];
 	if (misionAceptada) {
 		numMisionesAceptadas++;
 	}

@@ -57,6 +57,7 @@ namespace ecs {
 			END_SCENE,
 			TUTORIAL_SCENE,
 			CONFIG_SCENE,
+			INTRO_SCENE,
 			_LAST_SCENE,
 			NULL_SCENE
 		};

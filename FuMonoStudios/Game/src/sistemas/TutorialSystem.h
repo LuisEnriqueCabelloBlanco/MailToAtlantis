@@ -1,7 +1,9 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../architecture/Entity.h"
-#include "../components/DialogManager.h"
+#endif // !DEV_TOOLS
+#include <architecture/Entity.h>
+#include <components/DialogManager.h>
 #include <functional>
 
 namespace ecs {
@@ -30,11 +32,11 @@ using SimpleCallback = std::function<void()>;
 class TutorialSystem
 {
 public:
-	enum TutorialEvent { Introduction, SacaElManual1, SacaElManual2, PaqueteEnseñarRemitente,
-	PaqueteEnseñarCodigoPostal, PaqueteBuscarPaginaCodigosPostales, BuscarPaginaHestia,
-	EnseñarSellos, EnseñarTubos, EntraSegundoPaquete, SegundoBuscarPaginaDistritos, 
-	SellarSegundoPaquete, EnviarSegundoPaquete, EntraTercerPaquete, EnPaginaInfoSellos,
-	EntraCuartoPaquete, ExplicacionFalloAposta, 
+	enum TutorialEvent { Introduction, SacaElManual1, SacaElManual2, PaqueteEnsenarRemitente,
+	PaqueteEnsenarCodigoPostal, PaqueteBuscarPaginaCodigosPostales, BuscarPaginaHestia,
+	EnsenarSellos, EnsenarTubos, EntraSegundoPaquete, SegundoBuscarPaginaDistritos, 
+	SellarSegundoPaquete, EnviarSegundoPaquete, EntraCuartoPaquete, ExplicacionFalloAposta, 
+	EntraTercerPaquete, EnPaginaInfoSellos,
 	EntraPaquetePeso, EnviarPaquetePeso, 
 	EntraPaqueteFragil, SellarFragil, EnviarFragil,
 	Fin};
@@ -52,12 +54,14 @@ public:
 	void activateEvent(TutorialEvent event);
 	void stopEvent(TutorialEvent event);
 
+	void init();
 
 	void update();
 
 	bool canDrag;
 	bool canPassPagesManual;
 private:
+
 	ecs::TutorialScene* scene_;
 
 	DialogManager dialogMngr_;

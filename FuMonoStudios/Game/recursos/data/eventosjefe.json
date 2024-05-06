@@ -1,103 +1,283 @@
 {
-  "Evento1": {
-    "dialogo": "Hoy no hay paquetes a Hestia crack",
+  "Evento0": {
+    "validDay": 1,
+    "dialogo": "Hoy los paquetes de Demeter se envian a traves de Hestia",
     "id": 0,
-    "target": "Hestia"
-  },
-  "Evento2": {
-    "dialogo": "Hestia a Demeter",
-    "id": 1,
     "target": "Hestia",
     "swapActive": true,
-    "originalDis":  true,
-    "dest": "Demeter"
+    "originalDis": true,
+    "dest": "Demeter",
+    "blocked": "Demeter"
+  },
+  "Evento1": {
+    "validDay": 1,
+    "dialogo": "Hoy los paquetes de Artemisa se envian a traves de Hefesto",
+    "id": 0,
+    "target": "Hefesto",
+    "swapActive": true,
+    "originalDis": true,
+    "dest": "Artemisa",
+    "blocked": "Artemisa"
+  },
+  "Evento2": {
+    "validDay": 1,
+    "dialogo": "Hoy los paquetes de Hefesto se envian a traves de Demeter",
+    "id": 0,
+    "target": "Demeter",
+    "swapActive": true,
+    "originalDis": true,
+    "dest": "Hefesto",
+    "blocked": "Hefesto"
   },
   "Evento3": {
-    "dialogo": "Hestia no come hoy",
-    "id": 2,
-    "target": "Hestia",
-    "ban":  "Alimento"
+    "validDay": 1,
+    "dialogo": "Hoy los paquetes de Hestia se envian a traves de Artemisa",
+    "id": 0,
+    "target": "Artemisa",
+    "swapActive": true,
+    "originalDis": true,
+    "dest": "Hestia",
+    "blocked": "Hestia"
   },
   "Evento4": {
-    "dialogo": "Si pesas mas que el peso medio y vas a Hestia a tomar por culo",
-    "id": 3,
+    "validDay": 1,
+    "dialogo": "Hoy el distrito de Demeter no debe recibir paquetes de alimentos",
+    "id": 1,
+    "target": "Demeter",
+    "ban": "Alimento"
+  },
+  "Evento5": {
+    "validDay": 1,
+    "dialogo": "Hoy el distrito de Hefesto no debe recibir paquetes de Materiales",
+    "id": 1,
+    "target": "Hefesto",
+    "ban": "Materiales"
+  },
+  "Evento6": {
+    "validDay": 1,
+    "dialogo": "Hoy el distrito de Artemisa no debe recibir paquetes de Joyas",
+    "id": 1,
+    "target": "Artemisa",
+    "ban": "Joyas"
+  },
+  "Evento7": {
+    "validDay": 1,
+    "dialogo": "Hoy el distrito de Hestia no debe recibir paquetes de Medicinas",
+    "id": 1,
+    "target": "Hestia",
+    "ban": "Medicinas"
+  },
+  "Evento8": {
+    "validDay": 1,
+    "dialogo": "Hoy el distrito de Hestia no debe recibir paquetes de alimentos",
+    "id": 1,
+    "target": "Hefesto",
+    "ban": "Alimento"
+  },
+  "Evento9": {
+    "validDay": 1,
+    "dialogo": "Hoy el distrito de Artemisa no debe recibir paquetes de Medicinas",
+    "id": 1,
+    "target": "Artemisa",
+    "ban": "Medicinas"
+  },
+  "Evento10": {
+    "validDay": 5,
+    "dialogo": "Hoy los paquetes de Apolo se envian a traves de Artemisa",
+    "id": 0,
+    "target": "Artemisa",
+    "swapActive": true,
+    "originalDis": true,
+    "dest": "Apolo",
+    "blocked": "Apolo"
+  },
+  "Evento11": {
+    "validDay": 5,
+    "dialogo": "Hoy los paquetes de Artemisa se envian a traves de Apolo",
+    "id": 0,
+    "target": "Apolo",
+    "swapActive": true,
+    "originalDis": true,
+    "dest": "Artemisa",
+    "blocked": "Artemisa"
+  },
+  "Evento12": {
+    "validDay": 5,
+    "dialogo": "Hoy los paquetes de Hermes se envian a traves de Demeter",
+    "id": 0,
+    "target": "Demeter",
+    "swapActive": true,
+    "originalDis": true,
+    "dest": "Hermes",
+    "blocked": "Hermes"
+  },
+  "Evento13": {
+    "validDay": 5,
+    "dialogo": "Hoy los paquetes de Poseidon se envian a traves de Hestia",
+    "id": 0,
+    "target": "Hestia",
+    "swapActive": true,
+    "originalDis": true,
+    "dest": "Poseidon",
+    "blocked": "Poseidon"
+  },
+  "Evento14": {
+    "validDay": 5,
+    "dialogo": "Hoy los paquetes de Hestia se envian a traves de Poseidon",
+    "id": 0,
+    "target": "Poseidon",
+    "swapActive": true,
+    "originalDis": true,
+    "dest": "Hestia",
+    "blocked": "Hestia"
+  },
+  "Evento15": {
+    "validDay": 5,
+    "dialogo": "Hoy los paquetes de Hermes se envian a traves de Poseidon",
+    "id": 0,
+    "target": "Poseidon",
+    "swapActive": true,
+    "originalDis": true,
+    "dest": "Hermes",
+    "blocked": "Hermes"
+  },
+  "Evento16": {
+    "validDay": 1,
+    "dialogo": "Hoy los paquetes de Artemisa se envian a traves de Hermes",
+    "id": 0,
+    "target": "Hermes",
+    "swapActive": true,
+    "originalDis": true,
+    "dest": "Artemisa",
+    "blocked": "Artemisa"
+  },
+  "Evento17": {
+    "validDay": 5,
+    "dialogo": "Hoy los paquetes de Demeter se envian a traves de Apolo",
+    "id": 0,
+    "target": "Apolo",
+    "swapActive": true,
+    "originalDis": true,
+    "dest": "Demeter",
+    "blocked": "Demeter"
+  },
+  "Evento18": {
+    "validDay": 5,
+    "dialogo": "Hoy los paquetes de Hermes se envian a traves de Hefesto",
+    "id": 0,
+    "target": "Hefesto",
+    "swapActive": true,
+    "originalDis": true,
+    "dest": "Hermes",
+    "blocked": "Hermes"
+  },
+  "Evento19": {
+    "validDay": 5,
+    "dialogo": "Hoy los paquetes de Poseidon se envian a traves de Demeter",
+    "id": 0,
+    "target": "Demeter",
+    "swapActive": true,
+    "originalDis": true,
+    "dest": "Poseidon",
+    "blocked": "Poseidon"
+  },
+  "Evento20": {
+    "validDay": 5,
+    "dialogo": "Hoy no se pueden mandar paquetes que pesen mas que el peso medio a Hestia",
+    "id": 2,
     "target": "Hestia",
     "weightRestricted": true,
-    "singleType": true,
+    "singleType": false,
+    "typeToWeight": "Alimento",
+    "minOrMax": 2,
+    "peso": "Medio"
+  },
+  "Evento21": {
+    "validDay": 5,
+    "dialogo": "Hoy no se pueden mandar paquetes que pesen mas que el peso bajo a Demeter",
+    "id": 2,
+    "target": "Demeter",
+    "weightRestricted": true,
+    "singleType": false,
+    "typeToWeight": "Alimento",
+    "minOrMax": 2,
+    "peso": "Bajo"
+  },
+  "Evento22": {
+    "validDay": 5,
+    "dialogo": "Hoy no se pueden mandar paquetes que pesen mas que el peso medio a Artemisa",
+    "id": 2,
+    "target": "Artemisa",
+    "weightRestricted": true,
+    "singleType": false,
+    "typeToWeight": "Alimento",
+    "minOrMax": 2,
+    "peso": "Medio"
+  },
+  "Evento23": {
+    "validDay": 5,
+    "dialogo": "Hoy no se pueden mandar paquetes que pesen menos que el peso medio a Hefesto",
+    "id": 2,
+    "target": "Hefesto",
+    "weightRestricted": true,
+    "singleType": false,
+    "typeToWeight": "Alimento",
+    "minOrMax": 0,
+    "peso": "Medio"
+  },
+  "Evento24": {
+    "validDay": 5,
+    "dialogo": "Hoy no se pueden mandar paquetes que sean de peso bajo a Apolo",
+    "id": 2,
+    "target": "Demeter",
+    "weightRestricted": true,
+    "singleType": false,
+    "typeToWeight": "Alimento",
+    "minOrMax": 3,
+    "peso": "Bajo"
+  },
+  "Evento25": {
+    "validDay": 5,
+    "dialogo": "Hoy no se pueden mandar paquetes que sean de peso medio a Hermes",
+    "id": 2,
+    "target": "Hermes",
+    "weightRestricted": true,
+    "singleType": false,
+    "typeToWeight": "Alimento",
+    "minOrMax": 3,
+    "peso": "Medio"
+  },
+  "Evento26": {
+    "validDay": 5,
+    "dialogo": "Hoy no se pueden mandar paquetes que sean de peso alto a Poseidon",
+    "id": 2,
+    "target": "Poseidon",
+    "weightRestricted": true,
+    "singleType": false,
+    "typeToWeight": "Alimento",
+    "minOrMax": 3,
+    "peso": "Alto"
+  },
+  "Evento27": {
+    "validDay": 5,
+    "dialogo": "Hoy solo se pueden mandar paquetes que sean de peso medio a Artemisa",
+    "id": 2,
+    "target": "Artemisa",
+    "weightRestricted": true,
+    "singleType": false,
     "typeToWeight": "Alimento",
     "minOrMax": 1,
     "peso": "Medio"
   },
-  "Evento5": {
-
-  },
-  "Evento6": {
-
-  },
-  "Evento7": {
-
-  },
-  "Evento8": {
-
-  },
-  "Evento9": {
-
-  },
-  "Evento10": {
-
-  },
-  "Evento11": {
-
-  },
-  "Evento12": {
-
-  },
-  "Evento13": {
-
-  },
-  "Evento14": {
-
-  },
-  "Evento15": {
-
-  },
-  "Evento16": {
-
-  },
-  "Evento17": {
-
-  },
-  "Evento18": {
-
-  },
-  "Evento19": {
-
-  },
-  "Evento20": {
-
-  },
-  "Evento21": {
-
-  },
-  "Evento22": {
-
-  },
-  "Evento23": {
-
-  },
-  "Evento24": {
-
-  },
-  "Evento25": {
-
-  },
-  "Evento26": {
-
-  },
-  "Evento27": {
-
-  },
   "Evento28": {
-
+    "validDay": 5,
+    "dialogo": "Hoy solo se pueden mandar paquetes que sean de peso alto a Demeter",
+    "id": 2,
+    "target": "Demeter",
+    "weightRestricted": true,
+    "singleType": false,
+    "typeToWeight": "Alimento",
+    "minOrMax": 1,
+    "peso": "Alto"
   }
 }

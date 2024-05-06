@@ -1,15 +1,17 @@
+#ifndef DEV_TOOLS
+#include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "MainMenu.h"
-#include "../architecture/Entity.h"
+#include <architecture/Entity.h>
 #include <iostream>
-#include "../sdlutils/SDLUtils.h"
-#include "../components/Transform.h"
-#include "../components/Render.h"
-#include "../components/Clickeable.h"
-#include "../architecture/Game.h"
-#include "../architecture/GeneralData.h"
-#include "../components/RenderWithLight.h"
+#include <sdlutils/SDLUtils.h>
+#include <components/Transform.h>
+#include <components/Render.h>
+#include <components/Clickeable.h>
+#include <architecture/Game.h>
+#include <architecture/GeneralData.h>
 #include <sistemas/ComonObjectsFactory.h>
-#include <components/HoverSensorComponent.h>
+#include <architecture/GameConstants.h>
 
 //ecs::MainMenu::MainMenu()
 //{
@@ -26,6 +28,9 @@ ecs::MainMenu::~MainMenu()
 
 void ecs::MainMenu::init()
 {
+
+	generalData().loadSaveFile();
+
 #ifdef _DEBUG
 	std::cout << "Hola Menu" << std::endl;
 #endif // _DEBUG
@@ -45,18 +50,20 @@ void ecs::MainMenu::init()
 
 	auto textColor = build_sdlcolor(0xffffffff);
 	factory_->setLayer(layer::UI);
-	auto tuto = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH- 700, 400), "Tutorial", 50, [this]() {
-		sdlutils().musics().at("mainMenu").haltMusic();
-		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::TUTORIAL_SCENE);
-		}, "click", textColor);
-	factory_->addHilghtOnHover(tuto);
-	factory_->addHoverColorMod(tuto);
+	//auto tuto = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH- 700, 400), "Tutorial", 50, [this]() {
+	//	sdlutils().musics().at("mainMenu").haltMusic();
+	//	gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::TUTORIAL_SCENE);
+	//	},textColor);
+	//factory_->addHilghtOnHover(tuto);
+	//factory_->addHoverColorMod(tuto);
 
 
 	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Nueva partida", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
-		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
+		generalData().newGame();
+		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::INTRO_SCENE);
 		},"click", textColor);
+
 	factory_->addHilghtOnHover(start);
 	factory_->addHoverColorMod(start);
 
@@ -68,7 +75,14 @@ void ecs::MainMenu::init()
 	factory_->addHilghtOnHover(loadSave);
 	factory_->addHoverColorMod(loadSave);
 
-	auto exit = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 700), "Salir", 50, [this]() {
+	auto ajustes = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 700), "Configuracion", 50, [this]() {
+		sdlutils().musics().at("mainMenu").haltMusic();
+	gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::CONFIG_SCENE);
+		}, textColor);
+	factory_->addHilghtOnHover(ajustes);
+	factory_->addHoverColorMod(ajustes);
+
+	auto exit = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 800), "Salir", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().endGame();
 		}, "click", textColor);

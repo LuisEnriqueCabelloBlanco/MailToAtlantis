@@ -154,6 +154,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\scenes\IntroScene.cpp" />
+    <ClCompile Include="src\sistemas\SpecialObjectsFactory.cpp" />
     <ClCompile Include="src\entities\CristalBall.cpp" />
     <ClCompile Include="src\sistemas\PipeManager.cpp" />
     <ClCompile Include="src\scenes\ConfigScene.cpp" />
@@ -175,7 +177,6 @@
     <ClCompile Include="ImGui\backends\imgui_impl_sdl2.cpp" />
     <ClCompile Include="ImGui\backends\imgui_impl_sdlrenderer2.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
-    <ClCompile Include="ImGui\imgui_demo.cpp" />
     <ClCompile Include="ImGui\imgui_draw.cpp" />
     <ClCompile Include="ImGui\imgui_tables.cpp" />
     <ClCompile Include="ImGui\imgui_widgets.cpp" />
@@ -225,6 +226,8 @@
     <ClCompile Include="src\sistemas\WorkRestrictionsSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\scenes\IntroScene.h" />
+    <ClInclude Include="src\sistemas\SpecialObjectsFactory.h" />
     <ClInclude Include="src\entities\CristalBall.h" />
     <ClInclude Include="src\sistemas\PipeManager.h" />
     <ClInclude Include="src\scenes\ConfigScene.h" />

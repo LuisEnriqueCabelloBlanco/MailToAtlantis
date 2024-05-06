@@ -1,15 +1,17 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../architecture/Game.h"
-#include "../architecture/Scene.h"
-#include "../components/Transform.h"
-#include "../components/Paquete.h"
-#include "../entities/CristalBall.h"
+#endif // !DEV_TOOLS
+#include <architecture/Scene.h>
+#include <components/Transform.h>
+#include <components/Paquete.h>
+#include <entities/CristalBall.h>
 #include <components/Herramientas.h>
-#include "../sistemas/PaqueteBuilder.h"
-#include "../sistemas/PipeManager.h"
-#include "components/DialogManager.h"
-#include "sistemas/WorkRestrictionsSystem.h"
+#include <sistemas/PaqueteBuilder.h>
+#include <sistemas/PipeManager.h>
+#include <components/DialogManager.h>
+#include <sistemas/WorkRestrictionsSystem.h>
+#include <sistemas/SpecialObjectsFactory.h>
 
 namespace ecs {
     class Game;
@@ -29,28 +31,30 @@ namespace ecs {
         void createPaquete(int lv);
         void createErrorMessage(Paquete* paqComp, bool, bool);
         void createExclamationPoint();
-    private:
-        void createManual(int NumPages);
-        void createMiniManual();
-        void createSpaceManual();
+
+    protected:
+        virtual std::unordered_map<std::string, ecs::Entity*> createManual(int NumPages);
+        virtual ecs::Entity* createMiniManual();
+        ecs::Entity* createSpaceManual();
         void createMultipleStamp();
         void createBalanzaDigital();
 
         //void createTubo(Paquete::Distrito dist, bool desbloqueado);
 
-        void createClock();
-        void createBolaCristal();
+        ecs::Entity* createClock();
+        ecs::Entity* createBolaCristal();
 
 
         //void createSelladores();
-        void createGarbage();
-        void createCinta();
-        void createBalanza();
-        void createTubo(pq::Distrito dist, bool);
-        void createStamp(TipoHerramienta type);
+        virtual ecs::Entity* createGarbage();
+        ecs::Entity* createCinta();
+        virtual std::unordered_map<std::string, ecs::Entity*> createBalanza();
+        virtual std::unordered_map<std::string, ecs::Entity*> createTubes();
+        ecs::Entity* createTubo(pq::Distrito dist, bool);
+        ecs::Entity* createStamp(TipoHerramienta type);
         
         void createInks();
-        void createOneInk(TipoHerramienta type);
+        ecs::Entity* createOneInk(TipoHerramienta type);
 
         void updateToolsPerDay(int dia);
 
@@ -60,11 +64,17 @@ namespace ecs {
         float timer_;
         bool timerPaused_;
 
+        bool dialogoPendiente;
+
         DialogManager dialogMngr_;
         
+        ecs::Entity* jefe_;
+
         ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
 
         void startWork();
+
+        void newWorkEvent();
 
 #ifdef DEV_TOOLS
         bool nextPacageCorrect_;
@@ -83,6 +93,8 @@ namespace ecs {
         Entity* manualEnt_;
         Entity* miniManualEnt_;
 
+        std::vector<ecs::Entity*> tubos;
+
         CristalBall* bolaCrist_;
 
         //El pinche paquete builder para no crear uno en cada paquete
@@ -91,6 +103,8 @@ namespace ecs {
         PipeManager* mPipeMngr_;
 
         WorkRestrictionsSystem mWorkRes;
+
+        SpecialObjectsFactory* specialFactory_;
     };
 }
 

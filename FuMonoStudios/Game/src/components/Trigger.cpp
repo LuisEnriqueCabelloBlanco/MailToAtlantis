@@ -1,10 +1,10 @@
 
 #include "Trigger.h"
 
-#include "Transform.h"
-#include "Clickeable.h"
-#include "../architecture/GeneralData.h"
-#include "../architecture/Entity.h"
+#include <components/Transform.h>
+#include <components/Clickeable.h>
+#include <architecture/GeneralData.h>
+#include <architecture/Entity.h>
 
 #include <assert.h>
 
@@ -65,6 +65,22 @@ void Trigger::addCallback(Callback event, int moveType) {
 
 	}
 	
+
+}
+
+void Trigger::clearCallback(int moveType)
+{
+
+	if (moveType == generalData().DropIn) {
+
+		eventList_.clear();
+
+	}
+	else if (moveType == generalData().PickUp) {
+
+		eventListPickUp_.clear();
+
+	}
 
 }
 
