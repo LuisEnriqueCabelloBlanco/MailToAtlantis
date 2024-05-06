@@ -73,8 +73,12 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 	}
 	else if (generalData().getDay() == 5) {
 		canInteract = false;
-		dialogMngr_.setEndDialogueCallback([this] {
+		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
+		temporalSprite->addComponent<Transform>(500,500,400,600);
+		temporalSprite->addComponent<RenderImage>()->setTexture(&sdlutils().images().at("Jefe"));
+		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
 			canInteract = true;
+			temporalSprite->setAlive(false);
 			});
 		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 1);
 	}
@@ -82,13 +86,15 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 		|| (generalData().getNPCData(Secretario)->misionAceptada == 2 && generalData().getNPCData(Vagabundo)->misionAceptada < 6)) 
 	{
 		canInteract = false;
-		dialogMngr_.setEndDialogueCallback([this] {
+		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
+		temporalSprite->addComponent<Transform>(500, 500, 400, 600);
+		temporalSprite->addComponent<RenderImage>()->setTexture(&sdlutils().images().at("Jefe"));
+		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
 			canInteract = true;
+			temporalSprite->setAlive(false);
 			});
 		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 2);
 	}
-
-
 }
 
 
