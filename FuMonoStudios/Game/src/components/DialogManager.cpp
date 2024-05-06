@@ -237,6 +237,17 @@ void DialogManager::startConversationWithObj(const std::string& interactableObj)
     }
 }
 
+void DialogManager::startConversation(DialogSelection enter, int numIteration) {
+    if (canStartConversation) {
+
+        setDialogues(enter, std::to_string(numIteration));
+
+        setDialogueEntitiesActive(true);
+
+        canStartConversation = false;
+    }
+}
+
 void DialogManager::closeDialogue()
 {
     setDialogueEntitiesActive(false);
@@ -354,6 +365,9 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
         break;
     case Intro:
         aux = "Intro";
+        break;
+    case ExplorationEnter:
+        aux = "ExplorationEnter";
         break;
 
     //Dialogos objetos distritos

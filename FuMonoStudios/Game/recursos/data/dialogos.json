@@ -1187,6 +1187,20 @@
       "El remitente de la carta era un grupo que se hacia llamar 'Las Lechuzas' y habia un mapa que marcaba la supuesta ubicacion de este legendario lugar.", "Paco interpreto esto como una senal del destino para dejar todo atras y se embarco en su viaje hacia la Atlantida, gastandose todos sus ahorros en un submarino y un disfraz de pez para infiltrarse.", "Y asi, despues de un arduo viaje, Paco llego a su destino, pero este era ligeramente diferente de como se lo imaginaba..."
     ]
   },
+  "ExplorationEnter": {
+    "0":[
+      "Ahora si, bienvenido a Atlantis. Puedes navegar entre distritos clicando las flechas colgadas en los carteles de madera, y hablar con los personajes clicando en ellos.",
+      "Conforme vayas conociendo a los personajes, se ira expandiendo tu diario. El diario esta en la parte abajo derecha. Ahora mismo esta vacio porque no conoces a nadie.",
+      "Ve haciendo favores y conociendo a la gente de Atlantis durante tu estancia en la ciudad."
+    ],
+    "1":[
+      "Hola. Como te has portado bien. El rey te ha permitido el acceso a los distritos interiores. Hermes, Apolo y Poseidon.",
+      "Ademas, el rey quiere verte. Antes de trabajar busca al secretario del rey, que estara en Poseidon."
+    ],
+    "2":[
+      "ASDFG"
+    ]
+  },
     "CasaGrande": {
         "TextoCasaGrande00": [ "Grande00" ],
         "TextoCasaGrande01": [ "Grande01" ],
