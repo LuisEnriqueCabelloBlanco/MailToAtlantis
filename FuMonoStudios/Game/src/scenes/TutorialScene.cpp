@@ -62,14 +62,7 @@ void ecs::TutorialScene::init() {
 
 	createStamp(SelloCalleA);
 
-	//tubos
-	for (int z = 0; z < 7; ++z) { //grande jose la los numeros magicos te la sabes
-		// bien jose buenos numerazos magicos ahi estamos chaval a funcionar
-		// jose
-		// bien jose
-		// padreas
-		tubos.push_back(createTubo((pq::Distrito)z, true));
-	}
+	createTubes();
 
 	if (generalData().getDay() == 1) {
 
@@ -100,11 +93,27 @@ void ecs::TutorialScene::close() {
 
 void ecs::TutorialScene::activateTubos() {
 
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < generalData().getTubesAmount(); i++)
 	{
 		Trigger* tuboTri = tubos[i]->addComponent<Trigger>();
 		PackageChecker* tuboCheck = tubos[i]->addComponent<PackageChecker>(Distrito(i), this, mPipeMngr_);
 	}
+}
+
+
+void ecs::TutorialScene::activateAllButOneTube(int tub)
+{
+
+	for (int i = 0; i < generalData().getTubesAmount(); i++)
+	{
+
+		if (tub != i) {
+			Trigger* tuboTri = tubos[i]->addComponent<Trigger>();
+			PackageChecker* tuboCheck = tubos[i]->addComponent<PackageChecker>(Distrito(i), this, mPipeMngr_);
+		}
+		
+	}
+
 }
 
 ecs::Entity* ecs::TutorialScene::createMiniManual()
@@ -200,12 +209,44 @@ std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createBalanza(
 
 }
 
+std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createTubes()
+{
+
+	std::unordered_map<std::string, ecs::Entity*> tubes = MainScene::createTubes();
+
+	for (int i = 0; i < generalData().getTubesAmount(); ++i) {
+
+		std::string name = "tube" + i;
+
+		Trigger* triTub = tubes[name]->getComponent<Trigger>();
+
+		triTub->addCallback([this](ecs::Entity* entRect) { tutorialSys_->registerAction(TutorialSystem::PaqueteEnviado); }, generalData().DropIn);
+
+	}
+
+	return tubes;
+}
+
 void ecs::TutorialScene::deactivateTubos() {
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < generalData().getTubesAmount(); i++)
 	{
 		tubos[i]->removeComponent<Trigger>();
 		tubos[i]->removeComponent<PackageChecker>();
 	}
+}
+
+void ecs::TutorialScene::deactivateAllButOneTube(int tub)
+{
+
+	for (int i = 0; i < generalData().getTubesAmount(); i++)
+	{
+		if (i != tub) {
+			tubos[i]->removeComponent<Trigger>();
+			tubos[i]->removeComponent<PackageChecker>();
+		}
+		
+	}
+
 }
 
 ecs::Entity* ecs::TutorialScene::createGarbage()

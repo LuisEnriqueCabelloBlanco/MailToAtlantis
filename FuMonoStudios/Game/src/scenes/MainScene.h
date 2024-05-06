@@ -49,6 +49,7 @@ namespace ecs {
         virtual ecs::Entity* createGarbage();
         ecs::Entity* createCinta();
         virtual std::unordered_map<std::string, ecs::Entity*> createBalanza();
+        virtual std::unordered_map<std::string, ecs::Entity*> createTubes();
         ecs::Entity* createTubo(pq::Distrito dist, bool);
         ecs::Entity* createStamp(TipoHerramienta type);
         
