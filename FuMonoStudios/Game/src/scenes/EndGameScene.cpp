@@ -8,19 +8,17 @@
 #include <sdlutils/InputHandler.h>
 #include <components/Render.h>
 #include <architecture/Game.h>
-#include "entities/Finales.h"
+#include "entities/Final.h"
 
 EndGameScene::EndGameScene()
 {
     npcId_ = 0;
-
+    Personaje npc = (Personaje)npcId_;
+    final_ = new Final(this, npc, generalData().getNPCData(npc)->felicidad);
 }
 
 void EndGameScene::init()
 {
-    endText_ = factory_->createLabel(Vector2D(300, 900), 1000,
-        endTexts_[(Personaje)npcId_][generalData().getNPCData((Personaje)npcId_)->felicidad], 
-        50,build_sdlcolor(0xFFFFFFFF));
 }
 
 void EndGameScene::update()
@@ -38,10 +36,9 @@ void EndGameScene::update()
 }
 
 
-
 void EndGameScene::nextEnding()
 {
     npcId_++;
     Personaje npc = (Personaje)npcId_;
-    Finales::updateFinal(this, npc, generalData().getNPCData(npc)->felicidad);
+    final_->loadFinal(npc, generalData().getNPCData(npc)->felicidad);
 }

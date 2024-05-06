@@ -71,7 +71,7 @@
     <ClCompile Include="src\scenes\EndGameScene.cpp" />
     <ClCompile Include="src\sistemas\NPC.cpp" />
     <ClCompile Include="src\sistemas\NPCevent.cpp" />
-    <ClCompile Include="src\entities\Finales.cpp" />
+    <ClCompile Include="src\entities\Final.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -180,7 +180,7 @@
     <ClInclude Include="src\scenes\EndGameScene.h" />
     <ClInclude Include="src\sistemas\NPC.h" />
     <ClInclude Include="src\sistemas\NPCevent.h" />
-    <ClInclude Include="src\entities\Finales.h" />
+    <ClInclude Include="src\entities\Final.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\DialogManager.cpp" />
