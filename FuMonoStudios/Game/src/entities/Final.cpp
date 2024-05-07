@@ -1,10 +1,12 @@
 #include "Final.h"
 #include <json/JSON.h>
+#include <unordered_map>
+#include <string>
+
 #include "sistemas/ComonObjectsFactory.h"
 #include "sdlutils/SDLUtils.h"
-#include "architecture/GeneralData.h"
 
-std::unordered_map<Personaje, std::unordered_map<Felicidad, std::string>> endTexts_;
+std::unordered_map<Personaje, std::unordered_map<Felicidad, std::string>> Final::endTexts_;
 
 Final::Final(ecs::Scene* escene, Personaje npc, Felicidad felicidad)
 {

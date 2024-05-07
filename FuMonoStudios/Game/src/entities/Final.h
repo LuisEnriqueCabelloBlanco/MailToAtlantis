@@ -2,7 +2,7 @@
 #include <architecture/GeneralData.h>
 #include <architecture/Scene.h>
 
-static class Final
+class Final
 {
 	/// <summary>
 	// Carga el final en la escena que necesites. Para ello solo crea una instancia de final.
@@ -26,7 +26,7 @@ private:
 	static std::unordered_map<Personaje, std::unordered_map<Felicidad,std::string>> endTexts_;
 
 	ecs::Scene* escene_; // Donde se crea el final, lo usamos en loadFinal para saber en que escena estamos
-	ecs::Entity* periodico_; 
+	ecs::Entity* periodico_;
 	ecs::Entity* imagenNpc_;
 };
 
