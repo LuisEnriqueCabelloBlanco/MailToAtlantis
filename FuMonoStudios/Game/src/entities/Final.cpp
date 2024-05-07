@@ -27,12 +27,14 @@ Final::Final(ecs::Scene* escene, Personaje npc, Felicidad felicidad)
     Texture* periodicoTex = &sdlutils().images().at("periodico");
     periodico_ = factory->createImage(Vector2D(30, 110), Vector2D(periodicoTex->width(), periodicoTex->height()), periodicoTex);
     Transform* periodicoTr = periodico_->getComponent<Transform>();
-    periodicoTr->setScale(0.5);
-    periodicoTr->setPos(100, 100);
+    periodicoTr->setScale(1);
 
     // Creamos entidad imagenNpc
     Texture* imagenNpcTex = generalData().personajeToTexture(npc);
     imagenNpc_ = factory->createImage(Vector2D(30, 110), Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
+    Transform* imagenNpcTr = imagenNpc_->getComponent<Transform>();
+    imagenNpcTr->setScale(0.25);
+    imagenNpcTr->setPos(300, 500);
 
     // Generamos Dialogo
     
@@ -90,9 +92,14 @@ void Final::loadFinal(Personaje npc, Felicidad felicidad)
     ComonObjectsFactory* factory = escene_->getFactory();
     factory->setLayer(ecs::layer::UI);
 
+    // Borramos la imagen anterior
+    delete imagenNpc_;
+
     // Actualizamos la imagenNpc
     Texture* imagenNpcTex = generalData().personajeToTexture(npc);
-    imagenNpc_ = factory->createImage(Vector2D(30, 110), Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
+    imagenNpc_ = factory->createImage(Vector2D(300, 500), Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
+    Transform* imagenNpcTr = imagenNpc_->getComponent<Transform>();
+    imagenNpcTr->setScale(0.25);
 
     // Generamos dialogo
 }

@@ -15,12 +15,12 @@
 EndGameScene::EndGameScene()
 {
     npcId_ = 0;
-    Personaje npc = (Personaje)npcId_;
-    final_ = new Final(this, npc, generalData().getNPCData(npc)->felicidad);
 }
 
 void EndGameScene::init()
 {
+    Personaje npc = (Personaje)npcId_;
+    final_ = new Final(this, npc, generalData().getNPCData(npc)->felicidad);
 }
 
 void EndGameScene::update()

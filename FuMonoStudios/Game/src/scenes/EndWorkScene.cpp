@@ -110,7 +110,7 @@ void EndWorkScene::createButtons()
 
 	if (money > 0) {
 		// Boton nuevo dia
-		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
+		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::END_SCENE); };
 		factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Nuevo dia", 50, call);
 		// Sonido
 		sdlutils().soundEffects().at("MoneyProfits").play();

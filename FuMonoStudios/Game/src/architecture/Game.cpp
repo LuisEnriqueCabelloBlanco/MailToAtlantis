@@ -46,7 +46,7 @@ Game::Game() :exit_(false) {
 		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),new EndGameScene(),new ecs::TutorialScene(), new ecs::ConfigScene(), new ecs::IntroScene};
 	gamePaused_ = false;
 
-	loadScene(ecs::sc::MENU_SCENE);
+	loadScene(ecs::sc::END_WORK_SCENE);
 	sceneChange_ = false;
 }
 
