@@ -37,7 +37,6 @@ void EndGameScene::update()
     }
 }
 
-
 void EndGameScene::nextEnding()
 {
     npcId_++;

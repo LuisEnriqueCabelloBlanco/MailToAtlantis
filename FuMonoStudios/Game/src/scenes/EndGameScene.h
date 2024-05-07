@@ -5,6 +5,9 @@
 #include <architecture/Scene.h>
 #include <json/JSON.h>
 #include <architecture/GeneralData.h>
+
+class Final;
+
 class EndGameScene :
     public ecs::Scene
 {
