@@ -56,6 +56,10 @@
       "id": "book10",
       "file": "recursos/images/Book_InfoEmbalado.png"
     },
+    {"id": "MarcaManual1", "file": "recursos/images/MarcaManual1.png"},
+    {"id": "MarcaManual2", "file": "recursos/images/MarcaManual2.png"},
+    {"id": "MarcaManual3", "file": "recursos/images/MarcaManual3.png"},
+    {"id": "MarcaManual4", "file": "recursos/images/MarcaManual4.png"},
     {"id": "diario1", "file": "recursos/images/Diario0.png"},
     {"id": "diario2", "file": "recursos/images/Diario1.png"},
     {"id": "diario3", "file": "recursos/images/Diario2.png"},

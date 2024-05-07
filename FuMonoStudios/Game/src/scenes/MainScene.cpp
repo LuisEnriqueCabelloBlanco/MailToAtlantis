@@ -233,9 +233,7 @@ ecs::Entity* ecs::MainScene::createOneInk(TipoHerramienta type) {
 }
 
 void ecs::MainScene::updateToolsPerDay(int dia)
-{
-	GeneralData::instance ()->setUpgradeValue (ecs::upg::BALANZA_UPGRADE, true);
-	dia = 5;
+{	
 	if(dia == 0)
 		return;	
 	
@@ -553,8 +551,7 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int N
 	manualRender->setVector(bookTextures);
 	manualEnt_->addComponent<Gravity>();
 	manualEnt_->addComponent<DragAndDrop>(false, "arrastrar");
-	manualEnt_->addComponent<Depth>();
-
+	manualEnt_->addComponent<Depth>();	
 
 	Vector2D buttonSize(40, 40);
 	factory_->setLayer(ecs::layer::FOREGROUND);
@@ -568,6 +565,34 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int N
 	left->getComponent<Transform>()->setParent(manualTransform);
 	left->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
 	factory_->addHoverColorMod(left);
+
+	if (GeneralData::instance()->getUpgradeValue(ecs::upg::MANUAL_UPGRADE)) {
+		Vector2D marcadorSize(30, 40);
+
+		Texture* marca1Texture = &sdlutils().images().at("MarcaManual1");
+		auto district = [manualRender]() {manualRender->setNumberTexture(2); };
+		auto dis = factory_->createImageButton(Vector2D(215, 0), marcadorSize, marca1Texture, district, "page");
+		dis->getComponent<Transform>()->setParent(manualTransform);		
+		factory_->addHoverColorMod(dis);
+
+		Texture* marca2Texture = &sdlutils().images().at("MarcaManual2");
+		auto calles = [manualRender]() {manualRender->setNumberTexture(3); };
+		auto call = factory_->createImageButton(Vector2D(250, 9), marcadorSize, marca2Texture, calles, "page");
+		call->getComponent<Transform>()->setParent(manualTransform);
+		factory_->addHoverColorMod(call);
+
+		Texture* marca3Texture = &sdlutils().images().at("MarcaManual3");
+		auto sellos = [manualRender]() {manualRender->setNumberTexture(7); };
+		auto sell = factory_->createImageButton(Vector2D(285, 9), marcadorSize, marca3Texture, sellos, "page");
+		sell->getComponent<Transform>()->setParent(manualTransform);
+		factory_->addHoverColorMod(sell);
+
+		Texture* marca4Texture = &sdlutils().images().at("MarcaManual4");
+		auto pesos = [manualRender]() {manualRender->setNumberTexture(8); };
+		auto pes = factory_->createImageButton(Vector2D(320, 0), marcadorSize, marca4Texture, pesos, "page");
+		pes->getComponent<Transform>()->setParent(manualTransform);
+		factory_->addHoverColorMod(pes);
+	}
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
