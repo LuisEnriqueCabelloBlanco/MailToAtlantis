@@ -1,4 +1,4 @@
-#include "../sdlutils/InputHandler.h"
+#include <sdlutils/InputHandler.h>
 #ifndef DEV_TOOLS
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
@@ -12,8 +12,10 @@
 #include <components/PackageChecker.h>
 #include <components/ErrorNote.h>
 #include <architecture/GameConstants.h>
+#include <sistemas/SoundEmiter.h>
 
 ecs::TutorialScene::TutorialScene() : MainScene(), balanzaUsed(false) {
+
 
 	tutorialSys_ = new TutorialSystem(this);
 
@@ -68,6 +70,7 @@ void ecs::TutorialScene::init() {
 
 		tutorialSys_->activateEvent(TutorialSystem::Introduction);
 
+
 	}
 	else if (generalData().getDay() == 3) {
 
@@ -75,7 +78,6 @@ void ecs::TutorialScene::init() {
 
 	}
 	else if (generalData().getDay() == 5) {
-
 		tutorialSys_->activateEvent(TutorialSystem::EntraPaquetePeso);
 
 	}
@@ -89,6 +91,7 @@ void ecs::TutorialScene::init() {
 
 void ecs::TutorialScene::close() {
 	ecs::Scene::close();
+  SoundEmiter::instance()->close();
 }
 
 void ecs::TutorialScene::activateTubos() {

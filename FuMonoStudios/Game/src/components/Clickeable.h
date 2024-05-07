@@ -3,6 +3,7 @@
 #include <architecture/Component.h>
 #include <functional>
 #include <list>
+#include <string>
 
 class Transform;
 
@@ -12,7 +13,7 @@ class Clickeable : public ecs::Component {
 
 public:
 	__CMP_DECL__(ecs::cmp::CLICKEABLE)
-	Clickeable();
+	Clickeable(std::string soundClick);
 
 	~Clickeable();
 
@@ -29,5 +30,8 @@ private:
 
 	std::list<CallbackClickeable> eventsWhenClick_;
 
+	std::string soundWhenClicked_;
+
 	bool canClick_;
+
 };

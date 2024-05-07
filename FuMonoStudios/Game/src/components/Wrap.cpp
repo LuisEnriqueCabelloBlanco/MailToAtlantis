@@ -1,6 +1,7 @@
 #include "Wrap.h"
 #include <components/Transform.h>
 
+#include <sistemas/SoundEmiter.h>
 #include <architecture/Entity.h>
 #include <sdlutils/InputHandler.h>
 #include <json/JSON.h>
@@ -176,6 +177,13 @@ void Wrap::update() {
 						|| (routePointsDone == totalPointsRoute / 2 && wrapFase < 2)
 						|| (routePointsDone == (totalPointsRoute * 3) / 4 && wrapFase < 3)
 						|| (routePointsDone == totalPointsRoute && wrapFase < 4)) {						
+
+						if (wrapFase < 1) {
+							SoundEmiter::instance()->playSound("emb_com");
+						}
+						else {
+							SoundEmiter::instance()->playSound("emb_cont");
+						}
 						mul_->nextTexture ();
 						wrapFase++;
 

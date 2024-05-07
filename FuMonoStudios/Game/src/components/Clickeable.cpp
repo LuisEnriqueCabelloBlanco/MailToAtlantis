@@ -7,9 +7,11 @@
 #include <SDL.h>
 #include <assert.h>
 
+#include <sistemas/SoundEmiter.h>
 
 
-Clickeable::Clickeable(): mTr_(nullptr), eventsWhenClick_(), canClick_(true) {
+Clickeable::Clickeable(std::string soundClick): mTr_(nullptr), eventsWhenClick_(), soundWhenClicked_(soundClick), canClick_(true) {
+
 
 }
 
@@ -43,8 +45,10 @@ void Clickeable::update() {
 
 		if (SDL_PointInRect(&point, mRect_)) {
 			// 
-			//Recorrido por las colbacks a las que est� suscrito este objeto
-			sdlutils().soundEffects().at("click").play();
+			//Recorrido por las callbacks a las que esta suscrito este objeto
+			if (soundWhenClicked_ != "") {
+				SoundEmiter::instance()->playSound(soundWhenClicked_);
+			}
 			for (CallbackClickeable call : eventsWhenClick_) {
 
 				call();

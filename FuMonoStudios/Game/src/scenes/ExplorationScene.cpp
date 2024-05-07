@@ -21,9 +21,19 @@
 #include <sistemas/ComonObjectsFactory.h>
 #include <architecture/GameConstants.h>
 #include <QATools/DataCollector.h>
+
+#ifdef DEV_TOOLS
+#include <imgui.h>
+#include <imgui_impl_sdl2.h>
+#include <imgui_impl_sdlrenderer2.h>
+#endif // DEV_TOOLS
+
+#include <components/RenderWithLight.h>
+#include <sistemas/SoundEmiter.h>
 #include <sistemas/NPCeventSystem.h>
 #include <components/HoverSensorComponent.h>
 #include <components/MoverTransform.h>
+
 
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
@@ -137,6 +147,7 @@ void ecs::ExplorationScene::update() {
 void ecs::ExplorationScene::close() {
 	delete rightTex;
 	delete leftTex;
+	SoundEmiter::instance()->close();
 	clearScene();
 	diario_->setAlive(false);
 }
@@ -198,7 +209,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrow(Vector2D pos, std::st
 		}
 	};
 
-	ecs::Entity* Arrow = factory_->createImageButton(pos, size, sujetaplazas, cosa);
+	ecs::Entity* Arrow = factory_->createImageButton(pos, size, sujetaplazas, cosa, "click");
 
 	Transform* arrowTR = Arrow->getComponent<Transform>();
 
@@ -222,7 +233,7 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 
 	ecs::Entity* e = addEntity();
 	e->addComponent<Transform>(pos.getX(), pos.getY(), scale.getX(), scale.getY());
-	auto clickableBotonTrabajar = e->addComponent<Clickeable>();
+	auto clickableBotonTrabajar = e->addComponent<Clickeable>("");
 	CallbackClickeable funcPress = [this]() {
 		if (generalData().getDay() == 1 ||
 			generalData().getDay() == 3 ||
@@ -273,14 +284,14 @@ void ecs::ExplorationScene::createDiario() {
 	ecs::Entity* pasarPagIzq = factory_->createImageButton(Vector2D(43,315),Vector2D(40,40), 
 		&sdlutils().images().at("cambioPag"), [this]() {
 			changeDiarioPages(false);
-		});
+		}, "page");
 	pasarPagIzq->getComponent<Transform>()->setParent(diario_->getComponent<Transform>());
 	pasarPagIzq->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
 
 	ecs::Entity* pasarPagDer = factory_->createImageButton(Vector2D(516, 315), Vector2D(40, 40),
 		&sdlutils().images().at("cambioPag"), [this]() {
 			changeDiarioPages(true);
-		});
+		}, "page");
 	pasarPagDer->getComponent<Transform>()->setParent(diario_->getComponent<Transform>());
 
 	factory_->setLayer(ecs::layer::DEFAULT);
@@ -549,7 +560,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 
 
-	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "click");
 
 	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
 
@@ -566,7 +577,7 @@ ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const st
 		dialogMngr_.startConversationWithObj(interactableObj);
 	};
 
-	ecs::Entity* objEnt = factory_->createImageButton(pos, size, nullptr, funcPress);
+	ecs::Entity* objEnt = factory_->createImageButton(pos, size, nullptr, funcPress, "click");
 
 	return objEnt;
 }
@@ -620,7 +631,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 		//PLACEHOLDER_BOTON_GUARDADO
 		factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
 			generalData().saveGame();
-			}, SDL_Color{255,255,0});
+			}, "click", SDL_Color{255,255,0});
 	}
 }
 
