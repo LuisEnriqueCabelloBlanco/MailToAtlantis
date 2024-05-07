@@ -39,6 +39,7 @@ void ecs::TutorialScene::render() {
 
 void ecs::TutorialScene::init() {
 
+
 	tutorialSys_->init();
 
 	sdlutils().clearRenderer(build_sdlcolor(0xFFFFFFFF));
@@ -50,7 +51,21 @@ void ecs::TutorialScene::init() {
 
 	mPipeMngr_->init();
 
-	createManual(10);
+	int dia = generalData().getDay();
+
+	if (dia < 3 && dia >= 1) {
+		createManual(8);
+	}
+	else if (dia < 5 && dia >= 3) {
+		createManual(8);
+	}
+	else if (dia < 8 && dia >= 5) {
+		createManual(9);
+	}
+	else if (dia < 15 && dia >= 8) {
+		createManual(10);
+	}
+
 	createMiniManual();
 	createSpaceManual();
 
@@ -185,6 +200,10 @@ std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createManual(i
 				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
 			else if (tex == &sdlutils().images().at("book8"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
+			else if(tex == &sdlutils().images().at("book9"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaPesado);
+			else if (tex == &sdlutils().images().at("book10"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaFragilAccion);
 		}
 	});
 
@@ -200,6 +219,10 @@ std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createManual(i
 				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
 			else if (tex == &sdlutils().images().at("book8"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
+			else if (tex == &sdlutils().images().at("book9"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaPesado);
+			else if (tex == &sdlutils().images().at("book10"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaFragilAccion);
 		}
 	});
 
@@ -306,9 +329,9 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 	else if (pt == FallarAposta)
 		paquete = mPaqBuild_->customPackage(Demeter, C3, "Jhonny Huesos", Medicinas);
 	else if (pt == Fragil)
-		paquete = mPaqBuild_->customPackage(Hestia, C3, "Travis Lubin", Alimento,true, pq::Ninguno,0,true);
+		paquete = mPaqBuild_->customPackage(Hestia, C3, "Travis Lubin", Alimento, true, pq::Ninguno, 0, true);
 	else if (pt == BalanzaTut)
-		paquete = mPaqBuild_->customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Medio, 90);
+		paquete = mPaqBuild_->customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Alto, 160);
 	else
 		paquete = mPaqBuild_->buildPackage(1, this);
 

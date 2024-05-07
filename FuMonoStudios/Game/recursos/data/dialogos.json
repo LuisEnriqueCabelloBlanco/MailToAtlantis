@@ -918,7 +918,7 @@
         "Paco voy a darte una lecci$on de finanzas.",
         "hay veces que es muy importante abaratar costes en peque$%as minucias, por ejemplo, hoy mismo he enviado dos paquetes pero usando unos sellos m$as baratos.",
         "Se los compr$e a un vendedor ambulante que encontre en la plaza de Hermes.",
-        "$?Como dices?, que si el sello no es el oficial debes devolver los paquetes. Por dios, pero no puedes hacer eso, este env&io es muy urgente.",
+        "$?Como dices?, que si el sello no es el oficial debes devolver los paquetes. Por dios, pero no puedes hacer eso, este env$io es muy urgente.",
         "Por favor paco haz la vista gorda por esta vez por favor te lo pido"
       ]
     },
@@ -1071,30 +1071,38 @@
     
     "17":[
       "Hola Paco, espero que no te hayas acomodado porque he tenido una nueva idea que ayudara al negocio",
-      "Se ve que &ultimamente la gente trata de mandar m&as y m&as cosas juntas para ahorrarse el dinero de varios env&ios",
-      "Esto ha provocado que muchos de mis repartidores se da%&en la espalda llevando esos paquetes al no estar seguros de su peso desde el inicio",
+      "Se ve que $ultimamente la gente trata de mandar m$as y m$as cosas juntas para ahorrarse el dinero de varios env$ios",
+      "Esto ha provocado que muchos de mis repartidores se da$%en la espalda llevando esos paquetes al no estar seguros de su peso desde el inicio",
       "Por eso ahora, varios de los paquetes que debes enviar contendran un sello de pesado por motivos de seguridad a la hora de transportarlos.",
       "Estos sello indican el peso del paquete, pudiendo ser bajo, medio y alto. En el manual tienes unas paginas que explican la diferencia de sellos.",
       "El problema es que los habitantes no son muy espabilados asi que tendras que asegurarte con la balanaza que el sello de pesado corresponde a su peso.",
-      "Para ello fijate en la region a donde apunta la flecha al colocar el paquete en la balanza."
+      "Primero ve a la novena pagina del manual para ver como funciona la balanza"
     ],
     "18":[
+      "Bien como ves a la derecha est$an los diferentes sellos de pesado y a la derecha las distintas regiones por los pesos de la balanza.",
+      "Ahora debes arrastrar el paquete a la balanza para ver si la regi$on que marca concuerda con su sello."
+    ],
+    "19":[
       "Como ves este paquete esta correcto, por lo cual pon sus sellos correspondientes y envialo."
     ],
-    "19": [
+    "20": [
       "Vale Paco, espero que esta sea la $ultima cosa que tengo que explicarte. Han metido desde palacio una nueva normativa para ciertos envios debido a las quejas de la gente",
       "Algunos paquetes pueden contener cosas muy delicadas y como se ve que mis empleados no son demasiado delicados, ahora nos obligan a embalar todos los paquetes",
-      "con un sello especifico de fragilidad. Para ello tendras que usar la nueva herramienta que te he dejado en la mesa",
+      "con un sello especifico de fragilidad. Para ello tendras que usar la nueva herramienta que te he dejado en la mesa.",
+      "Antes de nada, que tal si miras el funcionamiento de la cinta en tu manual."
+    ],
+    "21":[
+      "Como ves para envalar un paquete debes seguir una ruta espec$ifica empezando por el punto verde. Mientras sigas los puntos en orden y no te salgas del paquete todo ir$a bien.",
       "PERO OJO, antes de embalarlo sera mejor que le pongas sello de calle y compruebes todo lo dem$as, ya que una vez embalado no podras ver sus caracter$isticas."
     ],
-    "20": [
-      "Para poder embalarlo, coge la herramienta de embalar, y sigue la ruta de puntos que ver$as al ponerlo por encima del paquete.",
+    "22": [
+      "Como te he dicho antes, para poder embalarlo, coge la herramienta de embalar, y sigue la ruta de puntos que ver$as al ponerla por encima del paquete.",
       "Sigue la ruta empezando por el punto verde y te quedar$a niquelado"
     ],
-    "21": [
-      "Por $ultimo envia el paquete y abras terminado"
+    "23": [
+      "Por $ultimo envia el paquete y habr$as terminado"
     ],
-    "22": [
+    "24": [
       "Muy bien, por hoy has aprendido sufiente. Ahora mueve ese culo y ponte a trabajar."
     ]
   },
