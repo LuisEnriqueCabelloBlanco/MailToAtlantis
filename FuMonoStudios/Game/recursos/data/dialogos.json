@@ -467,7 +467,7 @@
     "Presentacion": [
       "Hola querido! Bienvenido a mi humilde taller! En qu$e puedo ayudarte hoy?",
       "Espera... Tu debes de ser el nuevo verdad? Soy Paulino Tinteiros, el maestro de estos mares.",
-      "Mis tent$aculos son como pinceles y mis obras ser$an el patrimonio de Atlantis al paso de los anyos!"
+      "Mis tent$aculos son como pinceles y mis obras ser$an el patrimonio de Atlantis al paso de los a$%os!"
     ],
     "FelicidadMinima": [
       "No... No puedo m$as... Todo est$a perdido. El arte, mi pasi$on, mi vida... Todo se ha desvanecido... Ya no hay materiales, ya no hay inspiraci$on...",
@@ -592,7 +592,7 @@
       "Bendita la carne fresca, que tenemos por aqu$i. Joven tu debes ser nuevo en el reino, o me equivoco?",
       "No hace falta que respondas. Yo nunca me equivoco. Sabes porque?, por que puedo ver el futuro.",
       "Mi nombre es Abigail Ampoule y soy una reconocida tarotista.",
-      "Secretos, enganyos, enfermedades y todo lo dem$as, nada puede escapar de mi conocimiento, la luz de mi cabeza me muestra cualquier cosa.",
+      "Secretos, enga$%os, enfermedades y todo lo dem$as, nada puede escapar de mi conocimiento, la luz de mi cabeza me muestra cualquier cosa.",
       "Ven a verme siempre que te preocupe algo, yo siempre estoy aqu$i para las pobres almas sin rumbo ni ambiciones."
     ],
     "FelicidadMinima": [
@@ -1037,7 +1037,8 @@
       "Una vez sellado, ya podemos mandarlo al tubo. Arrastra el paquete hasta el tubo de color rojo, el de Hestia."
     ],
     "9": [
-      "Ahora toca volver a hacerlo con este otro paquete. Este tiene el codigo 011. Vamos a buscar su distrito en el manual."
+      "Ahora toca volver a hacerlo con este otro paquete. Este tiene el codigo 011. Vamos a buscar su distrito en el manual.",
+      "Vuelve a la p$agina de c$odigos que te ense$%e al principio. La n$umero tres"
     ],
     "10": [
       "Es del distrito de Demeter. Vamos a su p$agina."
@@ -1052,7 +1053,7 @@
       "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
       "No te preocupes que no te voy a penalizar... Tranquilo...",
       "Coge este paquete, que en principio est$a bien reglamentado, y mandalo a la basura.",
-      "La basura es el tubo negro de la derecha, cualquier paquete que no cumpla lo establecido ira ah$i."
+      "La basura es el tubo negro de la izquierda, cualquier paquete que no cumpla lo establecido ira ah$i."
     ],
     "14": [
       "Fijate que te ha salido una notita explicando tu error. Cada paquete correcto son 20 dolares m$as en tu cuenta, y cada paquete err$oneo son 30 dolares menos.",
