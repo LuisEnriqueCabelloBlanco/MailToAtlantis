@@ -1,7 +1,9 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../scenes/MainScene.h"
-#include "../sistemas/TutorialSystem.h"
+#endif // !DEV_TOOLS
+#include <scenes/MainScene.h>
+#include <sistemas/TutorialSystem.h>
 
 
 

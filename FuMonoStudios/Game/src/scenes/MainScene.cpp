@@ -1,44 +1,44 @@
-#include <utils/checkML.h>
-#include "MainScene.h"
-#include "../architecture/Entity.h"
-#include <iostream>
-#include <fstream>
 #ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdlrenderer2.h>
+#else
+#include <utils/checkML.h>
 #endif // DEV_TOOLS
-#include "../sdlutils/SDLUtils.h"
-#include "../components/Transform.h"
-#include "../components/Render.h"
-#include "../components/Clickeable.h"
-#include "../components/DragAndDrop.h"
-#include "../components/Trigger.h"
+#include "MainScene.h"
+#include <architecture/Entity.h>
+#include <iostream>
+#include <fstream>
+#include <sdlutils/SDLUtils.h>
+#include <components/Transform.h>
+#include <components/Render.h>
+#include <components/Clickeable.h>
+#include <components/DragAndDrop.h>
+#include <components/Trigger.h>
 #include <string>
 #include <list>
 #include <unordered_map>
-#include "../sdlutils/Texture.h"
-#include "../components/PackageChecker.h"
-#include "../components/Gravity.h"
-#include "../components/MoverTransform.h"
-#include "../components/Balanza.h"
-#include "../components/RotarTransform.h"
-#include "../architecture/Time.h"
-#include "../architecture/GameConstants.h"
-#include "../architecture/GeneralData.h"
-#include "../sistemas/ComonObjectsFactory.h"
-#include "../components/Depth.h"
+#include <sdlutils/Texture.h>
+#include <components/PackageChecker.h>
+#include <components/Gravity.h>
+#include <components/MoverTransform.h>
+#include <components/Balanza.h>
+#include <components/RotarTransform.h>
+#include <architecture/Time.h>
+#include <architecture/GameConstants.h>
+#include <architecture/GeneralData.h>
+#include <sistemas/ComonObjectsFactory.h>
+#include <components/Depth.h>
 #include <QATools/DataCollector.h>
-#include "../components/ErrorNote.h"
-#include "../entities/ClockAux.h"
-#include "../sistemas/PipeManager.h"
-#include "../sistemas/SoundEmiter.h"
-#include <components/HoverSensorComponent.h>
+#include <components/ErrorNote.h>
+#include <entities/ClockAux.h>
+#include <sistemas/PipeManager.h>
+#include <sistemas/SoundEmiter.h>
 #include <components/HoverLayerComponent.h>
 #include <components/RenderWithLight.h>
-#include "../components/NPCExclamation.h"
-#include "../sistemas/NPCeventSystem.h"
+#include <components/NPCExclamation.h>
+#include <sistemas/NPCeventSystem.h>
 
-ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false)
+ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), jefe_(nullptr)
 {
 	timer_ = MINIGAME_TIME;
 #ifdef DEV_TOOLS
@@ -132,7 +132,7 @@ void ecs::MainScene::init()
 	int dia = generalData().getDay();
 	if (dia % 4 == 2) //hay un evento de trabajo del jefe cada 4 dias empezando por el dia 2, esto habria que hacerlo con constantes mejor en vez de numeros magicos 
 	{
-		createCharacter({ 500, 250 }, "Jefe",0.35f);
+		jefe_ = createCharacter({ 500, 250 }, "Jefe",0.35f);
 	}
 	else
 		startWork();
@@ -487,16 +487,7 @@ ecs::Entity* ecs::MainScene::createTubo(pq::Distrito dist,bool unlock) {
 		PackageChecker* tuboCheck = tuboEnt->addComponent<PackageChecker>(dist, this, mPipeMngr_);
 	}
 	else {
-		//factory_->setLayer(layer::UI);
-		/*auto tubeTr = tuboEnt->getComponent<Transform>();
-
-		auto cross = factory_->createImage(Vector2D(0, 120),
-			Vector2D(tubeTr->getWidth(), tubeTr->getWidth()),
-			&sdlutils().images().at("cruz"));
-
-		cross->getComponent<Transform>()->setParent(tubeTr);*/
 		tubeTexture->modColor(100, 100, 100);
-
 	}
 
 	return tuboEnt;
@@ -814,12 +805,13 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 	Texture* characterTexture = &sdlutils().images().at(character);
 	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
 
-	ecs::Entity* characterEnt = factory_->createImageButton(pos, size, characterTexture, [this]() {
+	ecs::Entity* characterEnt = factory_->createImageButton(pos, size, characterTexture, [this, characterEnt]() {
+		jefe_->getComponent<Clickeable>()->toggleClick(false);
 		newWorkEvent();
 		});
 
 	dialogMngr_.setEndDialogueCallback([characterEnt, this]{
-		characterEnt->setAlive(false); //bye bye jefe
+		jefe_->setAlive(false); //bye bye jefe
 		startWork();
 	});
 

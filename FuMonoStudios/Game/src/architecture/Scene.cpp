@@ -1,7 +1,9 @@
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "Scene.h"
-#include "Entity.h"
-#include "../components/Transform.h"
+#endif // !DEV_TOOLS
+#include <architecture/Scene.h>
+#include <architecture/Entity.h>
+#include <components/Transform.h>
 #include <sistemas/ComonObjectsFactory.h>
 #include <iostream>
 

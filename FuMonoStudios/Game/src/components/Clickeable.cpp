@@ -1,16 +1,15 @@
-#include "Clickeable.h"
+#include <sdlutils/InputHandler.h>
+#include <components/Clickeable.h>
 
-#include "Transform.h"
-#include "Trigger.h"
-#include "../architecture/Entity.h"
-#include "../sdlutils/InputHandler.h"
-
+#include <components/Transform.h>
+#include <components/Trigger.h>
+#include <architecture/Entity.h>
 #include <SDL.h>
 #include <assert.h>
 
 
 
-Clickeable::Clickeable(): mTr_(nullptr), eventsWhenClick_() {
+Clickeable::Clickeable(): mTr_(nullptr), eventsWhenClick_(), canClick_(true) {
 
 }
 
@@ -37,7 +36,7 @@ void Clickeable::update() {
 
 	auto& ihdlr = ih();
 
-	if (ihdlr.mouseButtonDownEvent()) {
+	if (ihdlr.mouseButtonDownEvent() && canClick_) {
 
 		SDL_Rect* mRect_ = &mTr_->getRect();
 		SDL_Point point{ ihdlr.getMousePos().first, ihdlr.getMousePos().second };

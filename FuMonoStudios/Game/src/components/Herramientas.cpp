@@ -1,6 +1,6 @@
 #include "Herramientas.h"
-#include "Transform.h"
-#include "MoverTransform.h"
+#include <components/Transform.h>
+#include <components/MoverTransform.h>
 
 Herramientas::Herramientas() {
 	multicolorStamp = false;

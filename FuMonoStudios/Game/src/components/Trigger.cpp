@@ -1,10 +1,10 @@
 
 #include "Trigger.h"
 
-#include "Transform.h"
-#include "Clickeable.h"
-#include "../architecture/GeneralData.h"
-#include "../architecture/Entity.h"
+#include <components/Transform.h>
+#include <components/Clickeable.h>
+#include <architecture/GeneralData.h>
+#include <architecture/Entity.h>
 
 #include <assert.h>
 

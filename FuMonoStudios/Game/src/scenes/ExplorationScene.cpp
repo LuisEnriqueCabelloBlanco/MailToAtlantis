@@ -1,35 +1,29 @@
-#include <utils/checkML.h>
-#include "ExplorationScene.h"
-#include "../architecture/Entity.h"
-#include <iostream>
-#include "../sdlutils/SDLUtils.h"
-#include "../components/Transform.h"
-#include "../components/Render.h"
-#include "../components/Clickeable.h"
-#include "../components/DragAndDrop.h"
-#include "../components/Trigger.h"
-#include "../architecture/Game.h"
-#include "../architecture/Config.h"
-#include "../architecture/GeneralData.h"
-#include <string>
-#include "../sdlutils/Texture.h"
-#include "../components/DialogComponent.h"
-#include "../sistemas/ComonObjectsFactory.h"
-#include "../architecture/GeneralData.h"
-#include "../components/DelayedCallback.h"
-#include <architecture/GameConstants.h>
-#include <QATools/DataCollector.h>
-
 #ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
+#else
+#include <utils/checkML.h>
 #endif // DEV_TOOLS
-
-#include "../sistemas/NPCeventSystem.h"
-#include "../components/HoverSensorComponent.h"
-#include "../components/MoverTransform.h"
-#include <components/RenderWithLight.h>
+#include "ExplorationScene.h"
+#include <architecture/Entity.h>
+#include <iostream>
+#include <sdlutils/SDLUtils.h>
+#include <components/Transform.h>
+#include <components/Render.h>
+#include <components/Clickeable.h>
+#include <architecture/Game.h>
+#include <architecture/Config.h>
+#include <architecture/GeneralData.h>
+#include <string>
+#include <sdlutils/Texture.h>
+#include <components/DialogComponent.h>
+#include <sistemas/ComonObjectsFactory.h>
+#include <architecture/GameConstants.h>
+#include <QATools/DataCollector.h>
+#include <sistemas/NPCeventSystem.h>
+#include <components/HoverSensorComponent.h>
+#include <components/MoverTransform.h>
 
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
@@ -54,21 +48,53 @@ void ecs::ExplorationScene::init()
 	generalData().updateDia();
 	updateNavegavility();
 	initDirectionsDefaultMap();
-
-	//for (auto& e : objs_) {
-	//	for (auto en : e){
-	//			en->setAlive(false);
-
-	//	}
-	//}
 	clearScene();
-	actualPlace_ = &lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)];
+	actualPlace_ = &lugares[Hestia];
 
 	createObjects(pq::Distrito::Hestia);
 
 	dialogMngr_.init(this);
 
 	createDiario();
+
+	canInteract = true;
+
+	dialogueWhenEntering();
+}
+
+void ecs::ExplorationScene::dialogueWhenEntering() {
+
+	if (generalData().getDay() == 1) {
+		canInteract = false;
+		dialogMngr_.setEndDialogueCallback([this] {
+			canInteract = true;
+			});
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 0);
+	}
+	else if (generalData().getDay() == 5) {
+		canInteract = false;
+		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
+		temporalSprite->addComponent<Transform>(500,500,400,600);
+		temporalSprite->addComponent<RenderImage>()->setTexture(&sdlutils().images().at("Jefe"));
+		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
+			canInteract = true;
+			temporalSprite->setAlive(false);
+			});
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 1);
+	}
+	else if ((generalData().getNPCData(Vagabundo)->misionAceptada == 5 && generalData().getNPCData(Secretario)->misionAceptada < 3)
+		|| (generalData().getNPCData(Secretario)->misionAceptada == 2 && generalData().getNPCData(Vagabundo)->misionAceptada < 6)) 
+	{
+		canInteract = false;
+		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
+		temporalSprite->addComponent<Transform>(500, 500, 400, 600);
+		temporalSprite->addComponent<RenderImage>()->setTexture(&sdlutils().images().at("Jefe"));
+		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
+			canInteract = true;
+			temporalSprite->setAlive(false);
+			});
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 2);
+	}
 }
 
 
@@ -79,10 +105,7 @@ void ecs::ExplorationScene::initPlacesDefaultMap()
 
 		std::string placeName = generalData().fromDistritoToString(i);
 
-		Lugar aux = Lugar(&sdlutils().images().at(placeName), false);
-
-		lugares.insert({ placeName, aux });
-
+		lugares.insert({ (Distrito) i, Lugar((Distrito)i, & sdlutils().images().at(placeName), false)});
 	}
 	
 }
@@ -90,39 +113,39 @@ void ecs::ExplorationScene::initPlacesDefaultMap()
 void ecs::ExplorationScene::initDirectionsDefaultMap()
 {
 	//Hestia
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)].addDirections("Hefesto", &lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)].addDirections("Artemisa", &lugares[generalData().fromDistritoToString(pq::Distrito::Artemisa)]);
+	lugares[pq::Distrito::Hestia].addDirections(&lugares[pq::Hefesto]);
+	lugares[pq::Distrito::Hestia].addDirections(&lugares[pq::Artemisa]);
 
 	//Artemisa
-	lugares[generalData().fromDistritoToString(pq::Distrito::Artemisa)].addDirections("Demeter", &lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Artemisa)].addDirections("Hestia", &lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)]);
+	lugares[pq::Distrito::Artemisa].addDirections(&lugares[pq::Demeter]);
+	lugares[pq::Distrito::Artemisa].addDirections(&lugares[pq::Hestia]);
 
 	//Demeter
-	lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)].addDirections("Hermes", &lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)].addDirections("Hefesto", &lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)].addDirections("Artemisa", &lugares[generalData().fromDistritoToString(pq::Distrito::Artemisa)]);
+	lugares[pq::Distrito::Demeter].addDirections(&lugares[pq::Hermes]);
+	lugares[pq::Distrito::Demeter].addDirections(&lugares[pq::Hefesto]);
+	lugares[pq::Distrito::Demeter].addDirections(&lugares[pq::Artemisa]);
 
 	//Hefesto
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)].addDirections("Demeter", &lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)].addDirections("Hestia", &lugares[generalData().fromDistritoToString(pq::Distrito::Hestia)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)].addDirections("Hermes", &lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)]);
+	lugares[pq::Distrito::Hefesto].addDirections(&lugares[pq::Demeter]);
+	lugares[pq::Distrito::Hefesto].addDirections(&lugares[pq::Hestia]);
+	lugares[pq::Distrito::Hefesto].addDirections(&lugares[pq::Hermes]);
 
 	//Hermes
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)].addDirections("Demeter", &lugares[generalData().fromDistritoToString(pq::Distrito::Demeter)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)].addDirections("Hefesto", &lugares[generalData().fromDistritoToString(pq::Distrito::Hefesto)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)].addDirections("Apolo", &lugares[generalData().fromDistritoToString(pq::Distrito::Apolo)]);
+	lugares[pq::Distrito::Hermes].addDirections(&lugares[pq::Demeter]);
+	lugares[pq::Distrito::Hermes].addDirections(&lugares[pq::Hefesto]);
+	lugares[pq::Distrito::Hermes].addDirections(&lugares[pq::Apolo]);
 
 	//Apolo
-	lugares[generalData().fromDistritoToString(pq::Distrito::Apolo)].addDirections("Hermes", &lugares[generalData().fromDistritoToString(pq::Distrito::Hermes)]);
-	lugares[generalData().fromDistritoToString(pq::Distrito::Apolo)].addDirections("Poseidon", &lugares[generalData().fromDistritoToString(pq::Distrito::Poseidon)]);
+	lugares[pq::Distrito::Apolo].addDirections(&lugares[pq::Hermes]);
+	lugares[pq::Distrito::Apolo].addDirections(&lugares[pq::Poseidon]);
 
 	//Poseidon
-	lugares[generalData().fromDistritoToString(pq::Distrito::Poseidon)].addDirections("Apolo", &lugares[generalData().fromDistritoToString(pq::Distrito::Apolo)]);
+	lugares[pq::Distrito::Poseidon].addDirections(&lugares[pq::Apolo]);
 }
 
 void ecs::ExplorationScene::render()
 {
-
+	
 	actualPlace_->getCurrentTexture()->render(rect_);
 	Scene::render();
 
@@ -141,7 +164,7 @@ void ecs::ExplorationScene::update() {
 
 	if (placeToGo >= 0 && placeToGo < generalData().getNumDistritos()) {
 
-		navigate(generalData().fromDistritoToString(placeToGo));
+		navigate((Distrito)placeToGo);
 		createObjects(placeToGo);
 		placeToGo = -1;		
 		
@@ -156,7 +179,7 @@ void ecs::ExplorationScene::close() {
 	diario_->setAlive(false);
 }
 
-void ecs::ExplorationScene::navigate(std::string placeDir) // otro string sin const
+void ecs::ExplorationScene::navigate(Distrito placeDir) 
 {
 
 	//QA: ALMACENAR EN ORDEN LOS LUGARES QUE HA RECORRIDO EN CADA FASE DE EXPLORACION EL JUGADOR
@@ -190,7 +213,7 @@ void ecs::ExplorationScene::makeDataWindow()
 #endif // DEV_TOOLS
 }
 
-ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::string place, float scale, int flip)
+ecs::Entity* ecs::ExplorationScene::createNavegationsArrow(Vector2D pos, std::string place, float scale, int flip)
 {
 	//para crear la flecha a hefesto
 	factory_->setLayer(ecs::layer::FOREGROUND);
@@ -198,7 +221,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 
 	int placeID = generalData().fromStringToDistrito(place);
 
-	if(placeID < lugares.size() && lugares[place].isNavegable())
+	if(placeID < lugares.size() && lugares[(Distrito)placeID].isNavegable())
 		sujetaplazas = &sdlutils().images().at("cartel" + place);
 	else
 		sujetaplazas = &sdlutils().images().at("cruz");
@@ -206,7 +229,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrows(Vector2D pos, std::s
 	Vector2D size{ sujetaplazas->width() * scale, sujetaplazas->height() * scale };
 	
 	CallbackClickeable cosa = [this, place, placeID]() {
-		if (actualPlace_->navigate(place)) {
+		if (actualPlace_->navigate((Distrito)placeID) && canInteract) {
 			dialogMngr_.closeDialogue();
 			actualPlace_->changeActivationObjects(false);
 			placeToGo = placeID;
@@ -239,20 +262,19 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 	e->addComponent<Transform>(pos.getX(), pos.getY(), scale.getX(), scale.getY());
 	auto clickableBotonTrabajar = e->addComponent<Clickeable>();
 	CallbackClickeable funcPress = [this]() {
-		if (generalData().getDay() == 1 ||
-			generalData().getDay() == 3 ||
-			generalData().getDay() == 5 ||
-			generalData().getDay() == 8) {
+		if (canInteract) {
+			if (generalData().getDay() == 1 ||
+				generalData().getDay() == 3 ||
+				generalData().getDay() == 5 ||
+				generalData().getDay() == 8) {
 
-			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+			}
+			else {
 
+				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+			}
 		}
-		else {
-
-			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
-
-		}
-		
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
 	return e;
@@ -536,28 +558,35 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, character]() {
-		if (generalData().getNPCData(generalData().stringToPersonaje(character))->felicidad == npc::Maxima) {
-			generalData().unlockUpgrade(generalData().stringToPersonaje(character));
-		}
-	    dialogMngr_.startConversation(character);
-
-		auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
-		auto data = generalData().getNPCData(charac); //data de dicho personaje
-
-		// activamos los dialogos correspondientes
-		std::pair<const std::string, int> aux = data->getDialogueInfo();
-
-		if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
+		if (canInteract)
 		{
-			NPCevent* event = data->getEvent();
-			if (event != nullptr)
+			if (generalData().getNPCData(generalData().stringToPersonaje(character))->felicidad == npc::Maxima) {
+				generalData().unlockUpgrade(generalData().stringToPersonaje(character));
+			}
+			dialogMngr_.setEndDialogueCallback([this] {
+				canInteract = true;
+				});
+			canInteract = false;
+			dialogMngr_.startConversation(character);
+
+			auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
+			auto data = generalData().getNPCData(charac); //data de dicho personaje
+
+			// activamos los dialogos correspondientes
+			std::pair<const std::string, int> aux = data->getDialogueInfo();
+
+			if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
 			{
-				for (int i = 0; i < event->numPaquetes; i++) {
-					generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+				NPCevent* event = data->getEvent();
+				if (event != nullptr)
+				{
+					for (int i = 0; i < event->numPaquetes; i++) {
+						generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+					}
+					generalData().npcEventSys->activateEvent(event);
+					addDiarioEvent(event);
+					generalData().npcEventSys->shuffleNPCqueue();
 				}
-				generalData().npcEventSys->activateEvent(event);
-				addDiarioEvent(event);
-				generalData().npcEventSys->shuffleNPCqueue();
 			}
 		}
 	};
@@ -578,7 +607,14 @@ ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const st
 
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, interactableObj]() {
-		dialogMngr_.startConversationWithObj(interactableObj);
+		if (canInteract)
+		{
+			dialogMngr_.setEndDialogueCallback([this] {
+				canInteract = true;
+				});
+			dialogMngr_.startConversationWithObj(interactableObj);
+		}
+		
 	};
 
 	ecs::Entity* objEnt = factory_->createImageButton(pos, size, nullptr, funcPress);
@@ -590,7 +626,7 @@ void ecs::ExplorationScene::setNavegabilityOfPlace(int place, bool value)
 {
 	if(place < lugares.size())
 	{
-		lugares[generalData().fromDistritoToString(place)].setNavegability(value);
+		lugares[(Distrito)place].setNavegability(value);
 	}
 }
 
@@ -601,27 +637,28 @@ void ecs::ExplorationScene::updateNavegavility()
 }
 
 void ecs::ExplorationScene::createObjects(int place) {
-
-	auto& pl = config().places();
-
+	//Seleccion del lugar deseado
 	std::string placeName = generalData().fromDistritoToString(place);
+	auto& pl = config().places().at(placeName);
+	Lugar& dist = lugares[(Distrito)place];
 
-	auto& arrows = pl.at(placeName).myArrows;
-	for (int i = 0; i < pl.at(placeName).myArrows.size(); ++i) {
-		lugares[placeName].addObjects(createNavegationsArrows(arrows[i].pos,
+
+	auto& arrows = pl.myArrows;
+	for (int i = 0; i < pl.myArrows.size(); ++i) {
+		dist.addObject(createNavegationsArrow(arrows[i].pos,
 			arrows[i].destination_, arrows[i].scale_, arrows[i].flip_));
 	}
-	auto& characters = pl.at(placeName).myCharacters;
-	for (int i = 0; i < pl.at(placeName).myCharacters.size(); ++i) {
+	auto& characters = pl.myCharacters;
+	for (int i = 0; i < pl.myCharacters.size(); ++i) {
 		if (generalData().getNPCData(generalData().stringToPersonaje(characters[i].name_))->felicidad != npc::SeFue) {
-			lugares[placeName].addObjects(createCharacter(characters[i].pos,
+			dist.addObject(createCharacter(characters[i].pos,
 				characters[i].name_, characters[i].scale_));
 		}
 	}
 
-	auto& intObjs = pl.at(placeName).myInteractableObjs;
-	for (int i = 0; i < pl.at(placeName).myInteractableObjs.size(); ++i) {
-		lugares[placeName].addObjects(createInteractableObj(intObjs[i].pos,
+	auto& intObjs = pl.myInteractableObjs;
+	for (int i = 0; i < pl.myInteractableObjs.size(); ++i) {
+		dist.addObject(createInteractableObj(intObjs[i].pos,
 			intObjs[i].name_, intObjs[i].scaleX_, intObjs[i].scaleY_));
 	}
 
@@ -629,7 +666,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 		//boton ir a trabajar
 		boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
 
-		lugares[placeName].addObjects(boton_Trabajo);
+		dist.addObject(boton_Trabajo);
 
 		//PLACEHOLDER_BOTON_GUARDADO
 		factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
@@ -641,17 +678,17 @@ void ecs::ExplorationScene::createObjects(int place) {
 
 //LUGAR__________________________________________________________________________________________
 
-void ecs::Lugar::addDirections(std::string placeDir, Lugar* place)
+void ecs::Lugar::addDirections(Lugar* place)
 {
-	directions_[placeDir] = place;
+	directions_[place->getID()] = place;
 }
 
-bool ecs::Lugar::navigate(std::string placeDir)
+bool ecs::Lugar::navigate(Distrito placeDir)
 {
 	return directions_.count(placeDir) && directions_.at(placeDir)->navegable_;
 }
 
-ecs::Lugar* ecs::Lugar::getPlaceFromDirection(std::string placeDir)
+ecs::Lugar* ecs::Lugar::getPlaceFromDirection(Distrito placeDir)
 {
 	return directions_[placeDir];
 }
@@ -663,7 +700,7 @@ void ecs::Lugar::changeActivationObjects(bool state)
 	}
 }
 
-void ecs::Lugar::addObjects(ecs::Entity* e)
+void ecs::Lugar::addObject(ecs::Entity* e)
 {
 	ents_.push_back(e);
 }

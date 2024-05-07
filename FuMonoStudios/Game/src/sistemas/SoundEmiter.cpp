@@ -1,7 +1,9 @@
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "SoundEmiter.h"
-#include "../sdlutils/SDLUtils.h"
-#include "../json/JSON.h"
+#include <sdlutils/SDLUtils.h>
+#include <json/JSON.h>
 
 SoundEmiter::SoundEmiter() : soundVolume_(100), musicVolume_(100)
 {

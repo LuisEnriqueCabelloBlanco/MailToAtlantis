@@ -1,9 +1,9 @@
 {
   "Vagabundo": {
-    "Felicidad": "Buena",
-    "FelicidadNum": 70,
-    "numMisionesAceptadas": 4,
-    "EventosCompletados": [2,3,4,5],
+    "Felicidad": "NoHabladoAun",
+    "FelicidadNum": 50,
+    "numMisionesAceptadas": 0,
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,

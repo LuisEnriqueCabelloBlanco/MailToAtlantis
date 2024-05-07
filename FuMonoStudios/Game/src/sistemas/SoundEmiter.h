@@ -1,8 +1,10 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include <string>
 #include <unordered_map>
-#include "../utils/Singleton.h"
+#include <utils/Singleton.h>
 
 /// <summary>
 /// Componente que se ocupará de manejar el sonido dentro de entidades.

@@ -1,7 +1,9 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../architecture/Component.h"
-#include "../utils/Vector2D.h"
+#endif // !DEV_TOOLS
+#include <architecture/Component.h>
+#include <utils/Vector2D.h>
 
 class ecs::Entity;
 class Transform;

@@ -1,6 +1,5 @@
 #pragma once
-#include "../architecture/Component.h"
-#include "../sistemas/ComonObjectsFactory.h"
+#include <architecture/Component.h>
 class RotarTransform;
 class Transform;
 
@@ -25,7 +24,6 @@ public:
 private:
 	Transform* myTransform_;
 	bool startAnimation;
-	ComonObjectsFactory* factory_;
 	int paquetePeso_;
 };
 

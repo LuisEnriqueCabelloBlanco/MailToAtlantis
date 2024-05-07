@@ -1,11 +1,10 @@
 #include "Wrap.h"
-#include "Transform.h"
+#include <components/Transform.h>
 
-#include "../architecture/Entity.h"
-#include "../sdlutils/InputHandler.h"
-#include "../json/JSON.h"
-#include "../sdlutils/Texture.h"
-#include "../sdlutils/SDLUtils.h"
+#include <architecture/Entity.h>
+#include <sdlutils/InputHandler.h>
+#include <json/JSON.h>
+#include <sdlutils/SDLUtils.h>
 
 #include <SDL.h>
 #include <vector>
@@ -13,16 +12,13 @@
 #include <cmath>
 
 //Constructora dada una ruta especifica
-Wrap::Wrap(float spaceAux, int repTimesAux, std::list<int> routeAux, int routeIndex) : 
+Wrap::Wrap(float spaceAux, int repTimesAux, const std::list<int>& routeAux, int routeIndex) : 
 	space(spaceAux), repTimes(repTimesAux) {
 
 	route = routeAux;
 
 	routeSelectedID = routeIndex;
 	totalPointsRoute = route.size() * (repTimes + 1);
-
-
-
 }
 
 //constructora con ruta base pero pudiendo escoger radio de deteccion de puntos y numero de repeticiones de patron

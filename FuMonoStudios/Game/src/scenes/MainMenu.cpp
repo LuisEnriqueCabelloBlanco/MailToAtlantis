@@ -1,15 +1,17 @@
+#ifndef DEV_TOOLS
+#include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include "MainMenu.h"
-#include "../architecture/Entity.h"
+#include <architecture/Entity.h>
 #include <iostream>
-#include "../sdlutils/SDLUtils.h"
-#include "../components/Transform.h"
-#include "../components/Render.h"
-#include "../components/Clickeable.h"
-#include "../architecture/Game.h"
-#include "../architecture/GeneralData.h"
-#include "../components/RenderWithLight.h"
+#include <sdlutils/SDLUtils.h>
+#include <components/Transform.h>
+#include <components/Render.h>
+#include <components/Clickeable.h>
+#include <architecture/Game.h>
+#include <architecture/GeneralData.h>
 #include <sistemas/ComonObjectsFactory.h>
-#include <components/HoverSensorComponent.h>
+#include <architecture/GameConstants.h>
 
 //ecs::MainMenu::MainMenu()
 //{
@@ -59,7 +61,7 @@ void ecs::MainMenu::init()
 	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Nueva partida", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		generalData().newGame();
-		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
+		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::INTRO_SCENE);
 		},textColor);
 	factory_->addHilghtOnHover(start);
 	factory_->addHoverColorMod(start);

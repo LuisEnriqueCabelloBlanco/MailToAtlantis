@@ -1,7 +1,8 @@
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../utils/Singleton.h"
-#include "GameConstants.h"
+#endif // !DEV_TOOLS
+#include <utils/Singleton.h>
 #include <architecture/ecs.h>
 #include <sistemas/NPC.h>
 #include <vector>
@@ -282,7 +283,7 @@ private:
 	/// </summary>
 	std::vector<Paquete*> paquetesNPCs;
 	/// <summary>
-	/// Luis: no se que hace realmente este vector si alguien sabe especificar que lo ponga porfavor y gracias
+	/// Vector que almacena que distritos están desbloqueados
 	/// </summary>
 	std::vector<std::string> placesToActive_;
 	/// <summary>

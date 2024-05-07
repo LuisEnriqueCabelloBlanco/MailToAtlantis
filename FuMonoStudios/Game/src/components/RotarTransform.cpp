@@ -1,6 +1,6 @@
 #include "RotarTransform.h"
-#include "Transform.h"
-#include "../architecture/Entity.h"
+#include <components/Transform.h>
+#include <architecture/Entity.h>
 
 RotarTransform::RotarTransform(): myTransform(nullptr)
 {

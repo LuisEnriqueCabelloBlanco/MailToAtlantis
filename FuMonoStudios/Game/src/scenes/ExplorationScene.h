@@ -1,11 +1,12 @@
 ﻿#pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
-#include "../architecture/Scene.h"
-#include "../components/DialogManager.h"
-#include "../sistemas/ComonObjectsFactory.h"
-#include <list>
+#endif // !DEV_TOOLS
+#include <architecture/Scene.h>
+#include <components/DialogManager.h>
+#include <sistemas/ComonObjectsFactory.h>
+#include <architecture/GeneralData.h>
 
-constexpr float SCALE_NPCS = 0.25;
 constexpr int MAX_CHAR_LEN_LEFT_DIARIO = 370;
 constexpr int MAX_CHAR_LEN_RIGHT_DIARIO = 406;
 class NPCeventSystem;
@@ -27,41 +28,45 @@ namespace ecs {
 	struct Lugar {
 	public:
 		//constructoras
-		Lugar() : ents_() {};
+		Lugar() : ents_(),backGround_(nullptr),navegable_(false) {};
 
-		Lugar(Texture* t, bool n) : ents_(), backGround_(t), navegable_(n) /*character(c)*/ {};
+		Lugar(Distrito id,Texture* t, bool n) : ents_(), backGround_(t), navegable_(n),placeID_(id) /*character(c)*/ {};
 
 		/// <summary>
 		/// Metodo para anadir direcciones al mapa del lugar
 		/// </summary>
 		/// <param name="placeDir"></param>
 		/// <param name="place"></param>
-		void addDirections(std::string placeDir, Lugar* place);
+		void addDirections(Lugar* place);
 
 		/// <summary>
 		/// Metodo para comprobar la navegabilidad a ciero lugar
 		/// </summary>
 		/// <param name="placeDir"></param>
 		/// <returns></returns>
-		bool navigate(std::string placeDir);
+		bool navigate(Distrito placeDir);
 
 		/// <summary>
 		/// Metodo para obtener la direccion de memoria de un lugar del mapa de direcciones (se usa para navegar)
 		/// </summary>
-		Lugar* getPlaceFromDirection(std::string placeDir);
+		Lugar* getPlaceFromDirection(Distrito placeDir);
 		/// <summary>
 		/// Metodo que devuelve la textura del fondo para poder renderizarla
 		/// </summary>
 		/// <returns></returns>
 		Texture* getCurrentTexture() const { return backGround_; };
 
+		/// <summary>
+		/// Destruye todos los objetos vinculados con el lugar
+		/// </summary>
+		/// <param name="state"></param>
 		void changeActivationObjects(bool state);
 
 		/// <summary>
 		/// Crea los objetos del lugar actual al que te acabas de mover.
 		/// USAR DESPUES DE HABER NAVEGADO
 		/// </summary>
-		void addObjects(ecs::Entity* e);
+		void addObject(ecs::Entity* e);
 
 		/// <summary>
 		/// metodo para comprobar la propia navegabilidad de un lugar
@@ -74,9 +79,12 @@ namespace ecs {
 		/// <param name="value"></param>
 		void setNavegability(bool value = true);
 
-
-
+		inline Distrito getID() { return placeID_; };
 	private:
+		/// <summary>
+		/// Identificador de el distrito
+		/// </summary>
+		Distrito placeID_;
 		//Puntero a la textura del fondo
 		Texture* backGround_;
 
@@ -84,7 +92,7 @@ namespace ecs {
 		bool navegable_;
 
 		//Mapa con las direcciones adyacentes al lugar (a las que no tiene por que poderse navegar)
-		std::unordered_map<std::string, Lugar*> directions_;
+		std::unordered_map<pq::Distrito, Lugar*> directions_;
 
 		// Las entidades del lugar se almacenan como las de la escena, en vectores de objetos organizados en layouts
 		std::vector<ecs::Entity*> ents_;
@@ -109,13 +117,16 @@ namespace ecs {
 		/// <summary>
 		/// Metodo para navegar a cierto lugar
 		/// </summary>
-		void navigate(std::string placeDir);
+		void navigate(Distrito placeDir);
 
 		void makeDataWindow();
 
 		// cierra la conversacion
 		void closeConversation();
+
+		void enableInteract(bool onOff) { canInteract = onOff; }
     private:
+		void dialogueWhenEntering();
 		
 		/// <summary>
 		/// Metodo para inicializar los lugares del mapa
@@ -136,15 +147,11 @@ namespace ecs {
 		/// <summary>
 		/// Metodo factoria para las flechas de navegacion
 		/// </summary>
-		ecs::Entity* createNavegationsArrows(Vector2D pos, std::string place, float scale, int flip);
+		ecs::Entity* createNavegationsArrow(Vector2D pos, std::string place, float scale, int flip);
 
 		ecs::Entity* createWorkButton(Vector2D pos, Vector2D scale);
 
 		void createDiario();
-
-		/// <summary>
-		/// Metodo factoria para characters
-		/// </summary>
 
 		/// <summary>
 		/// Metodo para setar la navegabilidad de placeDir lugar, valor por defecto = true
@@ -157,14 +164,20 @@ namespace ecs {
 		/// Metodo para actualizar la navegabilidad segun el dia
 		/// </summary>
 		void updateNavegavility();
+
+		/// <summary>
+		/// Metodo factoria para characters
+		/// </summary>
 		ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
 
 		ecs::Entity* createInteractableObj(Vector2D pos, const std::string& character, float scaleX, float scaleY);
         
 		//VARIABLES
 
-		//unordered_map, Lugar*
-		std::unordered_map<std::string, Lugar> lugares;
+		/// <summary>
+		/// mapa que almacena todos los distritos que existen en el juego
+		/// </summary>
+		std::unordered_map<Distrito, Lugar> lugares;
 
 		//Puntero al lugar actual
 		Lugar* actualPlace_;	
@@ -175,13 +188,12 @@ namespace ecs {
 		DialogManager dialogMngr_;
 
 		int placeToGo;
-	
-		// entidades del dialogo
-		ecs::Entity* boxBackground;
-		ecs::Entity* textDialogue;
 
 		// flag para saber si podemos entablar dialogo
 		bool canStartConversation;
+
+		// bool que permite interactuar con flechas entrar a trabajar etc. Esta siempre true menos al entrar a dialogo
+		bool canInteract;
 
 		ecs::Entity* boton_Trabajo;
 
@@ -193,6 +205,9 @@ namespace ecs {
 		std::vector<std::string> diarioText_;
 		std::vector<int> pagesByCharacter;
 		int currentDiarioPage;
+
+		//diario variables
+
 		ecs::Entity* diario_;
 		RenderImage* leftPageRnd = nullptr;
 		Transform* leftPageTr = nullptr;

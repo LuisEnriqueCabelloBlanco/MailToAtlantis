@@ -1,12 +1,12 @@
 // dialog_manager.h
 #pragma once
+#ifndef DEV_TOOLS
 #include <utils/checkML.h>
+#endif // !DEV_TOOLS
 #include <functional>
 #include <string>
 #include <vector>
-#include <iostream>
-#include "../architecture/GeneralData.h"
-#include "../architecture/Scene.h"
+#include <architecture/Scene.h>
 
 /*
 - - - - - - - COMO SE USA - - - - - - - - -
@@ -54,7 +54,7 @@ public:
     // aqui se elije que rama de dialogo escojer dentro del json
     enum DialogSelection {
         Vagabundo, Secretario, Campesino, Artesano, Tarotisa, Soldado, Contable,
-        JefeOficina, Tutorial, BryantMyers,
+        JefeOficina, Tutorial, Intro, ExplorationEnter,
         CasaGrande, CartelOficina, Muro, //Hestia
         TiendaPociones, TiendaBolas, TiendaJarrones, //Artemisa
         Molino, Arbol, Carreta, //Demeter
@@ -93,6 +93,8 @@ public:
     void setDialogues(std::string& dialogo); //no se pasa por const porque la modificamos con el fixText, no te preocupes cleon
 
     void startConversation(const std::string& character);
+    // coge un dialogo manualmente
+    void startConversation(DialogSelection enter, int numIteration);
     void startConversationWithObj(const std::string& interactableObj);
 
     //para quitar la caja de texto y el propio texto
@@ -114,8 +116,11 @@ private:
 
     bool isNPC(const DialogSelection ds);
 
+    void createBox();
 
+    void createText();
 
+    ecs::Scene* scene_;
     /// <summary>
     /// path del archivo json, si no se especifica por defecto sera el de dialogos
     /// </summary>
