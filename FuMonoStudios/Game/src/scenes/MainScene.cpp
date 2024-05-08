@@ -294,7 +294,7 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 		1, Easing::EaseOutBack)->enable();
 	//El texto de la nota
 	factory_->setLayer(layer::FOREGROUND);
-	Entity* texto = factory_->createLabel(Vector2D(25, 70), Vector2D(250, 100), NotaErronea->getComponent<ErrorNote>()->text_, 40);
+	Entity* texto = factory_->createLabel(Vector2D(15, 15), Vector2D(270, 200), NotaErronea->getComponent<ErrorNote>()->text_, 40);
 	texto->getComponent<Transform>()->setParent(NotaErronea->getComponent<Transform>());
 	factory_->setLayer(layer::DEFAULT);
 }
