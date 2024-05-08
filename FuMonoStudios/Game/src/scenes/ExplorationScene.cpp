@@ -275,10 +275,10 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 	auto clickableBotonTrabajar = e->addComponent<Clickeable>("");
 	CallbackClickeable funcPress = [this]() {
 		if (canInteract) {
-			if (generalData().getDay() == 1 ||
+			if ((generalData().getDay() == 1 ||
 				generalData().getDay() == 3 ||
 				generalData().getDay() == 5 ||
-				generalData().getDay() == 8) {
+				generalData().getDay() == 8) && !generalData().GetValueSkipTutorial()) {
 
 				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
 			}

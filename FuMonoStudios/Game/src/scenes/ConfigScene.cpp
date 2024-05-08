@@ -87,6 +87,38 @@ void ecs::ConfigScene::init()
 		musicValueEnt_->getComponent<RenderImage>()->setTexture(musicValueTexture_);
 	};
 	factory_->createTextuButton({ 600,600 }, "(+)", 50, funcPress3, "click");
+
+
+	
+	if (generalData().GetValueSkipTutorial())
+		skipTutorialValueTexture_ = "SALTAR";
+	else
+		skipTutorialValueTexture_ = "NO SALTAR";
+
+	skipTutorialValueEnt_ = addEntity();
+
+	Transform* transformSTValue = skipTutorialValueEnt_->addComponent<Transform>(500, 800, skipTutorialValueTexture_->width(), skipTutorialValueTexture_->height());
+	RenderImage* renderSTValue = skipTutorialValueEnt_->addComponent<RenderImage>(skipTutorialValueTexture_);
+
+	// Boton para configurar el salto del tutorial o no
+	CallbackClickeable funcPressSkipTitorial = [this]() {
+		generalData().ToggleSkipTutorial();
+		if (skipTutorialValueTexture_ != nullptr)
+		{
+			delete skipTutorialValueTexture_;
+			skipTutorialValueTexture_ = nullptr;
+		}
+
+
+		if (generalData().GetValueSkipTutorial())
+			skipTutorialValueTexture_ = new Texture(sdlutils().renderer(), "SALTAR", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+		else
+			skipTutorialValueTexture_ = new Texture(sdlutils().renderer(), "NO SALTAR", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff)); 
+		
+		skipTutorialValueEnt_->getComponent<RenderImage>()->setTexture(skipTutorialValueTexture_);
+	};
+
+	factory_->createTextuButton({ 500,800 }, std::to_string(skipTutorialValueTexture_), 50, funcPressSkipTitorial, "click");
 }
 
 //LUIS: Y si esto fuera un return to scene ????

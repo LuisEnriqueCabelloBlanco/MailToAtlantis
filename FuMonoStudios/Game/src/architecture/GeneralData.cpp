@@ -29,6 +29,8 @@ GeneralData::GeneralData()
 	}
 	paramVolMusic_ = 0;
 	paramVolSfx_ = 50;
+
+	skipTutorial_ = false;
 	//upgrades_[ecs::upg::MONEY_UPGRADE] = true;
 
 	/*if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
