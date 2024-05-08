@@ -31,6 +31,7 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 		{
 		case NoHabladoAun:
 			tipo = "Presentacion";
+			postConversation = true;
 			break;
 		case Minima:
 			tipo = "FelicidadMinima";
@@ -44,6 +45,7 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 	else if (giveEvent)
 	{
 		tipo = "Eventos";
+		iterationNum = numMisionesAceptadas;
 	}
 	else
 	{
@@ -70,6 +72,8 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 }
 
 void NPCMenorData::setupDayData() {
+	if (postConversation && felicidad == NoHabladoAun)
+		felicidad = Normal;
 	postConversation = false;
 	iteration = 1;
 	int day = generalData().getDay() - 1;
@@ -167,6 +171,8 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 }
 
 void NPCMayorData::setupDayData() {
+	if (postConversation && felicidad == NoHabladoAun)
+		felicidad = Normal;
 	postConversation = false;
 	if (misionAceptada) {
 		numMisionesAceptadas++;

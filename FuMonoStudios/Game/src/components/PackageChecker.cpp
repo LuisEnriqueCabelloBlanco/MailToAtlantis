@@ -106,7 +106,7 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 	}
 	else
 	{
-		if (ent->getComponent<ErrorNote>() != nullptr) {
+		if (ent->getComponent<ErrorNote>() != nullptr && toDis_ == Erroneo) {
 			auto mover = ent->getComponent<MoverTransform>();
 			mover->setEasing(Easing::EaseOutCubic);
 			mover->setFinalPos(ent->getComponent<Transform>()->getPos() + Vector2D(-600, 0));
