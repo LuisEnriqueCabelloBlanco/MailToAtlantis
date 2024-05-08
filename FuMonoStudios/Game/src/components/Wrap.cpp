@@ -65,6 +65,7 @@ void Wrap::initComponent() {
 
 	mul_ = ent_->getComponent<RenderImage>();
 
+	dad_ = ent_->getComponent<DragAndDrop>();
 
 	paqComp_ = ent_->getComponent<Paquete>();
 
@@ -113,7 +114,7 @@ void Wrap::update() {
 			//a futuro si se ve un bug se podria a�adir que adem�s el rat�n este pulsado pero no deber�a hacer falta
 			SDL_Rect tapeRect = tapeEnt->getComponent<Transform>()->getRect();
 
-			if (SDL_PointInRect(&point, &tapeRect)) {
+			if (SDL_PointInRect(&point, &tapeRect) && !dad_->isDragging()) {
 				if (GeneralData::instance ()->getUpgradeValue (ecs::upg::ENVOLVER_UPGRADE)) {					
 					wrapped = true;
 					ent_->getComponent<Paquete> ()->envolver ();

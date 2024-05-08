@@ -33,6 +33,10 @@ public:
 
 	void update() override;
 
+	bool isDragging() {
+		return dragging_;
+	}
+
 	void disableInteraction() { canInteract = false; }
 	void activateInteraction() { canInteract = true; }
 private:
