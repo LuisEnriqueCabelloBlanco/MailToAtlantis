@@ -185,7 +185,9 @@ void ecs::ExplorationScene::update() {
 
 void ecs::ExplorationScene::close() {
 	delete rightTex;
+	rightTex = nullptr;
 	delete leftTex;
+	leftTex = nullptr;
 	SoundEmiter::instance()->close();
 	clearScene();
 	diario_->setAlive(false);
@@ -313,6 +315,8 @@ void ecs::ExplorationScene::createDiario() {
 	caraFelTr->setParent(diario_->getComponent<Transform>());
 	caraFelicidad = caraFel->addComponent<RenderImage>();
 	caraFelicidad->setTexture(nullptr);
+
+	currentDiarioPage = 0;
 
 	setupDiarioPages();
 
@@ -527,7 +531,7 @@ void ecs::ExplorationScene::makeDiaryPages()
 	delete leftPageRnd->getCurrentTexture();
 	leftPageRnd->setVector(std::vector<Texture*>(1, nullptr));
 
-	currentDiarioPage = 0;
+	//currentDiarioPage = 0;
 	leftTex = new Texture(sdlutils().renderer(),
 		diarioText_.size() < 1 ? " " : diarioText_[currentDiarioPage],
 		sdlutils().fonts().at("simpleHandmade20"),
