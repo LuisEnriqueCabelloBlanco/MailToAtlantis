@@ -33,7 +33,7 @@ ErrorNote::ErrorNote(Paquete* p, bool basura, bool tuboIncorrecto) {
 			text_ += "No se penaliza";
 		}
 		else if (GeneralData::instance()->getFails() == 2) {
-			text_ += "A partir de ahora se penalizan los paquetes incorrectos";
+			text_ += "Ultimo aviso sin penalizar";
 		}
 	}
 }
