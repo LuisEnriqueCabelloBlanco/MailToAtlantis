@@ -21,9 +21,19 @@
 #include <sistemas/ComonObjectsFactory.h>
 #include <architecture/GameConstants.h>
 #include <QATools/DataCollector.h>
+
+#ifdef DEV_TOOLS
+#include <imgui.h>
+#include <imgui_impl_sdl2.h>
+#include <imgui_impl_sdlrenderer2.h>
+#endif // DEV_TOOLS
+
+#include <components/RenderWithLight.h>
+#include <sistemas/SoundEmiter.h>
 #include <sistemas/NPCeventSystem.h>
 #include <components/HoverSensorComponent.h>
 #include <components/MoverTransform.h>
+
 
 ecs::ExplorationScene::ExplorationScene() :Scene()
 {
@@ -57,6 +67,45 @@ void ecs::ExplorationScene::init()
 	dialogMngr_.init(this);
 
 	createDiario();
+
+	canInteract = true;
+
+	dialogueWhenEntering();
+}
+
+void ecs::ExplorationScene::dialogueWhenEntering() {
+
+	if (generalData().getDay() == 1) {
+		canInteract = false;
+		dialogMngr_.setEndDialogueCallback([this] {
+			canInteract = true;
+			});
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 0);
+	}
+	else if (generalData().getDay() == 5) {
+		canInteract = false;
+		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
+		temporalSprite->addComponent<Transform>(500,500,400,600);
+		temporalSprite->addComponent<RenderImage>()->setTexture(&sdlutils().images().at("Jefe"));
+		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
+			canInteract = true;
+			temporalSprite->setAlive(false);
+			});
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 1);
+	}
+	else if ((generalData().getNPCData(Vagabundo)->misionAceptada == 5 && generalData().getNPCData(Secretario)->misionAceptada < 3)
+		|| (generalData().getNPCData(Secretario)->misionAceptada == 2 && generalData().getNPCData(Vagabundo)->misionAceptada < 6)) 
+	{
+		canInteract = false;
+		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
+		temporalSprite->addComponent<Transform>(500, 500, 400, 600);
+		temporalSprite->addComponent<RenderImage>()->setTexture(&sdlutils().images().at("Jefe"));
+		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
+			canInteract = true;
+			temporalSprite->setAlive(false);
+			});
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 2);
+	}
 }
 
 
@@ -137,6 +186,7 @@ void ecs::ExplorationScene::update() {
 void ecs::ExplorationScene::close() {
 	delete rightTex;
 	delete leftTex;
+	SoundEmiter::instance()->close();
 	clearScene();
 	diario_->setAlive(false);
 }
@@ -191,14 +241,14 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrow(Vector2D pos, std::st
 	Vector2D size{ sujetaplazas->width() * scale, sujetaplazas->height() * scale };
 	
 	CallbackClickeable cosa = [this, place, placeID]() {
-		if (actualPlace_->navigate((Distrito)placeID)) {
+		if (actualPlace_->navigate((Distrito)placeID) && canInteract) {
 			dialogMngr_.closeDialogue();
 			actualPlace_->changeActivationObjects(false);
 			placeToGo = placeID;
 		}
 	};
 
-	ecs::Entity* Arrow = factory_->createImageButton(pos, size, sujetaplazas, cosa);
+	ecs::Entity* Arrow = factory_->createImageButton(pos, size, sujetaplazas, cosa, "click");
 
 	Transform* arrowTR = Arrow->getComponent<Transform>();
 
@@ -222,22 +272,21 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 
 	ecs::Entity* e = addEntity();
 	e->addComponent<Transform>(pos.getX(), pos.getY(), scale.getX(), scale.getY());
-	auto clickableBotonTrabajar = e->addComponent<Clickeable>();
+	auto clickableBotonTrabajar = e->addComponent<Clickeable>("");
 	CallbackClickeable funcPress = [this]() {
-		if (generalData().getDay() == 1 ||
-			generalData().getDay() == 3 ||
-			generalData().getDay() == 5 ||
-			generalData().getDay() == 8) {
+		if (canInteract) {
+			if (generalData().getDay() == 1 ||
+				generalData().getDay() == 3 ||
+				generalData().getDay() == 5 ||
+				generalData().getDay() == 8) {
 
-			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+			}
+			else {
 
+				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+			}
 		}
-		else {
-
-			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
-
-		}
-		
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
 	return e;
@@ -273,14 +322,14 @@ void ecs::ExplorationScene::createDiario() {
 	ecs::Entity* pasarPagIzq = factory_->createImageButton(Vector2D(43,315),Vector2D(40,40), 
 		&sdlutils().images().at("cambioPag"), [this]() {
 			changeDiarioPages(false);
-		});
+		}, "page");
 	pasarPagIzq->getComponent<Transform>()->setParent(diario_->getComponent<Transform>());
 	pasarPagIzq->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
 
 	ecs::Entity* pasarPagDer = factory_->createImageButton(Vector2D(516, 315), Vector2D(40, 40),
 		&sdlutils().images().at("cambioPag"), [this]() {
 			changeDiarioPages(true);
-		});
+		}, "page");
 	pasarPagDer->getComponent<Transform>()->setParent(diario_->getComponent<Transform>());
 
 	factory_->setLayer(ecs::layer::DEFAULT);
@@ -521,35 +570,42 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, character]() {
-		if (generalData().getNPCData(generalData().stringToPersonaje(character))->felicidad == npc::Maxima) {
-			generalData().unlockUpgrade(generalData().stringToPersonaje(character));
-		}
-	    dialogMngr_.startConversation(character);
-
-		auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
-		auto data = generalData().getNPCData(charac); //data de dicho personaje
-
-		// activamos los dialogos correspondientes
-		std::pair<const std::string, int> aux = data->getDialogueInfo();
-
-		if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
+		if (canInteract)
 		{
-			NPCevent* event = data->getEvent();
-			if (event != nullptr)
+			if (generalData().getNPCData(generalData().stringToPersonaje(character))->felicidad == npc::Maxima) {
+				generalData().unlockUpgrade(generalData().stringToPersonaje(character));
+			}
+			dialogMngr_.setEndDialogueCallback([this] {
+				canInteract = true;
+				});
+			canInteract = false;
+			dialogMngr_.startConversation(character);
+
+			auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
+			auto data = generalData().getNPCData(charac); //data de dicho personaje
+
+			// activamos los dialogos correspondientes
+			std::pair<const std::string, int> aux = data->getDialogueInfo();
+
+			if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
 			{
-				for (int i = 0; i < event->numPaquetes; i++) {
-					generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+				NPCevent* event = data->getEvent();
+				if (event != nullptr)
+				{
+					for (int i = 0; i < event->numPaquetes; i++) {
+						generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+					}
+					generalData().npcEventSys->activateEvent(event);
+					addDiarioEvent(event);
+					generalData().npcEventSys->shuffleNPCqueue();
 				}
-				generalData().npcEventSys->activateEvent(event);
-				addDiarioEvent(event);
-				generalData().npcEventSys->shuffleNPCqueue();
 			}
 		}
 	};
 
 
 
-	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress);
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "click");
 
 	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
 
@@ -563,10 +619,17 @@ ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const st
 
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, interactableObj]() {
-		dialogMngr_.startConversationWithObj(interactableObj);
+		if (canInteract)
+		{
+			dialogMngr_.setEndDialogueCallback([this] {
+				canInteract = true;
+				});
+			dialogMngr_.startConversationWithObj(interactableObj);
+		}
+		
 	};
 
-	ecs::Entity* objEnt = factory_->createImageButton(pos, size, nullptr, funcPress);
+	ecs::Entity* objEnt = factory_->createImageButton(pos, size, nullptr, funcPress, "click");
 
 	return objEnt;
 }
@@ -620,7 +683,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 		//PLACEHOLDER_BOTON_GUARDADO
 		factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
 			generalData().saveGame();
-			}, SDL_Color{255,255,0});
+			}, "click", SDL_Color{255,255,0});
 	}
 }
 

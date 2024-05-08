@@ -1,5 +1,6 @@
 #pragma once
-#include <architecture/Component.h>
+#include "../architecture/Component.h"
+#include "../sdlutils/Texture.h"
 #include <assert.h>
 
 class Transform;
@@ -47,6 +48,7 @@ public:
 	std::vector<Texture*>* getVector();
 	void nextTexture();
 	void previousTexture();
+	void setNumberTexture(int i);
 private:
 	/// <summary>
 	/// indice que indica en que textura del array se encuentra

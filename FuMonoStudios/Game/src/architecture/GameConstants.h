@@ -21,7 +21,7 @@ constexpr int INITIAL_DAY = 1;
 constexpr int INITIAL_TUBE_AMOUNT = 1;
 constexpr int WRITE_PACAGES_VALUE = 20;
 constexpr int WRONG_PACAGES_VALUE = 30;
-constexpr int MINIGAME_TIME = 180;
+constexpr int MINIGAME_TIME = 120;
 constexpr int INITIAL_FAILS_MARGIN = 1;
 constexpr int LOGICAL_RENDER_WIDTH = 1920;
 constexpr int LOGICAL_RENDER_HEITH = 1080;
@@ -33,10 +33,10 @@ constexpr int MAX_DISTRICTS = 7;
 /*========================================================================================
 * PACKAGE SETTINGS
 *=====================================================================================*/
-constexpr int PESADO_MAX = 75;	//Límite del peso máximo de paquetes pesados 
-constexpr int MEDIO_MAX = 50;	//Límite del peso máximo de paquetes de peso medio 
-constexpr int LIGERO_MAX = 25;	//Límite del peso máximo de paquetes ligeros
-constexpr int PAQUETE_MIN = 10;	//Límite del peso mínimo de paquetes ligeros
+constexpr int PESADO_MAX = 75;	//Lï¿½mite del peso mï¿½ximo de paquetes pesados 
+constexpr int MEDIO_MAX = 50;	//Lï¿½mite del peso mï¿½ximo de paquetes de peso medio 
+constexpr int LIGERO_MAX = 25;	//Lï¿½mite del peso mï¿½ximo de paquetes ligeros
+constexpr int PAQUETE_MIN = 10;	//Lï¿½mite del peso mï¿½nimo de paquetes ligeros
 constexpr int PESO_CARTA = 2;	//Peso carta
 // posicion y tamano Tipo sellos
 constexpr int TIPO_SELLO_POS_X = 10;

@@ -228,11 +228,22 @@ void DialogManager::startConversationWithObj(const std::string& interactableObj)
 
         const std::string aux2 = std::to_string(sdlutils().rand().nextInt(0, 3));
 
-        setDialogues((DialogManager::DialogSelection)(generalData().stringToObjInt(interactableObj) + 10), "Texto"+interactableObj+aux1+aux2);
+        setDialogues((DialogManager::DialogSelection)(generalData().stringToObjInt(interactableObj) + DialogManager::DialogSelection::CasaGrande), "Texto"+interactableObj+aux1+aux2);
 
         setDialogueEntitiesActive(true);
 
         std::cout << "jefe otro dialogo que este tenia un agujero\n";
+        canStartConversation = false;
+    }
+}
+
+void DialogManager::startConversation(DialogSelection enter, int numIteration) {
+    if (canStartConversation) {
+
+        setDialogues(enter, std::to_string(numIteration));
+
+        setDialogueEntitiesActive(true);
+
         canStartConversation = false;
     }
 }
@@ -253,18 +264,19 @@ void DialogManager::setDialogueEntitiesActive(bool onoff) //me sigue pareciendo 
 {
     /*boxBackground->setActive(onoff);
     textDialogue->setActive(onoff);*/
-
-    if(onoff)
+    if (onoff)
     {
         createBox();
         createText();
     }
     else
     {
-        boxBackground->setAlive(false);
-        textDialogue->setAlive(false);
+        if(boxBackground != nullptr)
+            boxBackground->setAlive(false);
+        if (textDialogue != nullptr)
+            textDialogue->setAlive(false);
     }
-
+    
 }
 
 void DialogManager::fixText(std::string& text)
@@ -354,6 +366,9 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
         break;
     case Intro:
         aux = "Intro";
+        break;
+    case ExplorationEnter:
+        aux = "ExplorationEnter";
         break;
 
     //Dialogos objetos distritos

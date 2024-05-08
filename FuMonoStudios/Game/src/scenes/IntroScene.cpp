@@ -181,7 +181,7 @@ ecs::Entity* ecs::IntroScene::createBottle()
 	auto bottle = factory_->createMultiTextureImage(Vector2D(1600.0f, 550.0f), Vector2D(450, 300), { &sdlutils().images().at("botella1"), &sdlutils().images().at("botella2") }
 );
 
-	bottle->addComponent<Clickeable>();
+	bottle->addComponent<Clickeable>("click");
 	bottle->getComponent<Clickeable>()->addEvent([this]
 		{
 			nextIteration();

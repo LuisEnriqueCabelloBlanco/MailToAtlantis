@@ -85,6 +85,7 @@ namespace ecs {
         void makeDataWindow();
         void makeControlsWindow();
 #endif // DEV_TOOLS
+        int clockMusic;
 
         Entity* timerEnt_;
         Texture* timerTexture_;

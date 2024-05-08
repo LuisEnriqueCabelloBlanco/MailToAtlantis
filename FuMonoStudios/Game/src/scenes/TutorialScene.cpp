@@ -1,4 +1,4 @@
-#include "../sdlutils/InputHandler.h"
+#include <sdlutils/InputHandler.h>
 #ifndef DEV_TOOLS
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
@@ -12,8 +12,11 @@
 #include <components/PackageChecker.h>
 #include <components/ErrorNote.h>
 #include <architecture/GameConstants.h>
+#include <sistemas/SoundEmiter.h>
+#include <architecture/Game.h>
 
 ecs::TutorialScene::TutorialScene() : MainScene(), balanzaUsed(false) {
+
 
 	tutorialSys_ = new TutorialSystem(this);
 
@@ -29,6 +32,11 @@ ecs::TutorialScene::~TutorialScene() {
 void ecs::TutorialScene::update() {
 	MainScene::update();
 	tutorialSys_->update();
+
+	if (ih().isKeyDown(SDL_SCANCODE_O)) {
+		gm().requestChangeScene(ecs::sc::TUTORIAL_SCENE, ecs::sc::MAIN_SCENE);
+	}
+
 }
 
 void ecs::TutorialScene::render() {
@@ -36,6 +44,7 @@ void ecs::TutorialScene::render() {
 }
 
 void ecs::TutorialScene::init() {
+
 
 	tutorialSys_->init();
 
@@ -48,7 +57,21 @@ void ecs::TutorialScene::init() {
 
 	mPipeMngr_->init();
 
-	createManual(10);
+	int dia = generalData().getDay();
+
+	if (dia < 3 && dia >= 1) {
+		createManual(8);
+	}
+	else if (dia < 5 && dia >= 3) {
+		createManual(8);
+	}
+	else if (dia < 8 && dia >= 5) {
+		createManual(9);
+	}
+	else if (dia < 15 && dia >= 8) {
+		createManual(10);
+	}
+
 	createMiniManual();
 	createSpaceManual();
 
@@ -68,6 +91,7 @@ void ecs::TutorialScene::init() {
 
 		tutorialSys_->activateEvent(TutorialSystem::Introduction);
 
+
 	}
 	else if (generalData().getDay() == 3) {
 
@@ -75,7 +99,6 @@ void ecs::TutorialScene::init() {
 
 	}
 	else if (generalData().getDay() == 5) {
-
 		tutorialSys_->activateEvent(TutorialSystem::EntraPaquetePeso);
 
 	}
@@ -89,6 +112,7 @@ void ecs::TutorialScene::init() {
 
 void ecs::TutorialScene::close() {
 	ecs::Scene::close();
+  SoundEmiter::instance()->close();
 }
 
 void ecs::TutorialScene::activateTubos() {
@@ -182,6 +206,10 @@ std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createManual(i
 				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
 			else if (tex == &sdlutils().images().at("book8"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
+			else if(tex == &sdlutils().images().at("book9"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaPesado);
+			else if (tex == &sdlutils().images().at("book10"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaFragilAccion);
 		}
 	});
 
@@ -197,6 +225,10 @@ std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createManual(i
 				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
 			else if (tex == &sdlutils().images().at("book8"))
 				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
+			else if (tex == &sdlutils().images().at("book9"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaPesado);
+			else if (tex == &sdlutils().images().at("book10"))
+				tutorialSys_->registerAction(TutorialSystem::PaginaFragilAccion);
 		}
 	});
 
@@ -303,9 +335,9 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 	else if (pt == FallarAposta)
 		paquete = mPaqBuild_->customPackage(Demeter, C3, "Jhonny Huesos", Medicinas);
 	else if (pt == Fragil)
-		paquete = mPaqBuild_->customPackage(Hestia, C3, "Travis Lubin", Alimento,true, pq::Ninguno,0,true);
+		paquete = mPaqBuild_->customPackage(Hestia, C3, "Travis Lubin", Alimento, true, pq::Ninguno, 0, true);
 	else if (pt == BalanzaTut)
-		paquete = mPaqBuild_->customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Medio, 90);
+		paquete = mPaqBuild_->customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Alto, 160);
 	else
 		paquete = mPaqBuild_->buildPackage(1, this);
 
