@@ -14,6 +14,8 @@ public:
 	SpecialObjectsFactory(ecs::Scene* scene);
 	~SpecialObjectsFactory();
 
+	ecs::Entity* makeBomba();
+
 	// llamar al empezar el dia y elegira que objetos especiales poner
 	void setupDayObjects();
 private:
@@ -21,6 +23,8 @@ private:
 	void makePapelAgujeros();
 
 	void makeListaVagabundo();
+
+	void makeListaSecretario(bool first);
 
 	ecs::Scene* scene;
 

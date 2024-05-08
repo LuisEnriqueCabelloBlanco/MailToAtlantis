@@ -35,6 +35,7 @@ namespace ecs {
 			BALANZA,
 			ROTARTRANSFORM,
 			CRISTALBALL,
+			BOMBAUX,
 			// do not remove this
 			_LAST_CMP_ID
 		};

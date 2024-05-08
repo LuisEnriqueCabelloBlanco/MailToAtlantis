@@ -499,6 +499,18 @@
     {
       "id": "luz",
       "file": "recursos/images/luz.png"
+    },
+    {
+      "id": "selloLechuzas",
+      "file": "recursos/images/SelloLechuzas.png"
+    },
+    {
+      "id": "bomba",
+      "file": "recursos/images/Bomba.png"
+    },
+    {
+      "id": "polvos",
+      "file": "recursos/images/polvos.png"
     }
   ],
   "fonts": [

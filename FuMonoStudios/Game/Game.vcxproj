@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\entities\BombAux.cpp" />
     <ClCompile Include="src\scenes\IntroScene.cpp" />
     <ClCompile Include="src\sistemas\SpecialObjectsFactory.cpp" />
     <ClCompile Include="src\entities\CristalBall.cpp" />
@@ -226,6 +227,7 @@
     <ClCompile Include="src\sistemas\WorkRestrictionsSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\entities\BombAux.h" />
     <ClInclude Include="src\scenes\IntroScene.h" />
     <ClInclude Include="src\sistemas\SpecialObjectsFactory.h" />
     <ClInclude Include="src\entities\CristalBall.h" />
