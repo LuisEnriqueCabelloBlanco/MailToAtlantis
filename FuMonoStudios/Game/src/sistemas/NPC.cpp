@@ -45,6 +45,7 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 	else if (giveEvent)
 	{
 		tipo = "Eventos";
+		iterationNum = numMisionesAceptadas;
 	}
 	else
 	{
