@@ -272,6 +272,9 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		createManual(10);
 	}
 
+	// mejora Vagabundo
+	if (generalData().getNPCData(Vagabundo)->misionAceptada >= 6)
+		createMultipleStamp();
 }
 void ecs::MainScene::createExclamationPoint() {
 	Entity* xd = addEntity(ecs::layer::FOREGROUND);	
