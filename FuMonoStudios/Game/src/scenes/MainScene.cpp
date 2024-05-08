@@ -470,32 +470,42 @@ void ecs::MainScene::createBalanzaDigital() {
 		balanzaComp->initAnimationsDigital(entRect, balanza); 
 	std::string msg;
 		int peso = balanzaComp->getPaquetePeso();
+		Vector2D pos;
 		if (peso >= 0) {
-			if (peso < 25)
+			if (peso < 25) {
 				msg = "LIGERO";
+				pos = Vector2D(1175, 605);
+			}
+
 			else if (peso >= 25 && peso < 50)
+			{
 				msg = "MEDIO";
-			else if (peso >= 50)
+			pos = Vector2D(1182, 605);
+		}
+			else if (peso >= 50) {
 				msg = "PESADO";
+				pos = Vector2D(1170, 606);
+			}
+				
 			removeEntitiesByLayer(ecs::layer::NUMBERS);
 			factory_->setLayer(ecs::layer::NUMBERS);
-			factory_->createLabel(Vector2D(1182, 608), msg, 30);
+			factory_->createLabel(pos, msg, 30);
 		}
-		/*else {
+		else {
 			msg = " ";
 			removeEntitiesByLayer(ecs::layer::NUMBERS);
 			factory_->setLayer(ecs::layer::NUMBERS);
 			factory_->createLabel(Vector2D(1270, 593), msg, 30);
-		}*/
+		}
 		
 		}, generalData().DropIn);
 	
 	balanzaTri->addCallback([this, balanzaComp](ecs::Entity* entRect) {
 		balanzaComp->finishAnimatiosDigital(entRect); 
-		/*std::string msg2 = " ";
+		std::string msg2 = " ";
 		removeEntitiesByLayer(ecs::layer::NUMBERS);
 		factory_->setLayer(ecs::layer::NUMBERS);
-		factory_->createLabel(Vector2D(1270, 593), msg2, 30);*/
+		factory_->createLabel(Vector2D(1270, 593), msg2, 30);
 		}, generalData().PickUp);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
