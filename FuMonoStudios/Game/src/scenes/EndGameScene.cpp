@@ -21,6 +21,14 @@ void EndGameScene::init()
 {
     Personaje npc = (Personaje)npcId_;
     final_ = new Final(this, npc, generalData().getNPCData(npc)->felicidad);
+
+    // Fondo escena
+    ComonObjectsFactory* fact = getFactory();
+    fact->setLayer(ecs::layer::FOREGROUND);
+    Texture* fondoTex = &sdlutils().images().at("finalFondo");
+    ecs::Entity* fondo = fact->createImage(Vector2D(0, 0), Vector2D(fondoTex->width(), fondoTex->height()), fondoTex);
+    Transform* fondoTr = fondo->getComponent<Transform>();
+    fondoTr->setScale(1);
 }
 
 void EndGameScene::update()

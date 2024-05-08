@@ -36,14 +36,34 @@ Final::Final(ecs::Scene* escene, Personaje npc, Felicidad felicidad)
     imagenNpcTr->setScale(0.25);
     imagenNpcTr->setPos(300, 500);
 
-    // Generamos Dialogo
-    
+    //A continuacion el autoescalado y autoposicionamiento de la imagen del npc en el periodico
+
+    // Primero nos quedamos con el width o height dependiendo de que sea el mas grande
+    int maxSize = std::max(imagenNpcTex->width(), imagenNpcTex->height());
+
+    // scaleFactor vendra determinado por maxSize
+    float scaleFactor = 300.0f / maxSize;
+    imagenNpcTr->setScale(scaleFactor);
+
+    // Obtenemos el tamaño de la imagen escalada
+    int scaledWidth = imagenNpcTex->width() * scaleFactor;
+    int scaledHeight = imagenNpcTex->height() * scaleFactor;
+
+    // Centramos
+    int xPos = 500 - scaledWidth / 2;
+    int yPos = 650 - scaledHeight / 2;
+    imagenNpcTr->setPos(xPos, yPos);
+
+    // Generamos texto
+    std::string textoInicial = endTexts_[npc][felicidad];
+    factory->createLabel(Vector2D(1000, 400), Vector2D(400, 200), texto, 50);   
 }
 
 Final::~Final()
 {
     delete periodico_;
     delete imagenNpc_;
+    delete texto_;
 }
 
 void Final::inicializarFinal(ecs::Scene* escene, Personaje npc, Felicidad felicidad)
@@ -58,8 +78,8 @@ void Final::inicializarFinal(ecs::Scene* escene, Personaje npc, Felicidad felici
     // Inicializamos root_
     JSONObject root = jValueRoot->AsObject();
 
-    // Obtenemos el numero de personajes
-    int numNpc = std::numeric_limits<enum Personaje>::max();
+    // Numero de personajes con finales
+    int numNpc = 7;
 
     // Cargamos endTexts_ HACER METODO STATICO PARA RELLENAR unordered_map
     for (int i = 0; i < numNpc; i++) {
@@ -86,9 +106,7 @@ void Final::inicializarFinal(ecs::Scene* escene, Personaje npc, Felicidad felici
 }
 
 void Final::loadFinal(Personaje npc, Felicidad felicidad)
-{
-    std::string texto = endTexts_[npc][felicidad];
-
+{    
     ComonObjectsFactory* factory = escene_->getFactory();
     factory->setLayer(ecs::layer::UI);
 
@@ -99,11 +117,30 @@ void Final::loadFinal(Personaje npc, Felicidad felicidad)
     Texture* imagenNpcTex = generalData().personajeToTexture(npc);
     imagenNpc_ = factory->createImage(Vector2D(300, 500), Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
     Transform* imagenNpcTr = imagenNpc_->getComponent<Transform>();
-    imagenNpcTr->setScale(0.25);
 
-    // Generamos dialogo
+    //A continuacion el autoescalado y autoposicionamiento de la imagen del npc en el periodico
+
+    // Primero nos quedamos con el width o height dependiendo de que sea el mas grande
+    int maxSize = std::max(imagenNpcTex->width(), imagenNpcTex->height());
+
+    // scaleFactor vendra determinado por maxSize
+    float scaleFactor = 300.0f / maxSize;
+    imagenNpcTr->setScale(scaleFactor);
+
+    // Obtenemos el tamaño de la imagen escalada
+    int scaledWidth = imagenNpcTex->width() * scaleFactor;
+    int scaledHeight = imagenNpcTex->height() * scaleFactor;
+
+    // Centramos
+    int xPos = 500 - scaledWidth / 2;
+    int yPos = 650 - scaledHeight / 2;
+    imagenNpcTr->setPos(xPos, yPos);
+
+    // Generamos texto
+    std::string texto = endTexts_[npc][felicidad];
+    factory->createLabel(Vector2D(1000, 400), Vector2D(400, 200), texto, 50);
 }
 
 std::string Final::getFinal(Personaje npc, Felicidad nivelFelicidad) {
-    return endTexts_[npc][Minima];
+    return endTexts_[npc][nivelFelicidad];
 }

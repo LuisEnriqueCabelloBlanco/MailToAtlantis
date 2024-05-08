@@ -28,5 +28,6 @@ private:
 	ecs::Scene* escene_; // Donde se crea el final, lo usamos en loadFinal para saber en que escena estamos
 	ecs::Entity* periodico_;
 	ecs::Entity* imagenNpc_;
+	ecs::Entity* texto_;
 };
 
