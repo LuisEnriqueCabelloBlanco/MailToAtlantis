@@ -2,7 +2,7 @@
   "Vagabundo": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
+    "numMisionesAceptadas": 2,
     "EventosCompletados": [],
     "Eventos": {
       "1": {
@@ -306,7 +306,7 @@
   "Secretario": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 1,
+    "numMisionesAceptadas": 3,
     "EventosCompletados": [],
     "Eventos": {
       "1": {
@@ -601,7 +601,7 @@
   "Campesino": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 1,
+    "numMisionesAceptadas": 3,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -705,7 +705,7 @@
   "Artesano": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 1,
+    "numMisionesAceptadas": 3,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -806,7 +806,7 @@
   "Tarotisa": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 1,
+    "numMisionesAceptadas": 3,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -909,7 +909,7 @@
   "Soldado": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 1,
+    "numMisionesAceptadas": 3,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -1004,7 +1004,7 @@
   "Contable": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 1,
+    "numMisionesAceptadas": 3,
     "DiasConEvento": {
       "1": false,
       "2": false,
