@@ -49,6 +49,7 @@ namespace ecs {
         virtual ecs::Entity* createGarbage();
         ecs::Entity* createCinta();
         virtual std::unordered_map<std::string, ecs::Entity*> createBalanza();
+        virtual std::unordered_map<std::string, ecs::Entity*> createTubes();
         ecs::Entity* createTubo(pq::Distrito dist, bool);
         ecs::Entity* createStamp(TipoHerramienta type);
         
@@ -62,6 +63,8 @@ namespace ecs {
 
         float timer_;
         bool timerPaused_;
+
+        bool dialogoPendiente;
 
         DialogManager dialogMngr_;
         
@@ -82,6 +85,7 @@ namespace ecs {
         void makeDataWindow();
         void makeControlsWindow();
 #endif // DEV_TOOLS
+        int clockMusic;
 
         Entity* timerEnt_;
         Texture* timerTexture_;

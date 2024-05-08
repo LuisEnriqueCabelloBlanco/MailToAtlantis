@@ -38,7 +38,7 @@
 #include <components/NPCExclamation.h>
 #include <sistemas/NPCeventSystem.h>
 
-ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), jefe_(nullptr)
+ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), jefe_(nullptr), clockMusic(0)
 {
 	timer_ = MINIGAME_TIME;
 #ifdef DEV_TOOLS
@@ -61,22 +61,36 @@ ecs::MainScene::~MainScene()
 void ecs::MainScene::update()
 {
 	Scene::update();
-	if (gm().gamePaused()) {
-		timerPaused_ = true;
-	}
-	else {
-		timerPaused_ = false;
-	}
-	if (!timerPaused_)
-	{
-		if (timer_ > 0) {
-			timer_ -= Time::getDeltaTime();
+
+	if (!dialogoPendiente) {
+		if (gm().gamePaused()) {
+			timerPaused_ = true;
 		}
-		else
+		else {
+			timerPaused_ = false;
+		}
+		if (!timerPaused_)
 		{
-			gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
+			if (timer_ > 0) {
+				timer_ -= Time::getDeltaTime();
+        if (timer_ <= MINIGAME_TIME / 4 && clockMusic == 0) {
+				SoundEmiter::instance()->playMusic("clockSlow");
+				clockMusic++;
+			}
+			if (timer_ <= MINIGAME_TIME / 10 && clockMusic == 1) {
+				SoundEmiter::instance()->haltMusic("clockSlow");
+				SoundEmiter::instance()->playMusic("clockFast");
+				clockMusic++;
+			}
+			}
+			else
+			{
+				gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_WORK_SCENE);
+			}
 		}
+		
 	}
+
 	dialogMngr_.update();
 
 }
@@ -129,6 +143,8 @@ void ecs::MainScene::init()
 
 	createGarbage();	
 
+	createTubes();
+
 	int dia = generalData().getDay();
 	if (dia % 4 == 2) //hay un evento de trabajo del jefe cada 4 dias empezando por el dia 2, esto habria que hacerlo con constantes mejor en vez de numeros magicos 
 	{
@@ -138,20 +154,7 @@ void ecs::MainScene::init()
 		startWork();
 
 	//creacion de las herramientas
-	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
-	int numTubos = generalData().getTubesAmount(); // coge el numero de tubos que están desbloqueados
-	int j = 0;
-	for (int i = 0;i < numTubos; i++) {
-		tubos.push_back(createTubo((pq::Distrito)i, true));
-		j++;
-	}
-	//Creación de paquetes bloqueados
-	for (int z = j; z < 7 ; ++z) { //grande jose la los numeros magicos te la sabes
-		if(j==6)
-			tubos.push_back(createTubo((pq::Distrito)z, true));
-		else
-			tubos.push_back(createTubo((pq::Distrito)z , false));
-	}
+	
 
 	/*sdlutils().musics().at("office").play();
 	sdlutils().musics().at("office").setMusicVolume(50);
@@ -170,9 +173,10 @@ void ecs::MainScene::close() {
 	ecs::Scene::close();
 	generalData().npcEventSys->minigameOver();
 	generalData().updateMoney();
+	SoundEmiter::instance()->close();
 
-	sdlutils().musics().at("office").haltMusic();
-	sdlutils().musics().at("printer").haltMusic();
+	//sdlutils().musics().at("office").haltMusic();
+	//sdlutils().musics().at("printer").haltMusic();
 }
 
 ecs::Entity* ecs::MainScene::createClock() {
@@ -215,7 +219,7 @@ ecs::Entity* ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 			if (!stampHerramienta->getMulticolorStamp()) { //Si el sello no es multicolor
 				stampHerramienta->setFunctionality(type);
-
+				SoundEmiter::instance()->playSound("ink");
 				stampRender->setTexture(&sdlutils().images().at("sellador" + std::to_string(type)));
 
 			}
@@ -229,9 +233,7 @@ ecs::Entity* ecs::MainScene::createOneInk(TipoHerramienta type) {
 }
 
 void ecs::MainScene::updateToolsPerDay(int dia)
-{
-	GeneralData::instance ()->setUpgradeValue (ecs::upg::BALANZA_UPGRADE, true);
-	dia = 5;
+{	
 	if(dia == 0)
 		return;	
 	
@@ -405,6 +407,37 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createBalanza() {
 	return mapSol;
 }
 
+std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createTubes()
+{
+
+	std::unordered_map<std::string, ecs::Entity*> mapTubes;
+
+
+	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
+	int numTubos = generalData().getTubesAmount(); // coge el numero de tubos que están desbloqueados
+	int j = 0;
+	for (int i = 0; i < numTubos; i++) {
+		Entity* tube = createTubo((pq::Distrito)i, true);
+
+		tubos.push_back(tube);
+		std::string name = "tube" + i;
+
+		mapTubes.insert({ name, tube });
+
+		j++;
+	}
+
+	//Creación de paquetes bloqueados
+	for (int z = j; z < 7; ++z) { //grande jose la los numeros magicos te la sabes
+		if (j == 6)
+			tubos.push_back(createTubo((pq::Distrito)z, true));
+		else
+			tubos.push_back(createTubo((pq::Distrito)z, false));
+	}
+
+	return mapTubes;
+}
+
 void ecs::MainScene::createBalanzaDigital() {
 	// Balanza
 	factory_->setLayer(ecs::layer::BALANZA);
@@ -518,21 +551,48 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int N
 	manualRender->setVector(bookTextures);
 	manualEnt_->addComponent<Gravity>();
 	manualEnt_->addComponent<DragAndDrop>(false, "arrastrar");
-	manualEnt_->addComponent<Depth>();
-
+	manualEnt_->addComponent<Depth>();	
 
 	Vector2D buttonSize(40, 40);
 	factory_->setLayer(ecs::layer::FOREGROUND);
 	auto next = [manualRender]() {manualRender->nextTexture();};
-	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next);
+	auto right = factory_->createImageButton(Vector2D(490, 280), buttonSize, buttonTexture, next, "page");
 	right->getComponent<Transform>()->setParent(manualTransform);
 	factory_->addHoverColorMod(right);
 
 	auto previous = [manualRender]() {manualRender->previousTexture();};
-	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous);
+	auto left = factory_->createImageButton(Vector2D(40, 280), buttonSize, buttonTexture, previous, "page");
 	left->getComponent<Transform>()->setParent(manualTransform);
 	left->getComponent<Transform>()->setFlip(SDL_FLIP_HORIZONTAL);
 	factory_->addHoverColorMod(left);
+
+	if (GeneralData::instance()->getUpgradeValue(ecs::upg::MANUAL_UPGRADE)) {
+		Vector2D marcadorSize(30, 40);
+
+		Texture* marca1Texture = &sdlutils().images().at("MarcaManual1");
+		auto district = [manualRender]() {manualRender->setNumberTexture(2); };
+		auto dis = factory_->createImageButton(Vector2D(215, 0), marcadorSize, marca1Texture, district, "page");
+		dis->getComponent<Transform>()->setParent(manualTransform);		
+		factory_->addHoverColorMod(dis);
+
+		Texture* marca2Texture = &sdlutils().images().at("MarcaManual2");
+		auto calles = [manualRender]() {manualRender->setNumberTexture(3); };
+		auto call = factory_->createImageButton(Vector2D(250, 9), marcadorSize, marca2Texture, calles, "page");
+		call->getComponent<Transform>()->setParent(manualTransform);
+		factory_->addHoverColorMod(call);
+
+		Texture* marca3Texture = &sdlutils().images().at("MarcaManual3");
+		auto sellos = [manualRender]() {manualRender->setNumberTexture(7); };
+		auto sell = factory_->createImageButton(Vector2D(285, 9), marcadorSize, marca3Texture, sellos, "page");
+		sell->getComponent<Transform>()->setParent(manualTransform);
+		factory_->addHoverColorMod(sell);
+
+		Texture* marca4Texture = &sdlutils().images().at("MarcaManual4");
+		auto pesos = [manualRender]() {manualRender->setNumberTexture(8); };
+		auto pes = factory_->createImageButton(Vector2D(320, 0), marcadorSize, marca4Texture, pesos, "page");
+		pes->getComponent<Transform>()->setParent(manualTransform);
+		factory_->addHoverColorMod(pes);
+	}
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
@@ -547,7 +607,7 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int N
 		std::vector<int> indexTextures = { 2, 3, 6, 7, 8 };
 
 		auto pagCodigos = [manualRender]() { manualRender->setTextureIndx(2); };
-		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonIndexSize, buttonTexture, pagCodigos);
+		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonIndexSize, buttonTexture, pagCodigos, "page");
 		indexCodigos->getComponent<Transform>()->setParent(manualTransform);
 		factory_->addHoverColorMod(indexCodigos);
 
@@ -797,6 +857,7 @@ void ecs::MainScene::createPaquete (int lv) {
 
 
 ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
+	dialogoPendiente = true;
 
 	std::string jsonPath = "recursos/data/eventosjefe.json";
 	dialogMngr_.init(this, jsonPath);
@@ -808,8 +869,7 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 	ecs::Entity* characterEnt = factory_->createImageButton(pos, size, characterTexture, [this, characterEnt]() {
 		jefe_->getComponent<Clickeable>()->toggleClick(false);
 		newWorkEvent();
-		});
-
+		}, "click");
 	dialogMngr_.setEndDialogueCallback([characterEnt, this]{
 		jefe_->setAlive(false); //bye bye jefe
 		startWork();
@@ -820,7 +880,8 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 
 void ecs::MainScene::startWork()
 {
-	timerPaused_ = false;
+	//timerPaused_ = false;
+	dialogoPendiente = false;
 	createPaquete(generalData().getPaqueteLevel());
 	createClock();
 }

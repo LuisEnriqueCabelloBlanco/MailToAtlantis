@@ -37,12 +37,12 @@ public:
 	EnsenarSellos, EnsenarTubos, EntraSegundoPaquete, SegundoBuscarPaginaDistritos, 
 	SellarSegundoPaquete, EnviarSegundoPaquete, EntraCuartoPaquete, ExplicacionFalloAposta, 
 	EntraTercerPaquete, EnPaginaInfoSellos,
-	EntraPaquetePeso, EnviarPaquetePeso, 
-	EntraPaqueteFragil, SellarFragil, EnviarFragil,
+	EntraPaquetePeso, PesarPaquetePeso, EnviarPaquetePeso, 
+	EntraPaqueteFragil, PaginaFragil, SellarFragil, EnviarFragil,
 	Fin};
 
 	enum Action { SacarManual, PaginaCodigosPostales, PaginaDistritoHestia, PaqueteEstampado,
-	PaqueteEnviado, PaginaDistritoDemeter, PaginaSellos, Basura, Embalado, Pesado};
+	PaqueteEnviado, PaginaDistritoDemeter, PaginaSellos, Basura, Embalado, Pesado, PaginaPesado, PaginaFragilAccion};
 
 	TutorialSystem(ecs::TutorialScene* scene);
 	~TutorialSystem();

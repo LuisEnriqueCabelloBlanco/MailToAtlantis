@@ -48,6 +48,7 @@ public:
 	std::vector<Texture*>* getVector();
 	void nextTexture();
 	void previousTexture();
+	void setNumberTexture(int i);
 private:
 	/// <summary>
 	/// indice que indica en que textura del array se encuentra

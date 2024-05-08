@@ -21,7 +21,7 @@ GeneralData::GeneralData()
 	corrects_ = 0;
 	fails_ = 0;
 	dia_ = INITIAL_DAY;
-	rent_ = 75;
+	rent_ = 100;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
 	upgrades_.resize(ecs::upg::_LAST_UPGRADE);
 	for (auto upg : upgrades_) {
