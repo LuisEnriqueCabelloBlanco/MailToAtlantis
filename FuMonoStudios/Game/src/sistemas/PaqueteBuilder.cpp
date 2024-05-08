@@ -452,12 +452,37 @@ void PaqueteBuilder::addVisualElements(ecs::Entity* paq) {
 
 		//Creamos la entidad Peso sello 
 		pq::NivelPeso miPeso = paqComp->getPeso();
+
+		
 		if (miPeso != pq::Ninguno) {
-			tipoString = (miTipo == pq::Bajo ? "selloPesoBajo" :
-				miTipo == pq::Medio ? "selloPesoMedio" :
-				miTipo == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");
+			if (paqComp->pesoCorrecto()) {
+				tipoString = (miTipo == pq::Bajo ? "selloPesoBajo" :
+					miTipo == pq::Medio ? "selloPesoMedio" :
+					miTipo == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");				
+			}
+			else {
+				int i = sdlutils().rand().nextInt(0, 2);
+				if (miTipo == pq::Bajo) {
+					if (i == 0) tipoString = "selloPesoMedio";
+					else tipoString = "selloPesoAlto";
+				}
+				else {
+					if (miTipo == pq::Medio) {
+						if (i == 0) tipoString = "selloPesoBajo";
+						else tipoString = "selloPesoAlto";
+					}
+					else {
+						if (miTipo == pq::Alto) {
+							if (i == 0) tipoString = "selloPesoBajo";
+							else tipoString = "selloPesoMedio";
+						}
+					}
+				}
+
+			}
 			crearSello(paq, tipoString, PESO_SELLO_POS_X, PESO_SELLO_POS_Y, PESO_SELLO_SIZE, PESO_SELLO_SIZE);
-		}
+		}		
+		
 		//Creamos la entidad Fragil sello 
 		bool fragil = paqComp->getFragil();
 		if (fragil) {

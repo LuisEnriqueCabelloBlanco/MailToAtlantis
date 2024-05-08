@@ -73,6 +73,8 @@ private:
 
 	Trigger* tri_ = nullptr;
 
+	DragAndDrop* dad_ = nullptr;
+
 	RenderImage* mul_ = nullptr;
 
 	RenderImage* renderImage_ = nullptr;

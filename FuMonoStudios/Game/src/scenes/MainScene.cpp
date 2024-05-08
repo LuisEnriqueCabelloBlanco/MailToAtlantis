@@ -272,6 +272,9 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 		createManual(10);
 	}
 
+	// mejora Vagabundo
+	if (generalData().getNPCData(Vagabundo)->misionAceptada >= 6)
+		createMultipleStamp();
 }
 void ecs::MainScene::createExclamationPoint() {
 	Entity* xd = addEntity(ecs::layer::FOREGROUND);	
@@ -294,7 +297,7 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 		1, Easing::EaseOutBack)->enable();
 	//El texto de la nota
 	factory_->setLayer(layer::FOREGROUND);
-	Entity* texto = factory_->createLabel(Vector2D(25, 70), Vector2D(250, 100), NotaErronea->getComponent<ErrorNote>()->text_, 40);
+	Entity* texto = factory_->createLabel(Vector2D(15, 15), Vector2D(270, 200), NotaErronea->getComponent<ErrorNote>()->text_, 40);
 	texto->getComponent<Transform>()->setParent(NotaErronea->getComponent<Transform>());
 	factory_->setLayer(layer::DEFAULT);
 }
