@@ -193,14 +193,14 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 			DragAndDrop::enableDrag = false;
 			scene_->createPackage(ecs::TutorialScene::BalanzaTut);
-			delayedCallback(1, [this] {
+			delayedCallback(0.2, [this] {
 				activateDialogue(false);
 				});
 			break;
 
 		case TutorialEvent::PesarPaquetePeso:
 
-			delayedCallback(0.5, [this] {
+			delayedCallback(0.2, [this] {
 				activateDialogue(false);
 				scene_->createBalanza();
 
@@ -218,9 +218,9 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 		case TutorialEvent::EntraPaqueteFragil:
 			DragAndDrop::enableDrag = true;
 			waitingWrapComp = scene_->createPackage(ecs::TutorialScene::Fragil)->getComponent<Wrap>();
-			delayedCallback(1, [this] {
+			delayedCallback(0.2, [this] {
 				activateDialogue(false);
-				delayedCallback(1, [this] {
+				delayedCallback(0.2, [this] {
 					scene_->createCinta();
 					});
 				});
@@ -228,7 +228,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		case TutorialEvent::PaginaFragil:
 
-			delayedCallback(1, [this] {
+			delayedCallback(0.2, [this] {
 				activateDialogue(false);
 
 			});
