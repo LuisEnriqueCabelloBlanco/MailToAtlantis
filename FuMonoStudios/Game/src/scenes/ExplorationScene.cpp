@@ -67,6 +67,45 @@ void ecs::ExplorationScene::init()
 	dialogMngr_.init(this);
 
 	createDiario();
+
+	canInteract = true;
+
+	dialogueWhenEntering();
+}
+
+void ecs::ExplorationScene::dialogueWhenEntering() {
+
+	if (generalData().getDay() == 1) {
+		canInteract = false;
+		dialogMngr_.setEndDialogueCallback([this] {
+			canInteract = true;
+			});
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 0);
+	}
+	else if (generalData().getDay() == 5) {
+		canInteract = false;
+		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
+		temporalSprite->addComponent<Transform>(500,500,400,600);
+		temporalSprite->addComponent<RenderImage>()->setTexture(&sdlutils().images().at("Jefe"));
+		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
+			canInteract = true;
+			temporalSprite->setAlive(false);
+			});
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 1);
+	}
+	else if ((generalData().getNPCData(Vagabundo)->misionAceptada == 5 && generalData().getNPCData(Secretario)->misionAceptada < 3)
+		|| (generalData().getNPCData(Secretario)->misionAceptada == 2 && generalData().getNPCData(Vagabundo)->misionAceptada < 6)) 
+	{
+		canInteract = false;
+		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
+		temporalSprite->addComponent<Transform>(500, 500, 400, 600);
+		temporalSprite->addComponent<RenderImage>()->setTexture(&sdlutils().images().at("Jefe"));
+		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
+			canInteract = true;
+			temporalSprite->setAlive(false);
+			});
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 2);
+	}
 }
 
 
@@ -202,7 +241,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrow(Vector2D pos, std::st
 	Vector2D size{ sujetaplazas->width() * scale, sujetaplazas->height() * scale };
 	
 	CallbackClickeable cosa = [this, place, placeID]() {
-		if (actualPlace_->navigate((Distrito)placeID)) {
+		if (actualPlace_->navigate((Distrito)placeID) && canInteract) {
 			dialogMngr_.closeDialogue();
 			actualPlace_->changeActivationObjects(false);
 			placeToGo = placeID;
@@ -235,20 +274,19 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 	e->addComponent<Transform>(pos.getX(), pos.getY(), scale.getX(), scale.getY());
 	auto clickableBotonTrabajar = e->addComponent<Clickeable>("");
 	CallbackClickeable funcPress = [this]() {
-		if (generalData().getDay() == 1 ||
-			generalData().getDay() == 3 ||
-			generalData().getDay() == 5 ||
-			generalData().getDay() == 8) {
+		if (canInteract) {
+			if (generalData().getDay() == 1 ||
+				generalData().getDay() == 3 ||
+				generalData().getDay() == 5 ||
+				generalData().getDay() == 8) {
 
-			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+			}
+			else {
 
+				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+			}
 		}
-		else {
-
-			gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
-
-		}
-		
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
 	return e;
@@ -532,28 +570,35 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, character]() {
-		if (generalData().getNPCData(generalData().stringToPersonaje(character))->felicidad == npc::Maxima) {
-			generalData().unlockUpgrade(generalData().stringToPersonaje(character));
-		}
-	    dialogMngr_.startConversation(character);
-
-		auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
-		auto data = generalData().getNPCData(charac); //data de dicho personaje
-
-		// activamos los dialogos correspondientes
-		std::pair<const std::string, int> aux = data->getDialogueInfo();
-
-		if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
+		if (canInteract)
 		{
-			NPCevent* event = data->getEvent();
-			if (event != nullptr)
+			if (generalData().getNPCData(generalData().stringToPersonaje(character))->felicidad == npc::Maxima) {
+				generalData().unlockUpgrade(generalData().stringToPersonaje(character));
+			}
+			dialogMngr_.setEndDialogueCallback([this] {
+				canInteract = true;
+				});
+			canInteract = false;
+			dialogMngr_.startConversation(character);
+
+			auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
+			auto data = generalData().getNPCData(charac); //data de dicho personaje
+
+			// activamos los dialogos correspondientes
+			std::pair<const std::string, int> aux = data->getDialogueInfo();
+
+			if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
 			{
-				for (int i = 0; i < event->numPaquetes; i++) {
-					generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+				NPCevent* event = data->getEvent();
+				if (event != nullptr)
+				{
+					for (int i = 0; i < event->numPaquetes; i++) {
+						generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+					}
+					generalData().npcEventSys->activateEvent(event);
+					addDiarioEvent(event);
+					generalData().npcEventSys->shuffleNPCqueue();
 				}
-				generalData().npcEventSys->activateEvent(event);
-				addDiarioEvent(event);
-				generalData().npcEventSys->shuffleNPCqueue();
 			}
 		}
 	};
@@ -574,7 +619,14 @@ ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const st
 
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, interactableObj]() {
-		dialogMngr_.startConversationWithObj(interactableObj);
+		if (canInteract)
+		{
+			dialogMngr_.setEndDialogueCallback([this] {
+				canInteract = true;
+				});
+			dialogMngr_.startConversationWithObj(interactableObj);
+		}
+		
 	};
 
 	ecs::Entity* objEnt = factory_->createImageButton(pos, size, nullptr, funcPress, "click");

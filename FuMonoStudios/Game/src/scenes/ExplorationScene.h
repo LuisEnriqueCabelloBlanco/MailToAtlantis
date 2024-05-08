@@ -123,7 +123,10 @@ namespace ecs {
 
 		// cierra la conversacion
 		void closeConversation();
+
+		void enableInteract(bool onOff) { canInteract = onOff; }
     private:
+		void dialogueWhenEntering();
 		
 		/// <summary>
 		/// Metodo para inicializar los lugares del mapa
@@ -188,6 +191,9 @@ namespace ecs {
 
 		// flag para saber si podemos entablar dialogo
 		bool canStartConversation;
+
+		// bool que permite interactuar con flechas entrar a trabajar etc. Esta siempre true menos al entrar a dialogo
+		bool canInteract;
 
 		ecs::Entity* boton_Trabajo;
 

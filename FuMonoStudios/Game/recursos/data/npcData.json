@@ -1,9 +1,9 @@
 {
   "Vagabundo": {
-    "Felicidad": "Buena",
-    "FelicidadNum": 70,
-    "numMisionesAceptadas": 4,
-    "EventosCompletados": [2,3,4,5],
+    "Felicidad": "NoHabladoAun",
+    "FelicidadNum": 50,
+    "numMisionesAceptadas": 0,
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -318,8 +318,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario1"
+        "recompensa": "Secretario+",
+        "textoDiario": "no se usa"
       },
       "2": {
         "numPaquetes": 1,
@@ -330,8 +330,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario2"
+        "recompensa": "Secretario+",
+        "textoDiario": "no se usa"
       },
       "3": {
         "numPaquetes": 1,
@@ -342,8 +342,8 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": "Secretario+",
+        "textoDiario": "no se usa"
       },
       "4": {
         "numPaquetes": 1,
@@ -354,20 +354,26 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": "Secretario+",
+        "textoDiario": "no se usa"
       },
       "5": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 4,
+        "numPaquetesParaCompletar": 3,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Alimento",
+          "distrito": "Apolo"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "tipoPaquete": "Alimento",
+          "distrito": "Apolo",
+          "tuboSeleccionado": "Basura"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+          "1": "Secretario+++++",
+          "2": "Secretario-----"
+        },
+        "textoDiario": "El secretario necesita que elimine paquetes de un grupo llamado 'lechuzas'. Tengo que mandar a la basura 3 paquetes de alimentos que vayan hacia Apolo."
       },
       "6": {
         "numPaquetes": 1,
@@ -378,44 +384,104 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+          "1": "Secretario+++++",
+          "2": "Secretario-----"
+        },
+        "textoDiario": "Se est$an pasando paquetes ilegales de comida en Apolo y Hermes. Debo eliminar 3 paquetes de comida que vayan a Apolo o a Hermes. Dice que si cumplo esta tarea, ma$%ana me dar$a una recompensa."
       },
       "7": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 3,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Gargafiel Mustaki",
+          "distrito": "Apolo"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Gargafiel Mustaki",
+          "tuboSeleccionado": "Poseidon"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+          "1": "Secretario+++++",
+          "2": "Secretario-----"
+        },
+        "textoDiario": "Gargafiel esta que hecha humos, no creo que me de ninguna recompensa. Debe recomponer la sociedad para evitar un revuelo por el nuevo texto 'Critias' que alenta a la poblaci$on a unirse a los humanos. Me ha pedido que reenvie unos tres paquetes con su nombre al distrito de Poseid$on."
       },
       "8": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 3,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "1":{
+            "remitente": "Dr Merluzo",
+            "distrito": "Artemisa"
+          },
+          "2":{
+            "remitente": "Anxoa Rios",
+            "distrito": "Artemisa"
+          },
+          "3":{
+            "remitente": "Gorg Lotus",
+            "distrito": "Hefesto"
+          }
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "1":{
+            "remitente": "Dr Merluzo",
+            "tuboSeleccionado": "Apolo"
+          },
+          "2":{
+            "remitente": "Anxoa Rios",
+            "tuboSeleccionado": "Apolo"
+          },
+          "3":{
+            "remitente": "Gorg Lotus",
+            "tuboSeleccionado": "Apolo"
+          }
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+          "1": "Secretario+++++",
+          "2": "Secretario-----",
+          "3": "Vagabundo--------------------"
+        },
+        "textoDiario": "Me ha pasado una lista con nombres de gente de las lechuzas. Debo mandar sus paquetes a Apolo, donde los analizar$a."
       },
       "9": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "1":{
+            "remitente": "Anemos Togakawa",
+            "distrito": "Artemisa"
+          },
+          "2":{
+            "remitente": "Merla Flota",
+            "distrito": "Artemisa"
+          },
+          "3":{
+            "remitente": "Salvador Coral",
+            "distrito": "Hefesto"
+          }
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "1":{
+            "remitente": "Anemos Togakawa",
+            "tuboSeleccionado": "Apolo"
+          },
+          "2":{
+            "remitente": "Merla Flota",
+            "tuboSeleccionado": "Apolo"
+          },
+          "3":{
+            "remitente": "Salvador Coral",
+            "tuboSeleccionado": "Apolo"
+          }
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+          "1": "Secretario+++++",
+          "2": "Secretario-----",
+          "3": "Vagabundo--------------------"
+        },
+        "textoDiario": "Hoy dice que ha encontrado nombres de gente importante en las lechuzas. Igual que ayer, debo reenviar sus paquetes a Apolo."
       },
       "10": {
         "numPaquetes": 1,
@@ -426,44 +492,97 @@
         "condiciones": {
           "remitente": "Albama Ice"
         },
-        "recompensa": "Vagabundo+",
+        "recompensa": {
+          "1": "Secretario+++++",
+          "2": "Secretario-----"
+        },
         "textoDiario": "Texto diario"
       },
       "11": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 4,
+        "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "1":{
+            "tipoPaquete": "Joyas",
+            "distrito": "Hestia"
+          },
+          "2":{
+            "tipoPaquete": "Joyas",
+            "distrito": "Artemisa"
+          },
+          "3":{
+            "tipoPaquete": "Joyas",
+            "distrito": "Demeter"
+          },
+          "4":{
+            "tipoPaquete": "Joyas",
+            "distrito": "Hefesto"
+          }
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "1":{
+            "tipoPaquete": "Joyas",
+            "distrito": "Hestia",
+            "tuboSeleccionado": "Poseidon"
+          },
+          "2":{
+            "tipoPaquete": "Joyas",
+            "distrito": "Artemisa",
+            "tuboSeleccionado": "Poseidon"
+          },
+          "3":{
+            "tipoPaquete": "Joyas",
+            "distrito": "Demeter",
+            "tuboSeleccionado": "Poseidon"
+          },
+          "4":{
+            "tipoPaquete": "Joyas",
+            "distrito": "Hefesto",
+            "tuboSeleccionado": "Poseidon"
+          }
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+          "1": "Secretario+++++",
+          "2": "Secretario-----"
+        },
+        "textoDiario": "El secretario me ha contado su revelaci$on que tuvo de Poseid$on. Dice que nos est$a poniendo a prueba y $el es el $unico que podr$a salvarnos. Debemos resurgir a la superficie con una nave que ha estado construyendo, y una vez arriba, pelear$a con los humanos con el poder de los Dioses. Para poder ayudarle, necesita 2 paquetes de joyas. Debo redirigir 2 paquetes que vayan a Hestia, Demeter, Artemisa o a Hefesto y mandarlos a Poseid$on."
       },
       "12": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 4,
+        "numPaquetesParaCompletar": 3,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "distrito": "Hefesto",
+          "tipoPaquete": "Materiales"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "distrito": "Hefesto",
+          "tipoPaquete": "Materiales",
+          "tuboSeleccionado": "Poseidon"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+          "1": "Secretario+++++",
+          "2": "Secretario-----"
+        },
+        "textoDiario": "Ahora necesitamos materiales para la chapa de la nave. Debo redirigir 3 paquetes de materiales que vayan a Hefesto y mandarlos a Poseid$on."
       },
       "13": {
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "Pancracio Warawa",
+          "distrito": "Hermes",
+          "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "distrito": "Hermes",
+          "tuboSeleccionado": "Poseidon",
+          "tipoPaquete": "Alimento"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+          "1": "Secretario+++++",
+          "2": "Secretario-----"
+        },
+        "textoDiario": "Gargafiel me ha pedido suministros de comida para la nave. Ha comprado paquetes de comida a un campesino pero van a Hermes en vez de Poseid$on. Debo redirigir los 2 paquetes hacia Poseid$on. El nombre del campesino es Pancracio Warawa."
       },
       "14": {
         "numPaquetes": 1,

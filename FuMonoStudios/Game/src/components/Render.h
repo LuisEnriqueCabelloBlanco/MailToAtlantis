@@ -1,5 +1,6 @@
 #pragma once
-#include <architecture/Component.h>
+#include "../architecture/Component.h"
+#include "../sdlutils/Texture.h"
 #include <assert.h>
 
 class Transform;
