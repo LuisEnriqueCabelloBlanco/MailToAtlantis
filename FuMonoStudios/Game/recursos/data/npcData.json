@@ -991,10 +991,12 @@
         "numPaquetes": 3,
         "numPaquetesParaCompletar": 2,
         "paquetes": {
-          "distrito": "Hermes"
+          "distrito": "Hermes",
+          "legal": false
         },
         "condiciones": {
-          "distrito": "Apolo"
+          "distrito": "Apolo",
+          "legal": false
         },
         "recompensa": "Soldado++++",
         "textoDiario": "Texto diario"
@@ -1040,10 +1042,14 @@
         "numPaquetes": 1,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "remitente": "Nota Por Hacer"
+          "remitente": "Glover Globus",
+          "distrito": "Apolo",
+          "tipoPaquete": "Materiales"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "Glover Globus",
+          "distrito": "Erroneo",
+          "tipoPaquete": "Materiales"
         },
         "recompensa": "Contable++",
         "textoDiario": "Texto diario"
@@ -1084,11 +1090,13 @@
         "numPaquetesParaCompletar": 2,
         "paquetes": {
           "remitente": "Glover Globus",
-          "distrito": "Hermes"
+          "distrito": "Hermes",
+          "legal": false
         },
         "condiciones": {
           "remitente": "Glover Globus",
-          "distrito": "Hermes"
+          "distrito": "Hermes",
+          "legal": false
         },
         "recompensa": "Contable++",
         "textoDiario": "Texto diario"
