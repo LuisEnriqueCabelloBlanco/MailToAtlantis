@@ -503,6 +503,11 @@
   ],
   "fonts": [
     {
+      "id": "arial30",
+      "file": "recursos/fonts/ARIAL.ttf",
+      "size": 30
+    },
+    {
       "id": "arial50",
       "file": "recursos/fonts/ARIAL.ttf",
       "size": 50
