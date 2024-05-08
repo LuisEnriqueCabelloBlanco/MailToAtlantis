@@ -1,5 +1,6 @@
 #pragma once
 #include <architecture/Component.h>
+#include "architecture/Game.h"
 
 class BombAux : public ecs::Component
 {
@@ -14,5 +15,6 @@ public:
 	void RedPressed();
 	void BluePressed();
 private:
+	ecs::MainScene* scene;
 	bool bluePressed;
 };
