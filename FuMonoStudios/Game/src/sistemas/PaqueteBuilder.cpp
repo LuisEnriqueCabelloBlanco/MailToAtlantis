@@ -454,32 +454,13 @@ void PaqueteBuilder::addVisualElements(ecs::Entity* paq) {
 		pq::NivelPeso miPeso = paqComp->getPeso();
 
 		
-		if (miPeso != pq::Ninguno) {
-			if (paqComp->pesoCorrecto()) {
-				tipoString = (miTipo == pq::Bajo ? "selloPesoBajo" :
-					miTipo == pq::Medio ? "selloPesoMedio" :
-					miTipo == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");				
-			}
-			else {
-				int i = sdlutils().rand().nextInt(0, 2);
-				if (miTipo == pq::Bajo) {
-					if (i == 0) tipoString = "selloPesoMedio";
-					else tipoString = "selloPesoAlto";
-				}
-				else {
-					if (miTipo == pq::Medio) {
-						if (i == 0) tipoString = "selloPesoBajo";
-						else tipoString = "selloPesoAlto";
-					}
-					else {
-						if (miTipo == pq::Alto) {
-							if (i == 0) tipoString = "selloPesoBajo";
-							else tipoString = "selloPesoMedio";
-						}
-					}
-				}
-
-			}
+		if (miPeso != pq::Ninguno) {			
+				tipoString = (miPeso == pq::Bajo ? "selloPesoBajo" :
+					miPeso == pq::Medio ? "selloPesoMedio" :
+					miPeso == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");				
+			
+			std::cout << "\nAAAA" << paqComp->pesoCorrecto() << "\n";
+			std::cout << "\n" << tipoString << "\n";
 			crearSello(paq, tipoString, PESO_SELLO_POS_X, PESO_SELLO_POS_Y, PESO_SELLO_SIZE, PESO_SELLO_SIZE);
 		}		
 		
