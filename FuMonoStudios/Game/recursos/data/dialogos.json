@@ -45,7 +45,7 @@
     "Dia4": [
       " $!Gran amigo! $?C$omo te va todo?",
       " $!Hoy es mi d$ia de suerte socio! No vas a creer lo que he encontrado rebuscando en la basura. $!Mira!",
-      "*Te muestra una bola del tama$%o de una u$%a. Tiene un color dorado brillante. Se nota que es falsa*",
+      "Te muestra una bola del tama$%o de una u$%a. Tiene un color dorado brillante. Se nota que es falsa",
       " $!Estoy que me salgo! Se lo voy a mandar a un joyero para que me diga cuanto vale, lo mandare por paquete, no me la robes eh...",
       " $!Voy a ser rico!"
     ],
@@ -60,7 +60,7 @@
       "$?Que opinas del rey? $?Crees que es justo con su pueblo? $?Crees que los campesinos nos merecemos estos tratos? $?Crees de verdad que este es el rey que nos merecemos?",
       "No deber$iamos hablar de esto. Primero tengo que saber si puedo confiar en t$i.",
       "Toma esto.",
-      "*Recibes dos papeles con un sello de una lechuza. Contiene instrucciones sobre algo*",
+      "Recibes dos papeles con un sello de una lechuza. Contiene instrucciones sobre algo",
       "Cumplelo y seguiremos hablando. Ni se te ocurra decir que te lo he dado yo.",
       "La lechuza aguarda. Ahora vete y haz como que no te he dado nada. Disimula.",
       " $!Hasta luego coleguita! $!Disfruta de tu d$ia de trabajo!"
@@ -71,16 +71,16 @@
     "Dia6": [
       " $!Colega! $!Cuanto te he hechado de menos!",
       " $!Mira amigo! $!Tengo una nueva mascota! ",
-      "*Te acerca un pez anaranjado metido en una bolsa llena de agua. Se nota que el pez no se mueve*",
-      "Se llama 'Pescaito'. Es un poco holgaz$an, le gusta mucho dormir. Lleva durmiendo desde ayer, $?increible eh?",
+      "Te acerca un pez anaranjado metido en una bolsa llena de agua. Se nota que el pez no se mueve",
+      "Se llama Pescaito. Es un poco holgaz$an, le gusta mucho dormir. Lleva durmiendo desde ayer, $?increible eh?",
       "Encima come poqu$isimo. No me cuesta nada mantenerle. $!Mira como flota el chaval! $!Que arte!",
       "Vale ahora en serio. Para saber si de verdad podemos confiar en t$i tenemos que comprobar que est$as capacitado mentalmente. Tienes ya las herramientas para cumplir esta prueba",
-      "Debes eliminar al 'Buitre'. Su paquete debe ir a la basura.",
+      "Debes eliminar al Buitre. Su paquete debe ir a la basura.",
       "Recuerda que estamos trabajando por una buena causa. No nos falles.",
       "La lechuza aguarda. Ve y haz como que no te he dicho nada."
     ],
     "PostConversacionDia6": [
-      "Recuerda, debes eliminar al 'Buitre'. Tienes un papel que te servir$a para reconocerlo."
+      "Recuerda, debes eliminar al Buitre. Tienes un papel que te servir$a para reconocerlo."
     ],
     "Dia7": [
       " $!Benditos los oc$eanos! $!Dime que has le$ido el nuevo papel de las lechuzas!",
@@ -97,14 +97,14 @@
     ],
     "Dia8": [
       " $!Hola gran amigo!",
-      "Tengo una mala noticia... 'Pescaito'... Ha muerto...",
+      "Tengo una mala noticia... Pescaito... Ha muerto...",
       " $?C$omo dices? $?Que por eso dorm$ia tanto?",
       "Bueno eso da igual... Tenemos que darle una despedida digna. Pescaito no puede ser enterrado en tierras tan nauseabundas como est$as. El siempre se ha merecido vivir con la nobleza.",
-      "Lo voy a mandar en paquete. No me quedan sellos, tengo que ir a comprar, as$i que si ves mi paquete, no lo tires a la basura y m$andalo al distrito de Hermes. S$i el de Hermes. Un distrito digno de 'Pescaito'.",
-      "C$omo te voy a echar de menos 'Pescaito'..."
+      "Lo voy a mandar en paquete. No me quedan sellos, tengo que ir a comprar, as$i que si ves mi paquete, no lo tires a la basura y m$andalo al distrito de Hermes. S$i el de Hermes. Un distrito digno de Pescaito.",
+      "C$omo te voy a echar de menos Pescaito..."
     ],
     "PostConversacionDia8": [
-      "Debemos darle una digna despedida... M$anda a 'Pescaito' a Hermes... Siempre supe que merec$ia estar con la nobleza..."
+      "Debemos darle una digna despedida... M$anda a Pescaito a Hermes... Siempre supe que merec$ia estar con la nobleza..."
     ],
     "Dia9": [
       " $!Coleguita! $!C$omo est$as!",
@@ -124,7 +124,7 @@
       " $!El rey no existe, amigo! $!El rey es falso! $!El rey ha muerto! $!Es todo una gran farsa! $!Nos han enga$%ado a todos, TODOS!",
       " $?Jones alguna vez te has preguntado que hac$ia yo antes de ser un vagabundo? $?El c$omo he acabado aqu$i?",
       "Mi padre era el rey Jones. As$i es, yo soy el heredero leg$itimo al trono.",
-      "Mi padre era un buen rey, ten$ia a todo el pueblo contento y creaba grandes avances para la sociedad. Todo di$o un vuelco cuando encontr$o unos libros enterrados muy antiguos. Era el 'Critias', el libro que habla de los humanos de la superficie.",
+      "Mi padre era un buen rey, ten$ia a todo el pueblo contento y creaba grandes avances para la sociedad. Todo di$o un vuelco cuando encontr$o unos libros enterrados muy antiguos. Era el Critias, el libro que habla de los humanos de la superficie.",
       "Ahora ya conocemos el libro, pero se encontr$o cuando yo solo ten$ia 10 a$%os. Mi padre lo habl$o con Gargafiel, el secretario del rey, y le coment$o de revelarlo a la poblaci$on para mentalizarse para el resurgimiento en 25 a$%os.",
       "Tuvieron un choque de opiniones. Esto nunca pasaba.",
       "Gargafiel cre$ia que la sociedad no pod$ia saber de esto, que eramos superiores a los humanos, y que revelarlo era causar caos. Lo cre$ia tan fuertemente que lleg$o a traicionar a mi padre.",
@@ -158,13 +158,13 @@
     "Dia12": [
       " $!Gran amigo! $!Qu$e bien te veo!",
       "Ya tenemos el veneno fabricado. Muchas gracias por tu ayuda, Jones.",
-      "Ahora tenemos que mandarlo. Un tal 'Grog Koroth' va a mandar el paquete con el veneno desde Dem$eter.",
+      "Ahora tenemos que mandarlo. Un tal Grog Koroth va a mandar el paquete con el veneno desde Dem$eter.",
       "Seguramente el paquete ir$a sin sello. El chaval es un genio para hacer venenos pero para poner un sello le fallan las luces...",
-      "En resumen, redirige el paquete de 'Grog Koroth' y m$andalo al de Hestia.",
+      "En resumen, redirige el paquete de Grog Koroth y m$andalo al de Hestia.",
       " $!Chao gran amigo!"
     ],
     "PostConversacionDia12": [
-      "Necesitamos que pase el paquete del creador del veneno, 'Grog Koroth'"
+      "Necesitamos que pase el paquete del creador del veneno, Grog Koroth"
     ],
     "Dia13": [
       " $!Amiguito del alma! $!Que bueno es verte!",
@@ -180,16 +180,16 @@
       " $!Jones, amigo! $!Hoy es el d$ia!",
       "Se acab$o dormir en el suelo, se acab$o los malos salarios de los campesinos, se acab$o la vida de soberbia de la nobleza, se acab$o la injusticia...",
       "Se acab$o la tiran$ia de este secretario del rey. Se va a acabar todo y va a empezar la nueva era, una era donde prosperaremos como sociedad, hasta juntarnos con los humanos y convivir con ellos cuando Atlantis resurja en 5 a$os.",
-      "Ahora el plan. Va a llegar un paquete enviado de las lechuzas al distrito de Poseid$on. Su nombre es 'Francis Dupart'. Recuerda su nombre.",
+      "Ahora el plan. Va a llegar un paquete enviado de las lechuzas al distrito de Poseid$on. Su nombre es Francis Dupart. Recuerda su nombre.",
       "Toma. El veneno que hemos estado trabajando. $echalo sobre la apertura del paquete. El secretario tiene una mala man$ia de abrir los paquetes con la boca. En verdad le pega, con esa bocaza que me lleva... Ah$i le pillaremos.",
       "Solo a ese paquete, repito, SOLO A ESE PAQUETE. Debes echar los polvos sobre la estampa de Poseid$on. Ten cuidado de no tocarlo tu tambi$en.",
       "Luego mandalo y acaba el trabajo. Luego ven a verme y nos esconderemos hasta m$inimo un d$ia. Tenemos que asegurarnos de que ha muerto, sino vaya sorpresita nos llevar$iamos.",
       "Venga Jones. Conf$io en t$i y tu conf$ias en m$i. Hemos pasado mucho juntos. A la gloria juntos. O a la miseria juntos.",
       " $!Venga amigo! $!A trabajar!",
-      " $!Recuerda compa$%ero! $!El nombre es 'Francis Dupart'!"
+      " $!Recuerda compa$%ero! $!El nombre es Francis Dupart!"
     ],
     "PostConversacionDia14": [
-      " $!Recuerda compa$%ero! $!El nombre es 'Francis Dupart'!"
+      " $!Recuerda compa$%ero! $!El nombre es Francis Dupart!"
     ]
   },
   "Secretario": {
@@ -239,7 +239,7 @@
       " $?Que d$onde est$a el rey dices? El rey no se va a tomar la molestia de salir de su palacio por t$i. Adem$as, el rey nunca sale de su palacio por riesgos de atentado terrorista. Es una persona demasiado importante como para que sea asesinada.",
       "Tengo entendido que recientemente huiste de tu trabajo y estabas teniendo un rendimiento sub$optimo. Que no se repita. Si te portas bien, el rey se portar$a bien contigo.",
       "Este reinado valora mucho a sus ciudadanos, pero m$as que eso, valora la lealtad. La lealtad y la fidelidad al rey por encima de todo. Espero que lo tengas en cuenta.",
-      "Sin embargo no todo ciudadano parece respetar al rey... Tenemos entendido que existe un grupo oculto que se hacen llamar 'las lechuzas', y son una panda de herejes ineptos que se juntan para tramar contra el rey y hablar de cosas que no deber$ian...",
+      "Sin embargo no todo ciudadano parece respetar al rey... Tenemos entendido que existe un grupo oculto que se hacen llamar las lechuzas, y son una panda de herejes ineptos que se juntan para tramar contra el rey y hablar de cosas que no deber$ian...",
       " $Ultimamente se est$an mandando entre ellos muchos paquetitos y cartitas de m$as.",
       "Suelen venir sellados con Alimentos y van hacia el distrito de Apolo, todo paquete que veas con estas condiciones destruyelo. Al menos tres de ellos.",
       "S$e un buen chico obediente y no falles al rey. La lealtad recompensa.",
@@ -295,7 +295,7 @@
     ],
     "Dia10": [
       "Buenos d$ias Jones. El rey hoy te quiere recompensar por tu lealtad en estos tiempos. Toma",
-      "*Recibes la mejora del secretario del rey*",
+      "Recibes la mejora del secretario del rey",
       "Que no se te suba mucho a la cabeza. Sigues teniendo que ser obediente aun as$i.",
       "Adem$as tengo entendido que ya puedes mandar paquetes al distrito de Poseid$on. Es una gran responsabilidad.",
       "Jones. Necesito tu ayuda. Va siendo hora que sepas el plan que he tenido en las sombras durante todo este tiempo.",
@@ -1102,7 +1102,7 @@
     "7": [
       "Como ves en la p$agina, hay 3 calles con 3 colores. Hay que sellar el paquete con el color correspondiente de su calle",
       "Para poder sellarlo, tenemos que usar el sello que puedes ver en la parte abajo izquierda de la mesa y mojarlo en uno de los tres cubos",
-      "En el paquete tenemos la calle 'Gambon III', que tiene el color verde, as$i que vamos a mojar el sello en el cubo verde y estamparlo en el paquete."
+      "En el paquete tenemos la calle Gambon III, que tiene el color verde, as$i que vamos a mojar el sello en el cubo verde y estamparlo en el paquete."
     ],
     "8": [
       "Una vez sellado, ya podemos mandarlo al tubo. Arrastra el paquete hasta el tubo de color rojo, el de Hestia."
@@ -1193,7 +1193,7 @@
       "Paco abrio la extrana botella y dentro encontro una carta que decia venir de la Atlantida."
     ],
     "8": [
-      "El remitente de la carta era un grupo que se hacia llamar 'Las Lechuzas' y habia un mapa que marcaba la supuesta ubicacion de este legendario lugar.", "Paco interpreto esto como una senal del destino para dejar todo atras y se embarco en su viaje hacia la Atlantida, gastandose todos sus ahorros en un submarino y un disfraz de pez para infiltrarse.", "Y asi, despues de un arduo viaje, Paco llego a su destino, pero este era ligeramente diferente de como se lo imaginaba..."
+      "El remitente de la carta era un grupo que se hacia llamar Las Lechuzas y habia un mapa que marcaba la supuesta ubicacion de este legendario lugar.", "Paco interpreto esto como una senal del destino para dejar todo atras y se embarco en su viaje hacia la Atlantida, gastandose todos sus ahorros en un submarino y un disfraz de pez para infiltrarse.", "Y asi, despues de un arduo viaje, Paco llego a su destino, pero este era ligeramente diferente de como se lo imaginaba..."
     ]
   },
   "ExplorationEnter": {
@@ -1208,22 +1208,22 @@
       "Ademas, el rey quiere verte. Antes de trabajar busca al secretario del rey, que estara en Poseidon."
     ],
     "2":[
-      "Hola Jones, hoy te ha llegado esto a tu correo. Estaban repartiendo a toda la población uno.",
-      "* lo lees, es un papel con el titulo 'CRITIAS'. Te viene un recuerdo a tu pasado como historiador y jurarías escuchar este mismo nombre relacionado con el filósofo Platón.*",
-      "Queridos habitantes de Atlantis, hemos descubierto pruebas indudables de la existencia de algo más allá del agua. Gracias a un texto que hemos encontrado y décadas de estudio.",
-      "Este papel es una versión resumida del texto original, y explicaremos resumidamente nuestros descubrimientos. Sin embargo, no podemos revelarnos, ya que seguramente el rey nos persiga por herejía. Nos mantendremos ocultos.",
-      "Atlantes, más allá de nuestros muros, más allá del agua, existe un mundo vasto y enorme que jamás podríamos imaginar.",
-      "Un mundo lleno de vida y de gente como nosotros. De hecho, nosotros vivíamos en la superficie hace mucho tiempo. Concretamente 995 años.",
-      "Atlantis era parte de un grupo de 'ciudades' que son grupos de edificios igual de grandes que el mismo Atlantis.",
-      "Nosotros siempre hemos venerado a Poseidón, como bien sabéis, y hace 995 años fue lo mismo. Sin embargo, Atlantis, era muy desarrollado y investigó muchísimo para expandir su ciudad al mar.",
-      "Comenzaron a hacer vehículos capaces de viajar por el océano, a crear armas para asesinar a los habitantes del océano para tomar sus tierras, y a verter sus desechos al mar.",
-      "Poseidón, enfadado, decidió castigarnos por nuestro afán de ser Dios en su propio territorio. Nos habíamos desvíado mucho de nuestro propósito original, vivir con los humanos en la tierra.",
-      "Nos castigó a hundir nuestra ciudad en el agua, y nos cambió físicamente para poder adaptarnos a ella. No somos iguales que los humanos, aunque fuimos humanos.",
-      "Sin embargo, en el texto hemos visto la posibilidad de que Poseidón nos haya castigado por un tiempo, no indefinidamente",
-      "Y ese tiempo se va a acabar en 5 años, cuando cumplamos 1000 años en el agua. Debemos aprovecharlo y no volver a decepcionar a Poseidón.",
+      "Hola Jones, hoy te ha llegado esto a tu correo. Estaban repartiendo a toda la poblaci$on uno.",
+      " lo lees, es un papel con el titulo CRITIAS. Te viene un recuerdo a tu pasado como historiador y jurar$ias escuchar este mismo nombre relacionado con el fil$osofo Plat$on.",
+      "Queridos habitantes de Atlantis, hemos descubierto pruebas indudables de la existencia de algo m$as all$a del agua. Gracias a un texto que hemos encontrado y d$ecadas de estudio.",
+      "Este papel es una versi$on resumida del texto original, y explicaremos resumidamente nuestros descubrimientos. Sin embargo, no podemos revelarnos, ya que seguramente el rey nos persiga por herej$ia. Nos mantendremos ocultos.",
+      "Atlantes, m$as all$a de nuestros muros, m$as all$a del agua, existe un mundo vasto y enorme que jam$as podr$iamos imaginar.",
+      "Un mundo lleno de vida y de gente como nosotros. De hecho, nosotros viv$iamos en la superficie hace mucho tiempo. Concretamente 995 a$%os.",
+      "Atlantis era parte de un grupo de ciudades que son grupos de edificios igual de grandes que el mismo Atlantis.",
+      "Nosotros siempre hemos venerado a Poseid$on, como bien sab$eis, y hace 995 a$%os fue lo mismo. Sin embargo, Atlantis, era muy desarrollado y investig$o much$isimo para expandir su ciudad al mar.",
+      "Comenzaron a hacer veh$iculos capaces de viajar por el oc$eano, a crear armas para asesinar a los habitantes del oc$eano para tomar sus tierras, y a verter sus desechos al mar.",
+      "Poseid$on, enfadado, decidi$o castigarnos por nuestro af$an de ser Dios en su propio territorio. Nos hab$iamos desv$iado mucho de nuestro prop$osito original, vivir con los humanos en la tierra.",
+      "Nos castig$o a hundir nuestra ciudad en el agua, y nos cambi$o f$isicamente para poder adaptarnos a ella. No somos iguales que los humanos, aunque fuimos humanos.",
+      "Sin embargo, en el texto hemos visto la posibilidad de que Poseid$on nos haya castigado por un tiempo, no indefinidamente",
+      "Y ese tiempo se va a acabar en 5 a$%os, cuando cumplamos 1000 a$%os en el agua. Debemos aprovecharlo y no volver a decepcionar a Poseid$on.",
       "Tenemos que prepararnos para cuando llegue el momento, y comenzar a comunicarnos con los humanos para colaborar con ellos, y trabajar juntos en un Atlantis mejor y una superficie mejor.",
-      " ¡Atlantes! ¡Se vienen tiempos duros! ¡Debemos estar unidos y desarrollarnos para poder unirnos a los humanos!",
-      "*Hasta aquí el texto, debería hablar con la gente de la ciudad a ver qué opinan de esto. Espero que no me descubran…*"
+      " $!Atlantes! $!Se vienen tiempos duros! $!Debemos estar unidos y desarrollarnos para poder unirnos a los humanos!",
+      "Hasta aqu$i el texto, deber$ia hablar con la gente de la ciudad a ver qu$e opinan de esto. Espero que no me descubran..."
 
     ]
   },
