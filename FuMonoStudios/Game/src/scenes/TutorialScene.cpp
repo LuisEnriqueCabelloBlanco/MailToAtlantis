@@ -13,6 +13,7 @@
 #include <components/ErrorNote.h>
 #include <architecture/GameConstants.h>
 #include <sistemas/SoundEmiter.h>
+#include <architecture/Game.h>
 
 ecs::TutorialScene::TutorialScene() : MainScene(), balanzaUsed(false) {
 
@@ -31,6 +32,11 @@ ecs::TutorialScene::~TutorialScene() {
 void ecs::TutorialScene::update() {
 	MainScene::update();
 	tutorialSys_->update();
+
+	if (ih().isKeyDown(SDL_SCANCODE_O)) {
+		gm().requestChangeScene(ecs::sc::TUTORIAL_SCENE, ecs::sc::MAIN_SCENE);
+	}
+
 }
 
 void ecs::TutorialScene::render() {

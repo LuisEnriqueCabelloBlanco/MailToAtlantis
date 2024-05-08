@@ -27,6 +27,8 @@ GeneralData::GeneralData()
 	for (auto upg : upgrades_) {
 		upg = false;
 	}
+	paramVolMusic_ = 0;
+	paramVolSfx_ = 50;
 	//upgrades_[ecs::upg::MONEY_UPGRADE] = true;
 
 	/*if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
@@ -38,11 +40,10 @@ GeneralData::GeneralData()
 #ifdef _DEBUG
 	std::cout << "Tamanyo vector de mejoras: " << upgrades_.size() << std::endl;
 #endif // _DEBUG
-	paramAjustes_[0] = 50;
 #ifdef _DEBUG
-	std::cout << "Volumen SFX: " << paramAjustes_[0] << std::endl;
+	std::cout << "Volumen SFX: " << paramVolSfx_ << std::endl;
 #endif // _DEBUG
-	soundEmiter().setSoundVolumes(paramAjustes_[0]);
+	soundEmiter().setSoundVolumes(paramVolSfx_);
 	//readNPCData();
 }
 
@@ -289,19 +290,35 @@ int GeneralData::getPaqueteLevel() {
 
 void GeneralData::changeParamID(int i, bool suma) {
 	if (suma) {
-		paramAjustes_[i] += 10;
-		if (paramAjustes_[i] >= 100) {
-			paramAjustes_[i] = 100;
+		if (i == 0) {
+			paramVolMusic_ += 10;
+			if (paramVolMusic_ >= 100) {
+				paramVolMusic_ = 100;
+			}
+		}
+		else if (i == 1) {
+			paramVolSfx_ += 10;
+			if (paramVolSfx_ >= 100) {
+				paramVolSfx_ = 100;
+			}
 		}
 	}
 	else {
-		paramAjustes_[i] -= 10;
-		if (paramAjustes_[i] <= 0) {
-			paramAjustes_[i] = 0;
+		if (i == 0) {
+			paramVolMusic_ -= 10;
+			if (paramVolMusic_ <= 0) {
+				paramVolMusic_ = 0;
+			}
+		}
+		else if (i == 1) {
+			paramVolSfx_ -= 10;
+			if (paramVolSfx_ <= 0) {
+				paramVolSfx_ = 0;
+			}
 		}
 	}
 #ifdef _DEBUG
-	std::cout << "El valor del parametro ahora es: " << paramAjustes_[i] << std::endl;
+	std::cout << "El valor de la musica ahora es " << paramVolMusic_ << " y el valor de los SFX ahora es " << paramVolSfx_ << std::endl;
 #endif // _DEBUG
 }
 void GeneralData::setPaqueteLevel(int lvl) {

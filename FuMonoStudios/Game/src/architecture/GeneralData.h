@@ -155,13 +155,19 @@ public:
 	void setFinalID(int final); //Cambia el ID del final
 	int getFinalID(); //Devuelve el id del final del juego
 
-	void changeParamID(int i, bool suma); //Modifica un parametro en especifico del array y decide si se suma o no
-	inline int getParam(int i) {
+	void changeParamID(int i, bool suma); //Modifica un parametro en especifico y decide si se suma o no
+	inline int getParamMusic() {
 #ifdef _DEBUG
-		std::cout << "El valor del parametro que quieres es: " << paramAjustes_[i] << std::endl;
+		std::cout << "El valor del parametro de musica que quieres es: " << paramVolMusic_ << std::endl;
 #endif // _DEBUG
+		return paramVolMusic_; 
+	}
 
-		return paramAjustes_[i]; 
+	inline int getParamSfx() {
+#ifdef _DEBUG
+		std::cout << "El valor del parametro de sfx que quieres es: " << paramVolSfx_ << std::endl;
+#endif // _DEBUG
+		return paramVolSfx_;
 	}
 
 	inline int getDay() { return dia_; }
@@ -269,7 +275,8 @@ private:
 	/// dentro de los ajustes del juego. Por ejemplo, la posición 1 puede corresponder 
 	/// nivel de volumen (maximo 100).
 	/// </summary>
-	int paramAjustes_[10];
+	int paramVolMusic_;
+	int paramVolSfx_;
 
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
 	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo

@@ -53,54 +53,42 @@ void ecs::ConfigScene::init()
 	factory_->createTextuButton({ 500,700 }, "Cambiar modo de ventana", 50, funcScreenModeBoton, "click");
 
 	// Parametro de audio
-	audioValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParam(1)), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
-	audioValueEnt_ = addEntity();
-	Transform* transformAudioValue = audioValueEnt_->addComponent<Transform>(500, 600, audioValueTexture_->width(), audioValueTexture_->height());
-	RenderImage* renderAudioValue = audioValueEnt_->addComponent<RenderImage>(audioValueTexture_);
+	musicValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParamMusic()), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+	musicValueEnt_ = addEntity();
+	Transform* transformAudioValue = musicValueEnt_->addComponent<Transform>(500, 600, musicValueTexture_->width(), musicValueTexture_->height());
+	RenderImage* renderAudioValue = musicValueEnt_->addComponent<RenderImage>(musicValueTexture_);
 	
 	// Boton (-) para el parametro de audio
 	CallbackClickeable funcPress2 = [this]() {
-		generalData().changeParamID(1, false);
+		generalData().changeParamID(0, false);
 		//updateValue(audioValueTexture_, audioValueEnt_, 1);
-		if (audioValueTexture_ != nullptr)
+		if (musicValueTexture_ != nullptr)
 		{
-			delete audioValueTexture_;
-			audioValueTexture_ = nullptr;
+			delete musicValueTexture_;
+			musicValueTexture_ = nullptr;
 		}
 
-		audioValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParam(1)), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
-		audioValueEnt_->getComponent<RenderImage>()->setTexture(audioValueTexture_);
+		musicValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParamMusic()), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+		musicValueEnt_->getComponent<RenderImage>()->setTexture(musicValueTexture_);
 	};
 	factory_->createTextuButton({ 400,600 }, "(-)", 50, funcPress2, "click");
 
 	// Boton (+) para el parametro de audio
 	CallbackClickeable funcPress3 = [this]() {
-		generalData().changeParamID(1, true);
+		generalData().changeParamID(0, true);
 		//updateValue(audioValueTexture_, audioValueEnt_, 1);
-		if (audioValueTexture_ != nullptr)
+		if (musicValueTexture_ != nullptr)
 		{
-			delete audioValueTexture_;
-			audioValueTexture_ = nullptr;
+			delete musicValueTexture_;
+			musicValueTexture_ = nullptr;
 		}
 
-		audioValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParam(1)), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
-		audioValueEnt_->getComponent<RenderImage>()->setTexture(audioValueTexture_);
+		musicValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParamMusic()), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+		musicValueEnt_->getComponent<RenderImage>()->setTexture(musicValueTexture_);
 	};
 	factory_->createTextuButton({ 600,600 }, "(+)", 50, funcPress3, "click");
 }
 
-//No usar de momento este método porque peta el programa aunque tenga la misma función que lo que pasa en los callbacks
-void ecs::ConfigScene::updateValue(Texture* texture, Entity* entity, int index) {
-
-	if (texture != nullptr)
-	{
-		delete texture;
-		texture = nullptr;
-	}
-
-	texture = new Texture(sdlutils().renderer(), std::to_string(generalData().getParam(index)), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
-	entity->getComponent<RenderImage>()->setTexture(texture);
-}
 //LUIS: Y si esto fuera un return to scene ????
 void ecs::ConfigScene::changeToMenuScene() {
 
