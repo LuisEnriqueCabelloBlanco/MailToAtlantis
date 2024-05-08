@@ -471,13 +471,18 @@ void ecs::MainScene::createBalanzaDigital() {
 	std::string msg;
 		int peso = balanzaComp->getPaquetePeso();
 		if (peso >= 0) {
-			msg = std::to_string(peso);
+			if (peso < 25)
+				msg = "LIGERO";
+			else if (peso >= 25 && peso < 50)
+				msg = "MEDIO";
+			else if (peso >= 50 && peso < 75)
+				msg = "PESADO";
 			removeEntitiesByLayer(ecs::layer::NUMBERS);
 			factory_->setLayer(ecs::layer::NUMBERS);
 			factory_->createLabel(Vector2D(1245, 593), msg, 50);
 		}
 		else {
-			msg = "0";
+			msg = " ";
 			removeEntitiesByLayer(ecs::layer::NUMBERS);
 			factory_->setLayer(ecs::layer::NUMBERS);
 			factory_->createLabel(Vector2D(1270, 593), msg, 50);
@@ -487,7 +492,7 @@ void ecs::MainScene::createBalanzaDigital() {
 	
 	balanzaTri->addCallback([this, balanzaComp](ecs::Entity* entRect) {
 		balanzaComp->finishAnimatiosDigital(entRect); 
-		std::string msg2 = "0";
+		std::string msg2 = " ";
 		removeEntitiesByLayer(ecs::layer::NUMBERS);
 		factory_->setLayer(ecs::layer::NUMBERS);
 		factory_->createLabel(Vector2D(1270, 593), msg2, 50);
