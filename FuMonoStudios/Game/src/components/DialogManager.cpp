@@ -264,18 +264,19 @@ void DialogManager::setDialogueEntitiesActive(bool onoff) //me sigue pareciendo 
 {
     /*boxBackground->setActive(onoff);
     textDialogue->setActive(onoff);*/
-
-    if(onoff)
+    if (onoff)
     {
         createBox();
         createText();
     }
     else
     {
-        boxBackground->setAlive(false);
-        textDialogue->setAlive(false);
+        if(boxBackground != nullptr)
+            boxBackground->setAlive(false);
+        if (textDialogue != nullptr)
+            textDialogue->setAlive(false);
     }
-
+    
 }
 
 void DialogManager::fixText(std::string& text)
