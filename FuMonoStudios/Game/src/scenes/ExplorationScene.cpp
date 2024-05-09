@@ -42,8 +42,8 @@ ecs::ExplorationScene::ExplorationScene() :Scene()
 
 ecs::ExplorationScene::~ExplorationScene()
 {
-	delete leftTex;
-	delete rightTex;
+	//delete leftTex;
+	//delete rightTex;
 }
 
 void ecs::ExplorationScene::init()
@@ -66,7 +66,7 @@ void ecs::ExplorationScene::init()
 
 	dialogMngr_.init(this);
 
-	createDiario();
+	//createDiario();
 
 	canInteract = true;
 
@@ -184,13 +184,13 @@ void ecs::ExplorationScene::update() {
 }
 
 void ecs::ExplorationScene::close() {
-	delete rightTex;
+	/*delete rightTex;
 	rightTex = nullptr;
 	delete leftTex;
-	leftTex = nullptr;
+	*/leftTex = nullptr;
 	SoundEmiter::instance()->close();
 	clearScene();
-	diario_->setAlive(false);
+	//diario_->setAlive(false);
 }
 
 void ecs::ExplorationScene::navigate(Distrito placeDir) 
@@ -609,7 +609,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 						generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
 					}
 					generalData().npcEventSys->activateEvent(event);
-					addDiarioEvent(event);
+					//addDiarioEvent(event);
 					generalData().npcEventSys->shuffleNPCqueue();
 				}
 			}
