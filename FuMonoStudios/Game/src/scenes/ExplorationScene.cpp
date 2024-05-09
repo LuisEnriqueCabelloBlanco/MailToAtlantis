@@ -111,7 +111,7 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 
 void ecs::ExplorationScene::initPlacesDefaultMap()
 {
-	
+	lugares.clear();
 	for (int i = 0; i < generalData().getNumDistritos(); ++i) {
 
 		std::string placeName = generalData().fromDistritoToString(i);
