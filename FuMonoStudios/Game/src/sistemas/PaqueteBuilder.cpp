@@ -45,9 +45,9 @@ PaqueteBuilder::PaqueteBuilder(ecs::Scene* sc):createdTextures(),mScene_(sc) {
 }
 
 PaqueteBuilder::~PaqueteBuilder() {
-	for (Texture* t : createdTextures) {
+	/*for (Texture* t : createdTextures) {
 		delete t;
-	}
+	}*/
 }
 
 
