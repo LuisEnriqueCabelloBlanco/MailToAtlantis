@@ -365,6 +365,8 @@ void GeneralData::readNPCData() {
 			for (int z = k; z < 14; z++)
 				data->eventosCompletados[z] = std::make_pair(false, 0);
 
+			data->npcId = (Personaje)i;
+
 			npcData.emplace((Personaje)i, data);
 		}
 		else
@@ -515,9 +517,18 @@ void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
 		newFelicidadInt = 0;
 	else if (newFelicidadInt > 100)
 		newFelicidadInt = 100;
-
-	Felicidad newFelicidad = (Felicidad)newFelicidadInt;
 	
+	Felicidad newFelicidad = SeFue;
+	if (newFelicidadInt < 1)
+		newFelicidad = Minima;
+	else if (newFelicidadInt > 99)
+		newFelicidad = Maxima;
+	else if (newFelicidadInt < 30)
+		newFelicidad = Mala;
+	else if (newFelicidadInt < 65)
+		newFelicidadInt = Normal;
+	else
+		newFelicidad = Buena;
 
 	getNPCData(p)->felicidad = newFelicidad;
 	getNPCData(p)->numFelicidad = newFelicidadInt;

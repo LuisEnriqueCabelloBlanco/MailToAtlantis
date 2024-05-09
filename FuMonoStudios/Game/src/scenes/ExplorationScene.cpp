@@ -295,22 +295,22 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 }
 
 void ecs::ExplorationScene::createDiario() {
-	diario_ = addEntity(ecs::layer::UI);
+	diario_ = Scene::addEntity(ecs::layer::UI);
 	diario_->addComponent<Transform>(1300, 1000, 600, 400);
 
 	// texto
-	ecs::Entity* textoDiarioLeft = addEntity(ecs::layer::UI);
+	ecs::Entity* textoDiarioLeft = Scene::addEntity(ecs::layer::UI);
 	leftPageTr = textoDiarioLeft->addComponent<Transform>(55, 80, 1, 1);
 	leftPageTr->setParent(diario_->getComponent<Transform>());
 	leftPageRnd = textoDiarioLeft->addComponent<RenderImage>();
 
-	ecs::Entity* textoDiarioRight = addEntity(ecs::layer::UI);
+	ecs::Entity* textoDiarioRight = Scene::addEntity(ecs::layer::UI);
 	rightPageTr = textoDiarioRight->addComponent<Transform>(307, 40, 1, 1);
 	rightPageTr->setParent(diario_->getComponent<Transform>());
 	rightPageRnd = textoDiarioRight->addComponent<RenderImage>();
 
 	//carita felicidad
-	ecs::Entity* caraFel = addEntity(ecs::layer::UI);
+	ecs::Entity* caraFel = Scene::addEntity(ecs::layer::UI);
 	auto caraFelTr = caraFel->addComponent<Transform>(267, 28, 28, 28);
 	caraFelTr->setParent(diario_->getComponent<Transform>());
 	caraFelicidad = caraFel->addComponent<RenderImage>();
@@ -535,9 +535,12 @@ void ecs::ExplorationScene::makeDiaryPages()
 {
 	//todo este proceso se puede hacer mucho mas secillo si se delega el trabajo a la common objects factory que tiene un sistema para
 	//gestionar las texturas que se crean dinámicamente en el código
-	delete rightPageRnd->getCurrentTexture();
+	if (rightPageRnd->getCurrentTexture() != nullptr)
+		delete rightPageRnd->getCurrentTexture();
+	if (leftPageRnd->getCurrentTexture() != nullptr)
+		delete leftPageRnd->getCurrentTexture();
+
 	rightPageRnd->setVector(std::vector<Texture*>(1, nullptr));
-	delete leftPageRnd->getCurrentTexture();
 	leftPageRnd->setVector(std::vector<Texture*>(1, nullptr));
 
 	//currentDiarioPage = 0;
