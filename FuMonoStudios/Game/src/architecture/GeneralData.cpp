@@ -526,7 +526,7 @@ void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
 	else if (newFelicidadInt < 30)
 		newFelicidad = Mala;
 	else if (newFelicidadInt < 65)
-		newFelicidadInt = Normal;
+		newFelicidad = Normal;
 	else
 		newFelicidad = Buena;
 
