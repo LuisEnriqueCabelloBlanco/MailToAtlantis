@@ -157,6 +157,9 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 		aux = "FelicidadMinima";
 		felicidad = SeFue;
 		break;
+	case SeFue:
+		aux = "FelicidadMinima";
+		break;
 	case Maxima:
 		aux = "FelicidadMaxima";
 		break;

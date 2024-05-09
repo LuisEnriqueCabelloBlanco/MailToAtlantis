@@ -389,9 +389,18 @@ void ecs::ExplorationScene::setupDiarioPages() {
 					textoPersonaje = textoPersonaje + "- Dia ";
 					if (data->eventosCompletados[j].second == 0) // si el evento es de hoy
 					{
-						textoPersonaje = textoPersonaje + std::to_string(day) +
-							textoCompletado + "\n" + 
-							data->events[day - 1]->textoDiario + "\n";
+						if (data == generalData().getNPCData(Vagabundo) ||
+							data == generalData().getNPCData(Secretario)) {
+							textoPersonaje = textoPersonaje + std::to_string(day) +
+								textoCompletado + "\n" +
+								data->events[day - 1]->textoDiario + "\n";
+						}
+						else {
+							textoPersonaje = textoPersonaje + std::to_string(day) +
+								textoCompletado + "\n" +
+								data->events[j]->textoDiario + "\n";
+						}
+						
 					}
 					else
 					{

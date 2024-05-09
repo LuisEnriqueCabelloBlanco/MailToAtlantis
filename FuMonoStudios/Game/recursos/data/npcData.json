@@ -1,7 +1,7 @@
 {
   "Vagabundo": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 50,
+    "Felicidad": "Minima",
+    "FelicidadNum": 0,
     "numMisionesAceptadas": 2,
     "EventosCompletados": [],
     "Eventos": {
@@ -804,7 +804,7 @@
     }
   },
   "Tarotisa": {
-    "Felicidad": "NoHabladoAun",
+    "Felicidad": "Normal",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 3,
     "DiasConEvento": {
@@ -823,7 +823,7 @@
       "13": true,
       "14": false
     },
-    "EventosCompletados": [],
+    "EventosCompletados": [1,2,-3],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -836,7 +836,7 @@
           "distrito": "Artemisa"
         },
         "recompensa": "Tarotisa++",
-        "textoDiario": "Texto diario"
+        "textoDiario": "Texto diario1"
       },
       "2": {
         "numPaquetes": 1,
@@ -849,7 +849,7 @@
           "distrito": "Artemisa"
         },
         "recompensa": "Tarotisa+++",
-        "textoDiario": "Texto diario"
+        "textoDiario": "Texto diario2"
       },
       "3": {
         "numPaquetes": 1,
@@ -869,7 +869,7 @@
           "pesoKG": 10
         },
         "recompensa": "Tarotisa+++",
-        "textoDiario": "Texto diario"
+        "textoDiario": "Texto diario3"
       },
       "4": {
         "numPaquetes": 2,
@@ -885,7 +885,7 @@
           "distrito": "Erroneo"
         },
         "recompensa": "Tarotisa++++",
-        "textoDiario": "Texto diario"
+        "textoDiario": "Texto diario4"
       },
       "5": {
         "numPaquetes": 4,
@@ -902,7 +902,7 @@
           "1": "Tarotisa+++",
           "2": "Contable--"
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Texto diario5"
       }
     }
   },
