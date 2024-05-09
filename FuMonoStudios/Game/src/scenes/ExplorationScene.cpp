@@ -111,7 +111,7 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 
 void ecs::ExplorationScene::initPlacesDefaultMap()
 {
-	
+	lugares.clear();
 	for (int i = 0; i < generalData().getNumDistritos(); ++i) {
 
 		std::string placeName = generalData().fromDistritoToString(i);
@@ -190,7 +190,15 @@ void ecs::ExplorationScene::close() {
 	leftTex = nullptr;
 	SoundEmiter::instance()->close();
 	clearScene();
-	diario_->setAlive(false);
+	diarioText_.clear();
+	pagesByCharacter.clear();
+	currentDiarioPage = 0;
+	rightPageTr = nullptr;
+	rightPageRnd = nullptr;
+	leftPageTr = nullptr;
+	rightPageTr = nullptr;
+	diario_ = nullptr;
+	caraFelicidad = nullptr;
 }
 
 void ecs::ExplorationScene::navigate(Distrito placeDir) 
