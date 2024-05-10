@@ -428,7 +428,7 @@ void GeneralData::writeNPCData() {
 
 		int posFelicidad = contenido.find("Felicidad", posPersonaje) + 12;
 		contenido.replace(posFelicidad, (contenido.find('\n', posFelicidad)) - posFelicidad,
-			'"' + generalData().felicidadToString(data->felicidad) + '"' + ',');
+			'"' + gD().felicidadToString(data->felicidad) + '"' + ',');
 		int posFelicidadNum = contenido.find("FelicidadNum", posPersonaje) + 15;
 		contenido.replace(posFelicidadNum, (contenido.find('\n', posFelicidadNum)) - posFelicidadNum,
 			std::to_string(data->numFelicidad) + ",");
@@ -486,13 +486,13 @@ void GeneralData::saveGame() {
 	// cambiar el dia
 	int posDia = contenido.find("Dia") + 6;
 	size_t finLinea = contenido.find('\n', posDia);
-	contenido.replace(posDia, finLinea - posDia, std::to_string(generalData().getDay()) + ",");
+	contenido.replace(posDia, finLinea - posDia, std::to_string(gD().getDay()) + ",");
 
 	//cambiar el dinero
 
 	int posDinero = contenido.find("Dinero") + 9;
 	finLinea = contenido.find('\n', posDinero);
-	contenido.replace(posDinero, finLinea - posDinero, std::to_string(generalData().getMoney()));
+	contenido.replace(posDinero, finLinea - posDinero, std::to_string(gD().getMoney()));
 
 	// Abrir el archivo en modo de escritura
 	std::ofstream archivoSalida("recursos/data/saveFile.json");

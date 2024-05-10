@@ -57,7 +57,7 @@ void ecs::TutorialScene::init() {
 
 	mPipeMngr_->init();
 
-	int dia = generalData().getDay();
+	int dia = gD().getDay();
 
 	if (dia < 3 && dia >= 1) {
 		createManual(8);
@@ -87,22 +87,22 @@ void ecs::TutorialScene::init() {
 
 	createTubes();
 
-	if (generalData().getDay() == 1) {
+	if (gD().getDay() == 1) {
 
 		tutorialSys_->activateEvent(TutorialSystem::Introduction);
 
 
 	}
-	else if (generalData().getDay() == 3) {
+	else if (gD().getDay() == 3) {
 
 		tutorialSys_->activateEvent(TutorialSystem::EntraTercerPaquete);
 
 	}
-	else if (generalData().getDay() == 5) {
+	else if (gD().getDay() == 5) {
 		tutorialSys_->activateEvent(TutorialSystem::EntraPaquetePeso);
 
 	}
-	else if (generalData().getDay() == 8) {
+	else if (gD().getDay() == 8) {
 
 		tutorialSys_->activateEvent(TutorialSystem::EntraPaqueteFragil);
 
@@ -117,7 +117,7 @@ void ecs::TutorialScene::close() {
 
 void ecs::TutorialScene::activateTubos() {
 
-	for (int i = 0; i < generalData().getTubesAmount(); i++)
+	for (int i = 0; i < gD().getTubesAmount(); i++)
 	{
 		Trigger* tuboTri = tubos[i]->addComponent<Trigger>();
 		PackageChecker* tuboCheck = tubos[i]->addComponent<PackageChecker>(Distrito(i), this, mPipeMngr_);
@@ -128,7 +128,7 @@ void ecs::TutorialScene::activateTubos() {
 void ecs::TutorialScene::activateAllButOneTube(int tub)
 {
 
-	for (int i = 0; i < generalData().getTubesAmount(); i++)
+	for (int i = 0; i < gD().getTubesAmount(); i++)
 	{
 
 		if (tub != i) {
@@ -177,7 +177,7 @@ ecs::Entity* ecs::TutorialScene::createMiniManual()
 					tutorialSys_->registerAction(TutorialSystem::SacarManual);
 				}
 			}
-	}, generalData().DropIn);
+	}, gD().DropIn);
 
 	return mmEnt_;
 }
@@ -243,7 +243,7 @@ std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createBalanza(
 
 	Trigger* balTri = mapSol["balanza"]->getComponent<Trigger>();
 
-	balTri->addCallback([this](ecs::Entity* entRect) {balanzaUsed = true; }, generalData().PickUp);
+	balTri->addCallback([this](ecs::Entity* entRect) {balanzaUsed = true; }, gD().PickUp);
 
 	return mapSol;
 
@@ -254,13 +254,13 @@ std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createTubes()
 
 	std::unordered_map<std::string, ecs::Entity*> tubes = MainScene::createTubes();
 
-	for (int i = 0; i < generalData().getTubesAmount(); ++i) {
+	for (int i = 0; i < gD().getTubesAmount(); ++i) {
 
 		std::string name = "tube" + i;
 
 		Trigger* triTub = tubes[name]->getComponent<Trigger>();
 
-		triTub->addCallback([this](ecs::Entity* entRect) { tutorialSys_->registerAction(TutorialSystem::PaqueteEnviado); }, generalData().DropIn);
+		triTub->addCallback([this](ecs::Entity* entRect) { tutorialSys_->registerAction(TutorialSystem::PaqueteEnviado); }, gD().DropIn);
 
 	}
 
@@ -268,7 +268,7 @@ std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createTubes()
 }
 
 void ecs::TutorialScene::deactivateTubos() {
-	for (int i = 0; i < generalData().getTubesAmount(); i++)
+	for (int i = 0; i < gD().getTubesAmount(); i++)
 	{
 		tubos[i]->removeComponent<Trigger>();
 		tubos[i]->removeComponent<PackageChecker>();
@@ -278,7 +278,7 @@ void ecs::TutorialScene::deactivateTubos() {
 void ecs::TutorialScene::deactivateAllButOneTube(int tub)
 {
 
-	for (int i = 0; i < generalData().getTubesAmount(); i++)
+	for (int i = 0; i < gD().getTubesAmount(); i++)
 	{
 		if (i != tub) {
 			tubos[i]->removeComponent<Trigger>();
@@ -305,7 +305,7 @@ ecs::Entity* ecs::TutorialScene::createGarbage()
 	papTrig->addCallback([this](ecs::Entity* e) {
 		if (e->getComponent<Paquete>() != nullptr)
 		tutorialSys_->registerAction(TutorialSystem::Basura);
-	}, generalData().DropIn);
+	}, gD().DropIn);
 
 	return garbage_;
 }
@@ -327,19 +327,19 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 	ecs::Entity* paquete;
 	factory_->setLayer(ecs::layer::PACKAGE);
 	if (pt == Primero)
-		paquete = mPaqBuild_->customPackage(Hestia, C3, "Fernando Lubina", Alimento);
+		paquete = mPaqBuild_.customPackage(Hestia, C3, "Fernando Lubina", Alimento);
 	else if (pt == Segundo)
-		paquete = mPaqBuild_->customPackage(Demeter, C2, "Miguel Torres", Medicinas);
+		paquete = mPaqBuild_.customPackage(Demeter, C2, "Miguel Torres", Medicinas);
 	else if (pt == Tercero)
-		paquete = mPaqBuild_->customPackage(Artemisa, C1, "Francis Ngannou", Armamento, false);
+		paquete = mPaqBuild_.customPackage(Artemisa, C1, "Francis Ngannou", Armamento, false);
 	else if (pt == FallarAposta)
-		paquete = mPaqBuild_->customPackage(Demeter, C3, "Jhonny Huesos", Medicinas);
+		paquete = mPaqBuild_.customPackage(Demeter, C3, "Jhonny Huesos", Medicinas);
 	else if (pt == Fragil)
-		paquete = mPaqBuild_->customPackage(Hestia, C3, "Travis Lubin", Alimento, true, pq::Ninguno, 0, true);
+		paquete = mPaqBuild_.customPackage(Hestia, C3, "Travis Lubin", Alimento, true, pq::Ninguno, 0, true);
 	else if (pt == BalanzaTut)
-		paquete = mPaqBuild_->customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Alto, 160);
+		paquete = mPaqBuild_.customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Alto, 160);
 	else
-		paquete = mPaqBuild_->buildPackage(1, this);
+		paquete = mPaqBuild_.buildPackage(1, this);
 
 
 	paquete->getComponent<Trigger>()->addCallback([paquete, this](ecs::Entity* entRec) {
@@ -357,7 +357,7 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 			tutorialSys_->registerAction(TutorialSystem::PaqueteEstampado);
 			herrEnt->interact(paquete);
 		}
-		}, generalData().DropIn);
+		}, gD().DropIn);
 	paquete->getComponent<Wrap>()->initComponent();
 	paquete->getComponent<MoverTransform>()->enable();
 	factory_->setLayer(ecs::layer::DEFAULT);

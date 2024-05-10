@@ -61,7 +61,7 @@ Game::~Game()
 void Game::run()
 {
 	//esto es una cochinada pero mejor esto a que tarde 2 anios en cargar la escena de exploracion
-	generalData().readNPCData();
+	gD().readNPCData();
 #ifdef DEV_TOOLS
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -180,14 +180,14 @@ void Game::changeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2) {
 
 	//Estas comprobaciones van a ser una prueba de que se puede modificar la clase GeneralData, no estará así en la versión final
 	if (scene1 == ecs::sc::MENU_SCENE) {
-		generalData().setFinalID(1);
+		gD().setFinalID(1);
 	}
 	else if (scene1 == ecs::sc::EXPLORE_SCENE) {
-		generalData().setFinalID(2);
-		generalData().setTubesAmount(generalData().getPlacesToActive().size());
+		gD().setFinalID(2);
+		gD().setTubesAmount(gD().getPlacesToActive().size());
 	}
 	else if (scene1 == ecs::sc::MAIN_SCENE) {
-		generalData().setFinalID(3);
+		gD().setFinalID(3);
 	}
 	killScene(scene1);
 	if (scene2 != ecs::sc::NULL_SCENE) {

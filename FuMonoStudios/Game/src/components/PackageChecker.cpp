@@ -35,7 +35,7 @@ void PackageChecker::initComponent()
 	std::function<void(ecs::Entity*)> call = [this](ecs::Entity* ent) {checkEntity(ent); };
 	Trigger* tri = ent_->getComponent<Trigger>();
 	assert(tri != nullptr);
-	tri->addCallback(call, generalData().DropIn);
+	tri->addCallback(call, gD().DropIn);
 }
 
 /*void PackageChecker::addCondition(Condition newCond)
@@ -78,7 +78,7 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 		
 		ent->addComponent<SelfDestruct>(1,[this](){
 			if (mainSc_ != nullptr)
-				mainSc_->createPaquete(generalData().getPaqueteLevel());
+				mainSc_->createPaquete(gD().getPaqueteLevel());
 			else if (tutSc_ != nullptr)
 				tutSc_->packageSent();
 			});
@@ -96,7 +96,7 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 				
 		}
 
-		generalData().npcEventSys->checkPaqueteSent(ent->getComponent<Paquete>(),toDis_);
+		gD().npcEventSys->checkPaqueteSent(ent->getComponent<Paquete>(),toDis_);
 
 #ifdef QA_TOOLS
 

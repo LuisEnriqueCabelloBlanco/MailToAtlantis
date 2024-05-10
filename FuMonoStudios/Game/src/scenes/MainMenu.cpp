@@ -29,13 +29,13 @@ ecs::MainMenu::~MainMenu()
 void ecs::MainMenu::init()
 {
 
-	generalData().loadSaveFile();
+	gD().loadSaveFile();
 
 #ifdef _DEBUG
 	std::cout << "Hola Menu" << std::endl;
 #endif // _DEBUG
 
-	//generalData().updateFelicidadPersonajes();
+	//gD().updateFelicidadPersonajes();
 	sdlutils().clearRenderer();
 
 	Entity* fondo = addEntity(ecs::layer::BACKGROUND);
@@ -60,7 +60,7 @@ void ecs::MainMenu::init()
 
 	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Nueva partida", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
-		generalData().newGame();
+		gD().newGame();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::INTRO_SCENE);
 		},"click", textColor);
 
@@ -70,7 +70,7 @@ void ecs::MainMenu::init()
 	auto loadSave = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Cargar partida guardada", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
-		generalData().loadSaveFile();
+		gD().loadSaveFile();
 		}, "click", textColor);
 	factory_->addHilghtOnHover(loadSave);
 	factory_->addHoverColorMod(loadSave);

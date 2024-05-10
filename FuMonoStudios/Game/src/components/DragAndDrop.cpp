@@ -77,14 +77,14 @@ void DragAndDrop::update() {
 					dragging_ = true;
 
 					if (usingOwnCallback_) {
-						tri_->activateCallbacks(nullptr, generalData().PickUp);
+						tri_->activateCallbacks(nullptr, gD().PickUp);
 					}
 					else {
 
 						if (!usingOnlyClosestEnt_)
-							tri_->activateEventsFromEntities(generalData().PickUp);
+							tri_->activateEventsFromEntities(gD().PickUp);
 						else
-							tri_->activateEventFromClosestEntity(generalData().PickUp);
+							tri_->activateEventFromClosestEntity(gD().PickUp);
 
 					}
 
@@ -120,14 +120,14 @@ void DragAndDrop::update() {
 				// si no tenemos activado el activar solo al mas cercano
 
 				if (usingOwnCallback_) {
-					tri_->activateCallbacks(nullptr, generalData().DropIn);
+					tri_->activateCallbacks(nullptr, gD().DropIn);
 				}
 				else {
 
 					if (!usingOnlyClosestEnt_)
-						tri_->activateEventsFromEntities(generalData().DropIn);
+						tri_->activateEventsFromEntities(gD().DropIn);
 					else
-						tri_->activateEventFromClosestEntity(generalData().DropIn);
+						tri_->activateEventFromClosestEntity(gD().DropIn);
 
 				}
 

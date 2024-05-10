@@ -33,7 +33,9 @@ void SoundEmiter::close()
 
 void SoundEmiter::setSoundVolumes(int volume)
 {
+#ifdef _DEBUG
 	std::cout << volume + "\n";
+#endif // _DEBUG
 	soundVolume_ = volume;
 	/*
 	for (auto& it : soundPulls_) {
@@ -72,7 +74,9 @@ void SoundEmiter::playSound(std::string sound)
 			int am = it.amount;
 			int rnd = sdlutils().rand().nextInt(0, am);
 			std::string fileName = sound + std::to_string(rnd);
+#ifdef DEBUG
 			std::cout << "Playing sound: " << fileName << "\n";
+#endif // DEBUG
 			sdlutils().soundEffects().at(fileName).setVolume(soundVolume_);
 			sdlutils().soundEffects().at(fileName).play(0, playInChannel_);
 			it.lastChannel = playInChannel_;

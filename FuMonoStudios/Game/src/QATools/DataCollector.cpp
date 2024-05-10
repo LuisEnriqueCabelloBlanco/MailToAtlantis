@@ -68,7 +68,7 @@ void DataCollector::record()
 {
 	dataArray_[1] = SDL_GetTicks();
 	dataArray_[2] = clicks_;
-	dataArray_[3] = generalData().getDay();
+	dataArray_[3] = gD().getDay();
 	doc_.SetRow(currentRow_, dataArray_);
 	dataArray_.clear();
 	dataArray_.resize(NUMBER_OF_METRICS);

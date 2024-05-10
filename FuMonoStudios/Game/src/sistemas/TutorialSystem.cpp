@@ -497,22 +497,22 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 void TutorialSystem::init()
 {
 
-	if (generalData().getDay() == 1) {
+	if (gD().getDay() == 1) {
 
 		tutorialIteration = Introduction;
 
 	}
-	else if (generalData().getDay() == 3) {
+	else if (gD().getDay() == 3) {
 
 		tutorialIteration = EntraTercerPaquete;
 
 	}
-	else if (generalData().getDay() == 5) {
+	else if (gD().getDay() == 5) {
 
 		tutorialIteration = EntraPaquetePeso;
 
 	}
-	else if (generalData().getDay() == 8) {
+	else if (gD().getDay() == 8) {
 
 		tutorialIteration = EntraPaqueteFragil;
 

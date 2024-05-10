@@ -311,7 +311,10 @@ private:
 	std::vector<bool> upgrades_;	
 
 };
-
-inline GeneralData& generalData() {
+/// <summary>
+/// Accesor de General Data
+/// </summary>
+/// <returns></returns>
+inline GeneralData& gD() {
 	return *GeneralData::instance();
 }
