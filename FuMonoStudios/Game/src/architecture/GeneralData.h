@@ -170,6 +170,14 @@ public:
 		return paramVolSfx_;
 	}
 
+	void ToggleSkipTutorial() {
+		skipTutorial_ = !skipTutorial_;
+	}
+
+	bool GetValueSkipTutorial() {
+		return skipTutorial_;
+	}
+
 	inline int getDay() { return dia_; }
 	inline void setDay(int dia) { dia_ = dia; updateDia(); }
 
@@ -271,12 +279,16 @@ private:
 	int paqueteLvl_ = 0;
 
 	/// <summary>
-	/// Array de ints en el que cada posicion corresponde al numero de configuracion de un parametro
-	/// dentro de los ajustes del juego. Por ejemplo, la posición 1 puede corresponder 
+	/// Parametreos correspondientes al nivel de volumen 
 	/// nivel de volumen (maximo 100).
 	/// </summary>
 	int paramVolMusic_;
 	int paramVolSfx_;
+
+	/// <summary>
+	/// booleano que indica si se salta o no los tutoriales
+	/// </summary>
+	bool skipTutorial_;
 
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
 	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo

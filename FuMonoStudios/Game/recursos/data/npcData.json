@@ -1,8 +1,8 @@
 {
   "Vagabundo": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 2,
+    "Felicidad": "Normal",
+    "FelicidadNum": 30,
+    "numMisionesAceptadas": 0,
     "EventosCompletados": [],
     "Eventos": {
       "1": {
@@ -306,7 +306,7 @@
   "Secretario": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 3,
+    "numMisionesAceptadas": 0,
     "EventosCompletados": [],
     "Eventos": {
       "1": {
@@ -599,9 +599,9 @@
     }
   },
   "Campesino": {
-    "Felicidad": "NoHabladoAun",
+    "Felicidad": "Normal",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 3,
+    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -618,7 +618,7 @@
       "13": false,
       "14": false
     },
-    "EventosCompletados": [],
+    "EventosCompletados": [-2],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -635,7 +635,10 @@
           "calleMarcada": "C3",
           "tipoPaquete": "Alimento"
         },
-        "recompensa": "Campesino+++++",
+        "recompensa": {
+           "1": "Campesino++++++++++",
+           "2": "$Campesino----------"
+        },
         "textoDiario": "Texto diario"
       },
       "2": {
@@ -649,7 +652,13 @@
           "distrito": "Demeter",
           "tipoPaquete": "Materiales"
         },
-        "recompensa": "Campesino++++",
+        "recompensa": {
+
+          "1": "Campesino++++++++++",
+          "2": "$Campesino----------"
+
+        },
+        
         "textoDiario": "Texto diario"
       },
       "3": {
@@ -663,7 +672,12 @@
           "distrito": "Hestia",
           "tipoPaquete": "Alimento"
         },
-        "recompensa": "Campesino++",
+        "recompensa": {
+
+          "1": "Campesino++++++++++",
+          "2": "$Campesino----------"
+
+        },
         "textoDiario": "Texto diario"
       },
       "4": {
@@ -677,7 +691,12 @@
           "distrito": "Demeter",
           "tipoPaquete": "Medicinas"
         },
-        "recompensa": "Campesino+++",
+        "recompensa": {
+
+          "1": "Campesino++++++++++",
+          "2": "$Campesino----------"
+
+        },
         "textoDiario": "Texto diario"
       },
       "5": {
@@ -697,15 +716,21 @@
           "peso": "Bajo",
           "pesoKG": 100
         },
-        "recompensa": "Campesino+++++",
+        "recompensa": {
+
+          "1": "Campesino++++++++++",
+          "2": "$Campesino----------"
+
+        },
+
         "textoDiario": "Texto diario"
       }
     }
   },
   "Artesano": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 3,
+    "Felicidad": "Normal",
+    "FelicidadNum": 60,
+    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -722,7 +747,7 @@
       "13": false,
       "14": false
     },
-    "EventosCompletados": [],
+    "EventosCompletados": [2],
     "Eventos": {
       "1": {
         "numPaquetes": 2,
@@ -734,7 +759,12 @@
           "tipoPaquete": "Materiales",
           "distrito": "Hefesto"
         },
-        "recompensa": "Artesano++",
+        "recompensa": {
+
+          "1": "Artesano++++++++++",
+          "2": "$Artesano----------"
+
+        },
         "textoDiario": "Texto diario"
       },
       "2": {
@@ -747,7 +777,12 @@
           "tipoPaquete": "Joyas",
           "distrito": "Hefesto"
         },
-        "recompensa": "Artesano+++",
+        "recompensa": {
+
+          "1": "Artesano++++++++++",
+          "2": "$Artesano----------"
+
+        },
         "textoDiario": "Texto diario"
       },
       "3": {
@@ -760,7 +795,12 @@
           "tipoPaquete": "Alimento",
           "distrito": "Hefesto"
         },
-        "recompensa": "Artesano++",
+        "recompensa": {
+
+          "1": "Artesano++++++++++",
+          "2": "$Artesano----------"
+
+        },
         "textoDiario": "Texto diario"
       },
       "4": {
@@ -780,7 +820,12 @@
           "peso": "Medio",
           "pesoKG": 10
         },
-        "recompensa": "Artesano++++",
+        "recompensa": {
+
+          "1": "Artesano++++++++++",
+          "2": "$Artesano----------"
+
+        },
         "textoDiario": "Texto diario"
       },
       "5": {
@@ -798,15 +843,20 @@
           "tipoPaquete": "Materiales",
           "fragil": true
         },
-        "recompensa": "Artesano+++++",
+        "recompensa": {
+
+          "1": "Artesano++++++++++",
+          "2": "$Artesano----------"
+
+        },
         "textoDiario": "Texto diario"
       }
     }
   },
   "Tarotisa": {
-    "Felicidad": "NoHabladoAun",
+    "Felicidad": "Normal",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 3,
+    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -835,8 +885,13 @@
           "tipoPaquete": "Joyas",
           "distrito": "Artemisa"
         },
-        "recompensa": "Tarotisa++",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+
+          "1": "Tarotisa++++++++++",
+          "2": "$Tarotisa----------"
+
+        },
+        "textoDiario": "Texto diario1"
       },
       "2": {
         "numPaquetes": 1,
@@ -848,8 +903,13 @@
           "tipoPaquete": "Armamento",
           "distrito": "Artemisa"
         },
-        "recompensa": "Tarotisa+++",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+
+          "1": "Tarotisa++++++++++",
+          "2": "$Tarotisa----------"
+
+        },
+        "textoDiario": "Texto diario2"
       },
       "3": {
         "numPaquetes": 1,
@@ -868,8 +928,13 @@
           "peso": "Alto",
           "pesoKG": 10
         },
-        "recompensa": "Tarotisa+++",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+
+          "1": "Tarotisa++++++++++",
+          "2": "$Tarotisa----------"
+
+        },
+        "textoDiario": "Texto diario3"
       },
       "4": {
         "numPaquetes": 2,
@@ -884,8 +949,13 @@
           "tipoPaquete": "Medicinas",
           "distrito": "Erroneo"
         },
-        "recompensa": "Tarotisa++++",
-        "textoDiario": "Texto diario"
+        "recompensa": {
+
+          "1": "Tarotisa++++++++++",
+          "2": "$Tarotisa----------"
+
+        },
+        "textoDiario": "Texto diario4"
       },
       "5": {
         "numPaquetes": 4,
@@ -899,17 +969,19 @@
           "tipoPaquete": "Alimento"
         },
         "recompensa": {
-          "1": "Tarotisa+++",
-          "2": "Contable--"
+
+          "1": "Tarotisa++++++++++",
+          "2": "$Tarotisa----------"
+
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Texto diario5"
       }
     }
   },
   "Soldado": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 3,
+    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -940,7 +1012,12 @@
           "peso": "Alto",
           "pesoKG": 100
         },
-        "recompensa": "Soldado+++",
+        "recompensa": {
+
+          "1": "Soldado++++++++++",
+          "2": "$Soldado----------"
+
+        },
         "textoDiario": "Texto diario"
       },
       "2": {
@@ -955,9 +1032,10 @@
           "tipoPaquete": "Medicinas"
         },
         "recompensa": {
-          "1": "Soldado++++",
-          "2": "Secretario-",
-          "3": "Tarotisa--"
+
+          "1": "Soldado++++++++++",
+          "2": "$Soldado----------"
+
         },
         "textoDiario": "Texto diario"
       },
@@ -971,7 +1049,12 @@
           "tipoPaquete": "Alimento",
           "distrito": "Hestia"
         },
-        "recompensa": "Soldado++",
+        "recompensa": {
+
+          "1": "Soldado++++++++++",
+          "2": "$Soldado----------"
+
+        },
         "textoDiario": "Texto diario"
       },
       "4": {
@@ -984,7 +1067,12 @@
           "tipoPaquete": "Armamento",
           "distrito": "Artemisa"
         },
-        "recompensa": "Soldado++",
+        "recompensa": {
+
+          "1": "Soldado++++++++++",
+          "2": "$Soldado----------"
+
+        },
         "textoDiario": "Texto diario"
       },
       "5": {
@@ -998,7 +1086,12 @@
           "distrito": "Apolo",
           "legal": false
         },
-        "recompensa": "Soldado++++",
+        "recompensa": {
+
+          "1": "Soldado++++++++++",
+          "2": "$Soldado----------"
+
+        },
         "textoDiario": "Texto diario"
       }
     }
@@ -1006,7 +1099,7 @@
   "Contable": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 3,
+    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -1035,7 +1128,12 @@
           "tipoPaquete": "Alimento",
           "distrito": "Hermes"
         },
-        "recompensa": "Contable+++",
+        "recompensa": {
+
+          "1": "Contable++++++++++",
+          "2": "$Contable----------"
+
+        },
         "textoDiario": "Texto diario"
       },
       "2": {
@@ -1051,7 +1149,12 @@
           "distrito": "Erroneo",
           "tipoPaquete": "Materiales"
         },
-        "recompensa": "Contable++",
+        "recompensa": {
+
+          "1": "Contable++++++++++",
+          "2": "$Contable----------"
+
+        },
         "textoDiario": "Texto diario"
       },
       "3": {
@@ -1068,7 +1171,12 @@
           "distrito": "Apolo",
           "fragil": true
         },
-        "recompensa": "Contable++++",
+        "recompensa": {
+
+          "1": "Contable++++++++++",
+          "2": "$Contable----------"
+
+        },
         "textoDiario": "Texto diario"
       },
       "4": {
@@ -1082,7 +1190,12 @@
           "tipoPaquete": "Joyas",
           "distrito": "Hermes"
         },
-        "recompensa": "Contable++++",
+        "recompensa": {
+
+          "1": "Contable++++++++++",
+          "2": "$Contable----------"
+
+        },
         "textoDiario": "Texto diario"
       },
       "5": {
@@ -1098,7 +1211,12 @@
           "distrito": "Hermes",
           "legal": false
         },
-        "recompensa": "Contable++",
+        "recompensa": {
+
+          "1": "Contable++++++++++",
+          "2": "$Contable----------"
+
+        },
         "textoDiario": "Texto diario"
       }
     }

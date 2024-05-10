@@ -29,6 +29,8 @@ GeneralData::GeneralData()
 	}
 	paramVolMusic_ = 0;
 	paramVolSfx_ = 50;
+
+	skipTutorial_ = false;
 	//upgrades_[ecs::upg::MONEY_UPGRADE] = true;
 
 	/*if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
@@ -48,7 +50,7 @@ GeneralData::GeneralData()
 }
 
 GeneralData::~GeneralData() {
-	
+
 	for (auto& npc : npcData) {
 		delete npc.second;
 		npc.second = nullptr;
@@ -89,7 +91,7 @@ void GeneralData::newGame()
 }
 
 void GeneralData::updateMoney()
-{	
+{
 	int rightPackages = corrects_;
 	int wrongPackages = fails_;
 	//funcion de ejemplo seguramente haya que cambiarlo
@@ -115,7 +117,7 @@ int GeneralData::calcularDineroGanado()
 	else {
 		totalRightMoney = rightPackages * WRITE_PACAGES_VALUE;
 	}
-	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::FALLOS_UPGRADE)) failsMargin_ = 2;
+	if (GeneralData::instance()->getUpgradeValue(ecs::upg::FALLOS_UPGRADE)) failsMargin_ = 2;
 	else failsMargin_ = 0;
 	if (fails_ < failsMargin_) {
 		wrongPackages = 0;
@@ -123,7 +125,7 @@ int GeneralData::calcularDineroGanado()
 	else {
 		wrongPackages -= failsMargin_;
 	}
-	
+
 	return 		totalRightMoney - (wrongPackages * WRONG_PACAGES_VALUE);
 }
 
@@ -182,30 +184,30 @@ std::string GeneralData::fromDistritoToString(int i) {
 	std::string sol;
 
 	switch (i) {
-		case Distrito::Hestia:
-			sol = "Hestia";
-			break;
-		case Distrito::Artemisa:
-			sol = "Artemisa";
-			break;
-		case Distrito::Demeter:
-			sol = "Demeter";
-			break;
-		case Distrito::Hefesto:
-			sol = "Hefesto";
-			break;
-		case Distrito::Hermes:
-			sol = "Hermes";
-			break;
-		case Distrito::Apolo:
-			sol = "Apolo";
-			break;
-		case Distrito::Poseidon:
-			sol = "Poseidon";
-			break;
-		default:
-			sol = "Erroneo";
-			break;
+	case Distrito::Hestia:
+		sol = "Hestia";
+		break;
+	case Distrito::Artemisa:
+		sol = "Artemisa";
+		break;
+	case Distrito::Demeter:
+		sol = "Demeter";
+		break;
+	case Distrito::Hefesto:
+		sol = "Hefesto";
+		break;
+	case Distrito::Hermes:
+		sol = "Hermes";
+		break;
+	case Distrito::Apolo:
+		sol = "Apolo";
+		break;
+	case Distrito::Poseidon:
+		sol = "Poseidon";
+		break;
+	default:
+		sol = "Erroneo";
+		break;
 	}
 
 	return sol;
@@ -261,7 +263,7 @@ int GeneralData::fromStringToDistrito(std::string place) {
 
 void GeneralData::updateDistrictsPerDay(int dia)
 {
-	if(dia == 0)
+	if (dia == 0)
 		return;
 	switch (dia)
 	{
@@ -331,7 +333,7 @@ void GeneralData::readNPCData() {
 	if (jsonFile == nullptr || !jsonFile->IsObject()) {
 		throw "Something went wrong while load/parsing npcData";
 	}
-	
+
 	JSONObject root = jsonFile->AsObject();
 	JSONValue* jValue = nullptr;
 
@@ -363,6 +365,8 @@ void GeneralData::readNPCData() {
 			for (int z = k; z < 14; z++)
 				data->eventosCompletados[z] = std::make_pair(false, 0);
 
+			data->npcId = (Personaje)i;
+
 			npcData.emplace((Personaje)i, data);
 		}
 		else
@@ -391,7 +395,7 @@ void GeneralData::readNPCData() {
 			for (int z = k; z < 5; z++)
 				data->eventosCompletados[z] = std::make_pair(false, 0);
 
-			npcData.emplace((Personaje)i,data);
+			npcData.emplace((Personaje)i, data);
 		}
 		jValue = nullptr;
 	}
@@ -445,7 +449,7 @@ void GeneralData::writeNPCData() {
 		if (newEventosString[newEventosString.size() - 1] == ',')
 			newEventosString.pop_back();
 		newEventosString += "],";
-		contenido.replace(posEventosCompletados, (contenido.find('\n', posEventosCompletados)) - 
+		contenido.replace(posEventosCompletados, (contenido.find('\n', posEventosCompletados)) -
 			posEventosCompletados, newEventosString);
 
 	}
@@ -456,7 +460,7 @@ void GeneralData::writeNPCData() {
 	if (!archivoSalida.is_open()) {
 		throw std::runtime_error("Error al escribir npcData.json");
 	}
-	
+
 	// Escribir el contenido modificado en el archivo
 	archivoSalida.clear();
 	archivoSalida << contenido;
@@ -514,8 +518,17 @@ void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
 	else if (newFelicidadInt > 100)
 		newFelicidadInt = 100;
 
-	Felicidad newFelicidad = (Felicidad)newFelicidadInt;
-	
+	Felicidad newFelicidad = SeFue;
+	if (newFelicidadInt < 1)
+		newFelicidad = Minima;
+	else if (newFelicidadInt > 99)
+		newFelicidad = Maxima;
+	else if (newFelicidadInt < 30)
+		newFelicidad = Mala;
+	else if (newFelicidadInt < 65)
+		newFelicidad = Normal;
+	else
+		newFelicidad = Buena;
 
 	getNPCData(p)->felicidad = newFelicidad;
 	getNPCData(p)->numFelicidad = newFelicidadInt;
@@ -529,30 +542,30 @@ const std::string GeneralData::personajeToString(Personaje pers) {
 
 	std::string aux = "";
 	switch (pers) {
-		case Vagabundo:
-			aux = "Vagabundo";
-			break;
-		case Secretario:
-			aux = "Secretario";
-			break;
-		case Campesino:
-			aux = "Campesino";
-			break;
-		case Artesano:
-			aux = "Artesano";
-			break;
-		case Tarotisa:
-			aux = "Tarotisa";
-			break;
-		case Soldado:
-			aux = "Soldado";
-			break;
-		case Contable:
-			aux = "Contable";
-			break;
-	    case Jefe:
-			aux = "Jefe";
-		    break;
+	case Vagabundo:
+		aux = "Vagabundo";
+		break;
+	case Secretario:
+		aux = "Secretario";
+		break;
+	case Campesino:
+		aux = "Campesino";
+		break;
+	case Artesano:
+		aux = "Artesano";
+		break;
+	case Tarotisa:
+		aux = "Tarotisa";
+		break;
+	case Soldado:
+		aux = "Soldado";
+		break;
+	case Contable:
+		aux = "Contable";
+		break;
+	case Jefe:
+		aux = "Jefe";
+		break;
 	}
 	return aux;
 }
@@ -577,7 +590,7 @@ Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 		aux = npc::Contable;
 	else if (pers == "Jefe")
 		aux = npc::Jefe;
-	
+
 	return aux;
 }
 
@@ -627,7 +640,7 @@ const std::string GeneralData::intObjetoToString(int pers) {
 
 int GeneralData::stringToObjInt(const std::string& pers) {
 	int aux = 0;
-	
+
 	//Hestia
 	if (pers == "CasaGrande") aux = 0;
 	else if (pers == "CartelOficina") aux = 1;

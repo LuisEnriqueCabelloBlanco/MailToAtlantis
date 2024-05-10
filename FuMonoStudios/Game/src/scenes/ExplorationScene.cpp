@@ -42,8 +42,8 @@ ecs::ExplorationScene::ExplorationScene() :Scene()
 
 ecs::ExplorationScene::~ExplorationScene()
 {
-	delete leftTex;
-	delete rightTex;
+	//delete leftTex;
+	//delete rightTex;
 }
 
 void ecs::ExplorationScene::init()
@@ -66,7 +66,7 @@ void ecs::ExplorationScene::init()
 
 	dialogMngr_.init(this);
 
-	createDiario();
+	//createDiario();
 
 	canInteract = true;
 
@@ -111,7 +111,7 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 
 void ecs::ExplorationScene::initPlacesDefaultMap()
 {
-	
+	lugares.clear();
 	for (int i = 0; i < generalData().getNumDistritos(); ++i) {
 
 		std::string placeName = generalData().fromDistritoToString(i);
@@ -184,13 +184,13 @@ void ecs::ExplorationScene::update() {
 }
 
 void ecs::ExplorationScene::close() {
-	delete rightTex;
+	/*delete rightTex;
 	rightTex = nullptr;
 	delete leftTex;
-	leftTex = nullptr;
+	*/leftTex = nullptr;
 	SoundEmiter::instance()->close();
 	clearScene();
-	diario_->setAlive(false);
+	//diario_->setAlive(false);
 }
 
 void ecs::ExplorationScene::navigate(Distrito placeDir) 
@@ -277,10 +277,10 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 	auto clickableBotonTrabajar = e->addComponent<Clickeable>("");
 	CallbackClickeable funcPress = [this]() {
 		if (canInteract) {
-			if (generalData().getDay() == 1 ||
+			if ((generalData().getDay() == 1 ||
 				generalData().getDay() == 3 ||
 				generalData().getDay() == 5 ||
-				generalData().getDay() == 8) {
+				generalData().getDay() == 8) && !generalData().GetValueSkipTutorial()) {
 
 				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
 			}
@@ -389,9 +389,18 @@ void ecs::ExplorationScene::setupDiarioPages() {
 					textoPersonaje = textoPersonaje + "- Dia ";
 					if (data->eventosCompletados[j].second == 0) // si el evento es de hoy
 					{
-						textoPersonaje = textoPersonaje + std::to_string(day) +
-							textoCompletado + "\n" + 
-							data->events[day - 1]->textoDiario + "\n";
+						if (data == generalData().getNPCData(Vagabundo) ||
+							data == generalData().getNPCData(Secretario)) {
+							textoPersonaje = textoPersonaje + std::to_string(day) +
+								textoCompletado + "\n" +
+								data->events[day - 1]->textoDiario + "\n";
+						}
+						else {
+							textoPersonaje = textoPersonaje + std::to_string(day) +
+								textoCompletado + "\n" +
+								data->events[j]->textoDiario + "\n";
+						}
+						
 					}
 					else
 					{
@@ -600,7 +609,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 						generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
 					}
 					generalData().npcEventSys->activateEvent(event);
-					addDiarioEvent(event);
+					//addDiarioEvent(event);
 					generalData().npcEventSys->shuffleNPCqueue();
 				}
 			}

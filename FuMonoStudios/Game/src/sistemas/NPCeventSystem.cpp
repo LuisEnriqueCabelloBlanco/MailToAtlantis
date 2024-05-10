@@ -15,7 +15,7 @@ NPCeventSystem::NPCeventSystem() {
 
 NPCeventSystem::~NPCeventSystem() {
 	for (auto it : paquetesNPCs) {
-		
+
 	}
 }
 
@@ -69,8 +69,8 @@ void NPCeventSystem::minigameOver() {
 		std::cout << "Event " << (event->completed ? "completed" : "failed");
 #endif // _DEBUG
 		NPCdata* data = generalData().getNPCData(event->personaje);
-		data->eventosCompletados[event->numEvento-1].first = true;
-		data->eventosCompletados[event->numEvento-1].second = 
+		data->eventosCompletados[event->numEvento].first = true;
+		data->eventosCompletados[event->numEvento].second =
 			generalData().getDay() * (event->completed ? 1 : -1);
 
 		procesarStringRecompensas(event->completed, event->recompensas);
@@ -114,7 +114,7 @@ void NPCeventSystem::procesarStringRecompensas(bool completed, std::vector<std::
 				generalData().incrementarFelicidad(aux, felicidadIncrement);
 			}
 		}
-		else 
+		else
 		{
 			if (reward.find("$") != std::string::npos)
 			{
@@ -137,7 +137,7 @@ void NPCeventSystem::procesarStringRecompensas(bool completed, std::vector<std::
 
 void NPCeventSystem::debugPaquetesInQueue() {
 #ifdef _DEBUG
-	std::cout << std::endl << "Eventos: " << activeEventsNPCs.size() << 
+	std::cout << std::endl << "Eventos: " << activeEventsNPCs.size() <<
 		" Paquetes de npc: " << paquetesNPCs.size() << std::endl;
 #endif // _DEBUG
 }
@@ -238,7 +238,7 @@ Paquete* NPCeventSystem::readPacage(JSONObject& paqObj)
 			peso = hasPesoKG->AsNumber();
 	}
 
-	return new Paquete(dist, calle, nombreCalle, rem, tipo, legal,nivelPeso, peso, fragil);
+	return new Paquete(dist, calle, nombreCalle, rem, tipo, legal, nivelPeso, peso, fragil);
 }
 
 void NPCeventSystem::readCondiciones(JSONObject& obj, NPCevent* auxEvent) {
@@ -340,8 +340,8 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 		if (hasTubo != pqConditions.end()) {
 			auxEvent->usingCondicionTubo = true;
 			Distrito aux = (Distrito)generalData().fromStringToDistrito(hasTubo->second->AsString());
-			auxEvent->condicionTubo = ([aux](Distrito tubo) -> bool{
-					return tubo == aux;
+			auxEvent->condicionTubo = ([aux](Distrito tubo) -> bool {
+				return tubo == aux;
 				});
 		}
 		auto hasCalle = pqConditions.find("calleMarcada");
@@ -384,7 +384,7 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 				});
 		}
 
-		
+
 		auto hasFragil = pqConditions.find("fragil");
 		if (hasFragil != pqConditions.end()) {
 			bool aux = hasFragil->second->AsBool();

@@ -87,6 +87,34 @@ void ecs::ConfigScene::init()
 		musicValueEnt_->getComponent<RenderImage>()->setTexture(musicValueTexture_);
 	};
 	factory_->createTextuButton({ 600,600 }, "(+)", 50, funcPress3, "click");
+
+
+
+	//skipTutorialValueTexture_ = " ";
+	///*if (generalData().GetValueSkipTutorial())
+	//	skipTutorialValueTexture_ = "SALTAR";
+	//else
+	//	skipTutorialValueTexture_ = "NO SALTAR";*/
+
+	//skipTutorialValueEnt_ = addEntity();
+
+
+	//// Boton para configurar el salto del tutorial o no
+	//CallbackClickeable funcPressSkipTutorial = [this]() {
+	//	generalData().ToggleSkipTutorial();
+	//	if (skipTutorialValueTexture_ != "")
+	//	{
+	//		skipTutorialValueTexture_= " ";
+	//	}
+
+
+	//	if (generalData().GetValueSkipTutorial())
+	//		skipTutorialValueTexture_ = "SALTAR";
+	//	else
+	//		skipTutorialValueTexture_ = "NO SALTAR";
+	//};
+
+	//factory_->createTextuButton({ 500,800 }, skipTutorialValueTexture_, 50, funcPressSkipTutorial, "click");
 }
 
 //LUIS: Y si esto fuera un return to scene ????
