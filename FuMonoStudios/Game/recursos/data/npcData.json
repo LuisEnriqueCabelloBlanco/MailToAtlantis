@@ -1,9 +1,9 @@
 {
   "Vagabundo": {
-    "Felicidad": "",
-    "FelicidadNum": 0,
-    "numMisionesAceptadas": 2,
-    "EventosCompletados": [4],
+    "Felicidad": "Normal",
+    "FelicidadNum": 30,
+    "numMisionesAceptadas": 0,
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -306,7 +306,7 @@
   "Secretario": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 1,
+    "numMisionesAceptadas": 0,
     "EventosCompletados": [],
     "Eventos": {
       "1": {
@@ -601,7 +601,7 @@
   "Campesino": {
     "Felicidad": "Normal",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 2,
+    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -618,7 +618,7 @@
       "13": false,
       "14": false
     },
-    "EventosCompletados": [-4],
+    "EventosCompletados": [-2],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -729,7 +729,7 @@
   },
   "Artesano": {
     "Felicidad": "Normal",
-    "FelicidadNum": 50,
+    "FelicidadNum": 60,
     "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
@@ -747,7 +747,7 @@
       "13": false,
       "14": false
     },
-    "EventosCompletados": [],
+    "EventosCompletados": [2],
     "Eventos": {
       "1": {
         "numPaquetes": 2,
@@ -855,8 +855,8 @@
   },
   "Tarotisa": {
     "Felicidad": "Normal",
-    "FelicidadNum": 3,
-    "numMisionesAceptadas": 2,
+    "FelicidadNum": 50,
+    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -873,7 +873,7 @@
       "13": true,
       "14": false
     },
-    "EventosCompletados": [4],
+    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -981,7 +981,7 @@
   "Soldado": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 1,
+    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -1099,7 +1099,7 @@
   "Contable": {
     "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
-    "numMisionesAceptadas": 1,
+    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,

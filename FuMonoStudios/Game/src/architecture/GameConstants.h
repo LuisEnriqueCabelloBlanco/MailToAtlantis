@@ -14,7 +14,7 @@ const std::string DIR_SETTINGS_PATH = "recursos/config/mail.direcctions.json";
 /*========================================================================================
 * GENERAL CONSTANTS
 *=====================================================================================*/
-constexpr int INITIAL_MONEY = 100;
+constexpr int INITIAL_MONEY = 0;
 constexpr int INITIAL_FINAL = 0;
 constexpr int INITIAL_EVENT = 0;
 constexpr int INITIAL_DAY = 1;
