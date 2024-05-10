@@ -367,6 +367,11 @@ void GeneralData::readNPCData() {
 
 			data->npcId = (Personaje)i;
 
+			if (i == 0)
+				data->firstMision = 1;
+			else
+				data->firstMision = 5;
+
 			npcData.emplace((Personaje)i, data);
 		}
 		else

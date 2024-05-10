@@ -145,10 +145,6 @@ NPCMayorData::NPCMayorData(Felicidad Felicidad) {
 	felicidad = Felicidad;
 	postConversation = false;
 	numMisionesAceptadas = 0;
-	if (npcId == Vagabundo)
-		firstMision = 1;
-	else
-		firstMision = 5;
 	misionAceptada = false;
 	eventosCompletados = std::vector<std::pair<bool, int>>(14, std::make_pair(false, 0));
 }
@@ -199,6 +195,7 @@ NPCevent* npc::NPCMayorData::getEvent()
 		return nullptr;
 
 	postConversation = true;
+	events[firstMision + numMisionesAceptadas]->numEvento = numMisionesAceptadas;
 	return events[firstMision + numMisionesAceptadas];
 }
 
