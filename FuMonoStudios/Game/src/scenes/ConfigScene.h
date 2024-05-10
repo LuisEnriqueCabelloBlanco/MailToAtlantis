@@ -14,6 +14,9 @@ namespace ecs {
         Texture* musicValueTexture_;
         Entity* musicValueEnt_;
 
+        std::string skipTutorialValueTexture_;
+        Entity* skipTutorialValueEnt_;
+
         //Texture* screenModeTexture_;
         //Entity* screenModeEnt_;
     public:

@@ -29,6 +29,8 @@ GeneralData::GeneralData()
 	}
 	paramVolMusic_ = 0;
 	paramVolSfx_ = 50;
+
+	skipTutorial_ = false;
 	//upgrades_[ecs::upg::MONEY_UPGRADE] = true;
 
 	/*if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
@@ -363,6 +365,13 @@ void GeneralData::readNPCData() {
 			for (int z = k; z < 14; z++)
 				data->eventosCompletados[z] = std::make_pair(false, 0);
 
+			data->npcId = (Personaje)i;
+
+			if (i == 0)
+				data->firstMision = 1;
+			else
+				data->firstMision = 5;
+
 			npcData.emplace((Personaje)i, data);
 		}
 		else
@@ -513,9 +522,18 @@ void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
 		newFelicidadInt = 0;
 	else if (newFelicidadInt > 100)
 		newFelicidadInt = 100;
-
-	Felicidad newFelicidad = (Felicidad)newFelicidadInt;
 	
+	Felicidad newFelicidad = SeFue;
+	if (newFelicidadInt < 1)
+		newFelicidad = Minima;
+	else if (newFelicidadInt > 99)
+		newFelicidad = Maxima;
+	else if (newFelicidadInt < 30)
+		newFelicidad = Mala;
+	else if (newFelicidadInt < 65)
+		newFelicidad = Normal;
+	else
+		newFelicidad = Buena;
 
 	getNPCData(p)->felicidad = newFelicidad;
 	getNPCData(p)->numFelicidad = newFelicidadInt;

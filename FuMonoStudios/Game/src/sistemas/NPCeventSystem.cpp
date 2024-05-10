@@ -69,8 +69,8 @@ void NPCeventSystem::minigameOver() {
 		std::cout << "Event " << (event->completed ? "completed" : "failed");
 #endif // _DEBUG
 		NPCdata* data = generalData().getNPCData(event->personaje);
-		data->eventosCompletados[event->numEvento-1].first = true;
-		data->eventosCompletados[event->numEvento-1].second = 
+		data->eventosCompletados[data->numMisionesAceptadas].first = true;
+		data->eventosCompletados[data->numMisionesAceptadas].second = 
 			generalData().getDay() * (event->completed ? 1 : -1);
 
 		procesarStringRecompensas(event->completed, event->recompensas);

@@ -104,5 +104,7 @@ namespace npc {
 		void iterateDialogues() override {};
 		void setupDayData() override;
 		NPCevent* getEvent() override;
+	public:
+		int firstMision;
 	};
 }
