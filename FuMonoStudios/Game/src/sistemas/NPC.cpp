@@ -122,7 +122,9 @@ void NPCMenorData::deactivateEvent() {
 }
 
 void NPCMenorData::iterateDialogues() {
-	iteration++;
+
+	iteration = sdlutils().rand().nextInt(1, 4);
+
 	if (iteration > 3)
 		iteration = 1;
 }
