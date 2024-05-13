@@ -25,10 +25,8 @@ GeneralData::GeneralData()
 	dia_ = INITIAL_DAY;
 	rent_ = 100;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
-	upgrades_.resize(ecs::upg::_LAST_UPGRADE);
-	for (auto upg : upgrades_) {
-		upg = false;
-	}
+	//upgrades_.resize(ecs::upg::_LAST_UPGRADE);
+	upgrades_.reset();
 	paramVolMusic_ = 0;
 	paramVolSfx_ = 50;
 
@@ -430,7 +428,7 @@ void GeneralData::readNPCData() {
 }
 
 void GeneralData::writeNPCData() {
-	std::ifstream archivo("recursos/data/npcData.json");
+	std::ifstream archivo(NPC_DATA_PATH);
 
 	if (!archivo.is_open())
 	{
@@ -528,11 +526,11 @@ void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
 	Felicidad newFelicidad = SeFue;
 	if (newFelicidadInt < 1)
 		newFelicidad = Minima;
-	else if (newFelicidadInt > 99)
+	else if (newFelicidadInt > MAX_HAPPINES)
 		newFelicidad = Maxima;
-	else if (newFelicidadInt < 30)
+	else if (newFelicidadInt < BAD_HAPPINES)
 		newFelicidad = Mala;
-	else if (newFelicidadInt < 65)
+	else if (newFelicidadInt < NORMAL_HAPPINES)
 		newFelicidad = Normal;
 	else
 		newFelicidad = Buena;

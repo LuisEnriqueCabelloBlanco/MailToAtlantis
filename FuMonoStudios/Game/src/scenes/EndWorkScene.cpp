@@ -23,7 +23,6 @@ void EndWorkScene::init() {
 	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
 		&sdlutils().images().at("fondoFinalTrabajo"));
 
-	gD().setDay(gD().getDay() + 1);
 
 	pos_ = Vector2D(LOGICAL_RENDER_WIDTH / 2 + 200, 100);
 	Vector2D dist(0, -300);
@@ -32,8 +31,8 @@ void EndWorkScene::init() {
 	animFinish = false;
 
 	// Dia actual
-	msg = "Dia " + std::to_string(gD().getDay());
-	factory_->createLabel(Vector2D(1350, 50), msg, 80);
+	msg = "Fin del Dia " + std::to_string(gD().getDay());
+	factory_->createLabel(Vector2D(1250, 50), msg, 80);
 
 	// Corrects y fails
 	msg = "Corrects: " + std::to_string(gD().getCorrects());
@@ -56,6 +55,9 @@ void EndWorkScene::init() {
 	msg = "Cuenta Bancaria: " + std::to_string(gD().getMoney()) + "$";
 	createTextAnim(msg);
 
+	//Luis:no se si se deberia avanzar antes o despues de guardar
+	gD().setDay(gD().getDay() + 1);
+	gD().saveGame();
 }
 
 void EndWorkScene::createTextAnim(std::string msg)
@@ -121,7 +123,7 @@ void EndWorkScene::createButtons()
 	{
 		// Boton nueva partida
 		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
-		factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Nueva Partida", 50, call, "click");
+		factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Volver al Menu", 50, call, "click");
 		// Sonido
 		sdlutils().soundEffects().at("LoseMoney").play();
 		// Texto

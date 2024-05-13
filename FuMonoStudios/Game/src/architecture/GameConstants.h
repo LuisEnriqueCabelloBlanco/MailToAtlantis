@@ -9,6 +9,7 @@ const std::string DIFF_SETTINGS_PATH = "recursos/config/mail.dificulty.json";
 const std::string REMITENT_SETTINGS_PATH = "recursos/config/mail.destinatarios.json";
 const std::string DIR_SETTINGS_PATH = "recursos/config/mail.direcctions.json";
 const std::string SAVE_PATH = "recursos/data/saveFile.json";
+const std::string NPC_DATA_PATH = "recursos/data/npcData.json";
 #pragma endregion
 
 #pragma region General
@@ -27,6 +28,10 @@ constexpr int INITIAL_FAILS_MARGIN = 1;
 constexpr int LOGICAL_RENDER_WIDTH = 1920;
 constexpr int LOGICAL_RENDER_HEITH = 1080;
 constexpr int MAX_DISTRICTS = 7;
+constexpr int MIN_HAPPINES = 1;
+constexpr int MAX_HAPPINES = 99;
+constexpr int BAD_HAPPINES = 30;
+constexpr int NORMAL_HAPPINES = 65;
 #pragma endregion
 
 

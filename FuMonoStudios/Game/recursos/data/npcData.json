@@ -728,7 +728,7 @@
     }
   },
   "Artesano": {
-    "Felicidad": "NoHabladoAun",
+    "Felicidad": "Normal",
     "FelicidadNum": 60,
     "numMisionesAceptadas": 1,
     "DiasConEvento": {

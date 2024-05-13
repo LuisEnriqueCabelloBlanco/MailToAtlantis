@@ -12,6 +12,7 @@
 #include <string>
 #include <json/JSON.h>
 #include <json/JSONValue.h>
+#include <bitset>
 
 class DialogManager;
 class PaqueteBuilder;
@@ -313,7 +314,9 @@ private:
 	/// <summary>
 	/// Vector con las mejoras desbloqueadas hasta el momento
 	/// </summary>
-	std::vector<bool> upgrades_;
+	//std::vector<bool> upgrades_;
+
+	std::bitset<ecs::upg::_LAST_UPGRADE> upgrades_;
 
 	/*/// <summary>
 	/// Vector que se borrara al terminar de relizar el guardado

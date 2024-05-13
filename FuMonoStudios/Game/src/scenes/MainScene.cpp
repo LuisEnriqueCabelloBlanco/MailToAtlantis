@@ -41,10 +41,6 @@
 ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), jefe_(nullptr), clockMusic(0),mPaqBuild_(this)
 {
 	timer_ = MINIGAME_TIME;
-#ifdef DEV_TOOLS
-	stampsUnloked_= true;
-	timeToAdd_ = 5;
-#endif // DEV_TOOLS
 	mPipeMngr_ = new PipeManager();
 	specialFactory_ = new SpecialObjectsFactory(this);
 }
