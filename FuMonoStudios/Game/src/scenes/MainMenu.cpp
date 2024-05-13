@@ -29,7 +29,7 @@ ecs::MainMenu::~MainMenu()
 void ecs::MainMenu::init()
 {
 
-	gD().loadSaveFile();
+	//gD().loadSaveFile();
 
 #ifdef _DEBUG
 	std::cout << "Hola Menu" << std::endl;

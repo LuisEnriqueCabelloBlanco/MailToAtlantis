@@ -55,11 +55,11 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 	//comprobamos si es un paquete
 	if (ent->getComponent<Paquete>() != nullptr) {
 		SoundEmiter::instance()->playSound("tubo");
-
+		//Desactivamos las cosas necesarias para hacer una animación
 		ent->getComponent<DragAndDrop>()->disableInteraction();
+		ent->removeComponent<Gravity>();
 
 		Vector2D entPos = ent->getComponent<Transform>()->getPos();
-		ent->removeComponent<Gravity>();
 
 		//animacion de salida del paquete dependiaendo de que sea
 		auto mover = ent->getComponent<MoverTransform>();

@@ -1,6 +1,6 @@
 {
   "Vagabundo": {
-    "Felicidad": "Normal",
+    "Felicidad": "NoHabladoAun",
     "FelicidadNum": 30,
     "numMisionesAceptadas": 0,
     "EventosCompletados": [],
@@ -599,7 +599,7 @@
     }
   },
   "Campesino": {
-    "Felicidad": "Normal",
+    "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 1,
     "DiasConEvento": {
@@ -728,7 +728,7 @@
     }
   },
   "Artesano": {
-    "Felicidad": "Normal",
+    "Felicidad": "NoHabladoAun",
     "FelicidadNum": 60,
     "numMisionesAceptadas": 1,
     "DiasConEvento": {
@@ -854,7 +854,7 @@
     }
   },
   "Tarotisa": {
-    "Felicidad": "Normal",
+    "Felicidad": "NoHabladoAun",
     "FelicidadNum": 50,
     "numMisionesAceptadas": 0,
     "DiasConEvento": {

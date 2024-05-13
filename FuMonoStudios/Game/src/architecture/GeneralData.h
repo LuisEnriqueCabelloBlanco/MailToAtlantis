@@ -10,6 +10,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <json/JSON.h>
+#include <json/JSONValue.h>
 
 class DialogManager;
 class PaqueteBuilder;
@@ -243,6 +245,8 @@ private:
 	void reduceMoney(int cant) { dinero_ -= cant; }
 
 	void updateDistrictsPerDay(int dia);
+
+
 	/// <summary>
 	/// estructura que almacena los datos de los npc
 	/// </summary>
@@ -308,8 +312,12 @@ private:
 	/// <summary>
 	/// Vector con las mejoras desbloqueadas hasta el momento
 	/// </summary>
-	std::vector<bool> upgrades_;	
+	std::vector<bool> upgrades_;
 
+	/// <summary>
+	/// Vector que se borrara al terminar de relizar el guardado
+	/// </summary>
+	std::vector<JSONValue*> jsonValVec;
 };
 /// <summary>
 /// Accesor de General Data
@@ -317,4 +325,18 @@ private:
 /// <returns></returns>
 inline GeneralData& gD() {
 	return *GeneralData::instance();
+}
+/// <summary>
+/// metodo template que te permite modificar objetos de un JsonObject
+/// usado en el metodo en el saveGame
+/// </summary>
+/// <typeparam name="T">tipo que tendra el objeto a insertal en el jsonObject</typeparam>
+/// <param name="obj">raiz del objeto Json a modificar</param>
+/// <param name="key"></param>
+/// <param name="val"></param>
+template<typename T>
+inline void modifyJsonData(JSONObject& obj, const std::string& key, T val) {
+	auto jsonVal = new JSONValue(val);
+	obj[key] = jsonVal;
+	//jsonValVec.push_back(jsonVal);
 }

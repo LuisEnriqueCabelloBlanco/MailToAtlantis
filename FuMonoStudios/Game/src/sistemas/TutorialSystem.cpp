@@ -8,6 +8,7 @@
 #include <components/MoverTransform.h>
 #include <components/Wrap.h>
 #include <architecture/Game.h>
+#include<components/DelayedCallback.h>
 
 TutorialSystem::TutorialSystem(ecs::TutorialScene* scene) {
 	scene_ = scene;
@@ -33,7 +34,7 @@ void TutorialSystem::update() {
 		if (waitingWrapComp->isWrapped())
 		{
 			waitingEmbalaje = false;
-			registerAction(Action::Embalado);
+			notifyAction(Action::Embalado);
 		}
 	}
 
@@ -41,7 +42,7 @@ void TutorialSystem::update() {
 
 		if (scene_->balanzaUsed) {
 			waitingPesado = false;
-			registerAction(Action::Pesado);
+			notifyAction(Action::Pesado);
 		}
 
 	}
@@ -551,21 +552,21 @@ void TutorialSystem::delayedCallback(float time, SimpleCallback call) {
 	timeToCall_ = sdlutils().virtualTimer().currTime() + (time * 1000);
 }
 
-void TutorialSystem::registerAction(Action a)
+void TutorialSystem::notifyAction(Action a)
 {
-	std::vector<std::vector<std::pair<Action, SimpleCallback>>::iterator> deleteUsedActionListeners;
-	
+	std::vector<std::list<std::pair<Action, SimpleCallback>>::iterator> deleteUsedActionListeners;
+#ifdef _DEBUG
 	std::cout << a << std::endl;
-	
-	if (actionListeners.size() > 0)
+#endif // _DEBUG
+
+	//recorremos el vector de actions y activamos las actions que coincidan con el id
+	for (auto it = actionListeners.begin(); it != actionListeners.end(); ++it)
 	{
-		for (auto it = actionListeners.begin(); it < actionListeners.end(); ++it)
+		//no se usa un find ya que se quiere obtener todas las apariciones
+		if ((*it).first == a)
 		{
-			if ((*it).first == a)
-			{
-				(*it).second();
-				deleteUsedActionListeners.push_back(it);
-			}
+			(*it).second();
+			deleteUsedActionListeners.push_back(it);
 		}
 	}
 

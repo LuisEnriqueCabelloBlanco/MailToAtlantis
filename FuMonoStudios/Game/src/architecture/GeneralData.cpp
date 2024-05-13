@@ -3,6 +3,7 @@
 #endif // !DEV_TOOLS
 #include "GeneralData.h"
 #include <json/JSON.h>
+#include <json/JSONValue.h>
 #include <sdlutils/RandomNumberGenerator.h>
 #include <architecture/ecs.h>
 #include <sistemas/SoundEmiter.h>
@@ -10,6 +11,7 @@
 #include <architecture/Game.h>
 #include <sistemas/NPCeventSystem.h>
 #include <architecture/GameConstants.h>
+#include <iostream>
 
 
 GeneralData::GeneralData()
@@ -66,12 +68,22 @@ GeneralData::~GeneralData() {
 
 void GeneralData::loadSaveFile()
 {
-	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/saveFile.json"));
 
-	JSONObject root = jsonFile->AsObject();
+	const std::string PATH = "recursos/data/saveFile.json";
+	std::ifstream in;
+	in.open(PATH);
+	if (in.is_open()) {
+		in.close();
+		std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile(PATH));
 
-	dia_ = root.find("Dia")->second->AsNumber();
-	dinero_ = root.find("Dinero")->second->AsNumber();
+		JSONObject root = jsonFile->AsObject();
+
+		dia_ = root["Dia"]->AsNumber();
+		dinero_ = root["Dinero"]->AsNumber();
+	}
+	else {
+		throw std::runtime_error("error al cargar los datos del fichero de guardado");
+	}
 }
 
 void GeneralData::newGame()
@@ -466,45 +478,27 @@ void GeneralData::writeNPCData() {
 	archivoSalida << contenido;
 	archivoSalida.close();
 }
-
+//No deberia ser const????
 void GeneralData::saveGame() {
-	std::ifstream archivo("recursos/data/saveFile.json");
+	const std::string PATH = "recursos/data/saveFile.json";
+	std::ofstream in;
+	in.open(PATH);
+	//Modificación de los elementos
 
-	if (!archivo.is_open())
-	{
-		throw std::runtime_error("Error al abrir saveFile.json");
-	}
+	/*
+	* Para ampliar el guardado acceder a los datos como si fuera un map y asignar un new JsonValue
+	* al elemento a modificar
+	*/ 
+	JSONObject root;
 
-	// Leer el contenido del archivo en una cadena
-	std::string contenido = "";
-	std::string linea;
-	while (std::getline(archivo, linea)) {
-		contenido += linea + "\n";
-	}
-	archivo.close();
-
-	// cambiar el dia
-	int posDia = contenido.find("Dia") + 6;
-	size_t finLinea = contenido.find('\n', posDia);
-	contenido.replace(posDia, finLinea - posDia, std::to_string(gD().getDay()) + ",");
-
-	//cambiar el dinero
-
-	int posDinero = contenido.find("Dinero") + 9;
-	finLinea = contenido.find('\n', posDinero);
-	contenido.replace(posDinero, finLinea - posDinero, std::to_string(gD().getMoney()));
-
-	// Abrir el archivo en modo de escritura
-	std::ofstream archivoSalida("recursos/data/saveFile.json");
-
-	if (!archivoSalida.is_open()) {
-		throw std::runtime_error("Error al escribir saveFile.json");
-	}
-
-	// Escribir el contenido modificado en el archivo
-	archivoSalida.clear();
-	archivoSalida << contenido;
-	archivoSalida.close();
+	//modificacion de los valores en el json
+	modifyJsonData(root, "Dia", gD().getDay());
+	modifyJsonData(root, "Dinero", gD().getMoney());
+	JSONValue* jsonFile = new JSONValue(root);
+	//guardado de datos
+	in << jsonFile->Stringify(true);
+	delete jsonFile;
+	in.close();
 
 	writeNPCData();
 }
