@@ -94,6 +94,8 @@ namespace npc {
 
 		bool giveEvent;
 		int iteration;
+		int lastIterationResult = -1;
+
 	};
 
 	struct NPCMayorData : public NPCdata {
