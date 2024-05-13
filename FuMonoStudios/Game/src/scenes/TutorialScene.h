@@ -23,13 +23,15 @@ namespace ecs {
 		virtual void render() override;
 		void close() override;
 		void init() override;
-
+		/// <summary>
+		/// notifica al sistema de tutorial que un paquete ha sido enviado
+		/// </summary>
 		void packageSent();
 
 		enum PackageTutorial { Primero, Segundo, Tercero, FallarAposta, Fragil, BalanzaTut, Random};
 		ecs::Entity* createPackage(PackageTutorial pt);
 
-		void createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto);
+		//void createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto);
 
 		// getters
 		Transform* getManualTransform() { return manualEnt_->getComponent<Transform>(); }

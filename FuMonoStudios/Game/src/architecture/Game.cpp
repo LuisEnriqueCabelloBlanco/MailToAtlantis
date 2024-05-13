@@ -61,7 +61,7 @@ Game::~Game()
 void Game::run()
 {
 	//esto es una cochinada pero mejor esto a que tarde 2 anios en cargar la escena de exploracion
-	generalData().readNPCData();
+	gD().readNPCData();
 #ifdef DEV_TOOLS
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -90,10 +90,23 @@ void Game::run()
 			sdlutils().toggleFullScreen();
 		}
 
-		if (ih().isKeyDown(SDL_SCANCODE_P)) {
-			loadScene(ecs::sc::PAUSE_SCENE);
-			gamePaused_ = true;
+		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_P)) {
+			if (!gamePaused_) {
+				loadScene(ecs::sc::PAUSE_SCENE);
+				gamePaused_ = true;
+			}
+			else {
+				changeScene(ecs::sc::PAUSE_SCENE, ecs::sc::NULL_SCENE);
+				gamePaused_ = false;
+			}
 		}
+
+#ifdef _DEBUG
+		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_S)) {
+			gD().saveGame();
+		}
+#endif // _DEBUG
+
 #ifdef QA_TOOLS
 		if (ih().mouseButtonDownEvent()&&ih().getMouseButtonState(0)) {
 			dataCollector().clicks()++;
@@ -135,12 +148,12 @@ void Game::loadScene(ecs::sc::sceneId scene)
 
 	auto it = std::find(loadedScenes_.begin(), loadedScenes_.end(), gameScenes_[scene]);
 	if (it == loadedScenes_.end()) {
-		//llamar al init de la escena a cargar????
+		//llamar al init de la escena a cargar
 		gameScenes_[scene]->init();
 		//cargamos la escena
 		loadedScenes_.push_back(gameScenes_[scene]);
 #ifdef _DEBUG
-		std::cout << "Scene Loaded" << std::endl;
+		std::cout << "Scene "<<scene<< " Loaded" << std::endl;
 #endif // _DEBUG
 
 	}
@@ -175,19 +188,16 @@ void Game::requestChangeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2)
 }
 
 void Game::changeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2) {
-	//Más adelante el changeScene deberá de tener más parámetros correspondientes a lo que se va a guardar en
-	//El GeneralData para compartir información entre escenas, pero por ahora nos bastamos con esto
-
 	//Estas comprobaciones van a ser una prueba de que se puede modificar la clase GeneralData, no estará así en la versión final
 	if (scene1 == ecs::sc::MENU_SCENE) {
-		generalData().setFinalID(1);
+		gD().setFinalID(1);
 	}
 	else if (scene1 == ecs::sc::EXPLORE_SCENE) {
-		generalData().setFinalID(2);
-		generalData().setTubesAmount(generalData().getPlacesToActive().size());
+		gD().setFinalID(2);
+		gD().setTubesAmount(gD().getPlacesToActive().size());
 	}
 	else if (scene1 == ecs::sc::MAIN_SCENE) {
-		generalData().setFinalID(3);
+		gD().setFinalID(3);
 	}
 	killScene(scene1);
 	if (scene2 != ecs::sc::NULL_SCENE) {

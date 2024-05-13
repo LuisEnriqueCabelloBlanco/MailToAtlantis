@@ -56,7 +56,7 @@ void ecs::ExplorationScene::init()
 
 
 	initPlacesDefaultMap();
-	generalData().updateDia();
+	gD().updateDia();
 	updateNavegavility();
 	initDirectionsDefaultMap();
 	clearScene();
@@ -75,14 +75,14 @@ void ecs::ExplorationScene::init()
 
 void ecs::ExplorationScene::dialogueWhenEntering() {
 
-	if (generalData().getDay() == 1) {
+	if (gD().getDay() == 1) {
 		canInteract = false;
 		dialogMngr_.setEndDialogueCallback([this] {
 			canInteract = true;
 			});
 		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 0);
 	}
-	else if (generalData().getDay() == 5) {
+	else if (gD().getDay() == 5) {
 		canInteract = false;
 		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
 		temporalSprite->addComponent<Transform>(500,500,400,600);
@@ -93,8 +93,8 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 			});
 		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 1);
 	}
-	else if ((generalData().getNPCData(Vagabundo)->misionAceptada == 5 && generalData().getNPCData(Secretario)->misionAceptada < 3)
-		|| (generalData().getNPCData(Secretario)->misionAceptada == 2 && generalData().getNPCData(Vagabundo)->misionAceptada < 6)) 
+	else if ((gD().getNPCData(Vagabundo)->misionAceptada == 5 && gD().getNPCData(Secretario)->misionAceptada < 3)
+		|| (gD().getNPCData(Secretario)->misionAceptada == 2 && gD().getNPCData(Vagabundo)->misionAceptada < 6)) 
 	{
 		canInteract = false;
 		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
@@ -112,9 +112,9 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 void ecs::ExplorationScene::initPlacesDefaultMap()
 {
 	lugares.clear();
-	for (int i = 0; i < generalData().getNumDistritos(); ++i) {
+	for (int i = 0; i < gD().getNumDistritos(); ++i) {
 
-		std::string placeName = generalData().fromDistritoToString(i);
+		std::string placeName = gD().fromDistritoToString(i);
 
 		lugares.insert({ (Distrito) i, Lugar((Distrito)i, & sdlutils().images().at(placeName), false)});
 	}
@@ -173,7 +173,7 @@ void ecs::ExplorationScene::render()
 void ecs::ExplorationScene::update() {
 	Scene::update();
 
-	if (placeToGo >= 0 && placeToGo < generalData().getNumDistritos()) {
+	if (placeToGo >= 0 && placeToGo < gD().getNumDistritos()) {
 
 		navigate((Distrito)placeToGo);
 		createObjects(placeToGo);
@@ -217,8 +217,8 @@ void ecs::ExplorationScene::makeDataWindow()
 	ImGui::Begin("Exploration Scene Data");
 	if (ImGui::CollapsingHeader("Felicidad Npc")) {
 		for (int i = 0; i < 7; i++) {
-			auto npc = generalData().getNPCData((Personaje)i);
-			std::string npcData = generalData().personajeToString((Personaje)i) + ": " + 
+			auto npc = gD().getNPCData((Personaje)i);
+			std::string npcData = gD().personajeToString((Personaje)i) + ": " + 
 				npc::happinessToString.at(npc->felicidad);
 			ImGui::Text(+ npcData.c_str());
 		}
@@ -233,7 +233,7 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrow(Vector2D pos, std::st
 	factory_->setLayer(ecs::layer::FOREGROUND);
 	Texture* sujetaplazas;
 
-	int placeID = generalData().fromStringToDistrito(place);
+	int placeID = gD().fromStringToDistrito(place);
 
 	if(placeID < lugares.size() && lugares[(Distrito)placeID].isNavegable())
 		sujetaplazas = &sdlutils().images().at("cartel" + place);
@@ -277,10 +277,10 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 	auto clickableBotonTrabajar = e->addComponent<Clickeable>("");
 	CallbackClickeable funcPress = [this]() {
 		if (canInteract) {
-			if ((generalData().getDay() == 1 ||
-				generalData().getDay() == 3 ||
-				generalData().getDay() == 5 ||
-				generalData().getDay() == 8) && !generalData().GetValueSkipTutorial()) {
+			if ((gD().getDay() == 1 ||
+				gD().getDay() == 3 ||
+				gD().getDay() == 5 ||
+				gD().getDay() == 8) && !gD().GetValueSkipTutorial()) {
 
 				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
 			}
@@ -362,7 +362,7 @@ void ecs::ExplorationScene::createDiario() {
 
 void ecs::ExplorationScene::setupDiarioPages() {
 	diarioText_.clear();
-	int day = generalData().getDay();
+	int day = gD().getDay();
 	pagesByCharacter = std::vector<int>(7, 0);
 	RenderImage* rendComp = diario_->getComponent<RenderImage>();
 	if (rendComp == nullptr)
@@ -373,7 +373,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 	bool diarioVacio = true;
 	//recorremos todos los personajes
 	for (int i = 0; i < 7; i++) {
-		NPCdata* data = generalData().getNPCData((npc::Personaje)i);
+		NPCdata* data = gD().getNPCData((npc::Personaje)i);
 		if (data->felicidad != NoHabladoAun)
 		{
 			diarioVacio = false;
@@ -389,8 +389,8 @@ void ecs::ExplorationScene::setupDiarioPages() {
 					textoPersonaje = textoPersonaje + "- Dia ";
 					if (data->eventosCompletados[j].second == 0) // si el evento es de hoy
 					{
-						if (data == generalData().getNPCData(Vagabundo) ||
-							data == generalData().getNPCData(Secretario)) {
+						if (data == gD().getNPCData(Vagabundo) ||
+							data == gD().getNPCData(Secretario)) {
 							textoPersonaje = textoPersonaje + std::to_string(day) +
 								textoCompletado + "\n" +
 								data->events[day - 1]->textoDiario + "\n";
@@ -480,7 +480,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 	if (firstPersonaje == -1)
 		caraFelicidad->setTexture(nullptr);
 	else
-		changeCaraFelicidad(generalData().getNPCData((Personaje)firstPersonaje));
+		changeCaraFelicidad(gD().getNPCData((Personaje)firstPersonaje));
 }
 
 void ecs::ExplorationScene::changeDiarioPages(bool forward) {
@@ -503,7 +503,7 @@ void ecs::ExplorationScene::changeDiarioPages(bool forward) {
 		i++;
 	}
 	if (texFound)
-		changeCaraFelicidad(generalData().getNPCData((Personaje)(i - 1)));
+		changeCaraFelicidad(gD().getNPCData((Personaje)(i - 1)));
 
 	makeDiaryPages();
 }
@@ -559,7 +559,7 @@ void ecs::ExplorationScene::makeDiaryPages()
 
 void ecs::ExplorationScene::addDiarioEvent(NPCevent* event)
 {
-	NPCdata* data = generalData().getNPCData(event->personaje);
+	NPCdata* data = gD().getNPCData(event->personaje);
 	int i = 0;
 	while (i < data->eventosCompletados.size())
 	{
@@ -567,7 +567,7 @@ void ecs::ExplorationScene::addDiarioEvent(NPCevent* event)
 			break;
 		i++;
 	}
-	generalData().getNPCData(event->personaje)->eventosCompletados[i] = std::make_pair(true, 0);
+	gD().getNPCData(event->personaje)->eventosCompletados[i] = std::make_pair(true, 0);
 	setupDiarioPages();
 }
 
@@ -585,8 +585,8 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	CallbackClickeable funcPress = [this, character]() {
 		if (canInteract)
 		{
-			if (generalData().getNPCData(generalData().stringToPersonaje(character))->felicidad == npc::Maxima) {
-				generalData().unlockUpgrade(generalData().stringToPersonaje(character));
+			if (gD().getNPCData(gD().stringToPersonaje(character))->felicidad == npc::Maxima) {
+				gD().unlockUpgrade(gD().stringToPersonaje(character));
 			}
 			dialogMngr_.setEndDialogueCallback([this] {
 				canInteract = true;
@@ -594,8 +594,8 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 			canInteract = false;
 			dialogMngr_.startConversation(character);
 
-			auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
-			auto data = generalData().getNPCData(charac); //data de dicho personaje
+			auto charac = gD().stringToPersonaje(character); //de que personaje queremos el dialogo
+			auto data = gD().getNPCData(charac); //data de dicho personaje
 
 			// activamos los dialogos correspondientes
 			std::pair<const std::string, int> aux = data->getDialogueInfo();
@@ -606,11 +606,11 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 				if (event != nullptr)
 				{
 					for (int i = 0; i < event->numPaquetes; i++) {
-						generalData().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+						gD().npcEventSys->addPaqueteNPC(event->paquetes[i]);
 					}
-					generalData().npcEventSys->activateEvent(event);
+					gD().npcEventSys->activateEvent(event);
 					//addDiarioEvent(event);
-					generalData().npcEventSys->shuffleNPCqueue();
+					gD().npcEventSys->shuffleNPCqueue();
 				}
 			}
 		}
@@ -657,13 +657,13 @@ void ecs::ExplorationScene::setNavegabilityOfPlace(int place, bool value)
 
 void ecs::ExplorationScene::updateNavegavility()
 {
-	for (std::string g : generalData().getPlacesToActive())
-		setNavegabilityOfPlace(generalData().fromStringToDistrito(g));
+	for (std::string g : gD().getPlacesToActive())
+		setNavegabilityOfPlace(gD().fromStringToDistrito(g));
 }
 
 void ecs::ExplorationScene::createObjects(int place) {
 	//Seleccion del lugar deseado
-	std::string placeName = generalData().fromDistritoToString(place);
+	std::string placeName = gD().fromDistritoToString(place);
 	auto& pl = config().places().at(placeName);
 	Lugar& dist = lugares[(Distrito)place];
 
@@ -675,7 +675,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 	}
 	auto& characters = pl.myCharacters;
 	for (int i = 0; i < pl.myCharacters.size(); ++i) {
-		if (generalData().getNPCData(generalData().stringToPersonaje(characters[i].name_))->felicidad != npc::SeFue) {
+		if (gD().getNPCData(gD().stringToPersonaje(characters[i].name_))->felicidad != npc::SeFue) {
 			dist.addObject(createCharacter(characters[i].pos,
 				characters[i].name_, characters[i].scale_));
 		}
@@ -695,7 +695,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 
 		//PLACEHOLDER_BOTON_GUARDADO
 		factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
-			generalData().saveGame();
+			gD().saveGame();
 			}, "click", SDL_Color{255,255,0});
 	}
 }

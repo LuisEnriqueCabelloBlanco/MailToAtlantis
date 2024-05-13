@@ -79,7 +79,7 @@ void NPCMenorData::setupDayData() {
 		felicidad = Normal;
 	postConversation = false;
 	iteration = 1;
-	int day = generalData().getDay() - 1;
+	int day = gD().getDay() - 1;
 	giveEvent = diasDanEvento[day];
 	if (misionAceptada) {
 		numMisionesAceptadas++;
@@ -183,7 +183,7 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 		misionAceptada = true;
 		aux = postConversation ?
 			"PostConversacionDia" : "Dia";
-		aux = aux + std::to_string(generalData().getDay());
+		aux = aux + std::to_string(gD().getDay());
 		break;
 	}
 

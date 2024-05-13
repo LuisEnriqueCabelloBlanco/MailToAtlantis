@@ -8,6 +8,8 @@
 const std::string DIFF_SETTINGS_PATH = "recursos/config/mail.dificulty.json";
 const std::string REMITENT_SETTINGS_PATH = "recursos/config/mail.destinatarios.json";
 const std::string DIR_SETTINGS_PATH = "recursos/config/mail.direcctions.json";
+const std::string SAVE_PATH = "recursos/data/saveFile.json";
+const std::string NPC_DATA_PATH = "recursos/data/npcData.json";
 #pragma endregion
 
 #pragma region General
@@ -26,6 +28,10 @@ constexpr int INITIAL_FAILS_MARGIN = 1;
 constexpr int LOGICAL_RENDER_WIDTH = 1920;
 constexpr int LOGICAL_RENDER_HEITH = 1080;
 constexpr int MAX_DISTRICTS = 7;
+constexpr int MIN_HAPPINES = 1;
+constexpr int MAX_HAPPINES = 99;
+constexpr int BAD_HAPPINES = 30;
+constexpr int NORMAL_HAPPINES = 65;
 #pragma endregion
 
 
@@ -33,10 +39,10 @@ constexpr int MAX_DISTRICTS = 7;
 /*========================================================================================
 * PACKAGE SETTINGS
 *=====================================================================================*/
-constexpr int PESADO_MAX = 75;	//L�mite del peso m�ximo de paquetes pesados 
-constexpr int MEDIO_MAX = 50;	//L�mite del peso m�ximo de paquetes de peso medio 
-constexpr int LIGERO_MAX = 25;	//L�mite del peso m�ximo de paquetes ligeros
-constexpr int PAQUETE_MIN = 10;	//L�mite del peso m�nimo de paquetes ligeros
+constexpr int PESADO_MAX = 75;	//Limite del peso maximo de paquetes pesados 
+constexpr int MEDIO_MAX = 50;	//Limite del peso maximo de paquetes de peso medio 
+constexpr int LIGERO_MAX = 25;	//Limite del peso maximo de paquetes ligeros
+constexpr int PAQUETE_MIN = 10;	//Limite del peso manimo de paquetes ligeros
 constexpr int PESO_CARTA = 2;	//Peso carta
 // posicion y tamano Tipo sellos
 constexpr int TIPO_SELLO_POS_X = 10;

@@ -3,6 +3,7 @@
 #endif // !DEV_TOOLS
 #include "GeneralData.h"
 #include <json/JSON.h>
+#include <json/JSONValue.h>
 #include <sdlutils/RandomNumberGenerator.h>
 #include <architecture/ecs.h>
 #include <sistemas/SoundEmiter.h>
@@ -10,6 +11,7 @@
 #include <architecture/Game.h>
 #include <sistemas/NPCeventSystem.h>
 #include <architecture/GameConstants.h>
+#include <iostream>
 
 
 GeneralData::GeneralData()
@@ -23,10 +25,8 @@ GeneralData::GeneralData()
 	dia_ = INITIAL_DAY;
 	rent_ = 100;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
-	upgrades_.resize(ecs::upg::_LAST_UPGRADE);
-	for (auto upg : upgrades_) {
-		upg = false;
-	}
+	//upgrades_.resize(ecs::upg::_LAST_UPGRADE);
+	upgrades_.reset();
 	paramVolMusic_ = 0;
 	paramVolSfx_ = 50;
 
@@ -66,12 +66,20 @@ GeneralData::~GeneralData() {
 
 void GeneralData::loadSaveFile()
 {
-	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/saveFile.json"));
+	std::ifstream in;
+	in.open(SAVE_PATH);
+	if (in.is_open()) {
+		in.close();
+		std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile(SAVE_PATH));
 
-	JSONObject root = jsonFile->AsObject();
+		JSONObject root = jsonFile->AsObject();
 
-	dia_ = root.find("Dia")->second->AsNumber();
-	dinero_ = root.find("Dinero")->second->AsNumber();
+		dia_ = root["Dia"]->AsNumber();
+		dinero_ = root["Dinero"]->AsNumber();
+	}
+	else {
+		throw std::runtime_error("error al cargar los datos del fichero de guardado");
+	}
 }
 
 void GeneralData::newGame()
@@ -285,6 +293,21 @@ void GeneralData::updateDistrictsPerDay(int dia)
 	updateDistrictsPerDay(dia - 1);
 }
 
+void GeneralData::saveNPCData(JSONObject& obj)
+{
+	JSONObject characters;
+	for (auto npc : npcData) {
+		JSONObject charac;
+		modifyJsonData(charac, "Felicidad", npc.second->numFelicidad);
+		modifyJsonData(charac, "MisionesAceptadas", npc.second->numMisionesAceptadas);
+		modifyJsonData(charac, "MisionesCompletadas",(int) npc.second->eventosCompletados.size());
+		modifyJsonData(characters, personajeToString(npc.first), charac);
+	}
+	modifyJsonData(obj, "Personajes", characters);
+
+	writeNPCData();
+}
+
 int GeneralData::getPaqueteLevel() {
 	//Aqui habra que decidir el paquete level en funci�n del d�a
 	return paqueteLvl_;
@@ -405,7 +428,7 @@ void GeneralData::readNPCData() {
 }
 
 void GeneralData::writeNPCData() {
-	std::ifstream archivo("recursos/data/npcData.json");
+	std::ifstream archivo(NPC_DATA_PATH);
 
 	if (!archivo.is_open())
 	{
@@ -428,7 +451,7 @@ void GeneralData::writeNPCData() {
 
 		int posFelicidad = contenido.find("Felicidad", posPersonaje) + 12;
 		contenido.replace(posFelicidad, (contenido.find('\n', posFelicidad)) - posFelicidad,
-			'"' + generalData().felicidadToString(data->felicidad) + '"' + ',');
+			'"' + gD().felicidadToString(data->felicidad) + '"' + ',');
 		int posFelicidadNum = contenido.find("FelicidadNum", posPersonaje) + 15;
 		contenido.replace(posFelicidadNum, (contenido.find('\n', posFelicidadNum)) - posFelicidadNum,
 			std::to_string(data->numFelicidad) + ",");
@@ -466,47 +489,29 @@ void GeneralData::writeNPCData() {
 	archivoSalida << contenido;
 	archivoSalida.close();
 }
-
+//No deberia ser const????
 void GeneralData::saveGame() {
-	std::ifstream archivo("recursos/data/saveFile.json");
+	std::ofstream in;
+	//en el caso de que no exista el fichero se crea uno nuevo
+	in.open(SAVE_PATH);
 
-	if (!archivo.is_open())
-	{
-		throw std::runtime_error("Error al abrir saveFile.json");
-	}
+	/*
+	* Para ampliar el guardado acceder a los datos como si fuera un map y 
+	* asignar un new JsonValue al elemento a modificar
+	*/ 
+	JSONObject root;
 
-	// Leer el contenido del archivo en una cadena
-	std::string contenido = "";
-	std::string linea;
-	while (std::getline(archivo, linea)) {
-		contenido += linea + "\n";
-	}
-	archivo.close();
+	//modificacion de los valores en el json
+	modifyJsonData(root, "Dia", dia_);
+	modifyJsonData(root, "Dinero", dinero_);
+	//puede sustituir a la lectura del npcData que es un poco intrusiva
+	saveNPCData(root);
 
-	// cambiar el dia
-	int posDia = contenido.find("Dia") + 6;
-	size_t finLinea = contenido.find('\n', posDia);
-	contenido.replace(posDia, finLinea - posDia, std::to_string(generalData().getDay()) + ",");
-
-	//cambiar el dinero
-
-	int posDinero = contenido.find("Dinero") + 9;
-	finLinea = contenido.find('\n', posDinero);
-	contenido.replace(posDinero, finLinea - posDinero, std::to_string(generalData().getMoney()));
-
-	// Abrir el archivo en modo de escritura
-	std::ofstream archivoSalida("recursos/data/saveFile.json");
-
-	if (!archivoSalida.is_open()) {
-		throw std::runtime_error("Error al escribir saveFile.json");
-	}
-
-	// Escribir el contenido modificado en el archivo
-	archivoSalida.clear();
-	archivoSalida << contenido;
-	archivoSalida.close();
-
-	writeNPCData();
+	//guardado de datos
+	JSONValue* jsonFile = new JSONValue(root);
+	in << jsonFile->Stringify(true);
+	delete jsonFile;
+	in.close();
 }
 
 void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
@@ -521,11 +526,11 @@ void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
 	Felicidad newFelicidad = SeFue;
 	if (newFelicidadInt < 1)
 		newFelicidad = Minima;
-	else if (newFelicidadInt > 99)
+	else if (newFelicidadInt > MAX_HAPPINES)
 		newFelicidad = Maxima;
-	else if (newFelicidadInt < 30)
+	else if (newFelicidadInt < BAD_HAPPINES)
 		newFelicidad = Mala;
-	else if (newFelicidadInt < 65)
+	else if (newFelicidadInt < NORMAL_HAPPINES)
 		newFelicidad = Normal;
 	else
 		newFelicidad = Buena;

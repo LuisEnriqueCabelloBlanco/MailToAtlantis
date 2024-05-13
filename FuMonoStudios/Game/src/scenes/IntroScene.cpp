@@ -160,7 +160,7 @@ ecs::Entity* ecs::IntroScene::createGarbage()
 			e->getComponent<MoverTransform>()->enable();
 		    e->addComponent<SelfDestruct>(1);
 			nextIteration();
-		}, generalData().DropIn);
+		}, gD().DropIn);
 	factory_->setLayer(ecs::layer::DEFAULT);
 	return papelera;
 }

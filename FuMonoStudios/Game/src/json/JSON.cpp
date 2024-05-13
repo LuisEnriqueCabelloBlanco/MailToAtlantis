@@ -107,7 +107,7 @@ JSONValue *JSON::Parse(const char *data)
 std::string JSON::Stringify(const JSONValue *value)
 {
 	if (value != NULL)
-		return value->Stringify();
+		return value->Stringify(true);
 	else
 		return "";
 }
