@@ -14,6 +14,7 @@
 #include <architecture/GameConstants.h>
 #include <sistemas/SoundEmiter.h>
 #include <architecture/Game.h>
+#include <architecture/Time.h>
 
 ecs::TutorialScene::TutorialScene() : MainScene(), balanzaUsed(false) {
 	tutorialSys_ = new TutorialSystem(this);	
@@ -24,14 +25,14 @@ ecs::TutorialScene::~TutorialScene() {
 }
 
 void ecs::TutorialScene::update() {
-	MainScene::update();
+	Scene::update();
 	tutorialSys_->update();
+	dialogMngr_.update();
 #ifdef _DEBUG
 	if (ih().isKeyDown(SDL_SCANCODE_O)) {
 		gm().requestChangeScene(ecs::sc::TUTORIAL_SCENE, ecs::sc::MAIN_SCENE);
 	}
 #endif // _DEBUG
-
 }
 
 void ecs::TutorialScene::render() {

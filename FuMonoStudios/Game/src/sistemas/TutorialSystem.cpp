@@ -46,9 +46,6 @@ void TutorialSystem::update() {
 		}
 
 	}
-
-
-	dialogMngr_.update();
 }
 
 void TutorialSystem::activateEvent(TutorialEvent event) {

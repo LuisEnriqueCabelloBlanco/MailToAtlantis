@@ -15,6 +15,7 @@
 #include <QATools/DataCollector.h>
 #include <entities/ClockAux.h>
 #include <components/SelfDestruct.h>
+#include <sdlutils/InputHandler.h>
 
 ecs::IntroScene::IntroScene() : introIteration(0), waitingCallback(false), mPaqBuild_(nullptr), tubo_(nullptr), bottle_(nullptr)
 {
@@ -38,6 +39,9 @@ void ecs::IntroScene::update()
 			waitingCallback = false;
 			call_();
 		}
+	}
+	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_N)) {
+		gm().requestChangeScene(ecs::sc::INTRO_SCENE, ecs::sc::EXPLORE_SCENE);
 	}
 	mDialogManager.update();
 }
@@ -184,7 +188,8 @@ ecs::Entity* ecs::IntroScene::createBottle()
 	bottle->addComponent<Clickeable>("click");
 	bottle->getComponent<Clickeable>()->addEvent([this]
 		{
-			nextIteration();
+			if(introIteration == 6)
+				nextIteration();
 		});
 
 	auto movComp = bottle->addComponent<MoverTransform>();

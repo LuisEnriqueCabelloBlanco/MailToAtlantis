@@ -153,7 +153,7 @@ void Game::loadScene(ecs::sc::sceneId scene)
 		//cargamos la escena
 		loadedScenes_.push_back(gameScenes_[scene]);
 #ifdef _DEBUG
-		std::cout << "Scene "<<scene<< " Loaded" << std::endl;
+		std::cout << "Scene "<<(int) scene<< " Loaded" << std::endl;
 #endif // _DEBUG
 
 	}
@@ -174,7 +174,7 @@ void Game::killScene(ecs::sc::sceneId scene)
 		(*it)->close();
 		loadedScenes_.erase(it);
 #ifdef _DEBUG
-		std::cout << "Scene Killed" << std::endl;
+		std::cout << "Scene " << (int) scene << " Killed" << std::endl;
 #endif // _DEBUG
 
 	}
