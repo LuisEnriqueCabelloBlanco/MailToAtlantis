@@ -246,6 +246,7 @@ private:
 
 	void updateDistrictsPerDay(int dia);
 
+	void saveNPCData(JSONObject& obj);
 
 	/// <summary>
 	/// estructura que almacena los datos de los npc
@@ -314,10 +315,10 @@ private:
 	/// </summary>
 	std::vector<bool> upgrades_;
 
-	/// <summary>
+	/*/// <summary>
 	/// Vector que se borrara al terminar de relizar el guardado
 	/// </summary>
-	std::vector<JSONValue*> jsonValVec;
+	std::vector<JSONValue*> jsonValVec;*/
 };
 /// <summary>
 /// Accesor de General Data

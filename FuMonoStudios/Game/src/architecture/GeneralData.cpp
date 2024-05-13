@@ -68,13 +68,11 @@ GeneralData::~GeneralData() {
 
 void GeneralData::loadSaveFile()
 {
-
-	const std::string PATH = "recursos/data/saveFile.json";
 	std::ifstream in;
-	in.open(PATH);
+	in.open(SAVE_PATH);
 	if (in.is_open()) {
 		in.close();
-		std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile(PATH));
+		std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile(SAVE_PATH));
 
 		JSONObject root = jsonFile->AsObject();
 
@@ -297,6 +295,21 @@ void GeneralData::updateDistrictsPerDay(int dia)
 	updateDistrictsPerDay(dia - 1);
 }
 
+void GeneralData::saveNPCData(JSONObject& obj)
+{
+	JSONObject characters;
+	for (auto npc : npcData) {
+		JSONObject charac;
+		modifyJsonData(charac, "Felicidad", npc.second->numFelicidad);
+		modifyJsonData(charac, "MisionesAceptadas", npc.second->numMisionesAceptadas);
+		modifyJsonData(charac, "MisionesCompletadas",(int) npc.second->eventosCompletados.size());
+		modifyJsonData(characters, personajeToString(npc.first), charac);
+	}
+	modifyJsonData(obj, "Personajes", characters);
+
+	writeNPCData();
+}
+
 int GeneralData::getPaqueteLevel() {
 	//Aqui habra que decidir el paquete level en funci�n del d�a
 	return paqueteLvl_;
@@ -480,27 +493,27 @@ void GeneralData::writeNPCData() {
 }
 //No deberia ser const????
 void GeneralData::saveGame() {
-	const std::string PATH = "recursos/data/saveFile.json";
 	std::ofstream in;
-	in.open(PATH);
-	//Modificación de los elementos
+	//en el caso de que no exista el fichero se crea uno nuevo
+	in.open(SAVE_PATH);
 
 	/*
-	* Para ampliar el guardado acceder a los datos como si fuera un map y asignar un new JsonValue
-	* al elemento a modificar
+	* Para ampliar el guardado acceder a los datos como si fuera un map y 
+	* asignar un new JsonValue al elemento a modificar
 	*/ 
 	JSONObject root;
 
 	//modificacion de los valores en el json
-	modifyJsonData(root, "Dia", gD().getDay());
-	modifyJsonData(root, "Dinero", gD().getMoney());
-	JSONValue* jsonFile = new JSONValue(root);
+	modifyJsonData(root, "Dia", dia_);
+	modifyJsonData(root, "Dinero", dinero_);
+	//puede sustituir a la lectura del npcData que es un poco intrusiva
+	saveNPCData(root);
+
 	//guardado de datos
+	JSONValue* jsonFile = new JSONValue(root);
 	in << jsonFile->Stringify(true);
 	delete jsonFile;
 	in.close();
-
-	writeNPCData();
 }
 
 void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
