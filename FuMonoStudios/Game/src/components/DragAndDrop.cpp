@@ -29,7 +29,8 @@ DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt, std::string sound) :
 	draggingSound_(sound){
 }
 
-DragAndDrop::DragAndDrop(bool usingClosestEnt, bool usingOwnCallback, std::string sound) : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
+DragAndDrop::DragAndDrop(bool usingClosestEnt, bool usingOwnCallback, std::string sound) : tr_(nullptr), tri_(nullptr), 
+grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
 usingCallback_(false), usingOnlyClosestEnt_(usingClosestEnt), usingOwnCallback_(usingOwnCallback),
 draggingSound_(sound) {
 }

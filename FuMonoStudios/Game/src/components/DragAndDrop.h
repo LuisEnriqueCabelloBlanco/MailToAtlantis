@@ -21,10 +21,10 @@ class DragAndDrop : public ecs::Component {
 public:
 	__CMP_DECL__(ecs::cmp::DRAGANDDROP)
 	DragAndDrop();
-	DragAndDrop(std::string sound);
-	DragAndDrop(bool usingClosestEnt, std::string sound);
+	DragAndDrop(std::string sound = "");
+	DragAndDrop(bool usingClosestEnt, std::string sound = "");
 	DragAndDrop(bool usingClosestEnt, bool usingOwnCallback, std::string sound);
-	DragAndDrop(bool usingClosestEnt, SimpleCallback func, std::string sound);
+	DragAndDrop(bool usingClosestEnt, SimpleCallback func, std::string sound = "");
 
 	~DragAndDrop();
 	static bool enableDrag;
