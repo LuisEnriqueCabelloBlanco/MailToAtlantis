@@ -228,6 +228,14 @@ footer img:hover {
 	display: flex;
 	flex-direction: row;
 	margin: 20px;
+	
+}
+
+.miembro img {
+    border-radius: 50%;
+    width: 250px; /* Asegúrate de mantener las dimensiones deseadas */
+    height: 250px;
+    object-fit: cover; /* Para asegurar que la imagen se ajuste correctamente dentro del círculo */
 }
 
 .info-miembro {
@@ -239,7 +247,9 @@ footer img:hover {
 }
 
 .textito{
-	font-size: 25px;
+	font-size: 24px;
+	line-height: 1.5;
+    white-space: pre-wrap;
 }
 
 
