@@ -351,13 +351,19 @@ void GeneralData::setPaqueteLevel(int lvl) {
 }
 
 void GeneralData::readNPCData() {
-	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/npcData.json"));
+	std::unique_ptr<JSONValue> jsonFileNpcData(JSON::ParseFromFile(NPC_DATA_PATH));
 
-	if (jsonFile == nullptr || !jsonFile->IsObject()) {
+	if (jsonFileNpcData == nullptr || !jsonFileNpcData->IsObject()) {
 		throw "Something went wrong while load/parsing npcData";
 	}
 
-	JSONObject root = jsonFile->AsObject();
+	std::unique_ptr<JSONValue> jsonFileSaveFile(JSON::ParseFromFile(SAVE_PATH));
+	if (jsonFileSaveFile == nullptr || !jsonFileSaveFile->IsObject()) {
+		throw "Something went wrong while load/parsing saveFile";
+	}
+
+	JSONObject npcDataRoot = jsonFileNpcData->AsObject();
+	JSONObject saveFileRoot = jsonFileSaveFile->AsObject().find("Personajes")->second->AsObject();
 	JSONValue* jValue = nullptr;
 
 	// cargamos los 7 personajes
@@ -365,7 +371,7 @@ void GeneralData::readNPCData() {
 	for (int i = 0; i < 7; i++)
 	{
 		std::string aux = personajeToString((Personaje)i);
-		jValue = root[aux];
+		jValue = saveFileRoot[aux];
 
 		JSONObject jObject = jValue->AsObject();
 		std::string felicidadStr = jObject["Felicidad"]->AsString();
@@ -400,8 +406,8 @@ void GeneralData::readNPCData() {
 		else
 		{
 			std::vector<bool> diasDanEventos;
-			jObject = jValue->AsObject();
-			JSONObject jDiasEvento = jObject.find("DiasConEvento")->second->AsObject();
+			JSONObject jObjectNPCdata = npcDataRoot[aux]->AsObject();
+			JSONObject jDiasEvento = jObjectNPCdata.find("DiasConEvento")->second->AsObject();
 
 			// leemos los 14 booleanos
 			for (int j = 0; j < 14; j++)
@@ -433,11 +439,11 @@ void GeneralData::readNPCData() {
 }
 
 void GeneralData::writeNPCData() {
-	std::ifstream archivo(NPC_DATA_PATH);
+	std::ifstream archivo(SAVE_PATH);
 
 	if (!archivo.is_open())
 	{
-		throw std::runtime_error("Error al abrir npcData.json");
+		throw std::runtime_error("Error al abrir saveFile.json");
 	}
 
 	// Leer el contenido del archivo en una cadena
@@ -448,6 +454,12 @@ void GeneralData::writeNPCData() {
 	}
 	archivo.close();
 
+	int posDia = contenido.find("Dia") + 6;
+	contenido.replace(posDia, (contenido.find('\n', posDia)) - posDia,
+		 std::to_string(gD().dia_) + ',');
+	int posDinero = contenido.find("Dinero") + 9;
+	contenido.replace(posDinero, (contenido.find('\n', posDinero)) - posDinero,
+		std::to_string(gD().getMoney()) + ',');
 
 	for (int i = 0; i < 7; i++)
 	{
@@ -476,17 +488,17 @@ void GeneralData::writeNPCData() {
 		}
 		if (newEventosString[newEventosString.size() - 1] == ',')
 			newEventosString.pop_back();
-		newEventosString += "],";
+		newEventosString += "]";
 		contenido.replace(posEventosCompletados, (contenido.find('\n', posEventosCompletados)) -
 			posEventosCompletados, newEventosString);
 
 	}
 
 	// Abrir el archivo en modo de escritura
-	std::ofstream archivoSalida("recursos/data/npcData.json");
+	std::ofstream archivoSalida(SAVE_PATH);
 
 	if (!archivoSalida.is_open()) {
-		throw std::runtime_error("Error al escribir npcData.json");
+		throw std::runtime_error("Error al escribir saveFile.json");
 	}
 
 	// Escribir el contenido modificado en el archivo
@@ -494,16 +506,21 @@ void GeneralData::writeNPCData() {
 	archivoSalida << contenido;
 	archivoSalida.close();
 }
-//No deberia ser const????
+
 void GeneralData::saveGame() {
+
+	writeNPCData();
+
+	/*
+
 	std::ofstream in;
 	//en el caso de que no exista el fichero se crea uno nuevo
 	in.open(SAVE_PATH);
 
-	/*
-	* Para ampliar el guardado acceder a los datos como si fuera un map y 
-	* asignar un new JsonValue al elemento a modificar
-	*/ 
+	//
+	// Para ampliar el guardado acceder a los datos como si fuera un map y 
+	// asignar un new JsonValue al elemento a modificar
+	// 
 	JSONObject root;
 
 	//modificacion de los valores en el json
@@ -517,6 +534,7 @@ void GeneralData::saveGame() {
 	in << jsonFile->Stringify(true);
 	delete jsonFile;
 	in.close();
+	*/
 }
 
 void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)

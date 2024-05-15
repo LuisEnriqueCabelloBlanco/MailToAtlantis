@@ -1,9 +1,5 @@
 {
   "Vagabundo": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 30,
-    "numMisionesAceptadas": 0,
-    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -304,10 +300,6 @@
     }
   },
   "Secretario": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
-    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -599,9 +591,6 @@
     }
   },
   "Campesino": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -618,7 +607,6 @@
       "13": false,
       "14": false
     },
-    "EventosCompletados": [-2],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -728,9 +716,6 @@
     }
   },
   "Artesano": {
-    "Felicidad": "Normal",
-    "FelicidadNum": 60,
-    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -747,7 +732,6 @@
       "13": false,
       "14": false
     },
-    "EventosCompletados": [2],
     "Eventos": {
       "1": {
         "numPaquetes": 2,
@@ -854,9 +838,6 @@
     }
   },
   "Tarotisa": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -873,7 +854,6 @@
       "13": true,
       "14": false
     },
-    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -979,9 +959,6 @@
     }
   },
   "Soldado": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -998,7 +975,6 @@
       "13": false,
       "14": true
     },
-    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 3,
@@ -1097,9 +1073,6 @@
     }
   },
   "Contable": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -1116,7 +1089,6 @@
       "13": true,
       "14": true
     },
-    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 3,
@@ -1172,10 +1144,8 @@
           "fragil": true
         },
         "recompensa": {
-
           "1": "Contable++++++++++",
           "2": "$Contable----------"
-
         },
         "textoDiario": "Texto diario"
       },
@@ -1191,10 +1161,8 @@
           "distrito": "Hermes"
         },
         "recompensa": {
-
           "1": "Contable++++++++++",
           "2": "$Contable----------"
-
         },
         "textoDiario": "Texto diario"
       },
@@ -1212,10 +1180,8 @@
           "legal": false
         },
         "recompensa": {
-
           "1": "Contable++++++++++",
           "2": "$Contable----------"
-
         },
         "textoDiario": "Texto diario"
       }
