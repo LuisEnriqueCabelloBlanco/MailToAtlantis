@@ -38,7 +38,7 @@ void EndGameScene::init()
 {
     npcId_ = 0;
     endText_ = factory_->createLabel(Vector2D(300, 900), 1000,
-        endTexts_[(Personaje)npcId_][generalData().getNPCData((Personaje)npcId_)->felicidad], 
+        endTexts_[(Personaje)npcId_][gD().getNPCData((Personaje)npcId_)->felicidad], 
         50,build_sdlcolor(0xFFFFFFFF));
 }
 
@@ -62,14 +62,14 @@ void EndGameScene::nextEnding()
     npcId_++;
     Personaje npc = (Personaje)npcId_;
     //endImage->getComponent<RenderImage>();
-    Texture* endText = factory_->createTextTexture(endTexts_[npc][generalData().getNPCData(npc)->felicidad], 50, build_sdlcolor(0xFFFFFFFF));
+    Texture* endText = factory_->createTextTexture(endTexts_[npc][gD().getNPCData(npc)->felicidad], 50, build_sdlcolor(0xFFFFFFFF));
     endText_->getComponent<RenderImage>()->setTexture(endText);
     endText_->getComponent<Transform>()->setWidth(endText->width());
 }
 
 void EndGameScene::loadEnd(Personaje npc, JSONObject& root)
 {
-    std::string charac = generalData().personajeToString(npc);
+    std::string charac = gD().personajeToString(npc);
     JSONValue* jsonEntry = nullptr;
     jsonEntry = root[charac];
     if (jsonEntry != nullptr)

@@ -1,4 +1,41 @@
 {
-  "Dia": 2,
-  "Dinero": 390
+  "Dia":5,
+  "Dinero":350,
+  "Personajes":{
+    "Artesano":{
+      "Felicidad":60,
+      "MisionesAceptadas":1,
+      "MisionesCompletadas":5
+    },
+    "Campesino":{
+      "Felicidad":50,
+      "MisionesAceptadas":1,
+      "MisionesCompletadas":5
+    },
+    "Contable":{
+      "Felicidad":50,
+      "MisionesAceptadas":0,
+      "MisionesCompletadas":5
+    },
+    "Secretario":{
+      "Felicidad":50,
+      "MisionesAceptadas":0,
+      "MisionesCompletadas":14
+    },
+    "Soldado":{
+      "Felicidad":50,
+      "MisionesAceptadas":0,
+      "MisionesCompletadas":5
+    },
+    "Tarotisa":{
+      "Felicidad":50,
+      "MisionesAceptadas":0,
+      "MisionesCompletadas":5
+    },
+    "Vagabundo":{
+      "Felicidad":30,
+      "MisionesAceptadas":0,
+      "MisionesCompletadas":14
+    }
+  }
 }

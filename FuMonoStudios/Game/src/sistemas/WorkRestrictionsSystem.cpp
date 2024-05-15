@@ -78,34 +78,34 @@ tb::WorkEvent WorkRestrictionsSystem::getEvent(int selection)
 
 void WorkRestrictionsSystem::eventSwapPipe(WorkEvent& event, JSONObject& jObject)
 {
-    event.swap_pipe_data.targetPipe = (Distrito)generalData().fromStringToDistrito(jObject["target"]->AsString());
+    event.swap_pipe_data.targetPipe = (Distrito)gD().fromStringToDistrito(jObject["target"]->AsString());
     SwappedPipe aux;
     aux.swapActive = jObject["swapActive"]->AsBool();
     aux.originalDis = jObject["originalDis"]->AsBool();
-    aux.changedDis = (Distrito)generalData().fromStringToDistrito(jObject["dest"]->AsString());
-    event.swap_pipe_data.blockedPipe = (Distrito)generalData().fromStringToDistrito(jObject["blocked"]->AsString());
+    aux.changedDis = (Distrito)gD().fromStringToDistrito(jObject["dest"]->AsString());
+    event.swap_pipe_data.blockedPipe = (Distrito)gD().fromStringToDistrito(jObject["blocked"]->AsString());
     event.swap_pipe_data.dest = aux;
 }
 
 void WorkRestrictionsSystem::eventBanType(WorkEvent& event, JSONObject& jObject)
 {
-    event.ban_type_pipe_data.targetPipe = (Distrito)generalData().fromStringToDistrito(jObject["target"]->AsString());
-    event.ban_type_pipe_data.ban = generalData().stringToTipoPaquete(jObject["ban"]->AsString());
+    event.ban_type_pipe_data.targetPipe = (Distrito)gD().fromStringToDistrito(jObject["target"]->AsString());
+    event.ban_type_pipe_data.ban = gD().stringToTipoPaquete(jObject["ban"]->AsString());
 }
 
 void WorkRestrictionsSystem::eventWeightRes(WorkEvent& event, JSONObject& jObject)
 {
-    event.weight_res_pipe_data.targetPipe = (Distrito)generalData().fromStringToDistrito(jObject["target"]->AsString());
+    event.weight_res_pipe_data.targetPipe = (Distrito)gD().fromStringToDistrito(jObject["target"]->AsString());
     WeightRestriction auxW;
     auxW.weightRestricted = jObject["weightRestricted"]->AsBool();
     auxW.singleType = jObject["singleType"]->AsBool();
-    auxW.typeToWeight = generalData().stringToTipoPaquete(jObject["typeToWeight"]->AsString());
+    auxW.typeToWeight = gD().stringToTipoPaquete(jObject["typeToWeight"]->AsString());
     auxW.minOrMax = jObject["minOrMax"]->AsNumber();
-    auxW.x = generalData().stringToNivelPeso(jObject["peso"]->AsString());
+    auxW.x = gD().stringToNivelPeso(jObject["peso"]->AsString());
     event.weight_res_pipe_data.restrictions = auxW;
 }
 
 bool WorkRestrictionsSystem::isEventValid(WorkEvent& event)
 {
-    return generalData().getDay() >= event.validDay; //Devolvemos si un evento es valido para el dia en el que estamos comparando el dia actual con el dia a partir del cual un evento se puede usar, si es menor es que no podemos hacer ese evento (por falta de una mecanica o de un distrito desbloqueado). 
+    return gD().getDay() >= event.validDay; //Devolvemos si un evento es valido para el dia en el que estamos comparando el dia actual con el dia a partir del cual un evento se puede usar, si es menor es que no podemos hacer ese evento (por falta de una mecanica o de un distrito desbloqueado). 
 }
