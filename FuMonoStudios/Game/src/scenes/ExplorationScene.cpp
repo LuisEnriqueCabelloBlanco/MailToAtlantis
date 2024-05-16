@@ -387,7 +387,9 @@ void ecs::ExplorationScene::setupDiarioPages() {
 		{
 			diarioVacio = false;
 			//procesamos los textos
-			std::string textoPersonaje = "";
+			DialogManager a;
+			std::string textoPersonaje = data->introText += '\n';
+			a.fixText(textoPersonaje);
 			//contador de las paginas del personaje
 			int j = 0;
 			bool eventoCompletado = true;
@@ -426,7 +428,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 				j++;
 			}
 
-			DialogManager a; 
+			 
 			a.fixText(textoPersonaje);
 
 			j = 0;
@@ -472,6 +474,15 @@ void ecs::ExplorationScene::setupDiarioPages() {
 						textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
 				}
 			}
+		}
+		else if (data->felicidad == NoHabladoAun && data->postConversation){
+			pagesByCharacter[i] = 1;
+			textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
+			DialogManager a;
+			std::string textoPersonaje = data->introText += '\n';
+			a.fixText(textoPersonaje);
+			diarioText_.push_back(textoPersonaje);
+			diarioText_.push_back(" ");
 		}
 	}
 
@@ -625,6 +636,8 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 					gD().npcEventSys->shuffleNPCqueue();
 				}
 			}
+			else if (aux.first == "Presentacion")
+				setupDiarioPages();
 		}
 	};
 

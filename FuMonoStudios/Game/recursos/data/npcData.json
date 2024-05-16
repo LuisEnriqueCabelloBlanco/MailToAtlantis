@@ -1,5 +1,6 @@
 {
   "Vagabundo": {
+    "IntroductionText": "Anemos Togakawa es un vagabundo optimista que vive en el distrito de Hestia. Pasa los d$ias sobreviviendo como puede y hablando con sus colegas campesinos del distrito.",
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -300,6 +301,7 @@
     }
   },
   "Secretario": {
+    "IntroductionText": "Gargafiel Mustaki, el secretario del rey, es un hombre serio que busca que se cumpla el orden en Atlantis. Protege al rey y ejecuta las $ordenes por $el, todo Atlantis depende de lo que $el ordene.",
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -591,6 +593,7 @@
     }
   },
   "Campesino": {
+    "IntroductionText": "campesino",
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -716,6 +719,7 @@
     }
   },
   "Artesano": {
+    "IntroductionText": "artesano",
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -838,6 +842,7 @@
     }
   },
   "Tarotisa": {
+    "IntroductionText": "tarotisa",
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -959,6 +964,7 @@
     }
   },
   "Soldado": {
+    "IntroductionText": "soldado",
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -1073,6 +1079,7 @@
     }
   },
   "Contable": {
+    "IntroductionText": "contable",
     "DiasConEvento": {
       "1": false,
       "2": false,

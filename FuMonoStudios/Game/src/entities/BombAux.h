@@ -15,6 +15,5 @@ public:
 	void RedPressed();
 	void BluePressed();
 private:
-	ecs::MainScene* scene;
 	bool bluePressed;
 };

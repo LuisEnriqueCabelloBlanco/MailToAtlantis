@@ -4,9 +4,9 @@
   "Personajes":{
     "Vagabundo":{
       "Felicidad": "Normal",
-      "FelicidadNum": 45,
-      "numMisionesAceptadas": 3,
-      "EventosCompletados": [1,4,4]
+      "FelicidadNum": 50,
+      "numMisionesAceptadas": 0,
+      "EventosCompletados": []
     },
     "Secretario":{
       "Felicidad": "NoHabladoAun",

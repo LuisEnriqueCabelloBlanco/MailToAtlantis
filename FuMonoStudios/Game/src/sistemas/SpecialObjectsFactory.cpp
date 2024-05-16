@@ -25,9 +25,9 @@ void SpecialObjectsFactory::setupDayObjects() {
 	if ((gD().getNPCData(Vagabundo)->numMisionesAceptadas == 4 ||
 		gD().getNPCData(Vagabundo)->numMisionesAceptadas == 5) && gD().getNPCData(Vagabundo)->postConversation)
 		makePapelAgujeros();
-	if (generalData().getNPCData(Secretario)->numMisionesAceptadas == 3)
+	if (gD().getNPCData(Secretario)->numMisionesAceptadas == 3)
 		makeListaSecretario(true);
-	if (generalData().getNPCData(Secretario)->numMisionesAceptadas == 4)
+	if (gD().getNPCData(Secretario)->numMisionesAceptadas == 4)
 		makeListaSecretario(false);
 
 	makeBomba();
