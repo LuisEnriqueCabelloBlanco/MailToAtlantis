@@ -104,7 +104,6 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			arrow_->getComponent<Transform>()->setPos(1340, 680);
 			break;
 		case TutorialEvent::PaqueteBuscarPaginaCodigosPostales:
-			canPassPagesManual = true;
 			activateDialogue(false);
 			break;
 		case TutorialEvent::BuscarPaginaHestia:
@@ -128,7 +127,6 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			break;
 		case TutorialEvent::EnsenarTubos:
 			scene_->activateOneTube(0);
-			canPassPagesManual = true;
 			activateDialogue(false);
 			break;
 #pragma endregion
@@ -142,6 +140,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::SegundoBuscarPaginaDistritos:
+			canPassPagesManual = false;
 			activateDialogue(false);
 			break;
 		case TutorialEvent::SellarSegundoPaquete:
@@ -177,6 +176,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 #pragma region SignificadoSellos
 
 		case TutorialEvent::BuscarPaginaSellos:
+			canPassPagesManual = true;
 
 			delayedCallback(0.5, [this]() {
 				activateDialogue(false);
@@ -217,6 +217,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 		#pragma region Paquete Fallar Aposta
 		case TutorialEvent::EntraCuartoPaquete:
 			DragAndDrop::enableDrag = false;
+			canPassPagesManual = false;
 			activateDialogue(false);
 			delayedCallback(1.5, [this] {
 				scene_->createPackage(ecs::TutorialScene::FallarAposta);
@@ -231,6 +232,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 		case TutorialEvent::EntraPaquetePeso:
 
 			DragAndDrop::enableDrag = false;
+			canPassPagesManual = false;
 			scene_->createPackage(ecs::TutorialScene::BalanzaTut);
 			delayedCallback(0.2, [this] {
 				activateDialogue(false);
@@ -238,6 +240,8 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			break;
 
 		case TutorialEvent::PesarPaquetePeso:
+
+			canPassPagesManual = false;
 
 			delayedCallback(0.2, [this] {
 				activateDialogue(false);
@@ -332,6 +336,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			break;
 		case TutorialEvent::PaqueteBuscarPaginaCodigosPostales:
 			arrow_->setActive(true);
+			canPassPagesManual = true;
 			arrow_->getComponent<Transform>()->setRotation(320);
 
 			arrow_->getComponent<Transform>()->setPos(
@@ -368,14 +373,17 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 		case TutorialEvent::EntraSegundoPaquete:
 
 			DragAndDrop::enableDrag = true;
+			canPassPagesManual = true;
 			scene_->deactivateOneTube(0);
 			
-
 			addActionListener(Action::PaginaCodigosPostales, [this]() {
 				activateEvent(TutorialEvent::SegundoBuscarPaginaDistritos);
 				});
 			break;
 		case TutorialEvent::SegundoBuscarPaginaDistritos:
+
+			canPassPagesManual = true;
+
 			addActionListener(Action::PaginaDistritoDemeter, [this]() {
 				activateEvent(TutorialEvent::SellarSegundoPaquete);
 				});

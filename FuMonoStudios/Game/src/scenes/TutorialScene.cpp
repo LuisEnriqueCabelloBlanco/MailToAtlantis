@@ -189,42 +189,60 @@ std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createManual(i
 
 	Clickeable* lClick = mapSol["left"]->getComponent<Clickeable>();
 
+	rClick->deleteEvents();
+
+	auto next = [mRen, this]() {
+
+		if(tutorialSys_->canPassPagesManual)
+		mRen->nextTexture(); 
+	
+	};
+
+	rClick->addEvent(next);
+
 	rClick->addEvent([mRen, this]() {
-		if (tutorialSys_->canPassPagesManual)
-		{
-			const Texture* tex = mRen->getCurrentTexture();
-			if (tex == &sdlutils().images().at("book3"))
-				tutorialSys_->notifyAction(TutorialSystem::PaginaCodigosPostales);
-			else if (tex == &sdlutils().images().at("book4"))
-				tutorialSys_->notifyAction(TutorialSystem::PaginaDistritoHestia);
-			else if (tex == &sdlutils().images().at("book5"))
-				tutorialSys_->notifyAction(TutorialSystem::PaginaDistritoDemeter);
-			else if (tex == &sdlutils().images().at("book8"))
-				tutorialSys_->notifyAction(TutorialSystem::PaginaSellos);
-			else if(tex == &sdlutils().images().at("book9"))
-				tutorialSys_->notifyAction(TutorialSystem::PaginaPesado);
-			else if (tex == &sdlutils().images().at("book10"))
-				tutorialSys_->notifyAction(TutorialSystem::PaginaFragilAccion);
-		}
+		const Texture* tex = mRen->getCurrentTexture();
+		if (tex == &sdlutils().images().at("book3"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaCodigosPostales);
+		else if (tex == &sdlutils().images().at("book4"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaDistritoHestia);
+		else if (tex == &sdlutils().images().at("book5"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaDistritoDemeter);
+		else if (tex == &sdlutils().images().at("book8"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaSellos);
+		else if(tex == &sdlutils().images().at("book9"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaPesado);
+		else if (tex == &sdlutils().images().at("book10"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaFragilAccion);
+
 	});
 
-	lClick->addEvent([mRen, this]() {
+	lClick->deleteEvents();
+
+	auto previous = [mRen, this]() {
+
 		if (tutorialSys_->canPassPagesManual)
-		{
-			const Texture* tex = mRen->getCurrentTexture();
-			if (tex == &sdlutils().images().at("book3"))
-				tutorialSys_->notifyAction(TutorialSystem::PaginaCodigosPostales);
-			else if (tex == &sdlutils().images().at("book4"))
-				tutorialSys_->notifyAction(TutorialSystem::PaginaDistritoHestia);
-			else if (tex == &sdlutils().images().at("book5"))
-				tutorialSys_->notifyAction(TutorialSystem::PaginaDistritoDemeter);
-			else if (tex == &sdlutils().images().at("book8"))
-				tutorialSys_->notifyAction(TutorialSystem::PaginaSellos);
-			else if (tex == &sdlutils().images().at("book9"))
-				tutorialSys_->notifyAction(TutorialSystem::PaginaPesado);
-			else if (tex == &sdlutils().images().at("book10"))
-				tutorialSys_->notifyAction(TutorialSystem::PaginaFragilAccion);
-		}
+			mRen->previousTexture();
+
+	};
+
+	lClick->addEvent(previous);
+
+	lClick->addEvent([mRen, this]() {
+		const Texture* tex = mRen->getCurrentTexture();
+		if (tex == &sdlutils().images().at("book3"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaCodigosPostales);
+		else if (tex == &sdlutils().images().at("book4"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaDistritoHestia);
+		else if (tex == &sdlutils().images().at("book5"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaDistritoDemeter);
+		else if (tex == &sdlutils().images().at("book8"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaSellos);
+		else if (tex == &sdlutils().images().at("book9"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaPesado);
+		else if (tex == &sdlutils().images().at("book10"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaFragilAccion);
+		
 	});
 
 
