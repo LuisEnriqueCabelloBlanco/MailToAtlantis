@@ -90,31 +90,34 @@ void ecs::ConfigScene::init()
 
 
 
-	//skipTutorialValueTexture_ = " ";
-	///*if (gD().GetValueSkipTutorial())
-	//	skipTutorialValueTexture_ = "SALTAR";
-	//else
-	//	skipTutorialValueTexture_ = "NO SALTAR";*/
+	if (gD().GetValueSkipTutorial())
+		skipTutorialValueTexture_ = new Texture(sdlutils().renderer(), "SALTAR", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+	else
+		skipTutorialValueTexture_ = new Texture(sdlutils().renderer(), "NO SALTAR", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
 
-	//skipTutorialValueEnt_ = addEntity();
-
-
-	//// Boton para configurar el salto del tutorial o no
-	//CallbackClickeable funcPressSkipTutorial = [this]() {
-	//	gD().ToggleSkipTutorial();
-	//	if (skipTutorialValueTexture_ != "")
-	//	{
-	//		skipTutorialValueTexture_= " ";
-	//	}
+	skipTutorialValueEnt_ = addEntity();
+	Transform* trSkipValue = skipTutorialValueEnt_->addComponent<Transform>(515, 800, skipTutorialValueTexture_->width(), skipTutorialValueTexture_->height());
+	RenderImage* rdrSkipValue = skipTutorialValueEnt_->addComponent<RenderImage>(skipTutorialValueTexture_);
 
 
-	//	if (gD().GetValueSkipTutorial())
-	//		skipTutorialValueTexture_ = "SALTAR";
-	//	else
-	//		skipTutorialValueTexture_ = "NO SALTAR";
-	//};
+	// Boton para configurar el salto del tutorial o no
+	CallbackClickeable funcPressSkipTutorial = [this]() {
+		gD().ToggleSkipTutorial();
+		
+		if (skipTutorialValueTexture_ != nullptr)
+		{
+			delete skipTutorialValueTexture_;
+			skipTutorialValueTexture_ = nullptr;
+		}
 
-	//factory_->createTextuButton({ 500,800 }, skipTutorialValueTexture_, 50, funcPressSkipTutorial, "click");
+		if (gD().GetValueSkipTutorial())
+			skipTutorialValueTexture_ = new Texture(sdlutils().renderer(), "SALTAR", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+		else
+			skipTutorialValueTexture_ = new Texture(sdlutils().renderer(), "NO SALTAR", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+		skipTutorialValueEnt_->getComponent<RenderImage>()->setTexture(skipTutorialValueTexture_);
+	};
+
+	factory_->createTextuButton({ 500,800 }, "(                    )", 50, funcPressSkipTutorial, "click");
 }
 
 //LUIS: Y si esto fuera un return to scene ????
