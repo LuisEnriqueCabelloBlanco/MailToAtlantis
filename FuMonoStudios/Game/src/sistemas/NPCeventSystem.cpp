@@ -74,13 +74,6 @@ void NPCeventSystem::minigameOver() {
 			gD().getDay() * (event->completed ? 1 : -1);
 
 		procesarStringRecompensas(event->completed, event->recompensas);
-		if (event->completed)
-		{
-#ifdef _DEBUG
-			std::cout << "Event completed";
-#endif // _DEBUG
-
-		}
 	}
 
 	while (areTherePaquetesNPC())

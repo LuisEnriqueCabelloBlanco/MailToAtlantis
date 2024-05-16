@@ -1,9 +1,5 @@
 {
   "Vagabundo": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 30,
-    "numMisionesAceptadas": 0,
-    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -304,10 +300,6 @@
     }
   },
   "Secretario": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
-    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -371,7 +363,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "Secretario-----"
+          "2": "$Secretario-----"
         },
         "textoDiario": "El secretario necesita que elimine paquetes de un grupo llamado 'lechuzas'. Tengo que mandar a la basura 3 paquetes de alimentos que vayan hacia Apolo."
       },
@@ -386,7 +378,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "Secretario-----"
+          "2": "$Secretario-----"
         },
         "textoDiario": "Se est$an pasando paquetes ilegales de comida en Apolo y Hermes. Debo eliminar 3 paquetes de comida que vayan a Apolo o a Hermes. Dice que si cumplo esta tarea, ma$%ana me dar$a una recompensa."
       },
@@ -403,7 +395,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "Secretario-----"
+          "2": "$Secretario-----"
         },
         "textoDiario": "Gargafiel esta que hecha humos, no creo que me de ninguna recompensa. Debe recomponer la sociedad para evitar un revuelo por el nuevo texto 'Critias' que alenta a la poblaci$on a unirse a los humanos. Me ha pedido que reenvie unos tres paquetes con su nombre al distrito de Poseid$on."
       },
@@ -440,7 +432,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "Secretario-----",
+          "2": "$Secretario-----",
           "3": "Vagabundo--------------------"
         },
         "textoDiario": "Me ha pasado una lista con nombres de gente de las lechuzas. Debo mandar sus paquetes a Apolo, donde los analizar$a."
@@ -478,7 +470,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "Secretario-----",
+          "2": "$Secretario-----",
           "3": "Vagabundo--------------------"
         },
         "textoDiario": "Hoy dice que ha encontrado nombres de gente importante en las lechuzas. Igual que ayer, debo reenviar sus paquetes a Apolo."
@@ -494,7 +486,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "Secretario-----"
+          "2": "$Secretario-----"
         },
         "textoDiario": "Texto diario"
       },
@@ -543,7 +535,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "Secretario-----"
+          "2": "$Secretario-----"
         },
         "textoDiario": "El secretario me ha contado su revelaci$on que tuvo de Poseid$on. Dice que nos est$a poniendo a prueba y $el es el $unico que podr$a salvarnos. Debemos resurgir a la superficie con una nave que ha estado construyendo, y una vez arriba, pelear$a con los humanos con el poder de los Dioses. Para poder ayudarle, necesita 2 paquetes de joyas. Debo redirigir 2 paquetes que vayan a Hestia, Demeter, Artemisa o a Hefesto y mandarlos a Poseid$on."
       },
@@ -561,7 +553,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "Secretario-----"
+          "2": "$Secretario-----"
         },
         "textoDiario": "Ahora necesitamos materiales para la chapa de la nave. Debo redirigir 3 paquetes de materiales que vayan a Hefesto y mandarlos a Poseid$on."
       },
@@ -580,7 +572,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "Secretario-----"
+          "2": "$Secretario-----"
         },
         "textoDiario": "Gargafiel me ha pedido suministros de comida para la nave. Ha comprado paquetes de comida a un campesino pero van a Hermes en vez de Poseid$on. Debo redirigir los 2 paquetes hacia Poseid$on. El nombre del campesino es Pancracio Warawa."
       },
@@ -599,9 +591,6 @@
     }
   },
   "Campesino": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -618,7 +607,6 @@
       "13": false,
       "14": false
     },
-    "EventosCompletados": [-2],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -728,9 +716,6 @@
     }
   },
   "Artesano": {
-    "Felicidad": "Normal",
-    "FelicidadNum": 60,
-    "numMisionesAceptadas": 1,
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -747,7 +732,6 @@
       "13": false,
       "14": false
     },
-    "EventosCompletados": [2],
     "Eventos": {
       "1": {
         "numPaquetes": 2,
@@ -854,9 +838,6 @@
     }
   },
   "Tarotisa": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -873,7 +854,6 @@
       "13": true,
       "14": false
     },
-    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -979,9 +959,6 @@
     }
   },
   "Soldado": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -998,7 +975,6 @@
       "13": false,
       "14": true
     },
-    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 3,
@@ -1097,9 +1073,6 @@
     }
   },
   "Contable": {
-    "Felicidad": "NoHabladoAun",
-    "FelicidadNum": 50,
-    "numMisionesAceptadas": 0,
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -1116,7 +1089,6 @@
       "13": true,
       "14": true
     },
-    "EventosCompletados": [],
     "Eventos": {
       "1": {
         "numPaquetes": 3,
@@ -1172,10 +1144,8 @@
           "fragil": true
         },
         "recompensa": {
-
           "1": "Contable++++++++++",
           "2": "$Contable----------"
-
         },
         "textoDiario": "Texto diario"
       },
@@ -1191,10 +1161,8 @@
           "distrito": "Hermes"
         },
         "recompensa": {
-
           "1": "Contable++++++++++",
           "2": "$Contable----------"
-
         },
         "textoDiario": "Texto diario"
       },
@@ -1212,10 +1180,8 @@
           "legal": false
         },
         "recompensa": {
-
           "1": "Contable++++++++++",
           "2": "$Contable----------"
-
         },
         "textoDiario": "Texto diario"
       }
