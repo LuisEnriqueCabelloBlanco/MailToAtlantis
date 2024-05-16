@@ -9,15 +9,10 @@
 #include <functional>
 
 
-
 #ifdef _DEBUG
 //#define DEV_TOOLS
 #endif // _DEBUG
 //#define QA_TOOLS
-
-
-
-
 
 
 class Game : public Singleton<Game> {

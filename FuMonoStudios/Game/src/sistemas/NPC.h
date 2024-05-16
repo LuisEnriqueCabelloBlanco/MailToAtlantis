@@ -25,7 +25,7 @@ namespace npc {
 		{Tarotisa, "Tarotisa"},
 		{Soldado, "Soldado"},
 		{Contable, "Contable"},
-        {Jefe, "Jefe"}
+		{Jefe, "Jefe"}
 	};
 
 	const std::unordered_map<Felicidad, std::string> happinessToString = {
@@ -94,6 +94,8 @@ namespace npc {
 
 		bool giveEvent;
 		int iteration;
+		int lastIterationResult = -1;
+
 	};
 
 	struct NPCMayorData : public NPCdata {
@@ -104,7 +106,7 @@ namespace npc {
 		void iterateDialogues() override {};
 		void setupDayData() override;
 		NPCevent* getEvent() override;
-	public:
+
 		int firstMision;
 	};
 }

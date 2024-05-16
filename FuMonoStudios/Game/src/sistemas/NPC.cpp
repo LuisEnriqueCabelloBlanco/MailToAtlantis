@@ -79,7 +79,7 @@ void NPCMenorData::setupDayData() {
 		felicidad = Normal;
 	postConversation = false;
 	iteration = 1;
-	int day = generalData().getDay() - 1;
+	int day = gD().getDay() - 1;
 	giveEvent = diasDanEvento[day];
 	if (misionAceptada) {
 		numMisionesAceptadas++;
@@ -122,9 +122,16 @@ void NPCMenorData::deactivateEvent() {
 }
 
 void NPCMenorData::iterateDialogues() {
-	iteration++;
-	if (iteration > 3)
-		iteration = 1;
+
+	if (lastIterationResult == -1) {
+		iteration = sdlutils().rand().nextInt(1, 4);
+
+		if (iteration > 3)
+			iteration = 1;
+
+		lastIterationResult = iteration;
+	}
+
 }
 
 NPCevent* NPCMenorData::getEvent() {
@@ -145,6 +152,10 @@ NPCMayorData::NPCMayorData(Felicidad Felicidad) {
 	felicidad = Felicidad;
 	postConversation = false;
 	numMisionesAceptadas = 0;
+	if (npcId == Vagabundo)
+		firstMision = 1;
+	else
+		firstMision = 5;
 	misionAceptada = false;
 	eventosCompletados = std::vector<std::pair<bool, int>>(14, std::make_pair(false, 0));
 }
@@ -172,7 +183,7 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 		misionAceptada = true;
 		aux = postConversation ?
 			"PostConversacionDia" : "Dia";
-		aux = aux + std::to_string(generalData().getDay());
+		aux = aux + std::to_string(gD().getDay());
 		break;
 	}
 

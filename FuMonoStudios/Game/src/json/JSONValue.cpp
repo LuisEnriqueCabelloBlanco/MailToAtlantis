@@ -845,7 +845,7 @@ std::string JSONValue::StringifyImpl(size_t const indentDepth) const
 
 				// Not at the end - add a separator
 				if (++iter != object_value->end())
-					ret_string += ",";
+					ret_string += ",\n"+indentStr1;
 			}
 			ret_string += indentDepth ? "\n" + indentStr + "}" : "}";
 			break;

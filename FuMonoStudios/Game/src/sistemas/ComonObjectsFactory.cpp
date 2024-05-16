@@ -61,15 +61,15 @@ ecs::Entity* ComonObjectsFactory::createImage(const Vector2D& pos, Texture* text
 }
 
 ecs::Entity* ComonObjectsFactory::createImageButton(const Vector2D& pos, const Vector2D& size, Texture* texture, 
-	CallbackClickeable call, std::string soundClick)
+	CallbackClickeable call,const std::string& soundClick)
 {
 	auto entity = createImage(pos,size,texture);
 	makeButton(entity, call, soundClick);
 	return entity;
 }
 
-ecs::Entity* ComonObjectsFactory::createTextuButton(const Vector2D& pos, const std::string text, int fontSize, CallbackClickeable call, 
-	std::string soundClick, SDL_Color textColor)
+ecs::Entity* ComonObjectsFactory::createTextuButton(const Vector2D& pos, const std::string& text, int fontSize, CallbackClickeable call, 
+	const std::string& soundClick, SDL_Color textColor)
 {
 	auto entity = createLabel(pos, text, fontSize,textColor);
 	makeButton(entity, call, soundClick);

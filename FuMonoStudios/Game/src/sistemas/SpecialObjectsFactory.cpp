@@ -20,10 +20,10 @@ SpecialObjectsFactory::~SpecialObjectsFactory() {
 void SpecialObjectsFactory::setupDayObjects() {
 
 	// lista vagabundo
-	if (generalData().getNPCData(Vagabundo)->numMisionesAceptadas == 4 && generalData().getNPCData(Vagabundo)->postConversation)
+	if (gD().getNPCData(Vagabundo)->numMisionesAceptadas == 4 && gD().getNPCData(Vagabundo)->postConversation)
 		makeListaVagabundo();
-	if ((generalData().getNPCData(Vagabundo)->numMisionesAceptadas == 4 ||
-		generalData().getNPCData(Vagabundo)->numMisionesAceptadas == 5) && generalData().getNPCData(Vagabundo)->postConversation)
+	if ((gD().getNPCData(Vagabundo)->numMisionesAceptadas == 4 ||
+		gD().getNPCData(Vagabundo)->numMisionesAceptadas == 5) && gD().getNPCData(Vagabundo)->postConversation)
 		makePapelAgujeros();
 	if (generalData().getNPCData(Secretario)->numMisionesAceptadas == 3)
 		makeListaSecretario(true);

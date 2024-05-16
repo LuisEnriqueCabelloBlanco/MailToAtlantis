@@ -41,80 +41,116 @@ void ecs::ConfigScene::init()
 		gm().requestChangeScene(ecs::sc::CONFIG_SCENE, ecs::sc::MENU_SCENE);
 
 	};
-	factory_->createTextuButton({ 400,400 }, "Pulsa para volver al menu", 50,funcPress, "click");
+	factory_->createTextuButton({ 600,300 }, "Pulsa para volver al menu", 50,funcPress, "click");
 
 
 	//Luis: esto que sea place holder hay que poner imagen
+
+
+	// Parametro de audio
+	musicValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(gD().getParamMusic()), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+	musicValueEnt_ = addEntity();
+	Transform* transformAudioValue = musicValueEnt_->addComponent<Transform>(500, 600, musicValueTexture_->width(), musicValueTexture_->height());
+	RenderImage* renderAudioValue = musicValueEnt_->addComponent<RenderImage>(musicValueTexture_);
+	
+	// Boton (-) para el parametro de audio musica
+	CallbackClickeable funcPress2 = [this]() {
+		gD().changeParamID(0, false);
+		//updateValue(audioValueTexture_, audioValueEnt_, 1);
+		if (musicValueTexture_ != nullptr)
+		{
+			delete musicValueTexture_;
+			musicValueTexture_ = nullptr;
+		}
+
+		musicValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(gD().getParamMusic()), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+		musicValueEnt_->getComponent<RenderImage>()->setTexture(musicValueTexture_);
+	};
+	factory_->createTextuButton({ 540,420 }, "(-)", 50, funcPress2, "click");
+
+	// Boton (+) para el parametro de audio musica
+	CallbackClickeable funcPress3 = [this]() {
+		gD().changeParamID(0, true);
+		//updateValue(audioValueTexture_, audioValueEnt_, 1);
+		if (musicValueTexture_ != nullptr)
+		{
+			delete musicValueTexture_;
+			musicValueTexture_ = nullptr;
+		}
+
+		musicValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(gD().getParamMusic()), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+		musicValueEnt_->getComponent<RenderImage>()->setTexture(musicValueTexture_);
+	};
+	factory_->createTextuButton({ 1280,420 }, "(+)", 50, funcPress3, "click");
+
+
+
+	// Boton (-) para el parametro de audio sfx
+	CallbackClickeable funcPress4 = [this]() {
+		gD().changeParamID(1, false);
+		//updateValue(audioValueTexture_, audioValueEnt_, 1);
+		if (musicValueTexture_ != nullptr)
+		{
+			delete musicValueTexture_;
+			musicValueTexture_ = nullptr;
+		}
+
+		musicValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(gD().getParamSfx()), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+		musicValueEnt_->getComponent<RenderImage>()->setTexture(musicValueTexture_);
+	};
+	factory_->createTextuButton({ 540,590 }, "(-)", 50, funcPress4, "click");
+
+	// Boton (+) para el parametro de audio sfx
+	CallbackClickeable funcPress5 = [this]() {
+		gD().changeParamID(1, true);
+		//updateValue(audioValueTexture_, audioValueEnt_, 1);
+		if (musicValueTexture_ != nullptr)
+		{
+			delete musicValueTexture_;
+			musicValueTexture_ = nullptr;
+		}
+
+		musicValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(gD().getParamSfx()), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+		musicValueEnt_->getComponent<RenderImage>()->setTexture(musicValueTexture_);
+	};
+	factory_->createTextuButton({ 1280,590 }, "(+)", 50, funcPress5, "click");
+
+
+
+	if (gD().GetValueSkipTutorial())
+		skipTutorialValueTexture_ = new Texture(sdlutils().renderer(), "SALTAR", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+	else
+		skipTutorialValueTexture_ = new Texture(sdlutils().renderer(), "NO SALTAR", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+
+	skipTutorialValueEnt_ = addEntity();
+	Transform* trSkipValue = skipTutorialValueEnt_->addComponent<Transform>(515, 800, skipTutorialValueTexture_->width(), skipTutorialValueTexture_->height());
+	RenderImage* rdrSkipValue = skipTutorialValueEnt_->addComponent<RenderImage>(skipTutorialValueTexture_);
+
+
+	// Boton para configurar el salto del tutorial o no
+	CallbackClickeable funcPressSkipTutorial = [this]() {
+		gD().ToggleSkipTutorial();
+		
+		if (skipTutorialValueTexture_ != nullptr)
+		{
+			delete skipTutorialValueTexture_;
+			skipTutorialValueTexture_ = nullptr;
+		}
+
+		if (gD().GetValueSkipTutorial())
+			skipTutorialValueTexture_ = new Texture(sdlutils().renderer(), "SALTAR", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+		else
+			skipTutorialValueTexture_ = new Texture(sdlutils().renderer(), "NO SALTAR", sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
+		skipTutorialValueEnt_->getComponent<RenderImage>()->setTexture(skipTutorialValueTexture_);
+	};
+
+	factory_->createTextuButton({ 480,940 }, "           ", 50, funcPressSkipTutorial, "click");
 
 	// Boton cambio de pantalla
 	CallbackClickeable funcScreenModeBoton = [this]() {
 		sdlutils().toggleFullScreen();
 	};
-	factory_->createTextuButton({ 500,700 }, "Cambiar modo de ventana", 50, funcScreenModeBoton, "click");
-
-	// Parametro de audio
-	musicValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParamMusic()), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
-	musicValueEnt_ = addEntity();
-	Transform* transformAudioValue = musicValueEnt_->addComponent<Transform>(500, 600, musicValueTexture_->width(), musicValueTexture_->height());
-	RenderImage* renderAudioValue = musicValueEnt_->addComponent<RenderImage>(musicValueTexture_);
-	
-	// Boton (-) para el parametro de audio
-	CallbackClickeable funcPress2 = [this]() {
-		generalData().changeParamID(0, false);
-		//updateValue(audioValueTexture_, audioValueEnt_, 1);
-		if (musicValueTexture_ != nullptr)
-		{
-			delete musicValueTexture_;
-			musicValueTexture_ = nullptr;
-		}
-
-		musicValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParamMusic()), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
-		musicValueEnt_->getComponent<RenderImage>()->setTexture(musicValueTexture_);
-	};
-	factory_->createTextuButton({ 400,600 }, "(-)", 50, funcPress2, "click");
-
-	// Boton (+) para el parametro de audio
-	CallbackClickeable funcPress3 = [this]() {
-		generalData().changeParamID(0, true);
-		//updateValue(audioValueTexture_, audioValueEnt_, 1);
-		if (musicValueTexture_ != nullptr)
-		{
-			delete musicValueTexture_;
-			musicValueTexture_ = nullptr;
-		}
-
-		musicValueTexture_ = new Texture(sdlutils().renderer(), std::to_string(generalData().getParamMusic()), sdlutils().fonts().at("arial50"), build_sdlcolor(0x000000ff));
-		musicValueEnt_->getComponent<RenderImage>()->setTexture(musicValueTexture_);
-	};
-	factory_->createTextuButton({ 600,600 }, "(+)", 50, funcPress3, "click");
-
-
-
-	//skipTutorialValueTexture_ = " ";
-	///*if (generalData().GetValueSkipTutorial())
-	//	skipTutorialValueTexture_ = "SALTAR";
-	//else
-	//	skipTutorialValueTexture_ = "NO SALTAR";*/
-
-	//skipTutorialValueEnt_ = addEntity();
-
-
-	//// Boton para configurar el salto del tutorial o no
-	//CallbackClickeable funcPressSkipTutorial = [this]() {
-	//	generalData().ToggleSkipTutorial();
-	//	if (skipTutorialValueTexture_ != "")
-	//	{
-	//		skipTutorialValueTexture_= " ";
-	//	}
-
-
-	//	if (generalData().GetValueSkipTutorial())
-	//		skipTutorialValueTexture_ = "SALTAR";
-	//	else
-	//		skipTutorialValueTexture_ = "NO SALTAR";
-	//};
-
-	//factory_->createTextuButton({ 500,800 }, skipTutorialValueTexture_, 50, funcPressSkipTutorial, "click");
+	factory_->createTextuButton({ 480,760 }, "           ", 50, funcScreenModeBoton, "click");
 }
 
 //LUIS: Y si esto fuera un return to scene ????

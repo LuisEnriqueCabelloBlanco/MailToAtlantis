@@ -54,12 +54,12 @@ void Trigger::touchEntity(ecs::Entity* ent) {
 //Aï¿½ade funcionalidad a la entidad si algo se levanta sobre ella
 void Trigger::addCallback(Callback event, int moveType) {
 
-	if (moveType == generalData().DropIn) {
+	if (moveType == gD().DropIn) {
 
 		eventList_.push_back(event);
 
 	}
-	else if (moveType == generalData().PickUp) {
+	else if (moveType == gD().PickUp) {
 
 		eventListPickUp_.push_back(event);
 
@@ -71,12 +71,12 @@ void Trigger::addCallback(Callback event, int moveType) {
 void Trigger::clearCallback(int moveType)
 {
 
-	if (moveType == generalData().DropIn) {
+	if (moveType == gD().DropIn) {
 
 		eventList_.clear();
 
 	}
-	else if (moveType == generalData().PickUp) {
+	else if (moveType == gD().PickUp) {
 
 		eventListPickUp_.clear();
 
@@ -133,7 +133,7 @@ bool Trigger::activateCallbacks(ecs::Entity* Ent, int moveType) {
 
 	if(Ent != ent_){
 	
-		if (moveType == generalData().DropIn) {
+		if (moveType == gD().DropIn) {
 
 			for (Callback call : eventList_) {
 
@@ -141,7 +141,7 @@ bool Trigger::activateCallbacks(ecs::Entity* Ent, int moveType) {
 			}
 
 		}
-		else if (moveType == generalData().PickUp) {
+		else if (moveType == gD().PickUp) {
 
 			for (Callback call : eventListPickUp_) {
 
