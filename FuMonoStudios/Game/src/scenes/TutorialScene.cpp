@@ -337,6 +337,9 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 	case BalanzaTut:
 		paquete = mPaqBuild_.customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Alto, 160);
 		break;
+	case Carta:
+		paquete = mPaqBuild_.customPackage(Demeter, C1, "Percebesa Crujierez", Medicinas, true, pq::Ninguno, 0, false, true);
+		break;
 	default:
 		paquete = mPaqBuild_.buildPackage(1, this);
 		break;

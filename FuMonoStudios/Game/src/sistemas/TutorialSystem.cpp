@@ -153,6 +153,47 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			break;
 #pragma endregion
 
+#pragma region Carta
+
+		case TutorialEvent::EntraCarta:
+
+			scene_->createPackage(ecs::TutorialScene::Carta);
+
+			delayedCallback(0.5, [this]() {
+				activateDialogue(false);
+			});
+
+			break;
+
+		case TutorialEvent::EnviarCarta:
+
+			delayedCallback(0.5, [this]() {
+				activateDialogue(false);
+			});
+
+			break;
+#pragma endregion
+
+#pragma region SignificadoSellos
+
+		case TutorialEvent::BuscarPaginaSellos:
+
+			delayedCallback(0.5, [this]() {
+				activateDialogue(false);
+			});
+
+			break;
+
+		case TutorialEvent::ExplicacionSellos:
+
+			delayedCallback(0.5, [this]() {
+				activateDialogue(false);
+				});
+
+			break;
+
+#pragma endregion
+
 		#pragma region Tercer Paquete
 		case TutorialEvent::EntraTercerPaquete:
 			DragAndDrop::enableDrag = true; // CAMBIAR A TRUE PARA EMPEZAR DESDE MAS ADELANTE
@@ -348,14 +389,66 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			break;
 		case TutorialEvent::EnviarSegundoPaquete:
 			addActionListener(Action::PaqueteEnviado, [this]() {
-				activateEvent(TutorialEvent::EntraCuartoPaquete);
+				activateEvent(TutorialEvent::EntraCarta);
 				});
 			break;
 #pragma endregion
 
+#pragma region Carta
+
+		case TutorialEvent::EntraCarta:
+
+			DragAndDrop::enableDrag = true;
+
+			canPassPagesManual = true;
+
+			scene_->deactivateTubos();
+
+			addActionListener(Action::PaqueteEstampado, [this] {
+				activateEvent(TutorialEvent::EnviarCarta);
+			});
+
+			break;
+
+		case TutorialEvent::EnviarCarta:
+
+			scene_->activateOneTube(2);
+
+			addActionListener(Action::PaqueteEnviado, [this] {
+				activateEvent(TutorialEvent::BuscarPaginaSellos);
+			});
+
+			break;
+
+
+#pragma endregion
+
+#pragma region SignificadoSellos
+
+		case TutorialEvent::BuscarPaginaSellos:
+
+			scene_->deactivateOneTube(2);
+
+			addActionListener(Action::PaginaSellos, [this] {
+				activateEvent(TutorialEvent::ExplicacionSellos);
+			});
+
+			break;
+
+		case TutorialEvent::ExplicacionSellos:
+
+			scene_->deactivateOneTube(2);
+
+			delayedCallback(0.5, [this]() {
+				activateEvent(TutorialEvent::EntraCuartoPaquete);
+				});
+
+			break;
+
+#pragma endregion
+
 #pragma region Paquete Fallar Aposta
 		case TutorialEvent::EntraCuartoPaquete:
-			scene_->deactivateOneTube(2);
 			DragAndDrop::enableDrag = true;
 			scene_->activateGarbage();
 			addActionListener(Action::Basura, [this] {
