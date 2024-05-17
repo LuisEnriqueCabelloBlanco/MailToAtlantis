@@ -44,16 +44,16 @@ void Trigger::update() {
 
 }
 
-//Se registra cuando se ha tocado a una entidad y se hace un push back en la lista de entidades en contacto
+
 void Trigger::touchEntity(ecs::Entity* ent) {
 
 	entTouching_.push_back(ent);
 
 }
 
-//Aï¿½ade funcionalidad a la entidad si algo se levanta sobre ella
 void Trigger::addCallback(Callback event, int moveType) {
 
+	//Segun se deje caer algo sobre ella o se levante algo sobre ella se llama a una lista o a otra
 	if (moveType == gD().DropIn) {
 
 		eventList_.push_back(event);
@@ -70,7 +70,7 @@ void Trigger::addCallback(Callback event, int moveType) {
 
 void Trigger::clearCallback(int moveType)
 {
-
+	//se limpia una de las listas de callbacks
 	if (moveType == gD().DropIn) {
 
 		eventList_.clear();
@@ -84,8 +84,7 @@ void Trigger::clearCallback(int moveType)
 
 }
 
-//activa los eventos de todas las entidades que tenga asociadas (que este tocando)
-//NOTA: en un futuro serï¿½ necesario implementar un sistema de layers para diferenciar que cosa puede tocar a que cosa
+
 bool Trigger::activateEventsFromEntities(int moveType) {
 
 	for (auto it = entTouching_.begin(); it != entTouching_.end(); ++it) {
@@ -128,8 +127,6 @@ bool Trigger::activateEventFromClosestEntity(int moveType) {
 
 //Activa las funciones asociadas a esta entidad
 bool Trigger::activateCallbacks(ecs::Entity* Ent, int moveType) {
-
-
 
 	if(Ent != ent_){
 	

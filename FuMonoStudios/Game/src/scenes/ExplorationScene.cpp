@@ -59,6 +59,13 @@ void ecs::ExplorationScene::init()
 	updateNavegavility();
 	initDirectionsDefaultMap();
 	clearScene();
+
+	for (int i = 0; i < gD().getNumDistritos(); ++i) {
+
+		placesExplored.push_back(false);
+
+	}
+	
 	actualPlace_ = &lugares[Hestia];
 
 	createObjects(pq::Distrito::Hestia);
@@ -255,6 +262,11 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrow(Vector2D pos, std::st
 		if (actualPlace_->navigate((Distrito)placeID) && canInteract) {
 			dialogMngr_.closeDialogue();
 			actualPlace_->changeActivationObjects(false);
+
+			if (placeID < placesExplored.size() && !placesExplored[placeID]) {
+				placesExplored[placeID] = true;
+			}
+			
 			placeToGo = placeID;
 		}
 	};
@@ -673,6 +685,26 @@ void ecs::ExplorationScene::updateNavegavility()
 		setNavegabilityOfPlace(gD().fromStringToDistrito(g));
 }
 
+bool ecs::ExplorationScene::checkIfVisited(int from, int to)
+{
+	
+	if (from < to && to < placesExplored.size()) {
+
+		while (placesExplored[from] && from < to) {
+
+			from++;
+
+		}
+
+		return from == to;
+	}
+	else {
+		return false;
+	}
+	
+
+}
+
 void ecs::ExplorationScene::createObjects(int place) {
 	//Seleccion del lugar deseado
 	std::string placeName = gD().fromDistritoToString(place);
@@ -700,16 +732,46 @@ void ecs::ExplorationScene::createObjects(int place) {
 	}
 
 	if (place == pq::Distrito::Hestia) {
-		//boton ir a trabajar
-		boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
 
-		dist.addObject(boton_Trabajo);
+		bool workAccess = false;
 
-		//PLACEHOLDER_BOTON_GUARDADO
-		factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
-			gD().saveGame();
-			}, "click", SDL_Color{255,255,0});
+		switch (gD().getDay()) {
+
+		case 1:
+
+			if (checkIfVisited(0, 3)) workAccess = true;	
+
+			break;
+
+		case 5:
+
+			if (placesExplored[6]) workAccess = true;
+
+			break;
+
+		default: 
+
+			workAccess = true;
+
+			break;
+
+		}
+
+
+		if (workAccess) {
+			//boton ir a trabajar
+			boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
+
+			dist.addObject(boton_Trabajo);
+		}
+			
 	}
+
+	//PLACEHOLDER_BOTON_GUARDADO
+	factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
+		gD().saveGame();
+		}, "click", SDL_Color{ 255,255,0 });
+
 }
 
 
