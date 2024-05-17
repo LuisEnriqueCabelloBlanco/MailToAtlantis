@@ -1249,13 +1249,13 @@
     "CasaGrande": {
 
         "TextoCasaGrande10": [ "Esta casa parece ser muy grande." ],
-        "TextoCasaGrande11": [ "Se ve que esta casa tiene ya sus años." ],
+        "TextoCasaGrande11": [ "Se ve que esta casa tiene ya sus a$%os." ],
 
         "TextoCasaGrande20": [ "Esta casa parece ser muy grande." ],
-        "TextoCasaGrande21": [ "Se ve que esta casa tiene ya sus años." ],
+        "TextoCasaGrande21": [ "Se ve que esta casa tiene ya sus a$%os." ],
 
         "TextoCasaGrande30": [ "Esta casa parece ser muy grande." ],
-        "TextoCasaGrande31": [ "Se ve que esta casa tiene ya sus años." ],
+        "TextoCasaGrande31": [ "Se ve que esta casa tiene ya sus a$%os." ],
 
         "TextoCasaGrande40": [
             "Igual de grande la casa que ayer.",
@@ -1277,37 +1277,37 @@
 
         "TextoCasaGrande70": [ "Ojal$a alojarme en una casa tan grande como esta." ],
         "TextoCasaGrande71": [
-            "Si me alojara aqu$i tendría que remodelar la casa un poco.",
+            "Si me alojara aqu$i tendr$ia que remodelar la casa un poco.",
             "Seguro est$a sucia, pero puede tener mucho espacio."
         ],
 
         "TextoCasaGrande80": [ "Ojal$a alojarme en una casa tan grande como esta." ],
         "TextoCasaGrande81": [
-            "Si me alojara aqu$i tendría que remodelar la casa un poco.",
+            "Si me alojara aqu$i tendr$ia que remodelar la casa un poco.",
             "Seguro est$a sucia, pero puede tener mucho espacio."
         ],
 
         "TextoCasaGrande90": [ "Ojal$a alojarme en una casa tan grande como esta." ],
         "TextoCasaGrande91": [
-            "Si me alojara aqu$i tendría que remodelar la casa un poco.",
+            "Si me alojara aqu$i tendr$ia que remodelar la casa un poco.",
             "Seguro est$a sucia, pero puede tener mucho espacio."
         ],
 
         "TextoCasaGrande100": [
             "Hay una mancha en la pared, parece ser...",
-            "*Snif, snif*. Bueno, prefiero no tocar la verdad."
+            "Snif, snif. Bueno, prefiero no tocar la verdad."
         ],
         "TextoCasaGrande101": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
 
         "TextoCasaGrande110": [
             "Hay una mancha en la pared, parece ser...",
-            "*Snif, snif*. Bueno, prefiero no tocar la verdad."
+            "Snif, snif. Bueno, prefiero no tocar la verdad."
         ],
         "TextoCasaGrande111": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
 
         "TextoCasaGrande120": [
             "Hay una mancha en la pared, parece ser...",
-            "*Snif, snif*. Bueno, prefiero no tocar la verdad."
+            "Snif, snif. Bueno, prefiero no tocar la verdad."
         ],
         "TextoCasaGrande121": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
 
@@ -1369,7 +1369,7 @@
         ],
         "TextoCartelOficina71": [ "Quizas deber$ia de entrar ya." ],
 
-        "TextoCartelOficina80": [ "Diseño gr$afico es mi pasi$on." ],
+        "TextoCartelOficina80": [ "Dise$%o gr$afico es mi pasi$on." ],
         "TextoCartelOficina81": [
             "Quizas deber$ia de entrar ya.",
             "El jefe puede enfadarse si no voy pronto, aunque tambi$en me la puede pelar bastante."
@@ -1471,7 +1471,7 @@
 
         "TextoMuro100": [
             "Creo que alguna vez quer$ia ser arquitecto y construir muros como esos,",
-            "pero desde pequeño siempre me ha gustado ser explorador."
+            "pero desde peque$%o siempre me ha gustado ser explorador."
         ],
         "TextoMuro101": [
             "Los arboles del fondo veo que siguen igual de bien que siempre,",
