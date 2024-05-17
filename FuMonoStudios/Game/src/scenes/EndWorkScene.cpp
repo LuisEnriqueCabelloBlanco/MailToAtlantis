@@ -42,17 +42,17 @@ void EndWorkScene::init() {
 	createTextAnim(msg);
 
 	// Gastos alquiler e ingreos por trabajo
-	msg = "Gastos de Alquiler: -" + std::to_string(gD().getRent()) + "$";
+	msg = "Gastos de Alquiler: -" + std::to_string(gD().getRent()) + " $";
 	createTextAnim(msg);
 
-	msg = "Nómina del día: " + std::to_string(gD().calcularDineroGanado()) + "$";
+	msg = "Nómina del día: " + std::to_string(gD().calcularDineroGanado()) + " $";
 	createTextAnim(msg);
 
 	// Salto de posicion para colocar el resto de cosas más abajo
 	pos_ = pos_ + Vector2D(0, 200);
 
 	// Dinero total
-	msg = "Cuenta Bancaria: " + std::to_string(gD().getMoney()) + "$";
+	msg = "Cuenta Bancaria: " + std::to_string(gD().getMoney()) + " $";
 	createTextAnim(msg);
 
 	//Luis:no se si se deberia avanzar antes o despues de guardar
