@@ -14,11 +14,12 @@
 
 EndGameScene::EndGameScene()
 {
-    npcId_ = 0;
 }
 
 void EndGameScene::init()
 {
+    npcId_ = 0;
+    std::cout << "init";
     Personaje npc = (Personaje)npcId_;
     final_ = new Final(this, npc, gD().getNPCData(npc)->felicidad);
 
@@ -40,6 +41,8 @@ void EndGameScene::update()
             nextEnding();
         }
         else {
+            final_ = nullptr;
+            delete final_;
             gm().requestChangeScene(ecs::sc::END_SCENE, ecs::sc::MENU_SCENE);
         }
     }

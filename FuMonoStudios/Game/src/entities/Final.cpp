@@ -111,8 +111,7 @@ void Final::loadFinal(Personaje npc, Felicidad felicidad)
     factory->setLayer(ecs::layer::UI);
 
     // Borramos la imagen anterior
-    imagenNpc_ = nullptr;
-    delete imagenNpc_;
+    imagenNpc_->setAlive(false);
 
     // Actualizamos la imagenNpc
     Texture* imagenNpcTex = gD().personajeToTexture(npc);
