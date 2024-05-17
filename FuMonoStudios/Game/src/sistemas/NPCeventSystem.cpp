@@ -109,9 +109,9 @@ void NPCeventSystem::procesarStringRecompensas(bool completed, std::vector<std::
 		}
 		else
 		{
-			if (reward.find("$") != std::string::npos)
+			if (reward.find(" $") != std::string::npos)
 			{
-				int index = reward.find_first_of("$");
+				int index = reward.find_first_of(" $");
 
 				std::string personajeString = reward.substr(index + 1, reward.size());
 
