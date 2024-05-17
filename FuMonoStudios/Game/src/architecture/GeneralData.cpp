@@ -27,10 +27,11 @@ GeneralData::GeneralData()
 	numTubos_ = INITIAL_TUBE_AMOUNT;
 	//upgrades_.resize(ecs::upg::_LAST_UPGRADE);
 	upgrades_.reset();
-	paramVolMusic_ = 0;
+	paramVolMusic_ = 50;
 	paramVolSfx_ = 50;
 
 	skipTutorial_ = false;
+	fullScreen_ = true;
 	//upgrades_[ecs::upg::MONEY_UPGRADE] = true;
 
 	/*if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
@@ -45,6 +46,7 @@ GeneralData::GeneralData()
 #ifdef _DEBUG
 	std::cout << "Volumen SFX: " << paramVolSfx_ << std::endl;
 #endif // _DEBUG
+	soundEmiter().setMusicVolume(paramVolMusic_);
 	soundEmiter().setSoundVolumes(paramVolSfx_);
 	//readNPCData();
 }
@@ -342,6 +344,9 @@ void GeneralData::changeParamID(int i, bool suma) {
 			}
 		}
 	}
+
+	soundEmiter().setSoundVolumes(paramVolSfx_);
+	soundEmiter().setMusicVolume(paramVolMusic_);
 #ifdef _DEBUG
 	std::cout << "El valor de la musica ahora es " << paramVolMusic_ << " y el valor de los SFX ahora es " << paramVolSfx_ << std::endl;
 #endif // _DEBUG

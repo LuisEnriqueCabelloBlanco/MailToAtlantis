@@ -181,6 +181,14 @@ public:
 		return skipTutorial_;
 	}
 
+	void ToggleFullScreen() {
+		fullScreen_ = !fullScreen_;
+	}
+
+	bool GetValueFullScreen() {
+		return fullScreen_;
+	}
+
 	inline int getDay() { return dia_; }
 	inline void setDay(int dia) { dia_ = dia; updateDia(); }
 
@@ -295,6 +303,11 @@ private:
 	/// booleano que indica si se salta o no los tutoriales
 	/// </summary>
 	bool skipTutorial_;
+
+	/// <summary>
+	/// booleano que indica si esta el juego en pantalla completa o no
+	/// </summary>
+	bool fullScreen_;
 
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
 	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo

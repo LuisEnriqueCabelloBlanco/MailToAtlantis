@@ -360,6 +360,22 @@
       "file": "recursos/images/AjustesSinSellos.png"
     },
     {
+      "id": "iconoAzulAjustes",
+      "file": "recursos/images/SelloAzulAjustes.png"
+    },
+    {
+      "id": "iconoRojoAjustes",
+      "file": "recursos/images/SelloRojoAjustes.png"
+    },
+    {
+      "id": "iconoVerdeAjustes",
+      "file": "recursos/images/SelloVerdeAjustes.png"
+    },
+    {
+      "id": "iconoAmarilloAjustes",
+      "file": "recursos/images/SelloAmarilloAjustes.png"
+    },
+    {
       "id": "cinta",
       "file": "recursos/images/Cinta.png"
     },
