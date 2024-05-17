@@ -59,6 +59,8 @@ Wrap::~Wrap() {
 
 void Wrap::initComponent() {
 
+	 puntoAzulTex = &sdlutils().images().at("puntoAzul");
+
 	tr_ = ent_->getComponent<Transform>();
 
 	tri_ = ent_->getComponent<Trigger>();
@@ -114,7 +116,33 @@ void Wrap::update() {
 			//a futuro si se ve un bug se podria a�adir que adem�s el rat�n este pulsado pero no deber�a hacer falta
 			SDL_Rect tapeRect = tapeEnt->getComponent<Transform>()->getRect();
 
+
 			if (SDL_PointInRect(&point, &tapeRect) && !dad_->isDragging()) {
+
+
+				Transform* tapeTr = tapeEnt->getComponent<Transform>();
+
+				// Creamos la entidad para el punto 
+				
+				
+				if (puntoAzulTex != nullptr && !puntoCreado) {
+
+					float tapeWidth = tapeTr->getRect().w ;
+					float tapeHeight = tapeTr->getRect().h ;
+					Vector2D pointPos{ tapeWidth, tapeHeight };
+					float scale = 50.2f;
+
+					ecs::Entity* puntoEnt = ent_->getMngr()->addEntity(ecs::layer::BLUEPOINT);
+					Transform* puntoTr = puntoEnt->addComponent<Transform>(tapeWidth/2 - 20, tapeHeight/2 - 20, scale, scale);
+					puntoTr->setParent(tapeTr);
+					puntoEnt->addComponent<RenderImage>(puntoAzulTex);
+					puntoCreado = true;
+				}
+			
+
+
+
+
 				if (GeneralData::instance ()->getUpgradeValue (ecs::upg::ENVOLVER_UPGRADE)) {					
 					wrapped = true;
 					ent_->getComponent<Paquete> ()->envolver ();
@@ -147,29 +175,39 @@ void Wrap::update() {
 					double centerXTape = tapeRect.x + tapeRect.w / 2;
 					double centerYTape = tapeRect.y + tapeRect.h / 2;
 
+					double topYTape = tapeRect.y;
 
-					std::vector<double> pointsX{ abs (centerXTape - (centerXTR - widthTR / 2)), abs (centerXTape - centerXTR), abs (centerXTape - (centerXTR + widthTR / 2)) };
+					
 
-					std::vector<double> pointsY{ abs (centerYTape - (centerYTR - heightTR / 2)), abs (centerYTape - centerYTR), abs (centerYTape - (centerYTR + heightTR / 2)) };
+					std::vector<double> pointsX{ abs(centerXTape - (centerXTR - widthTR / 2)), abs(centerXTape - centerXTR),
+											 abs(centerXTape - (centerXTR + widthTR / 2)) };
+
+					std::vector<double> pointsY{ abs(centerYTape - (centerYTR - heightTR / 2)), abs(centerYTape - centerYTR),
+												 abs(centerYTape - (centerYTR + heightTR / 2)) };
+
+				
 					int nCheckPointRoute = 0;
 
-					for (int i = 0; i < pointsY.size (); ++i) {
+					for (int i = 0; i < pointsY.size(); ++i) {
 
-						for (int j = 0; j < pointsX.size (); ++j) {
+						for (int j = 0; j < pointsX.size(); ++j) {
 
-							if (debug && false) {
+							
+								if (debug && false) {
 								std::cout << nCheckPointRoute << std::endl;
 							}
 
 							if (pointsX[j] < space && pointsY[i] < space) {
 
-								checkPointTouch (nCheckPointRoute);
+								checkPointTouch(nCheckPointRoute);
 
 							}
 
 							nCheckPointRoute++;
-
 						}
+							
+
+						
 					}
 
 
@@ -210,16 +248,21 @@ void Wrap::update() {
 
 						paqComp_->clearLayer (ecs::layer::WRAP_POINTS);
 						paqComp_->clearLayer (ecs::layer::RED_LINES);
+						paqComp_->clearLayer(ecs::layer::BLUEPOINT);
 						restartRoute ();
 					}
 				}				
 
 			}
+			
+			
 
 		}
 		else {
 			paqComp_->clearLayer(ecs::layer::WRAP_POINTS);
 			paqComp_->clearLayer(ecs::layer::RED_LINES);
+			paqComp_->clearLayer(ecs::layer::BLUEPOINT);
+			puntoCreado = false;
 			restartRoute();
 		}
 
@@ -265,3 +308,5 @@ void Wrap::checkPointTouch(int point) {
 
 	}
 }
+
+

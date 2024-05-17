@@ -301,6 +301,10 @@
       "file": "recursos/images/PuntoRojo.png"
     },
     {
+      "id": "puntoAzul",
+      "file": "recursos/images/PuntoAzul.png"
+    },
+    {
       "id": "lineaRoja",
       "file": "recursos/images/lineaRoja.png"
     },
