@@ -1247,263 +1247,187 @@
     ]
   },
     "CasaGrande": {
+        "TextoCasaGrande00": [ "Grande00" ],
+        "TextoCasaGrande01": [ "Grande01" ],
+        "TextoCasaGrande02": [ "Grande02" ],
 
-        "TextoCasaGrande10": [ "Esta casa parece ser muy grande." ],
-        "TextoCasaGrande11": [ "Se ve que esta casa tiene ya sus años." ],
+        "TextoCasaGrande10": [ "Esta casa es Grande10" ],
+        "TextoCasaGrande11": [ "Esta casa no es muy muy muy Grande11" ],
+        "TextoCasaGrande12": [ "Es demasiado aaaaaaaaaaaaa tu Grande12" ],
 
-        "TextoCasaGrande20": [ "Esta casa parece ser muy grande." ],
-        "TextoCasaGrande21": [ "Se ve que esta casa tiene ya sus años." ],
+        "TextoCasaGrande20": [ "Grande20" ],
+        "TextoCasaGrande21": [ "Grande21" ],
+        "TextoCasaGrande22": [ "Grande22" ],
 
-        "TextoCasaGrande30": [ "Esta casa parece ser muy grande." ],
-        "TextoCasaGrande31": [ "Se ve que esta casa tiene ya sus años." ],
+        "TextoCasaGrande30": [ "Grande30" ],
+        "TextoCasaGrande31": [ "Grande31" ],
+        "TextoCasaGrande32": [ "Grande32" ],
 
-        "TextoCasaGrande40": [
-            "Igual de grande la casa que ayer.",
-            "Bueno... eso es obvio."
-        ],
-        "TextoCasaGrande41": [ "El que debe de vivir aqu$i no debe tener mucho dinero." ],
+        "TextoCasaGrande40": [ "Grande40" ],
+        "TextoCasaGrande41": [ "Grande41" ],
+        "TextoCasaGrande42": [ "Grande42" ],
 
-        "TextoCasaGrande50": [
-            "Igual de grande la casa que ayer.",
-            "Bueno... eso es obvio."
-        ],
-        "TextoCasaGrande51": [ "El que debe de vivir aqu$i no debe tener mucho dinero." ],
+        "TextoCasaGrande50": [ "Grande50" ],
+        "TextoCasaGrande51": [ "Grande51" ],
+        "TextoCasaGrande52": [ "Grande52" ],
 
-        "TextoCasaGrande60": [
-            "Igual de grande la casa que ayer.",
-            "Bueno... eso es obvio."
-        ],
-        "TextoCasaGrande61": [ "El que debe de vivir aqu$i no debe tener mucho dinero." ],
+        "TextoCasaGrande60": [ "Grande60" ],
+        "TextoCasaGrande61": [ "Grande61" ],
+        "TextoCasaGrande62": [ "Grande62" ],
 
-        "TextoCasaGrande70": [ "Ojal$a alojarme en una casa tan grande como esta." ],
-        "TextoCasaGrande71": [
-            "Si me alojara aqu$i tendría que remodelar la casa un poco.",
-            "Seguro est$a sucia, pero puede tener mucho espacio."
-        ],
+        "TextoCasaGrande70": [ "Grande70" ],
+        "TextoCasaGrande71": [ "Grande71" ],
+        "TextoCasaGrande72": [ "Grande72" ],
 
-        "TextoCasaGrande80": [ "Ojal$a alojarme en una casa tan grande como esta." ],
-        "TextoCasaGrande81": [
-            "Si me alojara aqu$i tendría que remodelar la casa un poco.",
-            "Seguro est$a sucia, pero puede tener mucho espacio."
-        ],
+        "TextoCasaGrande80": [ "Grande80" ],
+        "TextoCasaGrande81": [ "Grande81" ],
+        "TextoCasaGrande82": [ "Grande82" ],
 
-        "TextoCasaGrande90": [ "Ojal$a alojarme en una casa tan grande como esta." ],
-        "TextoCasaGrande91": [
-            "Si me alojara aqu$i tendría que remodelar la casa un poco.",
-            "Seguro est$a sucia, pero puede tener mucho espacio."
-        ],
+        "TextoCasaGrande90": [ "Grande90" ],
+        "TextoCasaGrande91": [ "Grande91" ],
+        "TextoCasaGrande92": [ "Grande92" ],
 
-        "TextoCasaGrande100": [
-            "Hay una mancha en la pared, parece ser...",
-            "*Snif, snif*. Bueno, prefiero no tocar la verdad."
-        ],
-        "TextoCasaGrande101": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
+        "TextoCasaGrande100": [ "Grande100" ],
+        "TextoCasaGrande101": [ "Grande101" ],
+        "TextoCasaGrande102": [ "Grande102" ],
 
-        "TextoCasaGrande110": [
-            "Hay una mancha en la pared, parece ser...",
-            "*Snif, snif*. Bueno, prefiero no tocar la verdad."
-        ],
-        "TextoCasaGrande111": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
+        "TextoCasaGrande110": [ "Grande110" ],
+        "TextoCasaGrande111": [ "Grande111" ],
+        "TextoCasaGrande112": [ "Grande112" ],
 
-        "TextoCasaGrande120": [
-            "Hay una mancha en la pared, parece ser...",
-            "*Snif, snif*. Bueno, prefiero no tocar la verdad."
-        ],
-        "TextoCasaGrande121": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
+        "TextoCasaGrande120": [ "Grande120" ],
+        "TextoCasaGrande121": [ "Grande121" ],
+        "TextoCasaGrande122": [ "Grande122" ],
 
-        "TextoCasaGrande130": [
-            "Puede que no luciera en las mejores condiciones,",
-            "pero esta casa parece ser acogedora."
-        ],
-        "TextoCasaGrande131": [
-            "Ha pasado un tiempo desde que llegu$e,",
-            "pero echo de menos aunque sea mi pisito en la superficie.",
-            "Pero cobraban caro para lo que era."
-        ],
+        "TextoCasaGrande130": [ "Grande130" ],
+        "TextoCasaGrande131": [ "Grande131" ],
+        "TextoCasaGrande132": [ "Grande132" ],
 
-        "TextoCasaGrande140": [
-            "Puede que no luciera en las mejores condiciones,",
-            "pero esta casa parece ser acogedora."
-        ],
-        "TextoCasaGrande141": [
-            "Ha pasado un tiempo desde que llegu$e,",
-            "pero echo de menos aunque sea mi pisito en la superficie.",
-            "Pero cobraban caro para lo que era."
-        ]
+        "TextoCasaGrande140": [ "Grande140" ],
+        "TextoCasaGrande141": [ "Grande141" ],
+        "TextoCasaGrande142": [ "Grande142" ]
     },
     "CartelOficina": {
+        "TextoCartelOficina00": [ "CartelOficina00" ],
+        "TextoCartelOficina01": [ "CartelOficina01" ],
+        "TextoCartelOficina02": [ "CartelOficina02" ],
 
-        "TextoCartelOficina10": [ "Aqu&i estaban buscando trabajo." ],
-        "TextoCartelOficina11": [ "Bonito logo el del cartel." ],
+        "TextoCartelOficina10": [ "CartelOficina10" ],
+        "TextoCartelOficina11": [ "CartelOficina11" ],
+        "TextoCartelOficina12": [ "CartelOficina12" ],
 
-        "TextoCartelOficina20": [
-            "Aqu&i estaban buscando trabajo.",
-            "Aprovech$e para cobrar algo, as$i que me apunt$e"
-        ],
-        "TextoCartelOficina21": [ "El artista deb$ia de estar muy inspirado para hacer este logo del cartel." ],
+        "TextoCartelOficina20": [ "CartelOficina20" ],
+        "TextoCartelOficina21": [ "CartelOficina21" ],
+        "TextoCartelOficina22": [ "CartelOficina22" ],
 
-        "TextoCartelOficina30": [
-            "Aqu&i estaban buscando trabajo.",
-            "Ya no necesitan m$as personal."
-        ],
-        "TextoCartelOficina31": [ "Espero seguir teniendo un trabajo estable." ],
+        "TextoCartelOficina30": [ "CartelOficina30" ],
+        "TextoCartelOficina31": [ "CartelOficina31" ],
+        "TextoCartelOficina32": [ "CartelOficina32" ],
 
-        "TextoCartelOficina40": [ "Otro d$ia m$as a trabajar" ],
-        "TextoCartelOficina41": [ "Hora de empaquetar cosas" ],
+        "TextoCartelOficina40": [ "CartelOficina40" ],
+        "TextoCartelOficina41": [ "CartelOficina41" ],
+        "TextoCartelOficina42": [ "CartelOficina42" ],
 
-        "TextoCartelOficina50": [
-            "Siento que me est$an sobreexplotando,",
-            "pero gano lo suficiente como para vivir, no como en mi antiguo trabajo."
-        ],
-        "TextoCartelOficina51": [ "A veces me gusta ser el empaquetador supremo de esta oficina" ],
+        "TextoCartelOficina50": [ "CartelOficina50" ],
+        "TextoCartelOficina51": [ "CartelOficina51" ],
+        "TextoCartelOficina52": [ "CartelOficina52" ],
 
-        "TextoCartelOficina60": [
-            "Siento que me est$an sobreexplotando,",
-            "pero todav$ia me puedo costear el alojamiento con lo que me dan."
-        ],
-        "TextoCartelOficina61": [ "Deber$ia tranajar ya." ],
+        "TextoCartelOficina60": [ "CartelOficina60" ],
+        "TextoCartelOficina61": [ "CartelOficina61" ],
+        "TextoCartelOficina62": [ "CartelOficina62" ],
 
-        "TextoCartelOficina70": [
-            "El cartel sigue igual de chulo,",
-            "espero que ning&un animal lo ensucie..."
-        ],
-        "TextoCartelOficina71": [ "Quizas deber$ia de entrar ya." ],
+        "TextoCartelOficina70": [ "CartelOficina70" ],
+        "TextoCartelOficina71": [ "CartelOficina71" ],
+        "TextoCartelOficina72": [ "CartelOficina72" ],
 
-        "TextoCartelOficina80": [ "Diseño gr$afico es mi pasi$on." ],
-        "TextoCartelOficina81": [
-            "Quizas deber$ia de entrar ya.",
-            "El jefe puede enfadarse si no voy pronto, aunque tambi$en me la puede pelar bastante."
-        ],
+        "TextoCartelOficina80": [ "CartelOficina80" ],
+        "TextoCartelOficina81": [ "CartelOficina81" ],
+        "TextoCartelOficina82": [ "CartelOficina82" ],
 
-        "TextoCartelOficina90": [ "Me gusta el dibujo cada d$ia m$as." ],
-        "TextoCartelOficina91": [
-            "Quizas deber$ia de entrar ya.",
-            "Quiero ganar dinero."
-        ],
+        "TextoCartelOficina90": [ "CartelOficina90" ],
+        "TextoCartelOficina91": [ "CartelOficina91" ],
+        "TextoCartelOficina92": [ "CartelOficina92" ],
 
-        "TextoCartelOficina100": [ "Trabajar en Carteros antes, era un agobio enorme" ],
-        "TextoCartelOficina101": [
-            "Toca empaquetar m$as paquetes todav$ia,",
-            "a trabajar."
-        ],
+        "TextoCartelOficina100": [ "CartelOficina100" ],
+        "TextoCartelOficina101": [ "CartelOficina101" ],
+        "TextoCartelOficina102": [ "CartelOficina102" ],
 
-        "TextoCartelOficina110": [ "Donde trabajaba antes, en Carteros, pagaban muy poco" ],
-        "TextoCartelOficina111": [
-            "Tengo que ganar m$as dinero aqu&i,",
-            "a trabajar."
-        ],
+        "TextoCartelOficina110": [ "CartelOficina110" ],
+        "TextoCartelOficina111": [ "CartelOficina111" ],
+        "TextoCartelOficina112": [ "CartelOficina112" ],
 
-        "TextoCartelOficina120": [
-            "Los de Carteros eran unos avariciosos,",
-            "en Correos Atl$antida todav$ia puedo cobrar mejor que all$i"
-        ],
-        "TextoCartelOficina121": [
-            "Bueno, basta de mirar el cartel,",
-            "a trabajar."
-        ],
+        "TextoCartelOficina120": [ "CartelOficina120" ],
+        "TextoCartelOficina121": [ "CartelOficina121" ],
+        "TextoCartelOficina122": [ "CartelOficina122" ],
 
-        "TextoCartelOficina130": [ "trece (anulo rima) d$ias y todav$ia sigo trabajando aqu$i" ],
-        "TextoCartelOficina131": [
-            "Llevo un tiempo pregunt$andomelo,",
-            "pero seguro la A del logo es por lo de Atl$antida."
-        ],
+        "TextoCartelOficina130": [ "CartelOficina130" ],
+        "TextoCartelOficina131": [ "CartelOficina131" ],
+        "TextoCartelOficina132": [ "CartelOficina132" ],
 
-        "TextoCartelOficina140": [
-            "Ya habr$an pasado dos semanas desde que trabajo aqu$i,",
-            "pero no echo de menos mi antiguo trabajo, para nada."
-        ],
-        "TextoCartelOficina141": [ "Seguro la A del logo es por lo de Atl$antida, seguro." ]
+        "TextoCartelOficina140": [ "CartelOficina140" ],
+        "TextoCartelOficina141": [ "CartelOficina141" ],
+        "TextoCartelOficina142": [ "CartelOficina142" ]
     },
     "Muro": {
+        "TextoMuro00": [ "Muro00" ],
+        "TextoMuro01": [ "Muro01" ],
+        "TextoMuro02": [ "Muro02" ],
 
-        "TextoMuro10": [ "Recuerdo cuando los guardias de las murallas trataron de perseguirme al llegar. Qu$e bobos." ],
-        "TextoMuro11": [ "A ver si en el resto de la ciudad puedo ver los dem$as muros." ],
+        "TextoMuro10": [ "Muro10" ],
+        "TextoMuro11": [ "Muro11" ],
+        "TextoMuro12": [ "Muro12" ],
 
-        "TextoMuro20": [
-            "Recuerdo cuando los guardias de las murallas trataron de perseguirme ayer,",
-            "no puedo creer que la mascara falsa funcionara para distraerlos, qu$e bobos."
-        ],
-        "TextoMuro21": [ "Seguro que incluso hay m$as muros m$as adentro de la ciudad." ],
+        "TextoMuro20": [ "Muro20" ],
+        "TextoMuro21": [ "Muro21" ],
+        "TextoMuro22": [ "Muro22" ],
 
-        "TextoMuro30": [
-            "No s$e porqu$e los guardias de los muros me confundieron con un conocido cuando llegu$e,",
-            "no creo que sean muy listos la verdad."
-        ],
-        "TextoMuro31": [ "Desde lejos parecen diminutos, pero los muros son enormes de cerca." ],
+        "TextoMuro30": [ "Muro30" ],
+        "TextoMuro31": [ "Muro31" ],
+        "TextoMuro32": [ "Muro32" ],
 
-        "TextoMuro40": [
-            "Los arboles que hay al fondo, cerca de los muros,",
-            "son parecidos a los de la superficie..."
-        ],
-        "TextoMuro41": [
-            "El que la ciudad est$e amurallada me recuerda a una ciudad de un comic que le$i,",
-            "dicen que el final era penoso, pero a m$i me encant$o."
-        ],
+        "TextoMuro40": [ "Muro40" ],
+        "TextoMuro41": [ "Muro41" ],
+        "TextoMuro42": [ "Muro42" ],
 
-        "TextoMuro50": [ "Quisiera saber c$omo plantaron esos $arboles del fondo." ],
-        "TextoMuro51": [
-            "El que la ciudad est$e amurallada,",
-            "me sigue recordando a una ciudad de un comic que le$i,",
-            "pero se me ha olvidado c$omo se llama."
-        ],
+        "TextoMuro50": [ "Muro50" ],
+        "TextoMuro51": [ "Muro51" ],
+        "TextoMuro52": [ "Muro52" ],
 
-        "TextoMuro60": [
-            "Me gustan los arboles que hay cerca de los muros.",
-            "Pero el grande que hay en Dem$eter es todav$ia m$as impresionante."
-        ],
-        "TextoMuro61": [
-            "El que la ciudad est$e amurallada,",
-            "me sigue recordando a una ciudad de un comic que le$i,",
-            "creo que se llamaba Asedio de los Gigantes, me gust$o la historia."
-        ],
+        "TextoMuro60": [ "Muro60" ],
+        "TextoMuro61": [ "Muro61" ],
+        "TextoMuro62": [ "Muro62" ],
 
-        "TextoMuro70": [ "Los arquitectos debiron sudar la gota gorda para construir esos muros." ],
-        "TextoMuro71": [ "Me gustar$ia poder saber cuanto tiempo han aguantado esos muros." ],
+        "TextoMuro70": [ "Muro70" ],
+        "TextoMuro71": [ "Muro71" ],
+        "TextoMuro72": [ "Muro72" ],
 
-        "TextoMuro80": [ "Construir esos muros debi$o de tomar mucho tiempo y trabajo." ],
-        "TextoMuro81": [ "Ser&ia muy loco pensar que esos muros llevan en pie miles de anyos." ],
+        "TextoMuro80": [ "Muro80" ],
+        "TextoMuro81": [ "Muro81" ],
+        "TextoMuro82": [ "Muro82" ],
 
-        "TextoMuro90": [
-            "Me pregunto como consiguieron los materiales para construir los muros,",
-            "estamos debajo de la superficie y no hay tantos recursos aqu$i, creo."
-        ],
-        "TextoMuro91": [ "De seguro lleva milenios esos muros en pie." ],
+        "TextoMuro90": [ "Muro90" ],
+        "TextoMuro91": [ "Muro91" ],
+        "TextoMuro92": [ "Muro92" ],
 
-        "TextoMuro100": [
-            "Creo que alguna vez quer$ia ser arquitecto y construir muros como esos,",
-            "pero desde pequeño siempre me ha gustado ser explorador."
-        ],
-        "TextoMuro101": [
-            "Los arboles del fondo veo que siguen igual de bien que siempre,",
-            "no se marchitan ni nada."
-        ],
-
-        "TextoMuro110": [
-            "Creo que una vez quer$ia dedicarme a la arquitectura de muros",
-            "pero siempre quise ser explorador, aunque acab$e trabajando de empaquetador..."
-        ],
-        "TextoMuro111": [ "Me gustar$ia saber que les echan a los arboles para que se mantengan tan bien." ],
-
-        "TextoMuro120": [
-            "Ser arquitecto y constructor de esos muros debi$o de ser un reto a la hora de construirlos,",
-            "pero nada es tan guay como ser un explorador."
-        ],
-        "TextoMuro121": [
-            "Me pregunto si esos arboles dar$an alg$un tipo de fruto.",
-            "Los de Dem$eter si que dan frutos, seguro."
-        ],
-
-        "TextoMuro130": [
-            "Casi dos semanas y me pregunto porqu$e construyeron muros alrededor de la ciudad,",
-            "si est$a rodeada por una c$upula y es dif$icil que cuaquiera entre por ella."
-        ],
-        "TextoMuro131": [
-            "No s$e cuanto miden, pero son bastante altos los muros,",
-            "todav$ia los veo demasiado grandes desde que llegu$e."
-        ],
-
-        "TextoMuro140": [ "No creo que hicieran falta muros all$a si est$a la c&upula rodeando todo." ],
-        "TextoMuro141": [ "Me pregunto cuanto tiempo me tomar$ia escalar esos muros, si lo hiciera." ]
+        "TextoMuro100": [ "Muro100" ],
+        "TextoMuro101": [ "Muro101" ],
+        "TextoMuro102": [ "Muro102" ],
+        
+        "TextoMuro110": [ "Muro110" ],
+        "TextoMuro111": [ "Muro111" ],
+        "TextoMuro112": [ "Muro112" ],
+        
+        "TextoMuro120": [ "Muro120" ],
+        "TextoMuro121": [ "Muro121" ],
+        "TextoMuro122": [ "Muro122" ],
+        
+        "TextoMuro130": [ "Muro130" ],
+        "TextoMuro131": [ "Muro131" ],
+        "TextoMuro132": [ "Muro132" ],
+        
+        "TextoMuro140": [ "Muro140" ],
+        "TextoMuro141": [ "Muro141" ],
+        "TextoMuro142": [ "Muro142" ]
     },
     "TiendaPociones": {
         "TextoTiendaPociones00": [ "TiendaPociones00" ],
