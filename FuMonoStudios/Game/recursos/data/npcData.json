@@ -627,7 +627,7 @@
            "1": "Campesino++++++++++",
            "2": "$Campesino----------"
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Pancracio me ha pedido que selle su paquete con la direcci$on de Gambon III en lugar de Medusia la Santa"
       },
       "2": {
         "numPaquetes": 2,
@@ -647,7 +647,7 @@
 
         },
         
-        "textoDiario": "Texto diario"
+        "textoDiario": "Pancracio necesita uno de los paquetes de materiales dirigidos a Hefesto"
       },
       "3": {
         "numPaquetes": 2,
@@ -666,7 +666,7 @@
           "2": "$Campesino----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Pancracio quiere que desv$ie un paquete de Apolo a Demeter"
       },
       "4": {
         "numPaquetes": 3,
@@ -685,7 +685,7 @@
           "2": "$Campesino----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "En Demeter estan enfermos. Deber$ia desviar dos paquetes de medicinas de Hermes hasta all$i"
       },
       "5": {
         "numPaquetes": 1,
@@ -711,7 +711,7 @@
 
         },
 
-        "textoDiario": "Texto diario"
+        "textoDiario": "Pancracio le ha puesto mal el sello de pesado a su paquete y me ha pedido que haga la vista gorda."
       }
     }
   },
@@ -749,7 +749,7 @@
           "2": "$Artesano----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "El artista Tinteiros necesita un paquete de materiales para sus obras."
       },
       "2": {
         "numPaquetes": 2,
@@ -767,7 +767,7 @@
           "2": "$Artesano----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Paulino esta molesto con su jefe, dice que necesita un paquete lleno de joyas para sus obras."
       },
       "3": {
         "numPaquetes": 3,
@@ -810,7 +810,7 @@
           "2": "$Artesano----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Paulino a mentido con el peso en su paquete, me ha pedido que lo ignore."
       },
       "5": {
         "numPaquetes": 1,
@@ -833,7 +833,7 @@
           "2": "$Artesano----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Paulino se ha olvidado del sello de fragilidad en su paquete, a pesar de eso quiere que se lo envuelva."
       }
     }
   },
@@ -871,7 +871,7 @@
           "2": "$Tarotisa----------"
 
         },
-        "textoDiario": "Texto diario1"
+        "textoDiario": "La tarotisa esta muy enfadada, dice que necesita joyas para sus creaciones, quiza podria desviar un paquete."
       },
       "2": {
         "numPaquetes": 1,
@@ -889,7 +889,7 @@
           "2": "$Tarotisa----------"
 
         },
-        "textoDiario": "Texto diario2"
+        "textoDiario": "Abigail realmente es agresiva, me ha pedido que le envie un paquete de armas, aunque dice que es solo para intimidar"
       },
       "3": {
         "numPaquetes": 1,
@@ -914,7 +914,7 @@
           "2": "$Tarotisa----------"
 
         },
-        "textoDiario": "Texto diario3"
+        "textoDiario": "Abigail quiere que la ayude con una estafa. Tengo que enviar su paquete aunque el peso no sea correcto"
       },
       "4": {
         "numPaquetes": 2,
@@ -935,7 +935,7 @@
           "2": "$Tarotisa----------"
 
         },
-        "textoDiario": "Texto diario4"
+        "textoDiario": "Abigail quiere que tire a la basura todos los paquetes del Dr Luengostino."
       },
       "5": {
         "numPaquetes": 4,
@@ -954,7 +954,7 @@
           "2": "$Tarotisa----------"
 
         },
-        "textoDiario": "Texto diario5"
+        "textoDiario": "Abigail me ha pedido por el bien de los campesinos que env$ie tres paquetes de alimentos de Hermes a Demeter."
       }
     }
   },
@@ -994,7 +994,7 @@
           "2": "$Soldado----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "El soldado me ha pedido que le env$ie dos paquetes muy pesados, por la seguridad de la Atl$antida se supone"
       },
       "2": {
         "numPaquetes": 3,
@@ -1013,7 +1013,7 @@
           "2": "$Soldado----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Abakand quiere que redirija tres paquetes de medicina a Hestia, se ve que est$an muy mal all$i."
       },
       "3": {
         "numPaquetes": 2,
@@ -1031,7 +1031,7 @@
           "2": "$Soldado----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Los disturbios de Hestia est$an muy mal. Abakand me ha pedido que mande all$i un paquete de comida y otro de medicina."
       },
       "4": {
         "numPaquetes": 2,
@@ -1049,7 +1049,7 @@
           "2": "$Soldado----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Abakand me ha pedido que env$ie un paquete de armamento a un joven de Hestia para su entrenamiento."
       },
       "5": {
         "numPaquetes": 3,
@@ -1068,7 +1068,7 @@
           "2": "$Soldado----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Abakand est$a investigando los sellos falsos, me ha pedido que le env$ie dos paquetes con ellos a Apolo."
       }
     }
   },
@@ -1106,7 +1106,7 @@
           "2": "$Contable----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Don Globus necesita dos paquetes de alimentos en Hermes desesperadamente"
       },
       "2": {
         "numPaquetes": 1,
@@ -1127,7 +1127,7 @@
           "2": "$Contable----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Glover quiere que le tire su paquete que envi$o por error a la basura."
       },
       "3": {
         "numPaquetes": 1,
@@ -1147,7 +1147,7 @@
           "1": "Contable++++++++++",
           "2": "$Contable----------"
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Glover no le ha puesto el sello de fragilidad al paquete de un cliente, me ha pedido que lo envuelva aun sin el sello"
       },
       "4": {
         "numPaquetes": 1,
@@ -1164,7 +1164,7 @@
           "1": "Contable++++++++++",
           "2": "$Contable----------"
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Parece que Glover tiene problemas con gente muy chunga. Deber$ia enviarle ese paquete de joyas por su bien."
       },
       "5": {
         "numPaquetes": 2,
@@ -1183,7 +1183,7 @@
           "1": "Contable++++++++++",
           "2": "$Contable----------"
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Glover a estado usando sellos falsos sin saber que son ilegales. En cuanto se lo dije me pidio hacer la vista gorda con sus paquetes, solo por hoy."
       }
     }
   }

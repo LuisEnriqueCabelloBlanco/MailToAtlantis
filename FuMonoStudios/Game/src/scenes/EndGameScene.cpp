@@ -19,15 +19,16 @@ EndGameScene::EndGameScene()
 void EndGameScene::init()
 {
     npcId_ = 0;
+#ifdef _DEBUG
     std::cout << "init";
+#endif // _DEBUG
     Personaje npc = (Personaje)npcId_;
     final_ = new Final(this, npc, gD().getNPCData(npc)->felicidad);
 
     // Fondo escena
     ComonObjectsFactory* fact = getFactory();
     fact->setLayer(ecs::layer::FOREGROUND);
-    Texture* fondoTex = &sdlutils().images().at("finalFondo");
-    ecs::Entity* fondo = fact->createImage(Vector2D(0, 0), Vector2D(fondoTex->width(), fondoTex->height()), fondoTex);
+    ecs::Entity* fondo = fact->createImage(Vector2D(0, 0), &sdlutils().images().at("finalFondo"));
     Transform* fondoTr = fondo->getComponent<Transform>();
     fondoTr->setScale(1);
 }
@@ -41,8 +42,8 @@ void EndGameScene::update()
             nextEnding();
         }
         else {
-            final_ = nullptr;
             delete final_;
+            final_ = nullptr;
             gm().requestChangeScene(ecs::sc::END_SCENE, ecs::sc::MENU_SCENE);
         }
     }
