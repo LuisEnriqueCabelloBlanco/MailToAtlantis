@@ -105,7 +105,7 @@ void PaqueteBuilder::cartaRND(ecs::Entity* packageBase) {
 }
 
 void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
-	Paquete* pNPC = generalData().npcEventSys->getPaqueteNPC();
+	Paquete* pNPC = gD().npcEventSys->getPaqueteNPC();
 	Paquete* pq = ent->addComponent<Paquete>(*pNPC);
 	if (!pNPC->isCarta()) addVisualElements(ent);
 	//else addVisualElementsCarta(ent);
@@ -114,7 +114,7 @@ void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
 bool PaqueteBuilder::shouldBuildNPCPackage()
 {
 	int rnd = sdlutils().rand().nextInt(0, 4);
-	return generalData().npcEventSys->areTherePaquetesNPC() && rnd > 0;
+	return gD().npcEventSys->areTherePaquetesNPC() && rnd > 0;
 }
 
 ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle calle, const std::string& remitente, pq::TipoPaquete tipo, bool correcto, pq::NivelPeso nivPeso, int peso, bool fragil, bool carta)
@@ -185,7 +185,7 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene, bool esCarta)
 			herrEnt->interact(packageBase);
 		}
 
-	}, generalData().DropIn);
+	}, gD().DropIn);
 
 	packageBase->addComponent<MoverTransform>(packageBase->getComponent<Transform>()->getPos() - Vector2D(200, 0),
 		1, Easing::EaseOutBack)->disable();
@@ -239,9 +239,9 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 
 pq::Distrito PaqueteBuilder::distritoRND() {	//Este m�todo devuelve un Distrito aleatorio entre todas las posibilidades
 	//TO DO: Cambiarlo para que solo salgan distritos desbloqueados
-	int rnd = sdlutils().rand().nextInt(0, generalData().getTubesAmount());
+	int rnd = sdlutils().rand().nextInt(0, gD().getTubesAmount());
 
-	if (generalData().getTubesAmount() == rnd) {
+	if (gD().getTubesAmount() == rnd) {
 		rnd = 8;
 	}
 
@@ -386,7 +386,7 @@ std::string PaqueteBuilder::remitenteRND() {
 void PaqueteBuilder::getStreetsFromJSON(JSONObject& root, Distrito dist)
 {
 	JSONValue* jValue = nullptr;
-	jValue = root[generalData().fromDistritoToString(dist)];
+	jValue = root[gD().fromDistritoToString(dist)];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			distritoCalle_[dist].reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
@@ -452,12 +452,18 @@ void PaqueteBuilder::addVisualElements(ecs::Entity* paq) {
 
 		//Creamos la entidad Peso sello 
 		pq::NivelPeso miPeso = paqComp->getPeso();
-		if (miPeso != pq::Ninguno) {
-			tipoString = (miTipo == pq::Bajo ? "selloPesoBajo" :
-				miTipo == pq::Medio ? "selloPesoMedio" :
-				miTipo == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");
+
+		
+		if (miPeso != pq::Ninguno) {			
+				tipoString = (miPeso == pq::Bajo ? "selloPesoBajo" :
+					miPeso == pq::Medio ? "selloPesoMedio" :
+					miPeso == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");				
+			
+			std::cout << "\nAAAA" << paqComp->pesoCorrecto() << "\n";
+			std::cout << "\n" << tipoString << "\n";
 			crearSello(paq, tipoString, PESO_SELLO_POS_X, PESO_SELLO_POS_Y, PESO_SELLO_SIZE, PESO_SELLO_SIZE);
-		}
+		}		
+		
 		//Creamos la entidad Fragil sello 
 		bool fragil = paqComp->getFragil();
 		if (fragil) {

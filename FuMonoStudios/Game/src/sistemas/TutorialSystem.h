@@ -22,7 +22,7 @@ using SimpleCallback = std::function<void()>;
 // a activateDialogue, que muestra un texto y al terminar, llama a su correspondiente
 // stopEvent.
 // Para poder ir avanzando y saber que el jugador ha hecho acciones, se ha modificado
-// los elementos de la oficina para que al hacer acciones llamen a 'registerAction'
+// los elementos de la oficina para que al hacer acciones llamen a 'notifyAction'
 // que en caso de tener un metodo de listener, recibira la accion.
 //
 // La forma de funcionar de un evento es: Ser llamado en activateEvent y sacar su 
@@ -47,11 +47,28 @@ public:
 	TutorialSystem(ecs::TutorialScene* scene);
 	~TutorialSystem();
 
-	void registerAction(Action a);
+	/// <summary>
+	/// notifica que una acción ha sido realizada y se procesa
+	/// </summary>
+	/// <param name="a"></param>
+	void notifyAction(Action a);
 
+	/// <summary>
+	/// aniade la accion indicada para esperar a que sea activada
+	/// </summary>
+	/// <param name="a"></param>
+	/// <param name="call"></param>
 	void addActionListener(Action a, SimpleCallback call);
 
+	/// <summary>
+	/// Realiza las acciones de comienzo del evento
+	/// </summary>
+	/// <param name="event"></param>
 	void activateEvent(TutorialEvent event);
+	/// <summary>
+	/// Realiza las acciones de final del evento
+	/// </summary>
+	/// <param name="event"></param>
 	void stopEvent(TutorialEvent event);
 
 	void init();
@@ -70,14 +87,17 @@ private:
 	int tutorialIteration;
 
 	TutorialEvent currentEvent;
-
-	std::vector<std::pair<Action, SimpleCallback>> actionListeners;
+	std::list<std::pair<Action, SimpleCallback>> actionListeners;
 
 	// objetos de evento
 	void createArrow();
 	ecs::Entity* arrow_;
 
-	// time en segundos
+	/// <summary>
+	/// establece que callback se debe llamar tras esperar unos segundos determinados
+	/// </summary>
+	/// <param name="time"></param>
+	/// <param name="call"></param>
 	void delayedCallback(float time, SimpleCallback call);
 	SimpleCallback call_;
 	Uint32 timer_;

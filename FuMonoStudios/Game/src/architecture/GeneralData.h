@@ -10,7 +10,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "sdlutils/Texture.h"
+#include <json/JSON.h>
+#include <json/JSONValue.h>
+#include <bitset>
 
 class DialogManager;
 class PaqueteBuilder;
@@ -156,13 +158,27 @@ public:
 	void setFinalID(int final); //Cambia el ID del final
 	int getFinalID(); //Devuelve el id del final del juego
 
-	void changeParamID(int i, bool suma); //Modifica un parametro en especifico del array y decide si se suma o no
-	inline int getParam(int i) {
+	void changeParamID(int i, bool suma); //Modifica un parametro en especifico y decide si se suma o no
+	inline int getParamMusic() {
 #ifdef _DEBUG
-		std::cout << "El valor del parametro que quieres es: " << paramAjustes_[i] << std::endl;
+		std::cout << "El valor del parametro de musica que quieres es: " << paramVolMusic_ << std::endl;
 #endif // _DEBUG
+		return paramVolMusic_; 
+	}
 
-		return paramAjustes_[i]; 
+	inline int getParamSfx() {
+#ifdef _DEBUG
+		std::cout << "El valor del parametro de sfx que quieres es: " << paramVolSfx_ << std::endl;
+#endif // _DEBUG
+		return paramVolSfx_;
+	}
+
+	void ToggleSkipTutorial() {
+		skipTutorial_ = !skipTutorial_;
+	}
+
+	bool GetValueSkipTutorial() {
+		return skipTutorial_;
 	}
 
 	inline int getDay() { return dia_; }
@@ -233,6 +249,9 @@ private:
 	void reduceMoney(int cant) { dinero_ -= cant; }
 
 	void updateDistrictsPerDay(int dia);
+
+	void saveNPCData(JSONObject& obj);
+
 	/// <summary>
 	/// estructura que almacena los datos de los npc
 	/// </summary>
@@ -269,11 +288,16 @@ private:
 	int paqueteLvl_ = 0;
 
 	/// <summary>
-	/// Array de ints en el que cada posicion corresponde al numero de configuracion de un parametro
-	/// dentro de los ajustes del juego. Por ejemplo, la posición 1 puede corresponder 
+	/// Parametreos correspondientes al nivel de volumen 
 	/// nivel de volumen (maximo 100).
 	/// </summary>
-	int paramAjustes_[10];
+	int paramVolMusic_;
+	int paramVolSfx_;
+
+	/// <summary>
+	/// booleano que indica si se salta o no los tutoriales
+	/// </summary>
+	bool skipTutorial_;
 
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
 	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo
@@ -293,10 +317,33 @@ private:
 	/// <summary>
 	/// Vector con las mejoras desbloqueadas hasta el momento
 	/// </summary>
-	std::vector<bool> upgrades_;	
+	//std::vector<bool> upgrades_;
 
+	std::bitset<ecs::upg::_LAST_UPGRADE> upgrades_;
+
+	/*/// <summary>
+	/// Vector que se borrara al terminar de relizar el guardado
+	/// </summary>
+	std::vector<JSONValue*> jsonValVec;*/
 };
-
-inline GeneralData& generalData() {
+/// <summary>
+/// Accesor de General Data
+/// </summary>
+/// <returns></returns>
+inline GeneralData& gD() {
 	return *GeneralData::instance();
+}
+/// <summary>
+/// metodo template que te permite modificar objetos de un JsonObject
+/// usado en el metodo en el saveGame
+/// </summary>
+/// <typeparam name="T">tipo que tendra el objeto a insertal en el jsonObject</typeparam>
+/// <param name="obj">raiz del objeto Json a modificar</param>
+/// <param name="key"></param>
+/// <param name="val"></param>
+template<typename T>
+inline void modifyJsonData(JSONObject& obj, const std::string& key, T val) {
+	auto jsonVal = new JSONValue(val);
+	obj[key] = jsonVal;
+	//jsonValVec.push_back(jsonVal);
 }
