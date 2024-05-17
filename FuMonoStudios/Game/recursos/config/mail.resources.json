@@ -94,6 +94,10 @@
     {"id": "botella2","file": "recursos/images/Botella2.png"},
     {"id": "cartaAtlantida","file": "recursos/images/CartaAtlantida.png"},
     {
+      "id": "sellador",
+      "file": "recursos/images/sellador.png"
+    },
+    {
       "id": "sellador0",
       "file": "recursos/images/selladorRojo.png"
     },
