@@ -111,6 +111,7 @@ void Final::loadFinal(Personaje npc, Felicidad felicidad)
     factory->setLayer(ecs::layer::UI);
 
     // Borramos la imagen anterior
+    imagenNpc_ = nullptr;
     delete imagenNpc_;
 
     // Actualizamos la imagenNpc
