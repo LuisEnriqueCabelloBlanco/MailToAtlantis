@@ -64,7 +64,7 @@ footer img:hover {
 	margin-top: 50px;
 	padding: 5px;
 	text-align: center;
-	border-radius: 90px;
+	border-radius: 30px;
 	background-image: url('cuadro.png');
 }
 
@@ -78,6 +78,7 @@ footer img:hover {
 	text-align: justify;
 	margin-left: 100px;
 	margin-right: 100px;
+	line-height: 1.5;
 	padding: 10px;
 }
 
@@ -93,7 +94,7 @@ footer img:hover {
 }
 
 .descarga-boton {
-	background-color: greenyellow; 
+	background-color: rgb(47, 255, 255); 
 	border-color: rgb(19, 0, 128);
 	width: 75%;
 	height: 75px;
@@ -107,7 +108,7 @@ footer img:hover {
 	padding: 1.5rem 2.375rem 1.5rem 2.375rem;
 	border: 0.125rem solid rgb(144, 233, 11);
 	border-radius: 2rem;
-	background-color: rgb(144, 233, 11);
+	background-color: rgb(11, 233, 233);
 	color: #fff;
 	font: 600px "Press Start 2P", Press Start 2P;
 	text-decoration: none;
@@ -116,9 +117,9 @@ footer img:hover {
 }
 
 .boton-descarga:hover {
-	border: 0.125rem solid rgb(144, 233, 11);
-	background-color: rgb(144, 233, 11, 0.5);
-	color: rgb(144, 233, 11);
+	border: 0.125rem solid rgb(11, 126, 233);
+	background-color: rgba(11, 126, 233, 0.5);
+	color: rgb(11, 189, 233);
 }
 
 .row {
@@ -147,6 +148,12 @@ footer img:hover {
   	margin: 30px auto 0;
 }
 
+.capturas img {
+    border: 10px solid #301874; /* Cambia el color y el grosor según tus necesidades */
+    border-radius: 10px; /* Opcional: para esquinas redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Opcional: para agregar una sombra */
+}
+
 .imgen {
     display: none;
 }
@@ -170,7 +177,7 @@ footer img:hover {
 	transition: 0.6s ease;
 	border-radius: 0 3px 3px 0;
 	user-select: none;
-	background-color: #200747;
+	background-color: #1b0938;
   }
   
 .prev {
@@ -195,14 +202,14 @@ footer img:hover {
 	height: 15px;
 	width: 15px;
 	margin: 0 2px;
-	background-color: #2656d8;
+	background-color: #1da5ce;
 	border-radius: 50%;
 	display: inline-block;
 	transition: background-color 0.6s ease;
 }
 
 .active, .dot:hover {
-  	background-color: #150b4d;
+  	background-color: #1222b1;
 }
 
 .fade {
@@ -233,10 +240,29 @@ footer img:hover {
 
 .miembro img {
     border-radius: 50%;
-    width: 250px; /* Asegúrate de mantener las dimensiones deseadas */
-    height: 250px;
+  
     object-fit: cover; /* Para asegurar que la imagen se ajuste correctamente dentro del círculo */
 }
+
+.miembro-contenedor {
+    position: relative;
+    display: inline-block;
+}
+
+.miembro-contenedor img {
+    display: block;
+}
+
+
+.miembro-contenedor .burbuja {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+	
+}
+
 
 .info-miembro {
 	text-align: justify;
