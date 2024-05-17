@@ -195,6 +195,9 @@ namespace ecs {
 		// bool que permite interactuar con flechas entrar a trabajar etc. Esta siempre true menos al entrar a dialogo
 		bool canInteract;
 
+		// flag que indica si ensenar la advertencia de que no has hablado con algun npc
+		bool showTalkWarning;
+
 		ecs::Entity* boton_Trabajo;
 
 		void addDiarioEvent(NPCevent* event);

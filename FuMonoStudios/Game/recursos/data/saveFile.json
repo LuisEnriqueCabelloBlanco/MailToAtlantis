@@ -1,5 +1,5 @@
 {
-  "Dia": 5,
+  "Dia": 2,
   "Dinero": 100,
   "Personajes":{
     "Vagabundo":{
@@ -15,22 +15,22 @@
       "EventosCompletados": []
     },
     "Campesino":{
-      "Felicidad": "Normal",
+      "Felicidad": "NoHabladoAun",
       "FelicidadNum": 50,
       "numMisionesAceptadas": 0,
       "EventosCompletados": []
     },
     "Artesano":{
-      "Felicidad": "Normal",
+      "Felicidad": "NoHabladoAun",
       "FelicidadNum": 50,
       "numMisionesAceptadas": 0,
       "EventosCompletados": []
     },
     "Tarotisa":{
-      "Felicidad": "Normal",
+      "Felicidad": "NoHabladoAun",
       "FelicidadNum": 60,
-      "numMisionesAceptadas": 1,
-      "EventosCompletados": [4]
+      "numMisionesAceptadas": 0,
+      "EventosCompletados": []
     },
     "Soldado":{
       "Felicidad": "NoHabladoAun",

@@ -68,6 +68,7 @@ void ecs::ExplorationScene::init()
 	createDiario();
 
 	canInteract = true;
+	showTalkWarning = true;
 
 	dialogueWhenEntering();
 }
@@ -286,17 +287,30 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 	auto clickableBotonTrabajar = e->addComponent<Clickeable>("");
 	CallbackClickeable funcPress = [this]() {
 		if (canInteract) {
-			if ((gD().getDay() == 1 ||
-				gD().getDay() == 3 ||
-				gD().getDay() == 5 ||
-				gD().getDay() == 8) && !gD().GetValueSkipTutorial()) {
-
-				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+			int numPersonajesSinHablar = 0;
+			for (int i = 0; i < gD().getNumDistritos(); i++) {
+				NPCdata* data = gD().getNPCData((Personaje)i);
+				if (data->felicidad != SeFue && !data->postConversation)
+					numPersonajesSinHablar++;
 			}
-			else {
-
-				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+			if (!showTalkWarning || numPersonajesSinHablar < 1)
+			{
+				if ((gD().getDay() == 1 ||
+					gD().getDay() == 3 ||
+					gD().getDay() == 5 ||
+					gD().getDay() == 8) && !gD().GetValueSkipTutorial()) {
+					gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+				}
+				else {
+					gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+				}
 			}
+			else
+			{
+				showTalkWarning = false;
+				dialogMngr_.startConversation(DialogManager::NoHabladoWarning, 0);
+			}
+			
 		}
 	};
 	clickableBotonTrabajar->addEvent(funcPress);

@@ -1247,6 +1247,9 @@
       "*Hasta aqu$i el texto, deber$ia hablar con la gente de la ciudad a ver qu$e opinan de esto. Espero que no me descubran...*"
     ]
   },
+    "NoHabladoWarning": {
+      "0": ["Deberia hablar con todos antes de entrar a trabajar."]
+    },
     "CasaGrande": {
         "TextoCasaGrande00": [ "Grande00" ],
         "TextoCasaGrande01": [ "Grande01" ],
