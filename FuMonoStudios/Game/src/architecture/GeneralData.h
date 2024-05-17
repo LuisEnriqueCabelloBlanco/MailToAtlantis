@@ -18,6 +18,7 @@ class DialogManager;
 class PaqueteBuilder;
 class Game;
 class Paquete;
+class Texture;
 
 class NPCevent;
 class NPCeventSystem;
@@ -209,6 +210,9 @@ public:
 
 	int getRent();
 	void setRent(int rent);
+
+	//Texturas personajes
+	Texture* personajeToTexture(Personaje pers);
 
 	//Textos personajes
 	const std::string personajeToString(Personaje pers);

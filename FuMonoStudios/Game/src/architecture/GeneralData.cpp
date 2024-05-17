@@ -12,7 +12,7 @@
 #include <sistemas/NPCeventSystem.h>
 #include <architecture/GameConstants.h>
 #include <iostream>
-
+#include <sdlutils/Texture.h>
 
 GeneralData::GeneralData()
 {
@@ -165,6 +165,7 @@ void GeneralData::setRent(int rent) {
 	std::cout << "el nuevo alquiler es: " << rent_ << std::endl;
 #endif // _DEBUG
 }
+
 
 int GeneralData::getRent() {
 
@@ -564,6 +565,35 @@ void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
 
 void GeneralData::unlockMejoraPersonaje(Personaje p) {
 
+}
+
+Texture* GeneralData::personajeToTexture(Personaje pers)
+{
+	Texture* texture = nullptr;
+	switch (pers) {
+	case Vagabundo:
+		texture = &sdlutils().images().at("Vagabundo");
+		break;
+	case Secretario:
+		texture = &sdlutils().images().at("Secretario");
+		break;
+	case Campesino:
+		texture = &sdlutils().images().at("Campesino");
+		break;
+	case Artesano:
+		texture = &sdlutils().images().at("Artesano");
+		break;
+	case Tarotisa:
+		texture = &sdlutils().images().at("Tarotisa");
+		break;
+	case Soldado:
+		texture = &sdlutils().images().at("Soldado");
+		break;
+	case Contable:
+		texture = &sdlutils().images().at("Contable");
+		break;
+	}
+	return texture;
 }
 
 const std::string GeneralData::personajeToString(Personaje pers) {
