@@ -20,7 +20,7 @@ EndGameScene::EndGameScene()
 void EndGameScene::init()
 {
     Personaje npc = (Personaje)npcId_;
-    final_ = new Final(this, npc, generalData().getNPCData(npc)->felicidad);
+    final_ = new Final(this, npc, GeneralData().getNPCData(npc)->felicidad);
 
     // Fondo escena
     ComonObjectsFactory* fact = getFactory();
@@ -49,5 +49,5 @@ void EndGameScene::nextEnding()
 {
     npcId_++;
     Personaje npc = (Personaje)npcId_;
-    final_->loadFinal(npc, generalData().getNPCData(npc)->felicidad);
+    final_->loadFinal(npc, GeneralData().getNPCData(npc)->felicidad);
 }

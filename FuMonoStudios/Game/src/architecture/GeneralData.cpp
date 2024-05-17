@@ -12,6 +12,7 @@
 #include <sistemas/NPCeventSystem.h>
 #include <architecture/GameConstants.h>
 #include <iostream>
+#include <sdlutils/Texture.h>
 
 GeneralData::GeneralData()
 {

@@ -30,7 +30,7 @@ Final::Final(ecs::Scene* escene, Personaje npc, Felicidad felicidad)
     periodicoTr->setScale(1);
 
     // Creamos entidad imagenNpc
-    Texture* imagenNpcTex = generalData().personajeToTexture(npc);
+    Texture* imagenNpcTex = GeneralData().personajeToTexture(npc);
     imagenNpc_ = factory->createImage(Vector2D(30, 110), Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
     Transform* imagenNpcTr = imagenNpc_->getComponent<Transform>();
     imagenNpcTr->setScale(0.25);
@@ -85,7 +85,7 @@ void Final::inicializarFinal(ecs::Scene* escene, Personaje npc, Felicidad felici
     for (int i = 0; i < numNpc; i++) {
         Personaje npc = (Personaje)i;
 
-        std::string charac = generalData().personajeToString(npc);
+        std::string charac = GeneralData().personajeToString(npc);
         JSONValue* jsonEntry = nullptr;
         jsonEntry = root[charac];
         if (jsonEntry != nullptr)
@@ -114,7 +114,7 @@ void Final::loadFinal(Personaje npc, Felicidad felicidad)
     delete imagenNpc_;
 
     // Actualizamos la imagenNpc
-    Texture* imagenNpcTex = generalData().personajeToTexture(npc);
+    Texture* imagenNpcTex = GeneralData().personajeToTexture(npc);
     imagenNpc_ = factory->createImage(Vector2D(300, 500), Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
     Transform* imagenNpcTr = imagenNpc_->getComponent<Transform>();
 
