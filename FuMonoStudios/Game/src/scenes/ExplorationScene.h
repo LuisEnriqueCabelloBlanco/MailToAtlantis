@@ -212,6 +212,7 @@ namespace ecs {
 		std::vector<int> pagesByCharacter;
 		int currentDiarioPage;
 
+		//Vector que marca si ese dia se han visitado o no los distritos
 		std::vector<bool> placesExplored;
 
 		//diario variables
