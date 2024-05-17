@@ -76,7 +76,6 @@
 
     {"id": "flechaTest","file": "recursos/images/flecha.png"},
     {"id": "cambioPag","file": "recursos/images/NextPage.png"},
-    {"id": "botonTrabajar","file": "recursos/images/placeholderTrabajar.png"},
     {"id": "Demeter","file": "recursos/images/Demeter.png"},
     {"id": "Hefesto","file": "recursos/images/Hefesto.png"},
     {"id": "Hestia","file": "recursos/images/Hestia.png"},
