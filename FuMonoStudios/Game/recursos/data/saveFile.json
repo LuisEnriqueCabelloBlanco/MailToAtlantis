@@ -1,6 +1,6 @@
 {
-  "Dia": 2,
-  "Dinero": 100,
+  "Dia": 4,
+  "Dinero": -300,
   "Personajes":{
     "Vagabundo":{
       "Felicidad": "Normal",

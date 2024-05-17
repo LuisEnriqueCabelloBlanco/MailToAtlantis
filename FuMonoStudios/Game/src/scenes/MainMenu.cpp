@@ -50,13 +50,6 @@ void ecs::MainMenu::init()
 
 	auto textColor = build_sdlcolor(0xffffffff);
 	factory_->setLayer(layer::UI);
-	//auto tuto = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH- 700, 400), "Tutorial", 50, [this]() {
-	//	sdlutils().musics().at("mainMenu").haltMusic();
-	//	gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::TUTORIAL_SCENE);
-	//	},textColor);
-	//factory_->addHilghtOnHover(tuto);
-	//factory_->addHoverColorMod(tuto);
-
 
 	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 400), "Nueva partida", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
