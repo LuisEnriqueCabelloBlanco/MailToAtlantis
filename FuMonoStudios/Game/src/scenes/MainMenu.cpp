@@ -50,15 +50,8 @@ void ecs::MainMenu::init()
 
 	auto textColor = build_sdlcolor(0xffffffff);
 	factory_->setLayer(layer::UI);
-	//auto tuto = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH- 700, 400), "Tutorial", 50, [this]() {
-	//	sdlutils().musics().at("mainMenu").haltMusic();
-	//	gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::TUTORIAL_SCENE);
-	//	},textColor);
-	//factory_->addHilghtOnHover(tuto);
-	//factory_->addHoverColorMod(tuto);
 
-
-	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Nueva partida", 50, [this]() {
+	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 400), "Nueva partida", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gD().newGame();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::INTRO_SCENE);
@@ -67,13 +60,20 @@ void ecs::MainMenu::init()
 	factory_->addHilghtOnHover(start);
 	factory_->addHoverColorMod(start);
 
-	auto loadSave = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Cargar partida guardada", 50, [this]() {
+	auto loadSave = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Cargar partida guardada", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
 		gD().loadSaveFile();
 		}, "click", textColor);
 	factory_->addHilghtOnHover(loadSave);
 	factory_->addHoverColorMod(loadSave);
+
+	auto endScene = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Mostramos Final Juego", 50, [this]() {
+		sdlutils().musics().at("mainMenu").haltMusic();
+		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::END_SCENE);
+	}, "click", textColor);
+	factory_->addHilghtOnHover(endScene);
+	factory_->addHoverColorMod(endScene);
 
 	auto ajustes = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 700), "Configuracion", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();

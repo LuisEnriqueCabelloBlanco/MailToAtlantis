@@ -24,6 +24,9 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 			SoundEmiter::instance()->playSound("stamp");
 			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
 			ent_->getComponent<MoverTransform>()->enable();
+			auto stampRender = ent_->getComponent<RenderImage>();
+			stampRender->setTexture(&sdlutils().images().at("sellador"));
+			setFunctionality(SelloVacio);
 			};
 		break;
 	case SelloCalleB:
@@ -33,6 +36,9 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 			SoundEmiter::instance()->playSound("stamp");
 			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
 			ent_->getComponent<MoverTransform>()->enable();
+			auto stampRender = ent_->getComponent<RenderImage>();
+			stampRender->setTexture(&sdlutils().images().at("sellador"));
+			setFunctionality(SelloVacio);
 			};
 		break;
 	case SelloCalleC:
@@ -42,6 +48,9 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 			SoundEmiter::instance()->playSound("stamp");
 			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
 			ent_->getComponent<MoverTransform>()->enable();
+			auto stampRender = ent_->getComponent<RenderImage>();
+			stampRender->setTexture(&sdlutils().images().at("sellador"));
+			setFunctionality(SelloVacio);
 			};
 		break;
 	case SelloMultiColor:
@@ -62,6 +71,15 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 			}
 		};
 		break;
+
+	case SelloVacio:
+
+		funcion_ = [this](ecs::Entity* paq) {
+			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
+			ent_->getComponent<MoverTransform>()->enable();
+		};
+		break;
+	
 	}
 #ifdef _DEBUG
 	std::cout << "El tipo de herramienta es: " << tipo << std::endl;

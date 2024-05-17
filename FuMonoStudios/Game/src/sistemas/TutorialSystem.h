@@ -64,12 +64,12 @@ public:
 	void addActionListener(Action a, SimpleCallback call);
 
 	/// <summary>
-	/// Realiza las acciones de comienzo del evento
+	/// Realiza las acciones de comienzo del evento, es decir antes del texto
 	/// </summary>
 	/// <param name="event"></param>
 	void activateEvent(TutorialEvent event);
 	/// <summary>
-	/// Realiza las acciones de final del evento
+	/// Realiza las acciones de final del evento, es decir despues del texto
 	/// </summary>
 	/// <param name="event"></param>
 	void stopEvent(TutorialEvent event);
