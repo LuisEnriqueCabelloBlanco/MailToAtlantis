@@ -368,7 +368,7 @@
   "Campesino": {
     "Presentacion": [
       "Pero bueno tu debes de ser nuevo por aqu$i, no me suena haberte visto antes.",
-      "Anda toma esto a ver si te ayuda un poco hoy que tienes cara de muerto, aunque no me extra$%a despu$es de todo el jaleo del otro d$ia",
+      "Anda comet$e una de mis cosechas a ver si te ayuda un poco hoy que tienes cara de muerto, aunque no me extra$%a $ultimamente los distritos est$an muy revueltos",
       "Por cierto que no me hab$ia presentado, soy Pancracio Warawa. Un gusto hijo.",
       "Venga a pasar buena noche, y espabila que la vida te va ha comer!"
     ],
@@ -457,7 +457,7 @@
       "1": [
         "Buenas tardes hijo, $?qu$e tal te va en tu trabajo?.",
         "Espero que ya no tengas tantas ganas de salir huyendo.",
-        "A m$i me podr$ia ir mejor la verdad, anda prueba esto.",
+        "A m$i me podr$ia ir mejor la verdad, anda prueba esto que he cosechado.",
         "Por tu cara veo que no te convence mucho",
         "Las cosas ya no son como antes, cuando empec$e todo era m$as sencillo,",
         "la tierra era m$as pr$ospera y f$ertil y los productos se vend$ian mejor sin tanto intermediario de por medio.",
@@ -483,7 +483,7 @@
     "GenericoBueno": {
       "1": [
         "Pero bueno, a qui$en tenemos aqu$i. $?qu$e tal la vida hijo?",
-        "Por aqu$i todo va bastate bien, mira prueba esto que acabo de cosechar.",
+        "Por aqu$i todo va bastate bien, mira prueba esto que acabo de recoger del campo.",
         "Vaya parece que si te ha gustado",
         "$ultimamente lo que cosecho sabe mejor, no se si ser$an los recursos o la tierra, pero estamos que nos salimos,",
         "esos intermediarios que tanto por saco me dan est$an empezando a soltar un poco m$as por mis productos."
@@ -512,7 +512,7 @@
         "resulta que junto a ellos estamos llevando un plan ..., digamos que muy discreto.",
         "Consiste en que los menos favorecidos pod$ais disfrutar de mis productos a un precio menos abusivos de los que ponen los intermediarios,",
         "no hables mucho del tema, es un secreto.",
-        "Toma, hoy estoy de buen humor, te puedes llevar un poco de esto gratis, $!A pasar buen d$ia!"
+        "Toma, hoy estoy de buen humor, te puedes llevar unas pocas cosechas m$as gratis, $!A pasar buen d$ia!"
       ],
       "2": [
         "$!Ese Paco c$omo anda!",
@@ -1123,27 +1123,44 @@
       "Ahora lo metemos al tubo con su mismo s$imbolo, el de color verde."
     ],
     "13": [
+      "No te creas que todo va a ser siempre tan dif$icil, muchas veces te podr$an llegar cartas como la que ves ah$i.",
+      "Para las cartas al ser trozos de papel solo debes poner el sello de su calle, siempre.",
+      "No hay que hacer nada m$as con ellas. Anda prueba a sellar esta carta debidamente."
+    ],
+    "14": [
+      "Perfecto, ahora simplemente envial$a por el tubo y todo estar$a listo."
+    ],
+    "15": [
+      "Ahora Paco, ve a la s$eptima p$agina del manual, ah$i encontrar$as informaci$on sobre los sellos que marcan el contenido de los paquetes."
+    ],
+    "16": [
+      "Como veas hay cinco tipos de sellos, los de alimentos, los de materiales, los de joyas, los de armamento y los de medicina.",
+      "Tranquilo, no te preocupes, esa informaci$on no la necesitas para nada, es algo m$as informativo para los carteros.",
+      "Adem$as no es como si el contenido de los paquetes te interesase para redirigirlos a otras personas y asi ganarte su afecto $?verdad?.",
+      "Muy bien, sigamos ya con la $ultima parte de tu formaci$on"
+    ],
+    "17": [
       "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
       "No te preocupes que no te voy a penalizar... Tranquilo...",
       "Coge este paquete, que en principio est$a bien reglamentado, y mandalo a la basura.",
       "La basura es el tubo negro de la izquierda, cualquier paquete que no cumpla lo establecido ira ah$i."
     ],
-    "14": [
+    "18": [
       "Fijate que te ha salido una notita explicando tu error. Cada paquete correcto son 20 dolares m$as en tu cuenta, y cada paquete err$oneo son 30 dolares menos.",
       "Espero no ver muchas notitas cuando trabajes... El anterior a ti le hacia demasiados favores a la gente de la ciudad y acababa no ganando nada..."
     ],
-    "15": [
+    "19": [
       "Paco, Paco, dios mio que desgracia, a aparecido una red de trafico de sellos falsos en el reino.",
       "Si la gente empieza a vender sellos que no sean mios, una gran parte de las ganancias se perdera, pero no te preocupes que aqu$i estoy yo para ense$%arte a detectarlos",
       "Tenemos que comprobar que los paquetes son legales, que tengan el sello reglamentario y la calle est$e bien puesta.",
       "Fijate que este paquete que acaba de llegar tiene un sello raro. Vamos a buscarlo en la p$agina de los sellos."
     ],
-    "16": [
+    "20": [
       "Parece que el sello rojo de Armamento del paquete no coincide con el del manual. Este paquete entonces va directo a la basura.",
       "Arrastralo hasta la basura para eliminarlo. Es importante que elimines los ilegales, sino te penalizare economicamente."
     ],
     
-    "17":[
+    "21":[
       "Hola Paco, espero que no te hayas acomodado porque he tenido una nueva idea que ayudara al negocio",
       "Se ve que $ultimamente la gente trata de mandar m$as y m$as cosas juntas para ahorrarse el dinero de varios env$ios",
       "Esto ha provocado que muchos de mis repartidores se da$%en la espalda llevando esos paquetes al no estar seguros de su peso desde el inicio",
@@ -1152,31 +1169,31 @@
       "El problema es que los habitantes no son muy espabilados asi que tendras que asegurarte con la balanaza que el sello de pesado corresponde a su peso.",
       "Primero ve a la novena pagina del manual para ver como funciona la balanza"
     ],
-    "18":[
+    "22":[
       "Bien como ves a la derecha est$an los diferentes sellos de pesado y a la derecha las distintas regiones por los pesos de la balanza.",
       "Ahora debes arrastrar el paquete a la balanza para ver si la regi$on que marca concuerda con su sello."
     ],
-    "19":[
+    "23":[
       "Como ves este paquete esta correcto, por lo cual pon sus sellos correspondientes y envialo."
     ],
-    "20": [
+    "24": [
       "Vale Paco, espero que esta sea la $ultima cosa que tengo que explicarte. Han metido desde palacio una nueva normativa para ciertos envios debido a las quejas de la gente",
       "Algunos paquetes pueden contener cosas muy delicadas y como se ve que mis empleados no son demasiado delicados, ahora nos obligan a embalar todos los paquetes",
       "con un sello especifico de fragilidad. Para ello tendras que usar la nueva herramienta que te he dejado en la mesa.",
       "Antes de nada, que tal si miras el funcionamiento de la cinta en tu manual."
     ],
-    "21":[
+    "25":[
       "Como ves para envalar un paquete debes seguir una ruta espec$ifica empezando por el punto verde. Mientras sigas los puntos en orden y no te salgas del paquete todo ir$a bien.",
       "PERO OJO, antes de embalarlo sera mejor que le pongas sello de calle y compruebes todo lo dem$as, ya que una vez embalado no podras ver sus caracter$isticas."
     ],
-    "22": [
+    "26": [
       "Como te he dicho antes, para poder embalarlo, coge la herramienta de embalar, y sigue la ruta de puntos que ver$as al ponerla por encima del paquete.",
       "Sigue la ruta empezando por el punto verde y te quedar$a niquelado"
     ],
-    "23": [
+    "27": [
       "Por $ultimo envia el paquete y habr$as terminado"
     ],
-    "24": [
+    "28": [
       "Muy bien, por hoy has aprendido sufiente. Ahora mueve ese culo y ponte a trabajar."
     ]
   },
@@ -1185,17 +1202,19 @@
       "Esta es la aventura de Paco Jones..."
     ],
     "1": [
-      "Paco era un hombre comun y corriente con una vida ordinaria y con un trabajo repetitivo y aburrido.",
-      "Trabajaba en correos y solamente tenia un trabajo: coger los paquetes que le llegaban y mandarlos por un tubo. "
+      "Paco era un hombre com$un y corriente con una vida ordinaria y con un trabajo repetitivo y aburrido.",
+      "Trabajaba en correos y solamente ten$ia un trabajo: coger los paquetes que le llegaban y mandarlos por un tubo. "
     ],
     "5": [
-      "Hacia esto todos los dias y estaba harto de ello, ansiaba una oportunidad de escapar de su monotona vida.", "Hasta que un dia, algo que no era un paquete corriente llego a su oficina..."
+      "Hac$ia esto todos los d$ias y estaba harto de ello, ansiaba una oportunidad de escapar de su mon$otona vida.", "Hasta que un d$ia, algo que no era un paquete corriente llego a su oficina..."
     ],
     "7": [
-      "Paco abrio la extrana botella y dentro encontro una carta que decia venir de la Atlantida."
+      "Paco abri$o la extra$%a botella y dentro encontr$o una carta que dec$ia venir de la Atl$antida."
     ],
     "8": [
-      "El remitente de la carta era un grupo que se hacia llamar Las Lechuzas y habia un mapa que marcaba la supuesta ubicacion de este legendario lugar.", "Paco interpreto esto como una senal del destino para dejar todo atras y se embarco en su viaje hacia la Atlantida, gastandose todos sus ahorros en un submarino y un disfraz de pez para infiltrarse.", "Y asi, despues de un arduo viaje, Paco llego a su destino, pero este era ligeramente diferente de como se lo imaginaba..."
+      "El remitente de la carta era un grupo que se hac$ia llamar Las Lechuzas. Tambi$en hab$ia un mapa que marcaba la supuesta ubicaci$on de este legendario lugar.",
+      "Paco interpreto esto como una se$%al del destino para dejar todo atr$as y se embarc$o en su viaje hacia la Atl$antida, gast$andose todos sus ahorros en un submarino y un disfraz de pez para infiltrarse.", 
+      "Y as$i, despu$es de un arduo viaje, Paco lleg$o a su destino. Aunque este era ligeramente diferente de como se lo imaginaba..."
     ]
   },
   "ExplorationEnter": {

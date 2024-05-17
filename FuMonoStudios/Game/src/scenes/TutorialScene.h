@@ -28,7 +28,7 @@ namespace ecs {
 		/// </summary>
 		void packageSent();
 
-		enum PackageTutorial { Primero, Segundo, Tercero, FallarAposta, Fragil, BalanzaTut, Random};
+		enum PackageTutorial { Primero, Segundo, Tercero, FallarAposta, Fragil, BalanzaTut, Carta, Random};
 		ecs::Entity* createPackage(PackageTutorial pt);
 
 		//void createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto);

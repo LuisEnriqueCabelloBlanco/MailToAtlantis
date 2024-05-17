@@ -23,6 +23,8 @@ public:
 
 	void addEvent(CallbackClickeable event );
 
+	void deleteEvents();
+
 	void toggleClick(bool onoff) { canClick_ = onoff; }
 private:
 
