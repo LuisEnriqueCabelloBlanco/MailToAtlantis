@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\entities\BombAux.cpp" />
+    <ClCompile Include="src\scenes\DeathScene.cpp" />
     <ClCompile Include="src\scenes\IntroScene.cpp" />
     <ClCompile Include="src\sistemas\SpecialObjectsFactory.cpp" />
     <ClCompile Include="src\entities\CristalBall.cpp" />
@@ -225,9 +226,12 @@
     <ClCompile Include="src\scenes\TutorialScene.cpp" />
     <ClCompile Include="src\sistemas\TutorialSystem.cpp" />
     <ClCompile Include="src\sistemas\WorkRestrictionsSystem.cpp" />
+    <ClCompile Include="src\entities\PolvosAux.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\entities\PolvosAux.h" />
     <ClInclude Include="src\entities\BombAux.h" />
+    <ClInclude Include="src\scenes\DeathScene.h" />
     <ClInclude Include="src\scenes\IntroScene.h" />
     <ClInclude Include="src\sistemas\SpecialObjectsFactory.h" />
     <ClInclude Include="src\entities\CristalBall.h" />

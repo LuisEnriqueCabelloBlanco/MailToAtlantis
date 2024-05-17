@@ -2,6 +2,8 @@
 #include <components/Transform.h>
 #include <components/MoverTransform.h>
 #include <sistemas/SoundEmiter.h>
+#include <entities/PolvosAux.h>
+#include <components/Render.h>
 
 Herramientas::Herramientas() {
 	multicolorStamp = false;
@@ -52,7 +54,14 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 			ent_->getComponent<MoverTransform>()->enable();
 			};
 		break;
-	
+	case Polvos:
+		funcion_ = [this](ecs::Entity* paq) {
+			if (ent_->getComponent<RenderImage>()->getCurrentTexture() != &sdlutils().images().at("polvosEsparcidos")) {
+				ent_->setAlive(false);
+				paq->addComponent<PolvosAux>(paq);
+			}
+		};
+		break;
 	}
 #ifdef _DEBUG
 	std::cout << "El tipo de herramienta es: " << tipo << std::endl;

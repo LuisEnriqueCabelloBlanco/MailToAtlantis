@@ -288,15 +288,16 @@
       },
       "14": {
         "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetesParaCompletar": 12,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "SPECIAL1"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "NOHACEFALTA"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+
+        "textoDiario": "Hoy es el gran d$ia. Recibir$e el veneno en una caja y debere espolvarlo sobre el paquete de nombre Francis Dupart. Luego me juntar$e con Anemos y juntos tomaremos el gobierno corrupto del rey."
       }
     }
   },
@@ -580,15 +581,15 @@
       },
       "14": {
         "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetesParaCompletar": 12,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "SPECIAL2"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "NOHACEFALTA"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": "Secretario+",
+        "textoDiario": "Hoy es un dia importante. Por fin regresar$e a la superficie con Gargafiel, debo recibir una bomba de su parte y activarla en mi puesto de trabajo. En lo que explota, saldr$e corriendo y me econtrar$e con $el y su submarino en las afueras de Hefesto. Importante, para la bomba, debo pulsar primero el bot$on azul y luego el rojo."
       }
     }
   },

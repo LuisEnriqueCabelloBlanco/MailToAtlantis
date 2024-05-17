@@ -511,6 +511,14 @@
     {
       "id": "polvos",
       "file": "recursos/images/polvos.png"
+    },
+    {
+      "id": "polvosEsparcidos",
+      "file": "recursos/images/polvosEsparcidos.png"
+    },
+    {
+      "id": "ojo",
+      "file": "recursos/images/ojo.png"
     }
   ],
   "fonts": [
@@ -558,6 +566,16 @@
       "id": "simpleHandmade20",
       "file": "recursos/fonts/SimpleHandmade.ttf",
       "size": 20
+    },
+    {
+      "id": "simpleHandmade40",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 40
+    },
+    {
+      "id": "simpleHandmade80",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 80
     },
     {
       "id": "simpleHandmadeTuneado20",

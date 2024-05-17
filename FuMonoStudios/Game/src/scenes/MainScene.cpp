@@ -42,7 +42,7 @@ ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), 
 {
 	timer_ = MINIGAME_TIME;
 	mPipeMngr_ = new PipeManager();
-	specialFactory_ = new SpecialObjectsFactory(this);
+	specialFactory_ = new SpecialObjectsFactory();
 }
 
 ecs::MainScene::~MainScene()

@@ -299,7 +299,7 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 					gD().getDay() == 3 ||
 					gD().getDay() == 5 ||
 					gD().getDay() == 8) && !gD().GetValueSkipTutorial()) {
-					gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+					gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
 				}
 				else {
 					gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
