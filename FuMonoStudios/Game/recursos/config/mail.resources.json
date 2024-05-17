@@ -515,7 +515,9 @@
     {
       "id": "luz",
       "file": "recursos/images/luz.png"
-    }
+    },
+    {"id": "periodico","file": "recursos/images/Periodico.png"},
+    {"id": "finalFondo","file": "recursos/images/FondoFinales.png"}
   ],
   "fonts": [
     {

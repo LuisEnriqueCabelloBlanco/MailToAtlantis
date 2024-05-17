@@ -122,7 +122,7 @@ ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle call
 	//Idea para el que lea esto, usamos este metodo para crear los paquetes de npcs y luego añadirlos al vector que hay en el GeneralData.h
 	//En cuyo caso sería buena idea añadirle una variable al método que sea un identificador de cual personaje vamos a añadirle o no felicidad con su paquete
 
-	auto base = buildBasePackage(mScene_, false);
+	auto base = buildBasePackage(mScene_, carta);
 	std::string dir = "";
 	if (distrito != Erroneo && calle != Erronea) {
 		dir = distritoCalle_[distrito][calle];
