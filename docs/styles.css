@@ -16,8 +16,7 @@ body {
 	overflow-x: hidden;
 	margin: 0;
 	padding: 0;
-	position: relative; /* Para hacer que el cuerpo sea relativo */
-	min-height: 100vh; /* Para asegurar que el cuerpo tenga al menos la altura de la ventana */
+	
 }
 
 h2 {
@@ -40,8 +39,8 @@ footer {
 	width: 100%;
 	justify-content: center;
 	padding: 20px;
-	position: relative; /* Para hacer que el pie de página sea relativo */
 	margin-top: 300px;
+
 }
 
 footer img {
@@ -126,7 +125,7 @@ footer img:hover {
 	margin-top: 100px;
 	display: flex;
 	justify-content: center;
-	position: relative; /* Para hacer que las filas sean relativas */
+	position: relative;
 }
 
 .column {
@@ -226,9 +225,9 @@ footer img:hover {
 .lista-miembros {
 	display: flex;
 	flex-wrap: wrap;
-	margin-left: 400px;
+	margin-left: 500px;
 	list-style: none;
-	position: relative; /* Para hacer que la lista de miembros sea relativa */
+	
 	
 }
 
@@ -243,7 +242,7 @@ footer img:hover {
 .miembro img {
 	border-radius: 50%;
 	object-fit: cover;
-	position: relative;
+	margin-left: -100px;
 }
 
 
@@ -265,7 +264,7 @@ footer img:hover {
 	position: relative;
 	text-align: justify;
 	margin-left: -50px;
-	margin-right: 100px;
+	margin-right: 00px;
 	padding: 10px;
 	font-size: 25px;
 }
@@ -286,7 +285,7 @@ footer img:hover {
 	text-align: center;
 	display: flex;
 	align-items: center;
-	position: relative;
+}
 	
 
 .footer-content {
@@ -339,5 +338,4 @@ footer img:hover {
 
 .imagen-container:hover .segunda-imagen {
 	opacity: 1;
-}
 }
