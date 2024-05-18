@@ -1751,187 +1751,142 @@
         "TextoTiendaJarrones141": [ "Si esta tienda es de la tarotista, debe de saber c$omo ha podido mantener a flote dos negocios a la vez." ]
     },
     "Molino": {
-        "TextoMolino00": [ "Molino00" ],
-        "TextoMolino01": [ "Molino01" ],
-        "TextoMolino02": [ "Molino02" ],
         
-        "TextoMolino10": [ "Molino10" ],
-        "TextoMolino11": [ "Molino11" ],
-        "TextoMolino12": [ "Molino12" ],
+        "TextoMolino10": [ "Este molino es bastante grande." ],
+        "TextoMolino11": [ "Esa tortuga debe de vivir en este molino, quiz$as." ],
         
-        "TextoMolino20": [ "Molino20" ],
-        "TextoMolino21": [ "Molino21" ],
-        "TextoMolino22": [ "Molino22" ],
+        "TextoMolino20": [ "Con lo grande que es este molino seguro sacan mucho pan con el trigo" ],
+        "TextoMolino21": [ "Si la tortuga viviera en este molino, debe de tener mucho espacio." ],
         
-        "TextoMolino30": [ "Molino30" ],
-        "TextoMolino31": [ "Molino31" ],
-        "TextoMolino32": [ "Molino32" ],
+        "TextoMolino30": [ "Si cultivan trigo en este lugar, gracias a este gran molino deben de producir mucho pan" ],
+        "TextoMolino31": [ "Me pregunto si en el molino vive alguien m$as que la tortuga, si es que vive aqu$i claro." ],
         
-        "TextoMolino40": [ "Molino40" ],
-        "TextoMolino41": [ "Molino41" ],
-        "TextoMolino42": [ "Molino42" ],
+        "TextoMolino40": [ "Este molino me recuerda a una historia muy popular de mi pa&is, pero no recuerdo el nombre." ],
+        "TextoMolino41": [ "$?En el molino guardar$an m$asa cosas aparte de trigo?" ],
         
-        "TextoMolino50": [ "Molino50" ],
-        "TextoMolino51": [ "Molino51" ],
-        "TextoMolino52": [ "Molino52" ],
+        "TextoMolino50": [ "A veces cuando miro este molino me recuerda a una historia de mi pa&is donde el protagonista los confund$ia con monstruos." ],
+        "TextoMolino51": [ "Con lo grande que es, de seguro este molino no solo garda trigo si qes que se cultiva." ],
+
+        "TextoMolino60": [
+            "Ver un molino tan grande me recuerda ahora mismo a la historia del Cijonte,",
+            "el protagonista pensaba que los molinos eran monstruos, pero simplemente estaba loco."
+        ],
+        "TextoMolino61": [ "Si hay paja, creo que cabr$ia tambi$en dentro del molino junto con el trigo que se puede hacer en $el." ],
         
-        "TextoMolino60": [ "Molino60" ],
-        "TextoMolino61": [ "Molino61" ],
-        "TextoMolino62": [ "Molino62" ],
+        "TextoMolino70": [ "No hace mucho viento por lo que veo, las aspas no se mueven." ],
+        "TextoMolino71": [ "Me pregunto donde estar$a el trigo si en este molino hacen pan con $el." ],
         
-        "TextoMolino70": [ "Molino70" ],
-        "TextoMolino71": [ "Molino71" ],
-        "TextoMolino72": [ "Molino72" ],
+        "TextoMolino80": [ "Llevo ya unos d$ias y hace poco que me di cuenta de que si no giran las aspas no pueden producir nada en el molino." ],
+        "TextoMolino81": [ "Se supone que en los molinos se hace pan con el trigo, pero no veo trigo por aqu$i cerca." ],
         
-        "TextoMolino80": [ "Molino80" ],
-        "TextoMolino81": [ "Molino81" ],
-        "TextoMolino82": [ "Molino82" ],
+        "TextoMolino90": [ "Si las aspas no giran, es porque hay poco viento." ],
+        "TextoMolino91": [ "El trigo con el que se hace pan en este molino debe de estar en alguna parte." ],
         
-        "TextoMolino90": [ "Molino90" ],
-        "TextoMolino91": [ "Molino91" ],
-        "TextoMolino92": [ "Molino92" ],
+        "TextoMolino100": [ "Para construir un molino as$i de grande debe de haber costado mucho." ],
+        "TextoMolino101": [ "Me pregunto todav$ia si campesinos como la tortuga viven en molinos parecidos a este." ],
         
-        "TextoMolino100": [ "Molino100" ],
-        "TextoMolino101": [ "Molino101" ],
-        "TextoMolino102": [ "Molino102" ],
+        "TextoMolino110": [ "No s$e de donde sacaron la inspiraci$on, pero construir un molino as$i de grande es mucho trabajo." ],
+        "TextoMolino111": [ "Todav$ia me cuestiono si todos los campesinos viven en molinos como este o en casas de este u otro distrito." ],
         
-        "TextoMolino110": [ "Molino110" ],
-        "TextoMolino111": [ "Molino111" ],
-        "TextoMolino112": [ "Molino112" ],
+        "TextoMolino120": [ "Construir un molino as&i de grande y en buenas condiciones, debe de haber sido mucho trabajo si lleva muchos a$%os en pie" ],
+        "TextoMolino121": [ "Si hay campesinos que no viven en molnos como este, a lo mejor hay m$as casas por Dem$eter o viven en Hestia." ],
         
-        "TextoMolino120": [ "Molino120" ],
-        "TextoMolino121": [ "Molino121" ],
-        "TextoMolino122": [ "Molino122" ],
+        "TextoMolino130": [ "Llevo aqu$i ya un tiempecito, pero molinos como este no se ven todos los d$ias." ],
+        "TextoMolino131": [ "Quisiera saber donde venden el pan si lo hacen aqu$i, para saber si est$a bueno." ],
         
-        "TextoMolino130": [ "Molino130" ],
-        "TextoMolino131": [ "Molino131" ],
-        "TextoMolino132": [ "Molino132" ],
-        
-        "TextoMolino140": [ "Molino140" ],
-        "TextoMolino141": [ "Molino141" ],
-        "TextoMolino142": [ "Molino142" ]
+        "TextoMolino140": [ "Alg$un d$ia descubrir$e de donde sacaron la inspiraci$on para hacer un molino como los de la superficie." ],
+        "TextoMolino141": [
+            "Si supiera donde venden el pan si lo hacen en etes molino,",
+            "a lo mejor le echar$ia una probadita."
+        ]
     },
     "Arbol": {
-        "TextoArbol00": [ "Arbol00" ],
-        "TextoArbol01": [ "Arbol01" ],
-        "TextoArbol02": [ "Arbol02" ],
         
         "TextoArbol10": [ "Arbol10" ],
         "TextoArbol11": [ "Arbol11" ],
-        "TextoArbol12": [ "Arbol12" ],
         
         "TextoArbol20": [ "Arbol20" ],
         "TextoArbol21": [ "Arbol21" ],
-        "TextoArbol22": [ "Arbol22" ],
         
         "TextoArbol30": [ "Arbol30" ],
         "TextoArbol31": [ "Arbol31" ],
-        "TextoArbol32": [ "Arbol32" ],
         
         "TextoArbol40": [ "Arbol40" ],
         "TextoArbol41": [ "Arbol41" ],
-        "TextoArbol42": [ "Arbol42" ],
         
         "TextoArbol50": [ "Arbol50" ],
         "TextoArbol51": [ "Arbol51" ],
-        "TextoArbol52": [ "Arbol52" ],
         
         "TextoArbol60": [ "Arbol60" ],
         "TextoArbol61": [ "Arbol61" ],
-        "TextoArbol62": [ "Arbol62" ],
         
         "TextoArbol70": [ "Arbol70" ],
         "TextoArbol71": [ "Arbol71" ],
-        "TextoArbol72": [ "Arbol72" ],
         
         "TextoArbol80": [ "Arbol80" ],
         "TextoArbol81": [ "Arbol81" ],
-        "TextoArbol82": [ "Arbol82" ],
         
         "TextoArbol90": [ "Arbol90" ],
         "TextoArbol91": [ "Arbol91" ],
-        "TextoArbol92": [ "Arbol92" ],
         
         "TextoArbol100": [ "Arbol100" ],
         "TextoArbol101": [ "Arbol101" ],
-        "TextoArbol102": [ "Arbol102" ],
         
         "TextoArbol110": [ "Arbol110" ],
         "TextoArbol111": [ "Arbol111" ],
-        "TextoArbol112": [ "Arbol112" ],
         
         "TextoArbol120": [ "Arbol120" ],
         "TextoArbol121": [ "Arbol121" ],
-        "TextoArbol122": [ "Arbol122" ],
         
         "TextoArbol130": [ "Arbol130" ],
         "TextoArbol131": [ "Arbol131" ],
-        "TextoArbol132": [ "Arbol132" ],
         
         "TextoArbol140": [ "Arbol140" ],
-        "TextoArbol141": [ "Arbol141" ],
-        "TextoArbol142": [ "Arbol142" ]
+        "TextoArbol141": [ "Arbol141" ]
     },
     "Carreta": {
-        "TextoCarreta00": [ "Carreta00" ],
-        "TextoCarreta01": [ "Carreta01" ],
-        "TextoCarreta02": [ "Carreta02" ],
         
         "TextoCarreta10": [ "Carreta10" ],
         "TextoCarreta11": [ "Carreta11" ],
-        "TextoCarreta12": [ "Carreta12" ],
         
         "TextoCarreta20": [ "Carreta20" ],
         "TextoCarreta21": [ "Carreta21" ],
-        "TextoCarreta22": [ "Carreta22" ],
         
         "TextoCarreta30": [ "Carreta30" ],
         "TextoCarreta31": [ "Carreta31" ],
-        "TextoCarreta32": [ "Carreta32" ],
         
         "TextoCarreta40": [ "Carreta40" ],
         "TextoCarreta41": [ "Carreta41" ],
-        "TextoCarreta42": [ "Carreta42" ],
         
         "TextoCarreta50": [ "Carreta50" ],
         "TextoCarreta51": [ "Carreta51" ],
-        "TextoCarreta52": [ "Carreta52" ],
         
         "TextoCarreta60": [ "Carreta60" ],
         "TextoCarreta61": [ "Carreta61" ],
-        "TextoCarreta62": [ "Carreta62" ],
         
         "TextoCarreta70": [ "Carreta70" ],
         "TextoCarreta71": [ "Carreta71" ],
-        "TextoCarreta72": [ "Carreta72" ],
         
         "TextoCarreta80": [ "Carreta80" ],
         "TextoCarreta81": [ "Carreta81" ],
-        "TextoCarreta82": [ "Carreta82" ],
         
         "TextoCarreta90": [ "Carreta90" ],
         "TextoCarreta91": [ "Carreta91" ],
-        "TextoCarreta92": [ "Carreta92" ],
         
         "TextoCarreta100": [ "Carreta100" ],
         "TextoCarreta101": [ "Carreta101" ],
-        "TextoCarreta102": [ "Carreta102" ],
         
         "TextoCarreta110": [ "Carreta110" ],
         "TextoCarreta111": [ "Carreta111" ],
-        "TextoCarreta112": [ "Carreta112" ],
         
         "TextoCarreta120": [ "Carreta120" ],
         "TextoCarreta121": [ "Carreta121" ],
-        "TextoCarreta122": [ "Carreta122" ],
         
         "TextoCarreta130": [ "Carreta130" ],
         "TextoCarreta131": [ "Carreta131" ],
-        "TextoCarreta132": [ "Carreta132" ],
         
         "TextoCarreta140": [ "Carreta140" ],
-        "TextoCarreta141": [ "Carreta141" ],
-        "TextoCarreta142": [ "Carreta142" ]
+        "TextoCarreta141": [ "Carreta141" ]
     },
     "PulpoCartel": {
         "TextoPulpoCartel00": [ "PulpoCartel00" ],
