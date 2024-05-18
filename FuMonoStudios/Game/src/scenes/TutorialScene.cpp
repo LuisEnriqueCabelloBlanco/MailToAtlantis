@@ -109,6 +109,7 @@ void ecs::TutorialScene::close() {
 	ecs::Scene::close();
 
   SoundEmiter::instance()->close();
+  tubos.clear();
 }
 
 void ecs::TutorialScene::activateTubos() {
