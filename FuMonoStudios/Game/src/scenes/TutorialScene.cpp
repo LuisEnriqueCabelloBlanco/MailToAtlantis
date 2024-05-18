@@ -141,7 +141,7 @@ void ecs::TutorialScene::activateOneTube(int tube)
 
 	if (tubos[tube]->getComponent<Trigger>() == nullptr) {
 
-
+		Trigger* tuboTri = tubos[tube]->addComponent<Trigger>();
 	}
 	
 	if (tubos[tube]->getComponent<PackageChecker>() == nullptr) {
