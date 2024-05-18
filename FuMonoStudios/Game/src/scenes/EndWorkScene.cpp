@@ -10,6 +10,7 @@
 #include <architecture/Game.h>
 #include <components/MoverTransform.h>
 #include <architecture/GameConstants.h>
+#include <sistemas/SoundEmiter.h>
 
 EndWorkScene::EndWorkScene():Scene() {
 }
@@ -58,6 +59,12 @@ void EndWorkScene::init() {
 	//Luis:no se si se deberia avanzar antes o despues de guardar
 	gD().setDay(gD().getDay() + 1);
 	gD().saveGame();
+}
+
+void EndWorkScene::close()
+{
+	ecs::Scene::close();
+	SoundEmiter::instance()->close();
 }
 
 void EndWorkScene::createTextAnim(std::string msg)

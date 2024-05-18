@@ -12,6 +12,7 @@
 #include <architecture/GeneralData.h>
 #include <sistemas/ComonObjectsFactory.h>
 #include <architecture/GameConstants.h>
+#include <sistemas/SoundEmiter.h>
 
 //ecs::MainMenu::MainMenu()
 //{
@@ -88,6 +89,12 @@ void ecs::MainMenu::init()
 		}, "click", textColor);
 	factory_->addHilghtOnHover(exit);
 	factory_->addHoverColorMod(exit);
+}
+
+void ecs::MainMenu::close()
+{
+	ecs::Scene::close();
+	SoundEmiter::instance()->close();
 }
 
 void ecs::MainMenu::changeToMainScene() {
