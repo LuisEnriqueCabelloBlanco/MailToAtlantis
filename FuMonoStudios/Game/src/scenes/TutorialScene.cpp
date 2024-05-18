@@ -140,13 +140,13 @@ void ecs::TutorialScene::activateAllButOneTube(int tub)
 void ecs::TutorialScene::activateOneTube(int tube)
 {
 
-	if (tubos[tube]->getComponent<Trigger>() != nullptr) {
+	if (tubos[tube]->getComponent<Trigger>() == nullptr) {
 
 		Trigger* tuboTri = tubos[tube]->addComponent<Trigger>();
 
 	}
 	
-	if (tubos[tube]->getComponent<PackageChecker>() != nullptr) {
+	if (tubos[tube]->getComponent<PackageChecker>() == nullptr) {
 
 		PackageChecker* tuboCheck = tubos[tube]->addComponent<PackageChecker>(Distrito(tube), this, mPipeMngr_);
 
