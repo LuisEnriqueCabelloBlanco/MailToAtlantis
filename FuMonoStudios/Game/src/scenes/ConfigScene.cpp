@@ -95,26 +95,6 @@ void ecs::ConfigScene::init()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	// Boton cambio de activar o no salto del tutorial
 	Transform* trSkipIcon = skipTutoIconEnt_->addComponent<Transform>(515, 860, 95, 122);
 	RenderImage* rdrSkipIcon = skipTutoIconEnt_->addComponent<RenderImage>(skipTutoIconTexture_);
