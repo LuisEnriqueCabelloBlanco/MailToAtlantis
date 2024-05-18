@@ -225,7 +225,7 @@ ecs::Entity* ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 void ecs::MainScene::updateToolsPerDay(int dia)
 {
-	createCinta(); //Quitar
+
 	if(dia == 0)
 		return;	
 	
