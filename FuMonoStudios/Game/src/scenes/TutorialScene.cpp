@@ -107,7 +107,8 @@ void ecs::TutorialScene::init() {
 
 void ecs::TutorialScene::close() {
 	ecs::Scene::close();
-    SoundEmiter::instance()->close();
+  	SoundEmiter::instance()->close();
+  	tubos.clear();
 }
 
 void ecs::TutorialScene::activateTubos() {
@@ -318,8 +319,6 @@ void ecs::TutorialScene::deactivateOneTube(int tube)
 	if (tubos[tube]->getComponent<PackageChecker>() != nullptr) {
 		tubos[tube]->removeComponent<PackageChecker>();
 	}
-	
-
 }
 
 ecs::Entity* ecs::TutorialScene::createGarbage()

@@ -20,10 +20,6 @@ namespace ecs {
         Entity* screenModeIconEnt_;
         Texture* skipTutoIconTexture_;
         Entity* skipTutoIconEnt_;
-
-
-        //Texture* screenModeTexture_;
-        //Entity* screenModeEnt_;
     public:
         ConfigScene();
         virtual ~ConfigScene();
