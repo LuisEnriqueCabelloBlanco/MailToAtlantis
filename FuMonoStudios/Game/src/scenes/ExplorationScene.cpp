@@ -429,7 +429,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 					textoPersonaje = textoPersonaje + "- Dia ";
 					if (data->eventosCompletados[j].second == 0) // si el evento es de hoy
 					{
-						if (data->npcId < 2) {
+						if (i < 2) {
 							textoPersonaje = textoPersonaje + std::to_string(day) +
 								textoCompletado + "\n" +
 								data->events[day - 1]->textoDiario + "\n";
