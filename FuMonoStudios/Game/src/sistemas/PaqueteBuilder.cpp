@@ -457,10 +457,7 @@ void PaqueteBuilder::addVisualElements(ecs::Entity* paq) {
 		if (miPeso != pq::Ninguno) {			
 				tipoString = (miPeso == pq::Bajo ? "selloPesoBajo" :
 					miPeso == pq::Medio ? "selloPesoMedio" :
-					miPeso == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");				
-			
-			std::cout << "\nAAAA" << paqComp->pesoCorrecto() << "\n";
-			std::cout << "\n" << tipoString << "\n";
+					miPeso == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");									
 			crearSello(paq, tipoString, PESO_SELLO_POS_X, PESO_SELLO_POS_Y, PESO_SELLO_SIZE, PESO_SELLO_SIZE);
 		}		
 		

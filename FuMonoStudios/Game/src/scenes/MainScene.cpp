@@ -279,7 +279,7 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 	Entity* NotaErronea = addEntity(ecs::layer::FOREGROUND);
 	NotaErronea->addComponent<ErrorNote>(paqComp, basura, tuboIncorrecto);
 	Texture* NotaTex = &sdlutils().images().at("notaError");
-	Transform* NotaTR = NotaErronea->addComponent<Transform>(100, 1400, NotaTex->width() * 2, NotaTex->height() * 2);
+	Transform* NotaTR = NotaErronea->addComponent<Transform>(100 + (35 * GeneralData::instance()->getFails()), 1400, NotaTex->width() * 2, NotaTex->height() * 2);
 	NotaTR->setScale(0.2f);
 	NotaErronea->addComponent<Depth>();
 	NotaErronea->addComponent<Gravity>();
@@ -830,16 +830,6 @@ void ecs::MainScene::createPaquete (int lv) {
 		if(rnd !=1) bolaCrist_->check(pac->getComponent<Paquete>(), true);
 		else bolaCrist_->check(pac->getComponent<Paquete>(), false);
 	}
-	Paquete* p = pac->getComponent<Paquete>();	
-	std::cout << "\n";
-	std::cout << "Fragil: " << p->getFragil();
-	std::cout << "\n";
-	std::cout << "PesoTipo: " << p->getPeso();
-	std::cout << "\n";
-	std::cout << "PesoNum: " << p->getCantidadPeso();
-	std::cout << "\n";
-	std::cout << "PesoCorr: " << p->pesoCorrecto();
-	std::cout << "\n";
 }
 
 
