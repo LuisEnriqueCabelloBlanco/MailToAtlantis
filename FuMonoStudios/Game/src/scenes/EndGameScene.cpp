@@ -23,7 +23,8 @@ void EndGameScene::init()
     std::cout << "init";
 #endif // _DEBUG
     Personaje npc = (Personaje)npcId_;
-    final_ = new Final(this, npc, gD().getNPCData(npc)->felicidad);
+    final_ = new Final(factory_);
+    final_->loadFinal(npc, gD().getNPCData(npc)->felicidad);
 
     // Fondo escena
     ComonObjectsFactory* fact = getFactory();

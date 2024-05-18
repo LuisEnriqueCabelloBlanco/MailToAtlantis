@@ -84,16 +84,17 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 
 	if (gD().getDay() == 1) {
 		canInteract = false;
-		dialogMngr_.setEndDialogueCallback([this] {
+		factory_->setLayer(ecs::layer::UI);
+		ecs::Entity* temporalSprite = factory_->createImage(Vector2D(500, 550.0f), Vector2D(450, 500), &sdlutils().images().at("Jefe"));
+		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
 			canInteract = true;
+			temporalSprite->setAlive(false);
 			});
 		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 0);
 	}
 	else if (gD().getDay() == 5) {
 		canInteract = false;
-		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
-		temporalSprite->addComponent<Transform>(500,500,400,600);
-		temporalSprite->addComponent<RenderImage>()->setTexture(&sdlutils().images().at("Jefe"));
+		ecs::Entity* temporalSprite = factory_->createImage(Vector2D(500, 550.0f), Vector2D(450, 500), &sdlutils().images().at("Jefe"));
 		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
 			canInteract = true;
 			temporalSprite->setAlive(false);

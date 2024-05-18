@@ -26,6 +26,8 @@ namespace ecs
 
         void delayedCallback(float time, SimpleCallback call);
 
+        void cambiarFondo(const std::string& background);
+
         ecs::Entity* createGarbage();
 
         void createIntroPackage();
@@ -45,7 +47,10 @@ namespace ecs
 
         DialogManager mDialogManager;
 
+        ecs::Entity* fondo_;
         ecs::Entity* tubo_;
         ecs::Entity* bottle_;
+        ecs::Entity* carta_;
+        ecs::Entity* jefe_;
     };
 }

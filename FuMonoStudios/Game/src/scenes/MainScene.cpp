@@ -239,7 +239,7 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 
 	if (dia >= 5) {
 		if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BALANZA_UPGRADE)) createBalanzaDigital ();
-		else createBalanza();
+		else createBalanzaDigital();
 	}
 
 	if (dia >= 8) {				
@@ -452,10 +452,7 @@ void ecs::MainScene::createBalanzaDigital() {
 	baseBalanza->addComponent<Gravity>();
 	//baseBalanza->addComponent<Depth>();
 
-	////Añadir los numeros del peso
-	std::string msg = "0";
-	factory_->setLayer(ecs::layer::NUMBERS);
-	factory_->createLabel(Vector2D(1270, 593), msg, 50);
+
 
 	// Seteamos padres
 	balanzaTr->setParent(balanzaBaseTr);
@@ -467,24 +464,39 @@ void ecs::MainScene::createBalanzaDigital() {
 		balanzaComp->initAnimationsDigital(entRect, balanza); 
 	std::string msg;
 		int peso = balanzaComp->getPaquetePeso();
+		Vector2D pos;
 		if (peso >= 0) {
-			msg = std::to_string(peso);
+			if (peso < 25) {
+				msg = "LIGERO";
+				pos = Vector2D(1175, 605);
+			}
+
+			else if (peso >= 25 && peso < 50)
+			{
+				msg = "MEDIO";
+			pos = Vector2D(1182, 605);
+		}
+			else if (peso >= 50) {
+				msg = "PESADO";
+				pos = Vector2D(1170, 606);
+			}
+				
 			removeEntitiesByLayer(ecs::layer::NUMBERS);
 			factory_->setLayer(ecs::layer::NUMBERS);
-			factory_->createLabel(Vector2D(1245, 593), msg, 50);
+			factory_->createLabel(pos, msg, 30);
 		}
 		else {
-			msg = "0";
+			msg = " ";
 			removeEntitiesByLayer(ecs::layer::NUMBERS);
 			factory_->setLayer(ecs::layer::NUMBERS);
-			factory_->createLabel(Vector2D(1270, 593), msg, 50);
+			factory_->createLabel(Vector2D(1270, 593), msg, 30);
 		}
 		
 		}, gD().DropIn);
 	
 	balanzaTri->addCallback([this, balanzaComp](ecs::Entity* entRect) {
 		balanzaComp->finishAnimatiosDigital(entRect); 
-		std::string msg2 = "0";
+		std::string msg2 = " ";
 		removeEntitiesByLayer(ecs::layer::NUMBERS);
 		factory_->setLayer(ecs::layer::NUMBERS);
 		factory_->createLabel(Vector2D(1270, 593), msg2, 50);
