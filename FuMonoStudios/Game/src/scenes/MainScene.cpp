@@ -238,8 +238,8 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 	}
 
 	if (dia >= 5) {
-		if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BALANZA_UPGRADE)) createBalanzaDigital ();
-		else createBalanzaDigital();
+		if (GeneralData::instance()->getUpgradeValue(ecs::upg::BALANZA_UPGRADE)) createBalanzaDigital();
+		else createBalanza();
 	}
 
 	if (dia >= 8) {				
@@ -842,6 +842,15 @@ void ecs::MainScene::createPaquete (int lv) {
 		if(rnd !=1) bolaCrist_->check(pac->getComponent<Paquete>(), true);
 		else bolaCrist_->check(pac->getComponent<Paquete>(), false);
 	}
+	Paquete* p = pac->getComponent<Paquete>();
+	std::cout << "\n";
+	std::cout << p->getPeso();
+	std::cout << "\n";
+	std::cout << p->getCantidadPeso();
+	std::cout << "\n";
+	if (p->pesoCorrecto()) std::cout << "true";
+	else std::cout << "false";
+	std::cout << "\n";
 }
 
 
