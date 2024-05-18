@@ -767,10 +767,10 @@ void ecs::ExplorationScene::createObjects(int place) {
 			
 	}
 
-	//PLACEHOLDER_BOTON_GUARDADO
-	factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
-		gD().saveGame();
-		}, "click", SDL_Color{ 255,255,0 });
+	////PLACEHOLDER_BOTON_GUARDADO
+	//factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
+	//	gD().saveGame();
+	//	}, "click", SDL_Color{ 255,255,0 });
 
 }
 

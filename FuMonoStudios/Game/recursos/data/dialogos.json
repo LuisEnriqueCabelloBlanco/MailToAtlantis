@@ -1211,15 +1211,17 @@
     ],
     "8": [
       "El remitente de la carta era un grupo que se hac$ia llamar Las Lechuzas. Tambi$en hab$ia un mapa que marcaba la supuesta ubicaci$on de este legendario lugar.",
-      "Paco interpreto esto como una se$%al del destino para dejar todo atr$as y se embarc$o en su viaje hacia la Atl$antida, gast$andose todos sus ahorros en un submarino y un disfraz de pez para infiltrarse.", 
+      "Paco interpreto esto como una se$%al del destino para dejar todo atr$as y se embarc$o en su viaje hacia la Atl$antida,",
+      "gast$andose todos sus ahorros en un submarino y un disfraz de pez para infiltrarse.",
       "Y as$i, despu$es de un arduo viaje, Paco lleg$o a su destino. Aunque este era ligeramente diferente de como se lo imaginaba..."
     ]
   },
   "ExplorationEnter": {
     "0":[
-      "Ahora si, bienvenido a Atlantis. Puedes navegar entre distritos clicando las flechas colgadas en los carteles de madera, y hablar con los personajes clicando en ellos.",
-      "Conforme vayas conociendo a los personajes, se ira expandiendo tu diario. El diario esta en la parte abajo derecha. Ahora mismo esta vacio porque no conoces a nadie.",
-      "Ve haciendo favores y conociendo a la gente de Atlantis durante tu estancia en la ciudad."
+      "Bueno Paco, por mucho que seas nuevo por estos distritos no debes quedarte dormido, es importante que vengas a trabajar todos los d$ias para poder ser alguien productivo.",
+      "Como es tu primer d$ia, antes de venir a trabajar porque no te das una vuelta por todos los distritos. Para moverte entre distritos pulsa los carteles con flechas.",
+      "Si ves alguno con alguna cruz significa que alguien de tu clase social no puede ir por ah$i. Tambi$en sientete libre de hablar con los habitantes, es importante que hagas amigos",
+      "Por $ultimo, toma, un diario para que puedas apuntar tus pensamientos y tus cosas. Pues ale visita los distritos y vuelve al edificio este de la carta para empezar a currar."
     ],
     "1":[
       "Hola.",
