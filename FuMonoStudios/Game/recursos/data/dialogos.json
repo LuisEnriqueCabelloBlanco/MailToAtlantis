@@ -1695,7 +1695,7 @@
             "m$as que los que venden en Hefesto posiblemente."
         ],
         "TextoTiendaJarrones31": [ "Si estos jarrones son de la tarotista, debe de tener buena mano de obra." ],
-        
+
         "TextoTiendaJarrones40": [ "Deber$ian de pintar los jarrones." ],
         "TextoTiendaJarrones41": [ "Me pregunto cuanto costar$a hacer un jarr$on en un lugar bajo el mar." ],
 
@@ -1704,33 +1704,42 @@
             "Quiz$as as$i se ver$ian mejor."
         ],
         "TextoTiendaJarrones51": [ "Debe de costar mucho hacer jarrones en un lugar bajo el mar." ],
-        
+
         "TextoTiendaJarrones60": [ "Est$an chulos, pero molar$ia mas que los jarrones los pintaran para que sean m$as vistosos." ],
         "TextoTiendaJarrones61": [ "Hacer jarrones como estos bajo el mar debe ser complicado, pero podr$ian pintarlos aunque sea." ],
-        
-        "TextoTiendaJarrones70": [ "TiedaJarrones70" ],
-        "TextoTiendaJarrones71": [ "TiedaJarrones71" ],
-        
-        "TextoTiendaJarrones80": [ "TiedaJarrones80" ],
-        "TextoTiendaJarrones81": [ "TiedaJarrones81" ],
-        
-        "TextoTiendaJarrones90": [ "TiedaJarrones90" ],
-        "TextoTiendaJarrones91": [ "TiedaJarrones91" ],
-        
-        "TextoTiendaJarrones100": [ "TiedaJarrones100" ],
-        "TextoTiendaJarrones101": [ "TiedaJarrones101" ],
-        
-        "TextoTiendaJarrones110": [ "TiedaJarrones110" ],
-        "TextoTiendaJarrones111": [ "TiedaJarrones111" ],
-        
-        "TextoTiendaJarrones120": [ "TiedaJarrones120" ],
-        "TextoTiendaJarrones121": [ "TiedaJarrones121" ],
-        
-        "TextoTiendaJarrones130": [ "TiedaJarrones130" ],
-        "TextoTiendaJarrones131": [ "TiedaJarrones131" ],
-        
-        "TextoTiendaJarrones140": [ "TiedaJarrones140" ],
-        "TextoTiendaJarrones141": [ "TiedaJarrones141" ]
+
+        "TextoTiendaJarrones70": [ "Espero que estos jarrones no se rompan f$acilmente si son caros." ],
+        "TextoTiendaJarrones71": [ "Recuerdo en clase de pl$astica en el colegio hacer jarrones. Era bastante malo la verdad." ],
+
+        "TextoTiendaJarrones80": [ "Si son caros, estos jarrones deben de ser resistentes." ],
+        "TextoTiendaJarrones81": [ "En clase de pl$astica en el colegio no era muy bueno haciendo jarrones, pero era divertido." ],
+
+        "TextoTiendaJarrones90": [
+            "Si estos jarrones llevan aqu$i un tiempo en el mismo estado de siempre,",
+            "deben de ser resistentes y de buena calidad."
+        ],
+        "TextoTiendaJarrones91": [ "En clase de pl$astica era bastante malo haciendo jarrones, pero no s$e ni como aprobaba la verdad." ],
+
+        "TextoTiendaJarrones100": [ "La sombra debe de estar protegiendo los jarrones del sol, por eso lucen tan bien a lo mejor." ],
+        "TextoTiendaJarrones101": [ "Puede que si les pusiera unas flores, har$ian que estos jarrones se vieran m$as bonitos." ],
+
+        "TextoTiendaJarrones110": [ "Puede que el buen estado de los jarrones se deba a que el tendero del puesto los proteja del calor del sol." ],
+        "TextoTiendaJarrones111": [ "No les vendr$ia mal poner unas flores a estos jarrones, quedar$ian bastante bien." ],
+
+        "TextoTiendaJarrones120": [ "Puede que si estos jarrones estuvieran expuestos al sol, no estar$ian en tan buenas condiciones como se ven ahora." ],
+        "TextoTiendaJarrones121": [ "Unas flores ser$ian un gran complemento para estos jarrones, pero ser$ia mejor si estuvieran pintados estos jarrones." ],
+
+        "TextoTiendaJarrones130": [
+            "Recuerdo en un bazar de la superficie ver bastantes tiendas de jarrones como esta,",
+            "no estaban en tan buenas condiciones los jarrones, pero eran vistosos."
+        ],
+        "TextoTiendaJarrones131": [ "Si estos jarrones los vende la tarotista, de seguro que con tener dos negocios a la vez no le falta dinero." ],
+
+        "TextoTiendaJarrones140": [
+            "En la superficie hab$ian un monton de puestos de jarrones,",
+            "no estaban en tan buenas condiciones los jarrones, pero recuerdo haber comprado uno porque eran bonitos."
+        ],
+        "TextoTiendaJarrones141": [ "Si esta tienda es de la tarotista, debe de saber c$omo ha podido mantener a flote dos negocios a la vez." ]
     },
     "Molino": {
         "TextoMolino00": [ "Molino00" ],
