@@ -76,6 +76,9 @@
     <ClCompile Include="src\sistemas\SpecialObjectsFactory.cpp" />
     <ClCompile Include="src\scenes\IntroScene.cpp" />
     <ClCompile Include="src\entities\Final.cpp" />
+    <ClCompile Include="src\entities\BombAux.cpp" />
+    <ClCompile Include="src\entities\PolvosAux.cpp" />
+    <ClCompile Include="src\scenes\DeathScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -190,6 +193,9 @@
     <ClInclude Include="src\sistemas\SpecialObjectsFactory.h" />
     <ClInclude Include="src\scenes\IntroScene.h" />
     <ClInclude Include="src\entities\Final.h" />
+    <ClInclude Include="src\entities\BombAux.h" />
+    <ClInclude Include="src\entities\PolvosAux.h" />
+    <ClInclude Include="src\scenes\DeathScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\sistemas\DialogManager.cpp" />

@@ -23,7 +23,7 @@ constexpr int INITIAL_DAY = 1;
 constexpr int INITIAL_TUBE_AMOUNT = 1;
 constexpr int WRITE_PACAGES_VALUE = 20;
 constexpr int WRONG_PACAGES_VALUE = 30;
-constexpr int MINIGAME_TIME = 20;
+constexpr int MINIGAME_TIME = 120;
 constexpr int INITIAL_FAILS_MARGIN = 1;
 constexpr int LOGICAL_RENDER_WIDTH = 1920;
 constexpr int LOGICAL_RENDER_HEITH = 1080;
@@ -36,6 +36,11 @@ constexpr float GRAVITY_LIMIT = 625.0f; // Limite de gravedad (donde tenemos el 
 constexpr float DEFAUTL_FORCE = 9.8f * 4; // Fuerza de gravedad por deferto
 constexpr float MAX_VELOCITY = 30.0f; // Limite de aceleracion
 #pragma endregion
+
+#pragma region Mejoras
+constexpr int SOLDIER_NUM_FAIL = 2;
+constexpr int CONTABLE_PLUS_MONEY = 10;
+#pragma endregion 
 
 
 #pragma region Package
