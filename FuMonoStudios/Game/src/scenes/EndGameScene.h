@@ -5,6 +5,9 @@
 #include <architecture/Scene.h>
 #include <json/JSON.h>
 #include <architecture/GeneralData.h>
+
+class Final;
+
 class EndGameScene :
     public ecs::Scene
 {
@@ -17,11 +20,12 @@ public:
     virtual void update() override;
 private:
     void nextEnding();
-    void loadEnd(Personaje npc, JSONObject& ent);
     ecs::Entity* endImage_;
     ecs::Entity* endText_;
     NPCdata* currentNPC;
-    std::unordered_map<Personaje,std::unordered_map<Felicidad,std::string>> endTexts_;
     int npcId_;
+    double minTime = 1000; // Tiempo minimo antes de poder pasar al siguiente final, en milesimas
+    VirtualTimer timer_;
+    Final* final_;
 };
 

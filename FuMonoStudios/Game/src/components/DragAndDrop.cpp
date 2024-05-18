@@ -29,7 +29,8 @@ DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt, std::string sound) :
 	draggingSound_(sound){
 }
 
-DragAndDrop::DragAndDrop(bool usingClosestEnt, bool usingOwnCallback, std::string sound) : tr_(nullptr), tri_(nullptr), grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
+DragAndDrop::DragAndDrop(bool usingClosestEnt, bool usingOwnCallback, std::string sound) : tr_(nullptr), tri_(nullptr), 
+grav_(nullptr), dragging_(false), differenceX_(0), differenceY_(0),
 usingCallback_(false), usingOnlyClosestEnt_(usingClosestEnt), usingOwnCallback_(usingOwnCallback),
 draggingSound_(sound) {
 }
@@ -43,7 +44,7 @@ DragAndDrop::DragAndDrop(bool UsingOnlyClosestEnt, SimpleCallback Func, std::str
 }
 
 DragAndDrop::~DragAndDrop() {
-	sdlutils().soundEffects().at(draggingSound_ + std::to_string(0)).haltChannel();
+	//sdlutils().soundEffects().at(draggingSound_ + std::to_string(0)).haltChannel();
 }
 
 void DragAndDrop::initComponent() {
@@ -70,32 +71,34 @@ void DragAndDrop::update() {
 		//Deteccion al clicar sobre el objeto
 		if (ihdlr.mouseButtonDownEvent()) {
 			if (tr_->getIfPointerIn() && tri_->checkIfClosest()) {
-				if (!dragging_)
-					SoundEmiter::instance()->playSound(draggingSound_);
+				if (!dragging_) {
+					if (draggingSound_ != "")
+						SoundEmiter::instance()->playSound(draggingSound_);
 
-				dragging_ = true;
+					dragging_ = true;
 
-				if (usingOwnCallback_) {
-					tri_->activateCallbacks(nullptr, generalData().PickUp);
+					if (usingOwnCallback_) {
+						tri_->activateCallbacks(nullptr, gD().PickUp);
+					}
+					else {
+
+						if (!usingOnlyClosestEnt_)
+							tri_->activateEventsFromEntities(gD().PickUp);
+						else
+							tri_->activateEventFromClosestEntity(gD().PickUp);
+
+					}
+
+					// desactivamos gravedad al draggear
+					if (grav_ != nullptr) {
+						grav_->setActive(false);
+					}
+
+					//Para que funcione sin ir al centro, con margen
+					differenceX_ = point.x - tr_->getPos().getX();
+					differenceY_ = point.y - tr_->getPos().getY();
+					porcentajeStart = tr_->getPorcentajeScale();
 				}
-				else {
-
-					if (!usingOnlyClosestEnt_)
-						tri_->activateEventsFromEntities(generalData().PickUp);
-					else
-						tri_->activateEventFromClosestEntity(generalData().PickUp);
-
-				}
-
-				// desactivamos gravedad al draggear
-				if (grav_ != nullptr) {
-					grav_->setActive(false);
-				}
-
-				//Para que funcione sin ir al centro, con margen
-				differenceX_ = point.x - tr_->getPos().getX();
-				differenceY_ = point.y - tr_->getPos().getY();
-				porcentajeStart = tr_->getPorcentajeScale();
 			}
 		}
 		//Deteccion al soltar el objeto
@@ -105,7 +108,7 @@ void DragAndDrop::update() {
 
 				if (draggingSound_ != "") 
 				{
-					std::cout << "nodragging \n";
+					SoundEmiter::instance()->muteSingleSound(draggingSound_, false);
 					SoundEmiter::instance()->haltSound(draggingSound_);
 				}
 
@@ -118,14 +121,14 @@ void DragAndDrop::update() {
 				// si no tenemos activado el activar solo al mas cercano
 
 				if (usingOwnCallback_) {
-					tri_->activateCallbacks(nullptr, generalData().DropIn);
+					tri_->activateCallbacks(nullptr, gD().DropIn);
 				}
 				else {
 
 					if (!usingOnlyClosestEnt_)
-						tri_->activateEventsFromEntities(generalData().DropIn);
+						tri_->activateEventsFromEntities(gD().DropIn);
 					else
-						tri_->activateEventFromClosestEntity(generalData().DropIn);
+						tri_->activateEventFromClosestEntity(gD().DropIn);
 
 				}
 

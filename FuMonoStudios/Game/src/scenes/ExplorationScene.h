@@ -165,6 +165,12 @@ namespace ecs {
 		/// </summary>
 		void updateNavegavility();
 
+		/// <sumary>
+		/// Nos devuelve si hemos visitados todos los lugares en un rango
+		/// 
+		bool checkIfVisited(int from, int to);
+
+
 		/// <summary>
 		/// Metodo factoria para characters
 		/// </summary>
@@ -205,6 +211,9 @@ namespace ecs {
 		std::vector<std::string> diarioText_;
 		std::vector<int> pagesByCharacter;
 		int currentDiarioPage;
+
+		//Vector que marca si ese dia se han visitado o no los distritos
+		std::vector<bool> placesExplored;
 
 		//diario variables
 

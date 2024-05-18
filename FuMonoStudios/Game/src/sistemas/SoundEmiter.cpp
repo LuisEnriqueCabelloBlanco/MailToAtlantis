@@ -33,7 +33,9 @@ void SoundEmiter::close()
 
 void SoundEmiter::setSoundVolumes(int volume)
 {
+#ifdef _DEBUG
 	std::cout << volume + "\n";
+#endif // _DEBUG
 	soundVolume_ = volume;
 	/*
 	for (auto& it : soundPulls_) {
@@ -47,7 +49,7 @@ void SoundEmiter::setSoundVolumes(int volume)
 void SoundEmiter::muteSingleSound(std::string sound, bool mute)
 {
 	try {
-		auto it = soundPulls_.at(sound);
+		auto& it = soundPulls_.at(sound);
 		it.mute = mute;
 		for (int i = 0; i < it.amount; i++) {
 			std::string fileName = sound + std::to_string(i);
@@ -67,12 +69,14 @@ void SoundEmiter::muteSingleSound(std::string sound, bool mute)
 void SoundEmiter::playSound(std::string sound)
 {
 	try {
-		auto it = soundPulls_.at(sound);
+		auto& it = soundPulls_.at(sound);
 		if (!it.mute) {
 			int am = it.amount;
 			int rnd = sdlutils().rand().nextInt(0, am);
 			std::string fileName = sound + std::to_string(rnd);
-			std::cout << fileName << "\n";
+#ifdef DEBUG
+			std::cout << "Playing sound: " << fileName << "\n";
+#endif // DEBUG
 			sdlutils().soundEffects().at(fileName).setVolume(soundVolume_);
 			sdlutils().soundEffects().at(fileName).play(0, playInChannel_);
 			it.lastChannel = playInChannel_;
@@ -87,12 +91,12 @@ void SoundEmiter::playSound(std::string sound)
 void SoundEmiter::playSound(std::string sound, float modifier)
 {
 	try {
-		auto it = soundPulls_.at(sound);
+		auto& it = soundPulls_.at(sound);
 		if (!it.mute) {
 			int am = it.amount;
 			int rnd = sdlutils().rand().nextInt(0, am);
 			std::string fileName = sound + std::to_string(rnd);
-			std::cout << fileName << "\n";
+			std::cout << "Playing sound: " << fileName << "\n";
 			sdlutils().soundEffects().at(fileName).setVolume(soundVolume_ * modifier);
 			sdlutils().soundEffects().at(fileName).play(0, playInChannel_);
 			it.lastChannel = playInChannel_;
@@ -107,7 +111,7 @@ void SoundEmiter::playSound(std::string sound, float modifier)
 void SoundEmiter::haltSound(std::string sound)
 {
 	try {
-		auto it = soundPulls_.at(sound);
+		auto& it = soundPulls_.at(sound);
 		for (int i = 0; i < it.amount; i++) {
 			sdlutils().soundEffects().at(sound + std::to_string(i)).haltChannel(it.lastChannel);
 		}
@@ -204,10 +208,8 @@ void SoundEmiter::haltAllMusic()
 
 void SoundEmiter::changeChannel()
 {
-	std::cout << playInChannel_ << " ";
 	playInChannel_++;
 	if (playInChannel_ == MAX_CHANNELS) {
 		playInChannel_ = 0;
 	}
-	std::cout << playInChannel_ << "\n";
 }

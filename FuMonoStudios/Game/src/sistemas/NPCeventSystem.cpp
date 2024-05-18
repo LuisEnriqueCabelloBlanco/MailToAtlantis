@@ -15,7 +15,7 @@ NPCeventSystem::NPCeventSystem() {
 
 NPCeventSystem::~NPCeventSystem() {
 	for (auto it : paquetesNPCs) {
-		
+
 	}
 }
 
@@ -68,19 +68,12 @@ void NPCeventSystem::minigameOver() {
 #ifdef _DEBUG
 		std::cout << "Event " << (event->completed ? "completed" : "failed");
 #endif // _DEBUG
-		NPCdata* data = generalData().getNPCData(event->personaje);
-		data->eventosCompletados[event->numEvento-1].first = true;
-		data->eventosCompletados[event->numEvento-1].second = 
-			generalData().getDay() * (event->completed ? 1 : -1);
+		NPCdata* data = gD().getNPCData(event->personaje);
+		data->eventosCompletados[event->numEvento].first = true;
+		data->eventosCompletados[event->numEvento].second =
+			gD().getDay() * (event->completed ? 1 : -1);
 
 		procesarStringRecompensas(event->completed, event->recompensas);
-		if (event->completed)
-		{
-#ifdef _DEBUG
-			std::cout << "Event completed";
-#endif // _DEBUG
-
-		}
 	}
 
 	while (areTherePaquetesNPC())
@@ -100,36 +93,39 @@ void NPCeventSystem::procesarStringRecompensas(bool completed, std::vector<std::
 	for (std::string& reward : vec) {
 		if (completed)
 		{
-			// si tiene un sumar o restar
-			if (reward.find("+") != std::string::npos || reward.find("-") != std::string::npos)
+			if (reward.find("$") == std::string::npos)
 			{
-				int index = reward.find_first_of("+-");
-				std::string personajeString = reward.substr(0, index);
-				int felicidadIncrement = reward.size() - index;
-				if (reward.find("-") != std::string::npos)
-					felicidadIncrement = -felicidadIncrement;
+				// si tiene un sumar o restar
+				if (reward.find("+") != std::string::npos || reward.find("-") != std::string::npos)
+				{
+					int index = reward.find_first_of("+-");
+					std::string personajeString = reward.substr(0, index);
+					int felicidadIncrement = reward.size() - index;
+					if (reward.find("-") != std::string::npos)
+						felicidadIncrement = -felicidadIncrement;
 
-				npc::Personaje aux = generalData().stringToPersonaje(personajeString);
+					npc::Personaje aux = gD().stringToPersonaje(personajeString);
 
-				generalData().incrementarFelicidad(aux, felicidadIncrement);
+					gD().incrementarFelicidad(aux, felicidadIncrement);
+				}
 			}
 		}
-		else 
+		else
 		{
 			if (reward.find("$") != std::string::npos)
 			{
 				int index = reward.find_first_of("$");
+				int indexPlusMinus = reward.find_first_of("+-");
 
-				std::string personajeString = reward.substr(index + 1, reward.size());
+				std::string personajeString = reward.substr(index + 1, reward.size() - indexPlusMinus - 1);
 
-				npc::Personaje aux = generalData().stringToPersonaje(personajeString);
+				npc::Personaje aux = gD().stringToPersonaje(personajeString);
 
 				index = reward.find_first_of("+-");
-				personajeString = reward.substr(0, index);
 				int felicidadIncrement = reward.size() - index;
 				if (reward.find("-") != std::string::npos)
 					felicidadIncrement = -felicidadIncrement;
-				generalData().incrementarFelicidad(aux, felicidadIncrement);
+				gD().incrementarFelicidad(aux, felicidadIncrement);
 			}
 		}
 	}
@@ -137,7 +133,7 @@ void NPCeventSystem::procesarStringRecompensas(bool completed, std::vector<std::
 
 void NPCeventSystem::debugPaquetesInQueue() {
 #ifdef _DEBUG
-	std::cout << std::endl << "Eventos: " << activeEventsNPCs.size() << 
+	std::cout << std::endl << "Eventos: " << activeEventsNPCs.size() <<
 		" Paquetes de npc: " << paquetesNPCs.size() << std::endl;
 #endif // _DEBUG
 }
@@ -179,11 +175,11 @@ Paquete* NPCeventSystem::readPacage(JSONObject& paqObj)
 	auto hasDistrito = paqObj["distrito"];
 	if (hasDistrito != nullptr)
 	{
-		dist = (Distrito)generalData().fromStringToDistrito(
+		dist = (Distrito)gD().fromStringToDistrito(
 			hasDistrito->AsString());
 	}
 	else {
-		dist = (Distrito)sdlutils().rand().nextInt(0, generalData().getTubesAmount());
+		dist = (Distrito)sdlutils().rand().nextInt(0, gD().getTubesAmount());
 	}
 
 	//determinamos la calle
@@ -191,7 +187,7 @@ Paquete* NPCeventSystem::readPacage(JSONObject& paqObj)
 	auto hasCalle = paqObj["calle"];
 	if (hasCalle != nullptr)
 	{
-		calle = generalData().stringToCalle(hasCalle->AsString());
+		calle = gD().stringToCalle(hasCalle->AsString());
 	}
 	else {
 		calle = (Calle)sdlutils().rand().nextInt(0, 3);
@@ -212,7 +208,7 @@ Paquete* NPCeventSystem::readPacage(JSONObject& paqObj)
 	auto hasTipo = paqObj["tipoPaquete"];
 	if (hasTipo != nullptr)
 	{
-		tipo = generalData().stringToTipoPaquete(hasTipo->AsString());
+		tipo = gD().stringToTipoPaquete(hasTipo->AsString());
 	}
 	else {
 		tipo = (TipoPaquete)sdlutils().rand().nextInt(0, 5);
@@ -232,13 +228,13 @@ Paquete* NPCeventSystem::readPacage(JSONObject& paqObj)
 	auto hasNivelPeso = paqObj["peso"];
 	if (hasNivelPeso != nullptr)
 	{
-		nivelPeso = generalData().stringToNivelPeso(hasNivelPeso->AsString());
+		nivelPeso = gD().stringToNivelPeso(hasNivelPeso->AsString());
 		auto hasPesoKG = paqObj["pesoKG"];
 		if (hasPesoKG != nullptr)
 			peso = hasPesoKG->AsNumber();
 	}
 
-	return new Paquete(dist, calle, nombreCalle, rem, tipo, legal,nivelPeso, peso, fragil);
+	return new Paquete(dist, calle, nombreCalle, rem, tipo, legal, nivelPeso, peso, fragil);
 }
 
 void NPCeventSystem::readCondiciones(JSONObject& obj, NPCevent* auxEvent) {
@@ -255,7 +251,7 @@ void NPCeventSystem::readCondiciones(JSONObject& obj, NPCevent* auxEvent) {
 	auto hasDistrito = obj.find("distrito");
 	if (hasDistrito != obj.end()) {
 
-		Distrito aux = (Distrito)generalData().fromStringToDistrito(hasDistrito->second->AsString());
+		Distrito aux = (Distrito)gD().fromStringToDistrito(hasDistrito->second->AsString());
 		condicionesDeTodos.push_back([aux](Paquete* p) -> bool {
 			return p->getDistrito() == aux;
 			});
@@ -263,7 +259,7 @@ void NPCeventSystem::readCondiciones(JSONObject& obj, NPCevent* auxEvent) {
 
 	auto hasCalle = obj.find("calleMarcada");
 	if (hasCalle != obj.end()) {
-		Calle aux = (Calle)generalData().stringToCalle(hasCalle->second->AsString());
+		Calle aux = (Calle)gD().stringToCalle(hasCalle->second->AsString());
 		condicionesDeTodos.push_back([aux](Paquete* p) -> bool {
 			return p->getCalleMarcada() == aux;
 			});
@@ -271,7 +267,7 @@ void NPCeventSystem::readCondiciones(JSONObject& obj, NPCevent* auxEvent) {
 
 	auto hasTipo = obj.find("tipoPaquete");
 	if (hasTipo != obj.end()) {
-		TipoPaquete aux = generalData().stringToTipoPaquete(hasTipo->second->AsString());
+		TipoPaquete aux = gD().stringToTipoPaquete(hasTipo->second->AsString());
 		condicionesDeTodos.push_back([aux](Paquete* p) -> bool {
 			return p->getTipo() == aux;
 			});
@@ -279,7 +275,7 @@ void NPCeventSystem::readCondiciones(JSONObject& obj, NPCevent* auxEvent) {
 
 	auto hasPeso = obj.find("peso");
 	if (hasPeso != obj.end()) {
-		NivelPeso aux = generalData().stringToNivelPeso(hasPeso->second->AsString());
+		NivelPeso aux = gD().stringToNivelPeso(hasPeso->second->AsString());
 		condicionesDeTodos.push_back([aux](Paquete* p) -> bool {
 			return p->getPeso() == aux;
 			});
@@ -330,7 +326,7 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 		auto hasDistrito = pqConditions.find("distrito");
 		if (hasDistrito != pqConditions.end()) {
 
-			Distrito aux = (Distrito)generalData().fromStringToDistrito(hasDistrito->second->AsString());
+			Distrito aux = (Distrito)gD().fromStringToDistrito(hasDistrito->second->AsString());
 			auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
 				return p->getDistrito() == aux;
 				});
@@ -339,14 +335,14 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 		auto hasTubo = pqConditions.find("tuboSeleccionado");
 		if (hasTubo != pqConditions.end()) {
 			auxEvent->usingCondicionTubo = true;
-			Distrito aux = (Distrito)generalData().fromStringToDistrito(hasTubo->second->AsString());
-			auxEvent->condicionTubo = ([aux](Distrito tubo) -> bool{
-					return tubo == aux;
+			Distrito aux = (Distrito)gD().fromStringToDistrito(hasTubo->second->AsString());
+			auxEvent->condicionTubo = ([aux](Distrito tubo) -> bool {
+				return tubo == aux;
 				});
 		}
 		auto hasCalle = pqConditions.find("calleMarcada");
 		if (hasCalle != pqConditions.end()) {
-			Calle aux = (Calle)generalData().stringToCalle(hasCalle->second->AsString());
+			Calle aux = (Calle)gD().stringToCalle(hasCalle->second->AsString());
 			auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
 				return p->getCalleMarcada() == aux;
 				});
@@ -354,7 +350,7 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 
 		auto hasTipo = pqConditions.find("tipoPaquete");
 		if (hasTipo != pqConditions.end()) {
-			TipoPaquete aux = generalData().stringToTipoPaquete(hasTipo->second->AsString());
+			TipoPaquete aux = gD().stringToTipoPaquete(hasTipo->second->AsString());
 			auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
 				return p->getTipo() == aux;
 				});
@@ -362,7 +358,7 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 
 		auto hasPeso = pqConditions.find("peso");
 		if (hasPeso != pqConditions.end()) {
-			NivelPeso aux = generalData().stringToNivelPeso(hasPeso->second->AsString());
+			NivelPeso aux = gD().stringToNivelPeso(hasPeso->second->AsString());
 			auxEvent->condiciones[i].push_back([aux](Paquete* p) -> bool {
 				return p->getPeso() == aux;
 				});
@@ -384,7 +380,7 @@ void NPCeventSystem::readCondicionesEspecificos(JSONObject& obj, NPCevent* auxEv
 				});
 		}
 
-		
+
 		auto hasFragil = pqConditions.find("fragil");
 		if (hasFragil != pqConditions.end()) {
 			bool aux = hasFragil->second->AsBool();
@@ -478,7 +474,7 @@ void NPCeventSystem::readNPCevent(JSONObject& eventObject, int personaje, int in
 	else
 		throw std::runtime_error("Evento sin recompensas / no recompensa mal especificado");
 
-	generalData().getNPCData((npc::Personaje)personaje)->events[index] = (auxEvent);
+	gD().getNPCData((npc::Personaje)personaje)->events[index] = (auxEvent);
 }
 
 /* Para los eventos debemos especificar sus condiciones. Eso lo haremos añadiendo
@@ -501,7 +497,7 @@ void NPCeventSystem::readNPCEventData() {
 
 	for (int i = 0; i < 7; i++)
 	{
-		std::string aux = generalData().personajeToString((npc::Personaje)i);
+		std::string aux = gD().personajeToString((npc::Personaje)i);
 		jValueRoot = root[aux];
 
 		JSONObject jObject = jValueRoot->AsObject();

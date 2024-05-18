@@ -99,7 +99,7 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     JSONValue* jsonEntry = nullptr;
 
     const std::string& stringDialogSel = dialogSelectionToString(ds);
-    auto a =generalData().getDay();
+    auto a =gD().getDay();
     jsonEntry = root[stringDialogSel];
     if (jsonEntry != nullptr)
     {
@@ -176,7 +176,7 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
 
             if (isNPC(ds))
             {
-                generalData().getNPCData(generalData().stringToPersonaje(dialogSelectionToString(ds)))->iterateDialogues();
+                gD().getNPCData(gD().stringToPersonaje(dialogSelectionToString(ds)))->iterateDialogues();
             }
         }
     }
@@ -199,21 +199,21 @@ void DialogManager::startConversation(const std::string& character)
 {
     if(canStartConversation)
     {
-        auto charac = generalData().stringToPersonaje(character); //de que personaje queremos el dialogo
-        auto data = generalData().getNPCData(charac); //data de dicho personaje
+        auto charac = gD().stringToPersonaje(character); //de que personaje queremos el dialogo
+        auto data = gD().getNPCData(charac); //data de dicho personaje
 
         // activamos los dialogos correspondientes
         std::pair<const std::string, int> aux = data->getDialogueInfo(); 
 
 
-        setDialogues((DialogSelection)generalData().stringToPersonaje(character), aux.first, aux.second);
+        setDialogues((DialogSelection)gD().stringToPersonaje(character), aux.first, aux.second);
 
         setDialogueEntitiesActive(true);
 
 
         std::cout << "jefe otro dialogo que este tenia un agujero\n";
 #ifdef QA_TOOLS
-        dataCollector().recordNPC(charac + 1, aux.second, generalData().getNPCData(charac)->felicidad);
+        dataCollector().recordNPC(charac + 1, aux.second, gD().getNPCData(charac)->felicidad);
 #endif // QA_TOOLS
 
         canStartConversation = false;
@@ -224,11 +224,11 @@ void DialogManager::startConversationWithObj(const std::string& interactableObj)
 {
     if (canStartConversation)
     {
-        const std::string aux1 = std::to_string(generalData().getDay());
+        const std::string aux1 = std::to_string(gD().getDay());
 
-        const std::string aux2 = std::to_string(sdlutils().rand().nextInt(0, 3));
+        const std::string aux2 = std::to_string(sdlutils().rand().nextInt(0, 2));
 
-        setDialogues((DialogManager::DialogSelection)(generalData().stringToObjInt(interactableObj) + 10), "Texto"+interactableObj+aux1+aux2);
+        setDialogues((DialogManager::DialogSelection)(gD().stringToObjInt(interactableObj) + DialogManager::DialogSelection::CasaGrande), "Texto"+interactableObj+aux1+aux2);
 
         setDialogueEntitiesActive(true);
 

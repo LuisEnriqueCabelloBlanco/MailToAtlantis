@@ -38,21 +38,16 @@
 #include <components/NPCExclamation.h>
 #include <sistemas/NPCeventSystem.h>
 
-ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), jefe_(nullptr), clockMusic(0)
+ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), jefe_(nullptr), clockMusic(0),mPaqBuild_(this)
 {
 	timer_ = MINIGAME_TIME;
-#ifdef DEV_TOOLS
-	stampsUnloked_= true;
-	timeToAdd_ = 5;
-#endif // DEV_TOOLS
-	mPaqBuild_ = new PaqueteBuilder(this);
 	mPipeMngr_ = new PipeManager();
 	specialFactory_ = new SpecialObjectsFactory(this);
 }
 
 ecs::MainScene::~MainScene()
 {
-	delete mPaqBuild_;
+	//delete mPaqBuild_;
 	delete mPipeMngr_;
 	delete specialFactory_;
 }
@@ -73,15 +68,15 @@ void ecs::MainScene::update()
 		{
 			if (timer_ > 0) {
 				timer_ -= Time::getDeltaTime();
-        if (timer_ <= MINIGAME_TIME / 4 && clockMusic == 0) {
-				SoundEmiter::instance()->playMusic("clockSlow");
-				clockMusic++;
-			}
-			if (timer_ <= MINIGAME_TIME / 10 && clockMusic == 1) {
-				SoundEmiter::instance()->haltMusic("clockSlow");
-				SoundEmiter::instance()->playMusic("clockFast");
-				clockMusic++;
-			}
+				if (timer_ <= MINIGAME_TIME / 4 && clockMusic == 0) {
+					SoundEmiter::instance()->playMusic("clockSlow");
+					clockMusic++;
+				}
+				if (timer_ <= MINIGAME_TIME / 10 && clockMusic == 1) {
+					SoundEmiter::instance()->haltMusic("clockSlow");
+					SoundEmiter::instance()->playMusic("clockFast");
+					clockMusic++;
+				}
 			}
 			else
 			{
@@ -112,8 +107,8 @@ void ecs::MainScene::render()
 void ecs::MainScene::init()
 {
 
-	generalData().npcEventSys->shuffleNPCqueue();
-	generalData().npcEventSys->debugPaquetesInQueue();
+	gD().npcEventSys->shuffleNPCqueue();
+	gD().npcEventSys->debugPaquetesInQueue();
 #ifdef _DEBUG
 	std::cout << "Hola Main" << std::endl;
 #endif // _DEBUG
@@ -125,10 +120,6 @@ void ecs::MainScene::init()
 	factory_->setLayer(layer::BACKGROUND);
 	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
 		&sdlutils().images().at("fondoOficina"));
-
-	//for (int i = 0; i < 7; i++) {
-	//	createTubo((pq::Distrito)i);
-	//}	
 
 	//La bola de cristal se tiene que crear antes que el primer paquete
 	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BOLA_UPGRADE)) createBolaCristal();	  //Este es la bola de cristal. Si el jugador la ha desbloqueado, esta aparecerá en la oficina				
@@ -145,7 +136,7 @@ void ecs::MainScene::init()
 
 	createTubes();
 
-	int dia = generalData().getDay();
+	int dia = gD().getDay();
 	if (dia % 4 == 2) //hay un evento de trabajo del jefe cada 4 dias empezando por el dia 2, esto habria que hacerlo con constantes mejor en vez de numeros magicos 
 	{
 		jefe_ = createCharacter({ 500, 250 }, "Jefe",0.35f);
@@ -164,15 +155,15 @@ void ecs::MainScene::init()
 	SoundEmiter::instance()->playMusic("printer");
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
-	updateToolsPerDay(generalData().getDay());
+	updateToolsPerDay(gD().getDay());
 
 	specialFactory_->setupDayObjects();
 }
 
 void ecs::MainScene::close() {
 	ecs::Scene::close();
-	generalData().npcEventSys->minigameOver();
-	generalData().updateMoney();
+	gD().npcEventSys->minigameOver();
+	gD().updateMoney();
 	SoundEmiter::instance()->close();
 
 	//sdlutils().musics().at("office").haltMusic();
@@ -226,14 +217,15 @@ ecs::Entity* ecs::MainScene::createOneInk(TipoHerramienta type) {
 
 		}
 
-	}, generalData().DropIn);
+	}, gD().DropIn);
 
 	return ink;
 
 }
 
 void ecs::MainScene::updateToolsPerDay(int dia)
-{	
+{
+
 	if(dia == 0)
 		return;	
 	
@@ -256,22 +248,25 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 
 
 	if (dia < 3 && dia >= 1) {
-		generalData().setPaqueteLevel(0);
+		gD().setPaqueteLevel(0);
 		createManual(8);
 	}
 	else if (dia < 5 && dia >= 3) {
-		generalData().setPaqueteLevel(1);
+		gD().setPaqueteLevel(1);
 		createManual(8);
 	}
 	else if (dia < 8 && dia >= 5) {
-		generalData().setPaqueteLevel(2);
+		gD().setPaqueteLevel(2);
 		createManual(9);
 	}
 	else if (dia < 15 && dia >= 8) {
-		generalData().setPaqueteLevel(3);
+		gD().setPaqueteLevel(3);
 		createManual(10);
 	}
 
+	// mejora Vagabundo
+	if (gD().getNPCData(Vagabundo)->misionAceptada >= 6)
+		createMultipleStamp();
 }
 void ecs::MainScene::createExclamationPoint() {
 	Entity* xd = addEntity(ecs::layer::FOREGROUND);	
@@ -294,7 +289,7 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 		1, Easing::EaseOutBack)->enable();
 	//El texto de la nota
 	factory_->setLayer(layer::FOREGROUND);
-	Entity* texto = factory_->createLabel(Vector2D(25, 70), Vector2D(250, 100), NotaErronea->getComponent<ErrorNote>()->text_, 40);
+	Entity* texto = factory_->createLabel(Vector2D(15, 15), Vector2D(270, 200), NotaErronea->getComponent<ErrorNote>()->text_, 40);
 	texto->getComponent<Transform>()->setParent(NotaErronea->getComponent<Transform>());
 	factory_->setLayer(layer::DEFAULT);
 }
@@ -302,13 +297,14 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 ecs::Entity* ecs::MainScene::createStamp(TipoHerramienta type)
 {
 	if (type > 2) return nullptr;
-	constexpr float STAMPSIZE = 1;
-	
-	factory_->setLayer(layer::STAMP);
-	auto stamp = factory_->createImage(Vector2D(350, 700),
-		Vector2D(sdlutils().images().at("sellador" + std::to_string(type)).width() * STAMPSIZE, sdlutils().images().at("sellador" + std::to_string(type)).height() * STAMPSIZE),
-		& sdlutils().images().at("sellador" + std::to_string(type)));
 
+	constexpr float STAMPSIZE = 1;
+	factory_->setLayer(layer::STAMP);
+	Texture* stampTexture = &sdlutils().images().at("sellador" + std::to_string(type));
+	Vector2D iniPos = Vector2D(350, 700);
+	Vector2D stampSize = Vector2D(stampTexture->width(), stampTexture->height());
+
+	auto stamp = factory_->createImage(iniPos,stampSize,stampTexture);
 	stamp->addComponent<Gravity>();
 	stamp->addComponent<Depth>();
 	stamp->addComponent<DragAndDrop>("arrastrar");
@@ -323,8 +319,7 @@ ecs::Entity* ecs::MainScene::createStamp(TipoHerramienta type)
 
 void ecs::MainScene::createMultipleStamp()
 {	
-	constexpr float STAMPSIZE = 1;
-
+	factory_->setLayer(ecs::layer::STAMP);
 	Entity* stamp = addEntity(ecs::layer::STAMP);
 	Texture* StampTex = &sdlutils().images().at("selladorM");			
 	Transform* tr_ = stamp->addComponent<Transform>(300, 300, StampTex->width(), StampTex->height());
@@ -343,8 +338,10 @@ ecs::Entity* ecs::MainScene::createCinta() {
 
 	factory_->setLayer(ecs::layer::TAPE);
 	Entity* cinta;
-	if(GeneralData::instance ()->getUpgradeValue (ecs::upg::ENVOLVER_UPGRADE)) cinta = factory_->createImage (Vector2D (560, 500), Vector2D (100, 150), &sdlutils ().images ().at ("cintaRapida"));
-	else cinta = factory_->createImage (Vector2D (560, 500), Vector2D (100, 150), &sdlutils ().images ().at ("cinta"));
+	std::string tapeKey;
+	if(GeneralData::instance ()->getUpgradeValue (ecs::upg::ENVOLVER_UPGRADE)) tapeKey ="cintaRapida";
+	else tapeKey = "cinta";
+	cinta = factory_->createImage(Vector2D(560, 500), Vector2D(100, 150), &sdlutils().images().at(tapeKey));
 	cinta->addComponent<Gravity>();
 	cinta->addComponent<DragAndDrop>("arrastrar");
 	cinta->addComponent<Depth>();
@@ -394,8 +391,8 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createBalanza() {
 
 	Trigger* balanzaTri = balanza->addComponent<Trigger>();
 
-	balanzaTri->addCallback([this, rotComp, balanzaComp, balanzaB](ecs::Entity* entRect) {balanzaComp->initAnimations(entRect, balanzaB, rotComp); }, generalData().DropIn);
-	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(entRect, rotComp); }, generalData().PickUp);
+	balanzaTri->addCallback([this, rotComp, balanzaComp, balanzaB](ecs::Entity* entRect) {balanzaComp->initAnimations(entRect, balanzaB, rotComp); }, gD().DropIn);
+	balanzaTri->addCallback([this, rotComp, balanzaComp](ecs::Entity* entRect) {balanzaComp->finishAnimatios(entRect, rotComp); }, gD().PickUp);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
@@ -414,7 +411,7 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createTubes()
 
 
 	// En el caso de que los tubos no estén ordenados, habrá que ordenarlos
-	int numTubos = generalData().getTubesAmount(); // coge el numero de tubos que están desbloqueados
+	int numTubos = gD().getTubesAmount(); // coge el numero de tubos que están desbloqueados
 	int j = 0;
 	for (int i = 0; i < numTubos; i++) {
 		Entity* tube = createTubo((pq::Distrito)i, true);
@@ -483,7 +480,7 @@ void ecs::MainScene::createBalanzaDigital() {
 			factory_->createLabel(Vector2D(1270, 593), msg, 50);
 		}
 		
-		}, generalData().DropIn);
+		}, gD().DropIn);
 	
 	balanzaTri->addCallback([this, balanzaComp](ecs::Entity* entRect) {
 		balanzaComp->finishAnimatiosDigital(entRect); 
@@ -491,7 +488,7 @@ void ecs::MainScene::createBalanzaDigital() {
 		removeEntitiesByLayer(ecs::layer::NUMBERS);
 		factory_->setLayer(ecs::layer::NUMBERS);
 		factory_->createLabel(Vector2D(1270, 593), msg2, 50);
-		}, generalData().PickUp);
+		}, gD().PickUp);
 
 	factory_->setLayer(ecs::layer::DEFAULT);
 
@@ -595,25 +592,6 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createManual(int N
 	}
 
 	factory_->setLayer(ecs::layer::DEFAULT);
-
-	/*
-	//Creacion de botones de indices
-
-	if (true) { //PLACE HOLDER HASTA LOS BOOLS DE JULIAN
-
-		Vector2D buttonIndexSize(20, 40);
-		factory_->setLayer(ecs::layer::FOREGROUND);
-
-		std::vector<int> indexTextures = { 2, 3, 6, 7, 8 };
-
-		auto pagCodigos = [manualRender]() { manualRender->setTextureIndx(2); };
-		auto indexCodigos = factory_->createImageButton(Vector2D(490, 280), buttonIndexSize, buttonTexture, pagCodigos, "page");
-		indexCodigos->getComponent<Transform>()->setParent(manualTransform);
-		factory_->addHoverColorMod(indexCodigos);
-
-
-	}
-	*/
 	
 	mapSol.insert({ "manual", manualEnt_ });
 	mapSol.insert({ "right", right });
@@ -690,7 +668,7 @@ ecs::Entity* ecs::MainScene::createMiniManual() {
 			
 		}
 
-	}, generalData().DropIn);
+	}, gD().DropIn);
 
 
 	factory_->setLayer(ecs::layer::DEFAULT);
@@ -731,7 +709,7 @@ ecs::Entity* ecs::MainScene::createSpaceManual() {
 
 		}
 
-	}, generalData().DropIn);
+	}, gD().DropIn);
 	
 
 	factory_->setLayer(ecs::layer::DEFAULT);
@@ -763,13 +741,13 @@ void ecs::MainScene::makeDataWindow()
 	std::string time = "Current Game Time: " + std::to_string(timer_);
 	ImGui::Text(time.c_str());
 	//Contador de aciertos
-	std::string data = "Aciertos: " + std::to_string(generalData().getCorrects());
+	std::string data = "Aciertos: " + std::to_string(gD().getCorrects());
 	ImGui::Text(data.c_str());
 	//contador de Fallos
-	data = "Fallos: " + std::to_string(generalData().getFails());
+	data = "Fallos: " + std::to_string(gD().getFails());
 	ImGui::Text(data.c_str());
 	//Nivel de los paquetes
-	data = "Pacage Level: " + std::to_string(generalData().getPaqueteLevel());
+	data = "Pacage Level: " + std::to_string(gD().getPaqueteLevel());
 	ImGui::Text(data.c_str());
 	//Dia acutual del juego
 	data = "Current day: " + std::to_string(GeneralData::instance()->getDay());
@@ -803,21 +781,21 @@ void ecs::MainScene::makeControlsWindow()
 		//ImGui::Checkbox("Next Pacage Correct", &nextPacageCorrect_);
 		if (ImGui::Button("Create pacage")) {
 			if (customPackage) {
-				auto custom = mPaqBuild_->customPackage((pq::Distrito)dist,(pq::Calle)calle,"Sujeto de Pruebas", (pq::TipoPaquete)tipo, 
+				auto custom = mPaqBuild_.customPackage((pq::Distrito)dist,(pq::Calle)calle,"Sujeto de Pruebas", (pq::TipoPaquete)tipo, 
 					correcto, (pq::NivelPeso)nivPeso, peso, fragil, carta);
 				custom->getComponent<MoverTransform>()->enable();
 			}
 			else {
-				createPaquete(generalData().getPaqueteLevel());
+				createPaquete(gD().getPaqueteLevel());
 			}
 		}
 	}
 	//Todavia no es funcinal ya que no hay forma actual de limitar las mecánicas
 	if (ImGui::CollapsingHeader("Mecánicas"))
 	{
-		int lvl = generalData().getPaqueteLevel();
+		int lvl = gD().getPaqueteLevel();
 		ImGui::InputInt("Nivel del Paquete", &lvl);
-		generalData().setPaqueteLevel(lvl);
+		gD().setPaqueteLevel(lvl);
 	}
 	if (ImGui::CollapsingHeader("Tiempo")) {
 		if (ImGui::Button("Reset Timer")) {
@@ -833,9 +811,9 @@ void ecs::MainScene::makeControlsWindow()
 	//Todavia no es funcinal ya que no hay forma actual de limitar las mecánicas
 	/*if (ImGui::CollapsingHeader("Días"))
 	{
-		int day = generalData().getDia();
+		int day = gD().getDia();
 		ImGui::InputInt("Día", &day);
-		generalData().setDia(day);
+		gD().setDia(day);
 	}*/
 	ImGui::End();
 }
@@ -844,7 +822,7 @@ void ecs::MainScene::makeControlsWindow()
 
 
 void ecs::MainScene::createPaquete (int lv) {
-	auto pac = mPaqBuild_->buildPackage(lv, this);
+	auto pac = mPaqBuild_.buildPackage(lv, this);
 	pac->getComponent<MoverTransform>()->enable();
 
 	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BOLA_UPGRADE) && bolaCrist_!= nullptr) {
@@ -852,6 +830,16 @@ void ecs::MainScene::createPaquete (int lv) {
 		if(rnd !=1) bolaCrist_->check(pac->getComponent<Paquete>(), true);
 		else bolaCrist_->check(pac->getComponent<Paquete>(), false);
 	}
+	Paquete* p = pac->getComponent<Paquete>();	
+	std::cout << "\n";
+	std::cout << "Fragil: " << p->getFragil();
+	std::cout << "\n";
+	std::cout << "PesoTipo: " << p->getPeso();
+	std::cout << "\n";
+	std::cout << "PesoNum: " << p->getCantidadPeso();
+	std::cout << "\n";
+	std::cout << "PesoCorr: " << p->pesoCorrecto();
+	std::cout << "\n";
 }
 
 
@@ -882,7 +870,7 @@ void ecs::MainScene::startWork()
 {
 	//timerPaused_ = false;
 	dialogoPendiente = false;
-	createPaquete(generalData().getPaqueteLevel());
+	createPaquete(gD().getPaqueteLevel());
 	createClock();
 }
 

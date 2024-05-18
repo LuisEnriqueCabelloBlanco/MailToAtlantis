@@ -59,9 +59,6 @@ private:
 	//Comprueba si ha chocado con el punto especificado por última vez
 	void checkPointTouch(int point);
 
-	void drawLines();
-
-	void addLine(const SDL_Point& start, const SDL_Point& end);
 
 
 	struct Line {
@@ -72,6 +69,8 @@ private:
 	Transform* tr_ = nullptr;
 
 	Trigger* tri_ = nullptr;
+
+	DragAndDrop* dad_ = nullptr;
 
 	RenderImage* mul_ = nullptr;
 
@@ -117,5 +116,8 @@ private:
 
 	Paquete* paqComp_ = nullptr;
 
+	Texture* puntoAzulTex = nullptr;
+
+	bool puntoCreado = false;
 
 };

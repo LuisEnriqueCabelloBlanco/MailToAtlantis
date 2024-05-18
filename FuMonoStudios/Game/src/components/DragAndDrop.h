@@ -21,10 +21,10 @@ class DragAndDrop : public ecs::Component {
 public:
 	__CMP_DECL__(ecs::cmp::DRAGANDDROP)
 	DragAndDrop();
-	DragAndDrop(std::string sound);
-	DragAndDrop(bool usingClosestEnt, std::string sound);
+	DragAndDrop(std::string sound = "");
+	DragAndDrop(bool usingClosestEnt, std::string sound = "");
 	DragAndDrop(bool usingClosestEnt, bool usingOwnCallback, std::string sound);
-	DragAndDrop(bool usingClosestEnt, SimpleCallback func, std::string sound);
+	DragAndDrop(bool usingClosestEnt, SimpleCallback func, std::string sound = "");
 
 	~DragAndDrop();
 	static bool enableDrag;
@@ -33,7 +33,15 @@ public:
 
 	void update() override;
 
+	//Te devuelve si el objeto esta siendo movido en este momento
+	bool isDragging() {
+		return dragging_;
+	}
+
+	//desactiva la interaccion
 	void disableInteraction() { canInteract = false; }
+
+	//activa la interaccion
 	void activateInteraction() { canInteract = true; }
 private:
 	bool canInteract = true;
@@ -49,8 +57,13 @@ private:
 	// para el escalado al arrastrar objetos
 	float porcentajeStart;
 
+	//bool que marca si se debe llamar a los triggers solo de la entidad mas cercana a la entidad en lugar de a todas las cercanas
 	bool usingOnlyClosestEnt_ = false;
+	
+	//bool que marca si se ha asignado una funcion de movimiento tras el arrastre en el drag and drop (por ejemplo el sellador vuelve a su sitio tras sellar)
 	bool usingCallback_ = false;
+
+	//bool que permite marcar si al arrastrar la entidad a otra se deben llamar a los callbacks de aquella a la que se ha arrastrado o los suyos propios
 	bool usingOwnCallback_ = false;
 	SimpleCallback func_;
 	std::pair<int,int> latestPoint_;

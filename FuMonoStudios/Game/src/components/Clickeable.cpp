@@ -60,3 +60,10 @@ void Clickeable::update() {
 void Clickeable::addEvent(CallbackClickeable event) {
 	eventsWhenClick_.push_back(event);
 }
+
+void Clickeable::deleteEvents()
+{
+
+	eventsWhenClick_.clear();
+
+}

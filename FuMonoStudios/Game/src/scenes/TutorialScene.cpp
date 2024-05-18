@@ -13,24 +13,26 @@
 #include <components/ErrorNote.h>
 #include <architecture/GameConstants.h>
 #include <sistemas/SoundEmiter.h>
+#include <architecture/Game.h>
+#include <architecture/Time.h>
 
 ecs::TutorialScene::TutorialScene() : MainScene(), balanzaUsed(false) {
-
-
-	tutorialSys_ = new TutorialSystem(this);
-
-	//mPaqBuild_ = new PaqueteBuilder(this);
-	
+	tutorialSys_ = new TutorialSystem(this);	
 }
 
 ecs::TutorialScene::~TutorialScene() {
 	delete tutorialSys_;
-	//delete mPaqBuild_;
 }
 
 void ecs::TutorialScene::update() {
-	MainScene::update();
+	Scene::update();
 	tutorialSys_->update();
+	dialogMngr_.update();
+#ifdef _DEBUG
+	if (ih().isKeyDown(SDL_SCANCODE_O)) {
+		gm().requestChangeScene(ecs::sc::TUTORIAL_SCENE, ecs::sc::MAIN_SCENE);
+	}
+#endif // _DEBUG
 }
 
 void ecs::TutorialScene::render() {
@@ -38,7 +40,6 @@ void ecs::TutorialScene::render() {
 }
 
 void ecs::TutorialScene::init() {
-
 
 	tutorialSys_->init();
 
@@ -51,7 +52,7 @@ void ecs::TutorialScene::init() {
 
 	mPipeMngr_->init();
 
-	int dia = generalData().getDay();
+	int dia = gD().getDay();
 
 	if (dia < 3 && dia >= 1) {
 		createManual(8);
@@ -81,22 +82,22 @@ void ecs::TutorialScene::init() {
 
 	createTubes();
 
-	if (generalData().getDay() == 1) {
+	if (gD().getDay() == 1) {
 
 		tutorialSys_->activateEvent(TutorialSystem::Introduction);
 
 
 	}
-	else if (generalData().getDay() == 3) {
+	else if (gD().getDay() == 3) {
 
 		tutorialSys_->activateEvent(TutorialSystem::EntraTercerPaquete);
 
 	}
-	else if (generalData().getDay() == 5) {
+	else if (gD().getDay() == 5) {
 		tutorialSys_->activateEvent(TutorialSystem::EntraPaquetePeso);
 
 	}
-	else if (generalData().getDay() == 8) {
+	else if (gD().getDay() == 8) {
 
 		tutorialSys_->activateEvent(TutorialSystem::EntraPaqueteFragil);
 
@@ -111,7 +112,7 @@ void ecs::TutorialScene::close() {
 
 void ecs::TutorialScene::activateTubos() {
 
-	for (int i = 0; i < generalData().getTubesAmount(); i++)
+	for (int i = 0; i < gD().getTubesAmount(); i++)
 	{
 		Trigger* tuboTri = tubos[i]->addComponent<Trigger>();
 		PackageChecker* tuboCheck = tubos[i]->addComponent<PackageChecker>(Distrito(i), this, mPipeMngr_);
@@ -122,7 +123,7 @@ void ecs::TutorialScene::activateTubos() {
 void ecs::TutorialScene::activateAllButOneTube(int tub)
 {
 
-	for (int i = 0; i < generalData().getTubesAmount(); i++)
+	for (int i = 0; i < gD().getTubesAmount(); i++)
 	{
 
 		if (tub != i) {
@@ -155,7 +156,7 @@ ecs::Entity* ecs::TutorialScene::createMiniManual()
 
 			if (entTouchingID.empty()) {
 
-				tutorialSys_->registerAction(TutorialSystem::SacarManual);
+				tutorialSys_->notifyAction(TutorialSystem::SacarManual);
 
 			}
 			else {
@@ -168,10 +169,10 @@ ecs::Entity* ecs::TutorialScene::createMiniManual()
 
 				if (it == entTouchingID.end()) {
 
-					tutorialSys_->registerAction(TutorialSystem::SacarManual);
+					tutorialSys_->notifyAction(TutorialSystem::SacarManual);
 				}
 			}
-	}, generalData().DropIn);
+	}, gD().DropIn);
 
 	return mmEnt_;
 }
@@ -188,42 +189,60 @@ std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createManual(i
 
 	Clickeable* lClick = mapSol["left"]->getComponent<Clickeable>();
 
+	rClick->deleteEvents();
+
+	auto next = [mRen, this]() {
+
+		if(tutorialSys_->canPassPagesManual)
+		mRen->nextTexture(); 
+	
+	};
+
+	rClick->addEvent(next);
+
 	rClick->addEvent([mRen, this]() {
-		if (tutorialSys_->canPassPagesManual)
-		{
-			const Texture* tex = mRen->getCurrentTexture();
-			if (tex == &sdlutils().images().at("book3"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
-			else if (tex == &sdlutils().images().at("book4"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
-			else if (tex == &sdlutils().images().at("book5"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
-			else if (tex == &sdlutils().images().at("book8"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
-			else if(tex == &sdlutils().images().at("book9"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaPesado);
-			else if (tex == &sdlutils().images().at("book10"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaFragilAccion);
-		}
+		const Texture* tex = mRen->getCurrentTexture();
+		if (tex == &sdlutils().images().at("book3"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaCodigosPostales);
+		else if (tex == &sdlutils().images().at("book4"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaDistritoHestia);
+		else if (tex == &sdlutils().images().at("book5"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaDistritoDemeter);
+		else if (tex == &sdlutils().images().at("book8"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaSellos);
+		else if(tex == &sdlutils().images().at("book9"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaPesado);
+		else if (tex == &sdlutils().images().at("book10"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaFragilAccion);
+
 	});
 
-	lClick->addEvent([mRen, this]() {
+	lClick->deleteEvents();
+
+	auto previous = [mRen, this]() {
+
 		if (tutorialSys_->canPassPagesManual)
-		{
-			const Texture* tex = mRen->getCurrentTexture();
-			if (tex == &sdlutils().images().at("book3"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaCodigosPostales);
-			else if (tex == &sdlutils().images().at("book4"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoHestia);
-			else if (tex == &sdlutils().images().at("book5"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaDistritoDemeter);
-			else if (tex == &sdlutils().images().at("book8"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaSellos);
-			else if (tex == &sdlutils().images().at("book9"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaPesado);
-			else if (tex == &sdlutils().images().at("book10"))
-				tutorialSys_->registerAction(TutorialSystem::PaginaFragilAccion);
-		}
+			mRen->previousTexture();
+
+	};
+
+	lClick->addEvent(previous);
+
+	lClick->addEvent([mRen, this]() {
+		const Texture* tex = mRen->getCurrentTexture();
+		if (tex == &sdlutils().images().at("book3"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaCodigosPostales);
+		else if (tex == &sdlutils().images().at("book4"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaDistritoHestia);
+		else if (tex == &sdlutils().images().at("book5"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaDistritoDemeter);
+		else if (tex == &sdlutils().images().at("book8"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaSellos);
+		else if (tex == &sdlutils().images().at("book9"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaPesado);
+		else if (tex == &sdlutils().images().at("book10"))
+			tutorialSys_->notifyAction(TutorialSystem::PaginaFragilAccion);
+		
 	});
 
 
@@ -237,7 +256,7 @@ std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createBalanza(
 
 	Trigger* balTri = mapSol["balanza"]->getComponent<Trigger>();
 
-	balTri->addCallback([this](ecs::Entity* entRect) {balanzaUsed = true; }, generalData().PickUp);
+	balTri->addCallback([this](ecs::Entity* entRect) {balanzaUsed = true; }, gD().PickUp);
 
 	return mapSol;
 
@@ -248,13 +267,13 @@ std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createTubes()
 
 	std::unordered_map<std::string, ecs::Entity*> tubes = MainScene::createTubes();
 
-	for (int i = 0; i < generalData().getTubesAmount(); ++i) {
+	for (int i = 0; i < gD().getTubesAmount(); ++i) {
 
 		std::string name = "tube" + i;
 
 		Trigger* triTub = tubes[name]->getComponent<Trigger>();
 
-		triTub->addCallback([this](ecs::Entity* entRect) { tutorialSys_->registerAction(TutorialSystem::PaqueteEnviado); }, generalData().DropIn);
+		triTub->addCallback([this](ecs::Entity* entRect) { tutorialSys_->notifyAction(TutorialSystem::PaqueteEnviado); }, gD().DropIn);
 
 	}
 
@@ -262,32 +281,34 @@ std::unordered_map<std::string, ecs::Entity*> ecs::TutorialScene::createTubes()
 }
 
 void ecs::TutorialScene::deactivateTubos() {
-	for (int i = 0; i < generalData().getTubesAmount(); i++)
+	for (int i = 0; i < gD().getTubesAmount(); i++)
 	{
-		tubos[i]->removeComponent<Trigger>();
-		tubos[i]->removeComponent<PackageChecker>();
+		deactivateOneTube(i);
 	}
 }
 
 void ecs::TutorialScene::deactivateAllButOneTube(int tub)
 {
 
-	for (int i = 0; i < generalData().getTubesAmount(); i++)
+	for (int i = 0; i < gD().getTubesAmount(); i++)
 	{
 		if (i != tub) {
-			tubos[i]->removeComponent<Trigger>();
-			tubos[i]->removeComponent<PackageChecker>();
+			deactivateOneTube(i);
 		}
-		
 	}
-
 }
 
 void ecs::TutorialScene::deactivateOneTube(int tube)
 {
 
-	tubos[tube]->removeComponent<Trigger>();
-	tubos[tube]->removeComponent<PackageChecker>();
+	if (tubos[tube]->getComponent<Trigger>() != nullptr) {
+		tubos[tube]->removeComponent<Trigger>();
+	}
+	
+	if (tubos[tube]->getComponent<PackageChecker>() != nullptr) {
+		tubos[tube]->removeComponent<PackageChecker>();
+	}
+	
 
 }
 
@@ -298,8 +319,8 @@ ecs::Entity* ecs::TutorialScene::createGarbage()
 	Trigger* papTrig = garbage_->addComponent<Trigger>();
 	papTrig->addCallback([this](ecs::Entity* e) {
 		if (e->getComponent<Paquete>() != nullptr)
-		tutorialSys_->registerAction(TutorialSystem::Basura);
-	}, generalData().DropIn);
+		tutorialSys_->notifyAction(TutorialSystem::Basura);
+	}, gD().DropIn);
 
 	return garbage_;
 }
@@ -320,20 +341,33 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 
 	ecs::Entity* paquete;
 	factory_->setLayer(ecs::layer::PACKAGE);
-	if (pt == Primero)
-		paquete = mPaqBuild_->customPackage(Hestia, C3, "Fernando Lubina", Alimento);
-	else if (pt == Segundo)
-		paquete = mPaqBuild_->customPackage(Demeter, C2, "Miguel Torres", Medicinas);
-	else if (pt == Tercero)
-		paquete = mPaqBuild_->customPackage(Artemisa, C1, "Francis Ngannou", Armamento, false);
-	else if (pt == FallarAposta)
-		paquete = mPaqBuild_->customPackage(Demeter, C3, "Jhonny Huesos", Medicinas);
-	else if (pt == Fragil)
-		paquete = mPaqBuild_->customPackage(Hestia, C3, "Travis Lubin", Alimento, true, pq::Ninguno, 0, true);
-	else if (pt == BalanzaTut)
-		paquete = mPaqBuild_->customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Alto, 160);
-	else
-		paquete = mPaqBuild_->buildPackage(1, this);
+	switch (pt)
+	{
+	case Primero:
+		paquete = mPaqBuild_.customPackage(Hestia, C3, "Fernando Lubina", Alimento);
+		break;
+	case Segundo:
+		paquete = mPaqBuild_.customPackage(Demeter, C2, "Miguel Torres", Medicinas);
+		break;
+	case Tercero:
+		paquete = mPaqBuild_.customPackage(Artemisa, C1, "Francis Ngannou", Armamento, false);
+		break;
+	case FallarAposta:
+		paquete = mPaqBuild_.customPackage(Demeter, C3, "Jhonny Huesos", Medicinas);
+		break;
+	case Fragil:
+		paquete = mPaqBuild_.customPackage(Hestia, C3, "Travis Lubin", Alimento, true, pq::Ninguno, 0, true);
+		break;
+	case BalanzaTut:
+		paquete = mPaqBuild_.customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Alto, 160);
+		break;
+	case Carta:
+		paquete = mPaqBuild_.customPackage(Demeter, C1, "Percebesa Crujierez", Medicinas, true, pq::Ninguno, 0, false, true);
+		break;
+	default:
+		paquete = mPaqBuild_.buildPackage(1, this);
+		break;
+	}
 
 
 	paquete->getComponent<Trigger>()->addCallback([paquete, this](ecs::Entity* entRec) {
@@ -348,10 +382,10 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 
 		if (herrEnt != nullptr && SDL_PointInRect(&point, &stampRect))
 		{
-			tutorialSys_->registerAction(TutorialSystem::PaqueteEstampado);
+			tutorialSys_->notifyAction(TutorialSystem::PaqueteEstampado);
 			herrEnt->interact(paquete);
 		}
-		}, generalData().DropIn);
+		}, gD().DropIn);
 	paquete->getComponent<Wrap>()->initComponent();
 	paquete->getComponent<MoverTransform>()->enable();
 	factory_->setLayer(ecs::layer::DEFAULT);
@@ -359,28 +393,6 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 	return paquete;
 }
 
-void ecs::TutorialScene::createErrorMessage(Paquete* paqComp, bool basura, bool tuboIncorrecto) {
-	Entity* NotaErronea = addEntity(ecs::layer::FOREGROUND);
-	NotaErronea->addComponent<ErrorNote>(paqComp, basura, tuboIncorrecto);
-	Texture* NotaTex = &sdlutils().images().at("notaError");
-	Transform* NotaTR = NotaErronea->addComponent<Transform>(100, 1400, NotaTex->width() * 2, NotaTex->height() * 2);
-	NotaTR->setScale(0.2f);
-	NotaErronea->addComponent<Depth>();
-	NotaErronea->addComponent<Gravity>();
-	NotaErronea->addComponent<DragAndDrop>(true,"arrastrar");
-	NotaErronea->addComponent<RenderImage>(NotaTex);
-	NotaErronea->addComponent<MoverTransform>(NotaErronea->getComponent<Transform>()->getPos() - Vector2D(0, 500),
-		1, Easing::EaseOutBack)->enable();
-	//El texto de la nota
-	Entity* texto_ = addEntity(ecs::layer::FOREGROUND);
-	Font* textFont = new Font("recursos/fonts/ARIAL.ttf", 40);
-	Texture* textureText_ = new Texture(sdlutils().renderer(), NotaErronea->getComponent<ErrorNote>()->text_, *textFont, build_sdlcolor(0x000000ff), 500);
-	Transform* distritoTr = texto_->addComponent<Transform>(25, 70, 250, 100);
-	RenderImage* distritoRender = texto_->addComponent<RenderImage>();
-	distritoRender->setTexture(textureText_);
-	distritoTr->setParent(NotaErronea->getComponent<Transform>());
-}
-
 void ecs::TutorialScene::packageSent() {
-	tutorialSys_->registerAction(TutorialSystem::PaqueteEnviado);
+	tutorialSys_->notifyAction(TutorialSystem::PaqueteEnviado);
 }

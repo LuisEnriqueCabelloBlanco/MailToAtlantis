@@ -11,8 +11,16 @@ namespace ecs {
         public Scene
     {
     private:
-        Texture* audioValueTexture_;
-        Entity* audioValueEnt_;
+        Texture* musicIconTexture_;
+        Entity* musicIconEnt_;
+        Texture* sfxIconTexture_;
+        Entity* sfxIconEnt_;
+
+        Texture* screenModeIconTexture_;
+        Entity* screenModeIconEnt_;
+        Texture* skipTutoIconTexture_;
+        Entity* skipTutoIconEnt_;
+
 
         //Texture* screenModeTexture_;
         //Entity* screenModeEnt_;
@@ -21,7 +29,6 @@ namespace ecs {
         virtual ~ConfigScene();
 
         void init() override;
-        void updateValue(Texture* texture, Entity* entity, int index);
         void changeToMenuScene();
     };
 }
