@@ -479,11 +479,11 @@
 
                 {"id" : 0,
                 "x" : 100,
-                "y" : 100,
+                "y" : 650,
                 "dest" : "Apolo",
-                "scale" : 0.5,
+                "scale" : 0.25,
                 "dir" : false,
-                "flip" : 0              
+                "flip" : 2              
                 }
 
             ]}
@@ -495,11 +495,12 @@
             {"character" : [
 
                 {"id" : 0,
-                "x" : 300,
-                "y" : 300,
+                "x" : 700,
+                "y" : 650,
                 "name" : "Secretario",
-                "scale" : 0.25,
-                "dir" : true              
+                "scale" : 0.23,
+                "dir": true
+                
                 }
 
             ]}

@@ -83,16 +83,17 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 
 	if (gD().getDay() == 1) {
 		canInteract = false;
-		dialogMngr_.setEndDialogueCallback([this] {
+		factory_->setLayer(ecs::layer::UI);
+		ecs::Entity* temporalSprite = factory_->createImage(Vector2D(500, 550.0f), Vector2D(450, 500), &sdlutils().images().at("Jefe"));
+		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
 			canInteract = true;
+			temporalSprite->setAlive(false);
 			});
 		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 0);
 	}
 	else if (gD().getDay() == 5) {
 		canInteract = false;
-		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
-		temporalSprite->addComponent<Transform>(500,500,400,600);
-		temporalSprite->addComponent<RenderImage>()->setTexture(&sdlutils().images().at("Jefe"));
+		ecs::Entity* temporalSprite = factory_->createImage(Vector2D(500, 550.0f), Vector2D(450, 500), &sdlutils().images().at("Jefe"));
 		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
 			canInteract = true;
 			temporalSprite->setAlive(false);
@@ -410,8 +411,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 					textoPersonaje = textoPersonaje + "- Dia ";
 					if (data->eventosCompletados[j].second == 0) // si el evento es de hoy
 					{
-						if (data == gD().getNPCData(Vagabundo) ||
-							data == gD().getNPCData(Secretario)) {
+						if (data->npcId < 2) {
 							textoPersonaje = textoPersonaje + std::to_string(day) +
 								textoCompletado + "\n" +
 								data->events[day - 1]->textoDiario + "\n";
@@ -430,9 +430,17 @@ void ecs::ExplorationScene::setupDiarioPages() {
 						else
 							textoCompletado = " (FALLIDO)";
 
-						textoPersonaje = textoPersonaje + std::to_string(std::abs(data->eventosCompletados[j].second))
-							+ "- " + textoCompletado + "\n"
-							+ data->events[abs(data->eventosCompletados[j].second) - 1]->textoDiario + "\n";
+						if (data->npcId < 2) {
+							textoPersonaje = textoPersonaje + std::to_string(
+								std::abs(data->eventosCompletados[j].second)) + "- " + textoCompletado + "\n"
+								+ data->events[j]->textoDiario + "\n";
+						}
+						else {
+							textoPersonaje = textoPersonaje + std::to_string(
+								std::abs(data->eventosCompletados[j].second)) + "- " + textoCompletado + "\n"
+								+ data->events[abs(data->eventosCompletados[j].second) - 1]->textoDiario + "\n";
+						}
+						
 					}
 				}
 				j++;
