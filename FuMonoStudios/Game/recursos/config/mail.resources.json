@@ -810,7 +810,7 @@
     },
     {
       "id": "mainMenu",
-      "file": "recursos/musics/DQOverture.wav"
+      "file": "recursos/musics/WelcometoAtlantisArpas.wav"
     },
     {
       "id": "office",
@@ -827,6 +827,10 @@
     {
       "id": "clockFast",
       "file": "recursos/musics/tictacRapido.wav"
+    },
+    {
+      "id": "exploration",
+      "file": "recursos/musics/ExploreTheAtlantis.wav"
     }
   ]
 }

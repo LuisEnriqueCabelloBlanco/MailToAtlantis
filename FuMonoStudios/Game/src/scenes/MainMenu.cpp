@@ -89,6 +89,8 @@ void ecs::MainMenu::init()
 		}, "click", textColor);
 	factory_->addHilghtOnHover(exit);
 	factory_->addHoverColorMod(exit);
+
+	SoundEmiter::instance()->playMusic("mainMenu");
 }
 
 void ecs::MainMenu::close()
