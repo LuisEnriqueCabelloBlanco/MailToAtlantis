@@ -284,13 +284,13 @@ pq::NivelPeso PaqueteBuilder::pesoRND(int probPeso, int probError, int& peso) {	
 		rnd = sdlutils().rand().nextInt(0, 101);
 		if (rnd > probError) {
 			if (pes == pq::NivelPeso::Alto) {
-				peso = sdlutils().rand().nextInt(MEDIO_MAX, PESADO_MAX + 1);
+				peso = sdlutils().rand().nextInt(MEDIO_MAX+2, PESADO_MAX -1);
 			}
 			else if (pes == pq::NivelPeso::Medio) {
-				peso = sdlutils().rand().nextInt(LIGERO_MAX, MEDIO_MAX);
+				peso = sdlutils().rand().nextInt(LIGERO_MAX+2, MEDIO_MAX-2);
 			}
 			else if (pes == pq::NivelPeso::Bajo) {
-				peso = sdlutils().rand().nextInt(PAQUETE_MIN, LIGERO_MAX);
+				peso = sdlutils().rand().nextInt(PAQUETE_MIN, LIGERO_MAX-2);
 			}
 		}
 		else {
@@ -457,10 +457,7 @@ void PaqueteBuilder::addVisualElements(ecs::Entity* paq) {
 		if (miPeso != pq::Ninguno) {			
 				tipoString = (miPeso == pq::Bajo ? "selloPesoBajo" :
 					miPeso == pq::Medio ? "selloPesoMedio" :
-					miPeso == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");				
-			
-			std::cout << "\nAAAA" << paqComp->pesoCorrecto() << "\n";
-			std::cout << "\n" << tipoString << "\n";
+					miPeso == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");									
 			crearSello(paq, tipoString, PESO_SELLO_POS_X, PESO_SELLO_POS_Y, PESO_SELLO_SIZE, PESO_SELLO_SIZE);
 		}		
 		

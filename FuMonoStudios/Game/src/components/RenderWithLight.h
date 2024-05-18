@@ -13,8 +13,13 @@ public:
 	RenderWithLight(Texture*);
 	RenderWithLight(Texture*, ecs::layer::layerId);
 	~RenderWithLight();
-
+	/// <summary>
+	/// Activa el objeto luz
+	/// </summary>
 	void lightOn();
+	/// <summary>
+	/// Desactiva el objeto luz
+	/// </summary>
 	void lightOff();
 
 	void initComponent() override;
