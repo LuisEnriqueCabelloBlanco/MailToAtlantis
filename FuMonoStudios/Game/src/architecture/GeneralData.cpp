@@ -303,14 +303,20 @@ void GeneralData::saveNPCData(JSONObject& obj)
 	JSONObject characters;
 	for (auto npc : npcData) {
 		JSONObject charac;
-		modifyJsonData(charac, "Felicidad", npc.second->numFelicidad);
-		modifyJsonData(charac, "MisionesAceptadas", npc.second->numMisionesAceptadas);
-		modifyJsonData(charac, "MisionesCompletadas",(int) npc.second->eventosCompletados.size());
+		modifyJsonData(charac, "Felicidad", gD().felicidadToString(npc.second->felicidad));
+		modifyJsonData(charac, "FelicidadNum", npc.second->numFelicidad);
+		modifyJsonData(charac, "numMisionesAceptadas", npc.second->numMisionesAceptadas);
+		//Procesado de eventos completados
+		auto& completedEvents = npc.second->eventosCompletados;
+		JSONArray arrayEvents;
+		for (auto evt : completedEvents) {
+			arrayEvents.push_back(new JSONValue(evt.first ? evt.second : -evt.second));
+		}
+		modifyJsonData(charac, "EventosCompletados",arrayEvents);
 		modifyJsonData(characters, personajeToString(npc.first), charac);
 	}
 	modifyJsonData(obj, "Personajes", characters);
 
-	writeNPCData();
 }
 
 int GeneralData::getPaqueteLevel() {
@@ -371,30 +377,33 @@ void GeneralData::readNPCData() {
 	}
 
 	JSONObject npcDataRoot = jsonFileNpcData->AsObject();
-	JSONObject saveFileRoot = jsonFileSaveFile->AsObject().find("Personajes")->second->AsObject();
+	JSONObject saveFileRoot = jsonFileSaveFile->AsObject();
+	JSONObject personajesRoot = saveFileRoot["Personajes"]->AsObject();
 	JSONValue* jValue = nullptr;
 
 	// cargamos los 7 personajes
 
-	for (int i = 0; i < 7; i++)
+	for (int i = Vagabundo; i < Jefe; i++)
 	{
+		//localizamos el personaje segun el indice
 		std::string aux = personajeToString((Personaje)i);
-		jValue = saveFileRoot[aux];
+		jValue = personajesRoot[aux];
 
 		JSONObject jObject = jValue->AsObject();
+		JSONObject charData = npcDataRoot[aux]->AsObject();
 		std::string felicidadStr = jObject["Felicidad"]->AsString();
 
-		if (i < 2) // npc grandes
+		if (i < Campesino) // npc grandes
 		{
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
-			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
-			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
+			data->numMisionesAceptadas = jObject["numMisionesAceptadas"]->AsNumber();
+			data->numFelicidad = jObject["FelicidadNum"]->AsNumber();
 			data->events = std::vector<NPCevent*>(14, nullptr);
-			JSONArray eventosCompletados = jObject.find("EventosCompletados")->second->AsArray();
+			JSONArray eventosCompletados = jObject["EventosCompletados"]->AsArray();
 			int k = 0;
 			for (auto it : eventosCompletados)
 			{
-				data->eventosCompletados[k].first = true;
+				data->eventosCompletados[k].first = it->AsNumber() > 0;
 				data->eventosCompletados[k].second = it->AsNumber();
 				k++;
 			}
@@ -403,14 +412,11 @@ void GeneralData::readNPCData() {
 
 			data->npcId = (Personaje)i;
 
-			if (i == 0)
-				data->firstMision = 1;
-			else
-				data->firstMision = 5;
+			data->firstMision = charData["PrimeraMision"]->AsNumber();
 
 			JSONObject jObjectNPCdata = npcDataRoot[aux]->AsObject();
 
-			data->introText = jObjectNPCdata.find("IntroductionText")->second->AsString();
+			data->introText = jObjectNPCdata["IntroductionText"]->AsString();
 
 			npcData.emplace((Personaje)i, data);
 		}
@@ -418,25 +424,25 @@ void GeneralData::readNPCData() {
 		{
 			std::vector<bool> diasDanEventos;
 			JSONObject jObjectNPCdata = npcDataRoot[aux]->AsObject();
-			JSONObject jDiasEvento = jObjectNPCdata.find("DiasConEvento")->second->AsObject();
+			JSONObject jDiasEvento = jObjectNPCdata["DiasConEvento"]->AsObject();
 
 			// leemos los 14 booleanos
 			for (int j = 0; j < 14; j++)
 			{
-				diasDanEventos.push_back(jDiasEvento.find(std::to_string(j + 1))->second->AsBool());
+				diasDanEventos.push_back(jDiasEvento[std::to_string(j + 1)]->AsBool());
 			}
 			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
 
-			data->introText = jObjectNPCdata.find("IntroductionText")->second->AsString();
+			data->introText = jObjectNPCdata["IntroductionText"]->AsString();
 
 			data->events = std::vector<NPCevent*>(5, nullptr);
-			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
-			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
-			JSONArray eventosCompletados = jObject.find("EventosCompletados")->second->AsArray();
+			data->numMisionesAceptadas = jObject["numMisionesAceptadas"]->AsNumber();
+			data->numFelicidad = jObject["FelicidadNum"]->AsNumber();
+			JSONArray eventosCompletados = jObject["EventosCompletados"]->AsArray();
 			int k = 0;
 			for (auto it : eventosCompletados)
 			{
-				data->eventosCompletados[k].first = true;
+				data->eventosCompletados[k].first = it->AsNumber() > 0;
 				data->eventosCompletados[k].second = it->AsNumber();
 				k++;
 			}
@@ -452,89 +458,15 @@ void GeneralData::readNPCData() {
 		npcEventSys = new NPCeventSystem();
 }
 
-void GeneralData::writeNPCData() {
-	std::ifstream archivo(SAVE_PATH);
-
-	if (!archivo.is_open())
-	{
-		throw std::runtime_error("Error al abrir saveFile.json");
-	}
-
-	// Leer el contenido del archivo en una cadena
-	std::string contenido = "";
-	std::string linea;
-	while (std::getline(archivo, linea)) {
-		contenido += linea + "\n";
-	}
-	archivo.close();
-
-	int posDia = contenido.find("Dia") + 6;
-	contenido.replace(posDia, (contenido.find('\n', posDia)) - posDia,
-		 std::to_string(gD().dia_) + ',');
-	int posDinero = contenido.find("Dinero") + 9;
-	contenido.replace(posDinero, (contenido.find('\n', posDinero)) - posDinero,
-		std::to_string(gD().getMoney()) + ',');
-
-	for (int i = 0; i < 7; i++)
-	{
-		NPCdata* data = getNPCData((Personaje)i);
-		int posPersonaje = contenido.find('"' + personajeToString((Personaje)i) + '"' + ':');
-
-		int posFelicidad = contenido.find("Felicidad", posPersonaje) + 12;
-		contenido.replace(posFelicidad, (contenido.find('\n', posFelicidad)) - posFelicidad,
-			'"' + gD().felicidadToString(data->felicidad) + '"' + ',');
-		int posFelicidadNum = contenido.find("FelicidadNum", posPersonaje) + 15;
-		contenido.replace(posFelicidadNum, (contenido.find('\n', posFelicidadNum)) - posFelicidadNum,
-			std::to_string(data->numFelicidad) + ",");
-		int posMisionesAc = contenido.find("numMisionesAceptadas", posPersonaje) + 23;
-		contenido.replace(posMisionesAc, (contenido.find('\n', posMisionesAc)) - posMisionesAc,
-			std::to_string(data->numMisionesAceptadas) + ",");
-
-		int posEventosCompletados = contenido.find("EventosCompletados", posPersonaje) + 21;
-		std::string newEventosString = "[";
-		for (int i = 0; i < data->eventosCompletados.size(); i++)
-		{
-			// si ha sido completado
-			if (data->eventosCompletados[i].first && data->eventosCompletados[i].second != 0)
-			{
-				newEventosString += std::to_string(data->eventosCompletados[i].second) += ",";
-			}
-		}
-		if (newEventosString[newEventosString.size() - 1] == ',')
-			newEventosString.pop_back();
-		newEventosString += "]";
-		contenido.replace(posEventosCompletados, (contenido.find('\n', posEventosCompletados)) -
-			posEventosCompletados, newEventosString);
-
-	}
-
-	// Abrir el archivo en modo de escritura
-	std::ofstream archivoSalida(SAVE_PATH);
-
-	if (!archivoSalida.is_open()) {
-		throw std::runtime_error("Error al escribir saveFile.json");
-	}
-
-	// Escribir el contenido modificado en el archivo
-	archivoSalida.clear();
-	archivoSalida << contenido;
-	archivoSalida.close();
-}
 
 void GeneralData::saveGame() {
-
-	writeNPCData();
-
-	/*
 
 	std::ofstream in;
 	//en el caso de que no exista el fichero se crea uno nuevo
 	in.open(SAVE_PATH);
 
-	//
 	// Para ampliar el guardado acceder a los datos como si fuera un map y 
 	// asignar un new JsonValue al elemento a modificar
-	// 
 	JSONObject root;
 
 	//modificacion de los valores en el json
@@ -548,7 +480,6 @@ void GeneralData::saveGame() {
 	in << jsonFile->Stringify(true);
 	delete jsonFile;
 	in.close();
-	*/
 }
 
 void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
@@ -744,12 +675,6 @@ Felicidad GeneralData::stringToFelicidad(const std::string& str)
 	return aux;
 }
 
-//void GeneralData::setDayData() {
-//	for (int i = 0; i < 7; i++)
-//	{
-//		npcData.at((Personaje)i)->setupDayData();
-//	}
-//}
 std::string GeneralData::felicidadToString(Felicidad f)
 {
 	std::string aux = "";

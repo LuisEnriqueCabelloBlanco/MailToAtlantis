@@ -38,6 +38,9 @@ constexpr float MAX_VELOCITY = 30.0f; // Limite de aceleracion
 #pragma endregion
 
 #pragma region Mejoras
+/*========================================================================================
+* UPGRADES SETTINGS
+*=====================================================================================*/
 constexpr int SOLDIER_NUM_FAIL = 2;
 constexpr int CONTABLE_PLUS_MONEY = 10;
 #pragma endregion 
