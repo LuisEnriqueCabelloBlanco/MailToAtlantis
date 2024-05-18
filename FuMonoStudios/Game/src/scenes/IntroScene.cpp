@@ -40,9 +40,11 @@ void ecs::IntroScene::update()
 			call_();
 		}
 	}
-	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_N)) {
+    #ifdef _DEBUG
+	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_O)) { //skipeamos el tutorial
 		gm().requestChangeScene(ecs::sc::INTRO_SCENE, ecs::sc::EXPLORE_SCENE);
 	}
+    # endif
 	mDialogManager.update();
 }
 
