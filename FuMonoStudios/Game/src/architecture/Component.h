@@ -35,11 +35,18 @@ namespace ecs {
 		/// encargado de renderizar
 		/// </summary>
 		virtual void render() const {};
+
+		inline void enable() { enable_ = true; };
+		inline void disable() { enable_ = false; };
+
+		inline bool isEnabled() { return enable_; };
 	protected:
 		/// <summary>
 		/// entidad a la que pertenece el componente
 		/// </summary>
-		Entity* ent_; 
+		Entity* ent_;
+
+		bool enable_=true;
 	};
 }
 

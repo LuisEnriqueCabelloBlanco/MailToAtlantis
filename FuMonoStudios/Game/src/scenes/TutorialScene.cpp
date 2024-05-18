@@ -319,8 +319,6 @@ void ecs::TutorialScene::deactivateOneTube(int tube)
 	if (tubos[tube]->getComponent<PackageChecker>() != nullptr) {
 		tubos[tube]->removeComponent<PackageChecker>();
 	}
-	
-
 }
 
 ecs::Entity* ecs::TutorialScene::createGarbage()
