@@ -77,6 +77,8 @@ void ecs::ExplorationScene::init()
 	canInteract = true;
 	showTalkWarning = true;
 
+	SoundEmiter::instance()->playMusic("exploration");
+
 	dialogueWhenEntering();
 }
 

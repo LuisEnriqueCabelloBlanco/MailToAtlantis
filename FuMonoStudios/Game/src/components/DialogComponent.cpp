@@ -11,6 +11,7 @@
 #include <components/Render.h>
 #include <components/DelayedCallback.h>
 #include <scenes/TutorialScene.h>
+#include <sistemas/SoundEmiter.h>
 
 DialogComponent::DialogComponent(DialogManager* manager): 
 	mTr_(nullptr), mRend_(nullptr),
@@ -33,6 +34,9 @@ void DialogComponent::initComponent()
 	assert(mTr_ != nullptr);
 	mRend_ = ent_->getComponent<RenderImage>();
 	assert(mRend_ != nullptr);
+	std::string aux = mDialogMngr_->getDialogSound();
+	if (aux != "")
+		SoundEmiter::instance()->playSound(aux);
 	setCurrentDialogue();
 }
 
@@ -52,6 +56,7 @@ void DialogComponent::update()
 	if (canSkip &&
 		(ih().isKeyDown(SDL_SCANCODE_SPACE) || ih().mouseButtonDownEvent()))
 	{
+		std::string e = mDialogMngr_->getDialogSound();
 		// cooldown
 		canSkip = false;
 		ent_->addComponent<DelayedCallback>(0.2, [this]() {
@@ -61,6 +66,8 @@ void DialogComponent::update()
 		// Pasar al siguiente dialogo o terminar conversacion
 		if (dialogueIndex_ == mDialogMngr_->getCurrentDialog().size())
 		{
+			if(e != "") 
+				SoundEmiter::instance()->haltSound(e);
 			endDialogue = mDialogMngr_->nextDialog();
 			dialogueIndex_ = 1;
 
@@ -71,11 +78,17 @@ void DialogComponent::update()
 					mDialogMngr_->closeDialogue();
 				}
 			}
+			else {
+				if(e != "")
+					SoundEmiter::instance()->playSound(e);
+			}
 		}
 		//Sacar todo el diálogo antes de que acabe de escribirse
 		else
 		{
 			dialogueIndex_ = mDialogMngr_->getCurrentDialog().size();
+			if(e != "")
+				SoundEmiter::instance()->haltSound(e);
 		}
 	}
 
