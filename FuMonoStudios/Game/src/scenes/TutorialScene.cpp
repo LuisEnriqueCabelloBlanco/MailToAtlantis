@@ -107,8 +107,8 @@ void ecs::TutorialScene::init() {
 
 void ecs::TutorialScene::close() {
 	ecs::Scene::close();
-
-  SoundEmiter::instance()->close();
+  	SoundEmiter::instance()->close();
+  	tubos.clear();
 }
 
 void ecs::TutorialScene::activateTubos() {
@@ -139,10 +139,17 @@ void ecs::TutorialScene::activateAllButOneTube(int tub)
 void ecs::TutorialScene::activateOneTube(int tube)
 {
 
-	Trigger* tuboTri = tubos[tube]->addComponent<Trigger>();
+	if (tubos[tube]->getComponent<Trigger>() == nullptr) {
 
 
-	PackageChecker* tuboCheck = tubos[tube]->addComponent<PackageChecker>(Distrito(tube), this, mPipeMngr_);
+	}
+	
+	if (tubos[tube]->getComponent<PackageChecker>() == nullptr) {
+
+		PackageChecker* tuboCheck = tubos[tube]->addComponent<PackageChecker>(Distrito(tube), this, mPipeMngr_);
+
+	}
+	
 
 }
 
@@ -311,8 +318,6 @@ void ecs::TutorialScene::deactivateOneTube(int tube)
 	if (tubos[tube]->getComponent<PackageChecker>() != nullptr) {
 		tubos[tube]->removeComponent<PackageChecker>();
 	}
-	
-
 }
 
 ecs::Entity* ecs::TutorialScene::createGarbage()

@@ -19,7 +19,7 @@ namespace ecs {
 	{
 	public:
 
-		Entity(Scene* scene, ecs::layer::layerId ly) : scene_(scene), cmps_(), currCmps_(), alive_(), myLayer(ly), mySpecifyLayer(ly), enable_(true),active_(true) {
+		Entity(Scene* scene, ecs::layer::layerId ly) : scene_(scene), cmps_(), currCmps_(), alive_(), myLayer(ly), mySpecifyLayer(ly),active_(true) {
 			currCmps_.reserve(cmp::maxComponentId);
 		};
 
@@ -38,11 +38,6 @@ namespace ecs {
 		/// </summary>
 		/// <returns></returns>
 		inline bool isActive() const { return active_; };
-		/// <summary>
-		/// AVISO: funcion en desuso si se quiere usar revisar el codigo fuente
-		/// </summary>
-		/// <returns></returns>
-		inline bool isEnable() const { return enable_; };
 		/// <summary>
 		/// Determina si en el siguente frame se destruira la entidad
 		/// </summary>
@@ -68,11 +63,6 @@ namespace ecs {
 				myLayer = ecs::layer::INACTIVE;
 			}
 		};
-		/// <summary>
-		/// AVISO: funcionalidad en desuso
-		/// </summary>
-		/// <param name="enable"></param>
-		inline void setEnable(bool enable) { enable_ =enable; };
 
 		/// <summary>
 		/// Accesor a la escena permite a los componentes 
@@ -168,7 +158,8 @@ namespace ecs {
 		inline void update() {
 			auto n = currCmps_.size();
 			for (auto i = 0u; i < n; i++) {
-				currCmps_[i]->update();
+				if(currCmps_[i]->isEnabled())
+					currCmps_[i]->update();
 			}
 		}
 		/// <summary>
@@ -190,10 +181,6 @@ namespace ecs {
 		/// determina si un objeto se tiene que renderizar
 		/// </summary>
 		bool active_; //esto es mentira, no solo para el render tambien el update
-		/// <summary>
-		/// determina si un objeto se tiene que actualizar
-		/// </summary>
-		bool enable_; //???? esto es otra mentira, no hace na (os acabo de mentir, si que hace, se carga toda la ejecucion del programa, no usar a no ser que lo arregles)
 		/// <summary>
 		/// puntero a la escena a la que pertenece al entidad
 		/// </summary>

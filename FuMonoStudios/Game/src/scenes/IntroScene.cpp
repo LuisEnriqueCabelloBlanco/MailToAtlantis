@@ -17,7 +17,7 @@
 #include <components/SelfDestruct.h>
 #include <sdlutils/InputHandler.h>
 
-ecs::IntroScene::IntroScene() : introIteration(0), waitingCallback(false), mPaqBuild_(nullptr), fondo_(nullptr), tubo_(nullptr), bottle_(nullptr), carta_(nullptr), jefe_(nullptr)
+ecs::IntroScene::IntroScene() : introIteration(0), waitingCallback(false), mPaqBuild_(nullptr), fondo_(nullptr), tubo_(nullptr), bottle_(nullptr), carta_(nullptr), jefe_(nullptr), door_(nullptr)
 {
 	mPaqBuild_ = new PaqueteBuilder(this);
 	mDialogManager.init(this, "recursos/data/dialogos.json");
@@ -40,9 +40,11 @@ void ecs::IntroScene::update()
 			call_();
 		}
 	}
-	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_N)) {
+    #ifdef _DEBUG
+	if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_O)) { //skipeamos el tutorial
 		gm().requestChangeScene(ecs::sc::INTRO_SCENE, ecs::sc::EXPLORE_SCENE);
 	}
+    # endif
 	mDialogManager.update();
 }
 
@@ -134,7 +136,20 @@ void ecs::IntroScene::updateIteration(int it)
 					updateIntroDialogue();
 				});
 			break;
-        case 10: //a explorar rey
+        case 10:
+			jefe_->setActive(false);
+			door_ = createDoor();
+			break;
+        case 11:
+			if (door_ != nullptr)
+				door_->setAlive(false);
+			changeBackground("fondoOficina");
+			jefe_->getComponent<Transform>()->setPos(450.0f, 220.0f);
+			jefe_->getComponent<Transform>()->setScale(0.75f);
+			jefe_->setActive(true);
+			updateIntroDialogue();
+		    break;
+        case 12: //a explorar rey
 			gm().requestChangeScene(ecs::sc::INTRO_SCENE, ecs::sc::EXPLORE_SCENE);
 			break;
 		default:
@@ -211,6 +226,20 @@ ecs::Entity* ecs::IntroScene::createBottle()
 	movComp->enable();
 	factory_->setLayer(ecs::layer::DEFAULT);
 	return bottle;
+}
+
+ecs::Entity* ecs::IntroScene::createDoor()
+{
+	Entity* e;
+	e = addEntity();
+	e->addComponent<Transform>(650, 400, 100, 300);
+	e->addComponent<Clickeable>("click");
+	e->getComponent<Clickeable>()->addEvent([this]
+		{
+			door_->setAlive(false);
+			nextIteration();
+		});
+	return e;
 }
 
 void ecs::IntroScene::nextIteration() //avanzamos la iteracion y actualizamos el estado de la intro
