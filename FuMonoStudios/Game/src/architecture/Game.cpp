@@ -49,7 +49,7 @@ Game::Game() :exit_(false) {
 		new ecs::IntroScene, new ecs::DeathScene()};
 	gamePaused_ = false;
 
-	loadScene(ecs::sc::DEATH_SCENE);
+	loadScene(ecs::sc::MENU_SCENE);
 	sceneChange_ = false;
 }
 

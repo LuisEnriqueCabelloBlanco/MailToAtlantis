@@ -122,12 +122,12 @@ int GeneralData::calcularDineroGanado()
 	int totalRightMoney = 0;
 
 	if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
-		totalRightMoney = rightPackages * (WRITE_PACAGES_VALUE + 10);
+		totalRightMoney = rightPackages * (WRITE_PACAGES_VALUE + CONTABLE_PLUS_MONEY);
 	}
 	else {
 		totalRightMoney = rightPackages * WRITE_PACAGES_VALUE;
 	}
-	if (GeneralData::instance()->getUpgradeValue(ecs::upg::FALLOS_UPGRADE)) failsMargin_ = 2;
+	if (GeneralData::instance()->getUpgradeValue(ecs::upg::FALLOS_UPGRADE)) failsMargin_ = SOLDIER_NUM_FAIL;
 	else failsMargin_ = 0;
 	if (fails_ < failsMargin_) {
 		wrongPackages = 0;
