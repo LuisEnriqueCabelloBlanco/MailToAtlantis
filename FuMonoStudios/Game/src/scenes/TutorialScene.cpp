@@ -139,18 +139,10 @@ void ecs::TutorialScene::activateAllButOneTube(int tub)
 void ecs::TutorialScene::activateOneTube(int tube)
 {
 
-	if (tubos[tube]->getComponent<Trigger>() != nullptr) {
+	Trigger* tuboTri = tubos[tube]->addComponent<Trigger>();
 
-		Trigger* tuboTri = tubos[tube]->addComponent<Trigger>();
 
-	}
-	
-	if (tubos[tube]->getComponent<PackageChecker>() != nullptr) {
-
-		PackageChecker* tuboCheck = tubos[tube]->addComponent<PackageChecker>(Distrito(tube), this, mPipeMngr_);
-
-	}
-	
+	PackageChecker* tuboCheck = tubos[tube]->addComponent<PackageChecker>(Distrito(tube), this, mPipeMngr_);
 
 }
 
@@ -370,7 +362,7 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 		paquete = mPaqBuild_.customPackage(Hestia, C3, "Travis Lubin", Alimento, true, pq::Ninguno, 0, true);
 		break;
 	case BalanzaTut:
-		paquete = mPaqBuild_.customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Alto, 160);
+		paquete = mPaqBuild_.customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Alto, 80);
 		break;
 	case Carta:
 		paquete = mPaqBuild_.customPackage(Demeter, C1, "Percebesa Crujierez", Medicinas, true, pq::Ninguno, 0, false, true);
