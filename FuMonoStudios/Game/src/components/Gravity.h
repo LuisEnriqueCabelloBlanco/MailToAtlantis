@@ -1,5 +1,6 @@
 #pragma once
 #include <architecture/Component.h>
+#include <architecture/GameConstants.h>
 #include <string>
 
 class Transform;
@@ -19,11 +20,12 @@ public:
 
 	void initComponent() override;
 	void update() override;
+	/// <summary>
+	/// Activa o desactiva la gravedad
+	/// </summary>
+	/// <param name="value"></param>
 	void setActive(bool value);
 private:
-	static const float GRAVITY_LIMIT; // Limite de gravedad (donde tenemos el suelo)
-	static const float DEFAUTL_FORCE; // Fuerza de gravedad por deferto
-	static const float MAX_VELOCITY; // Limite de aceleracion
 
 	Transform* tr_;
 	float gravityForce_;

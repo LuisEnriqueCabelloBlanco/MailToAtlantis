@@ -4,7 +4,7 @@
 #include <components/Transform.h>
 #include <components/Herramientas.h>
 #include <sistemas/PaqueteBuilder.h>
-#include <components/DialogManager.h>
+#include <sistemas/DialogManager.h>
 
 namespace ecs
 {

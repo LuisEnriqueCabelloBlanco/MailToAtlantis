@@ -4,7 +4,7 @@
 
 #include <architecture/Component.h>
 class Transform;
-
+/*Componente que detecta cuando el cursor pasa por encima de la entidad*/
 class HoverSensorComponent:public ecs::Component
 {
 public:
@@ -17,12 +17,26 @@ public:
 	virtual void update() override;
 
 	void initComponent() override;
+	/// <summary>
+	/// Aniade funciones que se llamaran al pasar el cursor por encima de la entidad
+	/// </summary>
+	/// <param name="hoverCall"></param>
 	void addInCall(std::function<void()> hoverCall);
+	/// <summary>
+	/// Aniade funcines que se llamaran al sacar el cursar de la entidad
+	/// </summary>
+	/// <param name="hoverCall"></param>
 	void addOutCall(std::function<void()> hoverCall);
 	void addDestoryCall(std::function<void()> destroyCall);
 
 private:
+	/// <summary>
+	/// Llama a las InCalls
+	/// </summary>
 	void activateInCalls();
+	/// <summary>
+	/// Llama a las OutCalls
+	/// </summary>
 	void activateOutCalls();
 
 	bool inside_;

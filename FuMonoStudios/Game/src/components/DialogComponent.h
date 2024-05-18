@@ -3,7 +3,7 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include <architecture/Component.h>
-#include <components/DialogManager.h>
+#include <sistemas/DialogManager.h>
 #include <sdlutils/Font.h>
 /*
 TODO:
@@ -25,7 +25,7 @@ namespace ecs {
 /*
 Componente que gestiona el renderizado del texto segun la iformacion que le pasa el dialogManager
 renderiza el texto caracter a caracter y luego se espera a que se pulse el espacio para saltar el dialogo
-Necesita de un transform y de un renderizador
+Necesita de un Dialog manager
 */
 class DialogComponent :
     public ecs::Component
@@ -40,7 +40,7 @@ public:
     void update() override;
 private:
     /// <summary>
-    /// Metodo para actualizar la textura de di�logo
+    /// Metodo para actualizar la textura de dialogo
     /// </summary>
     void setCurrentDialogue();
 
@@ -48,7 +48,13 @@ private:
     RenderImage* mRend_;
     DialogManager* mDialogMngr_;
 
+    /// <summary>
+    /// Fuente del texto de los dialogos
+    /// </summary>
     Font* mFont_;
+    /// <summary>
+    /// Textura de dialogo
+    /// </summary>
     Texture* mTexture_;
     /// <summary>
     /// Ancho maximo al que va a llegar el texto
@@ -59,10 +65,14 @@ private:
     /// </summary>
     int dialogueIndex_;
 
-    // flag para saber cuando hay que cerrar la caja de dialogo
+    /// <summary>
+    /// flag para saber cuando hay que cerrar la caja de dialogo
+    /// </summary>
     bool endDialogue;
 
-    // flag para saber si puedes pulsar skipear o no
+    /// <summary>
+    /// flag para saber si puedes pulsar skipear o no
+    /// </summary>
     bool canSkip;
 
     uint32_t lastTimePaused_ = 0;

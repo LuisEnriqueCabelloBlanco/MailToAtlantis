@@ -12,7 +12,13 @@ public:
 	~Depth();
 	void initComponent() override;
 
+	/// <summary>
+	/// Acutaliza la profundidad del objeto en funcion de su altura
+	/// </summary>
 	void updateDepth();
+	/// <summary>
+	/// Actualiza la posicion de los objetos hijos tras ser escalado el objeto
+	/// </summary>
 	void updateChildPos();
 private:
 	float depth_;

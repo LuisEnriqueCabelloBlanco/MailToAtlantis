@@ -75,6 +75,7 @@
     <ClCompile Include="src\sistemas\WorkRestrictionsSystem.cpp" />
     <ClCompile Include="src\sistemas\SpecialObjectsFactory.cpp" />
     <ClCompile Include="src\scenes\IntroScene.cpp" />
+    <ClCompile Include="src\entities\Final.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Gravity.h" />
@@ -146,7 +147,7 @@
     <ClInclude Include="src\utils\Vector2D.h">
       <Filter>utilsHeader</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\DialogManager.h">
+    <ClInclude Include="src\sistemas\DialogManager.h">
       <Filter>componetsHeader</Filter>
     </ClInclude>
     <ClInclude Include="src\components\DragAndDrop.h">
@@ -188,9 +189,10 @@
     <ClInclude Include="src\sistemas\WorkRestrictionsSystem.h" />
     <ClInclude Include="src\sistemas\SpecialObjectsFactory.h" />
     <ClInclude Include="src\scenes\IntroScene.h" />
+    <ClInclude Include="src\entities\Final.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\components\DialogManager.cpp" />
+    <ClCompile Include="src\sistemas\DialogManager.cpp" />
     <ClCompile Include="src\components\DialogComponent.cpp" />
     <ClInclude Include="src\components\DialogComponent.h" />
     <ClInclude Include="src\components\PackageChecker.h" />

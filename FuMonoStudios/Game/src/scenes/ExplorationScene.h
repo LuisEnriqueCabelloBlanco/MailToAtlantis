@@ -3,7 +3,7 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include <architecture/Scene.h>
-#include <components/DialogManager.h>
+#include <sistemas/DialogManager.h>
 #include <sistemas/ComonObjectsFactory.h>
 #include <architecture/GeneralData.h>
 
