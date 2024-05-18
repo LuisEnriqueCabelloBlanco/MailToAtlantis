@@ -38,9 +38,20 @@ public:
 	void enable();
 	void disable() { enable_ = false; }
 	bool isEnabled() { return enable_; }
-
+	/// <summary>
+	/// Establece el tipo de funcion que va a seguir la animacion
+	/// </summary>
+	/// <param name="easing"></param>
 	inline void setEasing(Easing easing) { easing_ = easing; }
+	/// <summary>
+	/// Establece la posicion final de la animacion
+	/// </summary>
+	/// <param name="pos"></param>
 	inline void setFinalPos(const Vector2D& pos) { finalPos_ = pos; }
+	/// <summary>
+	/// establece cuanto tiempo (en segundos) durara la animacion
+	/// </summary>
+	/// <param name="time"></param>
 	inline void setMoveTime(float time) { movTime_ = time*1000; }
 private:
 	float timer_;

@@ -43,22 +43,21 @@ void EndWorkScene::init() {
 	createTextAnim(msg);
 
 	// Gastos alquiler e ingreos por trabajo
-	msg = "Gastos de Alquiler: -" + std::to_string(gD().getRent()) + "$";
+	msg = "Gastos de Alquiler: -" + std::to_string(gD().getRent()) + " $";
 	createTextAnim(msg);
 
-	msg = "Nómina del día: " + std::to_string(gD().calcularDineroGanado()) + "$";
+	msg = "Nómina del día: " + std::to_string(gD().calcularDineroGanado()) + " $";
 	createTextAnim(msg);
 
 	// Salto de posicion para colocar el resto de cosas más abajo
 	pos_ = pos_ + Vector2D(0, 200);
 
 	// Dinero total
-	msg = "Cuenta Bancaria: " + std::to_string(gD().getMoney()) + "$";
+	msg = "Cuenta Bancaria: " + std::to_string(gD().getMoney()) + " $";
 	createTextAnim(msg);
 
 	//Luis:no se si se deberia avanzar antes o despues de guardar
 	gD().setDay(gD().getDay() + 1);
-	gD().saveGame();
 }
 
 void EndWorkScene::close()
@@ -117,10 +116,23 @@ void EndWorkScene::createButtons()
 	// Comprobamos si el usuario ha perdido o sigue con dinero
 	int money = gD().getMoney();
 
+	auto textColor = build_sdlcolor(0xff0000ff);
+
 	if (money > 0) {
 		// Boton nuevo dia
-		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
-		factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Nuevo dia", 50, call, "click");
+
+		
+		
+		auto call = []() {
+			if (gD().getDay() == 14) {
+			gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::END_SCENE);
+			} 
+			else {
+				gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE);
+			}
+		};
+		auto nuevoDia = factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Empezar nuevo dia", 50, call, "click", textColor);
+
 		// Sonido
 		sdlutils().soundEffects().at("MoneyProfits").play();
 		gD().resetFailsCorrects();
@@ -130,7 +142,8 @@ void EndWorkScene::createButtons()
 	{
 		// Boton nueva partida
 		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
-		factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Volver al Menu", 50, call, "click");
+		auto volver = factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Volver al Menu", 50, call, "click", textColor);
+
 		// Sonido
 		sdlutils().soundEffects().at("LoseMoney").play();
 		// Texto

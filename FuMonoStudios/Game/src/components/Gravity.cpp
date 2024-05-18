@@ -4,10 +4,7 @@
 #include <architecture/Time.h>
 #include <sistemas/SoundEmiter.h>
 
-const float Gravity::GRAVITY_LIMIT = 625.0f;
 const float MIN_SPEED_SOUND = 5.0f;
-const float Gravity::DEFAUTL_FORCE = 9.8f * 4;
-const float Gravity::MAX_VELOCITY = 30.0f;
 const std::string DEFAULT_SOUND = "choque";
 
 Gravity::Gravity() : tr_(nullptr), gravityForce_(DEFAUTL_FORCE), velocity_(0), active_(true), 

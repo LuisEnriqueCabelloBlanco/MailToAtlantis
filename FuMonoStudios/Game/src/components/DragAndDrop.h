@@ -33,11 +33,22 @@ public:
 
 	void update() override;
 
+	/// <summary>
+	/// Devuelve si el objeto esta sisendo movido en este momento
+	/// </summary>
+	/// <returns></returns>
 	bool isDragging() {
 		return dragging_;
 	}
 
+	/// <summary>
+	/// Desactiva la Interaccion
+	/// </summary>
 	void disableInteraction() { canInteract = false; }
+
+	/// <summary>
+	/// Activa la Interaccion
+	/// </summary>
 	void activateInteraction() { canInteract = true; }
 private:
 	bool canInteract = true;
@@ -53,8 +64,13 @@ private:
 	// para el escalado al arrastrar objetos
 	float porcentajeStart;
 
+	//bool que marca si se debe llamar a los triggers solo de la entidad mas cercana a la entidad en lugar de a todas las cercanas
 	bool usingOnlyClosestEnt_ = false;
+	
+	//bool que marca si se ha asignado una funcion de movimiento tras el arrastre en el drag and drop (por ejemplo el sellador vuelve a su sitio tras sellar)
 	bool usingCallback_ = false;
+
+	//bool que permite marcar si al arrastrar la entidad a otra se deben llamar a los callbacks de aquella a la que se ha arrastrado o los suyos propios
 	bool usingOwnCallback_ = false;
 	SimpleCallback func_;
 	std::pair<int,int> latestPoint_;

@@ -76,7 +76,6 @@
 
     {"id": "flechaTest","file": "recursos/images/flecha.png"},
     {"id": "cambioPag","file": "recursos/images/NextPage.png"},
-    {"id": "botonTrabajar","file": "recursos/images/placeholderTrabajar.png"},
     {"id": "Demeter","file": "recursos/images/Demeter.png"},
     {"id": "Hefesto","file": "recursos/images/Hefesto.png"},
     {"id": "Hestia","file": "recursos/images/Hestia.png"},
@@ -93,6 +92,10 @@
     {"id": "botella1","file": "recursos/images/Botella1.png"},
     {"id": "botella2","file": "recursos/images/Botella2.png"},
     {"id": "cartaAtlantida","file": "recursos/images/CartaAtlantida.png"},
+    {
+      "id": "sellador",
+      "file": "recursos/images/sellador.png"
+    },
     {
       "id": "sellador0",
       "file": "recursos/images/selladorRojo.png"
@@ -297,6 +300,10 @@
       "file": "recursos/images/PuntoRojo.png"
     },
     {
+      "id": "puntoAzul",
+      "file": "recursos/images/PuntoAzul.png"
+    },
+    {
       "id": "lineaRoja",
       "file": "recursos/images/lineaRoja.png"
     },
@@ -358,6 +365,22 @@
     {
       "id": "fondoAjustes",
       "file": "recursos/images/AjustesSinSellos.png"
+    },
+    {
+      "id": "iconoAzulAjustes",
+      "file": "recursos/images/SelloAzulAjustes.png"
+    },
+    {
+      "id": "iconoRojoAjustes",
+      "file": "recursos/images/SelloRojoAjustes.png"
+    },
+    {
+      "id": "iconoVerdeAjustes",
+      "file": "recursos/images/SelloVerdeAjustes.png"
+    },
+    {
+      "id": "iconoAmarilloAjustes",
+      "file": "recursos/images/SelloAmarilloAjustes.png"
     },
     {
       "id": "cinta",
@@ -499,9 +522,36 @@
     {
       "id": "luz",
       "file": "recursos/images/luz.png"
-    }
+    },
+    {
+      "id": "selloLechuzas",
+      "file": "recursos/images/SelloLechuzas.png"
+    },
+    {
+      "id": "bomba",
+      "file": "recursos/images/Bomba.png"
+    },
+    {
+      "id": "polvos",
+      "file": "recursos/images/polvos.png"
+    },
+    {
+      "id": "polvosEsparcidos",
+      "file": "recursos/images/polvosEsparcidos.png"
+    },
+    {
+      "id": "ojo",
+      "file": "recursos/images/ojo.png"
+    },
+    {"id": "periodico","file": "recursos/images/Periodico.png"},
+    {"id": "finalFondo","file": "recursos/images/FondoFinales.png"}
   ],
   "fonts": [
+    {
+      "id": "arial30",
+      "file": "recursos/fonts/ARIAL.ttf",
+      "size": 30
+    },
     {
       "id": "arial50",
       "file": "recursos/fonts/ARIAL.ttf",
@@ -546,6 +596,16 @@
       "id": "simpleHandmade20",
       "file": "recursos/fonts/SimpleHandmade.ttf",
       "size": 20
+    },
+    {
+      "id": "simpleHandmade40",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 40
+    },
+    {
+      "id": "simpleHandmade80",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 80
     },
     {
       "id": "simpleHandmadeTuneado20",

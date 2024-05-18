@@ -57,7 +57,7 @@
       "Resulta que la joya era falsa... No veas que bajona llevo...",
       "Toma, ya no la quiero, te la regalo. Haz lo que quieras con ella.",
       "Ya que somos amigos inseparables y me has ayudado tanto, $?te puedo preguntar algo?",
-      "$?Que opinas del rey? $?Crees que es justo con su pueblo? $?Crees que los campesinos nos merecemos estos tratos? $?Crees de verdad que este es el rey que nos merecemos?",
+      " $?Que opinas del rey? $?Crees que es justo con su pueblo? $?Crees que los campesinos nos merecemos estos tratos? $?Crees de verdad que este es el rey que nos merecemos?",
       "No deber$iamos hablar de esto. Primero tengo que saber si puedo confiar en t$i.",
       "Toma esto.",
       "Recibes dos papeles con un sello de una lechuza. Contiene instrucciones sobre algo",
@@ -90,6 +90,8 @@
       "No te voy a mentir amigo, has jugado un papel muy clave en este movimiento de revelaci$on. Gracias a t$i, hemos conseguido unir por mensajer$ia a toda la secta de la lechuza y sacar este libro a la luz.",
       "Jones, ayudame a mi y a las lechuzas a salvar al pueblo de este rey. Si sigues ayud$andonos, te revelar$e la verdad de las lechuzas.",
       " $!Ahora a celebrar amigo! $!Vamos a beber hasta quedarnos ciegos!",
+      " $!Toma amigo! $!Te mereces una recompensa por habernos ayudado!",
+      "*recibes un sello multicolor. Ser$a util para ahorrar tiempo buscando el color del sello.*",
       " $!Redirige a este distrito de Hestia alg$un paquetillo con comida de Hermes, que hoy estamos de celebraci$on y hay que comer como cerdos!"
     ],
     "PostConversacionDia7": [
@@ -171,7 +173,7 @@
       "Hemos llegado ya a la parte final del plan Jones. Tenemos que ahora poner al pueblo a punto de revoluci$on.",
       "Vamos a redirigir una serie de paquetes. Tenemos unos paquetes especiales que contienen instrucciones, estos pesan poqu$isimo.",
       "Paquetes ligeros, es decir que pesan menos de 15kg, originalmente ven$ian aqu$i, a Hestia. Ahora, m$andalos a Apolo, donde tengo a gente que los repartir$a por la ciudad. Ser$an 3 en total.",
-      "$!Vamos amigo! $!Lo vamos a conseguir!"
+      " $!Vamos amigo! $!Lo vamos a conseguir!"
     ],
     "PostConversacionDia13": [
       "Recuerda colega, 3 paquetes ligeros, es decir de menos de 15kg, redir$igelos a Apolo."
@@ -179,11 +181,11 @@
     "Dia14": [
       " $!Jones, amigo! $!Hoy es el d$ia!",
       "Se acab$o dormir en el suelo, se acab$o los malos salarios de los campesinos, se acab$o la vida de soberbia de la nobleza, se acab$o la injusticia...",
-      "Se acab$o la tiran$ia de este secretario del rey. Se va a acabar todo y va a empezar la nueva era, una era donde prosperaremos como sociedad, hasta juntarnos con los humanos y convivir con ellos cuando Atlantis resurja en 5 a$os.",
+      "Se acab$o la tiran$ia de este secretario del rey. Se va a acabar todo y va a empezar la nueva era, una era donde prosperaremos como sociedad, hasta juntarnos con los humanos y convivir con ellos cuando Atlantis resurja en 5 a$%os.",
       "Ahora el plan. Va a llegar un paquete enviado de las lechuzas al distrito de Poseid$on. Su nombre es Francis Dupart. Recuerda su nombre.",
       "Toma. El veneno que hemos estado trabajando. $echalo sobre la apertura del paquete. El secretario tiene una mala man$ia de abrir los paquetes con la boca. En verdad le pega, con esa bocaza que me lleva... Ah$i le pillaremos.",
       "Solo a ese paquete, repito, SOLO A ESE PAQUETE. Debes echar los polvos sobre la estampa de Poseid$on. Ten cuidado de no tocarlo tu tambi$en.",
-      "Luego mandalo y acaba el trabajo. Luego ven a verme y nos esconderemos hasta m$inimo un d$ia. Tenemos que asegurarnos de que ha muerto, sino vaya sorpresita nos llevar$iamos.",
+      "Luego mandalo y acaba el trabajo. Despu$es ven a verme y nos esconderemos hasta m$inimo un d$ia. Tenemos que asegurarnos de que ha muerto, sino vaya sorpresita nos llevar$iamos.",
       "Venga Jones. Conf$io en t$i y tu conf$ias en m$i. Hemos pasado mucho juntos. A la gloria juntos. O a la miseria juntos.",
       " $!Venga amigo! $!A trabajar!",
       " $!Recuerda compa$%ero! $!El nombre es Francis Dupart!"
@@ -295,7 +297,7 @@
     ],
     "Dia10": [
       "Buenos d$ias Jones. El rey hoy te quiere recompensar por tu lealtad en estos tiempos. Toma",
-      "Recibes la mejora del secretario del rey",
+      "*Recibes un manual de trabajo mejorado. Lo ver$e en la oficina*",
       "Que no se te suba mucho a la cabeza. Sigues teniendo que ser obediente aun as$i.",
       "Adem$as tengo entendido que ya puedes mandar paquetes al distrito de Poseid$on. Es una gran responsabilidad.",
       "Jones. Necesito tu ayuda. Va siendo hora que sepas el plan que he tenido en las sombras durante todo este tiempo.",
@@ -366,7 +368,7 @@
   "Campesino": {
     "Presentacion": [
       "Pero bueno tu debes de ser nuevo por aqu$i, no me suena haberte visto antes.",
-      "Anda toma esto a ver si te ayuda un poco hoy que tienes cara de muerto, aunque no me extra$%a despu$es de todo el jaleo del otro d$ia",
+      "Anda comet$e una de mis cosechas a ver si te ayuda un poco hoy que tienes cara de muerto, aunque no me extra$%a $ultimamente los distritos est$an muy revueltos",
       "Por cierto que no me hab$ia presentado, soy Pancracio Warawa. Un gusto hijo.",
       "Venga a pasar buena noche, y espabila que la vida te va ha comer!"
     ],
@@ -374,15 +376,18 @@
     "FelicidadMinima": [
       "Al llegar a la granja ves a Pancracio consternado, huele a Alcohol, lleva una botella en la mano y no se encuentra su familia en la granja",
       "YYYYYYYY, Qu$E Tal ESt$As, hyp, yo estoy CONTENTO AHJAJAAJAja.",
-      "$?El huerto?, jjiijijiJIJ Blurgh, ah$i est$a.",
+      " $?El huerto?, jjiijijiJIJ Blurgh, ah$i est$a.",
       "El huerto no parece estar en muy buen estado, al igual que Pancracio",
-      "$!Qu$e miras! $!$!$?eh?!! $?Qu$e miras?",
+      " $!Qu$e miras! $!$!$?eh?!! $?Qu$e miras?",
       "ves como Pancracio empieza a desmoronarse",
       "Vete, vete y no vuelvas, ya no tengo huerto, no tengo familia, NO TENGO AMIGOS, no tengo nada.",
       "Vete, vete, vete..."
     ],
     "FelicidadMaxima": [
-      "Felicidad maxima Campesino"
+      "Paco, la verdad es que no soy mucho de ponerme sentimental pero gracias toda tu ayuda con los paquetes he podido prosperar como jam$as li imagin$e.",
+      "Mi mujer est$a much$isimo mejor, mis cosechas resplandecen m$as que las joyas m$as preciosas y adem$as voy a poder tener una familia como siempre quise.",
+      "Todo esto es gracias a tu gran coraz$on, gracias a que ayudas a la gente de los distritos exteriores sin buscar nada acambio, no como la mayor parte de esta podrida sociedad.",
+      "No es mucho pero me gustar$ia darte esto. Est$as modernidades yo no las entiendo, se supone que es una balanza digitat o algo as$i. Te dir$a justo lo que pesa algo."
     ],
     "Eventos": {
 
@@ -393,10 +398,10 @@
         "tu ponle el sello para que vaya a Gambon III, que para algo que cosecho, que al menos lo pruebe a quien va dirigido de verdad"
       ],
       "2": [
-        "$Ultimamente mi rastrillo est$a empezando a chochear.",
+        " $Ultimamente mi rastrillo est$a empezando a chochear.",
         "Los a$%os les pesan tanto a las cosas como a las personas.",
         "A los artesanos les van a llegar unos paquetes de materiales, entre los que se encuentran una buena cantidad de rastrillos.",
-        "Esos lameculos de los nobles no echar$ian un rastrillo extraviado en falta. Total, ni que esas estatuas sean demasiado importantes"
+        "Esos lameculos amigos de los nobles no echar$an un rastrillo extraviado en falta, tu ya me entiendes. Total, ni que esas estatuas sean demasiado importantes"
       ],
       "3": [
         "Hoy esos idiotas de los intermediarios han subido el precio de mis productos,",
@@ -414,8 +419,8 @@
         "Nosotros en Demeter con dos de sus paquetes ya tendr$iamos suficiente."
       ],
       "5": [
-        "$!Paco, Paco, Paco!",
-        "$!Menos mal que est$as aqu$i!",
+        " $!Paco, Paco, Paco!",
+        " $!Menos mal que est$as aqu$i!",
         "Me he confundido, madre m$ia que cagada.",
         "Mira te va a llegar un paquete m$io de comida, bastante pesado, aunque con el sello de peso equivocado.",
         "Es vital que llegue ese paquete a mis amigas aladas del distrito de Artemisa.",
@@ -425,7 +430,7 @@
     "GenericoMalo": {
       "1": [
         "Buenos d$ias a quien los tenga, que no voy a ser yo.",
-        "$ultimamente mis cosechas no est$an para tirar cohetes,",
+        " $ultimamente mis cosechas no est$an para tirar cohetes,",
         "anda prueba un poco de esto que ha crecido vete t$u a saber c$omo.",
         "Malo $?eh? !PUES QU$E QUIERES QUE HAGA SI NO ME DA PA M$AS, QUIZ$a SI LOS PAQUETES LLEGARAN CORRECTAMENTE SALDR$iA MEJOR!",
         "ay, hijo, perdona, $ultimamente no duermo demasiado y me cuesta cada vez m$as mantenerme cuerdo,",
@@ -436,7 +441,7 @@
         "mi huerto est$a que parece el descampao de enfrente, tiene m$as malas hierbas que buenas, se las quito y vuelven a crecer.",
         "Encima los intermediarios, los pu$%eteros intermediarios siempre dando por saco, que si les rob$e la $ultima vez d$andoles mercanc$ia en mal estado.",
         "Ahora tengo que devolverles el dinero, que si a esto le llamo yo comida, que c$omo me atrevo a cobrar por esta bazofia.",
-        "$!AAAY  QUE PENA LA MIA!",
+        " $!AAAY  QUE PENA LA MIA!",
         "como si no fuera suficiente la miseria que pido por lo poco que tengo encima van y se me quejan.",
         "Si es que as$i no se puede, as$i no se puede. No s$e si son los cultivos, la tierra, o si soy yo.",
         "Pero esto no puede no puede seguir as$i..."
@@ -455,7 +460,7 @@
       "1": [
         "Buenas tardes hijo, $?qu$e tal te va en tu trabajo?.",
         "Espero que ya no tengas tantas ganas de salir huyendo.",
-        "A m$i me podr$ia ir mejor la verdad, anda prueba esto.",
+        "A m$i me podr$ia ir mejor la verdad, anda prueba esto que he cosechado.",
         "Por tu cara veo que no te convence mucho",
         "Las cosas ya no son como antes, cuando empec$e todo era m$as sencillo,",
         "la tierra era m$as pr$ospera y f$ertil y los productos se vend$ian mejor sin tanto intermediario de por medio.",
@@ -481,9 +486,9 @@
     "GenericoBueno": {
       "1": [
         "Pero bueno, a qui$en tenemos aqu$i. $?qu$e tal la vida hijo?",
-        "Por aqu$i todo va bastate bien, mira prueba esto que acabo de cosechar.",
+        "Por aqu$i todo va bastate bien, mira prueba esto que acabo de recoger del campo.",
         "Vaya parece que si te ha gustado",
-        "$ultimamente lo que cosecho sabe mejor, no se si ser$an los recursos o la tierra, pero estamos que nos salimos,",
+        " $ultimamente lo que cosecho sabe mejor, no se si ser$an los recursos o la tierra, pero estamos que nos salimos,",
         "esos intermediarios que tanto por saco me dan est$an empezando a soltar un poco m$as por mis productos."
       ],
       "2": [
@@ -510,22 +515,22 @@
         "resulta que junto a ellos estamos llevando un plan ..., digamos que muy discreto.",
         "Consiste en que los menos favorecidos pod$ais disfrutar de mis productos a un precio menos abusivos de los que ponen los intermediarios,",
         "no hables mucho del tema, es un secreto.",
-        "Toma, hoy estoy de buen humor, te puedes llevar un poco de esto gratis, $!A pasar buen d$ia!"
+        "Toma, hoy estoy de buen humor, te puedes llevar unas pocas cosechas m$as gratis, $!A pasar buen d$ia!"
       ],
       "2": [
-        "$!Ese Paco c$omo anda!",
+        " $!Ese Paco c$omo anda!",
         "Por aqu$i andamos muy bien, no veas c$omo han mejorado mis cultivos en poco tiempo, $!mira que es casualidad,",
         "pero vaya, si resulta que desde que est$as por aqu$i mi situci$on a ido de bien a mejor!, traes buena suerte chaval.",
         "Mi econom$ia est$a mejor que nunca, madre m$ia c$omo va subiendo el precio que est$an dispuestos a pagar por mis productos esos intermediarios,",
         "se deben vender bien por los distr$itos c$entricos.",
         "Y bueno, por el exterior la econom$ia anda un poco peor,",
         "pero con la ayuda de unos amigos que se hacen llamar el grupo de las lechuzas estamos empezando a ayudar a comer a buen precio a los desfavorecidos.",
-        "$!Venga Paco, que te sea leve el trabajo ma$%ana!, $!y recuerda, no has escuchado nada de un grupo de lechuzas!"
+        " $!Venga Paco, que te sea leve el trabajo ma$%ana!, $!y recuerda, no has escuchado nada de un grupo de lechuzas!"
       ],
       "3": [
         "Pero bueeeeeno, si es el Paco.",
         "Que alegr$ia la m$ia, Paco que vamos a tener un hijo, mi mujer est$a ah$i dentro, nos dimos cuenta porque la pobre estaba un poco pochilla.",
-        "$?Y sabes lo mejor?, $!Qu$e tal y como nos van las cosas podemos incluso permitirnos otro en un futuro no muy lejano!",
+        " $?Y sabes lo mejor?, $!Qu$e tal y como nos van las cosas podemos incluso permitirnos otro en un futuro no muy lejano!",
         "Madre m$ia Paco, quien me lo iba a decir, que en tan poco tiempo me iba a dar la vida un vuelco tan gordo.",
         "Estoy que no me lo creo, espero que junto a mis amigos del grupo de las lechuzas podamos empezar a crear un futuro mejor para mis ni$%os,",
         "sin reyes ni amos tiranos que subleven a la poblaci$on y la condenen a vivir en la miseria.",
@@ -545,35 +550,36 @@
       "Todo ha sido un desastre... Lo siento... Pero no puedo... No puedo m$as... Por favor... d$ejame... d$ejame solo..."
     ],
     "FelicidadMaxima": [
-      "$!Oh, por todos los oc$eanos! $!Incre$ible! $!Fant$astico! $!Al fin! $!Por fin te veo con mis propios ojos!",
-      "$!Un ser humano de verdad, aqu$i, en este humilde taller! $!No estaba loco, no!",
+      " $!Oh, por todos los oc$eanos! $!Incre$ible! $!Fant$astico! $!Al fin! $!Por fin te veo con mis propios ojos!",
+      " $!Un ser humano de verdad, aqu$i, en este humilde taller! $!No estaba loco, no!",
       "Y no solo eso, $!mira a tu alrededor! $!Materiales en abundancia, listos para comenzar una nueva era art$istica! $!Imagina las creaciones que podr$iamos hacer juntos!",
-      "Gracias por mostrarme tu secreto y tranquilo a estas horas nadie nos habr$a visto. Adem$as, no te preocupes, no le dire a nadie esto Paco amigo mio"
+      "Gracias por mostrarme tu secreto y tranquilo a estas horas nadie nos habr$a visto. Adem$as, no te preocupes, no le dire a nadie esto, Paco amigo mio",
+      "Por cierto, me gustar$ia que tuvieras esto. Es una cinta que te permite envolver rapidamente cualquier paquete al acercarla a $el. Espero que te sirva."
     ],
     "Eventos": {
       "1": [
-        "$!Por todos percebes! $!Estoy en un aprieto, amigo! Hoy fui a recoger materiales para mi $ultima creaci$on y para mi desgracia no hab$ia ni un m$isero coral!",
+        " $!Por todos percebes! $!Estoy en un aprieto, amigo! Hoy fui a recoger materiales para mi $ultima creaci$on y para mi desgracia no hab$ia ni un m$isero coral!",
         "Necesito esos materiales como el pulpo que necesita agua!",
-        "$?Sabes qu$e? No ser$ia el fin del mundo si un solo paquete de materiales se extraviara y terminara por alg$un remoto error en este taller, $?verdad?"
+        " $?Sabes qu$e? No ser$ia el fin del mundo si un solo paquete de materiales se extraviara y terminara por alg$un remoto error en este taller, $?verdad?"
       ],
       "2": [
-        "$!No brilla! $!No resplandece! $?Y las joyas? $?Y las Perlas? Necesito un favor, creo que ya te haces una idea,",
+        " $!No brilla! $!No resplandece! $?Y las joyas? $?Y las Perlas? Necesito un favor, creo que ya te haces una idea,",
         "no quiero ponerte en un aprieto pero es que mi jefe no para de abaratar la mercanc$ia...",
-        "$?A qui$en quiere mi jefe enga$%ar con esta baratija? Consigueme desviar un paquete, se que no te decepcionar$e!"
+        " $?A qui$en quiere mi jefe enga$%ar con esta baratija? Consigueme desviar un paquete, se que no te decepcionar$e!"
       ],
       "3": [
-        "$!Ay, por las aletas de mi abuela! Aqu$i estamos otra vez, sin un triste trozo de queso.",
+        " $!Ay, por las aletas de mi abuela! Aqu$i estamos otra vez, sin un triste trozo de queso.",
         "No s$e en qu$e est$a pensando el jefe $ultimamente, pero parece que su cabeza est$a m$as en las aguas que en el trabajo.",
-        "$?Ser$ias tan amable de echarme una mano y traer un par de paquetes de comida? $!Necesitamos nutrir nuestra creatividad para hacerla brillar!"
+        " $?Ser$ias tan amable de echarme una mano y traer un par de paquetes de comida? $!Necesitamos nutrir nuestra creatividad para hacerla brillar!"
       ],
       "4": [
-        "$!Caracolas! S$e que esto te sonar$a mal Paco pero necesito que me hagas un favor.",
+        " $!Caracolas! S$e que esto te sonar$a mal Paco pero necesito que me hagas un favor.",
         "Un cliente de Hermes nos pidi$o hacerle una escultura con tungsteno, pero entre las prisas de mi jefe y mi propia confusi$on acaba haci$endola de hierro.",
         "El exterior es casi el mismo pero pesa mucho menos de lo que deber$ia el paquete.",
         "Por favor haz la vista gorda con esa balanza tuya."
       ],
       "5": [
-        "$!Por todos los corales! como puedo ser tan despistado.",
+        " $!Por todos los corales! como puedo ser tan despistado.",
         "Un cliente de Apolo nos pidi$o un jarr$on de vidrio, algo muy fr$agil y delicado.",
         "Sin embargo a la hora de enviarlo se me olvido poner el sello de fragil para que se envuelva con cuidado.",
         "Por favor, crees que podr$ias embalar mi paquete aunque no tenga el sello de fragilidad.",
@@ -603,9 +609,9 @@
     },
     "GenericoNormal": {
       "1": [
-        "$!Hola, amigo! $?Qu$e opinas de Gargafiel Mustaki? El otro d$ia me lo encontr$e en el PezerKing, $!s$i, en el mism$isimo PezerKing!",
+        " $!Hola, amigo! $?Qu$e opinas de Gargafiel Mustaki? El otro d$ia me lo encontr$e en el PezerKing, $!s$i, en el mism$isimo PezerKing!",
         "Fue una sorpresa verlo por all$i despu$es de tanto tiempo.",
-        "$?Qui$en iba a decir que el campesino que una vez lleg$o a mi taller buscando un poco de orientaci$on se convertir$ia en nada menos que el mism$isimo secretario del rey?",
+        " $?Qui$en iba a decir que el campesino que una vez lleg$o a mi taller buscando un poco de orientaci$on se convertir$ia en nada menos que el mism$isimo secretario del rey?",
         "Es incre$ible c$omo la vida nos sorprende a veces. Aunque ni siquiera me dirigi$o la palabra, creo que el poder le ha cambiado"
       ],
       "2": [
@@ -628,22 +634,22 @@
         "Adem$as, quer$ia agradecerte sinceramente por enviarme esos paquetes llenos de inspiraci$on. Cada uno de ellos es como un peque$%o tesoro que alimenta mi creatividad!"
       ],
       "2": [
-        "$!Hola querido! $?Qu$e te trae por aqu$i en este d$ia tan fascinante?",
-        "$!Ah, yo siempre estoy lleno de energ$ia y creatividad! Aunque hoy estoy especialmente emocionado porque estoy trabajando en un proyecto nuevo y emocionante.",
-        "$!Espero que pronto pueda mostr$artelo! Sigue envi$andome paquetes y llegaremos lejos!"
+        " $!Hola querido! $?Qu$e te trae por aqu$i en este d$ia tan fascinante?",
+        " $!Ah, yo siempre estoy lleno de energ$ia y creatividad! Aunque hoy estoy especialmente emocionado porque estoy trabajando en un proyecto nuevo y emocionante.",
+        " $!Espero que pronto pueda mostr$artelo! Sigue envi$andome paquetes y llegaremos lejos!"
       ],
       "3": [
-        "$!Hola de nuevo, querido amigo! Hoy estoy lleno de inspiraci$on y energ$ia creativa.",
+        " $!Hola de nuevo, querido amigo! Hoy estoy lleno de inspiraci$on y energ$ia creativa.",
         "Estoy trabajando en una nueva serie de esculturas que exploran la conexi$on entre el mar y el cielo.",
-        "$?Sab$ias que he estado experimentando con materiales reciclados? Es un desaf$io emocionante, pero creo que el arte sostenible es el futuro.",
+        " $?Sab$ias que he estado experimentando con materiales reciclados? Es un desaf$io emocionante, pero creo que el arte sostenible es el futuro.",
         "Y hablando de futuros brillantes, quiero agradecerte sinceramente por seguir envi$andome esos paquetes llenos de tesoros.",
         "Cada uno de ellos es como un regalo que me impulsa hacia adelante en mi viaje art$istico."
       ]
     },
     "GenericoMaxiBueno": {
       "1": [
-        "$!Hoy mis tent$aculos est$an a punto de estallar de alegr$ia! Estoy dando los primeros pasos para construir mi propio taller de arte submarino.",
-        "$!Finalmente, podr$e liberar mi creatividad sin restricciones y sin la sombra de mi jefe! $!Es un sue$%o hecho realidad! Y todo esto, querido amigo, es gracias a ti!"
+        " $!Hoy mis tent$aculos est$an a punto de estallar de alegr$ia! Estoy dando los primeros pasos para construir mi propio taller de arte submarino.",
+        " $!Finalmente, podr$e liberar mi creatividad sin restricciones y sin la sombra de mi jefe! $!Es un sue$%o hecho realidad! Y todo esto, querido amigo, es gracias a ti!"
       ],
       "2": [
         "Divino, Divino, Divinoo! Mira que creaci$on por favor! Y nada de esto habr$ia sido posible sin tu ayuda! Siempre ser$as bienvenido aqu$i, cerca de m$i y mi arte!"
@@ -680,7 +686,8 @@
       "pero no me repudiaste por eso, sino que vertiste en m$i una esperanza de cambio.",
       "Quiero que sepas que tu amabilidad le ha llegado a este arrugado coraz$on.",
       "Realmente me cuesta creer que esta podrida ciudad haya dado lugar a alguien tan emp$atico, quiz$a incluso no seas de aqu$i.",
-      "Sea como sea, es tu vida y yo no me voy a meter en ella."
+      "Sea como sea, es tu vida y yo no me voy a meter en ella.",
+      "Solo podr$ia confiar esta cosa a alguien tan bueno como t$u. Es una bola de cristal verdadera que te dir$a algunas veces si los paquetes son correctos o no."
     ],
     "Eventos": {
       "1": [
@@ -704,7 +711,7 @@
         "Hazle ese favor a esta pobre anciana que solo intenta ganarse la vida."
       ],
       "4": [
-        "$Ultimamente la gente ya no viene con preocupaciones m$edicas a mi local.",
+        " $Ultimamente la gente ya no viene con preocupaciones m$edicas a mi local.",
         "Si esto sigue as$i no podr$e mandar tantos clientes a los boticarios y perder$e dinero.",
         "Creo que todo se debe a un nuevo medicamento desarrollado por un tal Dr. Luengostino que se est$a enviando a los nobles.",
         "Si ves alguno de esos paquetes, deshazte de ello.",
@@ -715,7 +722,7 @@
       "5": [
         "Sabes, a$un recuerdo mis $epocas como campesina de una manera muy dulce,",
         "sin embargo lo que hasta d$ia de hoy me enfurece es como se aprovechaban esos est$upidos comerciantes para revender lo que tanto nos cost$o cosechar",
-        "$?Qu$e te parece si les das una lecci$on por m$i y por los campesinos?",
+        " $?Qu$e te parece si les das una lecci$on por m$i y por los campesinos?",
         "tres paquete de alimentos que vaya al distrito Hermes devuelvelo por donde ha venido, a Demeter,",
         "que la gente abra los ojos y deje de negociar con esas sanguijuelas"
       ]
@@ -767,8 +774,8 @@
       ],
       "2": [
         "Aunque odie que la gente me llame se$%ora en lugar de se$%orita no hay nada que pueda hacer para remediarlo, a fin de cuentas soy una mujer casada.",
-        "$?No lo sab$ias? Mi marido fue un campesino del distrito de Demeter, yo le ayudaba cuando pod$ia.",
-        "$el me termin$o abandonando, no estaba demasiado feliz con mi peque$%o negocio."
+        " $?No lo sab$ias? Mi marido fue un campesino del distrito de Demeter, yo le ayudaba cuando pod$ia.",
+        " $el me termin$o abandonando, no estaba demasiado feliz con mi peque$%o negocio."
       ],
       "3": [
         "Puede que no lo parezca chico pero en mi $epoca de campesina estaba rodeada de amigas,",
@@ -780,7 +787,7 @@
     "GenericoMaxiBueno": {
       "1": [
         "Hola muchacho que te cuentas.",
-        "$?Qu$e por qu$e nunca te llamo por tu nombre? tranquilo que me acuerdo perfectamente de c$omo te llamas Pancho, a no espera Paco eso es.",
+        " $?Qu$e por qu$e nunca te llamo por tu nombre? tranquilo que me acuerdo perfectamente de c$omo te llamas Pancho, a no espera Paco eso es.",
         "Ver a tanta gente todos los d$ias hace que me cueste recordar caras, aunque con lo que me has ayudado es dif$icil que ya me olvide de t$i."
 
       ],
@@ -814,17 +821,18 @@
       "Hoy... hoy no es un buen d$ia. La carga de trabajo, los informes interminables,",
       "la presi$on de cuidar de los nobles que ni siquiera agradecen mi presencia.",
       "A veces me pregunto si todo esto tiene alg$un sentido...",
-      "$?De verdad estoy protegiendo a alguien aqu$i?",
+      " $?De verdad estoy protegiendo a alguien aqu$i?",
       "La frustraci$on se acumula, y cada d$ia es un recordatorio de que mi sue$%o de defender los distritos exteriores sigue siendo inalcanzable.",
       "Y adem$as, para las pocas veces que soy yo el que pide ayuda, se me ignora y se me hace la vida imposible.",
       "Largate, no quiero que te vuelvas a acercar a mi jam$as $?entiendes?"
     ],
     "FelicidadMaxima": [
-      "$!Incre$ible! No puedo creerlo,",
+      " $!Incre$ible! No puedo creerlo,",
       "Este es un d$ia que no olvidar$e. Mi coraz$on late con emoci$on al ver que alguien valora mi servicio.",
       "Gracias a tu amistad y apoyo he podido ir cumplir mi verdadera aspiraci$on,",
       "por fin podr$e trabajar en los distritos exteriores. Solo tengo que aguantar aqui unas semanas m$as.",
-      "De verdad muchas gracias, se que juntos en los distritos exteriores podremos cambiar el rumbo de las cosas."
+      "De verdad muchas gracias, se que juntos en los distritos exteriores podremos cambiar el rumbo de las cosas.",
+      "Por toda tu ayuda por el bien de la Atl$antida, hablar$e con tu jefe para que sea m$as permisivo con tus fallos."
     ],
     "Eventos": {
       "1": [
@@ -848,20 +856,20 @@
       "4": [
         "Hoy encontr$e a un joven talentoso de los distritos exteriores que sue$%a con unirse al ej$ercito.",
         "Me recordaba a m$i mismo cuando era joven y ten$ia grandes aspiraciones.",
-        "$?Ser$ias tan amable de enviar 1 paquete de armamento al distrito de Artemisa?",
+        " $?Ser$ias tan amable de enviar 1 paquete de armamento al distrito de Artemisa?",
         "Qui$en sabe, tal vez estemos forjando al pr$oximo protector de Atlantis."
       ],
       "5": [
         "Buenas Paco, no lo digas por ah$i pero no se si sabes que varios grupos criminales de la Atl$antida han estado falsificando sellos $ultimamente",
         "Al parecer estos sellos los venden a precios baratos a los incredulos habitantes de los distintos distritos.",
-        "$?Como dices?, que te han llegado varios paquetes a tu oficina con esos sellos. Paco eso es buenisimo para el caso",
+        " $?Como dices?, que te han llegado varios paquetes a tu oficina con esos sellos. Paco eso es buenisimo para el caso",
         "Por favor enviame a Apolo dos paquetes con sellos falsos, para que podamos hacer un minucioso an$alisis de estos."
       ]
     },
     "GenericoMalo": {
       "1": [
         "Estoy harto de este trabajo ingrato. Mi jefe no entiende la importancia de proteger a los m$as vulnerables.",
-        "$!Y para colmo, los paquetes que debes enviar a veces nunca llegan! $?Es tan dif$icil seguir instrucciones b$asicas?",
+        " $!Y para colmo, los paquetes que debes enviar a veces nunca llegan! $?Es tan dif$icil seguir instrucciones b$asicas?",
         "Estoy agotado de ser un pe$on en este juego sin sentido."
       ],
       "2": [
@@ -880,7 +888,7 @@
       "1": [
         "Los distritos exteriores son duros, y la vida aqu$i no es m$as que una guarder$ia de nobles.",
         "Al menos contigo puedo ser honesto y expresar mi descontento.",
-        "$?Has notado c$omo algunos nobles tratan de aprovecharse de su posici$on? Es insoportable.",
+        " $?Has notado c$omo algunos nobles tratan de aprovecharse de su posici$on? Es insoportable.",
         "Pero bueno, as$i es la vida en Apolo, $?verdad?"
       ],
       "2": [
@@ -901,12 +909,12 @@
         "A veces, es bueno recordar la raz$on por la que decid$i unirme al ej$ercito en primer lugar."
       ],
       "2": [
-        "$!Mira qui$en est$a aqu$i! Me alegra verte. Hay algo refrescante en la camarader$ia.",
+        " $!Mira qui$en est$a aqu$i! Me alegra verte. Hay algo refrescante en la camarader$ia.",
         "A pesar de todo, sigo manteniendo la esperanza de que las cosas mejoren.",
         "Tal vez alg$un d$ia pueda hacer una diferencia real y proteger a los que realmente lo necesitan."
       ],
       "3": [
-        "$!Hoy fue un d$ia exitoso! Cumpl$i con mi deber, no ha habido quejas por retrasos o p$erdidas de paquetes y, lo m$as importante,",
+        " $!Hoy fue un d$ia exitoso! Cumpl$i con mi deber, no ha habido quejas por retrasos o p$erdidas de paquetes y, lo m$as importante,",
         "pude hacer frente a algunas injusticias que presenci$e.",
         "Cuando veo resultados como estos, siento que estoy en el camino correcto.",
         "A veces, solo se necesita un peque$%o cambio para marcar la diferencia."
@@ -916,11 +924,11 @@
       "1": [
         "Ayer mismo consegu$i resolver un caso que realmente considero un logro para toda mi carrera laboral.",
         "Adem$as, me ha hecho sentir lleno y orgulloso de mi mismo por primera vez en mucho tiempo.",
-        "$!Estoy emocionado! $!Es un paso gigante hacia mi sue$%o!",
+        " $!Estoy emocionado! $!Es un paso gigante hacia mi sue$%o!",
         "Un d$ia de estos tenemos que ir a por unos tragos y te cuento todas mis historias."
       ],
       "2": [
-        "$ultimamente las cosas han estado algo movidas por los distritos exteriores, varios de los soldados asignados all$i est$an abandonando su puesto.",
+        " $ultimamente las cosas han estado algo movidas por los distritos exteriores, varios de los soldados asignados all$i est$an abandonando su puesto.",
         "Aunque parezca mala situaci$on esto viene muy bien, asi los soldados se iran antes de que pase algo gordo de verdad.",
         "Si todo sale bien igual puedo obtener el puesto que tanto tiempo he deseado."
       ],
@@ -952,7 +960,8 @@
       "Aunque la gente no lo crea noto muchas de las cosas que pasan a mi alrededor,",
       "por eso se que no tengo demasiados amigos, solo gente interesada en mi posici$on y poder.",
       "Pero a ti no te tiembla la voz al decirme las verdades a la cara y ayud$andome en mis peores momentos.",
-      "Te lo agradezco, espero que tu tambi$en me consideres como un amigo."
+      "Te lo agradezco, espero que tu tambi$en me consideres como un amigo.",
+      "Y como yo se tratar a mis amigos, voy a invertir en la empresa de AtlantisExpress donde trabajas para que te puedan subir el sueldo y te vaya todo mejor."
     ],
     "Eventos": {
       "1": [
@@ -989,14 +998,14 @@
         "Paco voy a darte una lecci$on de finanzas.",
         "hay veces que es muy importante abaratar costes en peque$%as minucias, por ejemplo, hoy mismo he enviado dos paquetes pero usando unos sellos m$as baratos.",
         "Se los compr$e a un vendedor ambulante que encontre en la plaza de Hermes.",
-        "$?Como dices?, que si el sello no es el oficial debes devolver los paquetes. Por dios, pero no puedes hacer eso, este env$io es muy urgente.",
+        " $?Como dices?, que si el sello no es el oficial debes devolver los paquetes. Por dios, pero no puedes hacer eso, este env$io es muy urgente.",
         "Por favor paco haz la vista gorda por esta vez por favor te lo pido"
       ]
     },
     "GenericoMalo": {
       "1": [
         "Ahora no puedo hablar.",
-        "$?Tienes alguna m$inima idea del estr$es que supone manejar una empresa que se va al garete por el ego$ismo de muchas personas?",
+        " $?Tienes alguna m$inima idea del estr$es que supone manejar una empresa que se va al garete por el ego$ismo de muchas personas?",
         "No $?verdad?, pues por favor vete y d$ejame trabajar."
       ],
       "2": [
@@ -1049,7 +1058,7 @@
     },
     "GenericoMaxiBueno": {
       "1": [
-        "$ultimamente he estado pensando en c$omo acercar unos a los otros a los habitantes de los anillos exteriores e interiores y creo haber dado con la soluci$on,",
+        " $ultimamente he estado pensando en c$omo acercar unos a los otros a los habitantes de los anillos exteriores e interiores y creo haber dado con la soluci$on,",
         "no es seguro y hace falta que le eche valor para proponer esto a todos los de mi empresa.",
         "Aunque no me cabe la menor duda de que con tu apoyo podr$e seguir mi instinto."
 
@@ -1121,27 +1130,45 @@
       "Ahora lo metemos al tubo con su mismo s$imbolo, el de color verde."
     ],
     "13": [
+      "No te creas que todo va a ser siempre tan dif$icil, muchas veces te podr$an llegar cartas como la que ves ah$i.",
+      "Para las cartas al ser trozos de papel solo debes poner el sello de su calle, siempre.",
+      "No hay que hacer nada m$as con ellas. Anda prueba a sellar esta carta debidamente."
+    ],
+    "14": [
+      "Perfecto, ahora simplemente envial$a por el tubo y todo estar$a listo."
+    ],
+    "15": [
+      "Ahora Paco, ve a la s$eptima p$agina del manual, ah$i encontrar$as informaci$on sobre los sellos que marcan el contenido de los paquetes."
+    ],
+    "16": [
+      "Como veas hay cinco tipos de sellos, los de alimentos, los de materiales, los de joyas, los de armamento y los de medicina.",
+      "Tranquilo, no te preocupes, esa informaci$on no la necesitas para nada, es algo m$as informativo para los carteros.",
+      "Adem$as no es como si el contenido de los paquetes te interesase para redirigirlos a otras personas y asi ganarte su afecto $?verdad?.",
+      "Muy bien, sigamos ya con la $ultima parte de tu formaci$on"
+    ],
+    "17": [
+      "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
       "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
       "No te preocupes que no te voy a penalizar... Tranquilo...",
       "Coge este paquete, que en principio est$a bien reglamentado, y mandalo a la basura.",
       "La basura es el tubo negro de la izquierda, cualquier paquete que no cumpla lo establecido ira ah$i."
     ],
-    "14": [
+    "18": [
       "Fijate que te ha salido una notita explicando tu error. Cada paquete correcto son 20 dolares m$as en tu cuenta, y cada paquete err$oneo son 30 dolares menos.",
       "Espero no ver muchas notitas cuando trabajes... El anterior a ti le hacia demasiados favores a la gente de la ciudad y acababa no ganando nada..."
     ],
-    "15": [
+    "19": [
       "Paco, Paco, dios mio que desgracia, a aparecido una red de trafico de sellos falsos en el reino.",
       "Si la gente empieza a vender sellos que no sean mios, una gran parte de las ganancias se perdera, pero no te preocupes que aqu$i estoy yo para ense$%arte a detectarlos",
       "Tenemos que comprobar que los paquetes son legales, que tengan el sello reglamentario y la calle est$e bien puesta.",
       "Fijate que este paquete que acaba de llegar tiene un sello raro. Vamos a buscarlo en la p$agina de los sellos."
     ],
-    "16": [
+    "20": [
       "Parece que el sello rojo de Armamento del paquete no coincide con el del manual. Este paquete entonces va directo a la basura.",
       "Arrastralo hasta la basura para eliminarlo. Es importante que elimines los ilegales, sino te penalizare economicamente."
     ],
     
-    "17":[
+    "21":[
       "Hola Paco, espero que no te hayas acomodado porque he tenido una nueva idea que ayudara al negocio",
       "Se ve que $ultimamente la gente trata de mandar m$as y m$as cosas juntas para ahorrarse el dinero de varios env$ios",
       "Esto ha provocado que muchos de mis repartidores se da$%en la espalda llevando esos paquetes al no estar seguros de su peso desde el inicio",
@@ -1150,31 +1177,31 @@
       "El problema es que los habitantes no son muy espabilados asi que tendras que asegurarte con la balanaza que el sello de pesado corresponde a su peso.",
       "Primero ve a la novena pagina del manual para ver como funciona la balanza"
     ],
-    "18":[
+    "22":[
       "Bien como ves a la derecha est$an los diferentes sellos de pesado y a la derecha las distintas regiones por los pesos de la balanza.",
       "Ahora debes arrastrar el paquete a la balanza para ver si la regi$on que marca concuerda con su sello."
     ],
-    "19":[
+    "23":[
       "Como ves este paquete esta correcto, por lo cual pon sus sellos correspondientes y envialo."
     ],
-    "20": [
+    "24": [
       "Vale Paco, espero que esta sea la $ultima cosa que tengo que explicarte. Han metido desde palacio una nueva normativa para ciertos envios debido a las quejas de la gente",
       "Algunos paquetes pueden contener cosas muy delicadas y como se ve que mis empleados no son demasiado delicados, ahora nos obligan a embalar todos los paquetes",
       "con un sello especifico de fragilidad. Para ello tendras que usar la nueva herramienta que te he dejado en la mesa.",
       "Antes de nada, que tal si miras el funcionamiento de la cinta en tu manual."
     ],
-    "21":[
+    "25":[
       "Como ves para envalar un paquete debes seguir una ruta espec$ifica empezando por el punto verde. Mientras sigas los puntos en orden y no te salgas del paquete todo ir$a bien.",
       "PERO OJO, antes de embalarlo sera mejor que le pongas sello de calle y compruebes todo lo dem$as, ya que una vez embalado no podras ver sus caracter$isticas."
     ],
-    "22": [
+    "26": [
       "Como te he dicho antes, para poder embalarlo, coge la herramienta de embalar, y sigue la ruta de puntos que ver$as al ponerla por encima del paquete.",
       "Sigue la ruta empezando por el punto verde y te quedar$a niquelado"
     ],
-    "23": [
+    "27": [
       "Por $ultimo envia el paquete y habr$as terminado"
     ],
-    "24": [
+    "28": [
       "Muy bien, por hoy has aprendido sufiente. Ahora mueve ese culo y ponte a trabajar."
     ]
   },
@@ -1183,24 +1210,36 @@
       "Esta es la aventura de Paco Jones..."
     ],
     "1": [
-      "Paco era un hombre comun y corriente con una vida ordinaria y con un trabajo repetitivo y aburrido.",
-      "Trabajaba en correos y solamente tenia un trabajo: coger los paquetes que le llegaban y mandarlos por un tubo. "
+      "Paco era un hombre com$un y corriente con una vida ordinaria y con un trabajo repetitivo y aburrido.",
+      "Trabajaba en correos y solamente ten$ia un trabajo: coger los paquetes que le llegaban y mandarlos por un tubo. "
     ],
     "5": [
-      "Hacia esto todos los dias y estaba harto de ello, ansiaba una oportunidad de escapar de su monotona vida.", "Hasta que un dia, algo que no era un paquete corriente llego a su oficina..."
+      "Hacia esto todos los dias y estaba harto de ello, ansiaba una oportunidad de escapar de su monotona vida.",
+      "Hasta que un dia, algo que no era un paquete corriente llego a su oficina..."
     ],
     "7": [
-      "Paco abrio la extrana botella y dentro encontro una carta que decia venir de la Atlantida."
+      "Paco abri$o la extra$%a botella y dentro encontr$o una carta que dec$ia venir de la Atl$antida."
     ],
     "8": [
-      "El remitente de la carta era un grupo que se hacia llamar Las Lechuzas y habia un mapa que marcaba la supuesta ubicacion de este legendario lugar.", "Paco interpreto esto como una senal del destino para dejar todo atras y se embarco en su viaje hacia la Atlantida, gastandose todos sus ahorros en un submarino y un disfraz de pez para infiltrarse.", "Y asi, despues de un arduo viaje, Paco llego a su destino, pero este era ligeramente diferente de como se lo imaginaba..."
+      "El remitente de la carta era un grupo que se hacia llamar Las Lechuzas y habia un mapa que marcaba la supuesta ubicacion de este legendario lugar.",
+      "Paco interpreto esto como una senal del destino para dejar todo atras y se embarco en su viaje hacia la Atlantida, gastandose todos sus ahorros en un submarino y un disfraz de pez para infiltrarse.",
+      "Y asi, despues de un arduo viaje, Paco llego a su destino, pero este era ligeramente diferente de como se lo imaginaba..."
+    ],
+    "9": [
+      "Paco llego a una especie de barrio residencial, donde vio lo que parecia una oficina de correos y a un pez en la puerta con cara de preocupacion.",
+      "Y alla va otro que lo deja, por que todos mis trabajadores acaban renunciando?",
+      "Espero tener suerte encontrando a alguien pronto, pero estas juventudes de hoy en dia no quieren trabajar...",
+      "Eh tu! Si tu, el que esta ahi quieto mirandome, te gustaria un trabajo?",
+      "Paco decidio aceptar la oferta ya que si pretendia quedarse en la Atlantida necesitaria ganar dinero para tener un techo bajo el que dormir y algo de comer.",
+      "Que te llamas Paco? Vaya nombre mas raro tienes hijo, pero bueno, encantado de que trabajes para mi. "
     ]
   },
   "ExplorationEnter": {
     "0":[
-      "Ahora si, bienvenido a Atlantis. Puedes navegar entre distritos clicando las flechas colgadas en los carteles de madera, y hablar con los personajes clicando en ellos.",
-      "Conforme vayas conociendo a los personajes, se ira expandiendo tu diario. El diario esta en la parte abajo derecha. Ahora mismo esta vacio porque no conoces a nadie.",
-      "Ve haciendo favores y conociendo a la gente de Atlantis durante tu estancia en la ciudad."
+      "Bueno Paco, por mucho que seas nuevo por estos distritos no debes quedarte dormido, es importante que vengas a trabajar todos los d$ias para poder ser alguien productivo.",
+      "Como es tu primer d$ia, antes de venir a trabajar porque no te das una vuelta por todos los distritos. Para moverte entre distritos pulsa los carteles con flechas.",
+      "Si ves alguno con alguna cruz significa que alguien de tu clase social no puede ir por ah$i. Tambi$en sientete libre de hablar con los habitantes, es importante que hagas amigos",
+      "Por $ultimo, toma, un diario para que puedas apuntar tus pensamientos y tus cosas. Pues ale visita los distritos y vuelve al edificio este de la carta para empezar a currar."
     ],
     "1":[
       "Hola.",
@@ -1209,12 +1248,12 @@
     ],
     "2":[
       "Hola Jones, hoy te ha llegado esto a tu correo. Estaban repartiendo a toda la poblaci$on uno.",
-      " lo lees, es un papel con el titulo CRITIAS. Te viene un recuerdo a tu pasado como historiador y jurar$ias escuchar este mismo nombre relacionado con el fil$osofo Plat$on.",
+      "* lo lees, es un papel con el titulo 'CRITIAS'. Te viene un recuerdo a tu pasado como historiador y jurar$ias escuchar este mismo nombre relacionado con el fil$osofo Plat$on.*",
       "Queridos habitantes de Atlantis, hemos descubierto pruebas indudables de la existencia de algo m$as all$a del agua. Gracias a un texto que hemos encontrado y d$ecadas de estudio.",
       "Este papel es una versi$on resumida del texto original, y explicaremos resumidamente nuestros descubrimientos. Sin embargo, no podemos revelarnos, ya que seguramente el rey nos persiga por herej$ia. Nos mantendremos ocultos.",
       "Atlantes, m$as all$a de nuestros muros, m$as all$a del agua, existe un mundo vasto y enorme que jam$as podr$iamos imaginar.",
       "Un mundo lleno de vida y de gente como nosotros. De hecho, nosotros viv$iamos en la superficie hace mucho tiempo. Concretamente 995 a$%os.",
-      "Atlantis era parte de un grupo de ciudades que son grupos de edificios igual de grandes que el mismo Atlantis.",
+      "Atlantis era parte de un grupo de 'ciudades' que son grupos de edificios igual de grandes que el mismo Atlantis.",
       "Nosotros siempre hemos venerado a Poseid$on, como bien sab$eis, y hace 995 a$%os fue lo mismo. Sin embargo, Atlantis, era muy desarrollado y investig$o much$isimo para expandir su ciudad al mar.",
       "Comenzaron a hacer veh$iculos capaces de viajar por el oc$eano, a crear armas para asesinar a los habitantes del oc$eano para tomar sus tierras, y a verter sus desechos al mar.",
       "Poseid$on, enfadado, decidi$o castigarnos por nuestro af$an de ser Dios en su propio territorio. Nos hab$iamos desv$iado mucho de nuestro prop$osito original, vivir con los humanos en la tierra.",
@@ -1223,741 +1262,848 @@
       "Y ese tiempo se va a acabar en 5 a$%os, cuando cumplamos 1000 a$%os en el agua. Debemos aprovecharlo y no volver a decepcionar a Poseid$on.",
       "Tenemos que prepararnos para cuando llegue el momento, y comenzar a comunicarnos con los humanos para colaborar con ellos, y trabajar juntos en un Atlantis mejor y una superficie mejor.",
       " $!Atlantes! $!Se vienen tiempos duros! $!Debemos estar unidos y desarrollarnos para poder unirnos a los humanos!",
-      "Hasta aqu$i el texto, deber$ia hablar con la gente de la ciudad a ver qu$e opinan de esto. Espero que no me descubran..."
-
+      "*Hasta aqu$i el texto, deber$ia hablar con la gente de la ciudad a ver qu$e opinan de esto. Espero que no me descubran...*"
     ]
   },
+    "NoHabladoWarning": {
+      "0": ["Deberia hablar con todos antes de entrar a trabajar."]
+    },
     "CasaGrande": {
-        "TextoCasaGrande00": [ "Grande00" ],
-        "TextoCasaGrande01": [ "Grande01" ],
-        "TextoCasaGrande02": [ "Grande02" ],
 
-        "TextoCasaGrande10": [ "Esta casa es Grande10" ],
-        "TextoCasaGrande11": [ "Esta casa no es muy muy muy Grande11" ],
-        "TextoCasaGrande12": [ "Es demasiado aaaaaaaaaaaaa tu Grande12" ],
+        "TextoCasaGrande10": [ "Esta casa parece ser muy grande." ],
+        "TextoCasaGrande11": [ "Se ve que esta casa tiene ya sus a$%os." ],
 
-        "TextoCasaGrande20": [ "Grande20" ],
-        "TextoCasaGrande21": [ "Grande21" ],
-        "TextoCasaGrande22": [ "Grande22" ],
+        "TextoCasaGrande20": [ "Esta casa parece ser muy grande." ],
+        "TextoCasaGrande21": [ "Se ve que esta casa tiene ya sus a$%os." ],
 
-        "TextoCasaGrande30": [ "Grande30" ],
-        "TextoCasaGrande31": [ "Grande31" ],
-        "TextoCasaGrande32": [ "Grande32" ],
+        "TextoCasaGrande30": [ "Esta casa parece ser muy grande." ],
+        "TextoCasaGrande31": [ "Se ve que esta casa tiene ya sus a$%os." ],
 
-        "TextoCasaGrande40": [ "Grande40" ],
-        "TextoCasaGrande41": [ "Grande41" ],
-        "TextoCasaGrande42": [ "Grande42" ],
+        "TextoCasaGrande40": [
+            "Igual de grande la casa que ayer.",
+            "Bueno... eso es obvio."
+        ],
+        "TextoCasaGrande41": [ "El que debe de vivir aqu$i no debe tener mucho dinero." ],
 
-        "TextoCasaGrande50": [ "Grande50" ],
-        "TextoCasaGrande51": [ "Grande51" ],
-        "TextoCasaGrande52": [ "Grande52" ],
+        "TextoCasaGrande50": [
+            "Igual de grande la casa que ayer.",
+            "Bueno... eso es obvio."
+        ],
+        "TextoCasaGrande51": [ "El que debe de vivir aqu$i no debe tener mucho dinero." ],
 
-        "TextoCasaGrande60": [ "Grande60" ],
-        "TextoCasaGrande61": [ "Grande61" ],
-        "TextoCasaGrande62": [ "Grande62" ],
+        "TextoCasaGrande60": [
+            "Igual de grande la casa que ayer.",
+            "Bueno... eso es obvio."
+        ],
+        "TextoCasaGrande61": [ "El que debe de vivir aqu$i no debe tener mucho dinero." ],
 
-        "TextoCasaGrande70": [ "Grande70" ],
-        "TextoCasaGrande71": [ "Grande71" ],
-        "TextoCasaGrande72": [ "Grande72" ],
+        "TextoCasaGrande70": [ "Ojal$a alojarme en una casa tan grande como esta." ],
+        "TextoCasaGrande71": [
+            "Si me alojara aqu$i tendr$ia que remodelar la casa un poco.",
+            "Seguro est$a sucia, pero puede tener mucho espacio."
+        ],
 
-        "TextoCasaGrande80": [ "Grande80" ],
-        "TextoCasaGrande81": [ "Grande81" ],
-        "TextoCasaGrande82": [ "Grande82" ],
+        "TextoCasaGrande80": [ "Ojal$a alojarme en una casa tan grande como esta." ],
+        "TextoCasaGrande81": [
+            "Si me alojara aqu$i tendr$ia que remodelar la casa un poco.",
+            "Seguro est$a sucia, pero puede tener mucho espacio."
+        ],
 
-        "TextoCasaGrande90": [ "Grande90" ],
-        "TextoCasaGrande91": [ "Grande91" ],
-        "TextoCasaGrande92": [ "Grande92" ],
+        "TextoCasaGrande90": [ "Ojal$a alojarme en una casa tan grande como esta." ],
+        "TextoCasaGrande91": [
+            "Si me alojara aqu$i tendr$ia que remodelar la casa un poco.",
+            "Seguro est$a sucia, pero puede tener mucho espacio."
+        ],
 
-        "TextoCasaGrande100": [ "Grande100" ],
-        "TextoCasaGrande101": [ "Grande101" ],
-        "TextoCasaGrande102": [ "Grande102" ],
+        "TextoCasaGrande100": [
+            "Hay una mancha en la pared, parece ser...",
+            "Snif, snif. Bueno, prefiero no tocar la verdad."
+        ],
+        "TextoCasaGrande101": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
 
-        "TextoCasaGrande110": [ "Grande110" ],
-        "TextoCasaGrande111": [ "Grande111" ],
-        "TextoCasaGrande112": [ "Grande112" ],
+        "TextoCasaGrande110": [
+            "Hay una mancha en la pared, parece ser...",
+            "Snif, snif. Bueno, prefiero no tocar la verdad."
+        ],
+        "TextoCasaGrande111": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
 
-        "TextoCasaGrande120": [ "Grande120" ],
-        "TextoCasaGrande121": [ "Grande121" ],
-        "TextoCasaGrande122": [ "Grande122" ],
+        "TextoCasaGrande120": [
+            "Hay una mancha en la pared, parece ser...",
+            "Snif, snif. Bueno, prefiero no tocar la verdad."
+        ],
+        "TextoCasaGrande121": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
 
-        "TextoCasaGrande130": [ "Grande130" ],
-        "TextoCasaGrande131": [ "Grande131" ],
-        "TextoCasaGrande132": [ "Grande132" ],
+        "TextoCasaGrande130": [
+            "Puede que no luciera en las mejores condiciones,",
+            "pero esta casa parece ser acogedora."
+        ],
+        "TextoCasaGrande131": [
+            "Ha pasado un tiempo desde que llegu$e,",
+            "pero echo de menos aunque sea mi pisito en la superficie.",
+            "Pero cobraban caro para lo que era."
+        ],
 
-        "TextoCasaGrande140": [ "Grande140" ],
-        "TextoCasaGrande141": [ "Grande141" ],
-        "TextoCasaGrande142": [ "Grande142" ]
+        "TextoCasaGrande140": [
+            "Puede que no luciera en las mejores condiciones,",
+            "pero esta casa parece ser acogedora."
+        ],
+        "TextoCasaGrande141": [
+            "Ha pasado un tiempo desde que llegu$e,",
+            "pero echo de menos aunque sea mi pisito en la superficie.",
+            "Pero cobraban caro para lo que era."
+        ]
     },
     "CartelOficina": {
-        "TextoCartelOficina00": [ "CartelOficina00" ],
-        "TextoCartelOficina01": [ "CartelOficina01" ],
-        "TextoCartelOficina02": [ "CartelOficina02" ],
 
-        "TextoCartelOficina10": [ "CartelOficina10" ],
-        "TextoCartelOficina11": [ "CartelOficina11" ],
-        "TextoCartelOficina12": [ "CartelOficina12" ],
+        "TextoCartelOficina10": [ "Aqu$i estaban buscando trabajo." ],
+        "TextoCartelOficina11": [ "Bonito logo el del cartel." ],
 
-        "TextoCartelOficina20": [ "CartelOficina20" ],
-        "TextoCartelOficina21": [ "CartelOficina21" ],
-        "TextoCartelOficina22": [ "CartelOficina22" ],
+        "TextoCartelOficina20": [
+            "Aqu$i estaban buscando trabajo.",
+            "Aprovech$e para cobrar algo, as$i que me apunt$e"
+        ],
+        "TextoCartelOficina21": [ "El artista deb$ia de estar muy inspirado para hacer este logo del cartel." ],
 
-        "TextoCartelOficina30": [ "CartelOficina30" ],
-        "TextoCartelOficina31": [ "CartelOficina31" ],
-        "TextoCartelOficina32": [ "CartelOficina32" ],
+        "TextoCartelOficina30": [
+            "Aqu$i estaban buscando trabajo.",
+            "Ya no necesitan m$as personal."
+        ],
+        "TextoCartelOficina31": [ "Espero seguir teniendo un trabajo estable." ],
 
-        "TextoCartelOficina40": [ "CartelOficina40" ],
-        "TextoCartelOficina41": [ "CartelOficina41" ],
-        "TextoCartelOficina42": [ "CartelOficina42" ],
+        "TextoCartelOficina40": [ "Otro d$ia m$as a trabajar" ],
+        "TextoCartelOficina41": [ "Hora de empaquetar cosas" ],
 
-        "TextoCartelOficina50": [ "CartelOficina50" ],
-        "TextoCartelOficina51": [ "CartelOficina51" ],
-        "TextoCartelOficina52": [ "CartelOficina52" ],
+        "TextoCartelOficina50": [
+            "Siento que me est$an sobreexplotando,",
+            "pero gano lo suficiente como para vivir, no como en mi antiguo trabajo."
+        ],
+        "TextoCartelOficina51": [ "A veces me gusta ser el empaquetador supremo de esta oficina" ],
 
-        "TextoCartelOficina60": [ "CartelOficina60" ],
-        "TextoCartelOficina61": [ "CartelOficina61" ],
-        "TextoCartelOficina62": [ "CartelOficina62" ],
+        "TextoCartelOficina60": [
+            "Siento que me est$an sobreexplotando,",
+            "pero todav$ia me puedo costear el alojamiento con lo que me dan."
+        ],
+        "TextoCartelOficina61": [ "Deber$ia trabajar ya." ],
 
-        "TextoCartelOficina70": [ "CartelOficina70" ],
-        "TextoCartelOficina71": [ "CartelOficina71" ],
-        "TextoCartelOficina72": [ "CartelOficina72" ],
+        "TextoCartelOficina70": [
+            "El cartel sigue igual de chulo,",
+            "espero que ning$un animal lo ensucie..."
+        ],
+        "TextoCartelOficina71": [ "Quizas deber$ia de entrar ya." ],
 
-        "TextoCartelOficina80": [ "CartelOficina80" ],
-        "TextoCartelOficina81": [ "CartelOficina81" ],
-        "TextoCartelOficina82": [ "CartelOficina82" ],
+        "TextoCartelOficina80": [ "Dise$%o gr$afico es mi pasi$on." ],
+        "TextoCartelOficina81": [
+            "Quizas deber$ia de entrar ya.",
+            "El jefe puede enfadarse si no voy pronto, aunque tambi$en me la puede pelar bastante."
+        ],
 
-        "TextoCartelOficina90": [ "CartelOficina90" ],
-        "TextoCartelOficina91": [ "CartelOficina91" ],
-        "TextoCartelOficina92": [ "CartelOficina92" ],
+        "TextoCartelOficina90": [ "Me gusta el dibujo cada d$ia m$as." ],
+        "TextoCartelOficina91": [
+            "Quizas deber$ia de entrar ya.",
+            "Quiero ganar dinero."
+        ],
 
-        "TextoCartelOficina100": [ "CartelOficina100" ],
-        "TextoCartelOficina101": [ "CartelOficina101" ],
-        "TextoCartelOficina102": [ "CartelOficina102" ],
+        "TextoCartelOficina100": [ "Trabajar en Carteros antes, era un agobio enorme" ],
+        "TextoCartelOficina101": [
+            "Toca empaquetar m$as paquetes todav$ia,",
+            "a trabajar."
+        ],
 
-        "TextoCartelOficina110": [ "CartelOficina110" ],
-        "TextoCartelOficina111": [ "CartelOficina111" ],
-        "TextoCartelOficina112": [ "CartelOficina112" ],
+        "TextoCartelOficina110": [ "Donde trabajaba antes, en Carteros, pagaban muy poco" ],
+        "TextoCartelOficina111": [
+            "Tengo que ganar m$as dinero aqu$i,",
+            "a trabajar."
+        ],
 
-        "TextoCartelOficina120": [ "CartelOficina120" ],
-        "TextoCartelOficina121": [ "CartelOficina121" ],
-        "TextoCartelOficina122": [ "CartelOficina122" ],
+        "TextoCartelOficina120": [
+            "Los de Carteros eran unos avariciosos,",
+            "en Correos Atl$antida todav$ia puedo cobrar mejor que all$i"
+        ],
+        "TextoCartelOficina121": [
+            "Bueno, basta de mirar el cartel,",
+            "a trabajar."
+        ],
 
-        "TextoCartelOficina130": [ "CartelOficina130" ],
-        "TextoCartelOficina131": [ "CartelOficina131" ],
-        "TextoCartelOficina132": [ "CartelOficina132" ],
+        "TextoCartelOficina130": [ "trece (anulo rima) d$ias y todav$ia sigo trabajando aqu$i" ],
+        "TextoCartelOficina131": [
+            "Llevo un tiempo pregunt$andomelo,",
+            "pero seguro la A del logo es por lo de Atl$antida."
+        ],
 
-        "TextoCartelOficina140": [ "CartelOficina140" ],
-        "TextoCartelOficina141": [ "CartelOficina141" ],
-        "TextoCartelOficina142": [ "CartelOficina142" ]
+        "TextoCartelOficina140": [
+            "Ya habr$an pasado dos semanas desde que trabajo aqu$i,",
+            "pero no echo de menos mi antiguo trabajo, para nada."
+        ],
+        "TextoCartelOficina141": [ "Seguro la A del logo es por lo de Atl$antida, seguro." ]
     },
     "Muro": {
-        "TextoMuro00": [ "Muro00" ],
-        "TextoMuro01": [ "Muro01" ],
-        "TextoMuro02": [ "Muro02" ],
 
-        "TextoMuro10": [ "Muro10" ],
-        "TextoMuro11": [ "Muro11" ],
-        "TextoMuro12": [ "Muro12" ],
+        "TextoMuro10": [ "Recuerdo cuando los guardias de las murallas trataron de perseguirme al llegar. Qu$e bobos." ],
+        "TextoMuro11": [ "A ver si en el resto de la ciudad puedo ver los dem$as muros." ],
 
-        "TextoMuro20": [ "Muro20" ],
-        "TextoMuro21": [ "Muro21" ],
-        "TextoMuro22": [ "Muro22" ],
+        "TextoMuro20": [
+            "Recuerdo cuando los guardias de las murallas trataron de perseguirme ayer,",
+            "no puedo creer que la mascara falsa funcionara para distraerlos, qu$e bobos."
+        ],
+        "TextoMuro21": [ "Seguro que incluso hay m$as muros m$as adentro de la ciudad." ],
 
-        "TextoMuro30": [ "Muro30" ],
-        "TextoMuro31": [ "Muro31" ],
-        "TextoMuro32": [ "Muro32" ],
+        "TextoMuro30": [
+            "No s$e porqu$e los guardias de los muros me confundieron con un conocido cuando llegu$e,",
+            "no creo que sean muy listos la verdad."
+        ],
+        "TextoMuro31": [ "Desde lejos parecen diminutos, pero los muros son enormes de cerca." ],
 
-        "TextoMuro40": [ "Muro40" ],
-        "TextoMuro41": [ "Muro41" ],
-        "TextoMuro42": [ "Muro42" ],
+        "TextoMuro40": [
+            "Los arboles que hay al fondo, cerca de los muros,",
+            "son parecidos a los de la superficie..."
+        ],
+        "TextoMuro41": [
+            "El que la ciudad est$e amurallada me recuerda a una ciudad de un comic que le$i,",
+            "dicen que el final era penoso, pero a m$i me encant$o."
+        ],
 
-        "TextoMuro50": [ "Muro50" ],
-        "TextoMuro51": [ "Muro51" ],
-        "TextoMuro52": [ "Muro52" ],
+        "TextoMuro50": [ "Quisiera saber c$omo plantaron esos $arboles del fondo." ],
+        "TextoMuro51": [
+            "El que la ciudad est$e amurallada,",
+            "me sigue recordando a una ciudad de un comic que le$i,",
+            "pero se me ha olvidado c$omo se llama."
+        ],
 
-        "TextoMuro60": [ "Muro60" ],
-        "TextoMuro61": [ "Muro61" ],
-        "TextoMuro62": [ "Muro62" ],
+        "TextoMuro60": [
+            "Me gustan los arboles que hay cerca de los muros.",
+            "Pero el grande que hay en Dem$eter es todav$ia m$as impresionante."
+        ],
+        "TextoMuro61": [
+            "El que la ciudad est$e amurallada,",
+            "me sigue recordando a una ciudad de un comic que le$i,",
+            "creo que se llamaba Asedio de los Gigantes, me gust$o la historia."
+        ],
 
-        "TextoMuro70": [ "Muro70" ],
-        "TextoMuro71": [ "Muro71" ],
-        "TextoMuro72": [ "Muro72" ],
+        "TextoMuro70": [ "Los arquitectos debiron sudar la gota gorda para construir esos muros." ],
+        "TextoMuro71": [ "Me gustar$ia poder saber cuanto tiempo han aguantado esos muros." ],
 
-        "TextoMuro80": [ "Muro80" ],
-        "TextoMuro81": [ "Muro81" ],
-        "TextoMuro82": [ "Muro82" ],
+        "TextoMuro80": [ "Construir esos muros debi$o de tomar mucho tiempo y trabajo." ],
+        "TextoMuro81": [ "Ser$ia muy loco pensar que esos muros llevan en pie miles de a$%os." ],
 
-        "TextoMuro90": [ "Muro90" ],
-        "TextoMuro91": [ "Muro91" ],
-        "TextoMuro92": [ "Muro92" ],
+        "TextoMuro90": [
+            "Me pregunto como consiguieron los materiales para construir los muros,",
+            "estamos debajo de la superficie y no hay tantos recursos aqu$i, creo."
+        ],
+        "TextoMuro91": [ "De seguro lleva milenios esos muros en pie." ],
 
-        "TextoMuro100": [ "Muro100" ],
-        "TextoMuro101": [ "Muro101" ],
-        "TextoMuro102": [ "Muro102" ],
-        
-        "TextoMuro110": [ "Muro110" ],
-        "TextoMuro111": [ "Muro111" ],
-        "TextoMuro112": [ "Muro112" ],
-        
-        "TextoMuro120": [ "Muro120" ],
-        "TextoMuro121": [ "Muro121" ],
-        "TextoMuro122": [ "Muro122" ],
-        
-        "TextoMuro130": [ "Muro130" ],
-        "TextoMuro131": [ "Muro131" ],
-        "TextoMuro132": [ "Muro132" ],
-        
-        "TextoMuro140": [ "Muro140" ],
-        "TextoMuro141": [ "Muro141" ],
-        "TextoMuro142": [ "Muro142" ]
+        "TextoMuro100": [
+            "Creo que alguna vez quer$ia ser arquitecto y construir muros como esos,",
+            "pero desde peque$%o siempre me ha gustado ser explorador."
+        ],
+        "TextoMuro101": [
+            "Los arboles del fondo veo que siguen igual de bien que siempre,",
+            "no se marchitan ni nada."
+        ],
+
+        "TextoMuro110": [
+            "Creo que una vez quer$ia dedicarme a la arquitectura de muros",
+            "pero siempre quise ser explorador, aunque acab$e trabajando de empaquetador..."
+        ],
+        "TextoMuro111": [ "Me gustar$ia saber que les echan a los arboles para que se mantengan tan bien." ],
+
+        "TextoMuro120": [
+            "Ser arquitecto y constructor de esos muros debi$o de ser un reto a la hora de construirlos,",
+            "pero nada es tan guay como ser un explorador."
+        ],
+        "TextoMuro121": [
+            "Me pregunto si esos arboles dar$an alg$un tipo de fruto.",
+            "Los de Dem$eter si que dan frutos, seguro."
+        ],
+
+        "TextoMuro130": [
+            "Casi dos semanas y me pregunto porqu$e construyeron muros alrededor de la ciudad,",
+            "si est$a rodeada por una c$upula y es dif$icil que cuaquiera entre por ella."
+        ],
+        "TextoMuro131": [
+            "No s$e cuanto miden, pero son bastante altos los muros,",
+            "todav$ia los veo demasiado grandes desde que llegu$e."
+        ],
+
+        "TextoMuro140": [ "No creo que hicieran falta muros all$a si est$a la c$upula rodeando todo." ],
+        "TextoMuro141": [ "Me pregunto cuanto tiempo me tomar$ia escalar esos muros, si lo hiciera." ]
     },
     "TiendaPociones": {
-        "TextoTiendaPociones00": [ "TiendaPociones00" ],
-        "TextoTiendaPociones01": [ "TiendaPociones01" ],
-        "TextoTiendaPociones02": [ "TiendaPociones02" ],
+
+        "TextoTiendaPociones10": [
+            "Un puesto de brebajes...",
+            "me pregunto qu$e pasar$a si me bebo algo de aqu$i."
+        ],
+        "TextoTiendaPociones11": [ "No son tan caros estos brebajes, a lo mejor me podr$ia comprar uno." ],
         
-        "TextoTiendaPociones10": [ "TiendaPociones10" ],
-        "TextoTiendaPociones11": [ "TiendaPociones11" ],
-        "TextoTiendaPociones12": [ "TiendaPociones12" ],
+        "TextoTiendaPociones20": [ "Me sigo preguntando qu$e pasar$ia si me bebiera algo de esto." ],
+        "TextoTiendaPociones21": [ "Me gustar$ia comprar un brebaje, pero quiero ahorrar por ahora." ],
+
+        "TextoTiendaPociones30": [
+            "Si me bebiera algo de esto no creo que me pasar$ia nada.",
+            "En los cuentos de hadas tienen efectos secundarios,",
+            "pero aunque hayan hombres pez, sigo pensando en que no son m$agicos estos brebajes."
+        ],
+        "TextoTiendaPociones31": [ "Creo que hoy voya seguir desistiendo de comprar un brebaje de aqu$i." ],
+
+        "TextoTiendaPociones40": [
+            "Ahora que me fijo, usan probetas y recipientes de cristal dificiles de hacer.",
+            "Me sorprende lo diestros que son estos peces."
+        ],
+        "TextoTiendaPociones41": [ "No creo que hagan nada, pero me pregunto por qu$e tienen colores tan raros esos brebajes." ],
+
+        "TextoTiendaPociones50": [
+            "Usan probetas y recipientes de cristal dificiles de hacer.",
+            "Estos peces no son muy listos, pero s$i muy diestros en esto."
+        ],
+        "TextoTiendaPociones51": [
+            "Me pregunto por qu$e tienen colores tan raros esos brebajes.",
+            "Espero que el verde no me convierta en rana, todav$ia creo en que no son m$agicos."
+        ],
+
+        "TextoTiendaPociones60": [
+            "Esas probetas y recipientes de cristal son complicadas de hacer.",
+            "No ser$an muy inteligentes, pero estos peces tienen buena mano de obra."
+        ],
+        "TextoTiendaPociones61": [
+            "Me pregunto por qu$e tienen colores tan raros esos brebajes.",
+            "Recuerdo en la superficie beber zumos de diferentes colores y muy raros,",
+            "pero no creo que estos sean zumos..."
+        ],
         
-        "TextoTiendaPociones20": [ "TiendaPociones20" ],
-        "TextoTiendaPociones21": [ "TiendaPociones21" ],
-        "TextoTiendaPociones22": [ "TiendaPociones22" ],
+        "TextoTiendaPociones70": [ "Hay una plantita al fondo, al due$%o le deben de gustar tener plantas." ],
+        "TextoTiendaPociones71": [ "En clase de qu$imica del instituto hac$iamos liquidos raros como estos." ],
+
+        "TextoTiendaPociones80": [
+            "La plantita que hay al fondo debe de ser porque al due$%o le deben de gustar las plantas,",
+            "o a lo mejor las usa para hacer sus brebajes."
+        ],
+        "TextoTiendaPociones81": [
+            "En clase de qu$imica del instituto hac$iamos liquidos raros como estos.",
+            "Recuerdo cuando yo y un amigo mezclamos mal dos cosas y casi explotamos el laboratorio."
+        ],
+
+        "TextoTiendaPociones90": [
+            "La plantita que hay en la estanter$ia, a lo mejor indica que al due$%o le gustan las plantas,",
+            "pero tambien puede que las use para crear estos brebajes."
+        ],
+        "TextoTiendaPociones91": [
+            "El d$ia en que casi explotamos el instituto en clase de qu$imica por hacer brebajes como estos,",
+            "casi me expulsan, pero tan solo tuve que limpiar el desastre que montamos en el laboratorio. Lo recuerdo muy gracioso."
+        ],
         
-        "TextoTiendaPociones30": [ "TiendaPociones30" ],
-        "TextoTiendaPociones31": [ "TiendaPociones31" ],
-        "TextoTiendaPociones32": [ "TiendaPociones32" ],
-        
-        "TextoTiendaPociones40": [ "TiendaPociones40" ],
-        "TextoTiendaPociones41": [ "TiendaPociones41" ],
-        "TextoTiendaPociones42": [ "TiendaPociones42" ],
-        
-        "TextoTiendaPociones50": [ "TiendaPociones50" ],
-        "TextoTiendaPociones51": [ "TiendaPociones51" ],
-        "TextoTiendaPociones52": [ "TiendaPociones52" ],
-        
-        "TextoTiendaPociones60": [ "TiendaPociones60" ],
-        "TextoTiendaPociones61": [ "TiendaPociones61" ],
-        "TextoTiendaPociones62": [ "TiendaPociones62" ],
-        
-        "TextoTiendaPociones70": [ "TiendaPociones70" ],
-        "TextoTiendaPociones71": [ "TiendaPociones71" ],
-        "TextoTiendaPociones72": [ "TiendaPociones72" ],
-        
-        "TextoTiendaPociones80": [ "TiendaPociones80" ],
-        "TextoTiendaPociones81": [ "TiendaPociones81" ],
-        "TextoTiendaPociones82": [ "TiendaPociones82" ],
-        
-        "TextoTiendaPociones90": [ "TiendaPociones90" ],
-        "TextoTiendaPociones91": [ "TiendaPociones91" ],
-        "TextoTiendaPociones92": [ "TiendaPociones92" ],
-        
-        "TextoTiendaPociones100": [ "TiendaPociones100" ],
-        "TextoTiendaPociones101": [ "TiendaPociones101" ],
-        "TextoTiendaPociones102": [ "TiendaPociones102" ],
-        
-        "TextoTiendaPociones110": [ "TiendaPociones110" ],
-        "TextoTiendaPociones111": [ "TiendaPociones111" ],
-        "TextoTiendaPociones112": [ "TiendaPociones112" ],
-        
-        "TextoTiendaPociones120": [ "TiendaPociones120" ],
-        "TextoTiendaPociones121": [ "TiendaPociones121" ],
-        "TextoTiendaPociones122": [ "TiendaPociones122" ],
-        
-        "TextoTiendaPociones130": [ "TiendaPociones130" ],
-        "TextoTiendaPociones131": [ "TiendaPociones131" ],
-        "TextoTiendaPociones132": [ "TiendaPociones132" ],
-        
-        "TextoTiendaPociones140": [ "TiendaPociones140" ],
-        "TextoTiendaPociones141": [ "TiendaPociones141" ],
-        "TextoTiendaPociones142": [ "TiendaPociones142" ]
+        "TextoTiendaPociones100": [ "Ojal$a hubiera mas variedad, todav$ia siguen los mismos brebajes de siempre." ],
+        "TextoTiendaPociones101": [ "Ahora que me fijo, todo est$a muy bien ordenado, el due$%o debe ser una persona ordenada." ],
+
+        "TextoTiendaPociones110": [
+            "Todav$ia siguen los mismos brebajes de siempre.",
+            "Puede que no vendan tanto y el vendedor tenga que deshacerse de todo."
+        ],
+        "TextoTiendaPociones111": [ "Ordenar todos estos brebajes debe ser una tarea complicada." ],
+
+        "TextoTiendaPociones120": [
+            "Todav$ia siguen los mismos brebajes de siempre.",
+            "Puede que si comprara algunos el due$%o venda m$as variedad, pero quiero ahorrar."
+        ],
+        "TextoTiendaPociones121": [ "Los brebajes est$an ordenados por categor$ia." ],
+
+        "TextoTiendaPociones130": [
+            "Me gustar$ia saber como crear brebajes como estos y para qu$e sirven.",
+            "Pero para esto $ultimo quizas deba de comprar alguno."
+        ],
+        "TextoTiendaPociones131": [ "Los cristales parecen delicados, mejor no tocar." ],
+
+        "TextoTiendaPociones140": [
+            "Llevo dos semanas, y ahora me pregunto c$omo es el proceso de creaci$on de estos brebajes.",
+            "Pueden que sean diestros, pero hacer liquidos como estos raros requiere a lo mejor de saber de qu$imica,",
+            "y estos peces no son muy inteligentes."
+        ],
+        "TextoTiendaPociones141": [
+            "Los cristales de los brebajes parecen de licados,",
+            "prefiero no tocar si no los voy a comprar."
+        ]
     },
     "TiendaBolas": {
-        "TextoTiendaBolas00": [ "TiendaBolas00" ],
-        "TextoTiendaBolas01": [ "TiendaBolas01" ],
-        "TextoTiendaBolas02": [ "TiendaBolas02" ],
         
-        "TextoTiendaBolas10": [ "TiendaBolas10" ],
-        "TextoTiendaBolas11": [ "TiendaBolas11" ],
-        "TextoTiendaBolas12": [ "TiendaBolas12" ],
+        "TextoTiendaBolas10": [ "Aqu$i venden frutas raras..." ],
+        "TextoTiendaBolas11": [ "Puede que estas frutas se cultiven en el campo que hay en la ciudad." ],
         
-        "TextoTiendaBolas20": [ "TiendaBolas20" ],
-        "TextoTiendaBolas21": [ "TiendaBolas21" ],
-        "TextoTiendaBolas22": [ "TiendaBolas22" ],
+        "TextoTiendaBolas20": [ "No se qu$e tipo de frutas son, pero las que venden aqu$i son muy raras." ],
+        "TextoTiendaBolas21": [ "En Dem$eter cultivan cosas a lo mejor, puede que estas futas vengan de all$i." ],
         
-        "TextoTiendaBolas30": [ "TiendaBolas30" ],
-        "TextoTiendaBolas31": [ "TiendaBolas31" ],
-        "TextoTiendaBolas32": [ "TiendaBolas32" ],
+        "TextoTiendaBolas30": [ "Son muy raras estas frutas, quiz$as deba de probar alguna." ],
+        "TextoTiendaBolas31": [ "Ahora que lo veo, parecen patatas, quizas en Dem$eter las cultiven." ],
+
+        "TextoTiendaBolas40": [
+            "No hay mucha variedad en esta tienda de... $?frutas?",
+            "Deber$ia de comerme una para ver si son frutas que est$an buenas."
+        ],
+        "TextoTiendaBolas41": [ "Los precios no deben de ser muy altos si los venden en grandes cantidades estas frutas." ],
+
+        "TextoTiendaBolas50": [
+            "No hay mucha variedad en esta tienda de frutas,",
+            "a lo mejor deber$ia de comerme una para ver si est$an buenas."
+        ],
+        "TextoTiendaBolas51": [ "Si hay muchas frutas, los precios no deben de ser tan altos." ],
+
+        "TextoTiendaBolas60": [
+            "No hay mucha variedad en esta tienda de frutas,",
+            "puede que a la gente de por aqu$i lle guste tanto que no se venda otra cosa,",
+            "o a lo mejor el vendedor tiene solo esto."
+        ],
+        "TextoTiendaBolas61": [
+            "Los precios de estas frutas deben de ser bajos, hay muchas.",
+            "Pod$ian costar m$as a lo mejor si tuvieran menos a la venta."
+        ],
         
-        "TextoTiendaBolas40": [ "TiendaBolas40" ],
-        "TextoTiendaBolas41": [ "TiendaBolas41" ],
-        "TextoTiendaBolas42": [ "TiendaBolas42" ],
+        "TextoTiendaBolas70": [ "No solo parecen patatas, tambien parecen huevos..." ],
+        "TextoTiendaBolas71": [
+            "1, 2, 3, 4...",
+            "67, 68, 69,...",
+            "451, 452, ...",
+            "Creo que he perdido la cuenta, hay demasiadas frutas aqu$i."
+        ],
+
+        "TextoTiendaBolas80": [
+            "No solo parecen patatas, tienen aspecto de huevos.",
+            "$?Acaso aqu$i abajo hay animales que den huevos como los de las gallinas?"
+        ],
+        "TextoTiendaBolas81": [ "Si me pusiera a contar estas frutas, de seguro no acabar$ia hasta ma$%ana." ],
+
+        "TextoTiendaBolas90": [
+            "Parecen patatas, pero tambi$en parecen huevos.",
+            "Ser$ia raro ver gallinas bajo el mar."
+        ],
+        "TextoTiendaBolas91": [ "Contar cuantas frutas hay ser$ia entretenido, pero hay demasiadas a la vista." ],
         
-        "TextoTiendaBolas50": [ "TiendaBolas50" ],
-        "TextoTiendaBolas51": [ "TiendaBolas51" ],
-        "TextoTiendaBolas52": [ "TiendaBolas52" ],
+        "TextoTiendaBolas100": [ "Tengo hambre, quiz$as deba de comprar una fruta de estas." ],
+        "TextoTiendaBolas101": [ "$?Esto caducar$a?." ],
         
-        "TextoTiendaBolas60": [ "TiendaBolas60" ],
-        "TextoTiendaBolas61": [ "TiendaBolas61" ],
-        "TextoTiendaBolas62": [ "TiendaBolas62" ],
+        "TextoTiendaBolas110": [ "Lucen simples, pero a lo mejor me sacian el hambre estas frutas con unas pocas." ],
+        "TextoTiendaBolas111": [ "Espero que si me compre una fruta, pueda conservarla durante d$ias." ],
         
-        "TextoTiendaBolas70": [ "TiendaBolas70" ],
-        "TextoTiendaBolas71": [ "TiendaBolas71" ],
-        "TextoTiendaBolas72": [ "TiendaBolas72" ],
+        "TextoTiendaBolas120": [ "Si son parecidas a las patatas, estas frutas pueden saciar mi hambre si las cuezo." ],
+        "TextoTiendaBolas121": [ "Me pregunto como conservar$an la comida en este sitio." ],
+
+        "TextoTiendaBolas130": [
+            "Creo que hoy me voy a comer una fruta de estas...",
+            "bueno, creo que mejor paso."
+        ],
+        "TextoTiendaBolas131": [
+            "Todav$ia tengo dinero para poder comparar alguna fruta de estas a lo mejor,",
+            "pero prefiero ahorrar."
+        ],
         
-        "TextoTiendaBolas80": [ "TiendaBolas80" ],
-        "TextoTiendaBolas81": [ "TiendaBolas81" ],
-        "TextoTiendaBolas82": [ "TiendaBolas82" ],
-        
-        "TextoTiendaBolas90": [ "TiendaBolas90" ],
-        "TextoTiendaBolas91": [ "TiendaBolas91" ],
-        "TextoTiendaBolas92": [ "TiendaBolas92" ],
-        
-        "TextoTiendaBolas100": [ "TiendaBolas100" ],
-        "TextoTiendaBolas101": [ "TiendaBolas101" ],
-        "TextoTiendaBolas102": [ "TiendaBolas102" ],
-        
-        "TextoTiendaBolas110": [ "TiendaBolas110" ],
-        "TextoTiendaBolas111": [ "TiendaBolas111" ],
-        "TextoTiendaBolas112": [ "TiendaBolas112" ],
-        
-        "TextoTiendaBolas120": [ "TiendaBolas120" ],
-        "TextoTiendaBolas121": [ "TiendaBolas121" ],
-        "TextoTiendaBolas122": [ "TiendaBolas122" ],
-        
-        "TextoTiendaBolas130": [ "TiendaBolas130" ],
-        "TextoTiendaBolas131": [ "TiendaBolas131" ],
-        "TextoTiendaBolas132": [ "TiendaBolas132" ],
-        
-        "TextoTiendaBolas140": [ "TiendaBolas140" ],
-        "TextoTiendaBolas141": [ "TiendaBolas141" ],
-        "TextoTiendaBolas142": [ "TiendaBolas142" ]
+        "TextoTiendaBolas140": [ "Alg$un d$ia tengo que probar una de estas frutas." ],
+        "TextoTiendaBolas141": [ "Bolas." ]
     },
     "TiendaJarrones": {
-        "TextoTiendaJarrones00": [ "TiedaJarrones00" ],
-        "TextoTiendaJarrones01": [ "TiedaJarrones01" ],
-        "TextoTiendaJarrones02": [ "TiedaJarrones02" ],
-        
-        "TextoTiendaJarrones10": [ "TiedaJarrones10" ],
-        "TextoTiendaJarrones11": [ "TiedaJarrones11" ],
-        "TextoTiendaJarrones12": [ "TiedaJarrones12" ],
-        
-        "TextoTiendaJarrones20": [ "TiedaJarrones20" ],
-        "TextoTiendaJarrones21": [ "TiedaJarrones21" ],
-        "TextoTiendaJarrones22": [ "TiedaJarrones22" ],
-        
-        "TextoTiendaJarrones30": [ "TiedaJarrones30" ],
-        "TextoTiendaJarrones31": [ "TiedaJarrones31" ],
-        "TextoTiendaJarrones32": [ "TiedaJarrones32" ],
-        
-        "TextoTiendaJarrones40": [ "TiedaJarrones40" ],
-        "TextoTiendaJarrones41": [ "TiedaJarrones41" ],
-        "TextoTiendaJarrones42": [ "TiedaJarrones42" ],
-        
-        "TextoTiendaJarrones50": [ "TiedaJarrones50" ],
-        "TextoTiendaJarrones51": [ "TiedaJarrones51" ],
-        "TextoTiendaJarrones52": [ "TiedaJarrones52" ],
-        
-        "TextoTiendaJarrones60": [ "TiedaJarrones60" ],
-        "TextoTiendaJarrones61": [ "TiedaJarrones61" ],
-        "TextoTiendaJarrones62": [ "TiedaJarrones62" ],
-        
-        "TextoTiendaJarrones70": [ "TiedaJarrones70" ],
-        "TextoTiendaJarrones71": [ "TiedaJarrones71" ],
-        "TextoTiendaJarrones72": [ "TiedaJarrones72" ],
-        
-        "TextoTiendaJarrones80": [ "TiedaJarrones80" ],
-        "TextoTiendaJarrones81": [ "TiedaJarrones81" ],
-        "TextoTiendaJarrones82": [ "TiedaJarrones82" ],
-        
-        "TextoTiendaJarrones90": [ "TiedaJarrones90" ],
-        "TextoTiendaJarrones91": [ "TiedaJarrones91" ],
-        "TextoTiendaJarrones92": [ "TiedaJarrones92" ],
-        
-        "TextoTiendaJarrones100": [ "TiedaJarrones100" ],
-        "TextoTiendaJarrones101": [ "TiedaJarrones101" ],
-        "TextoTiendaJarrones102": [ "TiedaJarrones102" ],
-        
-        "TextoTiendaJarrones110": [ "TiedaJarrones110" ],
-        "TextoTiendaJarrones111": [ "TiedaJarrones111" ],
-        "TextoTiendaJarrones112": [ "TiedaJarrones112" ],
-        
-        "TextoTiendaJarrones120": [ "TiedaJarrones120" ],
-        "TextoTiendaJarrones121": [ "TiedaJarrones121" ],
-        "TextoTiendaJarrones122": [ "TiedaJarrones122" ],
-        
-        "TextoTiendaJarrones130": [ "TiedaJarrones130" ],
-        "TextoTiendaJarrones131": [ "TiedaJarrones131" ],
-        "TextoTiendaJarrones132": [ "TiedaJarrones132" ],
-        
-        "TextoTiendaJarrones140": [ "TiedaJarrones140" ],
-        "TextoTiendaJarrones141": [ "TiedaJarrones141" ],
-        "TextoTiendaJarrones142": [ "TiedaJarrones142" ]
+
+        "TextoTiendaJarrones10": [
+            "Estos jarrones deben estar caros...",
+            "Me pregunto si en otro sitio tendr$an m$as variedad"
+        ],
+        "TextoTiendaJarrones11": [ "No veo al due$%o." ],
+
+        "TextoTiendaJarrones20": [
+            "Estos jarrones deben de estar caros.",
+            "En Hefesto hab$ia una tienda de cer$amica tambi$en."
+        ],
+        "TextoTiendaJarrones21": [ "No hay nadie, puede que la tarotista venda estos jarrones a lo mejor." ],
+
+        "TextoTiendaJarrones30": [
+            "Por como los veo, deben de estar caros estos jarrones,",
+            "m$as que los que venden en Hefesto posiblemente."
+        ],
+        "TextoTiendaJarrones31": [ "Si estos jarrones son de la tarotista, debe de tener buena mano de obra." ],
+
+        "TextoTiendaJarrones40": [ "Deber$ian de pintar los jarrones." ],
+        "TextoTiendaJarrones41": [ "Me pregunto cuanto costar$a hacer un jarr$on en un lugar bajo el mar." ],
+
+        "TextoTiendaJarrones50": [
+            "Deber$ian de pintar los jarrones.",
+            "Quiz$as as$i se ver$ian mejor."
+        ],
+        "TextoTiendaJarrones51": [ "Debe de costar mucho hacer jarrones en un lugar bajo el mar." ],
+
+        "TextoTiendaJarrones60": [ "Est$an chulos, pero molar$ia mas que los jarrones los pintaran para que sean m$as vistosos." ],
+        "TextoTiendaJarrones61": [ "Hacer jarrones como estos bajo el mar debe ser complicado, pero podr$ian pintarlos aunque sea." ],
+
+        "TextoTiendaJarrones70": [ "Espero que estos jarrones no se rompan f$acilmente si son caros." ],
+        "TextoTiendaJarrones71": [ "Recuerdo en clase de pl$astica en el colegio hacer jarrones. Era bastante malo la verdad." ],
+
+        "TextoTiendaJarrones80": [ "Si son caros, estos jarrones deben de ser resistentes." ],
+        "TextoTiendaJarrones81": [ "En clase de pl$astica en el colegio no era muy bueno haciendo jarrones, pero era divertido." ],
+
+        "TextoTiendaJarrones90": [
+            "Si estos jarrones llevan aqu$i un tiempo en el mismo estado de siempre,",
+            "deben de ser resistentes y de buena calidad."
+        ],
+        "TextoTiendaJarrones91": [ "En clase de pl$astica era bastante malo haciendo jarrones, pero no s$e ni como aprobaba la verdad." ],
+
+        "TextoTiendaJarrones100": [ "La sombra debe de estar protegiendo los jarrones del sol, por eso lucen tan bien a lo mejor." ],
+        "TextoTiendaJarrones101": [ "Puede que si les pusiera unas flores, har$ian que estos jarrones se vieran m$as bonitos." ],
+
+        "TextoTiendaJarrones110": [ "Puede que el buen estado de los jarrones se deba a que el tendero del puesto los proteja del calor del sol." ],
+        "TextoTiendaJarrones111": [ "No les vendr$ia mal poner unas flores a estos jarrones, quedar$ian bastante bien." ],
+
+        "TextoTiendaJarrones120": [ "Puede que si estos jarrones estuvieran expuestos al sol, no estar$ian en tan buenas condiciones como se ven ahora." ],
+        "TextoTiendaJarrones121": [ "Unas flores ser$ian un gran complemento para estos jarrones, pero ser$ia mejor si estuvieran pintados estos jarrones." ],
+
+        "TextoTiendaJarrones130": [
+            "Recuerdo en un bazar de la superficie ver bastantes tiendas de jarrones como esta,",
+            "no estaban en tan buenas condiciones los jarrones, pero eran vistosos."
+        ],
+        "TextoTiendaJarrones131": [ "Si estos jarrones los vende la tarotista, de seguro que con tener dos negocios a la vez no le falta dinero." ],
+
+        "TextoTiendaJarrones140": [
+            "En la superficie hab$ian un monton de puestos de jarrones,",
+            "no estaban en tan buenas condiciones los jarrones, pero recuerdo haber comprado uno porque eran bonitos."
+        ],
+        "TextoTiendaJarrones141": [ "Si esta tienda es de la tarotista, debe de saber c$omo ha podido mantener a flote dos negocios a la vez." ]
     },
     "Molino": {
-        "TextoMolino00": [ "Molino00" ],
-        "TextoMolino01": [ "Molino01" ],
-        "TextoMolino02": [ "Molino02" ],
         
-        "TextoMolino10": [ "Molino10" ],
-        "TextoMolino11": [ "Molino11" ],
-        "TextoMolino12": [ "Molino12" ],
+        "TextoMolino10": [ "Este molino es bastante grande." ],
+        "TextoMolino11": [ "Esa tortuga debe de vivir en este molino, quiz$as." ],
         
-        "TextoMolino20": [ "Molino20" ],
-        "TextoMolino21": [ "Molino21" ],
-        "TextoMolino22": [ "Molino22" ],
+        "TextoMolino20": [ "Con lo grande que es este molino seguro sacan mucho pan con el trigo" ],
+        "TextoMolino21": [ "Si la tortuga viviera en este molino, debe de tener mucho espacio." ],
         
-        "TextoMolino30": [ "Molino30" ],
-        "TextoMolino31": [ "Molino31" ],
-        "TextoMolino32": [ "Molino32" ],
+        "TextoMolino30": [ "Si cultivan trigo en este lugar, gracias a este gran molino deben de producir mucho pan" ],
+        "TextoMolino31": [ "Me pregunto si en el molino vive alguien m$as que la tortuga, si es que vive aqu$i claro." ],
         
-        "TextoMolino40": [ "Molino40" ],
-        "TextoMolino41": [ "Molino41" ],
-        "TextoMolino42": [ "Molino42" ],
+        "TextoMolino40": [ "Este molino me recuerda a una historia muy popular de mi pa$is, pero no recuerdo el nombre." ],
+        "TextoMolino41": [ "$?En el molino guardar$an m$asa cosas aparte de trigo?" ],
         
-        "TextoMolino50": [ "Molino50" ],
-        "TextoMolino51": [ "Molino51" ],
-        "TextoMolino52": [ "Molino52" ],
+        "TextoMolino50": [ "A veces cuando miro este molino me recuerda a una historia de mi pa$is donde el protagonista los confund$ia con monstruos." ],
+        "TextoMolino51": [ "Con lo grande que es, de seguro este molino no solo garda trigo si qes que se cultiva." ],
+
+        "TextoMolino60": [
+            "Ver un molino tan grande me recuerda ahora mismo a la historia del Cijonte,",
+            "el protagonista pensaba que los molinos eran monstruos, pero simplemente estaba loco."
+        ],
+        "TextoMolino61": [ "Si hay paja, creo que cabr$ia tambi$en dentro del molino junto con el trigo que se puede hacer en $el." ],
         
-        "TextoMolino60": [ "Molino60" ],
-        "TextoMolino61": [ "Molino61" ],
-        "TextoMolino62": [ "Molino62" ],
+        "TextoMolino70": [ "No hace mucho viento por lo que veo, las aspas no se mueven." ],
+        "TextoMolino71": [ "Me pregunto donde estar$a el trigo si en este molino hacen pan con $el." ],
         
-        "TextoMolino70": [ "Molino70" ],
-        "TextoMolino71": [ "Molino71" ],
-        "TextoMolino72": [ "Molino72" ],
+        "TextoMolino80": [ "Llevo ya unos d$ias y hace poco que me di cuenta de que si no giran las aspas no pueden producir nada en el molino." ],
+        "TextoMolino81": [ "Se supone que en los molinos se hace pan con el trigo, pero no veo trigo por aqu$i cerca." ],
         
-        "TextoMolino80": [ "Molino80" ],
-        "TextoMolino81": [ "Molino81" ],
-        "TextoMolino82": [ "Molino82" ],
+        "TextoMolino90": [ "Si las aspas no giran, es porque hay poco viento." ],
+        "TextoMolino91": [ "El trigo con el que se hace pan en este molino debe de estar en alguna parte." ],
         
-        "TextoMolino90": [ "Molino90" ],
-        "TextoMolino91": [ "Molino91" ],
-        "TextoMolino92": [ "Molino92" ],
+        "TextoMolino100": [ "Para construir un molino as$i de grande debe de haber costado mucho." ],
+        "TextoMolino101": [ "Me pregunto todav$ia si campesinos como la tortuga viven en molinos parecidos a este." ],
         
-        "TextoMolino100": [ "Molino100" ],
-        "TextoMolino101": [ "Molino101" ],
-        "TextoMolino102": [ "Molino102" ],
+        "TextoMolino110": [ "No s$e de donde sacaron la inspiraci$on, pero construir un molino as$i de grande es mucho trabajo." ],
+        "TextoMolino111": [ "Todav$ia me cuestiono si todos los campesinos viven en molinos como este o en casas de este u otro distrito." ],
         
-        "TextoMolino110": [ "Molino110" ],
-        "TextoMolino111": [ "Molino111" ],
-        "TextoMolino112": [ "Molino112" ],
+        "TextoMolino120": [ "Construir un molino as$i de grande y en buenas condiciones, debe de haber sido mucho trabajo si lleva muchos a$%os en pie" ],
+        "TextoMolino121": [ "Si hay campesinos que no viven en molnos como este, a lo mejor hay m$as casas por Dem$eter o viven en Hestia." ],
         
-        "TextoMolino120": [ "Molino120" ],
-        "TextoMolino121": [ "Molino121" ],
-        "TextoMolino122": [ "Molino122" ],
+        "TextoMolino130": [ "Llevo aqu$i ya un tiempecito, pero molinos como este no se ven todos los d$ias." ],
+        "TextoMolino131": [ "Quisiera saber donde venden el pan si lo hacen aqu$i, para saber si est$a bueno." ],
         
-        "TextoMolino130": [ "Molino130" ],
-        "TextoMolino131": [ "Molino131" ],
-        "TextoMolino132": [ "Molino132" ],
-        
-        "TextoMolino140": [ "Molino140" ],
-        "TextoMolino141": [ "Molino141" ],
-        "TextoMolino142": [ "Molino142" ]
+        "TextoMolino140": [ "Alg$un d$ia descubrir$e de donde sacaron la inspiraci$on para hacer un molino como los de la superficie." ],
+        "TextoMolino141": [
+            "Si supiera donde venden el pan si lo hacen en etes molino,",
+            "a lo mejor le echar$ia una probadita."
+        ]
     },
     "Arbol": {
-        "TextoArbol00": [ "Arbol00" ],
-        "TextoArbol01": [ "Arbol01" ],
-        "TextoArbol02": [ "Arbol02" ],
         
-        "TextoArbol10": [ "Arbol10" ],
-        "TextoArbol11": [ "Arbol11" ],
-        "TextoArbol12": [ "Arbol12" ],
+        "TextoArbol10": [ "Pedazo $arbol." ],
+        "TextoArbol11": [ "Este $arbol luce imponente" ],
         
-        "TextoArbol20": [ "Arbol20" ],
-        "TextoArbol21": [ "Arbol21" ],
-        "TextoArbol22": [ "Arbol22" ],
+        "TextoArbol20": [ "No d$e como puede haber un arbol tan grande bajo el mar." ],
+        "TextoArbol21": [ "Un $asrbol como este de grande, impone." ],
         
-        "TextoArbol30": [ "Arbol30" ],
-        "TextoArbol31": [ "Arbol31" ],
-        "TextoArbol32": [ "Arbol32" ],
+        "TextoArbol30": [ "Este $arbol me sigue pareciendo enorme." ],
+        "TextoArbol31": [ "No he visto todav$ia otro $arbol tan imponente como este por aqu$i." ],
         
-        "TextoArbol40": [ "Arbol40" ],
-        "TextoArbol41": [ "Arbol41" ],
-        "TextoArbol42": [ "Arbol42" ],
+        "TextoArbol40": [ "$?Este $arbol dar$a frutos?" ],
+        "TextoArbol41": [ "Este $arbol parece muy sano." ],
         
-        "TextoArbol50": [ "Arbol50" ],
-        "TextoArbol51": [ "Arbol51" ],
-        "TextoArbol52": [ "Arbol52" ],
+        "TextoArbol50": [ "Si este $arbol da frutos, espero que sean como los de la superficie, se parece mucho a los $arboles de all$a." ],
+        "TextoArbol51": [ "El que est$e tan grande y con hojas tan verdes, indica que est$a muy sano." ],
         
-        "TextoArbol60": [ "Arbol60" ],
-        "TextoArbol61": [ "Arbol61" ],
-        "TextoArbol62": [ "Arbol62" ],
+        "TextoArbol60": [ "Si este $arbol es como los de la superficie y da frutos, a lo mejor podr$ian crecer manzanas." ],
+        "TextoArbol61": [ "Me sorprende que en un sitio como este bajo el mar, haya un $arbol tan sano." ],
         
-        "TextoArbol70": [ "Arbol70" ],
-        "TextoArbol71": [ "Arbol71" ],
-        "TextoArbol72": [ "Arbol72" ],
+        "TextoArbol70": [ "Me pregunto cu$antos a$%os tendr$a este $arbol." ],
+        "TextoArbol71": [ "A lo mejor si me lo propongo puedo intentar escalar el $arbol, pero estoy ocupado." ],
         
-        "TextoArbol80": [ "Arbol80" ],
-        "TextoArbol81": [ "Arbol81" ],
-        "TextoArbol82": [ "Arbol82" ],
+        "TextoArbol80": [ "Este $arbol parece tener muchos a$%os de vida por su tama$%o, pero se ve muy sano." ],
+        "TextoArbol81": [ "Alg$un d$ia si no estoy ocupado podr$ia intentar escalar ese $arbol." ],
         
-        "TextoArbol90": [ "Arbol90" ],
-        "TextoArbol91": [ "Arbol91" ],
-        "TextoArbol92": [ "Arbol92" ],
+        "TextoArbol90": [ "Este $arbol puede parecer unas ramas muy fuertes y sanas, a$un si tiene bastante tiempo de vida" ],
+        "TextoArbol91": [ "Creo que si intentara escalar el $arbol podr$ia caerme por ser patoso, pero ser$ia divertido" ],
         
-        "TextoArbol100": [ "Arbol100" ],
-        "TextoArbol101": [ "Arbol101" ],
-        "TextoArbol102": [ "Arbol102" ],
+        "TextoArbol100": [ "Ojal$a ver m$as $arboles como este por la zona." ],
+        "TextoArbol101": [ "A lo mejor se puede montar un columpio en una de las ramas." ],
         
-        "TextoArbol110": [ "Arbol110" ],
-        "TextoArbol111": [ "Arbol111" ],
-        "TextoArbol112": [ "Arbol112" ],
+        "TextoArbol110": [ "Me gustar$ia haber visto en alg$un lugar si hay $arboles tan grandes como este." ],
+        "TextoArbol111": [ "Si montaran un columpio en una de las ramas, a lo mejor vendr$ian ni$%os a jugar" ],
+
+        "TextoArbol120": [
+            "Ahora que lo pienso, me recuerda a un $arbol de un videojuego famoso por su tama$%o,",
+            "creo que era un juego de aventuras de una consola muy antigua, era muy peque$%o cuando lo jugu$e."
+        ],
+        "TextoArbol121": [
+            "Ser$ia posible montar un columpio en este arbol,",
+            "si las ramas son lo suficientemente fuertes para aguantar el balanceo de una persona."
+        ],
         
-        "TextoArbol120": [ "Arbol120" ],
-        "TextoArbol121": [ "Arbol121" ],
-        "TextoArbol122": [ "Arbol122" ],
+        "TextoArbol130": [ "Cada d$ia que pasa, sigue pareciendome enorme este $arbol." ],
+        "TextoArbol131": [ "Todav$ia me pregunto cuantos a$%os tendr$a este $arbol." ],
         
-        "TextoArbol130": [ "Arbol130" ],
-        "TextoArbol131": [ "Arbol131" ],
-        "TextoArbol132": [ "Arbol132" ],
-        
-        "TextoArbol140": [ "Arbol140" ],
-        "TextoArbol141": [ "Arbol141" ],
-        "TextoArbol142": [ "Arbol142" ]
+        "TextoArbol140": [ "Me pregunto si dentro de las hojas hay alg$un nido de alg$un animal." ],
+        "TextoArbol141": [ "Ser$ia muy loco pensar que hubiesen p$ajaros en un sitio como este, y que vivan en las hojas de los $arboles." ]
     },
     "Carreta": {
-        "TextoCarreta00": [ "Carreta00" ],
-        "TextoCarreta01": [ "Carreta01" ],
-        "TextoCarreta02": [ "Carreta02" ],
         
-        "TextoCarreta10": [ "Carreta10" ],
-        "TextoCarreta11": [ "Carreta11" ],
-        "TextoCarreta12": [ "Carreta12" ],
+        "TextoCarreta10": [ "Oh, una carretilla." ],
+        "TextoCarreta11": [ "Me pregunto si llevar$an cultivos en esa carretilla." ],
         
-        "TextoCarreta20": [ "Carreta20" ],
-        "TextoCarreta21": [ "Carreta21" ],
-        "TextoCarreta22": [ "Carreta22" ],
+        "TextoCarreta20": [ "Me parece muy chula esta carretilla." ],
+        "TextoCarreta21": [ "A lo mejor llevan el trigo al molino con la carretilla, si esque se produce pan all$i o algo." ],
+
+        "TextoCarreta30": [ "Me gusta el color de esta carretilla." ],
+        "TextoCarreta31": [ "Puede que adem$as de cultivos, lleven paja en esta carretilla, si es que hay." ],
         
-        "TextoCarreta30": [ "Carreta30" ],
-        "TextoCarreta31": [ "Carreta31" ],
-        "TextoCarreta32": [ "Carreta32" ],
+        "TextoCarreta40": [ "Se parece a las carretillas de madera que hay en los campos de la superficie." ],
+        "TextoCarreta41": [ "Me pregunto si alg$un ni$%o juega con esto." ],
         
-        "TextoCarreta40": [ "Carreta40" ],
-        "TextoCarreta41": [ "Carreta41" ],
-        "TextoCarreta42": [ "Carreta42" ],
+        "TextoCarreta50": [ "Recuerdo pasar una vez por el campo en la superficie y encontrarme una carreta igual a esta." ],
+        "TextoCarreta51": [ "De seguro algu$ien habr$a jugado con esta carretilla subi$endose en ella." ],
         
-        "TextoCarreta50": [ "Carreta50" ],
-        "TextoCarreta51": [ "Carreta51" ],
-        "TextoCarreta52": [ "Carreta52" ],
+        "TextoCarreta60": [ "Esta carretilla es muy parecida a las que hab$ia en un puedo al lado de donde viv$ia." ],
+        "TextoCarreta61": [
+            "Ser$ia divertido un d$ia subirme en una carretilla como esta y bajar a toda velocidad por una cuesta,",
+            "aunque el golpe debe de doler bastante."
+        ],
         
-        "TextoCarreta60": [ "Carreta60" ],
-        "TextoCarreta61": [ "Carreta61" ],
-        "TextoCarreta62": [ "Carreta62" ],
+        "TextoCarreta70": [ "A lo mejor un animal que haya por aqu$i lleva esta carretilla a cuestas y no un hombre pez." ],
+        "TextoCarreta71": [ "A lo mejor los alimentos que hay en Artemisa a la venta os llevan desde aqu$i con carretillas como esta." ],
         
-        "TextoCarreta70": [ "Carreta70" ],
-        "TextoCarreta71": [ "Carreta71" ],
-        "TextoCarreta72": [ "Carreta72" ],
+        "TextoCarreta80": [ "Ser$ia muy loco pensar que hay burros que llevan carretillas como estas en una ciudad bajo el agua." ],
+        "TextoCarreta81": [ "Puede que los frutos raros de aquella tienda de Artemisa, sean traidos con una carretilla como esta." ],
         
-        "TextoCarreta80": [ "Carreta80" ],
-        "TextoCarreta81": [ "Carreta81" ],
-        "TextoCarreta82": [ "Carreta82" ],
+        "TextoCarreta90": [ "Debe de haber alg$un animal, que no sea un hombre pez, que lleve estas carretillas cual mula de carga." ],
+        "TextoCarreta91": [ "$?Desde donde llevar$an los alimentos que podr$ian llevar en una carretilla como esta?" ],
         
-        "TextoCarreta90": [ "Carreta90" ],
-        "TextoCarreta91": [ "Carreta91" ],
-        "TextoCarreta92": [ "Carreta92" ],
+        "TextoCarreta100": [ "Quisiera conocer al artesano de esta carretilla, luce bastante bien hecha." ],
+        "TextoCarreta101": [
+            "Me pregunto cuanto aguanta una carretilla de madera como esta,",
+            "en un lugar bajo el mar donde puede haber mucha humedad."
+        ],
         
-        "TextoCarreta100": [ "Carreta100" ],
-        "TextoCarreta101": [ "Carreta101" ],
-        "TextoCarreta102": [ "Carreta102" ],
+        "TextoCarreta110": [ "Un gran artesano tuvo que hacer esta carretilla." ],
+        "TextoCarreta111": [
+            "Si carretilla de madera como esta aguanta en un lugar bajo el mar con posiblemente mucha humedad,",
+            "debe de estar hecha con una madera muy rara, pero no noto nada raro en el aire como para tener mucha humedad."
+        ],
         
-        "TextoCarreta110": [ "Carreta110" ],
-        "TextoCarreta111": [ "Carreta111" ],
-        "TextoCarreta112": [ "Carreta112" ],
+        "TextoCarreta120": [ "Quiz$as el pulpo artesano hizo esta carretilla." ],
+        "TextoCarreta121": [ "Quisiera saber si la madera de esta carretilla es especial o parecida a la que hay en la superficie." ],
         
-        "TextoCarreta120": [ "Carreta120" ],
-        "TextoCarreta121": [ "Carreta121" ],
-        "TextoCarreta122": [ "Carreta122" ],
+        "TextoCarreta130": [ "Me pregunto si har$an carreras con carretillas como esta." ],
+        "TextoCarreta131": [ "Puede que en el molino hayan m$as carretillas como estas." ],
         
-        "TextoCarreta130": [ "Carreta130" ],
-        "TextoCarreta131": [ "Carreta131" ],
-        "TextoCarreta132": [ "Carreta132" ],
-        
-        "TextoCarreta140": [ "Carreta140" ],
-        "TextoCarreta141": [ "Carreta141" ],
-        "TextoCarreta142": [ "Carreta142" ]
+        "TextoCarreta140": [ "Ser$ia gracioso ver carreras de hombres pez subidos a carretillas como esta." ],
+        "TextoCarreta141": [ "Seguro en el molino hay m$as carretillas guardadas." ]
     },
     "PulpoCartel": {
-        "TextoPulpoCartel00": [ "PulpoCartel00" ],
-        "TextoPulpoCartel01": [ "PulpoCartel01" ],
-        "TextoPulpoCartel02": [ "PulpoCartel02" ],
         
-        "TextoPulpoCartel10": [ "PulpoCartel10" ],
-        "TextoPulpoCartel11": [ "PulpoCartel11" ],
-        "TextoPulpoCartel12": [ "PulpoCartel12" ],
+        "TextoPulpoCartel10": [ "Un pulpooooooooooooo." ],
+        "TextoPulpoCartel11": [ "Est$a en muy buenas condiciones el logo." ],
         
-        "TextoPulpoCartel20": [ "PulpoCartel20" ],
-        "TextoPulpoCartel21": [ "PulpoCartel21" ],
-        "TextoPulpoCartel22": [ "PulpoCartel22" ],
+        "TextoPulpoCartel20": [ "Me encanta el logo del pulpo de esta tienda." ],
+        "TextoPulpoCartel21": [ "El logo debe de ser muy resistente como para verse como nuevo." ],
         
-        "TextoPulpoCartel30": [ "PulpoCartel30" ],
-        "TextoPulpoCartel31": [ "PulpoCartel31" ],
-        "TextoPulpoCartel32": [ "PulpoCartel32" ],
+        "TextoPulpoCartel30": [ "El dise$%ador del cartel es muy creativo seguramente." ],
+        "TextoPulpoCartel31": [ "La pintura debe de ser de muy buena calidad para verse como nuevo el logo." ],
         
-        "TextoPulpoCartel40": [ "PulpoCartel40" ],
-        "TextoPulpoCartel41": [ "PulpoCartel41" ],
-        "TextoPulpoCartel42": [ "PulpoCartel42" ],
+        "TextoPulpoCartel40": [ "Las herramientas del pulpo deben referiris a las cualidades del artesano del taller." ],
+        "TextoPulpoCartel41": [ "Al logo creo que le faltan m$as tent$aculos, pero mola igual." ],
         
-        "TextoPulpoCartel50": [ "PulpoCartel50" ],
-        "TextoPulpoCartel51": [ "PulpoCartel51" ],
-        "TextoPulpoCartel52": [ "PulpoCartel52" ],
+        "TextoPulpoCartel50": [ "Me pregunto si cualquier pulpo puede ser un gran carpintero." ],
+        "TextoPulpoCartel51": [ "El pulpo del logo le faltan brazos, pero mola igual." ],
+
+        "TextoPulpoCartel60": [ "Me pregunto si cualquier pulpo puede ser un gran herrero." ],
+        "TextoPulpoCartel61": [ "El pulpo del logo no tiene tantos brazos, pero igual mola" ],
         
-        "TextoPulpoCartel60": [ "PulpoCartel60" ],
-        "TextoPulpoCartel61": [ "PulpoCartel61" ],
-        "TextoPulpoCartel62": [ "PulpoCartel62" ],
+        "TextoPulpoCartel70": [ "Me gustar$ia poder trabajar tambi$en en un sitio como este, por saber qu$e tal" ],
+        "TextoPulpoCartel71": [ "Que un pulpo tenga varios brazos y sea artesano es un poco ir$onico." ],
         
-        "TextoPulpoCartel70": [ "PulpoCartel70" ],
-        "TextoPulpoCartel71": [ "PulpoCartel71" ],
-        "TextoPulpoCartel72": [ "PulpoCartel72" ],
+        "TextoPulpoCartel80": [ "Trabajar en un taller de artesan$ia de cualquier tipo debe ser retador cuanto menos." ],
+        "TextoPulpoCartel81": [ "El que un pulpo sea artesano, me recuerda a que cuantas m$as manos, mejor trabajo se har$a" ],
+
+        "TextoPulpoCartel90": [
+            "No voy a dejar mi trabajo en Correos Atl$antida, pero si en un taller como este bucan personal,",
+            "me pensar$e el si quiero trabajar o no por temas de horarios. Pero estar$ia interesante ser artesano tambi$en."
+        ],
+        "TextoPulpoCartel91": [ "Me pregunto si habr$an m$as carteles como este en otras tiendas de artesanos." ],
         
-        "TextoPulpoCartel80": [ "PulpoCartel80" ],
-        "TextoPulpoCartel81": [ "PulpoCartel81" ],
-        "TextoPulpoCartel82": [ "PulpoCartel82" ],
+        "TextoPulpoCartel100": [ "Creo que al cartel le vendr$ia bien tener m$as herramientas de referencia." ],
+        "TextoPulpoCartel101": [ "Molar$ia que estuviera sosteniendo unos clavos tembi$en." ],
         
-        "TextoPulpoCartel90": [ "PulpoCartel90" ],
-        "TextoPulpoCartel91": [ "PulpoCartel91" ],
-        "TextoPulpoCartel92": [ "PulpoCartel92" ],
+        "TextoPulpoCartel110": [ "Molar$ia que tiviese unas tijeras el cartel, como las del fondo del cartel." ],
+        "TextoPulpoCartel111": [ "El martillo mola, creo que es porque el artesano es carpintero." ],
         
-        "TextoPulpoCartel100": [ "PulpoCartel100" ],
-        "TextoPulpoCartel101": [ "PulpoCartel101" ],
-        "TextoPulpoCartel102": [ "PulpoCartel102" ],
+        "TextoPulpoCartel120": [ "Molar$ia que el cartel tambi$en tuviese un tabl$on de madera agarrado con un tent$aculo." ],
+        "TextoPulpoCartel121": [ "El martillo mola, creo que es porque el artesano es herrero tambi$en." ],
+
+        "TextoPulpoCartel130": [
+            "El humo que sale por la pared sigue igual de negro que siempre,",
+            "deben de estar quemando muchois materiales en el horno continuamente."
+        ],
+        "TextoPulpoCartel131": [ "El yunque del taller debe ser para hacer cosas con herrer$ia." ],
         
-        "TextoPulpoCartel110": [ "PulpoCartel110" ],
-        "TextoPulpoCartel111": [ "PulpoCartel111" ],
-        "TextoPulpoCartel112": [ "PulpoCartel112" ],
-        
-        "TextoPulpoCartel120": [ "PulpoCartel120" ],
-        "TextoPulpoCartel121": [ "PulpoCartel121" ],
-        "TextoPulpoCartel122": [ "PulpoCartel122" ],
-        
-        "TextoPulpoCartel130": [ "PulpoCartel130" ],
-        "TextoPulpoCartel131": [ "PulpoCartel131" ],
-        "TextoPulpoCartel132": [ "PulpoCartel132" ],
-        
-        "TextoPulpoCartel140": [ "PulpoCartel140" ],
-        "TextoPulpoCartel141": [ "PulpoCartel141" ],
-        "TextoPulpoCartel142": [ "PulpoCartel142" ]
+        "TextoPulpoCartel140": [ "Me pregunto si la madera del taller la traen desde los campos de Dem$eter." ],
+        "TextoPulpoCartel141": [ "Ojal$a trabajar un d$ia en un taller como este mientras trabajo en Correos Atl$antida." ]
     },
     "TiendaCeramica": {
-        "TextoTiendaCeramica00": [ "TiendaCeramica00" ],
-        "TextoTiendaCeramica01": [ "TiendaCeramica01" ],
-        "TextoTiendaCeramica02": [ "TiendaCeramica02" ],
+        "TextoTiendaCeramica10": [ "Una tienda de cer$amica, creo que hab$ia otra parecida en Artemisa." ],
+        "TextoTiendaCeramica11": [ "Hay muchas manchas en las paredes." ],
         
-        "TextoTiendaCeramica10": [ "TiendaCeramica10" ],
-        "TextoTiendaCeramica11": [ "TiendaCeramica11" ],
-        "TextoTiendaCeramica12": [ "TiendaCeramica12" ],
+        "TextoTiendaCeramica20": [ "Creo que los jarrones de aqu$i estar$an m$as baratos que en Artemisa." ],
+        "TextoTiendaCeramica21": [ "Creo que las manchas de las paredes son parecidas al barro." ],
         
-        "TextoTiendaCeramica20": [ "TiendaCeramica20" ],
-        "TextoTiendaCeramica21": [ "TiendaCeramica21" ],
-        "TextoTiendaCeramica22": [ "TiendaCeramica22" ],
+        "TextoTiendaCeramica30": [ "Los jarrones de aqu$i empiezo a pensar que de verdad est$an m$as baratos que en artemisa." ],
+        "TextoTiendaCeramica31": [
+            "Puede que las manchas de las paredes se deben al barro que puede ser salpicado al hacer jarrones,",
+            "si es que est$an hechos con barro, claro est$a."
+        ],
         
-        "TextoTiendaCeramica30": [ "TiendaCeramica30" ],
-        "TextoTiendaCeramica31": [ "TiendaCeramica31" ],
-        "TextoTiendaCeramica32": [ "TiendaCeramica32" ],
+        "TextoTiendaCeramica40": [ "El saco de la pared creo que es con lo que hacen los jarrones." ],
+        "TextoTiendaCeramica41": [ "Los jarrones de la tienda lucen en muy buenas condiciones." ],
         
-        "TextoTiendaCeramica40": [ "TiendaCeramica40" ],
-        "TextoTiendaCeramica41": [ "TiendaCeramica41" ],
-        "TextoTiendaCeramica42": [ "TiendaCeramica42" ],
+        "TextoTiendaCeramica50": [ "Puede que el saco de la pared sea de arcilla, barro o algo parecido." ],
+        "TextoTiendaCeramica51": [ "Aqu$i veo que si pintan los jarrones, no como en la tienda de Artemisa." ],
         
-        "TextoTiendaCeramica50": [ "TiendaCeramica50" ],
-        "TextoTiendaCeramica51": [ "TiendaCeramica51" ],
-        "TextoTiendaCeramica52": [ "TiendaCeramica52" ],
+        "TextoTiendaCeramica60": [ "El saco de la pared est$a protegido por la sombra, puede que esto haga que no se seque tan r$apido lo que haya dentro." ],
+        "TextoTiendaCeramica61": [ "Los jarrones seguro que est$an al sol para que se sequen bien." ],
         
-        "TextoTiendaCeramica60": [ "TiendaCeramica60" ],
-        "TextoTiendaCeramica61": [ "TiendaCeramica61" ],
-        "TextoTiendaCeramica62": [ "TiendaCeramica62" ],
+        "TextoTiendaCeramica70": [ "Hoy las manchas de la pared huelen raro, pero las veo igual que siempre." ],
+        "TextoTiendaCeramica71": [ "Los jarrones pintados lucen bastante bien la verdad." ],
         
-        "TextoTiendaCeramica70": [ "TiendaCeramica70" ],
-        "TextoTiendaCeramica71": [ "TiendaCeramica71" ],
-        "TextoTiendaCeramica72": [ "TiendaCeramica72" ],
+        "TextoTiendaCeramica80": [ "El otro d$ia las manchas de la pared ol$ian raro, pero siguen igual que siempre." ],
+        "TextoTiendaCeramica81": [ "El que haya pintado los jarrones debe de tener muy buena mano con la pintura." ],
+
+        "TextoTiendaCeramica90": [
+            "Puede que el olor del otro d$ia no viniese de las manchas de la pared,",
+            "si no que provenga de una parte del taller de cer$amica que no veo."
+        ],
+        "TextoTiendaCeramica91": [
+            "Es curioso que con un solo color, puedan pintarse varias formas interesantes en el jarr$on,",
+            "sin tener que usar m$as colores que el amarillo."
+        ],
         
-        "TextoTiendaCeramica80": [ "TiendaCeramica80" ],
-        "TextoTiendaCeramica81": [ "TiendaCeramica81" ],
-        "TextoTiendaCeramica82": [ "TiendaCeramica82" ],
+        "TextoTiendaCeramica100": [ "Me pregunto si esta tienda de cer$amica pertenece al pulpo artesano y no me ha dicho nada." ],
+        "TextoTiendaCeramica101": [
+            "Pueden que se est$en secando, pero creo que ser$ia conveniente que el vendedor guardara los jarrones a la sombra,",
+            "se pueden estropear aunque parecen que est$an en muy buenas condiciones."
+        ],
         
-        "TextoTiendaCeramica90": [ "TiendaCeramica90" ],
-        "TextoTiendaCeramica91": [ "TiendaCeramica91" ],
-        "TextoTiendaCeramica92": [ "TiendaCeramica92" ],
+        "TextoTiendaCeramica110": [ "Me pregunto si la tienda pudo pertenecer a alg$un artista marino." ],
+        "TextoTiendaCeramica111": [ "Llevar$an mucho rato al sol, pero estos jarrones no veo que est$en secos ni desgastados por el calor." ],
         
-        "TextoTiendaCeramica100": [ "TiendaCeramica100" ],
-        "TextoTiendaCeramica101": [ "TiendaCeramica101" ],
-        "TextoTiendaCeramica102": [ "TiendaCeramica102" ],
+        "TextoTiendaCeramica120": [ "Si esta tienda pertenece a alg$un artista marino, eso demuestra la calidad de los jarrones." ],
+        "TextoTiendaCeramica121": [
+            "Si los jarrones se mantienen como nuevos a$un estando al sol un largo tiempo,",
+            "es porque el artesano debe ser muy diestro.",
+            "O simplemente a los jarrones no les pasa nada en general por estar al sol y ser$a que en realidad no tengo ni idea."
+        ],
         
-        "TextoTiendaCeramica110": [ "TiendaCeramica110" ],
-        "TextoTiendaCeramica111": [ "TiendaCeramica111" ],
-        "TextoTiendaCeramica112": [ "TiendaCeramica112" ],
-        
-        "TextoTiendaCeramica120": [ "TiendaCeramica120" ],
-        "TextoTiendaCeramica121": [ "TiendaCeramica121" ],
-        "TextoTiendaCeramica122": [ "TiendaCeramica122" ],
-        
-        "TextoTiendaCeramica130": [ "TiendaCeramica130" ],
-        "TextoTiendaCeramica131": [ "TiendaCeramica131" ],
-        "TextoTiendaCeramica132": [ "TiendaCeramica132" ],
-        
-        "TextoTiendaCeramica140": [ "TiendaCeramica140" ],
-        "TextoTiendaCeramica141": [ "TiendaCeramica141" ],
-        "TextoTiendaCeramica142": [ "TiendaCeramica142" ]
+        "TextoTiendaCeramica130": [ "Siguen las manchas en la pared, el due$%o deber$ia de limpiar m$as a menudo su tienda." ],
+        "TextoTiendaCeramica131": [
+            "Me pregunto cada cuantos d$ias reponen ese saco de la pared,",
+            "que supongo es de donde sacan los materiales para hacer toda la cer$amica de la tienda."
+        ],
+
+        "TextoTiendaCeramica140": [
+            "No pasa ni un solo d$ia en que no me pase por esta tienda sin ver las manchas en la pared",
+            "deber$ian de limpiar m$as a menudo."
+        ],
+        "TextoTiendaCeramica141": [
+            "Los jarrones siguen tan bonitos como siempre,",
+            "espero que nadie los rompa."
+        ]
     },
     "TiendaEsculturas": {
-        "TextoTiendaEsculturas00": [ "TiendaEsculturas00" ],
-        "TextoTiendaEsculturas01": [ "TiendaEsculturas01" ],
-        "TextoTiendaEsculturas02": [ "TiendaEsculturas02" ],
-        
-        "TextoTiendaEsculturas10": [ "TiendaEsculturas10" ],
-        "TextoTiendaEsculturas11": [ "TiendaEsculturas11" ],
-        "TextoTiendaEsculturas12": [ "TiendaEsculturas12" ],
-        
-        "TextoTiendaEsculturas20": [ "TiendaEsculturas20" ],
-        "TextoTiendaEsculturas21": [ "TiendaEsculturas21" ],
-        "TextoTiendaEsculturas22": [ "TiendaEsculturas22" ],
-        
-        "TextoTiendaEsculturas30": [ "TiendaEsculturas30" ],
-        "TextoTiendaEsculturas31": [ "TiendaEsculturas31" ],
-        "TextoTiendaEsculturas32": [ "TiendaEsculturas32" ],
-        
-        "TextoTiendaEsculturas40": [ "TiendaEsculturas40" ],
-        "TextoTiendaEsculturas41": [ "TiendaEsculturas41" ],
-        "TextoTiendaEsculturas42": [ "TiendaEsculturas42" ],
-        
-        "TextoTiendaEsculturas50": [ "TiendaEsculturas50" ],
-        "TextoTiendaEsculturas51": [ "TiendaEsculturas51" ],
-        "TextoTiendaEsculturas52": [ "TiendaEsculturas52" ],
-        
-        "TextoTiendaEsculturas60": [ "TiendaEsculturas60" ],
-        "TextoTiendaEsculturas61": [ "TiendaEsculturas61" ],
-        "TextoTiendaEsculturas62": [ "TiendaEsculturas62" ],
-        
-        "TextoTiendaEsculturas70": [ "TiendaEsculturas70" ],
-        "TextoTiendaEsculturas71": [ "TiendaEsculturas71" ],
-        "TextoTiendaEsculturas72": [ "TiendaEsculturas72" ],
-        
-        "TextoTiendaEsculturas80": [ "TiendaEsculturas80" ],
-        "TextoTiendaEsculturas81": [ "TiendaEsculturas81" ],
-        "TextoTiendaEsculturas82": [ "TiendaEsculturas82" ],
-        
-        "TextoTiendaEsculturas90": [ "TiendaEsculturas90" ],
-        "TextoTiendaEsculturas91": [ "TiendaEsculturas91" ],
-        "TextoTiendaEsculturas92": [ "TiendaEsculturas92" ],
-        
-        "TextoTiendaEsculturas100": [ "TiendaEsculturas100" ],
-        "TextoTiendaEsculturas101": [ "TiendaEsculturas101" ],
-        "TextoTiendaEsculturas102": [ "TiendaEsculturas102" ],
-        
-        "TextoTiendaEsculturas110": [ "TiendaEsculturas110" ],
-        "TextoTiendaEsculturas111": [ "TiendaEsculturas111" ],
-        "TextoTiendaEsculturas112": [ "TiendaEsculturas112" ],
-        
-        "TextoTiendaEsculturas120": [ "TiendaEsculturas120" ],
-        "TextoTiendaEsculturas121": [ "TiendaEsculturas121" ],
-        "TextoTiendaEsculturas122": [ "TiendaEsculturas122" ],
-        
-        "TextoTiendaEsculturas130": [ "TiendaEsculturas130" ],
-        "TextoTiendaEsculturas131": [ "TiendaEsculturas131" ],
-        "TextoTiendaEsculturas132": [ "TiendaEsculturas132" ],
-        
-        "TextoTiendaEsculturas140": [ "TiendaEsculturas140" ],
-        "TextoTiendaEsculturas141": [ "TiendaEsculturas141" ],
-        "TextoTiendaEsculturas142": [ "TiendaEsculturas142" ]
+        "TextoTiendaEsculturas10": [ "Que guay, una tienda de esculturas." ],
+        "TextoTiendaEsculturas11": [ "$?De d$onde sacar$an las rocas para hacer las esculturas en esta tienda" ],
+
+        "TextoTiendaEsculturas20": [ "Se parece a las tiendas peque$%as de esculturas que hab$ian en la superficie." ],
+        "TextoTiendaEsculturas21": [ "Las rocas de la tienda las deben de haber sacado de alg$un lugar bajo el mar." ],
+
+        "TextoTiendaEsculturas30": [
+            "No veo que mucha gente se dedique a la escultura por esta zona,",
+            "solo he visto esta tienda."
+        ],
+        "TextoTiendaEsculturas31": [
+            "Al contrario que la madera, es m$as probable encontrar rocas en el mar que la madera.",
+            "Supongo que las rocas que usan aqu$i ser$an rocas marinas."
+        ],
+
+        "TextoTiendaEsculturas40": [ "La escultura del pez pensando me parece muy graciosa." ],
+        "TextoTiendaEsculturas41": [ "Las esculturas de aqu$i tienen mucho detalle." ],
+
+        "TextoTiendaEsculturas50": [ "Ahora que lo veo la escultura del pez pensando me recuerda cierta escultura famosa de la superficie..." ],
+        "TextoTiendaEsculturas51": [ "Yo en mis sue$%os podr$ia hacer una escultura tan detallada." ],
+
+        "TextoTiendaEsculturas60": [
+            "La estatua del pez pensante me recuerda la de El Reflexionador,",
+            "una escultura muy famosa en la superficie."
+        ],
+        "TextoTiendaEsculturas61": [
+            "El due$%o y artesano de la tienda debe de ser un gran escultor.",
+            "No hay ni un solo d$ia donde me pase a mirar por la tienda y que no opine que las esculturas est$an muy bien hechas."
+        ],
+
+        "TextoTiendaEsculturas70": [ "La escultura que est$a al lado del pez pensante, parece un bumer$an" ],
+        "TextoTiendaEsculturas71": [ "El clavo de la piedra creo que sirve para picarla y que tome forma." ],
+
+        "TextoTiendaEsculturas80": [
+            "En cierta manera, la escultura del pez con forma de bumer$an,",
+            "me recuaerda a un pez de la pel$icula de Buscando a Rodolfo. Qu$e buena pel&icula."
+        ],
+        "TextoTiendaEsculturas81": [ "El martillo de la pared creo que lo usan para picar con el clavo la piedra." ],
+
+        "TextoTiendaEsculturas90": [
+            "Me pregunto si en alguna parte el vendedor temdr$a guaradadas m$as esculturas,",
+            "que sean tan raras como el pez con forma de bumer$an."
+        ],
+        "TextoTiendaEsculturas91": [
+            "El martillo de la pared se parece al martillo del cartel del pulpo.",
+            "Pero en esta tienda su uso quiz$a se reduzca a que solo sirva para esculpir con el clavo en la piedra."
+        ],
+
+        "TextoTiendaEsculturas100": [
+            "Ahora que me fijo, hay un taburete al lado de la tienda de esculturas.",
+            "Quiz$a sea del due$%o."
+        ],
+        "TextoTiendaEsculturas101": [ "Me pregunto en qu$e tipo de escultura acabar$a siendo el bloque del fondo de la tienda." ],
+
+        "TextoTiendaEsculturas110": [ "Puede que el taburete que haya aqu$i sea para cuando el due$%o se ponga a esculpir fuera mientras se sienta." ],
+        "TextoTiendaEsculturas111": [ "Espero que ese bloque de piedra del fondo acabe siendo una gran escultura alg$un d$ia." ],
+
+        "TextoTiendaEsculturas120": [
+            "Espero que nadie le robe el taburete al due$%o de la tienda de esculturas,",
+            "le ser$ia muy complicado esculpir si est$a constantemente de pie."
+        ],
+        "TextoTiendaEsculturas121": [
+            "Al bloque de piedra del fondo le falta un cacho,",
+            "quiz$as hicieran las peque$%as esculturas del mostrador con ese cacho."
+        ],
+
+        "TextoTiendaEsculturas130": [ "A veces me pregunto la cantidad de tiempo y paciencia que lleva hacer esculturas como estas." ],
+        "TextoTiendaEsculturas131": [ "Me pregunto si en el taller se usar$an otras herramientas para esculpir que no sean solo martillos y clavos." ],
+
+        "TextoTiendaEsculturas140": [ "El nivel de detalle de estas esculturas debi$o de requerir mucha paciencia." ],
+        "TextoTiendaEsculturas141": [ "Alg&un d&ia deber&ia de comprar una escultura de estas." ]
     },
     "TiendaDerecha": {
         "TextoTiendaDerecha00": [ "TiendaDerecha00" ],

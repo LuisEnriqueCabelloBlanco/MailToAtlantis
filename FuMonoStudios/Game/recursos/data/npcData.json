@@ -1,5 +1,6 @@
 {
   "Vagabundo": {
+    "IntroductionText": "Anemos Togakawa es un vagabundo optimista que vive en el distrito de Hestia. Pasa los d$ias sobreviviendo como puede y hablando con sus colegas campesinos del distrito.",
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -12,7 +13,7 @@
         },
         "recompensa": {
           "1": "Vagabundo+++++",
-          "2": "$Vagabundo-----"
+          "2": " $Vagabundo-----"
         },
         "textoDiario": "no se usa"
       },
@@ -31,7 +32,7 @@
         },
         "recompensa": {
           "1": "Vagabundo+++++",
-          "2": "$Vagabundo-----"
+          "2": " $Vagabundo-----"
         },
         "textoDiario": "Me ha contado que lleva mucho tiempo sin comer bien y me ha pedido un paquete de comida de Demeter.\nDebo redirigir un paquete de alimentos de Demeter a Hestia"
       },
@@ -49,7 +50,7 @@
         },
         "recompensa": {
           "1": "Vagabundo+++++",
-          "2": "$Vagabundo-----"
+          "2": " $Vagabundo-----"
         },
         "textoDiario": "Ha mandado un paquete a Artemisa. Seguramente el paquete este mal sellado o sea ilegal..."
       },
@@ -67,7 +68,7 @@
         },
         "recompensa": {
           "1": "Vagabundo+++++",
-          "2": "$Vagabundo-----"
+          "2": " $Vagabundo-----"
         },
         "textoDiario": "Dice que ha encontrado una pepita de oro y que sera millonario. Tengo que asegurarme que el paquete llegue a su destino, aunque la verdad que la pepita es bastante falsa..."
       },
@@ -108,7 +109,7 @@
         },
         "recompensa": {
           "1": "Vagabundo++++++++",
-          "2": "$Vagabundo--------------------"
+          "2": " $Vagabundo--------------------"
         },
         "textoDiario": "Me ha dado un papel con un sello de un grupo llamado 'lechuzas'. Tiene una serie de nombres, y unas instrucciones. Tambien un papel con agujeros."
       },
@@ -125,7 +126,7 @@
         },
         "recompensa": {
           "1": "Vagabundo++++++++",
-          "2": "$Vagabundo--------------------"
+          "2": " $Vagabundo--------------------"
         },
         "textoDiario": "Me ha dicho que aun tengo una prueba que superar hasta poder ser de fiar. Tengo que eliminar el paquete del 'Buitre'. Seguramente tenga que usar el papel con agujeros para ello."
       },
@@ -142,7 +143,7 @@
         },
         "recompensa": {
           "1": "Vagabundo+++++",
-          "2": "$Vagabundo-----"
+          "2": " $Vagabundo-----"
         },
         "textoDiario": "Ha sido publicado un libro llamado 'CRITIAS'. Habla sobre la existencia de humanos en la superficie. Segun el libro, Poseidon estaba enfadado con Atlantis, y les hundio bajo el mar durante un milenio como castigo. Si el libro es verdadero, llevan 995 a&%os hundidos. Anemos esta que se sale, me ha pedido que mueva un paquete de comida de Hermes a Hestia."
       },
@@ -160,7 +161,7 @@
         },
         "recompensa": {
           "1": "Vagabundo+++++",
-          "2": "$Vagabundo-----"
+          "2": " $Vagabundo-----"
         },
         "textoDiario": "Anemos se ha dado cuenta de que su pez estaba tieso. Lo quiere llevar a enterrar a Hermes, tendre que asegurarme de que el paquete llega seguro."
       },
@@ -209,7 +210,7 @@
         },
         "recompensa": {
           "1": "Vagabundo+++++",
-          "2": "$Vagabundo--------------------"
+          "2": " $Vagabundo--------------------"
         },
         "textoDiario": "Anemos dice que me contar$a su verdad y me unir$e a las lechuzas si cumplo est$a misi$on. Tengo que pasar una lista de paquetes ilegales. Hoy no voy a cobrar casi nada..."
       },
@@ -227,7 +228,7 @@
         },
         "recompensa": {
           "1": "Vagabundo+++++",
-          "2": "$Vagabundo-----"
+          "2": " $Vagabundo-----"
         },
         "textoDiario": "Ahora s$e la verdad. Anemos es el verdadero heredero al trono, y el secretario del rey solo es un impostor. Las lechuzas tienen un plan para fabricar un veneno y causar una revoluci$on. Si quiero ayudar a las lechuzas, debo reenviar paquetes de joyas de Poseid$on a Hestia, al menos tres."
       },
@@ -246,7 +247,7 @@
         },
         "recompensa": {
           "1": "Vagabundo+++++",
-          "2": "$Vagabundo-----"
+          "2": " $Vagabundo-----"
         },
         "textoDiario": "Anemos me ha pedido materiales para el veneno. Debo reenviar 2 paquetes ligeros, osea, que pesen menos de 15kg que vayan a Hermes y mandarlos a Hefesto."
       },
@@ -262,7 +263,7 @@
         },
         "recompensa": {
           "1": "Vagabundo+++++",
-          "2": "$Vagabundo-----"
+          "2": " $Vagabundo-----"
         },
         "textoDiario": "El veneno est$a hecho. Tengo que asegurarme que pasa bien, lo mandar$a un tal 'Grog Koroth'. Vaya nombre."
       },
@@ -281,25 +282,27 @@
         },
         "recompensa": {
           "1": "Vagabundo+++++",
-          "2": "$Vagabundo-----"
+          "2": " $Vagabundo-----"
         },
         "textoDiario": "Van a repartir las lechuzas instrucciones por toda la ciudad. Ser$an 3 paquetes ligeros que van dirigidos a Hestia. Debo mandarlos a Apolo, donde se redistribuir$an."
       },
       "14": {
         "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetesParaCompletar": 12,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "SPECIAL1"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "NOHACEFALTA"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+
+        "textoDiario": "Hoy es el gran d$ia. Recibir$e el veneno en una caja y debere espolvarlo sobre el paquete de nombre Francis Dupart. Luego me juntar$e con Anemos y juntos tomaremos el gobierno corrupto del rey."
       }
     }
   },
   "Secretario": {
+    "IntroductionText": "Gargafiel Mustaki, el secretario del rey, es un hombre serio que busca que se cumpla el orden en Atlantis. Protege al rey y ejecuta las $ordenes por $el, todo Atlantis depende de lo que $el ordene.",
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -363,7 +366,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "$Secretario-----"
+          "2": " $Secretario-----"
         },
         "textoDiario": "El secretario necesita que elimine paquetes de un grupo llamado 'lechuzas'. Tengo que mandar a la basura 3 paquetes de alimentos que vayan hacia Apolo."
       },
@@ -378,7 +381,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "$Secretario-----"
+          "2": " $Secretario-----"
         },
         "textoDiario": "Se est$an pasando paquetes ilegales de comida en Apolo y Hermes. Debo eliminar 3 paquetes de comida que vayan a Apolo o a Hermes. Dice que si cumplo esta tarea, ma$%ana me dar$a una recompensa."
       },
@@ -395,7 +398,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "$Secretario-----"
+          "2": " $Secretario-----"
         },
         "textoDiario": "Gargafiel esta que hecha humos, no creo que me de ninguna recompensa. Debe recomponer la sociedad para evitar un revuelo por el nuevo texto 'Critias' que alenta a la poblaci$on a unirse a los humanos. Me ha pedido que reenvie unos tres paquetes con su nombre al distrito de Poseid$on."
       },
@@ -432,7 +435,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "$Secretario-----",
+          "2": " $Secretario-----",
           "3": "Vagabundo--------------------"
         },
         "textoDiario": "Me ha pasado una lista con nombres de gente de las lechuzas. Debo mandar sus paquetes a Apolo, donde los analizar$a."
@@ -470,7 +473,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "$Secretario-----",
+          "2": " $Secretario-----",
           "3": "Vagabundo--------------------"
         },
         "textoDiario": "Hoy dice que ha encontrado nombres de gente importante en las lechuzas. Igual que ayer, debo reenviar sus paquetes a Apolo."
@@ -486,7 +489,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "$Secretario-----"
+          "2": " $Secretario-----"
         },
         "textoDiario": "Texto diario"
       },
@@ -535,7 +538,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "$Secretario-----"
+          "2": " $Secretario-----"
         },
         "textoDiario": "El secretario me ha contado su revelaci$on que tuvo de Poseid$on. Dice que nos est$a poniendo a prueba y $el es el $unico que podr$a salvarnos. Debemos resurgir a la superficie con una nave que ha estado construyendo, y una vez arriba, pelear$a con los humanos con el poder de los Dioses. Para poder ayudarle, necesita 2 paquetes de joyas. Debo redirigir 2 paquetes que vayan a Hestia, Demeter, Artemisa o a Hefesto y mandarlos a Poseid$on."
       },
@@ -553,7 +556,7 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "$Secretario-----"
+          "2": " $Secretario-----"
         },
         "textoDiario": "Ahora necesitamos materiales para la chapa de la nave. Debo redirigir 3 paquetes de materiales que vayan a Hefesto y mandarlos a Poseid$on."
       },
@@ -572,25 +575,26 @@
         },
         "recompensa": {
           "1": "Secretario+++++",
-          "2": "$Secretario-----"
+          "2": " $Secretario-----"
         },
         "textoDiario": "Gargafiel me ha pedido suministros de comida para la nave. Ha comprado paquetes de comida a un campesino pero van a Hermes en vez de Poseid$on. Debo redirigir los 2 paquetes hacia Poseid$on. El nombre del campesino es Pancracio Warawa."
       },
       "14": {
         "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetesParaCompletar": 12,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "SPECIAL2"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "NOHACEFALTA"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": "Secretario+",
+        "textoDiario": "Hoy es un dia importante. Por fin regresar$e a la superficie con Gargafiel, debo recibir una bomba de su parte y activarla en mi puesto de trabajo. En lo que explota, saldr$e corriendo y me econtrar$e con $el y su submarino en las afueras de Hefesto. Importante, para la bomba, debo pulsar primero el bot$on azul y luego el rojo."
       }
     }
   },
   "Campesino": {
+    "IntroductionText": "campesino",
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -619,15 +623,15 @@
         },
         "condiciones": {
           "remitente": "Pancracio Warawa",
-          "distrito": "Hestia",
+          "tuboSeleccionado": "Hestia",
           "calleMarcada": "C3",
           "tipoPaquete": "Alimento"
         },
         "recompensa": {
            "1": "Campesino++++++++++",
-           "2": "$Campesino----------"
+           "2": " $Campesino----------"
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Pancracio me ha pedido que selle su paquete con la direcci$on de Gambon III en lugar de Medusia la Santa"
       },
       "2": {
         "numPaquetes": 2,
@@ -637,17 +641,18 @@
           "tipoPaquete": "Materiales"
         },
         "condiciones": {
-          "distrito": "Demeter",
+          "distrito": "Hefesto",
+          "tuboSeleccionado": "Demeter",
           "tipoPaquete": "Materiales"
         },
         "recompensa": {
 
           "1": "Campesino++++++++++",
-          "2": "$Campesino----------"
+          "2": " $Campesino----------"
 
         },
         
-        "textoDiario": "Texto diario"
+        "textoDiario": "Pancracio necesita uno de los paquetes de materiales dirigidos a Hefesto"
       },
       "3": {
         "numPaquetes": 2,
@@ -657,16 +662,17 @@
           "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "distrito": "Hestia",
+          "distrito": "Apolo",
+          "tuboSeleccionado": "Demeter",
           "tipoPaquete": "Alimento"
         },
         "recompensa": {
 
           "1": "Campesino++++++++++",
-          "2": "$Campesino----------"
+          "2": " $Campesino----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Pancracio quiere que desv$ie un paquete de Apolo a Demeter"
       },
       "4": {
         "numPaquetes": 3,
@@ -676,16 +682,17 @@
           "tipoPaquete": "Medicinas"
         },
         "condiciones": {
-          "distrito": "Demeter",
+          "distrito": "Hermes",
+          "tuboSeleccionado": "Demeter",
           "tipoPaquete": "Medicinas"
         },
         "recompensa": {
 
           "1": "Campesino++++++++++",
-          "2": "$Campesino----------"
+          "2": " $Campesino----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "En Demeter estan enfermos. Deber$ia desviar dos paquetes de medicinas de Hermes hasta all$i"
       },
       "5": {
         "numPaquetes": 1,
@@ -700,6 +707,7 @@
         "condiciones": {
           "remitente": "Pancracio Warawa",
           "distrito": "Artemisa",
+          "tuboSeleccionado": "Artemisa",
           "tipoPaquete": "Alimento",
           "peso": "Bajo",
           "pesoKG": 100
@@ -707,15 +715,16 @@
         "recompensa": {
 
           "1": "Campesino++++++++++",
-          "2": "$Campesino----------"
+          "2": " $Campesino----------"
 
         },
 
-        "textoDiario": "Texto diario"
+        "textoDiario": "Pancracio le ha puesto mal el sello de pesado a su paquete y me ha pedido que haga la vista gorda."
       }
     }
   },
   "Artesano": {
+    "IntroductionText": "artesano",
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -737,19 +746,20 @@
         "numPaquetes": 2,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "tipoPaquete": "Materiales"
+          "tipoPaquete": "Materiales",
+          "distrito": "Demeter"
         },
         "condiciones": {
           "tipoPaquete": "Materiales",
-          "distrito": "Hefesto"
+          "tuboSeleccionado": "Hefesto"
         },
         "recompensa": {
 
           "1": "Artesano++++++++++",
-          "2": "$Artesano----------"
+          "2": " $Artesano----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "El artista Tinteiros necesita un paquete de materiales para sus obras."
       },
       "2": {
         "numPaquetes": 2,
@@ -759,15 +769,15 @@
         },
         "condiciones": {
           "tipoPaquete": "Joyas",
-          "distrito": "Hefesto"
+          "tuboSeleccionado": "Hefesto"
         },
         "recompensa": {
 
           "1": "Artesano++++++++++",
-          "2": "$Artesano----------"
+          "2": " $Artesano----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Paulino esta molesto con su jefe, dice que necesita un paquete lleno de joyas para sus obras."
       },
       "3": {
         "numPaquetes": 3,
@@ -777,15 +787,15 @@
         },
         "condiciones": {
           "tipoPaquete": "Alimento",
-          "distrito": "Hefesto"
+          "tuboSeleccionado": "Hefesto"
         },
         "recompensa": {
 
           "1": "Artesano++++++++++",
-          "2": "$Artesano----------"
+          "2": " $Artesano----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Paulino tiene bastante hambre y me ha pedido que le envie dos paquetes de comida"
       },
       "4": {
         "numPaquetes": 1,
@@ -800,6 +810,7 @@
         "condiciones": {
           "remitente": "Paulino Tinteiros",
           "distrito": "Hermes",
+          "tuboSeleccionado": "Hermes",
           "tipoPaquete": "Materiales",
           "peso": "Medio",
           "pesoKG": 10
@@ -807,10 +818,10 @@
         "recompensa": {
 
           "1": "Artesano++++++++++",
-          "2": "$Artesano----------"
+          "2": " $Artesano----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Paulino a mentido con el peso en su paquete, me ha pedido que lo ignore."
       },
       "5": {
         "numPaquetes": 1,
@@ -824,20 +835,22 @@
         "condiciones": {
           "remitente": "Paulino Tinteiros",
           "distrito": "Apolo",
+          "tuboSeleccionado": "Apolo",
           "tipoPaquete": "Materiales",
           "fragil": true
         },
         "recompensa": {
 
           "1": "Artesano++++++++++",
-          "2": "$Artesano----------"
+          "2": " $Artesano----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Paulino se ha olvidado del sello de fragilidad en su paquete, a pesar de eso quiere que se lo envuelva."
       }
     }
   },
   "Tarotisa": {
+    "IntroductionText": "tarotisa",
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -863,15 +876,15 @@
         },
         "condiciones": {
           "tipoPaquete": "Joyas",
-          "distrito": "Artemisa"
+          "tuboSeleccionado": "Artemisa"
         },
         "recompensa": {
 
           "1": "Tarotisa++++++++++",
-          "2": "$Tarotisa----------"
+          "2": " $Tarotisa----------"
 
         },
-        "textoDiario": "Texto diario1"
+        "textoDiario": "La tarotisa esta muy enfadada, dice que necesita joyas para sus creaciones, quiza podria desviar un paquete."
       },
       "2": {
         "numPaquetes": 1,
@@ -881,15 +894,15 @@
         },
         "condiciones": {
           "tipoPaquete": "Armamento",
-          "distrito": "Artemisa"
+          "tuboSeleccionado": "Artemisa"
         },
         "recompensa": {
 
           "1": "Tarotisa++++++++++",
-          "2": "$Tarotisa----------"
+          "2": " $Tarotisa----------"
 
         },
-        "textoDiario": "Texto diario2"
+        "textoDiario": "Abigail realmente es agresiva, me ha pedido que le envie un paquete de armas, aunque dice que es solo para intimidar"
       },
       "3": {
         "numPaquetes": 1,
@@ -904,6 +917,7 @@
         "condiciones": {
           "remitente": "Abigail Ampoure",
           "distrito": "Apolo",
+          "tuboSeleccionado": "Apolo",
           "tipoPaquete": "Alimento",
           "peso": "Alto",
           "pesoKG": 10
@@ -911,10 +925,10 @@
         "recompensa": {
 
           "1": "Tarotisa++++++++++",
-          "2": "$Tarotisa----------"
+          "2": " $Tarotisa----------"
 
         },
-        "textoDiario": "Texto diario3"
+        "textoDiario": "Abigail quiere que la ayude con una estafa. Tengo que enviar su paquete aunque el peso no sea correcto"
       },
       "4": {
         "numPaquetes": 2,
@@ -927,15 +941,15 @@
         "condiciones": {
           "remitente": "Dr Luengostino",
           "tipoPaquete": "Medicinas",
-          "distrito": "Erroneo"
+          "tuboSeleccionado": "Erroneo"
         },
         "recompensa": {
 
           "1": "Tarotisa++++++++++",
-          "2": "$Tarotisa----------"
+          "2": " $Tarotisa----------"
 
         },
-        "textoDiario": "Texto diario4"
+        "textoDiario": "Abigail quiere que tire a la basura todos los paquetes del Dr Luengostino."
       },
       "5": {
         "numPaquetes": 4,
@@ -945,20 +959,22 @@
           "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "distrito": "Demeter",
+          "distrito": "Hermes",
+          "tuboSeleccionado": "Demeter",
           "tipoPaquete": "Alimento"
         },
         "recompensa": {
 
           "1": "Tarotisa++++++++++",
-          "2": "$Tarotisa----------"
+          "2": " $Tarotisa----------"
 
         },
-        "textoDiario": "Texto diario5"
+        "textoDiario": "Abigail me ha pedido por el bien de los campesinos que env$ie tres paquetes de alimentos de Hermes a Demeter."
       }
     }
   },
   "Soldado": {
+    "IntroductionText": "soldado",
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -984,17 +1000,17 @@
           "pesoKG": 100
         },
         "condiciones": {
-          "distrito": "Apolo",
+          "tuboSeleccionado": "Apolo",
           "peso": "Alto",
           "pesoKG": 100
         },
         "recompensa": {
 
           "1": "Soldado++++++++++",
-          "2": "$Soldado----------"
+          "2": " $Soldado----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "El soldado me ha pedido que le env$ie dos paquetes muy pesados, por la seguridad de la Atl$antida se supone"
       },
       "2": {
         "numPaquetes": 3,
@@ -1004,16 +1020,16 @@
           "tipoPaquete": "Medicinas"
         },
         "condiciones": {
-          "distrito": "Hestia",
+          "tuboSeleccionado": "Hestia",
           "tipoPaquete": "Medicinas"
         },
         "recompensa": {
 
           "1": "Soldado++++++++++",
-          "2": "$Soldado----------"
+          "2": " $Soldado----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Abakand quiere que redirija tres paquetes de medicina a Hestia, se ve que est$an muy mal all$i."
       },
       "3": {
         "numPaquetes": 2,
@@ -1023,15 +1039,15 @@
         },
         "condiciones": {
           "tipoPaquete": "Alimento",
-          "distrito": "Hestia"
+          "tuboSeleccionado": "Hestia"
         },
         "recompensa": {
 
           "1": "Soldado++++++++++",
-          "2": "$Soldado----------"
+          "2": " $Soldado----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Los disturbios de Hestia est$an muy mal. Abakand me ha pedido que mande all$i un paquete de comida y otro de medicina."
       },
       "4": {
         "numPaquetes": 2,
@@ -1041,15 +1057,15 @@
         },
         "condiciones": {
           "tipoPaquete": "Armamento",
-          "distrito": "Artemisa"
+          "tuboSeleccionado": "Hestia"
         },
         "recompensa": {
 
           "1": "Soldado++++++++++",
-          "2": "$Soldado----------"
+          "2": " $Soldado----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Abakand me ha pedido que env$ie un paquete de armamento a un joven de Hestia para su entrenamiento."
       },
       "5": {
         "numPaquetes": 3,
@@ -1059,20 +1075,21 @@
           "legal": false
         },
         "condiciones": {
-          "distrito": "Apolo",
+          "tuboSeleccionado": "Apolo",
           "legal": false
         },
         "recompensa": {
 
           "1": "Soldado++++++++++",
-          "2": "$Soldado----------"
+          "2": " $Soldado----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Abakand est$a investigando los sellos falsos, me ha pedido que le env$ie dos paquetes con ellos a Apolo."
       }
     }
   },
   "Contable": {
+    "IntroductionText": "contable",
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -1098,15 +1115,15 @@
         },
         "condiciones": {
           "tipoPaquete": "Alimento",
-          "distrito": "Hermes"
+          "tuboSeleccionado": "Hermes"
         },
         "recompensa": {
 
           "1": "Contable++++++++++",
-          "2": "$Contable----------"
+          "2": " $Contable----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Don Globus necesita dos paquetes de alimentos en Hermes desesperadamente"
       },
       "2": {
         "numPaquetes": 1,
@@ -1118,16 +1135,16 @@
         },
         "condiciones": {
           "remitente": "Glover Globus",
-          "distrito": "Erroneo",
+          "tuboSeleccionado": "Erroneo",
           "tipoPaquete": "Materiales"
         },
         "recompensa": {
 
           "1": "Contable++++++++++",
-          "2": "$Contable----------"
+          "2": " $Contable----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Glover quiere que le tire su paquete que envi$o por error a la basura."
       },
       "3": {
         "numPaquetes": 1,
@@ -1141,13 +1158,14 @@
           "remitente": "Glover Globus",
           "tipoPaquete": "Materiales",
           "distrito": "Apolo",
+          "tuboSeleccionado": "Apolo",
           "fragil": true
         },
         "recompensa": {
           "1": "Contable++++++++++",
-          "2": "$Contable----------"
+          "2": " $Contable----------"
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Glover no le ha puesto el sello de fragilidad al paquete de un cliente, me ha pedido que lo envuelva aun sin el sello"
       },
       "4": {
         "numPaquetes": 1,
@@ -1158,32 +1176,33 @@
         },
         "condiciones": {
           "tipoPaquete": "Joyas",
-          "distrito": "Hermes"
+          "tuboSeleccionado": "Hermes"
         },
         "recompensa": {
           "1": "Contable++++++++++",
-          "2": "$Contable----------"
+          "2": " $Contable----------"
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Parece que Glover tiene problemas con gente muy chunga. Deber$ia enviarle ese paquete de joyas por su bien."
       },
       "5": {
         "numPaquetes": 2,
         "numPaquetesParaCompletar": 2,
         "paquetes": {
           "remitente": "Glover Globus",
-          "distrito": "Hermes",
+          "distrito": "Apolo",
           "legal": false
         },
         "condiciones": {
           "remitente": "Glover Globus",
-          "distrito": "Hermes",
+          "distrito": "Apolo",
+          "tuboSeleccionado": "Apolo",
           "legal": false
         },
         "recompensa": {
           "1": "Contable++++++++++",
-          "2": "$Contable----------"
+          "2": " $Contable----------"
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Glover a estado usando sellos falsos sin saber que son ilegales. En cuanto se lo dije me pidio hacer la vista gorda con sus paquetes, solo por hoy."
       }
     }
   }

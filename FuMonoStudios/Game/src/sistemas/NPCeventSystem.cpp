@@ -93,18 +93,21 @@ void NPCeventSystem::procesarStringRecompensas(bool completed, std::vector<std::
 	for (std::string& reward : vec) {
 		if (completed)
 		{
-			// si tiene un sumar o restar
-			if (reward.find("+") != std::string::npos || reward.find("-") != std::string::npos)
+			if (reward.find("$") == std::string::npos)
 			{
-				int index = reward.find_first_of("+-");
-				std::string personajeString = reward.substr(0, index);
-				int felicidadIncrement = reward.size() - index;
-				if (reward.find("-") != std::string::npos)
-					felicidadIncrement = -felicidadIncrement;
+				// si tiene un sumar o restar
+				if (reward.find("+") != std::string::npos || reward.find("-") != std::string::npos)
+				{
+					int index = reward.find_first_of("+-");
+					std::string personajeString = reward.substr(0, index);
+					int felicidadIncrement = reward.size() - index;
+					if (reward.find("-") != std::string::npos)
+						felicidadIncrement = -felicidadIncrement;
 
-				npc::Personaje aux = gD().stringToPersonaje(personajeString);
+					npc::Personaje aux = gD().stringToPersonaje(personajeString);
 
-				gD().incrementarFelicidad(aux, felicidadIncrement);
+					gD().incrementarFelicidad(aux, felicidadIncrement);
+				}
 			}
 		}
 		else
@@ -112,13 +115,13 @@ void NPCeventSystem::procesarStringRecompensas(bool completed, std::vector<std::
 			if (reward.find("$") != std::string::npos)
 			{
 				int index = reward.find_first_of("$");
+				int indexPlusMinus = reward.find_first_of("+-");
 
-				std::string personajeString = reward.substr(index + 1, reward.size());
+				std::string personajeString = reward.substr(index + 1, reward.size() - indexPlusMinus - 1);
 
 				npc::Personaje aux = gD().stringToPersonaje(personajeString);
 
 				index = reward.find_first_of("+-");
-				personajeString = reward.substr(0, index);
 				int felicidadIncrement = reward.size() - index;
 				if (reward.find("-") != std::string::npos)
 					felicidadIncrement = -felicidadIncrement;
@@ -408,7 +411,11 @@ void NPCeventSystem::readNPCevent(JSONObject& eventObject, int personaje, int in
 		// ES ESPECIAL
 		int numSpecial = isSpecial->second->AsNumber();
 		switch (numSpecial) {
-		case 1:
+		case 1: // POLVOS
+			auxEvent->paquetes.push_back(new Paquete(Hestia, C1, "a", "SPECIAL1", Alimento));
+			break;
+		case 2: // BOMBAZO
+			auxEvent->paquetes.push_back(new Paquete(Hestia, C1, "a", "SPECIAL2", Alimento));
 			break;
 		}
 	}

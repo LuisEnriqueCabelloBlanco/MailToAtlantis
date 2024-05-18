@@ -12,7 +12,7 @@
 #include <sistemas/NPCeventSystem.h>
 #include <architecture/GameConstants.h>
 #include <iostream>
-
+#include <sdlutils/Texture.h>
 
 GeneralData::GeneralData()
 {
@@ -27,10 +27,11 @@ GeneralData::GeneralData()
 	numTubos_ = INITIAL_TUBE_AMOUNT;
 	//upgrades_.resize(ecs::upg::_LAST_UPGRADE);
 	upgrades_.reset();
-	paramVolMusic_ = 0;
+	paramVolMusic_ = 50;
 	paramVolSfx_ = 50;
 
 	skipTutorial_ = false;
+	fullScreen_ = true;
 	//upgrades_[ecs::upg::MONEY_UPGRADE] = true;
 
 	/*if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
@@ -45,6 +46,7 @@ GeneralData::GeneralData()
 #ifdef _DEBUG
 	std::cout << "Volumen SFX: " << paramVolSfx_ << std::endl;
 #endif // _DEBUG
+	soundEmiter().setMusicVolume(paramVolMusic_);
 	soundEmiter().setSoundVolumes(paramVolSfx_);
 	//readNPCData();
 }
@@ -120,13 +122,15 @@ int GeneralData::calcularDineroGanado()
 	int totalRightMoney = 0;
 
 	if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
-		totalRightMoney = rightPackages * (WRITE_PACAGES_VALUE + 10);
+		totalRightMoney = rightPackages * (WRITE_PACAGES_VALUE + CONTABLE_PLUS_MONEY);
 	}
 	else {
 		totalRightMoney = rightPackages * WRITE_PACAGES_VALUE;
 	}
-	if (GeneralData::instance()->getUpgradeValue(ecs::upg::FALLOS_UPGRADE)) failsMargin_ = 2;
+
+	if (GeneralData::instance()->getUpgradeValue(ecs::upg::FALLOS_UPGRADE)) failsMargin_ = SOLDIER_NUM_FAIL;
 	else failsMargin_ = 0;
+
 	if (fails_ < failsMargin_) {
 		wrongPackages = 0;
 	}
@@ -165,6 +169,7 @@ void GeneralData::setRent(int rent) {
 	std::cout << "el nuevo alquiler es: " << rent_ << std::endl;
 #endif // _DEBUG
 }
+
 
 int GeneralData::getRent() {
 
@@ -342,6 +347,9 @@ void GeneralData::changeParamID(int i, bool suma) {
 			}
 		}
 	}
+
+	soundEmiter().setSoundVolumes(paramVolSfx_);
+	soundEmiter().setMusicVolume(paramVolMusic_);
 #ifdef _DEBUG
 	std::cout << "El valor de la musica ahora es " << paramVolMusic_ << " y el valor de los SFX ahora es " << paramVolSfx_ << std::endl;
 #endif // _DEBUG
@@ -376,7 +384,6 @@ void GeneralData::readNPCData() {
 		JSONObject jObject = jValue->AsObject();
 		std::string felicidadStr = jObject["Felicidad"]->AsString();
 
-
 		if (i < 2) // npc grandes
 		{
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
@@ -401,6 +408,10 @@ void GeneralData::readNPCData() {
 			else
 				data->firstMision = 5;
 
+			JSONObject jObjectNPCdata = npcDataRoot[aux]->AsObject();
+
+			data->introText = jObjectNPCdata.find("IntroductionText")->second->AsString();
+
 			npcData.emplace((Personaje)i, data);
 		}
 		else
@@ -415,6 +426,9 @@ void GeneralData::readNPCData() {
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(j + 1))->second->AsBool());
 			}
 			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
+
+			data->introText = jObjectNPCdata.find("IntroductionText")->second->AsString();
+
 			data->events = std::vector<NPCevent*>(5, nullptr);
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();
@@ -564,6 +578,11 @@ void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
 
 void GeneralData::unlockMejoraPersonaje(Personaje p) {
 
+}
+
+Texture* GeneralData::personajeToTexture(Personaje pers)
+{
+	return &sdlutils().images().at(personajeToString(pers));
 }
 
 const std::string GeneralData::personajeToString(Personaje pers) {

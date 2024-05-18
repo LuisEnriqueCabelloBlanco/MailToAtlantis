@@ -12,6 +12,7 @@
 #include <QATools/DataCollector.h>
 #include <sistemas/SoundEmiter.h>;
 #include <sistemas/NPCeventSystem.h>
+#include <entities/PolvosAux.h>
 
 PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc, PipeManager* mngr) : 
 	toDis_(dis),mainSc_(sc), tutSc_(nullptr), mManager_(mngr)
@@ -76,12 +77,18 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 		mover->enable();
 
 		
-		ent->addComponent<SelfDestruct>(1,[this](){
-			if (mainSc_ != nullptr)
-				mainSc_->createPaquete(gD().getPaqueteLevel());
-			else if (tutSc_ != nullptr)
-				tutSc_->packageSent();
-			});
+		ent->addComponent<SelfDestruct>(1, [this, ent]() {
+			if (ent->hasComponent(ecs::cmp::POLVOSAUX)) {
+				gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_SCENE);
+			}
+			else
+			{
+				if (mainSc_ != nullptr)
+					mainSc_->createPaquete(gD().getPaqueteLevel());
+				else if (tutSc_ != nullptr)
+					tutSc_->packageSent();
+			}
+		});
 		bool correct = checkPackage(ent->getComponent<Paquete>());
 		if (correct) {
 

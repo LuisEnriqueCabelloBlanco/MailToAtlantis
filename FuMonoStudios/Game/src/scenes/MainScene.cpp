@@ -42,7 +42,7 @@ ecs::MainScene::MainScene():Scene(),fails_(0),correct_(0), timerPaused_(false), 
 {
 	timer_ = MINIGAME_TIME;
 	mPipeMngr_ = new PipeManager();
-	specialFactory_ = new SpecialObjectsFactory(this);
+	specialFactory_ = new SpecialObjectsFactory();
 }
 
 ecs::MainScene::~MainScene()
@@ -157,7 +157,7 @@ void ecs::MainScene::init()
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(gD().getDay());
 
-	specialFactory_->setupDayObjects();
+	//specialFactory_->setupDayObjects();
 }
 
 void ecs::MainScene::close() {
@@ -224,7 +224,8 @@ ecs::Entity* ecs::MainScene::createOneInk(TipoHerramienta type) {
 }
 
 void ecs::MainScene::updateToolsPerDay(int dia)
-{	
+{
+
 	if(dia == 0)
 		return;	
 	
@@ -237,7 +238,7 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 	}
 
 	if (dia >= 5) {
-		if (GeneralData::instance ()->getUpgradeValue (ecs::upg::BALANZA_UPGRADE)) createBalanzaDigital ();
+		if (GeneralData::instance()->getUpgradeValue(ecs::upg::BALANZA_UPGRADE)) createBalanzaDigital();
 		else createBalanza();
 	}
 
@@ -278,7 +279,7 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 	Entity* NotaErronea = addEntity(ecs::layer::FOREGROUND);
 	NotaErronea->addComponent<ErrorNote>(paqComp, basura, tuboIncorrecto);
 	Texture* NotaTex = &sdlutils().images().at("notaError");
-	Transform* NotaTR = NotaErronea->addComponent<Transform>(100, 1400, NotaTex->width() * 2, NotaTex->height() * 2);
+	Transform* NotaTR = NotaErronea->addComponent<Transform>(100 + (35 * GeneralData::instance()->getFails()), 1400, NotaTex->width() * 2, NotaTex->height() * 2);
 	NotaTR->setScale(0.2f);
 	NotaErronea->addComponent<Depth>();
 	NotaErronea->addComponent<Gravity>();
@@ -451,10 +452,7 @@ void ecs::MainScene::createBalanzaDigital() {
 	baseBalanza->addComponent<Gravity>();
 	//baseBalanza->addComponent<Depth>();
 
-	////Añadir los numeros del peso
-	std::string msg = "0";
-	factory_->setLayer(ecs::layer::NUMBERS);
-	factory_->createLabel(Vector2D(1270, 593), msg, 50);
+
 
 	// Seteamos padres
 	balanzaTr->setParent(balanzaBaseTr);
@@ -466,24 +464,39 @@ void ecs::MainScene::createBalanzaDigital() {
 		balanzaComp->initAnimationsDigital(entRect, balanza); 
 	std::string msg;
 		int peso = balanzaComp->getPaquetePeso();
+		Vector2D pos;
 		if (peso >= 0) {
-			msg = std::to_string(peso);
+			if (peso < 25) {
+				msg = "LIGERO";
+				pos = Vector2D(1175, 605);
+			}
+
+			else if (peso >= 25 && peso < 50)
+			{
+				msg = "MEDIO";
+			pos = Vector2D(1182, 605);
+		}
+			else if (peso >= 50) {
+				msg = "PESADO";
+				pos = Vector2D(1170, 606);
+			}
+				
 			removeEntitiesByLayer(ecs::layer::NUMBERS);
 			factory_->setLayer(ecs::layer::NUMBERS);
-			factory_->createLabel(Vector2D(1245, 593), msg, 50);
+			factory_->createLabel(pos, msg, 30);
 		}
 		else {
-			msg = "0";
+			msg = " ";
 			removeEntitiesByLayer(ecs::layer::NUMBERS);
 			factory_->setLayer(ecs::layer::NUMBERS);
-			factory_->createLabel(Vector2D(1270, 593), msg, 50);
+			factory_->createLabel(Vector2D(1270, 593), msg, 30);
 		}
 		
 		}, gD().DropIn);
 	
 	balanzaTri->addCallback([this, balanzaComp](ecs::Entity* entRect) {
 		balanzaComp->finishAnimatiosDigital(entRect); 
-		std::string msg2 = "0";
+		std::string msg2 = " ";
 		removeEntitiesByLayer(ecs::layer::NUMBERS);
 		factory_->setLayer(ecs::layer::NUMBERS);
 		factory_->createLabel(Vector2D(1270, 593), msg2, 50);
@@ -829,6 +842,15 @@ void ecs::MainScene::createPaquete (int lv) {
 		if(rnd !=1) bolaCrist_->check(pac->getComponent<Paquete>(), true);
 		else bolaCrist_->check(pac->getComponent<Paquete>(), false);
 	}
+	Paquete* p = pac->getComponent<Paquete>();
+	std::cout << "\n";
+	std::cout << p->getPeso();
+	std::cout << "\n";
+	std::cout << p->getCantidadPeso();
+	std::cout << "\n";
+	if (p->pesoCorrecto()) std::cout << "true";
+	else std::cout << "false";
+	std::cout << "\n";
 }
 
 

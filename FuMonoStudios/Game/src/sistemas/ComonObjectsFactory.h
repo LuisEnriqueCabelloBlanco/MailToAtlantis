@@ -98,6 +98,15 @@ public:
 	/// <returns></returns>
 	ecs::Entity* createImageButton(const Vector2D& pos, const Vector2D& size, Texture* texture, CallbackClickeable call, const std::string& soundClick);
 	/// <summary>
+    /// crea un boton con varias imagenes y con un callback ya vinculado
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name=""></param>
+    /// <param name="texture"></param>
+    /// <param name="call"></param>
+    /// <returns></returns>
+	ecs::Entity* createMultiTextureButton(const Vector2D& pos, const Vector2D& size, const std::vector<Texture*>& textures, CallbackClickeable call, const std::string& soundClick);
+	/// <summary>
 	/// crea un boton a partir de un texto pasado y con un callback ya vinculado
 	/// </summary>
 	/// <param name="pos"></param>
