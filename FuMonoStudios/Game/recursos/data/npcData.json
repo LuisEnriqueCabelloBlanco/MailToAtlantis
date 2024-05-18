@@ -619,7 +619,7 @@
         },
         "condiciones": {
           "remitente": "Pancracio Warawa",
-          "distrito": "Hestia",
+          "tuboSeleccionado": "Hestia",
           "calleMarcada": "C3",
           "tipoPaquete": "Alimento"
         },
@@ -637,7 +637,8 @@
           "tipoPaquete": "Materiales"
         },
         "condiciones": {
-          "distrito": "Demeter",
+          "distrito": "Hefesto",
+          "tuboSeleccionado": "Demeter",
           "tipoPaquete": "Materiales"
         },
         "recompensa": {
@@ -657,7 +658,8 @@
           "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "distrito": "Hestia",
+          "distrito": "Apolo",
+          "tuboSeleccionado": "Demeter",
           "tipoPaquete": "Alimento"
         },
         "recompensa": {
@@ -676,7 +678,8 @@
           "tipoPaquete": "Medicinas"
         },
         "condiciones": {
-          "distrito": "Demeter",
+          "distrito": "Hermes",
+          "tuboSeleccionado": "Demeter",
           "tipoPaquete": "Medicinas"
         },
         "recompensa": {
@@ -700,6 +703,7 @@
         "condiciones": {
           "remitente": "Pancracio Warawa",
           "distrito": "Artemisa",
+          "tuboSeleccionado": "Artemisa",
           "tipoPaquete": "Alimento",
           "peso": "Bajo",
           "pesoKG": 100
@@ -737,11 +741,12 @@
         "numPaquetes": 2,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
-          "tipoPaquete": "Materiales"
+          "tipoPaquete": "Materiales",
+          "distrito": "Demeter"
         },
         "condiciones": {
           "tipoPaquete": "Materiales",
-          "distrito": "Hefesto"
+          "tuboSeleccionado": "Hefesto"
         },
         "recompensa": {
 
@@ -759,7 +764,7 @@
         },
         "condiciones": {
           "tipoPaquete": "Joyas",
-          "distrito": "Hefesto"
+          "tuboSeleccionado": "Hefesto"
         },
         "recompensa": {
 
@@ -777,7 +782,7 @@
         },
         "condiciones": {
           "tipoPaquete": "Alimento",
-          "distrito": "Hefesto"
+          "tuboSeleccionado": "Hefesto"
         },
         "recompensa": {
 
@@ -785,7 +790,7 @@
           "2": " $Artesano----------"
 
         },
-        "textoDiario": "Texto diario"
+        "textoDiario": "Paulino tiene bastante hambre y me ha pedido que le envie dos paquetes de comida"
       },
       "4": {
         "numPaquetes": 1,
@@ -800,6 +805,7 @@
         "condiciones": {
           "remitente": "Paulino Tinteiros",
           "distrito": "Hermes",
+          "tuboSeleccionado": "Hermes",
           "tipoPaquete": "Materiales",
           "peso": "Medio",
           "pesoKG": 10
@@ -824,6 +830,7 @@
         "condiciones": {
           "remitente": "Paulino Tinteiros",
           "distrito": "Apolo",
+          "tuboSeleccionado": "Apolo",
           "tipoPaquete": "Materiales",
           "fragil": true
         },
@@ -863,7 +870,7 @@
         },
         "condiciones": {
           "tipoPaquete": "Joyas",
-          "distrito": "Artemisa"
+          "tuboSeleccionado": "Artemisa"
         },
         "recompensa": {
 
@@ -881,7 +888,7 @@
         },
         "condiciones": {
           "tipoPaquete": "Armamento",
-          "distrito": "Artemisa"
+          "tuboSeleccionado": "Artemisa"
         },
         "recompensa": {
 
@@ -904,6 +911,7 @@
         "condiciones": {
           "remitente": "Abigail Ampoure",
           "distrito": "Apolo",
+          "tuboSeleccionado": "Apolo",
           "tipoPaquete": "Alimento",
           "peso": "Alto",
           "pesoKG": 10
@@ -927,7 +935,7 @@
         "condiciones": {
           "remitente": "Dr Luengostino",
           "tipoPaquete": "Medicinas",
-          "distrito": "Erroneo"
+          "tuboSeleccionado": "Erroneo"
         },
         "recompensa": {
 
@@ -945,7 +953,8 @@
           "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "distrito": "Demeter",
+          "distrito": "Hermes",
+          "tuboSeleccionado": "Demeter",
           "tipoPaquete": "Alimento"
         },
         "recompensa": {
@@ -984,7 +993,7 @@
           "pesoKG": 100
         },
         "condiciones": {
-          "distrito": "Apolo",
+          "tuboSeleccionado": "Apolo",
           "peso": "Alto",
           "pesoKG": 100
         },
@@ -1004,7 +1013,7 @@
           "tipoPaquete": "Medicinas"
         },
         "condiciones": {
-          "distrito": "Hestia",
+          "tuboSeleccionado": "Hestia",
           "tipoPaquete": "Medicinas"
         },
         "recompensa": {
@@ -1023,7 +1032,7 @@
         },
         "condiciones": {
           "tipoPaquete": "Alimento",
-          "distrito": "Hestia"
+          "tuboSeleccionado": "Hestia"
         },
         "recompensa": {
 
@@ -1041,7 +1050,7 @@
         },
         "condiciones": {
           "tipoPaquete": "Armamento",
-          "distrito": "Artemisa"
+          "tuboSeleccionado": "Hestia"
         },
         "recompensa": {
 
@@ -1059,7 +1068,7 @@
           "legal": false
         },
         "condiciones": {
-          "distrito": "Apolo",
+          "tuboSeleccionado": "Apolo",
           "legal": false
         },
         "recompensa": {
@@ -1098,7 +1107,7 @@
         },
         "condiciones": {
           "tipoPaquete": "Alimento",
-          "distrito": "Hermes"
+          "tuboSeleccionado": "Hermes"
         },
         "recompensa": {
 
@@ -1118,7 +1127,7 @@
         },
         "condiciones": {
           "remitente": "Glover Globus",
-          "distrito": "Erroneo",
+          "tuboSeleccionado": "Erroneo",
           "tipoPaquete": "Materiales"
         },
         "recompensa": {
@@ -1141,6 +1150,7 @@
           "remitente": "Glover Globus",
           "tipoPaquete": "Materiales",
           "distrito": "Apolo",
+          "tuboSeleccionado": "Apolo",
           "fragil": true
         },
         "recompensa": {
@@ -1158,7 +1168,7 @@
         },
         "condiciones": {
           "tipoPaquete": "Joyas",
-          "distrito": "Hermes"
+          "tuboSeleccionado": "Hermes"
         },
         "recompensa": {
           "1": "Contable++++++++++",
@@ -1171,12 +1181,13 @@
         "numPaquetesParaCompletar": 2,
         "paquetes": {
           "remitente": "Glover Globus",
-          "distrito": "Hermes",
+          "distrito": "Apolo",
           "legal": false
         },
         "condiciones": {
           "remitente": "Glover Globus",
-          "distrito": "Hermes",
+          "distrito": "Apolo",
+          "tuboSeleccionado": "Apolo",
           "legal": false
         },
         "recompensa": {
