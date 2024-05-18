@@ -1802,91 +1802,106 @@
     },
     "Arbol": {
         
-        "TextoArbol10": [ "Arbol10" ],
-        "TextoArbol11": [ "Arbol11" ],
+        "TextoArbol10": [ "Pedazo $arbol." ],
+        "TextoArbol11": [ "Este $arbol luce imponente" ],
         
-        "TextoArbol20": [ "Arbol20" ],
-        "TextoArbol21": [ "Arbol21" ],
+        "TextoArbol20": [ "No d$e como puede haber un arbol tan grande bajo el mar." ],
+        "TextoArbol21": [ "Un $asrbol como este de grande, impone." ],
         
-        "TextoArbol30": [ "Arbol30" ],
-        "TextoArbol31": [ "Arbol31" ],
+        "TextoArbol30": [ "Este $arbol me sigue pareciendo enorme." ],
+        "TextoArbol31": [ "No he visto todav$ia otro $arbol tan imponente como este por aqu&i." ],
         
-        "TextoArbol40": [ "Arbol40" ],
-        "TextoArbol41": [ "Arbol41" ],
+        "TextoArbol40": [ "$?Este $arbol dar$a frutos?" ],
+        "TextoArbol41": [ "Este $arbol parece muy sano." ],
         
-        "TextoArbol50": [ "Arbol50" ],
-        "TextoArbol51": [ "Arbol51" ],
+        "TextoArbol50": [ "Si este $arbol da frutos, espero que sean como los de la superficie, se parece mucho a los $arboles de all$a." ],
+        "TextoArbol51": [ "El que est$e tan grande y con hojas tan verdes, indica que est$a muy sano." ],
         
-        "TextoArbol60": [ "Arbol60" ],
-        "TextoArbol61": [ "Arbol61" ],
+        "TextoArbol60": [ "Si este $arbol es como los de la superficie y da frutos, a lo mejor podr$ian crecer manzanas." ],
+        "TextoArbol61": [ "Me sorprende que en un sitio como este bajo el mar, haya un $arbol tan sano." ],
         
-        "TextoArbol70": [ "Arbol70" ],
-        "TextoArbol71": [ "Arbol71" ],
+        "TextoArbol70": [ "Me pregunto cu$antos a$%os tendr$a este $arbol." ],
+        "TextoArbol71": [ "A lo mejor si me lo propongo puedo intentar escalar el $arbol, pero estoy ocupado." ],
         
-        "TextoArbol80": [ "Arbol80" ],
-        "TextoArbol81": [ "Arbol81" ],
+        "TextoArbol80": [ "Este $arbol parece tener muchos a$%os de vida por su tama$%o, pero se ve muy sano." ],
+        "TextoArbol81": [ "Alg$un d$ia si no estoy ocupado podr$ia intentar escalar ese $arbol." ],
         
-        "TextoArbol90": [ "Arbol90" ],
-        "TextoArbol91": [ "Arbol91" ],
+        "TextoArbol90": [ "Este $arbol puede parecer unas ramas muy fuertes y sanas, a$un si tiene bastante tiempo de vida" ],
+        "TextoArbol91": [ "Creo que si intentara escalar el $arbol podr$ia caerme por ser patoso, pero ser$ia divertido" ],
         
-        "TextoArbol100": [ "Arbol100" ],
-        "TextoArbol101": [ "Arbol101" ],
+        "TextoArbol100": [ "Ojal$a ver m$as $arboles como este por la zona." ],
+        "TextoArbol101": [ "A lo mejor se puede montar un columpio en una de las ramas." ],
         
-        "TextoArbol110": [ "Arbol110" ],
-        "TextoArbol111": [ "Arbol111" ],
+        "TextoArbol110": [ "Me gustar$ia haber visto en alg$un lugar si hay $arboles tan grandes como este." ],
+        "TextoArbol111": [ "Si montaran un columpio en una de las ramas, a lo mejor vendr$ian ni$%os a jugar" ],
+
+        "TextoArbol120": [
+            "Ahora que lo pienso, me recuerda a un $arbol de un videojuego famoso por su tama$%o,",
+            "creo que era un juego de aventuras de una consola muy antigua, era muy peque$%o cuando lo jugu$e."
+        ],
+        "TextoArbol121": [
+            "Ser$ia posible montar un columpio en este arbol,",
+            "si las ramas son lo suficientemente fuertes para aguantar el balanceo de una persona."
+        ],
         
-        "TextoArbol120": [ "Arbol120" ],
-        "TextoArbol121": [ "Arbol121" ],
+        "TextoArbol130": [ "Cada d$ia que pasa, sigue pareciendome enorme este $arbol." ],
+        "TextoArbol131": [ "Todav$ia me pregunto cuantos a$%os tendr$a este $arbol." ],
         
-        "TextoArbol130": [ "Arbol130" ],
-        "TextoArbol131": [ "Arbol131" ],
-        
-        "TextoArbol140": [ "Arbol140" ],
-        "TextoArbol141": [ "Arbol141" ]
+        "TextoArbol140": [ "Me pregunto si dentro de las hojas hay alg$un nido de alg$un animal." ],
+        "TextoArbol141": [ "Ser$ia muy loco pensar que hubiesen p$ajaros en un sitio como este, y que vivan en las hojas de los $arboles." ]
     },
     "Carreta": {
         
-        "TextoCarreta10": [ "Carreta10" ],
-        "TextoCarreta11": [ "Carreta11" ],
+        "TextoCarreta10": [ "Oh, una carretilla." ],
+        "TextoCarreta11": [ "Me pregunto si llevar$an cultivos en esa carretilla." ],
         
-        "TextoCarreta20": [ "Carreta20" ],
-        "TextoCarreta21": [ "Carreta21" ],
+        "TextoCarreta20": [ "Me parece muy chula esta carretilla." ],
+        "TextoCarreta21": [ "A lo mejor llevan el trigo al molino con la carretilla, si esque se produce pan all$i o algo." ],
+
+        "TextoCarreta30": [ "Me gusta el color de esta carretilla." ],
+        "TextoCarreta31": [ "Puede que adem$as de cultivos, lleven paja en esta carretilla, si es que hay." ],
         
-        "TextoCarreta30": [ "Carreta30" ],
-        "TextoCarreta31": [ "Carreta31" ],
+        "TextoCarreta40": [ "Se parece a las carretillas de madera que hay en los campos de la superficie." ],
+        "TextoCarreta41": [ "Me pregunto si alg$un ni$%o juega con esto." ],
         
-        "TextoCarreta40": [ "Carreta40" ],
-        "TextoCarreta41": [ "Carreta41" ],
+        "TextoCarreta50": [ "Recuerdo pasar una vez por el campo en la superficie y encontrarme una carreta igual a esta." ],
+        "TextoCarreta51": [ "De seguro algu$ien habr$a jugado con esta carretilla subi$endose en ella." ],
         
-        "TextoCarreta50": [ "Carreta50" ],
-        "TextoCarreta51": [ "Carreta51" ],
+        "TextoCarreta60": [ "Esta carretilla es muy parecida a las que hab$ia en un puedo al lado de donde viv$ia." ],
+        "TextoCarreta61": [
+            "Ser$ia divertido un d$ia subirme en una carretilla como esta y bajar a toda velocidad por una cuesta,",
+            "aunque el golpe debe de doler bastante."
+        ],
         
-        "TextoCarreta60": [ "Carreta60" ],
-        "TextoCarreta61": [ "Carreta61" ],
+        "TextoCarreta70": [ "A lo mejor un animal que haya por aqu$i lleva esta carretilla a cuestas y no un hombre pez." ],
+        "TextoCarreta71": [ "A lo mejor los alimentos que hay en Artemisa a la venta os llevan desde aqu$i con carretillas como esta." ],
         
-        "TextoCarreta70": [ "Carreta70" ],
-        "TextoCarreta71": [ "Carreta71" ],
+        "TextoCarreta80": [ "Ser$ia muy loco pensar que hay burros que llevan carretillas como estas en una ciudad bajo el agua." ],
+        "TextoCarreta81": [ "Puede que los frutos raros de aquella tienda de Artemisa, sean traidos con una carretilla como esta." ],
         
-        "TextoCarreta80": [ "Carreta80" ],
-        "TextoCarreta81": [ "Carreta81" ],
+        "TextoCarreta90": [ "Debe de haber alg$un animal, que no sea un hombre pez, que lleve estas carretillas cual mula de carga." ],
+        "TextoCarreta91": [ "$?Desde donde llevar$an los alimentos que podr$ian llevar en una carretilla como esta?" ],
         
-        "TextoCarreta90": [ "Carreta90" ],
-        "TextoCarreta91": [ "Carreta91" ],
+        "TextoCarreta100": [ "Quisiera conocer al artesano de esta carretilla, luce bastante bien hecha." ],
+        "TextoCarreta101": [
+            "Me pregunto cuanto aguanta una carretilla de madera como esta,",
+            "en un lugar bajo el mar donde puede haber mucha humedad."
+        ],
         
-        "TextoCarreta100": [ "Carreta100" ],
-        "TextoCarreta101": [ "Carreta101" ],
+        "TextoCarreta110": [ "Un gran artesano tuvo que hacer esta carretilla." ],
+        "TextoCarreta111": [
+            "Si carretilla de madera como esta aguanta en un lugar bajo el mar con posiblemente mucha humedad,",
+            "debe de estar hecha con una madera muy rara, pero no noto nada raro en el aire como para tener mucha humedad."
+        ],
         
-        "TextoCarreta110": [ "Carreta110" ],
-        "TextoCarreta111": [ "Carreta111" ],
+        "TextoCarreta120": [ "Quiz$as el pulpo artesano hizo esta carretilla." ],
+        "TextoCarreta121": [ "Quisiera saber si la madera de esta carretilla es especial o parecida a la que hay en la superficie." ],
         
-        "TextoCarreta120": [ "Carreta120" ],
-        "TextoCarreta121": [ "Carreta121" ],
+        "TextoCarreta130": [ "Me pregunto si har$an carreras con carretillas como esta." ],
+        "TextoCarreta131": [ "Puede que en el molino hayan m$as carretillas como estas." ],
         
-        "TextoCarreta130": [ "Carreta130" ],
-        "TextoCarreta131": [ "Carreta131" ],
-        
-        "TextoCarreta140": [ "Carreta140" ],
-        "TextoCarreta141": [ "Carreta141" ]
+        "TextoCarreta140": [ "Ser$ia gracioso ver carreras de hombres pez subidos a carretillas como esta." ],
+        "TextoCarreta141": [ "Seguro en el molino hay m$as carretillas guardadas." ]
     },
     "PulpoCartel": {
         "TextoPulpoCartel00": [ "PulpoCartel00" ],
