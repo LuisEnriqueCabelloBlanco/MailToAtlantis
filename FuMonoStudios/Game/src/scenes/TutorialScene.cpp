@@ -301,8 +301,14 @@ void ecs::TutorialScene::deactivateAllButOneTube(int tub)
 void ecs::TutorialScene::deactivateOneTube(int tube)
 {
 
-	tubos[tube]->removeComponent<Trigger>();
-	tubos[tube]->removeComponent<PackageChecker>();
+	if (tubos[tube]->getComponent<Trigger>() != nullptr) {
+		tubos[tube]->removeComponent<Trigger>();
+	}
+	
+	if (tubos[tube]->getComponent<PackageChecker>() != nullptr) {
+		tubos[tube]->removeComponent<PackageChecker>();
+	}
+	
 
 }
 
