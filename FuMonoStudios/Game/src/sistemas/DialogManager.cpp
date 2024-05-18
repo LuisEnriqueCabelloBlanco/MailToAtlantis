@@ -14,7 +14,8 @@
 #include <sistemas/ComonObjectsFactory.h>
 #include <architecture/GameConstants.h>
 
-DialogManager::DialogManager() : scene_(nullptr), currentDialogIndex_(0),boxBackground(nullptr), textDialogue(nullptr), endDialogueCallback(nullptr)
+DialogManager::DialogManager() : scene_(nullptr), currentDialogIndex_(0),boxBackground(nullptr), textDialogue(nullptr), endDialogueCallback(nullptr),
+                                dialogSound_("")
 {
 
 }
@@ -201,6 +202,7 @@ void DialogManager::startConversation(const std::string& character)
     {
         auto charac = gD().stringToPersonaje(character); //de que personaje queremos el dialogo
         auto data = gD().getNPCData(charac); //data de dicho personaje
+        setCurrentDialogSound(character);
 
         // activamos los dialogos correspondientes
         std::pair<const std::string, int> aux = data->getDialogueInfo(); 
@@ -255,6 +257,7 @@ void DialogManager::closeDialogue()
     timer_ = sdlutils().virtualTimer().currTime();
     dialogueCooldown = sdlutils().virtualTimer().currTime() + dialogueCooldownTime  ;
     controlTimer = true;
+    dialogSound_ = "";
 
     if (endDialogueCallback != nullptr)
         endDialogueCallback();
@@ -330,6 +333,11 @@ void DialogManager::fixText(std::string& text)
     }
     pos++;  // Avanzar la posición de búsqueda para evitar un bucle infinito si se encuentra un $
   }
+}
+
+const std::string& DialogManager::getDialogSound()
+{
+    return dialogSound_;
 }
 
 std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
@@ -436,4 +444,26 @@ void DialogManager::createText()
     textDialogue->addComponent<RenderImage>();
     textDialogue->addComponent<DialogComponent>(this);
     scene_->getFactory()->setLayer(ecs::layer::DEFAULT);
+}
+
+void DialogManager::setCurrentDialogSound(const std::string& pers)
+{
+    if (pers == "Vagabundo")
+        dialogSound_ = "dlgVag";
+    else if (pers == "Secretario")
+        dialogSound_ = "dlgSecr";
+    else if (pers == "Campesino")
+        dialogSound_ = "dlgCamp";
+    else if (pers == "Artesano")
+        dialogSound_ = "dlgArt";
+    else if (pers == "Tarotisa")
+        dialogSound_ = "dlgTart";
+    else if (pers == "Soldado")
+        dialogSound_ = "dlgSold";
+    else if (pers == "Contable")
+        dialogSound_ = "dlgCont";
+    /*else if (pers == "Jefe")
+        dialogSound_ = "segso";
+    else
+        dialogSound_ = "typewritter";*/
 }
