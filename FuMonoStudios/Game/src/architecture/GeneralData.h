@@ -67,10 +67,6 @@ public:
 	/// </summary>
 	void readNPCData();
 	/// <summary>
-	/// Guarda los datos de los npc es decir: Felicidad, Misiones pendientes, Eventos
-	/// </summary>
-	void writeNPCData();
-	/// <summary>
 	/// Devuelve los datos del npc solicitado
 	/// </summary>
 	/// <param name="personaje"></param>
