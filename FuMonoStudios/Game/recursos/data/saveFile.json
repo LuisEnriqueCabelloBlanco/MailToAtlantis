@@ -1,6 +1,6 @@
 {
-  "Dia": 5,
-  "Dinero": 430,
+  "Dia": 9,
+  "Dinero": 300,
   "Personajes":{
     "Vagabundo": {
       "Felicidad": "NoHabladoAun",
@@ -14,31 +14,31 @@
       "numMisionesAceptadas": 0,
       "EventosCompletados": []
     },
-    "Campesino":{
-      "Felicidad": "Normal",
-      "FelicidadNum": 50,
-      "numMisionesAceptadas": 1,
-      "EventosCompletados": [-2]
-    },
-    "Artesano":{
-      "Felicidad": "Normal",
-      "FelicidadNum": 60,
-      "numMisionesAceptadas": 1,
-      "EventosCompletados": [2]
-    },
-    "Tarotisa":{
-      "Felicidad": "Normal",
-      "FelicidadNum": 50,
-      "numMisionesAceptadas": 1,
-      "EventosCompletados": [-4]
-    },
-    "Soldado":{
+    "Campesino": {
       "Felicidad": "NoHabladoAun",
       "FelicidadNum": 50,
       "numMisionesAceptadas": 0,
       "EventosCompletados": []
     },
-    "Contable":{
+    "Artesano": {
+      "Felicidad": "NoHabladoAun",
+      "FelicidadNum": 50,
+      "numMisionesAceptadas": 0,
+      "EventosCompletados": []
+    },
+    "Tarotisa": {
+      "Felicidad": "NoHabladoAun",
+      "FelicidadNum": 50,
+      "numMisionesAceptadas": 0,
+      "EventosCompletados": []
+    },
+    "Soldado": {
+      "Felicidad": "NoHabladoAun",
+      "FelicidadNum": 50,
+      "numMisionesAceptadas": 0,
+      "EventosCompletados": []
+    },
+    "Contable": {
       "Felicidad": "NoHabladoAun",
       "FelicidadNum": 50,
       "numMisionesAceptadas": 0,

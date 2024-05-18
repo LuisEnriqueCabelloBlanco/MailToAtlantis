@@ -370,6 +370,9 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
     case ExplorationEnter:
         aux = "ExplorationEnter";
         break;
+    case NoHabladoWarning:
+        aux = "NoHabladoWarning";
+        break;
 
     //Dialogos objetos distritos
         //Hestia

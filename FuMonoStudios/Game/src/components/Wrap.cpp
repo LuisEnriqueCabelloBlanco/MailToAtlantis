@@ -146,7 +146,8 @@ void Wrap::update() {
 				if (GeneralData::instance ()->getUpgradeValue (ecs::upg::ENVOLVER_UPGRADE)) {					
 					wrapped = true;
 					ent_->getComponent<Paquete> ()->envolver ();
-					for (int i = 0; i < 4; i++)mul_->nextTexture ();									
+					for (int i = 0; i < 4; i++)mul_->nextTexture ();	
+					tr_->setActiveChildren(false);
 				}
 				else {					
 					paqComp_->puntosRojos (routeSelectedID);

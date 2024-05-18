@@ -2,6 +2,7 @@
 #include <components/Transform.h>
 #include <components/MoverTransform.h>
 #include <sistemas/SoundEmiter.h>
+#include <entities/PolvosAux.h>
 #include <components/Render.h>
 
 Herramientas::Herramientas() {
@@ -61,6 +62,14 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
 			ent_->getComponent<MoverTransform>()->enable();
 			};
+		break;
+	case Polvos:
+		funcion_ = [this](ecs::Entity* paq) {
+			if (ent_->getComponent<RenderImage>()->getCurrentTexture() != &sdlutils().images().at("polvosEsparcidos")) {
+				ent_->setAlive(false);
+				paq->addComponent<PolvosAux>(paq);
+			}
+		};
 		break;
 
 	case SelloVacio:

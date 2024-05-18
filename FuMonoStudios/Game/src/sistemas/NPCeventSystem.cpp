@@ -411,7 +411,11 @@ void NPCeventSystem::readNPCevent(JSONObject& eventObject, int personaje, int in
 		// ES ESPECIAL
 		int numSpecial = isSpecial->second->AsNumber();
 		switch (numSpecial) {
-		case 1:
+		case 1: // POLVOS
+			auxEvent->paquetes.push_back(new Paquete(Hestia, C1, "a", "SPECIAL1", Alimento));
+			break;
+		case 2: // BOMBAZO
+			auxEvent->paquetes.push_back(new Paquete(Hestia, C1, "a", "SPECIAL2", Alimento));
 			break;
 		}
 	}

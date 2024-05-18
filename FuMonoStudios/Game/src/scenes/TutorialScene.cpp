@@ -80,7 +80,7 @@ void ecs::TutorialScene::init() {
 
 	createStamp(SelloCalleA);
 
-	createTubes();
+	TutorialScene::createTubes();
 
 	if (gD().getDay() == 1) {
 
@@ -107,6 +107,7 @@ void ecs::TutorialScene::init() {
 
 void ecs::TutorialScene::close() {
 	ecs::Scene::close();
+
   SoundEmiter::instance()->close();
 }
 

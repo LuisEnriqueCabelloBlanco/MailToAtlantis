@@ -72,6 +72,7 @@ namespace npc {
 		bool postConversation;
 
 		bool misionAceptada;
+		std::string introText;
 	};
 
 #pragma region NPCdata
