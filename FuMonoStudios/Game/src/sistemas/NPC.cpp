@@ -27,7 +27,7 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 	std::string tipo;
 	int iterationNum = -1;
 
-	if (felicidad == Minima || felicidad == Maxima || felicidad == NoHabladoAun)
+	if (felicidad == Minima || (felicidad == Maxima && !gD().getUpgradeValue(npcId)) || felicidad == NoHabladoAun)
 	{
 		switch (felicidad)
 		{
@@ -41,6 +41,7 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 			break;
 		case Maxima:
 			tipo = "FelicidadMaxima";
+			gD().unlockMejoraPersonaje(npcId);
 			break;
 		}
 	}
@@ -163,28 +164,33 @@ NPCMayorData::NPCMayorData(Felicidad Felicidad) {
 std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 	std::string aux;
 
-	switch (felicidad)
+	if (felicidad == Maxima && !gD().getUpgradeValue(npcId))
 	{
-	case NoHabladoAun:
-		aux = "Presentacion";
-		postConversation = true;
-		break;
-	case Minima:
-		aux = "FelicidadMinima";
-		felicidad = SeFue;
-		break;
-	case SeFue:
-		aux = "FelicidadMinima";
-		break;
-	case Maxima:
 		aux = "FelicidadMaxima";
-		break;
-	default:
-		misionAceptada = true;
-		aux = postConversation ?
-			"PostConversacionDia" : "Dia";
-		aux = aux + std::to_string(gD().getDay());
-		break;
+		gD().unlockMejoraPersonaje(npcId);
+	}
+	else
+	{
+		switch (felicidad)
+		{
+		case NoHabladoAun:
+			aux = "Presentacion";
+			postConversation = true;
+			break;
+		case Minima:
+			aux = "FelicidadMinima";
+			felicidad = SeFue;
+			break;
+		case SeFue:
+			aux = "FelicidadMinima";
+			break;
+		default:
+			misionAceptada = true;
+			aux = postConversation ?
+				"PostConversacionDia" : "Dia";
+			aux = aux + std::to_string(gD().getDay());
+			break;
+		}
 	}
 
 	return std::make_pair(aux, -1);

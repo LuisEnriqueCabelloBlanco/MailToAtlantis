@@ -382,7 +382,6 @@ void GeneralData::readNPCData() {
 		JSONObject jObject = jValue->AsObject();
 		std::string felicidadStr = jObject["Felicidad"]->AsString();
 
-
 		if (i < 2) // npc grandes
 		{
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
@@ -407,6 +406,10 @@ void GeneralData::readNPCData() {
 			else
 				data->firstMision = 5;
 
+			JSONObject jObjectNPCdata = npcDataRoot[aux]->AsObject();
+
+			data->introText = jObjectNPCdata.find("IntroductionText")->second->AsString();
+
 			npcData.emplace((Personaje)i, data);
 		}
 		else
@@ -421,6 +424,9 @@ void GeneralData::readNPCData() {
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(j + 1))->second->AsBool());
 			}
 			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
+
+			data->introText = jObjectNPCdata.find("IntroductionText")->second->AsString();
+
 			data->events = std::vector<NPCevent*>(5, nullptr);
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();

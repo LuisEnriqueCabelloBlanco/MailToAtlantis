@@ -11,6 +11,7 @@
 #include <json/JSON.h>
 #include <sistemas/NPCeventSystem.h>
 #include <components/Herramientas.h>
+#include <sistemas/SpecialObjectsFactory.h>
 
 std::unordered_map<Distrito, std::vector<std::string>> PaqueteBuilder::distritoCalle_;
 std::vector<std::string> PaqueteBuilder::names;
@@ -106,6 +107,16 @@ void PaqueteBuilder::cartaRND(ecs::Entity* packageBase) {
 
 void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
 	Paquete* pNPC = gD().npcEventSys->getPaqueteNPC();
+	if (pNPC->getRemitente() == "SPECIAL1" || pNPC->getRemitente() == "SPECIAL2")
+	{
+		SpecialObjectsFactory a = SpecialObjectsFactory();
+		if (pNPC->getRemitente() == "SPECIAL1") {
+			ent->addComponent<Paquete>(Poseidon, C2, "Calle del trono", "Francis Dupart", Materiales);
+			addVisualElements(ent);
+		}
+		else
+			a.makeBomba();
+	}
 	Paquete* pq = ent->addComponent<Paquete>(*pNPC);
 	if (!pNPC->isCarta()) addVisualElements(ent);
 	//else addVisualElementsCarta(ent);
