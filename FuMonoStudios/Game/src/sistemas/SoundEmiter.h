@@ -22,24 +22,38 @@ public:
 	SoundEmiter();
 	~SoundEmiter();
 
+	//Llamada al primero usar SoundEmitter
 	void init();
+	//Llamada al cerrar cada escena
 	void close();
 
+	//Modifica el sonido de los SFX
 	void setSoundVolumes(int volume);
+	//Mutea un sonido
 	void muteSingleSound(std::string sound, bool mute);
 
+	//Activa un SFX
 	void playSound(std::string sound);
+	//Activa un SFX a cierto volumen
+	/// <param name="modifier"> entre 0 y 1 </param>
 	void playSound(std::string sound, float modifier);
+	//Detiene un SFX
 	void haltSound(std::string sound);
 
+	//Modifica el sonido de la música
 	void setMusicVolume(int volume);
 
+	//Activa una canción
 	void playMusic(std::string song);
+	//Detiene una canción
 	void haltMusic(std::string song);
 private:
+	//Procesa el Json de sounds.json
 	void processSoundListJSON();
 
+	//Detiene todos los SFX
 	void haltAllSounds();
+	//Detiene toda las canciones
 	void haltAllMusic();
 
 	int soundVolume_;
@@ -56,9 +70,7 @@ private:
 	std::unordered_map<std::string, bool> activeSongs_;
 
 	//Manejo de canales
-
 	int playInChannel_;
-
 	void changeChannel();
 };
 
