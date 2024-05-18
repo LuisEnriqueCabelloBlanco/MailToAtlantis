@@ -1513,7 +1513,7 @@
             "Un puesto de brebajes...",
             "me pregunto qu$e pasar$a si me bebo algo de aqu$i."
         ],
-        "TextoTiendaPociones11": [ "No son tan caros estos brebajes, a lo mejor me podr&ia comprar uno." ],
+        "TextoTiendaPociones11": [ "No son tan caros estos brebajes, a lo mejor me podría comprar uno." ],
         
         "TextoTiendaPociones20": [ "Me sigo preguntando qu$e pasar$ia si me bebiera algo de esto." ],
         "TextoTiendaPociones21": [ "Me gustar$ia comprar un brebaje, pero quiero ahorrar por ahora." ],
@@ -1526,13 +1526,13 @@
         "TextoTiendaPociones31": [ "Creo que hoy voya seguir desistiendo de comprar un brebaje de aqu$i." ],
 
         "TextoTiendaPociones40": [
-            "Ahora que me fijo, usan probetas y recipientes de cristal dif$iciles de hacer.",
+            "Ahora que me fijo, usan probetas y recipientes de cristal dificiles de hacer.",
             "Me sorprende lo diestros que son estos peces."
         ],
         "TextoTiendaPociones41": [ "No creo que hagan nada, pero me pregunto por qu$e tienen colores tan raros esos brebajes." ],
 
         "TextoTiendaPociones50": [
-            "Usan probetas y recipientes de cristal dif$iciles de hacer.",
+            "Usan probetas y recipientes de cristal dificiles de hacer.",
             "Estos peces no son muy listos, pero s&i muy diestros en esto."
         ],
         "TextoTiendaPociones51": [
@@ -1550,11 +1550,11 @@
             "pero no creo que estos sean zumos..."
         ],
         
-        "TextoTiendaPociones70": [ "Hay una plantita al fondo, al due$%o le deben de gustar tener plantas." ],
+        "TextoTiendaPociones70": [ "Hay una plantita al fondo, al due&%o le deben de gustar tener plantas." ],
         "TextoTiendaPociones71": [ "En clase de qu$imica del instituto hac$iamos liquidos raros como estos." ],
 
         "TextoTiendaPociones80": [
-            "La plantita que hay al fondo debe de ser porque al due$%o le deben de gustar las plantas,",
+            "La plantita que hay al fondo debe de ser porque al due&%o le deben de gustar las plantas,",
             "o a lo mejor las usa para hacer sus brebajes."
         ],
         "TextoTiendaPociones81": [
@@ -1563,7 +1563,7 @@
         ],
 
         "TextoTiendaPociones90": [
-            "La plantita que hay en la estanter$ia, a lo mejor indica que al due$%o le gustan las plantas,",
+            "La plantita que hay en la estanter$ia, a lo mejor indica que al due&%o le gustan las plantas,",
             "pero tambien puede que las use para crear estos brebajes."
         ],
         "TextoTiendaPociones91": [
@@ -1582,7 +1582,7 @@
 
         "TextoTiendaPociones120": [
             "Todav$ia siguen los mismos brebajes de siempre.",
-            "Puede que si comprara algunos el due$%o venda m&as variedad, pero quiero ahorrar."
+            "Puede que si comprara algunos el due&%o venda m&as variedad, pero quiero ahorrar."
         ],
         "TextoTiendaPociones121": [ "Los brebajes est$an ordenados por categor$ia." ],
 
@@ -1593,18 +1593,18 @@
         "TextoTiendaPociones131": [ "Los cristales parecen delicados, mejor no tocar." ],
 
         "TextoTiendaPociones140": [
-            "Llevo dos semanas, y ahora me pregunto c$omo es el proceso de creaci$on de estos brebajes.",
-            "Pueden que sean diestros, pero hacer liquidos como estos raros requiere a lo mejor de saber de qu$imica,",
+            "Llevo dos semanas, y ahora me pregunto c$omo es el proceso de creaci&on de estos brebajes.",
+            "Pueden que sean diestros, pero hacer liquidos como estos raros requiere a lo mejor de saber de qu&imica,",
             "y estos peces no son muy inteligentes."
         ],
         "TextoTiendaPociones141": [
-            "Los cristales de los brebajes parecen delicados,",
+            "Los cristales de los brebajes parecen de licados,",
             "prefiero no tocar si no los voy a comprar."
         ]
     },
     "TiendaBolas": {
         
-        "TextoTiendaBolas10": [ "Aqu$i venden frutas raras..." ],
+        "TextoTiendaBolas10": [ "Aqu&i venden frutas raras..." ],
         "TextoTiendaBolas11": [ "Puede que estas frutas se cultiven en el campo que hay en la ciudad." ],
         
         "TextoTiendaBolas20": [ "No se qu$e tipo de frutas son, pero las que venden aqu$i son muy raras." ],
@@ -1708,16 +1708,13 @@
         "TextoTiendaJarrones60": [ "Est$an chulos, pero molar$ia mas que los jarrones los pintaran para que sean m$as vistosos." ],
         "TextoTiendaJarrones61": [ "Hacer jarrones como estos bajo el mar debe ser complicado, pero podr$ian pintarlos aunque sea." ],
         
-        "TextoTiendaJarrones70": [ "Espero que estos jarrones no se rompan f$acilmente si son caros." ],
+        "TextoTiendaJarrones70": [ "TiedaJarrones70" ],
         "TextoTiendaJarrones71": [ "TiedaJarrones71" ],
         
-        "TextoTiendaJarrones80": [ "Si son caros, estos jarrones deben de ser resistentes." ],
+        "TextoTiendaJarrones80": [ "TiedaJarrones80" ],
         "TextoTiendaJarrones81": [ "TiedaJarrones81" ],
-
-        "TextoTiendaJarrones90": [
-            "Si estos jarrones llevan aqu$i un tiempo en el mismo estado de siempre,",
-            "deben de ser resistentes y de buena calidad."
-        ],
+        
+        "TextoTiendaJarrones90": [ "TiedaJarrones90" ],
         "TextoTiendaJarrones91": [ "TiedaJarrones91" ],
         
         "TextoTiendaJarrones100": [ "TiedaJarrones100" ],
