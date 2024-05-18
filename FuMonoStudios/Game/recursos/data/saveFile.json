@@ -1,48 +1,62 @@
 {
-  "Dia": 5,
-  "Dinero": 300,
+  "Dia":2,
+  "Dinero":230,
   "Personajes":{
-    "Vagabundo": {
-      "Felicidad": "NoHabladoAun",
-      "FelicidadNum": 50,
-      "numMisionesAceptadas": 0,
-      "EventosCompletados": []
+    "Artesano":{
+      "EventosCompletados":[
+        0,0,0,0,0
+      ],
+      "Felicidad":"NoHabladoAun",
+      "FelicidadNum":50,
+      "numMisionesAceptadas":0
+    },
+    "Campesino":{
+      "EventosCompletados":[
+        0,0,0,0,0
+      ],
+      "Felicidad":"NoHabladoAun",
+      "FelicidadNum":50,
+      "numMisionesAceptadas":0
+    },
+    "Contable":{
+      "EventosCompletados":[
+        0,0,0,0,0
+      ],
+      "Felicidad":"NoHabladoAun",
+      "FelicidadNum":50,
+      "numMisionesAceptadas":0
     },
     "Secretario":{
-      "Felicidad": "NoHabladoAun",
-      "FelicidadNum": 50,
-      "numMisionesAceptadas": 0,
-      "EventosCompletados": []
+      "EventosCompletados":[
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0
+      ],
+      "Felicidad":"NoHabladoAun",
+      "FelicidadNum":50,
+      "numMisionesAceptadas":0
     },
-    "Campesino": {
-      "Felicidad": "NoHabladoAun",
-      "FelicidadNum": 50,
-      "numMisionesAceptadas": 0,
-      "EventosCompletados": []
+    "Soldado":{
+      "EventosCompletados":[
+        0,0,0,0,0
+      ],
+      "Felicidad":"NoHabladoAun",
+      "FelicidadNum":50,
+      "numMisionesAceptadas":0
     },
-    "Artesano": {
-      "Felicidad": "NoHabladoAun",
-      "FelicidadNum": 50,
-      "numMisionesAceptadas": 0,
-      "EventosCompletados": []
+    "Tarotisa":{
+      "EventosCompletados":[
+        0,0,0,0,0
+      ],
+      "Felicidad":"NoHabladoAun",
+      "FelicidadNum":50,
+      "numMisionesAceptadas":0
     },
-    "Tarotisa": {
-      "Felicidad": "NoHabladoAun",
-      "FelicidadNum": 50,
-      "numMisionesAceptadas": 0,
-      "EventosCompletados": []
-    },
-    "Soldado": {
-      "Felicidad": "NoHabladoAun",
-      "FelicidadNum": 50,
-      "numMisionesAceptadas": 0,
-      "EventosCompletados": []
-    },
-    "Contable": {
-      "Felicidad": "NoHabladoAun",
-      "FelicidadNum": 50,
-      "numMisionesAceptadas": 0,
-      "EventosCompletados": []
+    "Vagabundo":{
+      "EventosCompletados":[
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0
+      ],
+      "Felicidad":"Normal",
+      "FelicidadNum":50,
+      "numMisionesAceptadas":0
     }
   }
 }
