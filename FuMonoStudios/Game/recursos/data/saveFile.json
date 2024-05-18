@@ -21,7 +21,7 @@
       "EventosCompletados": []
     },
     "Artesano": {
-      "Felicidad": "NoHabladoAun",
+      "Felicidad": "Maxima",
       "FelicidadNum": 50,
       "numMisionesAceptadas": 0,
       "EventosCompletados": []
@@ -33,13 +33,13 @@
       "EventosCompletados": []
     },
     "Soldado": {
-      "Felicidad": "Maxima",
+      "Felicidad": "NoHabladoAun",
       "FelicidadNum": 50,
       "numMisionesAceptadas": 0,
       "EventosCompletados": []
     },
-    "Contable":{
-      "Felicidad": "NoHabladoAun",
+    "Contable": {
+      "Felicidad": "Maxima",
       "FelicidadNum": 50,
       "numMisionesAceptadas": 0,
       "EventosCompletados": []
