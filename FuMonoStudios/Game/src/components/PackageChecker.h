@@ -20,8 +20,16 @@ public:
 	virtual void initComponent();
 	//void addCondition(Condition);
 
+	/// <summary>
+	/// Comprueba si un paquete es correcto
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns></returns>
 	bool checkPackage(Paquete*);
-
+	/// <summary>
+	/// Realiza el anialisis de validez del envio
+	/// </summary>
+	/// <param name="ent"></param>
 	void checkEntity(ecs::Entity* ent);
 private:
 	//bool checkAdditionalConditions(Paquete*);

@@ -2,6 +2,7 @@
 #include <architecture/Entity.h>
 #include <components/Paquete.h>
 #include <components/Gravity.h>
+#include <architecture/GameConstants.h>
 #include <components/RotarTransform.h>
 #include <components/MoverTransform.h>
 
@@ -27,7 +28,9 @@ void Balanza::initAnimations(ecs::Entity* paquete, ecs::Entity* balanzaB, RotarT
 	if (paquete->hasComponent(ecs::cmp::PAQUETE)) {
 
 		//Obtenemos cantidad peso
-		int cantidadPeso = paquete->getComponent<Paquete>()->getCantidadPeso();
+		float cantidadPeso = paquete->getComponent<Paquete>()->getCantidadPeso();
+		cantidadPeso = cantidadPeso * (180/PESADO_MAX); //Hay que hacer una regla de 3 para saber exactamente cuantos grados hay que girar según el peso
+														//si el peso máximo se supone que está colocado a los 180 grados
 
 		//Animamos flecha
 			flechaRotComp->setDesiredGrades(cantidadPeso);

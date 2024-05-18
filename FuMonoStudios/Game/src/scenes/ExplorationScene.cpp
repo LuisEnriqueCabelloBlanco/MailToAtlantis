@@ -59,6 +59,13 @@ void ecs::ExplorationScene::init()
 	updateNavegavility();
 	initDirectionsDefaultMap();
 	clearScene();
+
+	for (int i = 0; i < gD().getNumDistritos(); ++i) {
+
+		placesExplored.push_back(false);
+
+	}
+	
 	actualPlace_ = &lugares[Hestia];
 
 	createObjects(pq::Distrito::Hestia);
@@ -68,6 +75,7 @@ void ecs::ExplorationScene::init()
 	createDiario();
 
 	canInteract = true;
+	showTalkWarning = true;
 
 	dialogueWhenEntering();
 }
@@ -76,16 +84,17 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 
 	if (gD().getDay() == 1) {
 		canInteract = false;
-		dialogMngr_.setEndDialogueCallback([this] {
+		factory_->setLayer(ecs::layer::UI);
+		ecs::Entity* temporalSprite = factory_->createImage(Vector2D(500, 550.0f), Vector2D(450, 500), &sdlutils().images().at("Jefe"));
+		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
 			canInteract = true;
+			temporalSprite->setAlive(false);
 			});
 		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 0);
 	}
 	else if (gD().getDay() == 5) {
 		canInteract = false;
-		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
-		temporalSprite->addComponent<Transform>(500,500,400,600);
-		temporalSprite->addComponent<RenderImage>()->setTexture(&sdlutils().images().at("Jefe"));
+		ecs::Entity* temporalSprite = factory_->createImage(Vector2D(500, 550.0f), Vector2D(450, 500), &sdlutils().images().at("Jefe"));
 		dialogMngr_.setEndDialogueCallback([this, temporalSprite] {
 			canInteract = true;
 			temporalSprite->setAlive(false);
@@ -255,6 +264,11 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrow(Vector2D pos, std::st
 		if (actualPlace_->navigate((Distrito)placeID) && canInteract) {
 			dialogMngr_.closeDialogue();
 			actualPlace_->changeActivationObjects(false);
+
+			if (placeID < placesExplored.size() && !placesExplored[placeID]) {
+				placesExplored[placeID] = true;
+			}
+			
 			placeToGo = placeID;
 		}
 	};
@@ -286,17 +300,30 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 	auto clickableBotonTrabajar = e->addComponent<Clickeable>("");
 	CallbackClickeable funcPress = [this]() {
 		if (canInteract) {
-			if ((gD().getDay() == 1 ||
-				gD().getDay() == 3 ||
-				gD().getDay() == 5 ||
-				gD().getDay() == 8) && !gD().GetValueSkipTutorial()) {
-
-				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+			int numPersonajesSinHablar = 0;
+			for (int i = 0; i < gD().getNumDistritos(); i++) {
+				NPCdata* data = gD().getNPCData((Personaje)i);
+				if (data->felicidad != SeFue && !data->postConversation)
+					numPersonajesSinHablar++;
 			}
-			else {
-
-				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+			if (!showTalkWarning || numPersonajesSinHablar < 1)
+			{
+				if ((gD().getDay() == 1 ||
+					gD().getDay() == 3 ||
+					gD().getDay() == 5 ||
+					gD().getDay() == 8) && !gD().GetValueSkipTutorial()) {
+					gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+				}
+				else {
+					gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+				}
 			}
+			else
+			{
+				showTalkWarning = false;
+				dialogMngr_.startConversation(DialogManager::NoHabladoWarning, 0);
+			}
+			
 		}
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
@@ -387,7 +414,9 @@ void ecs::ExplorationScene::setupDiarioPages() {
 		{
 			diarioVacio = false;
 			//procesamos los textos
-			std::string textoPersonaje = "";
+			DialogManager a;
+			std::string textoPersonaje = data->introText += '\n';
+			a.fixText(textoPersonaje);
 			//contador de las paginas del personaje
 			int j = 0;
 			bool eventoCompletado = true;
@@ -398,8 +427,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 					textoPersonaje = textoPersonaje + "- Dia ";
 					if (data->eventosCompletados[j].second == 0) // si el evento es de hoy
 					{
-						if (data == gD().getNPCData(Vagabundo) ||
-							data == gD().getNPCData(Secretario)) {
+						if (data->npcId < 2) {
 							textoPersonaje = textoPersonaje + std::to_string(day) +
 								textoCompletado + "\n" +
 								data->events[day - 1]->textoDiario + "\n";
@@ -418,15 +446,23 @@ void ecs::ExplorationScene::setupDiarioPages() {
 						else
 							textoCompletado = " (FALLIDO)";
 
-						textoPersonaje = textoPersonaje + std::to_string(std::abs(data->eventosCompletados[j].second))
-							+ "- " + textoCompletado + "\n"
-							+ data->events[abs(data->eventosCompletados[j].second) - 1]->textoDiario + "\n";
+						if (data->npcId < 2) {
+							textoPersonaje = textoPersonaje + std::to_string(
+								std::abs(data->eventosCompletados[j].second)) + "- " + textoCompletado + "\n"
+								+ data->events[j]->textoDiario + "\n";
+						}
+						else {
+							textoPersonaje = textoPersonaje + std::to_string(
+								std::abs(data->eventosCompletados[j].second)) + "- " + textoCompletado + "\n"
+								+ data->events[abs(data->eventosCompletados[j].second) - 1]->textoDiario + "\n";
+						}
+						
 					}
 				}
 				j++;
 			}
 
-			DialogManager a; 
+			 
 			a.fixText(textoPersonaje);
 
 			j = 0;
@@ -472,6 +508,15 @@ void ecs::ExplorationScene::setupDiarioPages() {
 						textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
 				}
 			}
+		}
+		else if (data->felicidad == NoHabladoAun && data->postConversation){
+			pagesByCharacter[i] = 1;
+			textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
+			DialogManager a;
+			std::string textoPersonaje = data->introText += '\n';
+			a.fixText(textoPersonaje);
+			diarioText_.push_back(textoPersonaje);
+			diarioText_.push_back(" ");
 		}
 	}
 
@@ -625,6 +670,8 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 					gD().npcEventSys->shuffleNPCqueue();
 				}
 			}
+			else if (aux.first == "Presentacion")
+				setupDiarioPages();
 		}
 	};
 
@@ -673,6 +720,26 @@ void ecs::ExplorationScene::updateNavegavility()
 		setNavegabilityOfPlace(gD().fromStringToDistrito(g));
 }
 
+bool ecs::ExplorationScene::checkIfVisited(int from, int to)
+{
+	
+	if (from < to && to < placesExplored.size()) {
+
+		while (placesExplored[from] && from < to) {
+
+			from++;
+
+		}
+
+		return from == to;
+	}
+	else {
+		return false;
+	}
+	
+
+}
+
 void ecs::ExplorationScene::createObjects(int place) {
 	//Seleccion del lugar deseado
 	std::string placeName = gD().fromDistritoToString(place);
@@ -700,16 +767,46 @@ void ecs::ExplorationScene::createObjects(int place) {
 	}
 
 	if (place == pq::Distrito::Hestia) {
-		//boton ir a trabajar
-		boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
 
-		dist.addObject(boton_Trabajo);
+		bool workAccess = false;
 
-		//PLACEHOLDER_BOTON_GUARDADO
-		factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
-			gD().saveGame();
-			}, "click", SDL_Color{255,255,0});
+		switch (gD().getDay()) {
+
+		case 1:
+
+			if (checkIfVisited(0, 3)) workAccess = true;	
+
+			break;
+
+		case 5:
+
+			if (placesExplored[6]) workAccess = true;
+
+			break;
+
+		default: 
+
+			workAccess = true;
+
+			break;
+
+		}
+
+
+		if (workAccess) {
+			//boton ir a trabajar
+			boton_Trabajo = createWorkButton({ 650, 400 }, { 100, 300 });
+
+			dist.addObject(boton_Trabajo);
+		}
+			
 	}
+
+	////PLACEHOLDER_BOTON_GUARDADO
+	//factory_->createTextuButton(Vector2D(100, 100), "GUARDAR PARTIDA", 40, [this]() {
+	//	gD().saveGame();
+	//	}, "click", SDL_Color{ 255,255,0 });
+
 }
 
 

@@ -3,7 +3,7 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include <architecture/Scene.h>
-#include <components/DialogManager.h>
+#include <sistemas/DialogManager.h>
 #include <sistemas/ComonObjectsFactory.h>
 #include <architecture/GeneralData.h>
 
@@ -165,6 +165,12 @@ namespace ecs {
 		/// </summary>
 		void updateNavegavility();
 
+		/// <sumary>
+		/// Nos devuelve si hemos visitados todos los lugares en un rango
+		/// 
+		bool checkIfVisited(int from, int to);
+
+
 		/// <summary>
 		/// Metodo factoria para characters
 		/// </summary>
@@ -195,6 +201,9 @@ namespace ecs {
 		// bool que permite interactuar con flechas entrar a trabajar etc. Esta siempre true menos al entrar a dialogo
 		bool canInteract;
 
+		// flag que indica si ensenar la advertencia de que no has hablado con algun npc
+		bool showTalkWarning;
+
 		ecs::Entity* boton_Trabajo;
 
 		void addDiarioEvent(NPCevent* event);
@@ -205,6 +214,9 @@ namespace ecs {
 		std::vector<std::string> diarioText_;
 		std::vector<int> pagesByCharacter;
 		int currentDiarioPage;
+
+		//Vector que marca si ese dia se han visitado o no los distritos
+		std::vector<bool> placesExplored;
 
 		//diario variables
 

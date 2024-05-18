@@ -27,6 +27,10 @@ ErrorNote::ErrorNote(Paquete* p, bool basura, bool tuboIncorrecto) {
 		else if (!p->getFragil () && p->getEnvuelto ()) {
 			text_ = "Ese paquete no debería haber sido envuelto\n";
 		}
+		else { //Si ha habido un fallo y no ha sido por ninguna de las condiciones normales, será por una condición externa
+			text_ = "No te olvides de las instrucciones de tu jefe\n";
+		}
+
 	}	
 	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::FALLOS_UPGRADE)) {
 		if (GeneralData::instance()->getFails() == 1) {

@@ -226,7 +226,7 @@ void DialogManager::startConversationWithObj(const std::string& interactableObj)
     {
         const std::string aux1 = std::to_string(gD().getDay());
 
-        const std::string aux2 = std::to_string(sdlutils().rand().nextInt(0, 3));
+        const std::string aux2 = std::to_string(sdlutils().rand().nextInt(0, 2));
 
         setDialogues((DialogManager::DialogSelection)(gD().stringToObjInt(interactableObj) + DialogManager::DialogSelection::CasaGrande), "Texto"+interactableObj+aux1+aux2);
 
@@ -369,6 +369,9 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
         break;
     case ExplorationEnter:
         aux = "ExplorationEnter";
+        break;
+    case NoHabladoWarning:
+        aux = "NoHabladoWarning";
         break;
 
     //Dialogos objetos distritos

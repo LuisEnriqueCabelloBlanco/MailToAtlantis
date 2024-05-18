@@ -76,7 +76,6 @@
 
     {"id": "flechaTest","file": "recursos/images/flecha.png"},
     {"id": "cambioPag","file": "recursos/images/NextPage.png"},
-    {"id": "botonTrabajar","file": "recursos/images/placeholderTrabajar.png"},
     {"id": "Demeter","file": "recursos/images/Demeter.png"},
     {"id": "Hefesto","file": "recursos/images/Hefesto.png"},
     {"id": "Hestia","file": "recursos/images/Hestia.png"},
@@ -93,6 +92,10 @@
     {"id": "botella1","file": "recursos/images/Botella1.png"},
     {"id": "botella2","file": "recursos/images/Botella2.png"},
     {"id": "cartaAtlantida","file": "recursos/images/CartaAtlantida.png"},
+    {
+      "id": "sellador",
+      "file": "recursos/images/sellador.png"
+    },
     {
       "id": "sellador0",
       "file": "recursos/images/selladorRojo.png"
@@ -297,6 +300,10 @@
       "file": "recursos/images/PuntoRojo.png"
     },
     {
+      "id": "puntoAzul",
+      "file": "recursos/images/PuntoAzul.png"
+    },
+    {
       "id": "lineaRoja",
       "file": "recursos/images/lineaRoja.png"
     },
@@ -358,6 +365,22 @@
     {
       "id": "fondoAjustes",
       "file": "recursos/images/AjustesSinSellos.png"
+    },
+    {
+      "id": "iconoAzulAjustes",
+      "file": "recursos/images/SelloAzulAjustes.png"
+    },
+    {
+      "id": "iconoRojoAjustes",
+      "file": "recursos/images/SelloRojoAjustes.png"
+    },
+    {
+      "id": "iconoVerdeAjustes",
+      "file": "recursos/images/SelloVerdeAjustes.png"
+    },
+    {
+      "id": "iconoAmarilloAjustes",
+      "file": "recursos/images/SelloAmarilloAjustes.png"
     },
     {
       "id": "cinta",
@@ -499,9 +522,36 @@
     {
       "id": "luz",
       "file": "recursos/images/luz.png"
-    }
+    },
+    {
+      "id": "selloLechuzas",
+      "file": "recursos/images/SelloLechuzas.png"
+    },
+    {
+      "id": "bomba",
+      "file": "recursos/images/Bomba.png"
+    },
+    {
+      "id": "polvos",
+      "file": "recursos/images/polvos.png"
+    },
+    {
+      "id": "polvosEsparcidos",
+      "file": "recursos/images/polvosEsparcidos.png"
+    },
+    {
+      "id": "ojo",
+      "file": "recursos/images/ojo.png"
+    },
+    {"id": "periodico","file": "recursos/images/Periodico.png"},
+    {"id": "finalFondo","file": "recursos/images/FondoFinales.png"}
   ],
   "fonts": [
+    {
+      "id": "arial30",
+      "file": "recursos/fonts/ARIAL.ttf",
+      "size": 30
+    },
     {
       "id": "arial50",
       "file": "recursos/fonts/ARIAL.ttf",
@@ -546,6 +596,16 @@
       "id": "simpleHandmade20",
       "file": "recursos/fonts/SimpleHandmade.ttf",
       "size": 20
+    },
+    {
+      "id": "simpleHandmade40",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 40
+    },
+    {
+      "id": "simpleHandmade80",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 80
     },
     {
       "id": "simpleHandmadeTuneado20",
@@ -629,6 +689,118 @@
     {
       "id": "page2",
       "file": "recursos/sounds/paginas2.wav"
+    },
+    {
+      "id": "dlgArt0",
+      "file": "recursos/sounds/Artesano0.wav"
+    },
+    {
+      "id": "dlgArt1",
+      "file": "recursos/sounds/Artesano1.wav"
+    },
+    {
+      "id": "dlgArt2",
+      "file": "recursos/sounds/Artesano2.wav"
+    },
+    {
+      "id": "dlgArt3",
+      "file": "recursos/sounds/Artesano3.wav"
+    },
+    {
+      "id": "dlgCamp0",
+      "file": "recursos/sounds/Campesino0.wav"
+    },
+    {
+      "id": "dlgCamp1",
+      "file": "recursos/sounds/Campesino1.wav"
+    },
+    {
+      "id": "dlgCamp2",
+      "file": "recursos/sounds/Campesino2.wav"
+    },
+    {
+      "id": "dlgCamp3",
+      "file": "recursos/sounds/Campesino3.wav"
+    },
+    {
+      "id": "dlgCont0",
+      "file": "recursos/sounds/Contable0.wav"
+    },
+    {
+      "id": "dlgCont1",
+      "file": "recursos/sounds/Contable1.wav"
+    },
+    {
+      "id": "dlgCont2",
+      "file": "recursos/sounds/Contable2.wav"
+    },
+    {
+      "id": "dlgCont3",
+      "file": "recursos/sounds/Contable3.wav"
+    },
+    {
+      "id": "dlgSecr0",
+      "file": "recursos/sounds/Secretario0.wav"
+    },
+    {
+      "id": "dlgSecr1",
+      "file": "recursos/sounds/Secretario1.wav"
+    },
+    {
+      "id": "dlgSecr2",
+      "file": "recursos/sounds/Secretario2.wav"
+    },
+    {
+      "id": "dlgSecr3",
+      "file": "recursos/sounds/Secretario3.wav"
+    },
+    {
+      "id": "dlgSold0",
+      "file": "recursos/sounds/Soldado0.wav"
+    },
+    {
+      "id": "dlgSold1",
+      "file": "recursos/sounds/Soldado1.wav"
+    },
+    {
+      "id": "dlgSold2",
+      "file": "recursos/sounds/Soldado2.wav"
+    },
+    {
+      "id": "dlgSold3",
+      "file": "recursos/sounds/Soldado3.wav"
+    },
+    {
+      "id": "dlgTart0",
+      "file": "recursos/sounds/Tarotista0.wav"
+    },
+    {
+      "id": "dlgTart1",
+      "file": "recursos/sounds/Tarotista1.wav"
+    },
+    {
+      "id": "dlgTart2",
+      "file": "recursos/sounds/Tarotista2.wav"
+    },
+    {
+      "id": "dlgTart3",
+      "file": "recursos/sounds/Tarotista3.wav"
+    },
+    {
+      "id": "dlgVag0",
+      "file": "recursos/sounds/Vagabundo0.wav"
+    },
+    {
+      "id": "dlgVag1",
+      "file": "recursos/sounds/Vagabundo1.wav"
+    },
+    {
+      "id": "dlgVag2",
+      "file": "recursos/sounds/Vagabundo2.wav"
+    },
+    {
+      "id": "dlgVag3",
+      "file": "recursos/sounds/Vagabundo3.wav"
     }
   ],
   "musics": [

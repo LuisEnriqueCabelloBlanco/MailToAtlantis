@@ -6,7 +6,7 @@
 #include <architecture/Entity.h>
 #include <sdlutils/Font.h>
 #include <sdlutils/Texture.h>
-#include <components/DialogManager.h>
+#include <sistemas/DialogManager.h>
 #include <components/Transform.h>
 #include <components/Render.h>
 #include <components/DelayedCallback.h>

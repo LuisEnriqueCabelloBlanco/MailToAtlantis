@@ -18,6 +18,7 @@ class DialogManager;
 class PaqueteBuilder;
 class Game;
 class Paquete;
+class Texture;
 
 class NPCevent;
 class NPCeventSystem;
@@ -129,6 +130,34 @@ public:
 		return upgrades_[upgrade];
 	}
 
+	inline bool getUpgradeValue(npc::Personaje pers) {
+		bool ret = false;
+		switch (pers) {
+		case Vagabundo:
+			ret = getUpgradeValue(ecs::upg::SELLO_UPGRADE);
+			break;
+		case Tarotisa:
+			ret = getUpgradeValue(ecs::upg::BOLA_UPGRADE);
+			break;
+		case Artesano:
+			ret = getUpgradeValue(ecs::upg::ENVOLVER_UPGRADE);
+			break;
+		case Campesino:
+			ret = getUpgradeValue(ecs::upg::BALANZA_UPGRADE);
+			break;
+		case Contable:
+			ret = getUpgradeValue(ecs::upg::MONEY_UPGRADE);
+			break;
+		case Soldado:
+			ret = getUpgradeValue(ecs::upg::FALLOS_UPGRADE);
+			break;
+		case Secretario:
+			ret = getUpgradeValue(ecs::upg::MANUAL_UPGRADE);
+			break;
+		}
+		return ret;
+	}
+
 	inline void unlockUpgrade(npc::Personaje pers) {
 		switch (pers) {
 		case Vagabundo: 
@@ -155,6 +184,8 @@ public:
 		}
 	}
 
+	
+
 	void setFinalID(int final); //Cambia el ID del final
 	int getFinalID(); //Devuelve el id del final del juego
 
@@ -179,6 +210,14 @@ public:
 
 	bool GetValueSkipTutorial() {
 		return skipTutorial_;
+	}
+
+	void ToggleFullScreen() {
+		fullScreen_ = !fullScreen_;
+	}
+
+	bool GetValueFullScreen() {
+		return fullScreen_;
 	}
 
 	inline int getDay() { return dia_; }
@@ -209,6 +248,9 @@ public:
 
 	int getRent();
 	void setRent(int rent);
+
+	//Texturas personajes
+	Texture* personajeToTexture(Personaje pers);
 
 	//Textos personajes
 	const std::string personajeToString(Personaje pers);
@@ -295,6 +337,11 @@ private:
 	/// booleano que indica si se salta o no los tutoriales
 	/// </summary>
 	bool skipTutorial_;
+
+	/// <summary>
+	/// booleano que indica si esta el juego en pantalla completa o no
+	/// </summary>
+	bool fullScreen_;
 
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
 	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo
