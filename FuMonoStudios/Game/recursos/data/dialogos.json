@@ -1512,187 +1512,229 @@
         "TextoMuro141": [ "Me pregunto cuanto tiempo me tomar$ia escalar esos muros, si lo hiciera." ]
     },
     "TiendaPociones": {
-        "TextoTiendaPociones00": [ "TiendaPociones00" ],
-        "TextoTiendaPociones01": [ "TiendaPociones01" ],
-        "TextoTiendaPociones02": [ "TiendaPociones02" ],
+
+        "TextoTiendaPociones10": [
+            "Un puesto de brebajes...",
+            "me pregunto qu$e pasar$a si me bebo algo de aqu$i."
+        ],
+        "TextoTiendaPociones11": [ "No son tan caros estos brebajes, a lo mejor me podría comprar uno." ],
         
-        "TextoTiendaPociones10": [ "TiendaPociones10" ],
-        "TextoTiendaPociones11": [ "TiendaPociones11" ],
-        "TextoTiendaPociones12": [ "TiendaPociones12" ],
+        "TextoTiendaPociones20": [ "Me sigo preguntando qu$e pasar$ia si me bebiera algo de esto." ],
+        "TextoTiendaPociones21": [ "Me gustar$ia comprar un brebaje, pero quiero ahorrar por ahora." ],
+
+        "TextoTiendaPociones30": [
+            "Si me bebiera algo de esto no creo que me pasar$ia nada.",
+            "En los cuentos de hadas tienen efectos secundarios,",
+            "pero aunque hayan hombres pez, sigo pensando en que no son m$agicos estos brebajes."
+        ],
+        "TextoTiendaPociones31": [ "Creo que hoy voya seguir desistiendo de comprar un brebaje de aqu$i." ],
+
+        "TextoTiendaPociones40": [
+            "Ahora que me fijo, usan probetas y recipientes de cristal dificiles de hacer.",
+            "Me sorprende lo diestros que son estos peces."
+        ],
+        "TextoTiendaPociones41": [ "No creo que hagan nada, pero me pregunto por qu$e tienen colores tan raros esos brebajes." ],
+
+        "TextoTiendaPociones50": [
+            "Usan probetas y recipientes de cristal dificiles de hacer.",
+            "Estos peces no son muy listos, pero s&i muy diestros en esto."
+        ],
+        "TextoTiendaPociones51": [
+            "Me pregunto por qu$e tienen colores tan raros esos brebajes.",
+            "Espero que el verde no me convierta en rana, todav$ia creo en que no son m$agicos."
+        ],
+
+        "TextoTiendaPociones60": [
+            "Esas probetas y recipientes de cristal son complicadas de hacer.",
+            "No ser$an muy inteligentes, pero estos peces tienen buena mano de obra."
+        ],
+        "TextoTiendaPociones61": [
+            "Me pregunto por qu$e tienen colores tan raros esos brebajes.",
+            "Recuerdo en la superficie beber zumos de diferentes colores y muy raros,",
+            "pero no creo que estos sean zumos..."
+        ],
         
-        "TextoTiendaPociones20": [ "TiendaPociones20" ],
-        "TextoTiendaPociones21": [ "TiendaPociones21" ],
-        "TextoTiendaPociones22": [ "TiendaPociones22" ],
+        "TextoTiendaPociones70": [ "Hay una plantita al fondo, al due&%o le deben de gustar tener plantas." ],
+        "TextoTiendaPociones71": [ "En clase de qu$imica del instituto hac$iamos liquidos raros como estos." ],
+
+        "TextoTiendaPociones80": [
+            "La plantita que hay al fondo debe de ser porque al due&%o le deben de gustar las plantas,",
+            "o a lo mejor las usa para hacer sus brebajes."
+        ],
+        "TextoTiendaPociones81": [
+            "En clase de qu$imica del instituto hac$iamos liquidos raros como estos.",
+            "Recuerdo cuando yo y un amigo mezclamos mal dos cosas y casi explotamos el laboratorio."
+        ],
+
+        "TextoTiendaPociones90": [
+            "La plantita que hay en la estanter$ia, a lo mejor indica que al due&%o le gustan las plantas,",
+            "pero tambien puede que las use para crear estos brebajes."
+        ],
+        "TextoTiendaPociones91": [
+            "El d$ia en que casi explotamos el instituto en clase de qu$imica por hacer brebajes como estos,",
+            "casi me expulsan, pero tan solo tuve que limpiar el desastre que montamos en el laboratorio. Lo recuerdo muy gracioso."
+        ],
         
-        "TextoTiendaPociones30": [ "TiendaPociones30" ],
-        "TextoTiendaPociones31": [ "TiendaPociones31" ],
-        "TextoTiendaPociones32": [ "TiendaPociones32" ],
-        
-        "TextoTiendaPociones40": [ "TiendaPociones40" ],
-        "TextoTiendaPociones41": [ "TiendaPociones41" ],
-        "TextoTiendaPociones42": [ "TiendaPociones42" ],
-        
-        "TextoTiendaPociones50": [ "TiendaPociones50" ],
-        "TextoTiendaPociones51": [ "TiendaPociones51" ],
-        "TextoTiendaPociones52": [ "TiendaPociones52" ],
-        
-        "TextoTiendaPociones60": [ "TiendaPociones60" ],
-        "TextoTiendaPociones61": [ "TiendaPociones61" ],
-        "TextoTiendaPociones62": [ "TiendaPociones62" ],
-        
-        "TextoTiendaPociones70": [ "TiendaPociones70" ],
-        "TextoTiendaPociones71": [ "TiendaPociones71" ],
-        "TextoTiendaPociones72": [ "TiendaPociones72" ],
-        
-        "TextoTiendaPociones80": [ "TiendaPociones80" ],
-        "TextoTiendaPociones81": [ "TiendaPociones81" ],
-        "TextoTiendaPociones82": [ "TiendaPociones82" ],
-        
-        "TextoTiendaPociones90": [ "TiendaPociones90" ],
-        "TextoTiendaPociones91": [ "TiendaPociones91" ],
-        "TextoTiendaPociones92": [ "TiendaPociones92" ],
-        
-        "TextoTiendaPociones100": [ "TiendaPociones100" ],
-        "TextoTiendaPociones101": [ "TiendaPociones101" ],
-        "TextoTiendaPociones102": [ "TiendaPociones102" ],
-        
-        "TextoTiendaPociones110": [ "TiendaPociones110" ],
-        "TextoTiendaPociones111": [ "TiendaPociones111" ],
-        "TextoTiendaPociones112": [ "TiendaPociones112" ],
-        
-        "TextoTiendaPociones120": [ "TiendaPociones120" ],
-        "TextoTiendaPociones121": [ "TiendaPociones121" ],
-        "TextoTiendaPociones122": [ "TiendaPociones122" ],
-        
-        "TextoTiendaPociones130": [ "TiendaPociones130" ],
-        "TextoTiendaPociones131": [ "TiendaPociones131" ],
-        "TextoTiendaPociones132": [ "TiendaPociones132" ],
-        
-        "TextoTiendaPociones140": [ "TiendaPociones140" ],
-        "TextoTiendaPociones141": [ "TiendaPociones141" ],
-        "TextoTiendaPociones142": [ "TiendaPociones142" ]
+        "TextoTiendaPociones100": [ "Ojal$a hubiera mas variedad, todav$ia siguen los mismos brebajes de siempre." ],
+        "TextoTiendaPociones101": [ "Ahora que me fijo, todo est$a muy bien ordenado, el due$%o debe ser una persona ordenada." ],
+
+        "TextoTiendaPociones110": [
+            "Todav$ia siguen los mismos brebajes de siempre.",
+            "Puede que no vendan tanto y el vendedor tenga que deshacerse de todo."
+        ],
+        "TextoTiendaPociones111": [ "Ordenar todos estos brebajes debe ser una tarea complicada." ],
+
+        "TextoTiendaPociones120": [
+            "Todav$ia siguen los mismos brebajes de siempre.",
+            "Puede que si comprara algunos el due&%o venda m&as variedad, pero quiero ahorrar."
+        ],
+        "TextoTiendaPociones121": [ "Los brebajes est$an ordenados por categor$ia." ],
+
+        "TextoTiendaPociones130": [
+            "Me gustar$ia saber como crear brebajes como estos y para qu$e sirven.",
+            "Pero para esto $ultimo quizas deba de comprar alguno."
+        ],
+        "TextoTiendaPociones131": [ "Los cristales parecen delicados, mejor no tocar." ],
+
+        "TextoTiendaPociones140": [
+            "Llevo dos semanas, y ahora me pregunto c$omo es el proceso de creaci&on de estos brebajes.",
+            "Pueden que sean diestros, pero hacer liquidos como estos raros requiere a lo mejor de saber de qu&imica,",
+            "y estos peces no son muy inteligentes."
+        ],
+        "TextoTiendaPociones141": [
+            "Los cristales de los brebajes parecen de licados,",
+            "prefiero no tocar si no los voy a comprar."
+        ]
     },
     "TiendaBolas": {
-        "TextoTiendaBolas00": [ "TiendaBolas00" ],
-        "TextoTiendaBolas01": [ "TiendaBolas01" ],
-        "TextoTiendaBolas02": [ "TiendaBolas02" ],
         
-        "TextoTiendaBolas10": [ "TiendaBolas10" ],
-        "TextoTiendaBolas11": [ "TiendaBolas11" ],
-        "TextoTiendaBolas12": [ "TiendaBolas12" ],
+        "TextoTiendaBolas10": [ "Aqu&i venden frutas raras..." ],
+        "TextoTiendaBolas11": [ "Puede que estas frutas se cultiven en el campo que hay en la ciudad." ],
         
-        "TextoTiendaBolas20": [ "TiendaBolas20" ],
-        "TextoTiendaBolas21": [ "TiendaBolas21" ],
-        "TextoTiendaBolas22": [ "TiendaBolas22" ],
+        "TextoTiendaBolas20": [ "No se qu$e tipo de frutas son, pero las que venden aqu$i son muy raras." ],
+        "TextoTiendaBolas21": [ "En Dem$eter cultivan cosas a lo mejor, puede que estas futas vengan de all$i." ],
         
-        "TextoTiendaBolas30": [ "TiendaBolas30" ],
-        "TextoTiendaBolas31": [ "TiendaBolas31" ],
-        "TextoTiendaBolas32": [ "TiendaBolas32" ],
+        "TextoTiendaBolas30": [ "Son muy raras estas frutas, quiz$as deba de probar alguna." ],
+        "TextoTiendaBolas31": [ "Ahora que lo veo, parecen patatas, quizas en Dem$eter las cultiven." ],
+
+        "TextoTiendaBolas40": [
+            "No hay mucha variedad en esta tienda de... $?frutas?",
+            "Deber$ia de comerme una para ver si son frutas que est$an buenas."
+        ],
+        "TextoTiendaBolas41": [ "Los precios no deben de ser muy altos si los venden en grandes cantidades estas frutas." ],
+
+        "TextoTiendaBolas50": [
+            "No hay mucha variedad en esta tienda de frutas,",
+            "a lo mejor deber$ia de comerme una para ver si est$an buenas."
+        ],
+        "TextoTiendaBolas51": [ "Si hay muchas frutas, los precios no deben de ser tan altos." ],
+
+        "TextoTiendaBolas60": [
+            "No hay mucha variedad en esta tienda de frutas,",
+            "puede que a la gente de por aqu$i lle guste tanto que no se venda otra cosa,",
+            "o a lo mejor el vendedor tiene solo esto."
+        ],
+        "TextoTiendaBolas61": [
+            "Los precios de estas frutas deben de ser bajos, hay muchas.",
+            "Pod$ian costar m$as a lo mejor si tuvieran menos a la venta."
+        ],
         
-        "TextoTiendaBolas40": [ "TiendaBolas40" ],
-        "TextoTiendaBolas41": [ "TiendaBolas41" ],
-        "TextoTiendaBolas42": [ "TiendaBolas42" ],
+        "TextoTiendaBolas70": [ "No solo parecen patatas, tambien parecen huevos..." ],
+        "TextoTiendaBolas71": [
+            "1, 2, 3, 4...",
+            "67, 68, 69,...",
+            "451, 452, ...",
+            "Creo que he perdido la cuenta, hay demasiadas frutas aqu$i."
+        ],
+
+        "TextoTiendaBolas80": [
+            "No solo parecen patatas, tienen aspecto de huevos.",
+            "$?Acaso aqu$i abajo hay animales que den huevos como los de las gallinas?"
+        ],
+        "TextoTiendaBolas81": [ "Si me pusiera a contar estas frutas, de seguro no acabar$ia hasta mañana." ],
+
+        "TextoTiendaBolas90": [
+            "Parecen patatas, pero tambi$en parecen huevos.",
+            "Ser$ia raro ver gallinas bajo el mar."
+        ],
+        "TextoTiendaBolas91": [ "Contar cuantas frutas hay ser$ia entretenido, pero hay demasiadas a la vista." ],
         
-        "TextoTiendaBolas50": [ "TiendaBolas50" ],
-        "TextoTiendaBolas51": [ "TiendaBolas51" ],
-        "TextoTiendaBolas52": [ "TiendaBolas52" ],
+        "TextoTiendaBolas100": [ "Tengo hambre, quiz$as deba de comprar una fruta de estas." ],
+        "TextoTiendaBolas101": [ "$?Esto caducar$a?." ],
         
-        "TextoTiendaBolas60": [ "TiendaBolas60" ],
-        "TextoTiendaBolas61": [ "TiendaBolas61" ],
-        "TextoTiendaBolas62": [ "TiendaBolas62" ],
+        "TextoTiendaBolas110": [ "Lucen simples, pero a lo mejor me sacian el hambre estas frutas con unas pocas." ],
+        "TextoTiendaBolas111": [ "Espero que si me compre una fruta, pueda conservarla durante d$ias." ],
         
-        "TextoTiendaBolas70": [ "TiendaBolas70" ],
-        "TextoTiendaBolas71": [ "TiendaBolas71" ],
-        "TextoTiendaBolas72": [ "TiendaBolas72" ],
+        "TextoTiendaBolas120": [ "Si son parecidas a las patatas, estas frutas pueden saciar mi hambre si las cuezo." ],
+        "TextoTiendaBolas121": [ "Me pregunto como conservar$an la comida en este sitio." ],
+
+        "TextoTiendaBolas130": [
+            "Creo que hoy me voy a comer una fruta de estas...",
+            "bueno, creo que mejor paso."
+        ],
+        "TextoTiendaBolas131": [
+            "Todav$ia tengo dinero para poder comparar alguna fruta de estas a lo mejor,",
+            "pero prefiero ahorrar."
+        ],
         
-        "TextoTiendaBolas80": [ "TiendaBolas80" ],
-        "TextoTiendaBolas81": [ "TiendaBolas81" ],
-        "TextoTiendaBolas82": [ "TiendaBolas82" ],
-        
-        "TextoTiendaBolas90": [ "TiendaBolas90" ],
-        "TextoTiendaBolas91": [ "TiendaBolas91" ],
-        "TextoTiendaBolas92": [ "TiendaBolas92" ],
-        
-        "TextoTiendaBolas100": [ "TiendaBolas100" ],
-        "TextoTiendaBolas101": [ "TiendaBolas101" ],
-        "TextoTiendaBolas102": [ "TiendaBolas102" ],
-        
-        "TextoTiendaBolas110": [ "TiendaBolas110" ],
-        "TextoTiendaBolas111": [ "TiendaBolas111" ],
-        "TextoTiendaBolas112": [ "TiendaBolas112" ],
-        
-        "TextoTiendaBolas120": [ "TiendaBolas120" ],
-        "TextoTiendaBolas121": [ "TiendaBolas121" ],
-        "TextoTiendaBolas122": [ "TiendaBolas122" ],
-        
-        "TextoTiendaBolas130": [ "TiendaBolas130" ],
-        "TextoTiendaBolas131": [ "TiendaBolas131" ],
-        "TextoTiendaBolas132": [ "TiendaBolas132" ],
-        
-        "TextoTiendaBolas140": [ "TiendaBolas140" ],
-        "TextoTiendaBolas141": [ "TiendaBolas141" ],
-        "TextoTiendaBolas142": [ "TiendaBolas142" ]
+        "TextoTiendaBolas140": [ "Alg$un d$ia tengo que probar una de estas frutas." ],
+        "TextoTiendaBolas141": [ "Bolas." ]
     },
     "TiendaJarrones": {
-        "TextoTiendaJarrones00": [ "TiedaJarrones00" ],
-        "TextoTiendaJarrones01": [ "TiedaJarrones01" ],
-        "TextoTiendaJarrones02": [ "TiedaJarrones02" ],
+
+        "TextoTiendaJarrones10": [
+            "Estos jarrones deben estar caros...",
+            "Me pregunto si en otro sitio tendr$an m$as variedad"
+        ],
+        "TextoTiendaJarrones11": [ "No veo al due$%o." ],
+
+        "TextoTiendaJarrones20": [
+            "Estos jarrones deben de estar caros.",
+            "En Hefesto hab$ia una tienda de cer$amica tambi$en."
+        ],
+        "TextoTiendaJarrones21": [ "No hay nadie, puede que la tarotista venda estos jarrones a lo mejor." ],
+
+        "TextoTiendaJarrones30": [
+            "Por como los veo, deben de estar caros estos jarrones,",
+            "m$as que los que venden en Hefesto posiblemente."
+        ],
+        "TextoTiendaJarrones31": [ "Si estos jarrones son de la tarotista, debe de tener buena mano de obra." ],
         
-        "TextoTiendaJarrones10": [ "TiedaJarrones10" ],
-        "TextoTiendaJarrones11": [ "TiedaJarrones11" ],
-        "TextoTiendaJarrones12": [ "TiedaJarrones12" ],
+        "TextoTiendaJarrones40": [ "Deber$ian de pintar los jarrones." ],
+        "TextoTiendaJarrones41": [ "Me pregunto cuanto costar$a hacer un jarr$on en un lugar bajo el mar." ],
+
+        "TextoTiendaJarrones50": [
+            "Deber$ian de pintar los jarrones.",
+            "Quiz$as as$i se ver$ian mejor."
+        ],
+        "TextoTiendaJarrones51": [ "Debe de costar mucho hacer jarrones en un lugar bajo el mar." ],
         
-        "TextoTiendaJarrones20": [ "TiedaJarrones20" ],
-        "TextoTiendaJarrones21": [ "TiedaJarrones21" ],
-        "TextoTiendaJarrones22": [ "TiedaJarrones22" ],
-        
-        "TextoTiendaJarrones30": [ "TiedaJarrones30" ],
-        "TextoTiendaJarrones31": [ "TiedaJarrones31" ],
-        "TextoTiendaJarrones32": [ "TiedaJarrones32" ],
-        
-        "TextoTiendaJarrones40": [ "TiedaJarrones40" ],
-        "TextoTiendaJarrones41": [ "TiedaJarrones41" ],
-        "TextoTiendaJarrones42": [ "TiedaJarrones42" ],
-        
-        "TextoTiendaJarrones50": [ "TiedaJarrones50" ],
-        "TextoTiendaJarrones51": [ "TiedaJarrones51" ],
-        "TextoTiendaJarrones52": [ "TiedaJarrones52" ],
-        
-        "TextoTiendaJarrones60": [ "TiedaJarrones60" ],
-        "TextoTiendaJarrones61": [ "TiedaJarrones61" ],
-        "TextoTiendaJarrones62": [ "TiedaJarrones62" ],
+        "TextoTiendaJarrones60": [ "Est$an chulos, pero molar$ia mas que los jarrones los pintaran para que sean m$as vistosos." ],
+        "TextoTiendaJarrones61": [ "Hacer jarrones como estos bajo el mar debe ser complicado, pero podr$ian pintarlos aunque sea." ],
         
         "TextoTiendaJarrones70": [ "TiedaJarrones70" ],
         "TextoTiendaJarrones71": [ "TiedaJarrones71" ],
-        "TextoTiendaJarrones72": [ "TiedaJarrones72" ],
         
         "TextoTiendaJarrones80": [ "TiedaJarrones80" ],
         "TextoTiendaJarrones81": [ "TiedaJarrones81" ],
-        "TextoTiendaJarrones82": [ "TiedaJarrones82" ],
         
         "TextoTiendaJarrones90": [ "TiedaJarrones90" ],
         "TextoTiendaJarrones91": [ "TiedaJarrones91" ],
-        "TextoTiendaJarrones92": [ "TiedaJarrones92" ],
         
         "TextoTiendaJarrones100": [ "TiedaJarrones100" ],
         "TextoTiendaJarrones101": [ "TiedaJarrones101" ],
-        "TextoTiendaJarrones102": [ "TiedaJarrones102" ],
         
         "TextoTiendaJarrones110": [ "TiedaJarrones110" ],
         "TextoTiendaJarrones111": [ "TiedaJarrones111" ],
-        "TextoTiendaJarrones112": [ "TiedaJarrones112" ],
         
         "TextoTiendaJarrones120": [ "TiedaJarrones120" ],
         "TextoTiendaJarrones121": [ "TiedaJarrones121" ],
-        "TextoTiendaJarrones122": [ "TiedaJarrones122" ],
         
         "TextoTiendaJarrones130": [ "TiedaJarrones130" ],
         "TextoTiendaJarrones131": [ "TiedaJarrones131" ],
-        "TextoTiendaJarrones132": [ "TiedaJarrones132" ],
         
         "TextoTiendaJarrones140": [ "TiedaJarrones140" ],
-        "TextoTiendaJarrones141": [ "TiedaJarrones141" ],
-        "TextoTiendaJarrones142": [ "TiedaJarrones142" ]
+        "TextoTiendaJarrones141": [ "TiedaJarrones141" ]
     },
     "Molino": {
         "TextoMolino00": [ "Molino00" ],

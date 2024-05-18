@@ -275,7 +275,7 @@ pq::Calle PaqueteBuilder::calleRND(int probError) {	//Este m�todo devuelve una
 
 bool PaqueteBuilder::boolRND(int probFalse) { //Este m�todo devuelve una valor aleatorio entre treu y false para un bool seg�n una probabilidad
 	int rnd = sdlutils().rand().nextInt(0, 101);
-	if (rnd > probFalse) {
+	if (rnd >= probFalse) {
 		return true;
 	}
 	else {
@@ -285,7 +285,7 @@ bool PaqueteBuilder::boolRND(int probFalse) { //Este m�todo devuelve una valor
 
 pq::NivelPeso PaqueteBuilder::pesoRND(int probPeso, int probError, int& peso) {	//Este m�todo elige aleatoriamente si colocar un sello de peso o no en el paquete y, en caso positivo,
 	int rnd = sdlutils().rand().nextInt(0, 101);										//elige aleatoriamente si el resultado es correcto o incorrecto, devolviendo un peso para el paquete
-	if (rnd <= probPeso) {
+	if (rnd < probPeso) {
 		pq::NivelPeso pes;
 		rnd = sdlutils().rand().nextInt(1, 4);
 		pes = (pq::NivelPeso)rnd;

@@ -830,6 +830,16 @@ void ecs::MainScene::createPaquete (int lv) {
 		if(rnd !=1) bolaCrist_->check(pac->getComponent<Paquete>(), true);
 		else bolaCrist_->check(pac->getComponent<Paquete>(), false);
 	}
+	Paquete* p = pac->getComponent<Paquete>();	
+	std::cout << "\n";
+	std::cout << "Fragil: " << p->getFragil();
+	std::cout << "\n";
+	std::cout << "PesoTipo: " << p->getPeso();
+	std::cout << "\n";
+	std::cout << "PesoNum: " << p->getCantidadPeso();
+	std::cout << "\n";
+	std::cout << "PesoCorr: " << p->pesoCorrecto();
+	std::cout << "\n";
 }
 
 
