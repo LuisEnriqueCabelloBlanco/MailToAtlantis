@@ -1372,7 +1372,7 @@
             "Siento que me est$an sobreexplotando,",
             "pero todav$ia me puedo costear el alojamiento con lo que me dan."
         ],
-        "TextoCartelOficina61": [ "Deber$ia tranajar ya." ],
+        "TextoCartelOficina61": [ "Deber$ia trabajar ya." ],
 
         "TextoCartelOficina70": [
             "El cartel sigue igual de chulo,",
@@ -1761,10 +1761,10 @@
         "TextoMolino30": [ "Si cultivan trigo en este lugar, gracias a este gran molino deben de producir mucho pan" ],
         "TextoMolino31": [ "Me pregunto si en el molino vive alguien m$as que la tortuga, si es que vive aqu$i claro." ],
         
-        "TextoMolino40": [ "Este molino me recuerda a una historia muy popular de mi pa&is, pero no recuerdo el nombre." ],
+        "TextoMolino40": [ "Este molino me recuerda a una historia muy popular de mi pa$is, pero no recuerdo el nombre." ],
         "TextoMolino41": [ "$?En el molino guardar$an m$asa cosas aparte de trigo?" ],
         
-        "TextoMolino50": [ "A veces cuando miro este molino me recuerda a una historia de mi pa&is donde el protagonista los confund$ia con monstruos." ],
+        "TextoMolino50": [ "A veces cuando miro este molino me recuerda a una historia de mi pa$is donde el protagonista los confund$ia con monstruos." ],
         "TextoMolino51": [ "Con lo grande que es, de seguro este molino no solo garda trigo si qes que se cultiva." ],
 
         "TextoMolino60": [
@@ -1788,7 +1788,7 @@
         "TextoMolino110": [ "No s$e de donde sacaron la inspiraci$on, pero construir un molino as$i de grande es mucho trabajo." ],
         "TextoMolino111": [ "Todav$ia me cuestiono si todos los campesinos viven en molinos como este o en casas de este u otro distrito." ],
         
-        "TextoMolino120": [ "Construir un molino as&i de grande y en buenas condiciones, debe de haber sido mucho trabajo si lleva muchos a$%os en pie" ],
+        "TextoMolino120": [ "Construir un molino as$i de grande y en buenas condiciones, debe de haber sido mucho trabajo si lleva muchos a$%os en pie" ],
         "TextoMolino121": [ "Si hay campesinos que no viven en molnos como este, a lo mejor hay m$as casas por Dem$eter o viven en Hestia." ],
         
         "TextoMolino130": [ "Llevo aqu$i ya un tiempecito, pero molinos como este no se ven todos los d$ias." ],
@@ -1809,7 +1809,7 @@
         "TextoArbol21": [ "Un $asrbol como este de grande, impone." ],
         
         "TextoArbol30": [ "Este $arbol me sigue pareciendo enorme." ],
-        "TextoArbol31": [ "No he visto todav$ia otro $arbol tan imponente como este por aqu&i." ],
+        "TextoArbol31": [ "No he visto todav$ia otro $arbol tan imponente como este por aqu$i." ],
         
         "TextoArbol40": [ "$?Este $arbol dar$a frutos?" ],
         "TextoArbol41": [ "Este $arbol parece muy sano." ],
@@ -1904,187 +1904,195 @@
         "TextoCarreta141": [ "Seguro en el molino hay m$as carretillas guardadas." ]
     },
     "PulpoCartel": {
-        "TextoPulpoCartel00": [ "PulpoCartel00" ],
-        "TextoPulpoCartel01": [ "PulpoCartel01" ],
-        "TextoPulpoCartel02": [ "PulpoCartel02" ],
         
-        "TextoPulpoCartel10": [ "PulpoCartel10" ],
-        "TextoPulpoCartel11": [ "PulpoCartel11" ],
-        "TextoPulpoCartel12": [ "PulpoCartel12" ],
+        "TextoPulpoCartel10": [ "Un pulpooooooooooooo." ],
+        "TextoPulpoCartel11": [ "Est$a en muy buenas condiciones el logo." ],
         
-        "TextoPulpoCartel20": [ "PulpoCartel20" ],
-        "TextoPulpoCartel21": [ "PulpoCartel21" ],
-        "TextoPulpoCartel22": [ "PulpoCartel22" ],
+        "TextoPulpoCartel20": [ "Me encanta el logo del pulpo de esta tienda." ],
+        "TextoPulpoCartel21": [ "El logo debe de ser muy resistente como para verse como nuevo." ],
         
-        "TextoPulpoCartel30": [ "PulpoCartel30" ],
-        "TextoPulpoCartel31": [ "PulpoCartel31" ],
-        "TextoPulpoCartel32": [ "PulpoCartel32" ],
+        "TextoPulpoCartel30": [ "El dise$%ador del cartel es muy creativo seguramente." ],
+        "TextoPulpoCartel31": [ "La pintura debe de ser de muy buena calidad para verse como nuevo el logo." ],
         
-        "TextoPulpoCartel40": [ "PulpoCartel40" ],
-        "TextoPulpoCartel41": [ "PulpoCartel41" ],
-        "TextoPulpoCartel42": [ "PulpoCartel42" ],
+        "TextoPulpoCartel40": [ "Las herramientas del pulpo deben referiris a las cualidades del artesano del taller." ],
+        "TextoPulpoCartel41": [ "Al logo creo que le faltan m$as tent$aculos, pero mola igual." ],
         
-        "TextoPulpoCartel50": [ "PulpoCartel50" ],
-        "TextoPulpoCartel51": [ "PulpoCartel51" ],
-        "TextoPulpoCartel52": [ "PulpoCartel52" ],
+        "TextoPulpoCartel50": [ "Me pregunto si cualquier pulpo puede ser un gran carpintero." ],
+        "TextoPulpoCartel51": [ "El pulpo del logo le faltan brazos, pero mola igual." ],
+
+        "TextoPulpoCartel60": [ "Me pregunto si cualquier pulpo puede ser un gran herrero." ],
+        "TextoPulpoCartel61": [ "El pulpo del logo no tiene tantos brazos, pero igual mola" ],
         
-        "TextoPulpoCartel60": [ "PulpoCartel60" ],
-        "TextoPulpoCartel61": [ "PulpoCartel61" ],
-        "TextoPulpoCartel62": [ "PulpoCartel62" ],
+        "TextoPulpoCartel70": [ "Me gustar$ia poder trabajar tambi$en en un sitio como este, por saber qu$e tal" ],
+        "TextoPulpoCartel71": [ "Que un pulpo tenga varios brazos y sea artesano es un poco ir$onico." ],
         
-        "TextoPulpoCartel70": [ "PulpoCartel70" ],
-        "TextoPulpoCartel71": [ "PulpoCartel71" ],
-        "TextoPulpoCartel72": [ "PulpoCartel72" ],
+        "TextoPulpoCartel80": [ "Trabajar en un taller de artesan$ia de cualquier tipo debe ser retador cuanto menos." ],
+        "TextoPulpoCartel81": [ "El que un pulpo sea artesano, me recuerda a que cuantas m$as manos, mejor trabajo se har$a" ],
+
+        "TextoPulpoCartel90": [
+            "No voy a dejar mi trabajo en Correos Atl$antida, pero si en un taller como este bucan personal,",
+            "me pensar$e el si quiero trabajar o no por temas de horarios. Pero estar$ia interesante ser artesano tambi$en."
+        ],
+        "TextoPulpoCartel91": [ "Me pregunto si habr$an m$as carteles como este en otras tiendas de artesanos." ],
         
-        "TextoPulpoCartel80": [ "PulpoCartel80" ],
-        "TextoPulpoCartel81": [ "PulpoCartel81" ],
-        "TextoPulpoCartel82": [ "PulpoCartel82" ],
+        "TextoPulpoCartel100": [ "Creo que al cartel le vendr$ia bien tener m$as herramientas de referencia." ],
+        "TextoPulpoCartel101": [ "Molar$ia que estuviera sosteniendo unos clavos tembi$en." ],
         
-        "TextoPulpoCartel90": [ "PulpoCartel90" ],
-        "TextoPulpoCartel91": [ "PulpoCartel91" ],
-        "TextoPulpoCartel92": [ "PulpoCartel92" ],
+        "TextoPulpoCartel110": [ "Molar$ia que tiviese unas tijeras el cartel, como las del fondo del cartel." ],
+        "TextoPulpoCartel111": [ "El martillo mola, creo que es porque el artesano es carpintero." ],
         
-        "TextoPulpoCartel100": [ "PulpoCartel100" ],
-        "TextoPulpoCartel101": [ "PulpoCartel101" ],
-        "TextoPulpoCartel102": [ "PulpoCartel102" ],
+        "TextoPulpoCartel120": [ "Molar$ia que el cartel tambi$en tuviese un tabl$on de madera agarrado con un tent$aculo." ],
+        "TextoPulpoCartel121": [ "El martillo mola, creo que es porque el artesano es herrero tambi$en." ],
+
+        "TextoPulpoCartel130": [
+            "El humo que sale por la pared sigue igual de negro que siempre,",
+            "deben de estar quemando muchois materiales en el horno continuamente."
+        ],
+        "TextoPulpoCartel131": [ "El yunque del taller debe ser para hacer cosas con herrer$ia." ],
         
-        "TextoPulpoCartel110": [ "PulpoCartel110" ],
-        "TextoPulpoCartel111": [ "PulpoCartel111" ],
-        "TextoPulpoCartel112": [ "PulpoCartel112" ],
-        
-        "TextoPulpoCartel120": [ "PulpoCartel120" ],
-        "TextoPulpoCartel121": [ "PulpoCartel121" ],
-        "TextoPulpoCartel122": [ "PulpoCartel122" ],
-        
-        "TextoPulpoCartel130": [ "PulpoCartel130" ],
-        "TextoPulpoCartel131": [ "PulpoCartel131" ],
-        "TextoPulpoCartel132": [ "PulpoCartel132" ],
-        
-        "TextoPulpoCartel140": [ "PulpoCartel140" ],
-        "TextoPulpoCartel141": [ "PulpoCartel141" ],
-        "TextoPulpoCartel142": [ "PulpoCartel142" ]
+        "TextoPulpoCartel140": [ "Me pregunto si la madera del taller la traen desde los campos de Dem$eter." ],
+        "TextoPulpoCartel141": [ "Ojal$a trabajar un d$ia en un taller como este mientras trabajo en Correos Atl$antida." ]
     },
     "TiendaCeramica": {
-        "TextoTiendaCeramica00": [ "TiendaCeramica00" ],
-        "TextoTiendaCeramica01": [ "TiendaCeramica01" ],
-        "TextoTiendaCeramica02": [ "TiendaCeramica02" ],
+        "TextoTiendaCeramica10": [ "Una tienda de cer$amica, creo que hab$ia otra parecida en Artemisa." ],
+        "TextoTiendaCeramica11": [ "Hay muchas manchas en las paredes." ],
         
-        "TextoTiendaCeramica10": [ "TiendaCeramica10" ],
-        "TextoTiendaCeramica11": [ "TiendaCeramica11" ],
-        "TextoTiendaCeramica12": [ "TiendaCeramica12" ],
+        "TextoTiendaCeramica20": [ "Creo que los jarrones de aqu$i estar$an m$as baratos que en Artemisa." ],
+        "TextoTiendaCeramica21": [ "Creo que las manchas de las paredes son parecidas al barro." ],
         
-        "TextoTiendaCeramica20": [ "TiendaCeramica20" ],
-        "TextoTiendaCeramica21": [ "TiendaCeramica21" ],
-        "TextoTiendaCeramica22": [ "TiendaCeramica22" ],
+        "TextoTiendaCeramica30": [ "Los jarrones de aqu$i empiezo a pensar que de verdad est$an m$as baratos que en artemisa." ],
+        "TextoTiendaCeramica31": [
+            "Puede que las manchas de las paredes se deben al barro que puede ser salpicado al hacer jarrones,",
+            "si es que est$an hechos con barro, claro est$a."
+        ],
         
-        "TextoTiendaCeramica30": [ "TiendaCeramica30" ],
-        "TextoTiendaCeramica31": [ "TiendaCeramica31" ],
-        "TextoTiendaCeramica32": [ "TiendaCeramica32" ],
+        "TextoTiendaCeramica40": [ "El saco de la pared creo que es con lo que hacen los jarrones." ],
+        "TextoTiendaCeramica41": [ "Los jarrones de la tienda lucen en muy buenas condiciones." ],
         
-        "TextoTiendaCeramica40": [ "TiendaCeramica40" ],
-        "TextoTiendaCeramica41": [ "TiendaCeramica41" ],
-        "TextoTiendaCeramica42": [ "TiendaCeramica42" ],
+        "TextoTiendaCeramica50": [ "Puede que el saco de la pared sea de arcilla, barro o algo parecido." ],
+        "TextoTiendaCeramica51": [ "Aqu$i veo que si pintan los jarrones, no como en la tienda de Artemisa." ],
         
-        "TextoTiendaCeramica50": [ "TiendaCeramica50" ],
-        "TextoTiendaCeramica51": [ "TiendaCeramica51" ],
-        "TextoTiendaCeramica52": [ "TiendaCeramica52" ],
+        "TextoTiendaCeramica60": [ "El saco de la pared est$a protegido por la sombra, puede que esto haga que no se seque tan r$apido lo que haya dentro." ],
+        "TextoTiendaCeramica61": [ "Los jarrones seguro que est$an al sol para que se sequen bien." ],
         
-        "TextoTiendaCeramica60": [ "TiendaCeramica60" ],
-        "TextoTiendaCeramica61": [ "TiendaCeramica61" ],
-        "TextoTiendaCeramica62": [ "TiendaCeramica62" ],
+        "TextoTiendaCeramica70": [ "Hoy las manchas de la pared huelen raro, pero las veo igual que siempre." ],
+        "TextoTiendaCeramica71": [ "Los jarrones pintados lucen bastante bien la verdad." ],
         
-        "TextoTiendaCeramica70": [ "TiendaCeramica70" ],
-        "TextoTiendaCeramica71": [ "TiendaCeramica71" ],
-        "TextoTiendaCeramica72": [ "TiendaCeramica72" ],
+        "TextoTiendaCeramica80": [ "El otro d$ia las manchas de la pared ol$ian raro, pero siguen igual que siempre." ],
+        "TextoTiendaCeramica81": [ "El que haya pintado los jarrones debe de tener muy buena mano con la pintura." ],
+
+        "TextoTiendaCeramica90": [
+            "Puede que el olor del otro d$ia no viniese de las manchas de la pared,",
+            "si no que provenga de una parte del taller de cer$amica que no veo."
+        ],
+        "TextoTiendaCeramica91": [
+            "Es curioso que con un solo color, puedan pintarse varias formas interesantes en el jarr$on,",
+            "sin tener que usar m$as colores que el amarillo."
+        ],
         
-        "TextoTiendaCeramica80": [ "TiendaCeramica80" ],
-        "TextoTiendaCeramica81": [ "TiendaCeramica81" ],
-        "TextoTiendaCeramica82": [ "TiendaCeramica82" ],
+        "TextoTiendaCeramica100": [ "Me pregunto si esta tienda de cer$amica pertenece al pulpo artesano y no me ha dicho nada." ],
+        "TextoTiendaCeramica101": [
+            "Pueden que se est$en secando, pero creo que ser$ia conveniente que el vendedor guardara los jarrones a la sombra,",
+            "se pueden estropear aunque parecen que est$an en muy buenas condiciones."
+        ],
         
-        "TextoTiendaCeramica90": [ "TiendaCeramica90" ],
-        "TextoTiendaCeramica91": [ "TiendaCeramica91" ],
-        "TextoTiendaCeramica92": [ "TiendaCeramica92" ],
+        "TextoTiendaCeramica110": [ "Me pregunto si la tienda pudo pertenecer a alg$un artista marino." ],
+        "TextoTiendaCeramica111": [ "Llevar$an mucho rato al sol, pero estos jarrones no veo que est$en secos ni desgastados por el calor." ],
         
-        "TextoTiendaCeramica100": [ "TiendaCeramica100" ],
-        "TextoTiendaCeramica101": [ "TiendaCeramica101" ],
-        "TextoTiendaCeramica102": [ "TiendaCeramica102" ],
+        "TextoTiendaCeramica120": [ "Si esta tienda pertenece a alg$un artista marino, eso demuestra la calidad de los jarrones." ],
+        "TextoTiendaCeramica121": [
+            "Si los jarrones se mantienen como nuevos a$un estando al sol un largo tiempo,",
+            "es porque el artesano debe ser muy diestro.",
+            "O simplemente a los jarrones no les pasa nada en general por estar al sol y ser$a que en realidad no tengo ni idea."
+        ],
         
-        "TextoTiendaCeramica110": [ "TiendaCeramica110" ],
-        "TextoTiendaCeramica111": [ "TiendaCeramica111" ],
-        "TextoTiendaCeramica112": [ "TiendaCeramica112" ],
-        
-        "TextoTiendaCeramica120": [ "TiendaCeramica120" ],
-        "TextoTiendaCeramica121": [ "TiendaCeramica121" ],
-        "TextoTiendaCeramica122": [ "TiendaCeramica122" ],
-        
-        "TextoTiendaCeramica130": [ "TiendaCeramica130" ],
-        "TextoTiendaCeramica131": [ "TiendaCeramica131" ],
-        "TextoTiendaCeramica132": [ "TiendaCeramica132" ],
-        
-        "TextoTiendaCeramica140": [ "TiendaCeramica140" ],
-        "TextoTiendaCeramica141": [ "TiendaCeramica141" ],
-        "TextoTiendaCeramica142": [ "TiendaCeramica142" ]
+        "TextoTiendaCeramica130": [ "Siguen las manchas en la pared, el due$%o deber$ia de limpiar m$as a menudo su tienda." ],
+        "TextoTiendaCeramica131": [
+            "Me pregunto cada cuantos d$ias reponen ese saco de la pared,",
+            "que supongo es de donde sacan los materiales para hacer toda la cer$amica de la tienda."
+        ],
+
+        "TextoTiendaCeramica140": [
+            "No pasa ni un solo d$ia en que no me pase por esta tienda sin ver las manchas en la pared",
+            "deber$ian de limpiar m$as a menudo."
+        ],
+        "TextoTiendaCeramica141": [
+            "Los jarrones siguen tan bonitos como siempre,",
+            "espero que nadie los rompa."
+        ]
     },
     "TiendaEsculturas": {
-        "TextoTiendaEsculturas00": [ "TiendaEsculturas00" ],
-        "TextoTiendaEsculturas01": [ "TiendaEsculturas01" ],
-        "TextoTiendaEsculturas02": [ "TiendaEsculturas02" ],
-        
-        "TextoTiendaEsculturas10": [ "TiendaEsculturas10" ],
-        "TextoTiendaEsculturas11": [ "TiendaEsculturas11" ],
-        "TextoTiendaEsculturas12": [ "TiendaEsculturas12" ],
-        
-        "TextoTiendaEsculturas20": [ "TiendaEsculturas20" ],
-        "TextoTiendaEsculturas21": [ "TiendaEsculturas21" ],
-        "TextoTiendaEsculturas22": [ "TiendaEsculturas22" ],
-        
-        "TextoTiendaEsculturas30": [ "TiendaEsculturas30" ],
-        "TextoTiendaEsculturas31": [ "TiendaEsculturas31" ],
-        "TextoTiendaEsculturas32": [ "TiendaEsculturas32" ],
-        
-        "TextoTiendaEsculturas40": [ "TiendaEsculturas40" ],
-        "TextoTiendaEsculturas41": [ "TiendaEsculturas41" ],
-        "TextoTiendaEsculturas42": [ "TiendaEsculturas42" ],
-        
-        "TextoTiendaEsculturas50": [ "TiendaEsculturas50" ],
-        "TextoTiendaEsculturas51": [ "TiendaEsculturas51" ],
-        "TextoTiendaEsculturas52": [ "TiendaEsculturas52" ],
-        
-        "TextoTiendaEsculturas60": [ "TiendaEsculturas60" ],
-        "TextoTiendaEsculturas61": [ "TiendaEsculturas61" ],
-        "TextoTiendaEsculturas62": [ "TiendaEsculturas62" ],
-        
-        "TextoTiendaEsculturas70": [ "TiendaEsculturas70" ],
-        "TextoTiendaEsculturas71": [ "TiendaEsculturas71" ],
-        "TextoTiendaEsculturas72": [ "TiendaEsculturas72" ],
-        
-        "TextoTiendaEsculturas80": [ "TiendaEsculturas80" ],
-        "TextoTiendaEsculturas81": [ "TiendaEsculturas81" ],
-        "TextoTiendaEsculturas82": [ "TiendaEsculturas82" ],
-        
-        "TextoTiendaEsculturas90": [ "TiendaEsculturas90" ],
-        "TextoTiendaEsculturas91": [ "TiendaEsculturas91" ],
-        "TextoTiendaEsculturas92": [ "TiendaEsculturas92" ],
-        
-        "TextoTiendaEsculturas100": [ "TiendaEsculturas100" ],
-        "TextoTiendaEsculturas101": [ "TiendaEsculturas101" ],
-        "TextoTiendaEsculturas102": [ "TiendaEsculturas102" ],
-        
-        "TextoTiendaEsculturas110": [ "TiendaEsculturas110" ],
-        "TextoTiendaEsculturas111": [ "TiendaEsculturas111" ],
-        "TextoTiendaEsculturas112": [ "TiendaEsculturas112" ],
-        
-        "TextoTiendaEsculturas120": [ "TiendaEsculturas120" ],
-        "TextoTiendaEsculturas121": [ "TiendaEsculturas121" ],
-        "TextoTiendaEsculturas122": [ "TiendaEsculturas122" ],
-        
-        "TextoTiendaEsculturas130": [ "TiendaEsculturas130" ],
-        "TextoTiendaEsculturas131": [ "TiendaEsculturas131" ],
-        "TextoTiendaEsculturas132": [ "TiendaEsculturas132" ],
-        
-        "TextoTiendaEsculturas140": [ "TiendaEsculturas140" ],
-        "TextoTiendaEsculturas141": [ "TiendaEsculturas141" ],
-        "TextoTiendaEsculturas142": [ "TiendaEsculturas142" ]
+        "TextoTiendaEsculturas10": [ "Que guay, una tienda de esculturas." ],
+        "TextoTiendaEsculturas11": [ "$?De d$onde sacar$an las rocas para hacer las esculturas en esta tienda" ],
+
+        "TextoTiendaEsculturas20": [ "Se parece a las tiendas peque$%as de esculturas que hab$ian en la superficie." ],
+        "TextoTiendaEsculturas21": [ "Las rocas de la tienda las deben de haber sacado de alg$un lugar bajo el mar." ],
+
+        "TextoTiendaEsculturas30": [
+            "No veo que mucha gente se dedique a la escultura por esta zona,",
+            "solo he visto esta tienda."
+        ],
+        "TextoTiendaEsculturas31": [
+            "Al contrario que la madera, es m$as probable encontrar rocas en el mar que la madera.",
+            "Supongo que las rocas que usan aqu$i ser$an rocas marinas."
+        ],
+
+        "TextoTiendaEsculturas40": [ "La escultura del pez pensando me parece muy graciosa." ],
+        "TextoTiendaEsculturas41": [ "Las esculturas de aqu$i tienen mucho detalle." ],
+
+        "TextoTiendaEsculturas50": [ "Ahora que lo veo la escultura del pez pensando me recuerda cierta escultura famosa de la superficie..." ],
+        "TextoTiendaEsculturas51": [ "Yo en mis sue$%os podr$ia hacer una escultura tan detallada." ],
+
+        "TextoTiendaEsculturas60": [
+            "La estatua del pez pensante me recuerda la de El Reflexionador,",
+            "una escultura muy famosa en la superficie."
+        ],
+        "TextoTiendaEsculturas61": [
+            "El due$%o y artesano de la tienda debe de ser un gran escultor.",
+            "No hay ni un solo d$ia donde me pase a mirar por la tienda y que no opine que las esculturas est$an muy bien hechas."
+        ],
+
+        "TextoTiendaEsculturas70": [ "La escultura que est$a al lado del pez pensante, parece un bumer$an" ],
+        "TextoTiendaEsculturas71": [ "El clavo de la piedra creo que sirve para picarla y que tome forma." ],
+
+        "TextoTiendaEsculturas80": [
+            "En cierta manera, la escultura del pez con forma de bumer$an,",
+            "me recuaerda a un pez de la pel$icula de Buscando a Rodolfo. Qu$e buena pel&icula."
+        ],
+        "TextoTiendaEsculturas81": [ "El martillo de la pared creo que lo usan para picar con el clavo la piedra." ],
+
+        "TextoTiendaEsculturas90": [
+            "Me pregunto si en alguna parte el vendedor temdr$a guaradadas m$as esculturas,",
+            "que sean tan raras como el pez con forma de bumer$an."
+        ],
+        "TextoTiendaEsculturas91": [
+            "El martillo de la pared se parece al martillo del cartel del pulpo.",
+            "Pero en esta tienda su uso quiz$a se reduzca a que solo sirva para esculpir con el clavo en la piedra."
+        ],
+
+        "TextoTiendaEsculturas100": [
+            "Ahora que me fijo, hay un taburete al lado de la tienda de esculturas.",
+            "Quiz$a sea del due$%o."
+        ],
+        "TextoTiendaEsculturas101": [ "Me pregunto en qu$e tipo de escultura acabar$a siendo el bloque del fondo de la tienda." ],
+
+        "TextoTiendaEsculturas110": [ "Puede que el taburete que haya aqu$i sea para cuando el due$%o se ponga a esculpir fuera mientras se sienta." ],
+        "TextoTiendaEsculturas111": [ "Espero que ese bloque de piedra del fondo acabe siendo una gran escultura alg$un d$ia." ],
+
+        "TextoTiendaEsculturas120": [
+            "Espero que nadie le robe el taburete al due$%o de la tienda de esculturas,",
+            "le ser$ia muy complicado esculpir si est$a constantemente de pie."
+        ],
+        "TextoTiendaEsculturas121": [
+            "Al bloque de piedra del fondo le falta un cacho,",
+            "quiz$as hicieran las peque$%as esculturas del mostrador con ese cacho."
+        ],
+
+        "TextoTiendaEsculturas130": [ "A veces me pregunto la cantidad de tiempo y paciencia que lleva hacer esculturas como estas." ],
+        "TextoTiendaEsculturas131": [ "Me pregunto si en el taller se usar$an otras herramientas para esculpir que no sean solo martillos y clavos." ],
+
+        "TextoTiendaEsculturas140": [ "El nivel de detalle de estas esculturas debi$o de requerir mucha paciencia." ],
+        "TextoTiendaEsculturas141": [ "Alg&un d&ia deber&ia de comprar una escultura de estas." ]
     },
     "TiendaDerecha": {
         "TextoTiendaDerecha00": [ "TiendaDerecha00" ],
