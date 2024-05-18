@@ -35,6 +35,8 @@ namespace ecs {
 			BALANZA,
 			ROTARTRANSFORM,
 			CRISTALBALL,
+			BOMBAUX,
+			POLVOSAUX,
 			// do not remove this
 			_LAST_CMP_ID
 		};
@@ -58,6 +60,7 @@ namespace ecs {
 			TUTORIAL_SCENE,
 			CONFIG_SCENE,
 			INTRO_SCENE,
+			DEATH_SCENE,
 			_LAST_SCENE,
 			NULL_SCENE
 		};

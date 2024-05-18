@@ -9,10 +9,17 @@ class DragAndDrop;
 class SpecialObjectsFactory
 {
 public:
-	
 
-	SpecialObjectsFactory(ecs::Scene* scene);
+	SpecialObjectsFactory();
+
 	~SpecialObjectsFactory();
+
+	ecs::Entity* makeBomba();
+
+	ecs::Entity* makePolvos();
+
+	// dura 4 seg
+	void makeDeathTransition();
 
 	// llamar al empezar el dia y elegira que objetos especiales poner
 	void setupDayObjects();
@@ -22,7 +29,7 @@ private:
 
 	void makeListaVagabundo();
 
-	ecs::Scene* scene;
+	void makeListaSecretario(bool first);
 
 	std::vector<Texture*> createdTextures;
 };

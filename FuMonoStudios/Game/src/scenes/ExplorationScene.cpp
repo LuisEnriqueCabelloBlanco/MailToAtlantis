@@ -75,6 +75,7 @@ void ecs::ExplorationScene::init()
 	createDiario();
 
 	canInteract = true;
+	showTalkWarning = true;
 
 	dialogueWhenEntering();
 }
@@ -299,17 +300,30 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 	auto clickableBotonTrabajar = e->addComponent<Clickeable>("");
 	CallbackClickeable funcPress = [this]() {
 		if (canInteract) {
-			if ((gD().getDay() == 1 ||
-				gD().getDay() == 3 ||
-				gD().getDay() == 5 ||
-				gD().getDay() == 8) && !gD().GetValueSkipTutorial()) {
-
-				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+			int numPersonajesSinHablar = 0;
+			for (int i = 0; i < gD().getNumDistritos(); i++) {
+				NPCdata* data = gD().getNPCData((Personaje)i);
+				if (data->felicidad != SeFue && !data->postConversation)
+					numPersonajesSinHablar++;
 			}
-			else {
-
-				gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+			if (!showTalkWarning || numPersonajesSinHablar < 1)
+			{
+				if ((gD().getDay() == 1 ||
+					gD().getDay() == 3 ||
+					gD().getDay() == 5 ||
+					gD().getDay() == 8) && !gD().GetValueSkipTutorial()) {
+					gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+				}
+				else {
+					gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+				}
 			}
+			else
+			{
+				showTalkWarning = false;
+				dialogMngr_.startConversation(DialogManager::NoHabladoWarning, 0);
+			}
+			
 		}
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
@@ -400,7 +414,9 @@ void ecs::ExplorationScene::setupDiarioPages() {
 		{
 			diarioVacio = false;
 			//procesamos los textos
-			std::string textoPersonaje = "";
+			DialogManager a;
+			std::string textoPersonaje = data->introText += '\n';
+			a.fixText(textoPersonaje);
 			//contador de las paginas del personaje
 			int j = 0;
 			bool eventoCompletado = true;
@@ -446,7 +462,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 				j++;
 			}
 
-			DialogManager a; 
+			 
 			a.fixText(textoPersonaje);
 
 			j = 0;
@@ -492,6 +508,15 @@ void ecs::ExplorationScene::setupDiarioPages() {
 						textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
 				}
 			}
+		}
+		else if (data->felicidad == NoHabladoAun && data->postConversation){
+			pagesByCharacter[i] = 1;
+			textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
+			DialogManager a;
+			std::string textoPersonaje = data->introText += '\n';
+			a.fixText(textoPersonaje);
+			diarioText_.push_back(textoPersonaje);
+			diarioText_.push_back(" ");
 		}
 	}
 
@@ -645,6 +670,8 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 					gD().npcEventSys->shuffleNPCqueue();
 				}
 			}
+			else if (aux.first == "Presentacion")
+				setupDiarioPages();
 		}
 	};
 

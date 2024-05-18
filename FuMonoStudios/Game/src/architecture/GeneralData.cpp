@@ -122,13 +122,15 @@ int GeneralData::calcularDineroGanado()
 	int totalRightMoney = 0;
 
 	if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
-		totalRightMoney = rightPackages * (WRITE_PACAGES_VALUE + 10);
+		totalRightMoney = rightPackages * (WRITE_PACAGES_VALUE + CONTABLE_PLUS_MONEY);
 	}
 	else {
 		totalRightMoney = rightPackages * WRITE_PACAGES_VALUE;
 	}
-	if (GeneralData::instance()->getUpgradeValue(ecs::upg::FALLOS_UPGRADE)) failsMargin_ = 2;
+
+	if (GeneralData::instance()->getUpgradeValue(ecs::upg::FALLOS_UPGRADE)) failsMargin_ = SOLDIER_NUM_FAIL;
 	else failsMargin_ = 0;
+
 	if (fails_ < failsMargin_) {
 		wrongPackages = 0;
 	}
@@ -382,7 +384,6 @@ void GeneralData::readNPCData() {
 		JSONObject jObject = jValue->AsObject();
 		std::string felicidadStr = jObject["Felicidad"]->AsString();
 
-
 		if (i < 2) // npc grandes
 		{
 			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
@@ -407,6 +408,10 @@ void GeneralData::readNPCData() {
 			else
 				data->firstMision = 5;
 
+			JSONObject jObjectNPCdata = npcDataRoot[aux]->AsObject();
+
+			data->introText = jObjectNPCdata.find("IntroductionText")->second->AsString();
+
 			npcData.emplace((Personaje)i, data);
 		}
 		else
@@ -421,6 +426,9 @@ void GeneralData::readNPCData() {
 				diasDanEventos.push_back(jDiasEvento.find(std::to_string(j + 1))->second->AsBool());
 			}
 			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
+
+			data->introText = jObjectNPCdata.find("IntroductionText")->second->AsString();
+
 			data->events = std::vector<NPCevent*>(5, nullptr);
 			data->numMisionesAceptadas = jObject.find("numMisionesAceptadas")->second->AsNumber();
 			data->numFelicidad = jObject.find("FelicidadNum")->second->AsNumber();

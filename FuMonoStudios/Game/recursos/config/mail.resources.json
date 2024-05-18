@@ -523,6 +523,26 @@
       "id": "luz",
       "file": "recursos/images/luz.png"
     },
+    {
+      "id": "selloLechuzas",
+      "file": "recursos/images/SelloLechuzas.png"
+    },
+    {
+      "id": "bomba",
+      "file": "recursos/images/Bomba.png"
+    },
+    {
+      "id": "polvos",
+      "file": "recursos/images/polvos.png"
+    },
+    {
+      "id": "polvosEsparcidos",
+      "file": "recursos/images/polvosEsparcidos.png"
+    },
+    {
+      "id": "ojo",
+      "file": "recursos/images/ojo.png"
+    },
     {"id": "periodico","file": "recursos/images/Periodico.png"},
     {"id": "finalFondo","file": "recursos/images/FondoFinales.png"}
   ],
@@ -576,6 +596,16 @@
       "id": "simpleHandmade20",
       "file": "recursos/fonts/SimpleHandmade.ttf",
       "size": 20
+    },
+    {
+      "id": "simpleHandmade40",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 40
+    },
+    {
+      "id": "simpleHandmade80",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 80
     },
     {
       "id": "simpleHandmadeTuneado20",

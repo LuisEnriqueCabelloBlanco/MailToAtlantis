@@ -1,5 +1,6 @@
 {
   "Vagabundo": {
+    "IntroductionText": "Anemos Togakawa es un vagabundo optimista que vive en el distrito de Hestia. Pasa los d$ias sobreviviendo como puede y hablando con sus colegas campesinos del distrito.",
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -287,19 +288,21 @@
       },
       "14": {
         "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetesParaCompletar": 12,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "SPECIAL1"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "NOHACEFALTA"
         },
         "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+
+        "textoDiario": "Hoy es el gran d$ia. Recibir$e el veneno en una caja y debere espolvarlo sobre el paquete de nombre Francis Dupart. Luego me juntar$e con Anemos y juntos tomaremos el gobierno corrupto del rey."
       }
     }
   },
   "Secretario": {
+    "IntroductionText": "Gargafiel Mustaki, el secretario del rey, es un hombre serio que busca que se cumpla el orden en Atlantis. Protege al rey y ejecuta las $ordenes por $el, todo Atlantis depende de lo que $el ordene.",
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -578,19 +581,20 @@
       },
       "14": {
         "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetesParaCompletar": 12,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "remitente": "SPECIAL2"
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "remitente": "NOHACEFALTA"
         },
-        "recompensa": "Vagabundo+",
-        "textoDiario": "Texto diario"
+        "recompensa": "Secretario+",
+        "textoDiario": "Hoy es un dia importante. Por fin regresar$e a la superficie con Gargafiel, debo recibir una bomba de su parte y activarla en mi puesto de trabajo. En lo que explota, saldr$e corriendo y me econtrar$e con $el y su submarino en las afueras de Hefesto. Importante, para la bomba, debo pulsar primero el bot$on azul y luego el rojo."
       }
     }
   },
   "Campesino": {
+    "IntroductionText": "campesino",
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -720,6 +724,7 @@
     }
   },
   "Artesano": {
+    "IntroductionText": "artesano",
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -845,6 +850,7 @@
     }
   },
   "Tarotisa": {
+    "IntroductionText": "tarotisa",
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -968,6 +974,7 @@
     }
   },
   "Soldado": {
+    "IntroductionText": "soldado",
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -1082,6 +1089,7 @@
     }
   },
   "Contable": {
+    "IntroductionText": "contable",
     "DiasConEvento": {
       "1": false,
       "2": false,
