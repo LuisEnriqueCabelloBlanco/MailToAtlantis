@@ -111,6 +111,7 @@ public:
 
     void fixText(std::string& text);
 
+    const std::string& getDialogSound();
 private:
 
     std::string dialogSelectionToString(DialogSelection ds);
@@ -120,6 +121,8 @@ private:
     void createBox();
 
     void createText();
+
+    void setCurrentDialogSound(const std::string& character);
 
     ecs::Scene* scene_;
     /// <summary>
@@ -177,4 +180,7 @@ private:
     /// callback de final de dialogo
     /// </summary>
     std::function<void()> endDialogueCallback;
+
+    //Sonido que sonará en el diálogo actual
+    std::string dialogSound_;
 };
