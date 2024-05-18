@@ -130,6 +130,34 @@ public:
 		return upgrades_[upgrade];
 	}
 
+	inline bool getUpgradeValue(npc::Personaje pers) {
+		bool ret = false;
+		switch (pers) {
+		case Vagabundo:
+			ret = getUpgradeValue(ecs::upg::SELLO_UPGRADE);
+			break;
+		case Tarotisa:
+			ret = getUpgradeValue(ecs::upg::BOLA_UPGRADE);
+			break;
+		case Artesano:
+			ret = getUpgradeValue(ecs::upg::ENVOLVER_UPGRADE);
+			break;
+		case Campesino:
+			ret = getUpgradeValue(ecs::upg::BALANZA_UPGRADE);
+			break;
+		case Contable:
+			ret = getUpgradeValue(ecs::upg::MONEY_UPGRADE);
+			break;
+		case Soldado:
+			ret = getUpgradeValue(ecs::upg::FALLOS_UPGRADE);
+			break;
+		case Secretario:
+			ret = getUpgradeValue(ecs::upg::MANUAL_UPGRADE);
+			break;
+		}
+		return ret;
+	}
+
 	inline void unlockUpgrade(npc::Personaje pers) {
 		switch (pers) {
 		case Vagabundo: 
@@ -155,6 +183,8 @@ public:
 			break;
 		}
 	}
+
+	
 
 	void setFinalID(int final); //Cambia el ID del final
 	int getFinalID(); //Devuelve el id del final del juego

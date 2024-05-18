@@ -110,8 +110,10 @@ void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
 	if (pNPC->getRemitente() == "SPECIAL1" || pNPC->getRemitente() == "SPECIAL2")
 	{
 		SpecialObjectsFactory a = SpecialObjectsFactory();
-		if (pNPC->getRemitente() == "SPECIAL1")
-			a.makePolvos();
+		if (pNPC->getRemitente() == "SPECIAL1") {
+			ent->addComponent<Paquete>(Poseidon, C2, "Calle del trono", "Francis Dupart", Materiales);
+			addVisualElements(ent);
+		}
 		else
 			a.makeBomba();
 	}

@@ -1,12 +1,12 @@
 {
-  "Dia": 5,
+  "Dia": 14,
   "Dinero": 430,
   "Personajes":{
     "Vagabundo": {
-      "Felicidad": "Normal",
-      "FelicidadNum": 50,
-      "numMisionesAceptadas": 0,
-      "EventosCompletados": []
+      "Felicidad": "Maxima",
+      "FelicidadNum": 100,
+      "numMisionesAceptadas": 13,
+      "EventosCompletados": [2,3,4,5,6,7,8,9,10,11,12,13]
     },
     "Secretario":{
       "Felicidad": "NoHabladoAun",
