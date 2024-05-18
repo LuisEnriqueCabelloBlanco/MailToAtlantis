@@ -93,32 +93,35 @@ void NPCeventSystem::procesarStringRecompensas(bool completed, std::vector<std::
 	for (std::string& reward : vec) {
 		if (completed)
 		{
-			// si tiene un sumar o restar
-			if (reward.find("+") != std::string::npos || reward.find("-") != std::string::npos)
+			if (reward.find("$") == std::string::npos)
 			{
-				int index = reward.find_first_of("+-");
-				std::string personajeString = reward.substr(0, index);
-				int felicidadIncrement = reward.size() - index;
-				if (reward.find("-") != std::string::npos)
-					felicidadIncrement = -felicidadIncrement;
+				// si tiene un sumar o restar
+				if (reward.find("+") != std::string::npos || reward.find("-") != std::string::npos)
+				{
+					int index = reward.find_first_of("+-");
+					std::string personajeString = reward.substr(0, index);
+					int felicidadIncrement = reward.size() - index;
+					if (reward.find("-") != std::string::npos)
+						felicidadIncrement = -felicidadIncrement;
 
-				npc::Personaje aux = gD().stringToPersonaje(personajeString);
+					npc::Personaje aux = gD().stringToPersonaje(personajeString);
 
-				gD().incrementarFelicidad(aux, felicidadIncrement);
+					gD().incrementarFelicidad(aux, felicidadIncrement);
+				}
 			}
 		}
 		else
 		{
-			if (reward.find(" $") != std::string::npos)
+			if (reward.find("$") != std::string::npos)
 			{
-				int index = reward.find_first_of(" $");
+				int index = reward.find_first_of("$");
+				int indexPlusMinus = reward.find_first_of("+-");
 
-				std::string personajeString = reward.substr(index + 1, reward.size());
+				std::string personajeString = reward.substr(index + 1, reward.size() - indexPlusMinus - 1);
 
 				npc::Personaje aux = gD().stringToPersonaje(personajeString);
 
 				index = reward.find_first_of("+-");
-				personajeString = reward.substr(0, index);
 				int felicidadIncrement = reward.size() - index;
 				if (reward.find("-") != std::string::npos)
 					felicidadIncrement = -felicidadIncrement;
