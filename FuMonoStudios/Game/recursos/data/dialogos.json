@@ -1139,6 +1139,7 @@
     ],
     "17": [
       "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
+      "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
       "No te preocupes que no te voy a penalizar... Tranquilo...",
       "Coge este paquete, que en principio est$a bien reglamentado, y mandalo a la basura.",
       "La basura es el tubo negro de la izquierda, cualquier paquete que no cumpla lo establecido ira ah$i."
@@ -1204,16 +1205,24 @@
       "Trabajaba en correos y solamente ten$ia un trabajo: coger los paquetes que le llegaban y mandarlos por un tubo. "
     ],
     "5": [
-      "Hac$ia esto todos los d$ias y estaba harto de ello, ansiaba una oportunidad de escapar de su mon$otona vida.", "Hasta que un d$ia, algo que no era un paquete corriente llego a su oficina..."
+      "Hacia esto todos los dias y estaba harto de ello, ansiaba una oportunidad de escapar de su monotona vida.",
+      "Hasta que un dia, algo que no era un paquete corriente llego a su oficina..."
     ],
     "7": [
       "Paco abri$o la extra$%a botella y dentro encontr$o una carta que dec$ia venir de la Atl$antida."
     ],
     "8": [
-      "El remitente de la carta era un grupo que se hac$ia llamar Las Lechuzas. Tambi$en hab$ia un mapa que marcaba la supuesta ubicaci$on de este legendario lugar.",
-      "Paco interpreto esto como una se$%al del destino para dejar todo atr$as y se embarc$o en su viaje hacia la Atl$antida,",
-      "gast$andose todos sus ahorros en un submarino y un disfraz de pez para infiltrarse.",
-      "Y as$i, despu$es de un arduo viaje, Paco lleg$o a su destino. Aunque este era ligeramente diferente de como se lo imaginaba..."
+      "El remitente de la carta era un grupo que se hacia llamar Las Lechuzas y habia un mapa que marcaba la supuesta ubicacion de este legendario lugar.",
+      "Paco interpreto esto como una senal del destino para dejar todo atras y se embarco en su viaje hacia la Atlantida, gastandose todos sus ahorros en un submarino y un disfraz de pez para infiltrarse.",
+      "Y asi, despues de un arduo viaje, Paco llego a su destino, pero este era ligeramente diferente de como se lo imaginaba..."
+    ],
+    "9": [
+      "Paco llego a una especie de barrio residencial, donde vio lo que parecia una oficina de correos y a un pez en la puerta con cara de preocupacion.",
+      "Y alla va otro que lo deja, por que todos mis trabajadores acaban renunciando?",
+      "Espero tener suerte encontrando a alguien pronto, pero estas juventudes de hoy en dia no quieren trabajar...",
+      "Eh tu! Si tu, el que esta ahi quieto mirandome, te gustaria un trabajo?",
+      "Paco decidio aceptar la oferta ya que si pretendia quedarse en la Atlantida necesitaria ganar dinero para tener un techo bajo el que dormir y algo de comer.",
+      "Que te llamas Paco? Vaya nombre mas raro tienes hijo, pero bueno, encantado de que trabajes para mi. "
     ]
   },
   "ExplorationEnter": {
