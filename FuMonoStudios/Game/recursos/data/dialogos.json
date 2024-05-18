@@ -1303,19 +1303,19 @@
             "Hay una mancha en la pared, parece ser...",
             "Snif, snif. Bueno, prefiero no tocar la verdad."
         ],
-        "TextoCasaGrande101": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
+        "TextoCasaGrande101": [ "Deber$ian de limpiar m$as a menudo las paredes" ],
 
         "TextoCasaGrande110": [
             "Hay una mancha en la pared, parece ser...",
             "Snif, snif. Bueno, prefiero no tocar la verdad."
         ],
-        "TextoCasaGrande111": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
+        "TextoCasaGrande111": [ "Deber$ian de limpiar m$as a menudo las paredes" ],
 
         "TextoCasaGrande120": [
             "Hay una mancha en la pared, parece ser...",
             "Snif, snif. Bueno, prefiero no tocar la verdad."
         ],
-        "TextoCasaGrande121": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
+        "TextoCasaGrande121": [ "Deber$ian de limpiar m$as a menudo las paredes" ],
 
         "TextoCasaGrande130": [
             "Puede que no luciera en las mejores condiciones,",
@@ -1339,17 +1339,17 @@
     },
     "CartelOficina": {
 
-        "TextoCartelOficina10": [ "Aqu&i estaban buscando trabajo." ],
+        "TextoCartelOficina10": [ "Aqu$i estaban buscando trabajo." ],
         "TextoCartelOficina11": [ "Bonito logo el del cartel." ],
 
         "TextoCartelOficina20": [
-            "Aqu&i estaban buscando trabajo.",
+            "Aqu$i estaban buscando trabajo.",
             "Aprovech$e para cobrar algo, as$i que me apunt$e"
         ],
         "TextoCartelOficina21": [ "El artista deb$ia de estar muy inspirado para hacer este logo del cartel." ],
 
         "TextoCartelOficina30": [
-            "Aqu&i estaban buscando trabajo.",
+            "Aqu$i estaban buscando trabajo.",
             "Ya no necesitan m$as personal."
         ],
         "TextoCartelOficina31": [ "Espero seguir teniendo un trabajo estable." ],
@@ -1371,7 +1371,7 @@
 
         "TextoCartelOficina70": [
             "El cartel sigue igual de chulo,",
-            "espero que ning&un animal lo ensucie..."
+            "espero que ning$un animal lo ensucie..."
         ],
         "TextoCartelOficina71": [ "Quizas deber$ia de entrar ya." ],
 
@@ -1395,7 +1395,7 @@
 
         "TextoCartelOficina110": [ "Donde trabajaba antes, en Carteros, pagaban muy poco" ],
         "TextoCartelOficina111": [
-            "Tengo que ganar m$as dinero aqu&i,",
+            "Tengo que ganar m$as dinero aqu$i,",
             "a trabajar."
         ],
 
@@ -1467,7 +1467,7 @@
         "TextoMuro71": [ "Me gustar$ia poder saber cuanto tiempo han aguantado esos muros." ],
 
         "TextoMuro80": [ "Construir esos muros debi$o de tomar mucho tiempo y trabajo." ],
-        "TextoMuro81": [ "Ser&ia muy loco pensar que esos muros llevan en pie miles de a$%os." ],
+        "TextoMuro81": [ "Ser$ia muy loco pensar que esos muros llevan en pie miles de a$%os." ],
 
         "TextoMuro90": [
             "Me pregunto como consiguieron los materiales para construir los muros,",
@@ -1517,7 +1517,7 @@
             "Un puesto de brebajes...",
             "me pregunto qu$e pasar$a si me bebo algo de aqu$i."
         ],
-        "TextoTiendaPociones11": [ "No son tan caros estos brebajes, a lo mejor me podría comprar uno." ],
+        "TextoTiendaPociones11": [ "No son tan caros estos brebajes, a lo mejor me podr$ia comprar uno." ],
         
         "TextoTiendaPociones20": [ "Me sigo preguntando qu$e pasar$ia si me bebiera algo de esto." ],
         "TextoTiendaPociones21": [ "Me gustar$ia comprar un brebaje, pero quiero ahorrar por ahora." ],
@@ -1537,7 +1537,7 @@
 
         "TextoTiendaPociones50": [
             "Usan probetas y recipientes de cristal dificiles de hacer.",
-            "Estos peces no son muy listos, pero s&i muy diestros en esto."
+            "Estos peces no son muy listos, pero s$i muy diestros en esto."
         ],
         "TextoTiendaPociones51": [
             "Me pregunto por qu$e tienen colores tan raros esos brebajes.",
@@ -1554,11 +1554,11 @@
             "pero no creo que estos sean zumos..."
         ],
         
-        "TextoTiendaPociones70": [ "Hay una plantita al fondo, al due&%o le deben de gustar tener plantas." ],
+        "TextoTiendaPociones70": [ "Hay una plantita al fondo, al due$%o le deben de gustar tener plantas." ],
         "TextoTiendaPociones71": [ "En clase de qu$imica del instituto hac$iamos liquidos raros como estos." ],
 
         "TextoTiendaPociones80": [
-            "La plantita que hay al fondo debe de ser porque al due&%o le deben de gustar las plantas,",
+            "La plantita que hay al fondo debe de ser porque al due$%o le deben de gustar las plantas,",
             "o a lo mejor las usa para hacer sus brebajes."
         ],
         "TextoTiendaPociones81": [
@@ -1567,7 +1567,7 @@
         ],
 
         "TextoTiendaPociones90": [
-            "La plantita que hay en la estanter$ia, a lo mejor indica que al due&%o le gustan las plantas,",
+            "La plantita que hay en la estanter$ia, a lo mejor indica que al due$%o le gustan las plantas,",
             "pero tambien puede que las use para crear estos brebajes."
         ],
         "TextoTiendaPociones91": [
@@ -1586,7 +1586,7 @@
 
         "TextoTiendaPociones120": [
             "Todav$ia siguen los mismos brebajes de siempre.",
-            "Puede que si comprara algunos el due&%o venda m&as variedad, pero quiero ahorrar."
+            "Puede que si comprara algunos el due$%o venda m$as variedad, pero quiero ahorrar."
         ],
         "TextoTiendaPociones121": [ "Los brebajes est$an ordenados por categor$ia." ],
 
@@ -1597,8 +1597,8 @@
         "TextoTiendaPociones131": [ "Los cristales parecen delicados, mejor no tocar." ],
 
         "TextoTiendaPociones140": [
-            "Llevo dos semanas, y ahora me pregunto c$omo es el proceso de creaci&on de estos brebajes.",
-            "Pueden que sean diestros, pero hacer liquidos como estos raros requiere a lo mejor de saber de qu&imica,",
+            "Llevo dos semanas, y ahora me pregunto c$omo es el proceso de creaci$on de estos brebajes.",
+            "Pueden que sean diestros, pero hacer liquidos como estos raros requiere a lo mejor de saber de qu$imica,",
             "y estos peces no son muy inteligentes."
         ],
         "TextoTiendaPociones141": [
@@ -1608,7 +1608,7 @@
     },
     "TiendaBolas": {
         
-        "TextoTiendaBolas10": [ "Aqu&i venden frutas raras..." ],
+        "TextoTiendaBolas10": [ "Aqu$i venden frutas raras..." ],
         "TextoTiendaBolas11": [ "Puede que estas frutas se cultiven en el campo que hay en la ciudad." ],
         
         "TextoTiendaBolas20": [ "No se qu$e tipo de frutas son, pero las que venden aqu$i son muy raras." ],
@@ -1649,9 +1649,9 @@
 
         "TextoTiendaBolas80": [
             "No solo parecen patatas, tienen aspecto de huevos.",
-            "$?Acaso aqu$i abajo hay animales que den huevos como los de las gallinas?"
+            " $?Acaso aqu$i abajo hay animales que den huevos como los de las gallinas?"
         ],
-        "TextoTiendaBolas81": [ "Si me pusiera a contar estas frutas, de seguro no acabar$ia hasta mañana." ],
+        "TextoTiendaBolas81": [ "Si me pusiera a contar estas frutas, de seguro no acabar$ia hasta ma$%ana." ],
 
         "TextoTiendaBolas90": [
             "Parecen patatas, pero tambi$en parecen huevos.",
@@ -1660,7 +1660,7 @@
         "TextoTiendaBolas91": [ "Contar cuantas frutas hay ser$ia entretenido, pero hay demasiadas a la vista." ],
         
         "TextoTiendaBolas100": [ "Tengo hambre, quiz$as deba de comprar una fruta de estas." ],
-        "TextoTiendaBolas101": [ "$?Esto caducar$a?." ],
+        "TextoTiendaBolas101": [ " $?Esto caducar$a?." ],
         
         "TextoTiendaBolas110": [ "Lucen simples, pero a lo mejor me sacian el hambre estas frutas con unas pocas." ],
         "TextoTiendaBolas111": [ "Espero que si me compre una fruta, pueda conservarla durante d$ias." ],
