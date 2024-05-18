@@ -70,6 +70,14 @@ void Final::inicializarFinal()
             endTexts_[npc][Normal] = data["Normal"]->AsString();
             endTexts_[npc][Buena] = data["Buena"]->AsString();
             endTexts_[npc][Maxima] = data["Maxima"]->AsString();
+            
+            auto finalBien = data.find("FinalBien");
+            if (finalBien != data.end())
+                endTexts_[npc][FinalBien] = data["FinalBien"]->AsString();
+            auto finalMal = data.find("FinalMal");
+            if (finalMal != data.end())
+                endTexts_[npc][FinalMal] = data["FinalMal"]->AsString();
+
             endTexts_[npc][NoHabladoAun] = "No hablaste con este Personaje";
         }
         else

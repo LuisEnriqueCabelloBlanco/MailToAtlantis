@@ -4,14 +4,18 @@
         "Mala": "b",
         "Normal":"c",
         "Buena":"d",
-        "Maxima":"e"
+        "Maxima":"e",
+        "FinalBien": "anashe",
+        "FinalMal": "anasheMal"
     },
     "Secretario":{
         "Mini":"a",
         "Mala":"b",
         "Normal":"c",
         "Buena":"d",
-        "Maxima":"e"
+        "Maxima":"e",
+        "FinalBien": "anashe",
+        "FinalMal": "anasheMal"
     },
     "Campesino":{
         "Mini":"a",

@@ -13,6 +13,7 @@
 #include <sistemas/SoundEmiter.h>;
 #include <sistemas/NPCeventSystem.h>
 #include <entities/PolvosAux.h>
+#include <components/DelayedCallback.h>
 
 PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc, PipeManager* mngr) : 
 	toDis_(dis),mainSc_(sc), tutSc_(nullptr), mManager_(mngr)
@@ -79,7 +80,17 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 		
 		ent->addComponent<SelfDestruct>(1, [this, ent]() {
 			if (ent->hasComponent(ecs::cmp::POLVOSAUX)) {
-				gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_SCENE);
+				if (ent->getComponent<Paquete>()->getRemitente() == "Francis Dupart")
+					gD().getNPCData(Vagabundo)->felicidad = FinalBien;
+				else
+					gD().getNPCData(Vagabundo)->felicidad = FinalMal;
+
+				SpecialObjectsFactory a = SpecialObjectsFactory();
+				a.makeTransition();
+				ecs::Entity* temp = gm().getScene(ecs::sc::MAIN_SCENE)->addEntity(ecs::layer::DEFAULT);
+				temp->addComponent<DelayedCallback>(3, [] {
+					gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_SCENE);
+					});
 			}
 			else
 			{

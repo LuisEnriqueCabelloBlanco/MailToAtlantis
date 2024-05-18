@@ -72,12 +72,20 @@ void GeneralData::loadSaveFile()
 	in.open(SAVE_PATH);
 	if (in.is_open()) {
 		in.close();
+
+		if (!npcData.empty())
+			npcData.clear();
+
 		std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile(SAVE_PATH));
 
 		JSONObject root = jsonFile->AsObject();
 
 		dia_ = root["Dia"]->AsNumber();
 		dinero_ = root["Dinero"]->AsNumber();
+
+		readNPCData();
+
+		npcEventSys->readNPCEventData();
 	}
 	else {
 		throw std::runtime_error("error al cargar los datos del fichero de guardado");

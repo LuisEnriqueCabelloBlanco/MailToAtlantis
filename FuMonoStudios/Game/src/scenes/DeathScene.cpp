@@ -4,6 +4,7 @@
 #include <architecture/GeneralData.h>
 #include <architecture/GameConstants.h>
 #include <architecture/Game.h>
+#include <sistemas/NPCeventSystem.h>
 
 ecs::DeathScene::DeathScene() {
 
@@ -24,8 +25,8 @@ void ecs::DeathScene::init() {
 		SDL_Color{ 255, 255, 255, 255});
 
 	factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH / 2 - 210, 600), "CARGAR ULTIMO GUARDADO",40, []{
-			gm().requestChangeScene(ecs::sc::DEATH_SCENE, ecs::sc::EXPLORE_SCENE);
 			gD().loadSaveFile();
+			gm().requestChangeScene(ecs::sc::DEATH_SCENE, ecs::sc::EXPLORE_SCENE);
 		}, "click", SDL_Color{255, 255, 255, 255});
 }
 
