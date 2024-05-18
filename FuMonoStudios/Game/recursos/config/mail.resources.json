@@ -79,6 +79,7 @@
     {"id": "Demeter","file": "recursos/images/Demeter.png"},
     {"id": "Hefesto","file": "recursos/images/Hefesto.png"},
     {"id": "Hestia","file": "recursos/images/Hestia.png"},
+    {"id": "HestiaHighlight","file": "recursos/images/HestiaHighlight.png"},
     {"id": "Artemisa","file": "recursos/images/Artemisa2.png"},
     {"id": "Hermes","file": "recursos/images/Hermes.png"},
     {"id": "Apolo","file": "recursos/images/Apolo.png"},
