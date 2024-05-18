@@ -3,8 +3,8 @@
   "Dinero": 430,
   "Personajes":{
     "Vagabundo": {
-      "Felicidad": "Minima",
-      "FelicidadNum": 0,
+      "Felicidad": "NoHabladoAun",
+      "FelicidadNum": 50,
       "numMisionesAceptadas": 0,
       "EventosCompletados": []
     },
