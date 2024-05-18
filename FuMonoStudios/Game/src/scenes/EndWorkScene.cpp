@@ -23,7 +23,6 @@ void EndWorkScene::init() {
 	factory_->createImage(Vector2D(), Vector2D(LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH),
 		&sdlutils().images().at("fondoFinalTrabajo"));
 
-	generalData().setDay(generalData().getDay() + 1);
 
 	pos_ = Vector2D(LOGICAL_RENDER_WIDTH / 2 + 200, 100);
 	Vector2D dist(0, -300);
@@ -32,30 +31,32 @@ void EndWorkScene::init() {
 	animFinish = false;
 
 	// Dia actual
-	msg = "Dia " + std::to_string(generalData().getDay());
-	factory_->createLabel(Vector2D(1350, 50), msg, 80);
+	msg = "Fin del Dia " + std::to_string(gD().getDay());
+	factory_->createLabel(Vector2D(1250, 50), msg, 80);
 
 	// Corrects y fails
-	msg = "Corrects: " + std::to_string(generalData().getCorrects());
+	msg = "Corrects: " + std::to_string(gD().getCorrects());
 	createTextAnim(msg);
 
-	msg = "Fails: " + std::to_string(generalData().getFails());
+	msg = "Fails: " + std::to_string(gD().getFails());
 	createTextAnim(msg);
 
 	// Gastos alquiler e ingreos por trabajo
-	msg = "Gastos de Alquiler: -" + std::to_string(generalData().getRent()) + "$";
+	msg = "Gastos de Alquiler: -" + std::to_string(gD().getRent()) + " $";
 	createTextAnim(msg);
 
-	msg = "Nómina del día: " + std::to_string(generalData().calcularDineroGanado()) + "$";
+	msg = "Nómina del día: " + std::to_string(gD().calcularDineroGanado()) + " $";
 	createTextAnim(msg);
 
 	// Salto de posicion para colocar el resto de cosas más abajo
 	pos_ = pos_ + Vector2D(0, 200);
 
 	// Dinero total
-	msg = "Cuenta Bancaria: " + std::to_string(generalData().getMoney()) + "$";
+	msg = "Cuenta Bancaria: " + std::to_string(gD().getMoney()) + " $";
 	createTextAnim(msg);
 
+	//Luis:no se si se deberia avanzar antes o despues de guardar
+	gD().setDay(gD().getDay() + 1);
 }
 
 void EndWorkScene::createTextAnim(std::string msg)
@@ -106,29 +107,43 @@ void EndWorkScene::animNumeros(ecs::Entity* number) {
 void EndWorkScene::createButtons()
 {
 	// Comprobamos si el usuario ha perdido o sigue con dinero
-	int money = generalData().getMoney();
+	int money = gD().getMoney();
+
+	auto textColor = build_sdlcolor(0xff0000ff);
 
 	if (money > 0) {
 		// Boton nuevo dia
-		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE); };
-		factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Nuevo dia", 50, call, "click");
+
+		
+		
+		auto call = []() {
+			if (gD().getDay() == 14) {
+			gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::END_SCENE);
+			} 
+			else {
+				gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE);
+			}
+		};
+		auto nuevoDia = factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Empezar nuevo dia", 50, call, "click", textColor);
+
 		// Sonido
 		sdlutils().soundEffects().at("MoneyProfits").play();
-		generalData().resetFailsCorrects();
-		int currentDay = generalData().getDay();
+		gD().resetFailsCorrects();
+		int currentDay = gD().getDay();
 	}
 	else
 	{
 		// Boton nueva partida
 		auto call = []() {gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::MENU_SCENE); };
-		factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Nueva Partida", 50, call, "click");
+		auto volver = factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Volver al Menu", 50, call, "click", textColor);
+
 		// Sonido
 		sdlutils().soundEffects().at("LoseMoney").play();
 		// Texto
 		factory_->createLabel(pos_ + Vector2D(0, offset_ * 2), "No has pagado ¡Deportado!", 50);
-		generalData().resetFailsCorrects();
-		generalData().setDay(1);
-		generalData().resetMoney();
+		gD().resetFailsCorrects();
+		gD().setDay(1);
+		gD().resetMoney();
 	}
 }
 

@@ -18,6 +18,8 @@ NPCMenorData::NPCMenorData(Felicidad Felicidad, std::vector<bool> DiasDanEvento)
 	giveEvent = false;
 	postConversation = false;
 	eventosCompletados = std::vector<std::pair<bool,int>>(5,std::make_pair(false,0));
+	misionAceptada = false;
+	numMisionesAceptadas = 0;
 }
 
 std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
@@ -44,7 +46,9 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 	}
 	else if (giveEvent)
 	{
+		misionAceptada = true;
 		tipo = "Eventos";
+		iterationNum = numMisionesAceptadas + 1;
 	}
 	else
 	{
@@ -75,7 +79,7 @@ void NPCMenorData::setupDayData() {
 		felicidad = Normal;
 	postConversation = false;
 	iteration = 1;
-	int day = generalData().getDay() - 1;
+	int day = gD().getDay() - 1;
 	giveEvent = diasDanEvento[day];
 	if (misionAceptada) {
 		numMisionesAceptadas++;
@@ -118,9 +122,16 @@ void NPCMenorData::deactivateEvent() {
 }
 
 void NPCMenorData::iterateDialogues() {
-	iteration++;
-	if (iteration > 3)
-		iteration = 1;
+
+	if (lastIterationResult == -1) {
+		iteration = sdlutils().rand().nextInt(1, 4);
+
+		if (iteration > 3)
+			iteration = 1;
+
+		lastIterationResult = iteration;
+	}
+
 }
 
 NPCevent* NPCMenorData::getEvent() {
@@ -140,6 +151,12 @@ npc::NPCMayorData::~NPCMayorData()
 NPCMayorData::NPCMayorData(Felicidad Felicidad) {
 	felicidad = Felicidad;
 	postConversation = false;
+	numMisionesAceptadas = 0;
+	if (npcId == Vagabundo)
+		firstMision = 1;
+	else
+		firstMision = 5;
+	misionAceptada = false;
 	eventosCompletados = std::vector<std::pair<bool, int>>(14, std::make_pair(false, 0));
 }
 
@@ -156,13 +173,17 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 		aux = "FelicidadMinima";
 		felicidad = SeFue;
 		break;
+	case SeFue:
+		aux = "FelicidadMinima";
+		break;
 	case Maxima:
 		aux = "FelicidadMaxima";
 		break;
 	default:
+		misionAceptada = true;
 		aux = postConversation ?
 			"PostConversacionDia" : "Dia";
-		aux = aux + std::to_string(generalData().getDay());
+		aux = aux + std::to_string(gD().getDay());
 		break;
 	}
 
@@ -185,7 +206,8 @@ NPCevent* npc::NPCMayorData::getEvent()
 		return nullptr;
 
 	postConversation = true;
-	return events[numMisionesAceptadas];
+	events[firstMision + numMisionesAceptadas]->numEvento = numMisionesAceptadas;
+	return events[firstMision + numMisionesAceptadas];
 }
 
 npc::NPCdata::~NPCdata()

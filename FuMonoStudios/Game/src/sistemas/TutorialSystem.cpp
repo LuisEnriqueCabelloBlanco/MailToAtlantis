@@ -8,6 +8,7 @@
 #include <components/MoverTransform.h>
 #include <components/Wrap.h>
 #include <architecture/Game.h>
+#include<components/DelayedCallback.h>
 
 TutorialSystem::TutorialSystem(ecs::TutorialScene* scene) {
 	scene_ = scene;
@@ -33,7 +34,7 @@ void TutorialSystem::update() {
 		if (waitingWrapComp->isWrapped())
 		{
 			waitingEmbalaje = false;
-			registerAction(Action::Embalado);
+			notifyAction(Action::Embalado);
 		}
 	}
 
@@ -41,13 +42,10 @@ void TutorialSystem::update() {
 
 		if (scene_->balanzaUsed) {
 			waitingPesado = false;
-			registerAction(Action::Pesado);
+			notifyAction(Action::Pesado);
 		}
 
 	}
-
-
-	dialogMngr_.update();
 }
 
 void TutorialSystem::activateEvent(TutorialEvent event) {
@@ -106,7 +104,6 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			arrow_->getComponent<Transform>()->setPos(1340, 680);
 			break;
 		case TutorialEvent::PaqueteBuscarPaginaCodigosPostales:
-			canPassPagesManual = true;
 			activateDialogue(false);
 			break;
 		case TutorialEvent::BuscarPaginaHestia:
@@ -130,7 +127,6 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			break;
 		case TutorialEvent::EnsenarTubos:
 			scene_->activateOneTube(0);
-			canPassPagesManual = true;
 			activateDialogue(false);
 			break;
 #pragma endregion
@@ -144,6 +140,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::SegundoBuscarPaginaDistritos:
+			canPassPagesManual = false;
 			activateDialogue(false);
 			break;
 		case TutorialEvent::SellarSegundoPaquete:
@@ -153,6 +150,48 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 		case TutorialEvent::EnviarSegundoPaquete:
 			activateDialogue(false);
 			break;
+#pragma endregion
+
+#pragma region Carta
+
+		case TutorialEvent::EntraCarta:
+
+			scene_->createPackage(ecs::TutorialScene::Carta);
+
+			delayedCallback(0.5, [this]() {
+				activateDialogue(false);
+			});
+
+			break;
+
+		case TutorialEvent::EnviarCarta:
+
+			delayedCallback(0.5, [this]() {
+				activateDialogue(false);
+			});
+
+			break;
+#pragma endregion
+
+#pragma region SignificadoSellos
+
+		case TutorialEvent::BuscarPaginaSellos:
+			canPassPagesManual = true;
+
+			delayedCallback(0.5, [this]() {
+				activateDialogue(false);
+			});
+
+			break;
+
+		case TutorialEvent::ExplicacionSellos:
+
+			delayedCallback(0.5, [this]() {
+				activateDialogue(false);
+				});
+
+			break;
+
 #pragma endregion
 
 		#pragma region Tercer Paquete
@@ -178,6 +217,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 		#pragma region Paquete Fallar Aposta
 		case TutorialEvent::EntraCuartoPaquete:
 			DragAndDrop::enableDrag = false;
+			canPassPagesManual = false;
 			activateDialogue(false);
 			delayedCallback(1.5, [this] {
 				scene_->createPackage(ecs::TutorialScene::FallarAposta);
@@ -192,6 +232,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 		case TutorialEvent::EntraPaquetePeso:
 
 			DragAndDrop::enableDrag = false;
+			canPassPagesManual = false;
 			scene_->createPackage(ecs::TutorialScene::BalanzaTut);
 			delayedCallback(0.2, [this] {
 				activateDialogue(false);
@@ -199,6 +240,8 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			break;
 
 		case TutorialEvent::PesarPaquetePeso:
+
+			canPassPagesManual = false;
 
 			delayedCallback(0.2, [this] {
 				activateDialogue(false);
@@ -293,6 +336,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			break;
 		case TutorialEvent::PaqueteBuscarPaginaCodigosPostales:
 			arrow_->setActive(true);
+			canPassPagesManual = true;
 			arrow_->getComponent<Transform>()->setRotation(320);
 
 			arrow_->getComponent<Transform>()->setPos(
@@ -329,14 +373,17 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 		case TutorialEvent::EntraSegundoPaquete:
 
 			DragAndDrop::enableDrag = true;
+			canPassPagesManual = true;
 			scene_->deactivateOneTube(0);
 			
-
 			addActionListener(Action::PaginaCodigosPostales, [this]() {
 				activateEvent(TutorialEvent::SegundoBuscarPaginaDistritos);
 				});
 			break;
 		case TutorialEvent::SegundoBuscarPaginaDistritos:
+
+			canPassPagesManual = true;
+
 			addActionListener(Action::PaginaDistritoDemeter, [this]() {
 				activateEvent(TutorialEvent::SellarSegundoPaquete);
 				});
@@ -350,14 +397,66 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			break;
 		case TutorialEvent::EnviarSegundoPaquete:
 			addActionListener(Action::PaqueteEnviado, [this]() {
-				activateEvent(TutorialEvent::EntraCuartoPaquete);
+				activateEvent(TutorialEvent::EntraCarta);
 				});
 			break;
 #pragma endregion
 
+#pragma region Carta
+
+		case TutorialEvent::EntraCarta:
+
+			DragAndDrop::enableDrag = true;
+
+			canPassPagesManual = true;
+
+			scene_->deactivateTubos();
+
+			addActionListener(Action::PaqueteEstampado, [this] {
+				activateEvent(TutorialEvent::EnviarCarta);
+			});
+
+			break;
+
+		case TutorialEvent::EnviarCarta:
+
+			scene_->activateOneTube(2);
+
+			addActionListener(Action::PaqueteEnviado, [this] {
+				activateEvent(TutorialEvent::BuscarPaginaSellos);
+			});
+
+			break;
+
+
+#pragma endregion
+
+#pragma region SignificadoSellos
+
+		case TutorialEvent::BuscarPaginaSellos:
+
+			scene_->deactivateOneTube(2);
+
+			addActionListener(Action::PaginaSellos, [this] {
+				activateEvent(TutorialEvent::ExplicacionSellos);
+			});
+
+			break;
+
+		case TutorialEvent::ExplicacionSellos:
+
+			scene_->deactivateOneTube(2);
+
+			delayedCallback(0.5, [this]() {
+				activateEvent(TutorialEvent::EntraCuartoPaquete);
+				});
+
+			break;
+
+#pragma endregion
+
 #pragma region Paquete Fallar Aposta
 		case TutorialEvent::EntraCuartoPaquete:
-			scene_->deactivateOneTube(2);
 			DragAndDrop::enableDrag = true;
 			scene_->activateGarbage();
 			addActionListener(Action::Basura, [this] {
@@ -497,22 +596,22 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 void TutorialSystem::init()
 {
 
-	if (generalData().getDay() == 1) {
+	if (gD().getDay() == 1) {
 
 		tutorialIteration = Introduction;
 
 	}
-	else if (generalData().getDay() == 3) {
+	else if (gD().getDay() == 3) {
 
 		tutorialIteration = EntraTercerPaquete;
 
 	}
-	else if (generalData().getDay() == 5) {
+	else if (gD().getDay() == 5) {
 
 		tutorialIteration = EntraPaquetePeso;
 
 	}
-	else if (generalData().getDay() == 8) {
+	else if (gD().getDay() == 8) {
 
 		tutorialIteration = EntraPaqueteFragil;
 
@@ -551,21 +650,21 @@ void TutorialSystem::delayedCallback(float time, SimpleCallback call) {
 	timeToCall_ = sdlutils().virtualTimer().currTime() + (time * 1000);
 }
 
-void TutorialSystem::registerAction(Action a)
+void TutorialSystem::notifyAction(Action a)
 {
-	std::vector<std::vector<std::pair<Action, SimpleCallback>>::iterator> deleteUsedActionListeners;
-	
+	std::vector<std::list<std::pair<Action, SimpleCallback>>::iterator> deleteUsedActionListeners;
+#ifdef _DEBUG
 	std::cout << a << std::endl;
-	
-	if (actionListeners.size() > 0)
+#endif // _DEBUG
+
+	//recorremos el vector de actions y activamos las actions que coincidan con el id
+	for (auto it = actionListeners.begin(); it != actionListeners.end(); ++it)
 	{
-		for (auto it = actionListeners.begin(); it < actionListeners.end(); ++it)
+		//no se usa un find ya que se quiere obtener todas las apariciones
+		if ((*it).first == a)
 		{
-			if ((*it).first == a)
-			{
-				(*it).second();
-				deleteUsedActionListeners.push_back(it);
-			}
+			(*it).second();
+			deleteUsedActionListeners.push_back(it);
 		}
 	}
 

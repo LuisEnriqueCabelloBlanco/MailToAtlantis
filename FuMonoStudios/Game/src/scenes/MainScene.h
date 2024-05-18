@@ -98,7 +98,7 @@ namespace ecs {
         CristalBall* bolaCrist_;
 
         //El pinche paquete builder para no crear uno en cada paquete
-        PaqueteBuilder* mPaqBuild_;
+        PaqueteBuilder mPaqBuild_;
 
         PipeManager* mPipeMngr_;
 

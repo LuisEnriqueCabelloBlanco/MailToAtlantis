@@ -29,7 +29,7 @@ public:
 	// llamar al final del minijuego y si se ha cumplido un evento, dar recompensas
 	void minigameOver();
 
-	// lee datos desde el json, llamado al crear generalData
+	// lee datos desde el json, llamado al crear gD
 	void readNPCEventData();
 
 	void shuffleNPCqueue();

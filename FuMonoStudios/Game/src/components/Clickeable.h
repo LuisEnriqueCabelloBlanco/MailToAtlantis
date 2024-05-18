@@ -21,8 +21,13 @@ public:
 
 	void update() override;
 
+	//Se añade un evento a la lista. Este se activara cada vez que la entidad sea clickeada
 	void addEvent(CallbackClickeable event );
 
+	//borra todos los eventos actuales
+	void deleteEvents();
+
+	//Te permite activar o desactivar si el objeto puede ser clickeado o no
 	void toggleClick(bool onoff) { canClick_ = onoff; }
 private:
 

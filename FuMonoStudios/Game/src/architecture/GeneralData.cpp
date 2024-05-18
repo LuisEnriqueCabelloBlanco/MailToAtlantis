@@ -3,6 +3,7 @@
 #endif // !DEV_TOOLS
 #include "GeneralData.h"
 #include <json/JSON.h>
+#include <json/JSONValue.h>
 #include <sdlutils/RandomNumberGenerator.h>
 #include <architecture/ecs.h>
 #include <sistemas/SoundEmiter.h>
@@ -10,7 +11,8 @@
 #include <architecture/Game.h>
 #include <sistemas/NPCeventSystem.h>
 #include <architecture/GameConstants.h>
-
+#include <iostream>
+#include <sdlutils/Texture.h>
 
 GeneralData::GeneralData()
 {
@@ -23,12 +25,13 @@ GeneralData::GeneralData()
 	dia_ = INITIAL_DAY;
 	rent_ = 100;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
-	upgrades_.resize(ecs::upg::_LAST_UPGRADE);
-	for (auto upg : upgrades_) {
-		upg = false;
-	}
-	paramVolMusic_ = 0;
+	//upgrades_.resize(ecs::upg::_LAST_UPGRADE);
+	upgrades_.reset();
+	paramVolMusic_ = 50;
 	paramVolSfx_ = 50;
+
+	skipTutorial_ = false;
+	fullScreen_ = true;
 	//upgrades_[ecs::upg::MONEY_UPGRADE] = true;
 
 	/*if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
@@ -43,12 +46,13 @@ GeneralData::GeneralData()
 #ifdef _DEBUG
 	std::cout << "Volumen SFX: " << paramVolSfx_ << std::endl;
 #endif // _DEBUG
+	soundEmiter().setMusicVolume(paramVolMusic_);
 	soundEmiter().setSoundVolumes(paramVolSfx_);
 	//readNPCData();
 }
 
 GeneralData::~GeneralData() {
-	
+
 	for (auto& npc : npcData) {
 		delete npc.second;
 		npc.second = nullptr;
@@ -64,12 +68,20 @@ GeneralData::~GeneralData() {
 
 void GeneralData::loadSaveFile()
 {
-	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/saveFile.json"));
+	std::ifstream in;
+	in.open(SAVE_PATH);
+	if (in.is_open()) {
+		in.close();
+		std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile(SAVE_PATH));
 
-	JSONObject root = jsonFile->AsObject();
+		JSONObject root = jsonFile->AsObject();
 
-	dia_ = root.find("Dia")->second->AsNumber();
-	dinero_ = root.find("Dinero")->second->AsNumber();
+		dia_ = root["Dia"]->AsNumber();
+		dinero_ = root["Dinero"]->AsNumber();
+	}
+	else {
+		throw std::runtime_error("error al cargar los datos del fichero de guardado");
+	}
 }
 
 void GeneralData::newGame()
@@ -89,7 +101,7 @@ void GeneralData::newGame()
 }
 
 void GeneralData::updateMoney()
-{	
+{
 	int rightPackages = corrects_;
 	int wrongPackages = fails_;
 	//funcion de ejemplo seguramente haya que cambiarlo
@@ -115,7 +127,7 @@ int GeneralData::calcularDineroGanado()
 	else {
 		totalRightMoney = rightPackages * WRITE_PACAGES_VALUE;
 	}
-	if (GeneralData::instance ()->getUpgradeValue (ecs::upg::FALLOS_UPGRADE)) failsMargin_ = 2;
+	if (GeneralData::instance()->getUpgradeValue(ecs::upg::FALLOS_UPGRADE)) failsMargin_ = 2;
 	else failsMargin_ = 0;
 	if (fails_ < failsMargin_) {
 		wrongPackages = 0;
@@ -123,7 +135,7 @@ int GeneralData::calcularDineroGanado()
 	else {
 		wrongPackages -= failsMargin_;
 	}
-	
+
 	return 		totalRightMoney - (wrongPackages * WRONG_PACAGES_VALUE);
 }
 
@@ -156,6 +168,7 @@ void GeneralData::setRent(int rent) {
 #endif // _DEBUG
 }
 
+
 int GeneralData::getRent() {
 
 	return rent_;
@@ -182,30 +195,30 @@ std::string GeneralData::fromDistritoToString(int i) {
 	std::string sol;
 
 	switch (i) {
-		case Distrito::Hestia:
-			sol = "Hestia";
-			break;
-		case Distrito::Artemisa:
-			sol = "Artemisa";
-			break;
-		case Distrito::Demeter:
-			sol = "Demeter";
-			break;
-		case Distrito::Hefesto:
-			sol = "Hefesto";
-			break;
-		case Distrito::Hermes:
-			sol = "Hermes";
-			break;
-		case Distrito::Apolo:
-			sol = "Apolo";
-			break;
-		case Distrito::Poseidon:
-			sol = "Poseidon";
-			break;
-		default:
-			sol = "Erroneo";
-			break;
+	case Distrito::Hestia:
+		sol = "Hestia";
+		break;
+	case Distrito::Artemisa:
+		sol = "Artemisa";
+		break;
+	case Distrito::Demeter:
+		sol = "Demeter";
+		break;
+	case Distrito::Hefesto:
+		sol = "Hefesto";
+		break;
+	case Distrito::Hermes:
+		sol = "Hermes";
+		break;
+	case Distrito::Apolo:
+		sol = "Apolo";
+		break;
+	case Distrito::Poseidon:
+		sol = "Poseidon";
+		break;
+	default:
+		sol = "Erroneo";
+		break;
 	}
 
 	return sol;
@@ -261,7 +274,7 @@ int GeneralData::fromStringToDistrito(std::string place) {
 
 void GeneralData::updateDistrictsPerDay(int dia)
 {
-	if(dia == 0)
+	if (dia == 0)
 		return;
 	switch (dia)
 	{
@@ -281,6 +294,21 @@ void GeneralData::updateDistrictsPerDay(int dia)
 		break;
 	}
 	updateDistrictsPerDay(dia - 1);
+}
+
+void GeneralData::saveNPCData(JSONObject& obj)
+{
+	JSONObject characters;
+	for (auto npc : npcData) {
+		JSONObject charac;
+		modifyJsonData(charac, "Felicidad", npc.second->numFelicidad);
+		modifyJsonData(charac, "MisionesAceptadas", npc.second->numMisionesAceptadas);
+		modifyJsonData(charac, "MisionesCompletadas",(int) npc.second->eventosCompletados.size());
+		modifyJsonData(characters, personajeToString(npc.first), charac);
+	}
+	modifyJsonData(obj, "Personajes", characters);
+
+	writeNPCData();
 }
 
 int GeneralData::getPaqueteLevel() {
@@ -317,6 +345,9 @@ void GeneralData::changeParamID(int i, bool suma) {
 			}
 		}
 	}
+
+	soundEmiter().setSoundVolumes(paramVolSfx_);
+	soundEmiter().setMusicVolume(paramVolMusic_);
 #ifdef _DEBUG
 	std::cout << "El valor de la musica ahora es " << paramVolMusic_ << " y el valor de los SFX ahora es " << paramVolSfx_ << std::endl;
 #endif // _DEBUG
@@ -326,13 +357,19 @@ void GeneralData::setPaqueteLevel(int lvl) {
 }
 
 void GeneralData::readNPCData() {
-	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/npcData.json"));
+	std::unique_ptr<JSONValue> jsonFileNpcData(JSON::ParseFromFile(NPC_DATA_PATH));
 
-	if (jsonFile == nullptr || !jsonFile->IsObject()) {
+	if (jsonFileNpcData == nullptr || !jsonFileNpcData->IsObject()) {
 		throw "Something went wrong while load/parsing npcData";
 	}
-	
-	JSONObject root = jsonFile->AsObject();
+
+	std::unique_ptr<JSONValue> jsonFileSaveFile(JSON::ParseFromFile(SAVE_PATH));
+	if (jsonFileSaveFile == nullptr || !jsonFileSaveFile->IsObject()) {
+		throw "Something went wrong while load/parsing saveFile";
+	}
+
+	JSONObject npcDataRoot = jsonFileNpcData->AsObject();
+	JSONObject saveFileRoot = jsonFileSaveFile->AsObject().find("Personajes")->second->AsObject();
 	JSONValue* jValue = nullptr;
 
 	// cargamos los 7 personajes
@@ -340,7 +377,7 @@ void GeneralData::readNPCData() {
 	for (int i = 0; i < 7; i++)
 	{
 		std::string aux = personajeToString((Personaje)i);
-		jValue = root[aux];
+		jValue = saveFileRoot[aux];
 
 		JSONObject jObject = jValue->AsObject();
 		std::string felicidadStr = jObject["Felicidad"]->AsString();
@@ -363,13 +400,20 @@ void GeneralData::readNPCData() {
 			for (int z = k; z < 14; z++)
 				data->eventosCompletados[z] = std::make_pair(false, 0);
 
+			data->npcId = (Personaje)i;
+
+			if (i == 0)
+				data->firstMision = 1;
+			else
+				data->firstMision = 5;
+
 			npcData.emplace((Personaje)i, data);
 		}
 		else
 		{
 			std::vector<bool> diasDanEventos;
-			jObject = jValue->AsObject();
-			JSONObject jDiasEvento = jObject.find("DiasConEvento")->second->AsObject();
+			JSONObject jObjectNPCdata = npcDataRoot[aux]->AsObject();
+			JSONObject jDiasEvento = jObjectNPCdata.find("DiasConEvento")->second->AsObject();
 
 			// leemos los 14 booleanos
 			for (int j = 0; j < 14; j++)
@@ -391,7 +435,7 @@ void GeneralData::readNPCData() {
 			for (int z = k; z < 5; z++)
 				data->eventosCompletados[z] = std::make_pair(false, 0);
 
-			npcData.emplace((Personaje)i,data);
+			npcData.emplace((Personaje)i, data);
 		}
 		jValue = nullptr;
 	}
@@ -401,11 +445,11 @@ void GeneralData::readNPCData() {
 }
 
 void GeneralData::writeNPCData() {
-	std::ifstream archivo("recursos/data/npcData.json");
+	std::ifstream archivo(SAVE_PATH);
 
 	if (!archivo.is_open())
 	{
-		throw std::runtime_error("Error al abrir npcData.json");
+		throw std::runtime_error("Error al abrir saveFile.json");
 	}
 
 	// Leer el contenido del archivo en una cadena
@@ -416,6 +460,12 @@ void GeneralData::writeNPCData() {
 	}
 	archivo.close();
 
+	int posDia = contenido.find("Dia") + 6;
+	contenido.replace(posDia, (contenido.find('\n', posDia)) - posDia,
+		 std::to_string(gD().dia_) + ',');
+	int posDinero = contenido.find("Dinero") + 9;
+	contenido.replace(posDinero, (contenido.find('\n', posDinero)) - posDinero,
+		std::to_string(gD().getMoney()) + ',');
 
 	for (int i = 0; i < 7; i++)
 	{
@@ -424,7 +474,7 @@ void GeneralData::writeNPCData() {
 
 		int posFelicidad = contenido.find("Felicidad", posPersonaje) + 12;
 		contenido.replace(posFelicidad, (contenido.find('\n', posFelicidad)) - posFelicidad,
-			'"' + generalData().felicidadToString(data->felicidad) + '"' + ',');
+			'"' + gD().felicidadToString(data->felicidad) + '"' + ',');
 		int posFelicidadNum = contenido.find("FelicidadNum", posPersonaje) + 15;
 		contenido.replace(posFelicidadNum, (contenido.find('\n', posFelicidadNum)) - posFelicidadNum,
 			std::to_string(data->numFelicidad) + ",");
@@ -444,54 +494,14 @@ void GeneralData::writeNPCData() {
 		}
 		if (newEventosString[newEventosString.size() - 1] == ',')
 			newEventosString.pop_back();
-		newEventosString += "],";
-		contenido.replace(posEventosCompletados, (contenido.find('\n', posEventosCompletados)) - 
+		newEventosString += "]";
+		contenido.replace(posEventosCompletados, (contenido.find('\n', posEventosCompletados)) -
 			posEventosCompletados, newEventosString);
 
 	}
 
 	// Abrir el archivo en modo de escritura
-	std::ofstream archivoSalida("recursos/data/npcData.json");
-
-	if (!archivoSalida.is_open()) {
-		throw std::runtime_error("Error al escribir npcData.json");
-	}
-	
-	// Escribir el contenido modificado en el archivo
-	archivoSalida.clear();
-	archivoSalida << contenido;
-	archivoSalida.close();
-}
-
-void GeneralData::saveGame() {
-	std::ifstream archivo("recursos/data/saveFile.json");
-
-	if (!archivo.is_open())
-	{
-		throw std::runtime_error("Error al abrir saveFile.json");
-	}
-
-	// Leer el contenido del archivo en una cadena
-	std::string contenido = "";
-	std::string linea;
-	while (std::getline(archivo, linea)) {
-		contenido += linea + "\n";
-	}
-	archivo.close();
-
-	// cambiar el dia
-	int posDia = contenido.find("Dia") + 6;
-	size_t finLinea = contenido.find('\n', posDia);
-	contenido.replace(posDia, finLinea - posDia, std::to_string(generalData().getDay()) + ",");
-
-	//cambiar el dinero
-
-	int posDinero = contenido.find("Dinero") + 9;
-	finLinea = contenido.find('\n', posDinero);
-	contenido.replace(posDinero, finLinea - posDinero, std::to_string(generalData().getMoney()));
-
-	// Abrir el archivo en modo de escritura
-	std::ofstream archivoSalida("recursos/data/saveFile.json");
+	std::ofstream archivoSalida(SAVE_PATH);
 
 	if (!archivoSalida.is_open()) {
 		throw std::runtime_error("Error al escribir saveFile.json");
@@ -501,8 +511,36 @@ void GeneralData::saveGame() {
 	archivoSalida.clear();
 	archivoSalida << contenido;
 	archivoSalida.close();
+}
+
+void GeneralData::saveGame() {
 
 	writeNPCData();
+
+	/*
+
+	std::ofstream in;
+	//en el caso de que no exista el fichero se crea uno nuevo
+	in.open(SAVE_PATH);
+
+	//
+	// Para ampliar el guardado acceder a los datos como si fuera un map y 
+	// asignar un new JsonValue al elemento a modificar
+	// 
+	JSONObject root;
+
+	//modificacion de los valores en el json
+	modifyJsonData(root, "Dia", dia_);
+	modifyJsonData(root, "Dinero", dinero_);
+	//puede sustituir a la lectura del npcData que es un poco intrusiva
+	saveNPCData(root);
+
+	//guardado de datos
+	JSONValue* jsonFile = new JSONValue(root);
+	in << jsonFile->Stringify(true);
+	delete jsonFile;
+	in.close();
+	*/
 }
 
 void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
@@ -513,9 +551,18 @@ void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
 		newFelicidadInt = 0;
 	else if (newFelicidadInt > 100)
 		newFelicidadInt = 100;
-
-	Felicidad newFelicidad = (Felicidad)newFelicidadInt;
 	
+	Felicidad newFelicidad = SeFue;
+	if (newFelicidadInt < 1)
+		newFelicidad = Minima;
+	else if (newFelicidadInt > 99)
+		newFelicidad = Maxima;
+	else if (newFelicidadInt < 30)
+		newFelicidad = Mala;
+	else if (newFelicidadInt < 65)
+		newFelicidad = Normal;
+	else
+		newFelicidad = Buena;
 
 	getNPCData(p)->felicidad = newFelicidad;
 	getNPCData(p)->numFelicidad = newFelicidadInt;
@@ -525,34 +572,63 @@ void GeneralData::unlockMejoraPersonaje(Personaje p) {
 
 }
 
+Texture* GeneralData::personajeToTexture(Personaje pers)
+{
+	Texture* texture = nullptr;
+	switch (pers) {
+	case Vagabundo:
+		texture = &sdlutils().images().at("Vagabundo");
+		break;
+	case Secretario:
+		texture = &sdlutils().images().at("Secretario");
+		break;
+	case Campesino:
+		texture = &sdlutils().images().at("Campesino");
+		break;
+	case Artesano:
+		texture = &sdlutils().images().at("Artesano");
+		break;
+	case Tarotisa:
+		texture = &sdlutils().images().at("Tarotisa");
+		break;
+	case Soldado:
+		texture = &sdlutils().images().at("Soldado");
+		break;
+	case Contable:
+		texture = &sdlutils().images().at("Contable");
+		break;
+	}
+	return texture;
+}
+
 const std::string GeneralData::personajeToString(Personaje pers) {
 
 	std::string aux = "";
 	switch (pers) {
-		case Vagabundo:
-			aux = "Vagabundo";
-			break;
-		case Secretario:
-			aux = "Secretario";
-			break;
-		case Campesino:
-			aux = "Campesino";
-			break;
-		case Artesano:
-			aux = "Artesano";
-			break;
-		case Tarotisa:
-			aux = "Tarotisa";
-			break;
-		case Soldado:
-			aux = "Soldado";
-			break;
-		case Contable:
-			aux = "Contable";
-			break;
-	    case Jefe:
-			aux = "Jefe";
-		    break;
+	case Vagabundo:
+		aux = "Vagabundo";
+		break;
+	case Secretario:
+		aux = "Secretario";
+		break;
+	case Campesino:
+		aux = "Campesino";
+		break;
+	case Artesano:
+		aux = "Artesano";
+		break;
+	case Tarotisa:
+		aux = "Tarotisa";
+		break;
+	case Soldado:
+		aux = "Soldado";
+		break;
+	case Contable:
+		aux = "Contable";
+		break;
+	case Jefe:
+		aux = "Jefe";
+		break;
 	}
 	return aux;
 }
@@ -577,7 +653,7 @@ Personaje GeneralData::stringToPersonaje(const std::string& pers) {
 		aux = npc::Contable;
 	else if (pers == "Jefe")
 		aux = npc::Jefe;
-	
+
 	return aux;
 }
 
@@ -627,7 +703,7 @@ const std::string GeneralData::intObjetoToString(int pers) {
 
 int GeneralData::stringToObjInt(const std::string& pers) {
 	int aux = 0;
-	
+
 	//Hestia
 	if (pers == "CasaGrande") aux = 0;
 	else if (pers == "CartelOficina") aux = 1;

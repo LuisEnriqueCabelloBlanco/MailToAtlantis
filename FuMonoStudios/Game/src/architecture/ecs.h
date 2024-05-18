@@ -106,6 +106,7 @@ namespace ecs {
 			RED_LINES,
 			WRAP_POINTS,
 			TAPE,
+			BLUEPOINT,
 			MANUAL,
 			FOREGROUND,
 			UI,

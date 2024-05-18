@@ -29,13 +29,13 @@ ecs::MainMenu::~MainMenu()
 void ecs::MainMenu::init()
 {
 
-	generalData().loadSaveFile();
+	//gD().loadSaveFile();
 
 #ifdef _DEBUG
 	std::cout << "Hola Menu" << std::endl;
 #endif // _DEBUG
 
-	//generalData().updateFelicidadPersonajes();
+	//gD().updateFelicidadPersonajes();
 	sdlutils().clearRenderer();
 
 	Entity* fondo = addEntity(ecs::layer::BACKGROUND);
@@ -50,30 +50,30 @@ void ecs::MainMenu::init()
 
 	auto textColor = build_sdlcolor(0xffffffff);
 	factory_->setLayer(layer::UI);
-	//auto tuto = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH- 700, 400), "Tutorial", 50, [this]() {
-	//	sdlutils().musics().at("mainMenu").haltMusic();
-	//	gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::TUTORIAL_SCENE);
-	//	},textColor);
-	//factory_->addHilghtOnHover(tuto);
-	//factory_->addHoverColorMod(tuto);
 
-
-	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Nueva partida", 50, [this]() {
+	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 400), "Nueva partida", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
-		generalData().newGame();
+		gD().newGame();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::INTRO_SCENE);
 		},"click", textColor);
 
 	factory_->addHilghtOnHover(start);
 	factory_->addHoverColorMod(start);
 
-	auto loadSave = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Cargar partida guardada", 50, [this]() {
+	auto loadSave = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Cargar partida guardada", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
-		generalData().loadSaveFile();
+		gD().loadSaveFile();
 		}, "click", textColor);
 	factory_->addHilghtOnHover(loadSave);
 	factory_->addHoverColorMod(loadSave);
+
+	auto endScene = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Mostramos Final Juego", 50, [this]() {
+		sdlutils().musics().at("mainMenu").haltMusic();
+		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::END_SCENE);
+	}, "click", textColor);
+	factory_->addHilghtOnHover(endScene);
+	factory_->addHoverColorMod(endScene);
 
 	auto ajustes = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 700), "Configuracion", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();

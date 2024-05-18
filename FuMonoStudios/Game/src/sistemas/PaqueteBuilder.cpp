@@ -105,7 +105,7 @@ void PaqueteBuilder::cartaRND(ecs::Entity* packageBase) {
 }
 
 void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
-	Paquete* pNPC = generalData().npcEventSys->getPaqueteNPC();
+	Paquete* pNPC = gD().npcEventSys->getPaqueteNPC();
 	Paquete* pq = ent->addComponent<Paquete>(*pNPC);
 	if (!pNPC->isCarta()) addVisualElements(ent);
 	//else addVisualElementsCarta(ent);
@@ -114,7 +114,7 @@ void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
 bool PaqueteBuilder::shouldBuildNPCPackage()
 {
 	int rnd = sdlutils().rand().nextInt(0, 4);
-	return generalData().npcEventSys->areTherePaquetesNPC() && rnd > 0;
+	return gD().npcEventSys->areTherePaquetesNPC() && rnd > 0;
 }
 
 ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle calle, const std::string& remitente, pq::TipoPaquete tipo, bool correcto, pq::NivelPeso nivPeso, int peso, bool fragil, bool carta)
@@ -122,7 +122,7 @@ ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle call
 	//Idea para el que lea esto, usamos este metodo para crear los paquetes de npcs y luego añadirlos al vector que hay en el GeneralData.h
 	//En cuyo caso sería buena idea añadirle una variable al método que sea un identificador de cual personaje vamos a añadirle o no felicidad con su paquete
 
-	auto base = buildBasePackage(mScene_, false);
+	auto base = buildBasePackage(mScene_, carta);
 	std::string dir = "";
 	if (distrito != Erroneo && calle != Erronea) {
 		dir = distritoCalle_[distrito][calle];
@@ -185,7 +185,7 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene, bool esCarta)
 			herrEnt->interact(packageBase);
 		}
 
-	}, generalData().DropIn);
+	}, gD().DropIn);
 
 	packageBase->addComponent<MoverTransform>(packageBase->getComponent<Transform>()->getPos() - Vector2D(200, 0),
 		1, Easing::EaseOutBack)->disable();
@@ -239,9 +239,9 @@ void PaqueteBuilder::stdRandPackage(ecs::Entity* packageBase, int level)
 
 pq::Distrito PaqueteBuilder::distritoRND() {	//Este m�todo devuelve un Distrito aleatorio entre todas las posibilidades
 	//TO DO: Cambiarlo para que solo salgan distritos desbloqueados
-	int rnd = sdlutils().rand().nextInt(0, generalData().getTubesAmount());
+	int rnd = sdlutils().rand().nextInt(0, gD().getTubesAmount());
 
-	if (generalData().getTubesAmount() == rnd) {
+	if (gD().getTubesAmount() == rnd) {
 		rnd = 8;
 	}
 
@@ -266,7 +266,7 @@ pq::Calle PaqueteBuilder::calleRND(int probError) {	//Este m�todo devuelve una
 
 bool PaqueteBuilder::boolRND(int probFalse) { //Este m�todo devuelve una valor aleatorio entre treu y false para un bool seg�n una probabilidad
 	int rnd = sdlutils().rand().nextInt(0, 101);
-	if (rnd > probFalse) {
+	if (rnd >= probFalse) {
 		return true;
 	}
 	else {
@@ -276,7 +276,7 @@ bool PaqueteBuilder::boolRND(int probFalse) { //Este m�todo devuelve una valor
 
 pq::NivelPeso PaqueteBuilder::pesoRND(int probPeso, int probError, int& peso) {	//Este m�todo elige aleatoriamente si colocar un sello de peso o no en el paquete y, en caso positivo,
 	int rnd = sdlutils().rand().nextInt(0, 101);										//elige aleatoriamente si el resultado es correcto o incorrecto, devolviendo un peso para el paquete
-	if (rnd <= probPeso) {
+	if (rnd < probPeso) {
 		pq::NivelPeso pes;
 		rnd = sdlutils().rand().nextInt(1, 4);
 		pes = (pq::NivelPeso)rnd;
@@ -386,7 +386,7 @@ std::string PaqueteBuilder::remitenteRND() {
 void PaqueteBuilder::getStreetsFromJSON(JSONObject& root, Distrito dist)
 {
 	JSONValue* jValue = nullptr;
-	jValue = root[generalData().fromDistritoToString(dist)];
+	jValue = root[gD().fromDistritoToString(dist)];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			distritoCalle_[dist].reserve(jValue->AsArray().size()); // reserve enough space to avoid resizing
@@ -454,32 +454,13 @@ void PaqueteBuilder::addVisualElements(ecs::Entity* paq) {
 		pq::NivelPeso miPeso = paqComp->getPeso();
 
 		
-		if (miPeso != pq::Ninguno) {
-			if (paqComp->pesoCorrecto()) {
-				tipoString = (miTipo == pq::Bajo ? "selloPesoBajo" :
-					miTipo == pq::Medio ? "selloPesoMedio" :
-					miTipo == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");				
-			}
-			else {
-				int i = sdlutils().rand().nextInt(0, 2);
-				if (miTipo == pq::Bajo) {
-					if (i == 0) tipoString = "selloPesoMedio";
-					else tipoString = "selloPesoAlto";
-				}
-				else {
-					if (miTipo == pq::Medio) {
-						if (i == 0) tipoString = "selloPesoBajo";
-						else tipoString = "selloPesoAlto";
-					}
-					else {
-						if (miTipo == pq::Alto) {
-							if (i == 0) tipoString = "selloPesoBajo";
-							else tipoString = "selloPesoMedio";
-						}
-					}
-				}
-
-			}
+		if (miPeso != pq::Ninguno) {			
+				tipoString = (miPeso == pq::Bajo ? "selloPesoBajo" :
+					miPeso == pq::Medio ? "selloPesoMedio" :
+					miPeso == pq::Alto ? "selloPesoAlto" : "selloPesoBajo");				
+			
+			std::cout << "\nAAAA" << paqComp->pesoCorrecto() << "\n";
+			std::cout << "\n" << tipoString << "\n";
 			crearSello(paq, tipoString, PESO_SELLO_POS_X, PESO_SELLO_POS_Y, PESO_SELLO_SIZE, PESO_SELLO_SIZE);
 		}		
 		

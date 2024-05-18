@@ -11,8 +11,16 @@ namespace ecs {
         public Scene
     {
     private:
-        Texture* musicValueTexture_;
-        Entity* musicValueEnt_;
+        Texture* musicIconTexture_;
+        Entity* musicIconEnt_;
+        Texture* sfxIconTexture_;
+        Entity* sfxIconEnt_;
+
+        Texture* screenModeIconTexture_;
+        Entity* screenModeIconEnt_;
+        Texture* skipTutoIconTexture_;
+        Entity* skipTutoIconEnt_;
+
 
         //Texture* screenModeTexture_;
         //Entity* screenModeEnt_;
