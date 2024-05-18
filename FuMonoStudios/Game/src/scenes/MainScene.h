@@ -9,7 +9,7 @@
 #include <components/Herramientas.h>
 #include <sistemas/PaqueteBuilder.h>
 #include <sistemas/PipeManager.h>
-#include <components/DialogManager.h>
+#include <sistemas/DialogManager.h>
 #include <sistemas/WorkRestrictionsSystem.h>
 #include <sistemas/SpecialObjectsFactory.h>
 

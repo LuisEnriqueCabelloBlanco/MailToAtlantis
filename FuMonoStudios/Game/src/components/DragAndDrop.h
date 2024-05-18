@@ -33,15 +33,22 @@ public:
 
 	void update() override;
 
-	//Te devuelve si el objeto esta siendo movido en este momento
+	/// <summary>
+	/// Devuelve si el objeto esta sisendo movido en este momento
+	/// </summary>
+	/// <returns></returns>
 	bool isDragging() {
 		return dragging_;
 	}
 
-	//desactiva la interaccion
+	/// <summary>
+	/// Desactiva la Interaccion
+	/// </summary>
 	void disableInteraction() { canInteract = false; }
 
-	//activa la interaccion
+	/// <summary>
+	/// Activa la Interaccion
+	/// </summary>
 	void activateInteraction() { canInteract = true; }
 private:
 	bool canInteract = true;

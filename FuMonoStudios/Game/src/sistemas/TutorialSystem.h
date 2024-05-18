@@ -3,7 +3,7 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include <architecture/Entity.h>
-#include <components/DialogManager.h>
+#include <sistemas/DialogManager.h>
 #include <functional>
 
 namespace ecs {

@@ -4,7 +4,7 @@
 #include "TutorialSystem.h"
 #include <components/Render.h>
 #include <scenes/TutorialScene.h>
-#include <components/DialogManager.h>
+#include <sistemas/DialogManager.h>
 #include <components/MoverTransform.h>
 #include <components/Wrap.h>
 #include <architecture/Game.h>
