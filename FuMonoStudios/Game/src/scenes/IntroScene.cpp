@@ -126,7 +126,7 @@ void ecs::IntroScene::updateIteration(int it)
 				carta_->setAlive(false);
 			cambiarFondo("Hestia");
 			factory_->setLayer(ecs::layer::PACKAGE);
-			jefe_ = factory_->createImage(Vector2D(500.0f, 600.0f), Vector2D(450, 450), &sdlutils().images().at("Jefe"));
+			jefe_ = factory_->createImage(Vector2D(500.0f, 550.0f), Vector2D(450, 500), &sdlutils().images().at("Jefe"));
 			factory_->setLayer(ecs::layer::DEFAULT);
 			delayedCallback(0.25f, [this]
 				{
@@ -224,8 +224,6 @@ ecs::Entity* ecs::IntroScene::createBottle()
 		{
 			bottle_->getComponent<Clickeable>()->toggleClick(false);
 			nextIteration();
-			/*if(introIteration == 6)
-				nextIteration();*/
 		});
 
 	auto movComp = bottle->addComponent<MoverTransform>();
