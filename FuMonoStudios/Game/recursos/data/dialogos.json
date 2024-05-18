@@ -1222,9 +1222,12 @@
       "Paco llego a una especie de barrio residencial, donde vio lo que parecia una oficina de correos y a un pez en la puerta con cara de preocupacion.",
       "Y alla va otro que lo deja, por que todos mis trabajadores acaban renunciando?",
       "Espero tener suerte encontrando a alguien pronto, pero estas juventudes de hoy en dia no quieren trabajar...",
-      "Eh tu! Si tu, el que esta ahi quieto mirandome, te gustaria un trabajo?",
-      "Paco decidio aceptar la oferta ya que si pretendia quedarse en la Atlantida necesitaria ganar dinero para tener un techo bajo el que dormir y algo de comer.",
-      "Que te llamas Paco? Vaya nombre mas raro tienes hijo, pero bueno, encantado de que trabajes para mi. "
+      "Eh tu! Si tu, el que esta ahi quieto mirandome, te gustaria un trabajo? Venga entra a la oficina y te hago una entrevista de trabajo asi rapida. "
+    ],
+    "11": [
+      "Que te llamas Paco? Vaya nombre mas raro tienes hijo, pero bueno, tienes algo de experiencia trabajando en el sector de la paqueteria?",
+      "Paco le conto su historia y le explico que llevaba a$%os trabajando en la oficina de correos de su ciudad.",
+      "No puedo creer mi suerte, CONTRATADO. Deja que te acompa$%e a la puerta..."
     ]
   },
   "ExplorationEnter": {

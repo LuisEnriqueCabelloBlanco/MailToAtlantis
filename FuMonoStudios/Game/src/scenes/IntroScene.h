@@ -47,6 +47,8 @@ namespace ecs
         /// metodo que crea la botella
         /// </summary>
         ecs::Entity* createBottle();
+
+        ecs::Entity* createDoor();
         /// <summary>
         /// metodo que avanza la iteracion de la intro y actualiza todo
         /// </summary>
@@ -69,5 +71,6 @@ namespace ecs
         ecs::Entity* bottle_;
         ecs::Entity* carta_;
         ecs::Entity* jefe_;
+        ecs::Entity* door_;
     };
 }
