@@ -1122,6 +1122,7 @@
     ],
     "13": [
       "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
+      "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
       "No te preocupes que no te voy a penalizar... Tranquilo...",
       "Coge este paquete, que en principio est$a bien reglamentado, y mandalo a la basura.",
       "La basura es el tubo negro de la izquierda, cualquier paquete que no cumpla lo establecido ira ah$i."
@@ -1199,19 +1200,11 @@
       "Y asi, despues de un arduo viaje, Paco llego a su destino, pero este era ligeramente diferente de como se lo imaginaba..."
     ],
     "9": [
-      "Paco llego a una especie de barrio residencial, donde vio lo que parecia una oficina de correos y a alguien muy enfadado saliendo de ella dando un portazo, quizas la Atlantida no era tan diferente del mundo normal. ",
-      "ESTOY HARTO ME OYES BIEN? LO DEJO.",
-      "Aparta de mi camino, no quiero pasar ni un segundo mas cerca de esta maldita oficina de paquetes. "
-    ],
-    "10": [
-      "Paco decidio probar suerte en la oficina, despues de todo si iba a quedarse en la Atlantida necesitaria ganar dinero para tener un techo bajo el que dormir y algo de comer. "
-    ],
-    "11": [
-      "Paco entro a la oficina y paso la entrevista de trabajo (acepto ser sobreexplotado en un trabajo aburrido y muy mal pagado con el que apenas le daria para pagar el alquiler). ",
-      "Sin embargo, antes de empezar a trabajar decidio salir de la oficina para darse un paseo por la zona primero..."
-    ],
-    "12": [
-     
+      "Paco llego a una especie de barrio residencial, donde vio lo que parecia una oficina de correos y a un pez en la puerta con cara de preocupacion.",
+      "Y alla va otro que lo deja, por que todos mis trabajadores acaban renunciando?",
+      "Espero tener suerte encontrando a alguien pronto, pero estas juventudes de hoy en dia no quieren trabajar...",
+      "EH TU! SI TU, EL QUE ESTA AHI QUIETO MIRANDOME, TE GUSTARIA UN TRABAJO?",
+      "Paco decidio aceptar la oferta ya que si pretendia quedarse en la Atlantida necesitaria ganar dinero para tener un techo bajo el que dormir y algo de comer."
     ]
   },
   "ExplorationEnter": {

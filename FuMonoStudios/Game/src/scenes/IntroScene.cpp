@@ -16,7 +16,7 @@
 #include <entities/ClockAux.h>
 #include <components/SelfDestruct.h>
 
-ecs::IntroScene::IntroScene() : introIteration(0), waitingCallback(false), mPaqBuild_(nullptr), fondo_(nullptr), tubo_(nullptr), bottle_(nullptr), carta_(nullptr), worker_(nullptr)
+ecs::IntroScene::IntroScene() : introIteration(0), waitingCallback(false), mPaqBuild_(nullptr), fondo_(nullptr), tubo_(nullptr), bottle_(nullptr), carta_(nullptr), jefe_(nullptr)
 {
 	mPaqBuild_ = new PaqueteBuilder(this);
 	mDialogManager.init(this, "recursos/data/dialogos.json");
@@ -117,21 +117,21 @@ void ecs::IntroScene::updateIteration(int it)
 					updateIntroDialogue();
 				});
 		    break;
-        case 9: //Paco llega a la atlantida,ve al extrabajador 
+        case 9: //Paco llega a la atlantida,ve al jefe quejandose de que el anterior trabajador acaba de dimitir 
 			if (carta_ != nullptr)
 				carta_->setAlive(false);
 			cambiarFondo("Hestia");
 			factory_->setLayer(ecs::layer::PACKAGE);
-			worker_ = factory_->createImage(Vector2D(600.0f, 600.0f), Vector2D(450, 300), &sdlutils().images().at("caraFelicidadMinimo"));
+			jefe_ = factory_->createImage(Vector2D(500.0f, 600.0f), Vector2D(450, 450), &sdlutils().images().at("Jefe"));
 			factory_->setLayer(ecs::layer::DEFAULT);
 			delayedCallback(0.25f, [this]
 				{
 					updateIntroDialogue();
 				});
 			break;
-        case 10: //Paco decide entrar a la oficina a probar suerte
-			if (worker_ != nullptr)
-				worker_->setAlive(false);
+        /*case 10: //Paco decide entrar a la oficina a probar suerte
+			if (jefe_ != nullptr)
+				jefe_->setAlive(false);
 
 			//entidad invisible puerta
 
@@ -146,8 +146,8 @@ void ecs::IntroScene::updateIteration(int it)
 				{
 					updateIntroDialogue();
 				});
-			break;
-        case 12:
+			break;*/
+        case 10:
 			gm().requestChangeScene(ecs::sc::INTRO_SCENE, ecs::sc::EXPLORE_SCENE);
 			break;
 		default:

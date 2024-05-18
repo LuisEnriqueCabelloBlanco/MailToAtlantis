@@ -51,6 +51,6 @@ namespace ecs
         ecs::Entity* tubo_;
         ecs::Entity* bottle_;
         ecs::Entity* carta_;
-        ecs::Entity* worker_;
+        ecs::Entity* jefe_;
     };
 }
