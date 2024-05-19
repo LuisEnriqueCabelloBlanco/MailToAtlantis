@@ -71,6 +71,9 @@ ecs::Entity* PaqueteBuilder::buildPackage(int level, ecs::Scene* mScene) {
 		}
 	}
 
+	selectRandomRoute();
+	packageBase->addComponent<Wrap>(40, 0, route, selectedRouteIndex);
+
 	return packageBase;
 }
 
@@ -199,6 +202,9 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene, bool esCarta)
 	packageBase->addComponent<MoverTransform>(packageBase->getComponent<Transform>()->getPos() - Vector2D(200, 0),
 		1, Easing::EaseOutBack)->disable();
 	factory->setLayer(ecs::layer::DEFAULT);
+
+
+
 	return packageBase;
 }
 

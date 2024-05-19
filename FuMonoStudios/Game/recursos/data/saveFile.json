@@ -1,21 +1,21 @@
 {
-  "Dia":1,
+  "Dia":12,
   "Dinero":0,
   "Personajes":{
     "Artesano":{
       "EventosCompletados":[
-        0,0,0,0,0
+        2,7,-9,10,0
       ],
-      "Felicidad":"NoHabladoAun",
-      "FelicidadNum":50,
-      "numMisionesAceptadas":0,
+      "Felicidad":"Buena",
+      "FelicidadNum":70,
+      "numMisionesAceptadas":4,
       "unlockUpgrade":false
     },
     "Campesino":{
       "EventosCompletados":[
         0,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
       "numMisionesAceptadas":0,
       "unlockUpgrade":false
@@ -24,7 +24,7 @@
       "EventosCompletados":[
         0,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
       "numMisionesAceptadas":0,
       "unlockUpgrade":false
@@ -33,7 +33,7 @@
       "EventosCompletados":[
         0,0,0,0,0,0,0,0,0,0,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
       "numMisionesAceptadas":0,
       "unlockUpgrade":false
@@ -42,7 +42,7 @@
       "EventosCompletados":[
         0,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
       "numMisionesAceptadas":0,
       "unlockUpgrade":false
@@ -51,7 +51,7 @@
       "EventosCompletados":[
         0,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
       "numMisionesAceptadas":0,
       "unlockUpgrade":false
@@ -60,7 +60,7 @@
       "EventosCompletados":[
         0,0,0,0,0,0,0,0,0,0,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
       "numMisionesAceptadas":0,
       "unlockUpgrade":false
