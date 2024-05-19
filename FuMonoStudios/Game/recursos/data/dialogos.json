@@ -1211,29 +1211,29 @@
     ],
     "1": [
       "Paco era un hombre com$un y corriente con una vida ordinaria y con un trabajo repetitivo y aburrido.",
-      "Trabajaba en correos y solamente ten$ia un trabajo: coger los paquetes que le llegaban y mandarlos por un tubo. "
+      "Trabajaba en correos y s$olamente ten$ia un trabajo: coger los paquetes que le llegaban y mandarlos por un tubo. "
     ],
     "5": [
-      "Hacia esto todos los dias y estaba harto de ello, ansiaba una oportunidad de escapar de su monotona vida.",
-      "Hasta que un dia, algo que no era un paquete corriente llego a su oficina..."
+      "Hac$ia esto todos los dias y estaba harto de ello, ansiaba una oportunidad de escapar de su mon$otona vida.",
+      "Hasta que un d$ia, algo que no era un paquete corriente lleg$o a su oficina..."
     ],
     "7": [
       "Paco abri$o la extra$%a botella y dentro encontr$o una carta que dec$ia venir de la Atl$antida."
     ],
     "8": [
-      "El remitente de la carta era un grupo que se hacia llamar Las Lechuzas y habia un mapa que marcaba la supuesta ubicacion de este legendario lugar.",
-      "Paco interpreto esto como una senal del destino para dejar todo atras y se embarco en su viaje hacia la Atlantida, gastandose todos sus ahorros en un submarino y un disfraz de pez para infiltrarse.",
-      "Y asi, despues de un arduo viaje, Paco llego a su destino, pero este era ligeramente diferente de como se lo imaginaba..."
+      "El remitente de la carta era un grupo que se hac$ia llamar Las Lechuzas y hab$ia un mapa que marcaba la supuesta ubicaci$on de este legendario lugar.",
+      "Paco interpret$o esto como una se$%al del destino para dejar todo atras y se embarc$o en su viaje hacia la Atlantida, gast$andose todos sus ahorros en un submarino y un disfraz de pez para infiltrarse.",
+      "Y as$i, despues de un arduo viaje, Paco lleg$o a su destino, pero este era ligeramente diferente de como se lo imaginaba..."
     ],
     "9": [
-      "Paco llego a una especie de barrio residencial, donde vio lo que parecia una oficina de correos y a un pez en la puerta con cara de preocupacion.",
-      "Y alla va otro que lo deja, por que todos mis trabajadores acaban renunciando?",
-      "Espero tener suerte encontrando a alguien pronto, pero estas juventudes de hoy en dia no quieren trabajar...",
-      "Eh tu! Si tu, el que esta ahi quieto mirandome, te gustaria un trabajo? Venga entra a la oficina y te hago una entrevista de trabajo asi rapida. "
+      "Paco lleg$o a una especie de barrio residencial, donde vi$o lo que parec$ia una oficina de correos y a un pez en la puerta con cara de preocupaci$on.",
+      "Y all$a va otro que lo deja, $?por qu$e todos mis trabajadores acaban renunciando?",
+      "Espero tener suerte encontrando a alguien pronto, pero estas juventudes de hoy en d$ia no quieren trabajar...",
+      " $!Eh t$u! S$i t$u, el que est$a ah$i quieto mir$andome, $?te gustar$ia un trabajo? Venga acompa$%ame a la oficina y te hago una entrevista de trabajo as$i r$apida. "
     ],
     "11": [
-      "Que te llamas Paco? Vaya nombre mas raro tienes hijo, pero bueno, tienes algo de experiencia trabajando en el sector de la paqueteria?",
-      "Paco le conto su historia y le explico que llevaba a$%os trabajando en la oficina de correos de su ciudad.",
+      " $?Que te llamas Paco? Vaya nombre mas raro tienes hijo, pero bueno, $?tienes algo de experiencia trabajando en el sector de la paqueter$ia?",
+      "Paco le cont$o su historia y le explic$o que llevaba a$%os trabajando en la oficina de correos de su ciudad.",
       "No puedo creer mi suerte, CONTRATADO. Deja que te acompa$%e a la puerta..."
     ]
   },
@@ -2037,7 +2037,7 @@
     },
     "TiendaEsculturas": {
         "TextoTiendaEsculturas10": [ "Que guay, una tienda de esculturas." ],
-        "TextoTiendaEsculturas11": [ "$?De d$onde sacar$an las rocas para hacer las esculturas en esta tienda" ],
+        "TextoTiendaEsculturas11": [ " $?De d$onde sacar$an las rocas para hacer las esculturas en esta tienda" ],
 
         "TextoTiendaEsculturas20": [ "Se parece a las tiendas peque$%as de esculturas que hab$ian en la superficie." ],
         "TextoTiendaEsculturas21": [ "Las rocas de la tienda las deben de haber sacado de alg$un lugar bajo el mar." ],
@@ -2110,105 +2110,69 @@
     },
     "TiendaDerecha": {
         
-        "TextoTiendaDerecha10": [ "TiendaDerecha10" ],
-        "TextoTiendaDerecha11": [ "TiendaDerecha11" ],
+        "TextoTiendaDerecha50": [ "Me pregunto si algo de lo que venden por aqu$i ser$a productos de la huerta de Pancracio." ],
+        "TextoTiendaDerecha51": [ "Oye y si aqu$i tambi$en venden alguna de las obras de Paulino, por fin podr$ia ver algo de su arte." ],
         
-        "TextoTiendaDerecha20": [ "TiendaDerecha20" ],
-        "TextoTiendaDerecha21": [ "TiendaDerecha21" ],
+        "TextoTiendaDerecha60": [ "LLevo dandole vueltas pero no se de donde sacan los materiales estos peces.", "Mejor no me cuestiono estas cosas que me empieza a doler la cabeza." ],
+        "TextoTiendaDerecha61": [ "No se si es demasiado justo que lo que hacen los otros se venda aqu$i a los nobles.", "Pero bueno, mejor no mojarse en esto." ],
         
-        "TextoTiendaDerecha30": [ "TiendaDerecha30" ],
-        "TextoTiendaDerecha31": [ "TiendaDerecha31" ],
+        "TextoTiendaDerecha70": [ "Quiz$a podr$ia buscar alg$un mueble para mi casa, que ya que pago 100 oricalcos al d$ia al menos estar c$omodo." ],
+        "TextoTiendaDerecha71": [ "Vaya parece que les debe ir muy bien el negocio porque simepre que paso est$an aqu$i los mismos." ],
         
-        "TextoTiendaDerecha40": [ "TiendaDerecha40" ],
-        "TextoTiendaDerecha41": [ "TiendaDerecha41" ],
+        "TextoTiendaDerecha80": [ "La verdad es que nunca he pensado si quedarme a vivir en la Atl$antida, pero est$a guay tener un mercadito tan cerca." ],
+        "TextoTiendaDerecha81": [ "Por lo que me han dicho aqu$i siempre hay una gran cola para comprar.", "Menos mal que yo paseo a primera hora de la ma$%ana y no suele haber nadie en las calles" ],
         
-        "TextoTiendaDerecha50": [ "TiendaDerecha50" ],
-        "TextoTiendaDerecha51": [ "TiendaDerecha51" ],
+        "TextoTiendaDerecha90": [ "Ahora que lo pienso, no se como se atrever$an a usar madera en tantas cosas si apenas deber$ia haber $arboles aqu$i abajo." ],
+        "TextoTiendaDerecha91": [ "Siempre que voy a comprar me acuerdo de las opciones que ten$ia en la superficie.", "Aqu$i no hay nada precocinado, todo me lo tengo que hacer yo y no es que se me de muy bien que digamos." ],
         
-        "TextoTiendaDerecha60": [ "TiendaDerecha60" ],
-        "TextoTiendaDerecha61": [ "TiendaDerecha61" ],
+        "TextoTiendaDerecha100": [ "Me acuerdo que hace a$%os fu$i a un bazar muy parecido a este. Ni siquiera quer$ia lo que vend$ian, solo me gustaba regatear." ],
+        "TextoTiendaDerecha101": [ "El $ultimo d$ia no me fije pero de hecho de donde ser$a que sacan la tela para las lonas, si no hay ovejas ni gusanos.", "Creo." ],
         
-        "TextoTiendaDerecha70": [ "TiendaDerecha70" ],
-        "TextoTiendaDerecha71": [ "TiendaDerecha71" ],
+        "TextoTiendaDerecha110": [ "Por cierto, no se si aqu$i podr$e regatear, que la verdad con lo que cobro me gustaria ahorrarme algunas monedas." ],
+        "TextoTiendaDerecha111": [ "Por lo que he oido los productos no los hacen ellos,", "los compran m$as baratos y luego los venden a estos precios." ],
         
-        "TextoTiendaDerecha80": [ "TiendaDerecha80" ],
-        "TextoTiendaDerecha81": [ "TiendaDerecha81" ],
+        "TextoTiendaDerecha120": [ "Vaya por lo que he escuchado al $ultimo que intento conseguir un descuento aqu$i le echaron, mejor yo ni lo intento." ],
+        "TextoTiendaDerecha121": [ "Por lo que me dijeron algunos comerciantes parece que en las cajas guardan pescado.", "Imaginarme a hombres peces comiendo peces se me hace bastante t$etrico." ],
         
-        "TextoTiendaDerecha90": [ "TiendaDerecha90" ],
-        "TextoTiendaDerecha91": [ "TiendaDerecha91" ],
+        "TextoTiendaDerecha130": [ "Me pregunto si yo podr$ia valer como comerciante, no se me dan mal los n$umeros pero eso de tratar con gente parece cansino" ],
+        "TextoTiendaDerecha131": [ "Ahora que lo pienso, tambi$en venden alimentos y jarrones en Artemisa, me pregunto si no les afectar$a a los de Hermes y sus ventas." ],
         
-        "TextoTiendaDerecha100": [ "TiendaDerecha100" ],
-        "TextoTiendaDerecha101": [ "TiendaDerecha101" ],
-        
-        "TextoTiendaDerecha110": [ "TiendaDerecha110" ],
-        "TextoTiendaDerecha111": [ "TiendaDerecha111" ],
-        
-        "TextoTiendaDerecha120": [ "TiendaDerecha120" ],
-        "TextoTiendaDerecha121": [ "TiendaDerecha121" ],
-        
-        "TextoTiendaDerecha130": [ "TiendaDerecha130" ],
-        "TextoTiendaDerecha131": [ "TiendaDerecha131" ],
-        
-        "TextoTiendaDerecha140": [ "TiendaDerecha140" ],
-        "TextoTiendaDerecha141": [ "TiendaDerecha141" ]
+        "TextoTiendaDerecha140": [ "La gente que trabaja aqu$i debe estar pendiente a muchas cosas, creo que yo estoy m$as agusto tranquilo en mi oficina" ],
+        "TextoTiendaDerecha141": [ "Por lo que he escuchado en Artemisa todo lo que venden son supuestos remedios los cuales obtienen comprandoselo a Hermes,", "que a su vez se lo compran a Demeter y a Hefesto, todo para que vayan subiendo los precios, menuda locura." ]
     },
     "PanteonIzq": {
         
-        "TextoPanteonIzq10": [ "PanteonIzq10" ],
-        "TextoPanteonIzq11": [ "PanteonIzq11" ],
+        "TextoPanteonIzq50": [ "Madre m$ia, que diferencia los edifios de los distritos interiores y exteriores."  ],
+        "TextoPanteonIzq51": [ "Me pregunto que tendr$an en un edificio tan grande como ese." ],
         
-        "TextoPanteonIzq20": [ "PanteonIzq20" ],
-        "TextoPanteonIzq21": [ "PanteonIzq21" ],
+        "TextoPanteonIzq60": [ "Ya ver algo asi en la superficie es impresionante, pero encima poder verlo aqu$i como si nada, es realmente una maravilla" ],
+        "TextoPanteonIzq61": [ "Por lo que he escuchado, en ese edificio se encuentran las oficinas de la empresa que maneja el comercio en Hermes, Globinterprise se llamaba creo." ],
         
-        "TextoPanteonIzq30": [ "PanteonIzq30" ],
-        "TextoPanteonIzq31": [ "PanteonIzq31" ],
+        "TextoPanteonIzq70": [ "Ojal$a alg$un d$ia pueda sacar el tiempo necesario y as$i poder ver m$as de cerca esta maravilla de edificio." ],
+        "TextoPanteonIzq71": [ "Es increible que algunos puedan trabajar en un aut$entico pante$on y yo mientras en una triste oficina." ],
         
-        "TextoPanteonIzq40": [ "PanteonIzq40" ],
-        "TextoPanteonIzq41": [ "PanteonIzq41" ],
+        "TextoPanteonIzq80": [ "Hace bastantes a$%os me ense$%aron sobre los estilos art$isticos de las columnas en la atigua Grecia, ojala me acordar$a ahora." ],
+        "TextoPanteonIzq81": [ "Incluso el panteon tiene telas moradas colgadas, me pregunto porque justo ese color." ],
         
-        "TextoPanteonIzq50": [ "PanteonIzq50" ],
-        "TextoPanteonIzq51": [ "PanteonIzq51" ],
+        "TextoPanteonIzq90": [ "Es increible lo bien conservados que est$an los edificios, al llegar pens$e que todo estar$ia descuidado o derruido." ],
+        "TextoPanteonIzq91": [ "Creo haber escuchado que hay tanto morado en Hermes por las apariencias, se ve que el color es s$imbolo de riqueza." ],
         
-        "TextoPanteonIzq60": [ "PanteonIzq60" ],
-        "TextoPanteonIzq61": [ "PanteonIzq61" ],
+        "TextoPanteonIzq100": [ "Realmente tiene sentido que la Atl$antida tenga tanta arquitectura griega.", "No se porque en la superficie hay tantos que se lo imaginan futurista." ],
+        "TextoPanteonIzq101": [ "Me pregunto si dentro del pateon habr$a informaci$on sobre la historia de la Atl$antida" ],
         
-        "TextoPanteonIzq70": [ "PanteonIzq70" ],
-        "TextoPanteonIzq71": [ "PanteonIzq71" ],
+        "TextoPanteonIzq110": [ "Al ver el panteon me da algo de lastima la gente de Hestia que no tiene la entrada permitida a los distritos interiores, de verda que es una pena." ],
+        "TextoPanteonIzq111": [ "Supongo que si estos panteones tambi$en se ven en la superficie, significa que la Atl$antida se tuvo que hundir en alg$un momento." ],
         
-        "TextoPanteonIzq80": [ "PanteonIzq80" ],
-        "TextoPanteonIzq81": [ "PanteonIzq81" ],
+        "TextoPanteonIzq120": [ "Ahora que lo pienso no se si creeran en dioses o en alguna religi$on aqu$i en la Atl$antida", "Pero con tantos Panteones no me extra$%ar$ia" ],
+        "TextoPanteonIzq121": [ "Realmente me encantaria haberme traido unas fotos de panteones de la superficie para comparar con los que hay aqu$i" ],
         
-        "TextoPanteonIzq90": [ "PanteonIzq90" ],
-        "TextoPanteonIzq91": [ "PanteonIzq91" ],
+        "TextoPanteonIzq130": [ "Desde aqu$i no se ve bien pero juraria que esos cuadrados tienen seres mitol$ogicos tallados en roca.", "Bueno alg$un d$ia me acercare para verlos mejor" ],
+        "TextoPanteonIzq131": [ "Ojal$a haberme traido una c$amara de fotos aqu$i, tantas maravillosos monumentos y yo sin poder guardarme esos recuerdos." ],
         
-        "TextoPanteonIzq100": [ "PanteonIzq100" ],
-        "TextoPanteonIzq101": [ "PanteonIzq101" ],
-        
-        "TextoPanteonIzq110": [ "PanteonIzq110" ],
-        "TextoPanteonIzq111": [ "PanteonIzq111" ],
-        
-        "TextoPanteonIzq120": [ "PanteonIzq120" ],
-        "TextoPanteonIzq121": [ "PanteonIzq121" ],
-        
-        "TextoPanteonIzq130": [ "PanteonIzq130" ],
-        "TextoPanteonIzq131": [ "PanteonIzq131" ],
-        
-        "TextoPanteonIzq140": [ "PanteonIzq140" ],
-        "TextoPanteonIzq141": [ "PanteonIzq141" ]
+        "TextoPanteonIzq140": [ "La verdad, despu$es de pasar tantas veces por aqu$i ya te acostumbras a estos monumentos.", "Supongo que ya no impresiona tanto." ],
+        "TextoPanteonIzq141": [ "Creo que lo que m$as me gusta del pante$on es toda la flora que tiene alrededor, le da un toque carism$atico." ]
     },
     "PanteonDer": {
-        
-        "TextoPanteonDer10": [ "PanteonDer10" ],
-        "TextoPanteonDer11": [ "PanteonDer11" ],
-        
-        "TextoPanteonDer20": [ "PanteonDer20" ],
-        "TextoPanteonDer21": [ "PanteonDer21" ],
-        
-        "TextoPanteonDer30": [ "PanteonDer30" ],
-        "TextoPanteonDer31": [ "PanteonDer31" ],
-        
-        "TextoPanteonDer40": [ "PanteonDer40" ],
-        "TextoPanteonDer41": [ "PanteonDer41" ],
         
         "TextoPanteonDer50": [ "PanteonDer50" ],
         "TextoPanteonDer51": [ "PanteonDer51" ],
@@ -2242,18 +2206,6 @@
     },
     "Panteon": {
         
-        "TextoPanteon10": [ "Panteon10" ],
-        "TextoPanteon11": [ "Panteon11" ],
-        
-        "TextoPanteon20": [ "Panteon20" ],
-        "TextoPanteon21": [ "Panteon21" ],
-        
-        "TextoPanteon30": [ "Panteon30" ],
-        "TextoPanteon31": [ "Panteon31" ],
-        
-        "TextoPanteon40": [ "Panteon40" ],
-        "TextoPanteon41": [ "Panteon41" ],
-        
         "TextoPanteon50": [ "Panteon50" ],
         "TextoPanteon51": [ "Panteon51" ],
         
@@ -2285,18 +2237,6 @@
         "TextoPanteon141": [ "Panteon141" ]
     },
     "Edificios": {
-        
-        "TextoEdificios10": [ "Edificios10" ],
-        "TextoEdificios11": [ "Edificios11" ],
-        
-        "TextoEdificios20": [ "Edificios20" ],
-        "TextoEdificios21": [ "Edificios21" ],
-        
-        "TextoEdificios30": [ "Edificios30" ],
-        "TextoEdificios31": [ "Edificios31" ],
-        
-        "TextoEdificios40": [ "Edificios40" ],
-        "TextoEdificios41": [ "Edificios41" ],
         
         "TextoEdificios50": [ "Edificios50" ],
         "TextoEdificios51": [ "Edificios51" ],
@@ -2330,18 +2270,6 @@
     },
     "Charco": {
         
-        "TextoCharco10": [ "Charco10" ],
-        "TextoCharco11": [ "Charco11" ],
-        
-        "TextoCharco20": [ "Charco20" ],
-        "TextoCharco21": [ "Charco21" ],
-        
-        "TextoCharco30": [ "Charco30" ],
-        "TextoCharco31": [ "Charco31" ],
-        
-        "TextoCharco40": [ "Charco40" ],
-        "TextoCharco41": [ "Charco41" ],
-        
         "TextoCharco50": [ "Charco50" ],
         "TextoCharco51": [ "Charco51" ],
         
@@ -2373,20 +2301,6 @@
         "TextoCharco141": [ "Charco141" ]
     },
     "casa1": {
-        "Textocasa100": [ "Mondongo00" ],
-        "Textocasa101": [ "Mondongo01" ],
-              
-        "Textocasa110": [ "Mondongo10" ],
-        "Textocasa111": [ "Mondongo11" ],
-              
-        "Textocasa120": [ "Mondongo20" ],
-        "Textocasa121": [ "Mondongo21" ],
-              
-        "Textocasa130": [ "Mondongo30" ],
-        "Textocasa131": [ "Mondongo31" ],
-              
-        "Textocasa140": [ "Mondongo40" ],
-        "Textocasa141": [ "Mondongo41" ],
               
         "Textocasa150": [ "Mondongo50" ],
         "Textocasa151": [ "Mondongo51" ],
@@ -2419,18 +2333,6 @@
         "Textocasa1141": [ "Mondongo141" ]
     },
     "casa2": {
-
-        "Textocasa210": [ "Mondongo210" ],
-        "Textocasa211": [ "Mondongo211" ],
-
-        "Textocasa220": [ "Mondongo220" ],
-        "Textocasa221": [ "Mondongo221" ],
-
-        "Textocasa230": [ "Mondongo230" ],
-        "Textocasa231": [ "Mondongo231" ],
-
-        "Textocasa240": [ "Mondongo240" ],
-        "Textocasa241": [ "Mondongo241" ],
 
         "Textocasa250": [ "Mondongo250" ],
         "Textocasa251": [ "Mondongo251" ],

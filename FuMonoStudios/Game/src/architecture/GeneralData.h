@@ -13,6 +13,7 @@
 #include <json/JSON.h>
 #include <json/JSONValue.h>
 #include <bitset>
+#include <architecture/Exceptions.h>
 
 class DialogManager;
 class PaqueteBuilder;
@@ -63,13 +64,12 @@ public:
 		std::string objId;
 	};
 	/// <summary>
-	/// Carga los datos de los npc es decir: Felicidad, Misiones pendientes, Eventos
+	/// Carga los datos de los NPC basicos del npcData.json
+	/// estos datos no cambian entre guardados.
+	/// Esta llamada se puede considerar la inicializacion de los NPC
 	/// </summary>
 	void readNPCData();
-	/// <summary>
-	/// Guarda los datos de los npc es decir: Felicidad, Misiones pendientes, Eventos
-	/// </summary>
-	void writeNPCData();
+
 	/// <summary>
 	/// Devuelve los datos del npc solicitado
 	/// </summary>
@@ -284,12 +284,15 @@ public:
 
 	void newGame();
 private:
+	void setNewGameValues();
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }
 
 	void updateDistrictsPerDay(int dia);
 
 	void saveNPCData(JSONObject& obj);
+
+	void loadNPCsData(JSONObject& persojaesRoot);
 
 	/// <summary>
 	/// estructura que almacena los datos de los npc

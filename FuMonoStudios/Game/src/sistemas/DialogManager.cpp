@@ -424,7 +424,7 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
 
 bool DialogManager::isNPC(const DialogSelection ds)
 {
-    return ds < 7;
+    return ds < Jefe;
 }
 
 void DialogManager::createBox()

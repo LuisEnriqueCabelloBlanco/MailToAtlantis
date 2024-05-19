@@ -58,6 +58,7 @@ void EndWorkScene::init() {
 
 	//Luis:no se si se deberia avanzar antes o despues de guardar
 	gD().setDay(gD().getDay() + 1);
+	
 }
 
 void EndWorkScene::close()
@@ -121,7 +122,7 @@ void EndWorkScene::createButtons()
 	if (money > 0) {
 		// Boton nuevo dia
 
-		
+		gD().saveGame();
 		
 		auto call = []() {
 			if (gD().getDay() == 14) {
