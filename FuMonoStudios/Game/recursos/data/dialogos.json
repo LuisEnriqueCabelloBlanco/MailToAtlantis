@@ -2302,55 +2302,117 @@
     },
     "Estatua": {
 
-        "TextoEstatua50": [ "Mondongo50" ],
-        "TextoEstatua51": [ "Mondongo51" ],
+        "TextoEstatua50": [ "$!Ala, qu$e estatua tan majestuosa!" ],
+        "TextoEstatua51": [
+            "No hab$ia visto una estatua como esta en toda la ciudad.",
+            "Est$a posicionada al frente del palacio real, que parece un pantenon enorme."
+        ],
 
-        "TextoEstatua60": [ "Mondongo60" ],
-        "TextoEstatua61": [ "Mondongo61" ],
+        "TextoEstatua60": [
+            "Qu$e estatua tan majestuosa, de seguro representa a alg$un dios antiguo.",
+            "Lo curioso es que parece un humano... que$e raro en un sitio como este."
+        ],
+        "TextoEstatua61": [ "Estatuas como esta no las he visto en el distrito de Hefesto todav$ia." ],
 
-        "TextoEstatua70": [ "Mondongo70" ],
-        "TextoEstatua71": [ "Mondongo71" ],
+        "TextoEstatua70": [
+            "Qu$e estatua tan majestuosa, por como est$a esculpida impone bastante.",
+            "El escultor es todo un manitas.",
+            "Aunque me gustar$ia saber de donde han sacado la inspiraci$on para basarse en una figura humana."
+        ],
+        "TextoEstatua71": [ "Esta estatua es la m$as majestuosa de toda la ciudad." ],
 
-        "TextoEstatua80": [ "Mondongo80" ],
-        "TextoEstatua81": [ "Mondongo81" ],
+        "TextoEstatua80": [ "La estatua me recuerda a un dios de la mitolog$ia antigua." ],
+        "TextoEstatua81": [ "La estatua est$a en muy buenas condiciones la verdad." ],
 
-        "TextoEstatua90": [ "Mondongo90" ],
-        "TextoEstatua91": [ "Mondongo91" ],
+        "TextoEstatua90": [
+            "La estatua estatua me recuerda al del dios griego Poseid$on...",
+            "Bueno, estoy ahora en un distrito llamado Poseid$on, supongo que es obvio."
+        ],
+        "TextoEstatua91": [
+            "Es sorprendente lo bien que se ve esta estatua,",
+            "no parece tener ning$un tipo de rasgu$%o."
+        ],
 
-        "TextoEstatua100": [ "Mondongo100" ],
-        "TextoEstatua101": [ "Mondongo101" ],
+        "TextoEstatua100": [
+            "Me pregunto de donde conocen exactamente la figura de Poseid$on.",
+            "Es posible que se impartiera la cultura mitol$ogica desde generaciones,",
+            "y que de ah$i conozcan la figura de Poseid$on.",
+            "O puede que fuese una estatua que cayese de la superficie y la pusieran aqu$i."
+        ],
+        "TextoEstatua101": [
+            "Me gustar$ia saber desde cuando est$a esta estatua aqu$i.",
+            "Por c$omo se ve parece nueva pero de seguro lleva bastantes a$%os aqu$i.",
+            "El escultor debe ser un maestro y deben de cuidarla bien tambi$en."
+        ],
 
-        "TextoEstatua110": [ "Mondongo110" ],
-        "TextoEstatua111": [ "Mondongo111" ],
+        "TextoEstatua110": [ "El tridente de esta estatua siempre me ha recordado a un tenedor." ],
+        "TextoEstatua111": [
+            "Seg$un recuerdo poseid$on es el dios de los mares,",
+            "creo que en todo caso queda bien que haya una estatua sobre $el en una ciudad submarina."
+        ],
 
-        "TextoEstatua120": [ "Mondongo120" ],
-        "TextoEstatua121": [ "Mondongo121" ],
+        "TextoEstatua120": [
+            "El tridente de esta estatua siempre me ha recordado a un tenedor.",
+            "Pensar en eso me da hambre, quiz$as deba de ir a probar algo de esa fruta rara de un puesto de Artemisa."
+        ],
+        "TextoEstatua121": [
+            "El que una estatua de poseid$on, el rey de los mares, est$e en una ciudad submarina,",
+            "es bastante acertado, impone mucho que est$e aqu$i."
+        ],
 
-        "TextoEstatua130": [ "Mondongo130" ],
-        "TextoEstatua131": [ "Mondongo131" ],
+        "TextoEstatua130": [ "Puede que alg$un d$ia en otro distrito haya una estatua como esta representando a cada distrito." ],
+        "TextoEstatua131": [
+            "Me pregunto porqu$e la estatua no expulsa agua,",
+            "parece estar encima de una fuente."
+        ],
 
-        "TextoEstatua140": [ "Mondongo140" ],
-        "TextoEstatua141": [ "Mondongo141" ]
+        "TextoEstatua140": [
+            "Si cada distrito tuviese su propia estatua como esta,",
+            "habr$ian varias estatuas diferentes, por que los nombres coinciden con diferentes dioses,",
+            "y en el distrito de Poseid$on est$a Poseid$on."
+        ],
+        "TextoEstatua141": [
+            "Quedar$ia m$as realista si la estatua del dios del mar Poseid$on echase agua.",
+            "Est$a encima de una fuente y quedar$ia bastante bien a mi opini$on."
+        ]
     },
     "ArbolesIzq": {
 
-        "TextoArbolesIzq50": [ "Mondongo250" ],
-        "TextoArbolesIzq51": [ "Mondongo251" ],
+        "TextoArbolesIzq50": [ "Qu$e $arboles m$as raros, no se parecen a los que hay en Dem$eter ni en los otros distritos." ],
+        "TextoArbolesIzq51": [ "Los arbustos est$an muy bien cortados." ],
 
-        "TextoArbolesIzq60": [ "Mondongo260" ],
-        "TextoArbolesIzq61": [ "Mondongo261" ],
+        "TextoArbolesIzq60": [ "Estos $arboles tienen una forma extra$%a, son como $arboles de navidad muy finos." ],
+        "TextoArbolesIzq61": [
+            "El que los arbustos est$en tan bien cortados,",
+            "debe ser porque hay grandes jardineros trabajando aqu$i."
+        ],
 
-        "TextoArbolesIzq70": [ "Mondongo270" ],
-        "TextoArbolesIzq71": [ "Mondongo271" ],
+        "TextoArbolesIzq70": [
+            "Estos $arboles son como si fueran pinos, pero est$an muy finos...",
+            "Vaya me ha salido rima y todo, deber$ia leer m$as poes$ia."
+        ],
+        "TextoArbolesIzq71": [
+            "Cada d$ia que paso me asombra el c$omo est$an tan bien cuidados los arbustos, $arboles y plantas.",
+            "Y no solo en este distrito, si no en toda la ciudad. Hay muy buenos jardineros y agricultores."
+        ],
 
-        "TextoArbolesIzq80": [ "Mondongo280" ],
-        "TextoArbolesIzq81": [ "Mondongo281" ],
+        "TextoArbolesIzq80": [
+            "Los panteones  y estructuras que veo por aqu$i me encantan.",
+            "est$an muy bien construidos."
+        ],
+        "TextoArbolesIzq81": [ "Se nota que estoy cerca del palacio, porque est$a todo muy bien cuidado." ],
 
-        "TextoArbolesIzq90": [ "Mondongo290" ],
-        "TextoArbolesIzq91": [ "Mondongo291" ],
+        "TextoArbolesIzq90": [
+            "Los panteones  y estructuras que veo por aqu$i me encantan.",
+            "Hay grandes arquitectos en esta ciudad, y se ven en estos edificios, enlas estructuras, y en los muros que rodean los distritos."
+        ],
+        "TextoArbolesIzq91": [ "Est$a todo muy bien cuidado, el rey del palacio debe de tener buenos trabajadores que mantienen todo  impecable." ],
 
-        "TextoArbolesIzq100": [ "Mondongo2100" ],
-        "TextoArbolesIzq101": [ "Mondongo2101" ],
+        "TextoArbolesIzq100": [
+            "Tuvieron que usar materiales de muy buena calidad, porque estos panteones y estructuras,",
+            "est$an muy bien construidos."
+        ],
+        "TextoArbolesIzq101": [ "Si todo en este sitio est$a muy bien cuidado, los trabajadores deben de ser muy buenos y tener buen sueldo." ],
 
         "TextoArbolesIzq110": [ "Mondongo2110" ],
         "TextoArbolesIzq111": [ "Mondongo2111" ],
@@ -2366,14 +2428,23 @@
     },
     "ArbolesDer": {
 
-        "TextoArbolesDer50": [ "Mondongo250" ],
-        "TextoArbolesDer51": [ "Mondongo251" ],
+        "TextoArbolesDer50": [ "Qu$e $arboles m$as raros, no se parecen a los que hay en Dem$eter ni en los otros distritos." ],
+        "TextoArbolesDer51": [ "Los arbustos est$an muy bien cortados." ],
 
-        "TextoArbolesDer60": [ "Mondongo260" ],
-        "TextoArbolesDer61": [ "Mondongo261" ],
+        "TextoArbolesDer60": [ "Estos $arboles tienen una forma extra$%a, son como $arboles de navidad muy finos." ],
+        "TextoArbolesDer61": [
+            "El que los arbustos est$en tan bien cortados,",
+            "debe ser porque hay grandes jardineros trabajando aqu$i."
+        ],
 
-        "TextoArbolesDer70": [ "Mondongo270" ],
-        "TextoArbolesDer71": [ "Mondongo271" ],
+        "TextoArbolesDer70": [
+            "Estos $arboles son como si fueran pinos, pero est$an muy finos...",
+            "Vaya me ha salido rima y todo, deber$ia leer m$as poes$ia."
+        ],
+        "TextoArbolesDer71": [
+            "Cada d$ia que paso me asombra el c$omo est$an tan bien cuidados los arbustos, $arboles y plantas.",
+            "Y no solo en este distrito, si no en toda la ciudad. Hay muy buenos jardineros y agricultores."
+        ],
 
         "TextoArbolesDer80": [ "Mondongo280" ],
         "TextoArbolesDer81": [ "Mondongo281" ],
