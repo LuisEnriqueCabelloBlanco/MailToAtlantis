@@ -89,6 +89,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)ImGui;$(ProjectDir)ImGui\backends;$(ProjectDir)ImGui\misc;$(ProjectDir)src;$(IncludePath)</IncludePath>
+    <TargetName>MailToAtlantis</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -230,6 +231,7 @@
     <ClCompile Include="src\entities\PolvosAux.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="src\architecture\Exceptions.h" />
     <ClInclude Include="src\entities\PolvosAux.h" />
     <ClInclude Include="src\entities\BombAux.h" />
@@ -340,6 +342,7 @@
     <Image Include="recursos\images\Alimentos.png" />
     <Image Include="recursos\images\Armas.png" />
     <Image Include="recursos\images\Fragil.png" />
+    <Image Include="recursos\images\IconoEjecutable.ico" />
     <Image Include="recursos\images\Joyas.png" />
     <Image Include="recursos\images\Materiales.png" />
     <Image Include="recursos\images\Medicina.png" />
@@ -351,6 +354,9 @@
   <ItemGroup>
     <Media Include="recursos\sounds\office.wav" />
     <Media Include="recursos\sounds\printer.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
