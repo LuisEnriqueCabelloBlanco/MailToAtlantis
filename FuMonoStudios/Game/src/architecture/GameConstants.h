@@ -10,6 +10,7 @@ const std::string REMITENT_SETTINGS_PATH = "recursos/config/mail.destinatarios.j
 const std::string DIR_SETTINGS_PATH = "recursos/config/mail.direcctions.json";
 const std::string SAVE_PATH = "recursos/data/saveFile.json";
 const std::string NPC_DATA_PATH = "recursos/data/npcData.json";
+const std::string TAPE_ROUTE_PATH = "recursos/data/rutas.JSON";
 #pragma endregion
 
 #pragma region General
@@ -23,7 +24,7 @@ constexpr int INITIAL_DAY = 1;
 constexpr int INITIAL_TUBE_AMOUNT = 1;
 constexpr int WRITE_PACAGES_VALUE = 20;
 constexpr int WRONG_PACAGES_VALUE = 30;
-constexpr int MINIGAME_TIME = 30;
+constexpr int MINIGAME_TIME = 120;
 constexpr int INITIAL_FAILS_MARGIN = 1;
 constexpr int LOGICAL_RENDER_WIDTH = 1920;
 constexpr int LOGICAL_RENDER_HEITH = 1080;
