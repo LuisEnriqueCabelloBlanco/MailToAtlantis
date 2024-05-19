@@ -7,8 +7,6 @@
 #include <components/Render.h>
 #include <QATools/DataCollector.h>
 #include <sistemas/ComonObjectsFactory.h>
-//estos dos
-#include <architecture/GameConstants.h>
 #include <sistemas/SoundEmiter.h>
 
 

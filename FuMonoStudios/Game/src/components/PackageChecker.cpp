@@ -5,8 +5,6 @@
 #include <QATools/DataCollector.h>
 #include <sistemas/SoundEmiter.h>
 #include <sistemas/NPCeventSystem.h>
-//estos dos
-#include <entities/PolvosAux.h>
 #include <components/DelayedCallback.h>
 
 PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc, PipeManager* mngr) : 
