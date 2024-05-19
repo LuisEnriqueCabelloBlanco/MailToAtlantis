@@ -23,13 +23,13 @@ void SpecialObjectsFactory::setupDayObjects() {
 	if ((gD().getNPCData(Vagabundo)->numMisionesAceptadas == 4 ||
 		gD().getNPCData(Vagabundo)->numMisionesAceptadas == 5) && gD().getNPCData(Vagabundo)->postConversation)
 		makePapelAgujeros();
-	if (gD().getNPCData(Secretario)->numMisionesAceptadas == 3)
+	if (gD().getNPCData(Secretario)->numMisionesAceptadas == 3 && gD().getNPCData(Secretario)->postConversation)
 		makeListaSecretario(true);
-	if (gD().getNPCData(Secretario)->numMisionesAceptadas == 4)
+	if (gD().getNPCData(Secretario)->numMisionesAceptadas == 4 && gD().getNPCData(Secretario)->postConversation)
 		makeListaSecretario(false);
 
-	makePolvos();
-	//makeBomba();
+	if (gD().getNPCData(Vagabundo)->numMisionesAceptadas == 10 && gD().getNPCData(Vagabundo)->postConversation)
+		makePolvos();
 }
 
 void SpecialObjectsFactory::makeListaVagabundo() {
