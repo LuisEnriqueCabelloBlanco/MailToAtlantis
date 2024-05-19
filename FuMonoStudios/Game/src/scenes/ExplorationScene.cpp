@@ -422,7 +422,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 			diarioVacio = false;
 			//procesamos los textos
 			DialogManager a;
-			std::string textoPersonaje = data->introText += '\n';
+			std::string textoPersonaje = data->introText + "\n";
 			a.fixText(textoPersonaje);
 			//contador de las paginas del personaje
 			int j = 0;
@@ -521,7 +521,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 			pagesByCharacter[i] = 1;
 			textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
 			DialogManager a;
-			std::string textoPersonaje = data->introText += '\n';
+			std::string textoPersonaje = data->introText + "\n";
 			a.fixText(textoPersonaje);
 			diarioText_.push_back(textoPersonaje);
 			diarioText_.push_back(" ");

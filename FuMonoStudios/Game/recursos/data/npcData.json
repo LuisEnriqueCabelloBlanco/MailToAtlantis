@@ -1,7 +1,7 @@
 {
   "Vagabundo": {
     "PrimeraMision": 1,
-    "IntroductionText": "Anemos Togakawa es un vagabundo optimista que vive en el distrito de Hestia. Pasa los d$ias sobreviviendo como puede y hablando con sus colegas campesinos del distrito.",
+    "IntroductionText": "Anemos Togakawa es un vagabundo optimista que vive en el distrito de Hestia. Pasa los d$ias sobreviviendo como puede, comerciando y hablando con sus colegas campesinos.",
     "Eventos": {
       "1": {
         "numPaquetes": 1,
