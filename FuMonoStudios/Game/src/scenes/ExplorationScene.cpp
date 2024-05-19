@@ -648,7 +648,8 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 				dialogMngr_.setEndDialogueCallback([this] {
 					canInteract = true;
-					});
+				});
+
 				canInteract = false;
 				dialogMngr_.startConversation(character);
 

@@ -298,6 +298,7 @@ void GeneralData::saveNPCData(JSONObject& obj)
 		modifyJsonData(charac, "Felicidad", gD().felicidadToString(npc.second->felicidad));
 		modifyJsonData(charac, "FelicidadNum", npc.second->numFelicidad);
 		modifyJsonData(charac, "numMisionesAceptadas", npc.second->numMisionesAceptadas);
+		modifyJsonData(charac, "unlockUpgrade", npc.second->unlockUpgrade);
 		//Procesado de eventos completados
 		auto& completedEvents = npc.second->eventosCompletados;
 		JSONArray arrayEvents;
