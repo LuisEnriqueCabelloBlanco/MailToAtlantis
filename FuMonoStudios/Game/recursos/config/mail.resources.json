@@ -79,6 +79,7 @@
     {"id": "Demeter","file": "recursos/images/Demeter.png"},
     {"id": "Hefesto","file": "recursos/images/Hefesto.png"},
     {"id": "Hestia","file": "recursos/images/Hestia.png"},
+    {"id": "HestiaHighlight","file": "recursos/images/HestiaHighlight.png"},
     {"id": "Artemisa","file": "recursos/images/Artemisa2.png"},
     {"id": "Hermes","file": "recursos/images/Hermes.png"},
     {"id": "Apolo","file": "recursos/images/Apolo.png"},
@@ -689,6 +690,118 @@
     {
       "id": "page2",
       "file": "recursos/sounds/paginas2.wav"
+    },
+    {
+      "id": "dlgArt0",
+      "file": "recursos/sounds/Artesano0.wav"
+    },
+    {
+      "id": "dlgArt1",
+      "file": "recursos/sounds/Artesano1.wav"
+    },
+    {
+      "id": "dlgArt2",
+      "file": "recursos/sounds/Artesano2.wav"
+    },
+    {
+      "id": "dlgArt3",
+      "file": "recursos/sounds/Artesano3.wav"
+    },
+    {
+      "id": "dlgCamp0",
+      "file": "recursos/sounds/Campesino0.wav"
+    },
+    {
+      "id": "dlgCamp1",
+      "file": "recursos/sounds/Campesino1.wav"
+    },
+    {
+      "id": "dlgCamp2",
+      "file": "recursos/sounds/Campesino2.wav"
+    },
+    {
+      "id": "dlgCamp3",
+      "file": "recursos/sounds/Campesino3.wav"
+    },
+    {
+      "id": "dlgCont0",
+      "file": "recursos/sounds/Contable0.wav"
+    },
+    {
+      "id": "dlgCont1",
+      "file": "recursos/sounds/Contable1.wav"
+    },
+    {
+      "id": "dlgCont2",
+      "file": "recursos/sounds/Contable2.wav"
+    },
+    {
+      "id": "dlgCont3",
+      "file": "recursos/sounds/Contable3.wav"
+    },
+    {
+      "id": "dlgSecr0",
+      "file": "recursos/sounds/Secretario0.wav"
+    },
+    {
+      "id": "dlgSecr1",
+      "file": "recursos/sounds/Secretario1.wav"
+    },
+    {
+      "id": "dlgSecr2",
+      "file": "recursos/sounds/Secretario2.wav"
+    },
+    {
+      "id": "dlgSecr3",
+      "file": "recursos/sounds/Secretario3.wav"
+    },
+    {
+      "id": "dlgSold0",
+      "file": "recursos/sounds/Soldado0.wav"
+    },
+    {
+      "id": "dlgSold1",
+      "file": "recursos/sounds/Soldado1.wav"
+    },
+    {
+      "id": "dlgSold2",
+      "file": "recursos/sounds/Soldado2.wav"
+    },
+    {
+      "id": "dlgSold3",
+      "file": "recursos/sounds/Soldado3.wav"
+    },
+    {
+      "id": "dlgTart0",
+      "file": "recursos/sounds/Tarotista0.wav"
+    },
+    {
+      "id": "dlgTart1",
+      "file": "recursos/sounds/Tarotista1.wav"
+    },
+    {
+      "id": "dlgTart2",
+      "file": "recursos/sounds/Tarotista2.wav"
+    },
+    {
+      "id": "dlgTart3",
+      "file": "recursos/sounds/Tarotista3.wav"
+    },
+    {
+      "id": "dlgVag0",
+      "file": "recursos/sounds/Vagabundo0.wav"
+    },
+    {
+      "id": "dlgVag1",
+      "file": "recursos/sounds/Vagabundo1.wav"
+    },
+    {
+      "id": "dlgVag2",
+      "file": "recursos/sounds/Vagabundo2.wav"
+    },
+    {
+      "id": "dlgVag3",
+      "file": "recursos/sounds/Vagabundo3.wav"
     }
   ],
   "musics": [
@@ -698,7 +811,7 @@
     },
     {
       "id": "mainMenu",
-      "file": "recursos/musics/DQOverture.wav"
+      "file": "recursos/musics/WelcometoAtlantisArpas.wav"
     },
     {
       "id": "office",
@@ -715,6 +828,10 @@
     {
       "id": "clockFast",
       "file": "recursos/musics/tictacRapido.wav"
+    },
+    {
+      "id": "exploration",
+      "file": "recursos/musics/ExploreTheAtlantis.wav"
     }
   ]
 }

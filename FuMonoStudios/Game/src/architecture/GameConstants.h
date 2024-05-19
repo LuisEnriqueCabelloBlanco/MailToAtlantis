@@ -32,12 +32,16 @@ constexpr int MIN_HAPPINES = 1;
 constexpr int MAX_HAPPINES = 99;
 constexpr int BAD_HAPPINES = 30;
 constexpr int NORMAL_HAPPINES = 65;
+constexpr int RENT_VALUE = 100;
 constexpr float GRAVITY_LIMIT = 625.0f; // Limite de gravedad (donde tenemos el suelo)
 constexpr float DEFAUTL_FORCE = 9.8f * 4; // Fuerza de gravedad por deferto
 constexpr float MAX_VELOCITY = 30.0f; // Limite de aceleracion
 #pragma endregion
 
 #pragma region Mejoras
+/*========================================================================================
+* UPGRADES SETTINGS
+*=====================================================================================*/
 constexpr int SOLDIER_NUM_FAIL = 2;
 constexpr int CONTABLE_PLUS_MONEY = 10;
 #pragma endregion 

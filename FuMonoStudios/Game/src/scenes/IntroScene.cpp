@@ -137,6 +137,8 @@ void ecs::IntroScene::updateIteration(int it)
 				});
 			break;
         case 10:
+			changeBackground("HestiaHighlight");
+
 			jefe_->setActive(false);
 			door_ = createDoor();
 			break;

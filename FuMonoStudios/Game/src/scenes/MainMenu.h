@@ -15,6 +15,7 @@ namespace ecs {
         virtual ~MainMenu();
 
         void init() override;
+        void close() override;
         void changeToMainScene();
     };
 }

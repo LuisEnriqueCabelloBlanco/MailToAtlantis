@@ -35,6 +35,34 @@
     {
       "key": "page",
       "amount": 3
+    },
+    {
+      "key": "dlgArt",
+      "amount": 4
+    },
+    {
+      "key": "dlgCamp",
+      "amount": 4
+    },
+    {
+      "key": "dlgCont",
+      "amount": 4
+    },
+    {
+      "key": "dlgSecr",
+      "amount": 4
+    },
+    {
+      "key": "dlgSold",
+      "amount": 4
+    },
+    {
+      "key": "dlgTart",
+      "amount": 4
+    },
+    {
+      "key": "dlgVag",
+      "amount": 4
     }
   ]
 }
