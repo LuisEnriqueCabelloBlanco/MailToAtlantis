@@ -37,9 +37,9 @@ void ecs::ConfigScene::init()
 		gm().requestChangeScene(ecs::sc::CONFIG_SCENE, ecs::sc::MENU_SCENE);
 
 	};
-	auto back = factory_->createTextuButton({ 600,300 }, "Pulsa para volver al menu", 50, funcPress, "click");
-	factory_->addHilghtOnHover(back);
-	factory_->addHoverColorMod(back);
+	auto back = factory_->createTextuButton({ 10,930 }, "                          ", 50, funcPress, "click");
+	/*factory_->addHilghtOnHover(back);
+	factory_->addHoverColorMod(back);*/
 
 	musicIconTexture_ = &sdlutils().images().at("iconoRojoAjustes");
 	musicIconEnt_ = addEntity();
@@ -55,48 +55,48 @@ void ecs::ConfigScene::init()
 
 	// Parametro de audio musica
 	Transform* trMusicIcon = musicIconEnt_->addComponent<Transform>(540, 370, musicIconTexture_->width(), musicIconTexture_->height());
-	musicIconEnt_->getComponent<Transform>()->setPos(540 + (gD().getParamMusic()*7.4f), 370);
+	musicIconEnt_->getComponent<Transform>()->setPos(560 + (gD().getParamMusic()*7.4f), 330);
 	RenderImage* rdrMusicIcon = musicIconEnt_->addComponent<RenderImage>(musicIconTexture_);
 	
 	// Boton (-) para el parametro de audio musica
 	CallbackClickeable funcPress2 = [this]() {
 		gD().changeParamID(0, false);
-		musicIconEnt_->getComponent<Transform>()->setPos(540 + (gD().getParamMusic() * 7.4f), 370);
+		musicIconEnt_->getComponent<Transform>()->setPos(550 + (gD().getParamMusic() * 7.4f), 330);
 	};
-	factory_->createTextuButton({ 540,420 }, "    ", 50, funcPress2, "click");
+	factory_->createTextuButton({ 570,380 }, "    ", 50, funcPress2, "click");
 
 	// Boton (+) para el parametro de audio musica
 	CallbackClickeable funcPress3 = [this]() {
 		gD().changeParamID(0, true);
-		musicIconEnt_->getComponent<Transform>()->setPos(540 + (gD().getParamMusic() * 7.4f), 370);
+		musicIconEnt_->getComponent<Transform>()->setPos(550 + (gD().getParamMusic() * 7.4f), 330);
 	};
-	factory_->createTextuButton({ 1280,420 }, "    ", 50, funcPress3, "click");
+	factory_->createTextuButton({ 1300,380 }, "    ", 50, funcPress3, "click");
 
 
 
 	// Parametro de audio sfx
 	Transform* trSfxIcon = sfxIconEnt_->addComponent<Transform>(540, 540, sfxIconTexture_->width(), sfxIconTexture_->height());
-	sfxIconEnt_->getComponent<Transform>()->setPos(540 + (gD().getParamSfx() * 7.4f), 540);
+	sfxIconEnt_->getComponent<Transform>()->setPos(560 + (gD().getParamSfx() * 7.4f), 500);
 	RenderImage* rdrSfxIcon = sfxIconEnt_->addComponent<RenderImage>(sfxIconTexture_);
 
 	// Boton (-) para el parametro de audio sfx
 	CallbackClickeable funcPress4 = [this]() {
 		gD().changeParamID(1, false);
-		sfxIconEnt_->getComponent<Transform>()->setPos(540 + (gD().getParamSfx() * 7.4f), 540);
+		sfxIconEnt_->getComponent<Transform>()->setPos(550 + (gD().getParamSfx() * 7.4f), 500);
 	};
-	factory_->createTextuButton({ 540,590 }, "    ", 50, funcPress4, "click");
+	factory_->createTextuButton({ 570,560 }, "    ", 50, funcPress4, "click");
 
 	// Boton (+) para el parametro de audio sfx
 	CallbackClickeable funcPress5 = [this]() {
 		gD().changeParamID(1, true);
-		sfxIconEnt_->getComponent<Transform>()->setPos(540 + (gD().getParamSfx() * 7.4f), 540);
+		sfxIconEnt_->getComponent<Transform>()->setPos(550 + (gD().getParamSfx() * 7.4f), 500);
 	};
-	factory_->createTextuButton({ 1280,590 }, "    ", 50, funcPress5, "click");
+	factory_->createTextuButton({ 1300,560 }, "    ", 50, funcPress5, "click");
 
 
 
 	// Boton cambio de activar o no salto del tutorial
-	Transform* trSkipIcon = skipTutoIconEnt_->addComponent<Transform>(515, 860, 95, 122);
+	Transform* trSkipIcon = skipTutoIconEnt_->addComponent<Transform>(585, 850, 95, 122);
 	RenderImage* rdrSkipIcon = skipTutoIconEnt_->addComponent<RenderImage>(skipTutoIconTexture_);
 
 	if (!gD().GetValueSkipTutorial()) {
@@ -115,12 +115,12 @@ void ecs::ConfigScene::init()
 		else skipTutoIconEnt_->getComponent<RenderImage>()->setTexture(skipTutoIconTexture_);
 	};
 
-	factory_->createTextuButton({ 480,940 }, "           ", 50, funcPressSkipTutorial, "click");
+	factory_->createTextuButton({ 540,920 }, "             ", 50, funcPressSkipTutorial, "click");
 
 
 
 	// Boton cambio de pantalla
-	Transform* trScreenIcon = screenModeIconEnt_->addComponent<Transform>(515, 685, 95, 122);
+	Transform* trScreenIcon = screenModeIconEnt_->addComponent<Transform>(585, 665, 95, 122);
 	RenderImage* rdrScreenIcon = screenModeIconEnt_->addComponent<RenderImage>(screenModeIconTexture_);
 
 	if (!gD().GetValueFullScreen()) {
@@ -137,7 +137,7 @@ void ecs::ConfigScene::init()
 		}
 		else screenModeIconEnt_->getComponent<RenderImage>()->setTexture(screenModeIconTexture_);
 	};
-	factory_->createTextuButton({ 480,760 }, "           ", 50, funcScreenModeBoton, "click");
+	factory_->createTextuButton({ 540,730 }, "             ", 50, funcScreenModeBoton, "click");
 }
 
 //LUIS: Y si esto fuera un return to scene ????
