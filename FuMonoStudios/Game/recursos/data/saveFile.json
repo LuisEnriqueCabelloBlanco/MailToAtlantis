@@ -4,7 +4,7 @@
   "Personajes":{
     "Artesano":{
       "EventosCompletados":[
-        0,0,0,0,0
+        1,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
@@ -22,7 +22,7 @@
     },
     "Contable":{
       "EventosCompletados":[
-        0,0,0,0,0
+        1,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
@@ -31,7 +31,7 @@
     },
     "Secretario":{
       "EventosCompletados":[
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0
+        1,0,0,0,0,0,0,0,0,0,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
@@ -40,7 +40,7 @@
     },
     "Soldado":{
       "EventosCompletados":[
-        0,0,0,0,0
+        1,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
@@ -49,7 +49,7 @@
     },
     "Tarotisa":{
       "EventosCompletados":[
-        0,0,0,0,0
+        1,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
@@ -58,7 +58,7 @@
     },
     "Vagabundo":{
       "EventosCompletados":[
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0
+        1,0,0,0,0,0,0,0,0,0,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,

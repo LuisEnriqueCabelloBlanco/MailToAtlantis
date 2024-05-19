@@ -4,10 +4,10 @@
 #include <components/SelfDestruct.h>
 #include <sdlutils/InputHandler.h>
 
-ecs::IntroScene::IntroScene() : introIteration(0), waitingCallback(false), mPaqBuild_(nullptr), fondo_(nullptr), tubo_(nullptr), bottle_(nullptr), carta_(nullptr), jefe_(nullptr), door_(nullptr)
+ecs::IntroScene::IntroScene() : mPaqBuild_(nullptr), fondo_(nullptr), tubo_(nullptr), bottle_(nullptr), carta_(nullptr), jefe_(nullptr), door_(nullptr)
 {
 	mPaqBuild_ = new PaqueteBuilder(this);
-	mDialogManager.init(this, "recursos/data/dialogos.json");
+
 }
 
 ecs::IntroScene::~IntroScene()
@@ -37,6 +37,9 @@ void ecs::IntroScene::update()
 
 void ecs::IntroScene::init()
 {
+	introIteration = 0;
+	waitingCallback = false;
+	mDialogManager.init(this, "recursos/data/dialogos.json");
 	factory_->setLayer(layer::BACKGROUND);
 	updateIteration(introIteration);
 }
