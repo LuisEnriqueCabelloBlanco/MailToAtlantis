@@ -2,9 +2,7 @@
 #ifndef DEV_TOOLS
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
-#include <architecture/Entity.h>
 #include <sistemas/DialogManager.h>
-#include <functional>
 
 namespace ecs {
 	class TutorialScene;

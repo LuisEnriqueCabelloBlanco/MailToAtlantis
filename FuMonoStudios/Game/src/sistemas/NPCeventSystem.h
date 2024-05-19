@@ -1,6 +1,4 @@
 #pragma once
-#include <functional>
-#include <json/JSONValue.h>
 #include <components/Paquete.h>
 #include <sistemas/NPCevent.h>
 

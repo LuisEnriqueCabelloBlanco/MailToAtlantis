@@ -1,5 +1,4 @@
 #include "CristalBall.h"
-#include <components/Render.h>
 
 CristalBall::CristalBall(RenderImage* r) : showing(0), myRender(r){	
 	myRender->nextTexture();

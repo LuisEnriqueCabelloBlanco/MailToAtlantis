@@ -3,7 +3,6 @@
 #endif // !DEV_TOOLS
 #include "Config.h"
 
-#include <cassert>
 #include <memory>
 #include <json/JSON.h>
 

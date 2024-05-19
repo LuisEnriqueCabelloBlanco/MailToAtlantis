@@ -1,7 +1,6 @@
 #pragma once
 #include <architecture/GeneralData.h>
 #include <architecture/Scene.h>
-#include <sistemas/ComonObjectsFactory.h>
 
 class Final
 {

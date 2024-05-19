@@ -2,9 +2,7 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "ComonObjectsFactory.h"
-#include <components/Transform.h>
 #include <components/Render.h>
-#include <components/Clickeable.h>
 #include <components/HoverSensorComponent.h>
 #include <components/RenderWithLight.h>
 
