@@ -1,12 +1,8 @@
 #include "SpecialObjectsFactory.h"
-#include <components/Render.h>
 #include <scenes/MainScene.h>
-#include <sdlutils/SDLUtils.h>
-#include <components/DragAndDrop.h>
 #include <components/Clickeable.h>
 #include <entities/BombAux.h>
 #include <components/DelayedCallback.h>
-#include <architecture/Game.h>
 
 SpecialObjectsFactory::SpecialObjectsFactory() {
 

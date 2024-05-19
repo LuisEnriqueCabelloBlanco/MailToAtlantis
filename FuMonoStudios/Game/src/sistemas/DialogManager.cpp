@@ -3,17 +3,12 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "DialogManager.h"
-#include <fstream>
-
-#include <components/DelayedCallback.h>
 #include <components/DialogComponent.h>
 #include <components/Render.h>
-#include <json/JSON.h>
-#include <json/JSONValue.h>
 #include <QATools/DataCollector.h>
 #include <sistemas/ComonObjectsFactory.h>
-#include <architecture/GameConstants.h>
 #include <sistemas/SoundEmiter.h>
+
 
 DialogManager::DialogManager() : scene_(nullptr), currentDialogIndex_(0),boxBackground(nullptr), textDialogue(nullptr), endDialogueCallback(nullptr),
                                 dialogSound_("")

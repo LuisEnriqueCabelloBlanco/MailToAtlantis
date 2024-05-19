@@ -4,7 +4,6 @@
 #include "SoundEmiter.h"
 #include <sdlutils/SDLUtils.h>
 #include <json/JSON.h>
-#include <exception>
 
 const int MAX_CHANNELS = 3;
 

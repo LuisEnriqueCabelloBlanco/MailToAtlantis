@@ -1,19 +1,6 @@
 #include "IntroScene.h"
-#include <utils/checkML.h>
-#include <architecture/Entity.h>
-#include <sdlutils/SDLUtils.h>
-#include <components/Transform.h>
-#include <components/Render.h>
-#include <components/Clickeable.h>
-#include <components/DragAndDrop.h>
-#include <components/Trigger.h>
-#include <string>
-#include <components/MoverTransform.h>
-#include <architecture/GameConstants.h>
-#include <architecture/GeneralData.h>
 #include <sistemas/ComonObjectsFactory.h>
 #include <QATools/DataCollector.h>
-#include <entities/ClockAux.h>
 #include <components/SelfDestruct.h>
 #include <sdlutils/InputHandler.h>
 

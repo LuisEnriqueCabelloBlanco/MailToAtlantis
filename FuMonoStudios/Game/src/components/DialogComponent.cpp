@@ -4,9 +4,7 @@
 #endif // !DEV_TOOLS
 #include "DialogComponent.h"
 #include <architecture/Entity.h>
-#include <sdlutils/Font.h>
 #include <sdlutils/Texture.h>
-#include <sistemas/DialogManager.h>
 #include <components/Transform.h>
 #include <components/Render.h>
 #include <components/DelayedCallback.h>
