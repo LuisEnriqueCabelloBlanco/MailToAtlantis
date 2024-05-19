@@ -55,8 +55,8 @@ void GeneralData::loadSaveFile()
 	if (in.is_open()) {
 		in.close();
 
-		if (!npcData.empty())
-			npcData.clear();
+		/*if (!npcData.empty())
+			npcData.clear();*/
 
 		std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile(SAVE_PATH));
 
