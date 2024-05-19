@@ -368,6 +368,10 @@
       "file": "recursos/images/AjustesSinSellos.png"
     },
     {
+      "id": "fondoPausa",
+      "file": "recursos/images/PausaFondo.png"
+    },
+    {
       "id": "iconoAzulAjustes",
       "file": "recursos/images/SelloAzulAjustes.png"
     },

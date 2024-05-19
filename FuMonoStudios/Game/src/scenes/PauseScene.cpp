@@ -24,7 +24,7 @@ void ecs::PauseScene::init()
 
 
 	Entity* fondo = addEntity(ecs::layer::BACKGROUND);
-	Texture* texturaFondo = &sdlutils().images().at("fondoAjustes");
+	Texture* texturaFondo = &sdlutils().images().at("fondoPausa");
 	Transform* transformFondo = fondo->addComponent<Transform>(0.0f, 0.0f, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
 	RenderImage* renderFondo = fondo->addComponent<RenderImage>(texturaFondo);
 
@@ -66,7 +66,7 @@ void ecs::PauseScene::init()
 		}
 	};
 
-	factory_->createTextuButton({ 10,730 }, "Volver al menu inicial", 50, exitToMenu, "click");
+	factory_->createTextuButton({ 10,730 }, "                          ", 50, exitToMenu, "click");
 	factory_->createTextuButton({ 10,930 }, "                          ", 50, funcPress, "click");
 
 	musicIconTexture_ = &sdlutils().images().at("iconoRojoAjustes");
