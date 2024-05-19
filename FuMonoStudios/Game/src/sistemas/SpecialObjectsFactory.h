@@ -20,6 +20,9 @@ public:
 	// dura 4 seg
 	void makeDeathTransition();
 
+	// dura 4 seg
+	void makeExplosion();
+
 	// dura 3 seg
 	void makeTransition();
 

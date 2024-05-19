@@ -89,6 +89,7 @@
       "file": "recursos/images/FONDO_MENU_INICIO_v2.png"
     },
     {"id": "blackScreen","file": "recursos/images/pantallanegra.png"},
+    {"id": "explosionScreen","file": "recursos/images/pantallaexplosion.png"},
     {"id": "fondoTutorial","file": "recursos/images/fondoTutorial.png"},
     {"id": "botella1","file": "recursos/images/Botella1.png"},
     {"id": "botella2","file": "recursos/images/Botella2.png"},
@@ -806,6 +807,22 @@
     {
       "id": "dlgVag3",
       "file": "recursos/sounds/Vagabundo3.wav"
+    },
+    {
+      "id": "dlgJef0",
+      "file": "recursos/sounds/Jefe0.wav"
+    },
+    {
+      "id": "dlgJef1",
+      "file": "recursos/sounds/Jefe1.wav"
+    },
+    {
+      "id": "dlgJef2",
+      "file": "recursos/sounds/Jefe2.wav"
+    },
+    {
+      "id": "dlgJef3",
+      "file": "recursos/sounds/Jefe3.wav"
     }
   ],
   "musics": [

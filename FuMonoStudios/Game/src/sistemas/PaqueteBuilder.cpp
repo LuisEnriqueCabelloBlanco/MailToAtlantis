@@ -112,8 +112,12 @@ void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
 			ent->addComponent<Paquete>(Poseidon, C2, "Calle del trono", "Francis Dupart", Materiales);
 			addVisualElements(ent);
 		}
-		else
+		else {
+			ent->addComponent<Paquete>(*pNPC);
+			ent->removeComponent<RenderImage>();
+			ent->removeComponent<DragAndDrop>();
 			a.makeBomba();
+		}
 	}
 	else
 	{
