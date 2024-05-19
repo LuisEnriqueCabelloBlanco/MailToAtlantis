@@ -89,7 +89,7 @@ public:
     void setDialogues(const DialogSelection ds, const std::string& tipoDialogo, int dialogueSelection);
     void setDialogues(const DialogSelection ds, const std::string& t) { setDialogues(ds, t, -1); }
     void setDialogues(const DialogSelection ds) { setDialogues(ds, "NULL", -1); }
-    void setDialogues(std::string& dialogo); //no se pasa por const porque la modificamos con el fixText, no te preocupes cleon
+    void setDialogues(std::string& dialogo, std::string character = ""); //no se pasa por const porque la modificamos con el fixText, no te preocupes cleon
 
     void startConversation(const std::string& character);
     // coge un dialogo manualmente
