@@ -409,6 +409,11 @@ void ecs::ExplorationScene::setupDiarioPages() {
 	std::vector<Texture*> textureVec;
 	int firstPersonaje = -1;
 	bool diarioVacio = true;
+
+	if (rendComp->getCurrentTexture() == &sdlutils().images().at("bookTest")) {
+		diarioText_.clear();
+	}
+
 	//recorremos todos los personajes
 	for (int i = 0; i < 7; i++) {
 		NPCdata* data = gD().getNPCData((npc::Personaje)i);
@@ -512,6 +517,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 			}
 		}
 		else if (data->felicidad == NoHabladoAun && data->postConversation){
+			diarioVacio = false;
 			pagesByCharacter[i] = 1;
 			textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
 			DialogManager a;
@@ -522,16 +528,16 @@ void ecs::ExplorationScene::setupDiarioPages() {
 		}
 	}
 
-	if (diarioVacio)
+	if (diarioVacio) {
 		textureVec.push_back(&sdlutils().images().at("bookTest"));
+		diarioText_.push_back(" ");
+		diarioText_.push_back(" ");
+	}
 
 	diario_->getComponent<RenderImage>()->getVector()->clear();
 	diario_->getComponent<RenderImage>()->setVector(textureVec);
 
-	if (!diarioVacio)
-	{
-		makeDiaryPages();
-	}
+	makeDiaryPages();
 
 	if (firstPersonaje == -1)
 		caraFelicidad->setTexture(nullptr);
