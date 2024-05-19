@@ -1276,11 +1276,11 @@
         "TextoCasaGrande10": [ "Esta casa parece ser muy grande." ],
         "TextoCasaGrande11": [ "Se ve que esta casa tiene ya sus a$%os." ],
 
-        "TextoCasaGrande20": [ "Esta casa parece ser muy grande." ],
-        "TextoCasaGrande21": [ "Se ve que esta casa tiene ya sus a$%os." ],
+        "TextoCasaGrande20": [ "Esta casa es m$as grande que la que hay al otro lado de la oficina." ],
+        "TextoCasaGrande21": [ "No es fea, pero se ve que esta casa tiene ya sus a$%os." ],
 
-        "TextoCasaGrande30": [ "Esta casa parece ser muy grande." ],
-        "TextoCasaGrande31": [ "Se ve que esta casa tiene ya sus a$%os." ],
+        "TextoCasaGrande30": [ "Me pregunto si alg$un d$ia vivir$e en una casas m$as grande que esta." ],
+        "TextoCasaGrande31": [ "Se ve que esta casa tiene ya sus a$%os, pero las he visto peores en la superficie." ],
 
         "TextoCasaGrande40": [
             "Igual de grande la casa que ayer.",
@@ -1290,15 +1290,18 @@
 
         "TextoCasaGrande50": [
             "Igual de grande la casa que ayer.",
-            "Bueno... eso es obvio."
+            "Bueno... eso es obvio.",
+            "Deja v$u."
         ],
-        "TextoCasaGrande51": [ "El que debe de vivir aqu$i no debe tener mucho dinero." ],
+        "TextoCasaGrande51": [ "El que debe de vivir aqu$i debe de limpiar la casa cada mucho tiempo." ],
 
         "TextoCasaGrande60": [
             "Igual de grande la casa que ayer.",
-            "Bueno... eso es obvio."
+            "Bueno... eso es obvio.",
+            "...",
+            "Bueno mejor sigo a lo m$io."
         ],
-        "TextoCasaGrande61": [ "El que debe de vivir aqu$i no debe tener mucho dinero." ],
+        "TextoCasaGrande61": [ "Vivir aqu$i puede implicar no tener mucho dinero, pero he visto casas peores en la superficie." ],
 
         "TextoCasaGrande70": [ "Ojal$a alojarme en una casa tan grande como esta." ],
         "TextoCasaGrande71": [
@@ -1306,16 +1309,16 @@
             "Seguro est$a sucia, pero puede tener mucho espacio."
         ],
 
-        "TextoCasaGrande80": [ "Ojal$a alojarme en una casa tan grande como esta." ],
+        "TextoCasaGrande80": [ "Sigo so$%ando con vivir en una casa tan grande como esta." ],
         "TextoCasaGrande81": [
             "Si me alojara aqu$i tendr$ia que remodelar la casa un poco.",
-            "Seguro est$a sucia, pero puede tener mucho espacio."
+            "El due$%o parece que no limpia mucho tampoco."
         ],
 
         "TextoCasaGrande90": [ "Ojal$a alojarme en una casa tan grande como esta." ],
         "TextoCasaGrande91": [
-            "Si me alojara aqu$i tendr$ia que remodela           r la casa un poco.",
-            "Seguro est$a sucia, pero puede tener mucho espacio."
+            "Si me alojara aqu$i tendr$ia que remodelar la casa un poco.",
+            "Tambi$en necesita todav$ia un poco de limpieza..."
         ],
 
         "TextoCasaGrande100": [
@@ -1325,16 +1328,19 @@
         "TextoCasaGrande101": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
 
         "TextoCasaGrande110": [
-            "Hay una mancha en la pared, parece ser...",
-            "Snif, snif. Bueno, prefiero no tocar la verdad."
+            "Hay una mancha en la pared,",
+            "prefiero no tocar."
         ],
-        "TextoCasaGrande111": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
+        "TextoCasaGrande111": [
+            "Deber$ian de limpiar m$as amenudo las paredes,",
+            "y bueno, la zona en general."
+        ],
 
         "TextoCasaGrande120": [
             "Hay una mancha en la pared, parece ser...",
-            "Snif, snif. Bueno, prefiero no tocar la verdad."
+            "Bueno, mejor no huelo."
         ],
-        "TextoCasaGrande121": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
+        "TextoCasaGrande121": [ "Deber$ian de limpiar m$as amenudo todo esto, pero no se ve feo... Curioso" ],
 
         "TextoCasaGrande130": [
             "Puede que no luciera en las mejores condiciones,",
@@ -1347,13 +1353,13 @@
         ],
 
         "TextoCasaGrande140": [
-            "Puede que no luciera en las mejores condiciones,",
+            "Puede que se vea un poco vieja,",
             "pero esta casa parece ser acogedora."
         ],
         "TextoCasaGrande141": [
             "Ha pasado un tiempo desde que llegu$e,",
             "pero echo de menos aunque sea mi pisito en la superficie.",
-            "Pero cobraban caro para lo que era."
+            "So$%aba con tener un pisito en la playa, pero tener uno bajo el mar es m$as raro y guay todav$ia."
         ]
     },
     "CartelOficina": {
