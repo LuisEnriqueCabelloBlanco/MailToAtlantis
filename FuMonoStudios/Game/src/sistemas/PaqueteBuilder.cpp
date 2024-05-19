@@ -117,9 +117,12 @@ void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
 		else
 			a.makeBomba();
 	}
-	Paquete* pq = ent->addComponent<Paquete>(*pNPC);
-	if (!pNPC->isCarta()) addVisualElements(ent);
-	//else addVisualElementsCarta(ent);
+	else
+	{
+		Paquete* pq = ent->addComponent<Paquete>(*pNPC);
+		if (!pNPC->isCarta()) addVisualElements(ent);
+		//else addVisualElementsCarta(ent);
+	}
 }
 
 bool PaqueteBuilder::shouldBuildNPCPackage()

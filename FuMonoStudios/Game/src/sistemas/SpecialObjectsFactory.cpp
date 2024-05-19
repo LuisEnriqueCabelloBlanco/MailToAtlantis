@@ -211,3 +211,15 @@ void SpecialObjectsFactory::makeDeathTransition() {
 		moverTrTop->enable();
 		});
 }
+
+void SpecialObjectsFactory::makeTransition() {
+	ecs::Entity* cortina = gm().getScene(ecs::sc::MAIN_SCENE)->addEntity(ecs::layer::UI);
+	Transform* tr = cortina->addComponent<Transform>(0, -2160,
+		1920, 2160);
+	tr->setFlip(SDL_FLIP_VERTICAL);
+	cortina->addComponent<RenderImage>(&sdlutils().images().at("ojo"));
+	MoverTransform* moverTrBottom = cortina->addComponent<MoverTransform>(Easing::EaseOutBack);
+	moverTrBottom->setFinalPos(Vector2D(0, 0));
+	moverTrBottom->setMoveTime(3);
+	moverTrBottom->enable();
+}

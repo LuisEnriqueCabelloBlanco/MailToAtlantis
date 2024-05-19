@@ -10,7 +10,8 @@
 class NPCevent;
 namespace npc {
 	// enum con tipos de felicidad
-	enum Felicidad { SeFue, Minima, Mala, Normal, Buena, Maxima, NoHabladoAun };
+	enum Felicidad { SeFue, Minima, Mala, Normal, Buena, Maxima, NoHabladoAun,
+					 FinalBien, FinalMal};
 
 	// enum con el nombre de todos los NPC
 	enum Personaje {
@@ -134,5 +135,6 @@ namespace npc {
 		NPCevent* getEvent() override;
 
 		int firstMision;
+		int diaDaMejora;
 	};
 }
