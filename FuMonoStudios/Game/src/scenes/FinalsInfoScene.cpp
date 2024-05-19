@@ -40,12 +40,12 @@ FinalsInfoScene::FinalsInfoScene()
         CallbackClickeable callback = [this, i]() {
             setActiveButtons(false, npcButtons_); // desactiva los npcButtons_
             setActiveButtons(false, felicidadButtons_); // desactiva los felicidadButtons_
-            final_->loadFinal(selectedPer_, (Felicidad)i);
+            final_->loadFinal(selectedPer_, (Felicidad)(i + 2));
             final_->setActive(true);
         };
         auto textColor = build_sdlcolor(0xffffffff);
 
-        auto button = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 300 + 150* i), "Final " + gD().felicidadToString((Felicidad)i), 80, callback, "click", textColor);
+        auto button = factory_->createTextuButton(Vector2D(900, 300 + 150* i), "Final con Felicidad " + gD().felicidadToString((Felicidad)(i + 2)), 80, callback, "click", textColor);
         factory_->addHoverColorMod(button);
 
         felicidadButtons_.push_back(button);

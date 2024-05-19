@@ -608,6 +608,11 @@
       "size": 20
     },
     {
+      "id": "simpleHandmade30",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 30
+    },
+    {
       "id": "simpleHandmade40",
       "file": "recursos/fonts/SimpleHandmade.ttf",
       "size": 40

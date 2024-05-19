@@ -91,7 +91,7 @@ void Final::loadFinal(Personaje npc, Felicidad felicidad)
 {    
     // Actualizamos la imagenNpc
     Texture* imagenNpcTex = gD().personajeToTexture(npc);
-    imagenNpc_->getComponent<RenderImage>()->setTexture(imagenNpcTex);
+    imagenNpc_ = factory_->createImage(Vector2D(300, 500), Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
     Transform* imagenNpcTr = imagenNpc_->getComponent<Transform>();
 
     //A continuacion el autoescalado y autoposicionamiento de la imagen del npc en el periodico
@@ -114,11 +114,18 @@ void Final::loadFinal(Personaje npc, Felicidad felicidad)
 
     // Generamos texto
     std::string texto = endTexts_[npc][felicidad];
-    Texture* textTex = factory_->createTextTexture(texto, 50, build_sdlcolor(0x000000ff),400);
-    //TODO una vez insertados los textos de finales hacer que escalen bien para que sean legibles
-    texto_->getComponent<RenderImage>()->setTexture(textTex);
-    //texto_ = factory_->createLabel(Vector2D(1000, 400), Vector2D(400, 200), texto, 50);
+    factory_->setFont("simpleHandmade");
+    if (texto.size() < 450) {
+        ecs::Entity* textoEnt = factory_->createLabel(Vector2D(1000, 300), 550, texto, 40, build_sdlcolor(0x000000ff));
+    }
+    else if (texto.size() < 800) {
+        ecs::Entity* textoEnt = factory_->createLabel(Vector2D(1000, 300), 550, texto, 30, build_sdlcolor(0x000000ff));
+    }
+    else {
+        ecs::Entity* textoEnt = factory_->createLabel(Vector2D(1000, 300), 550, texto, 20, build_sdlcolor(0x000000ff));
+    }
 }
+
 
 std::string Final::getFinal(Personaje npc, Felicidad nivelFelicidad) {
     return endTexts_[npc][nivelFelicidad];
