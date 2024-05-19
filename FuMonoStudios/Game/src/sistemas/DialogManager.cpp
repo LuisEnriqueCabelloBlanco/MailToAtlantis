@@ -414,8 +414,9 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
     case Charco: aux = "Charco"; break;
 
         //Poseidon
-    case Casa1: aux = "casa1"; break;
-    case Casa2: aux = "casa2"; break;
+    case Estatua: aux = "Estatua"; break;
+    case ArbolesIzq: aux = "ArbolesIzq"; break;
+    case ArbolesDer: aux = "ArbolesDer"; break;
 
     //default: break;
     }
