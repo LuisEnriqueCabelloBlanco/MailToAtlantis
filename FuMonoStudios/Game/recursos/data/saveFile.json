@@ -4,11 +4,11 @@
   "Personajes":{
     "Artesano":{
       "EventosCompletados":[
-        0,0,0,0,0
+        1,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
-      "numMisionesAceptadas":0
+      "numMisionesAceptadas":1
     },
     "Campesino":{
       "EventosCompletados":[
@@ -20,43 +20,43 @@
     },
     "Contable":{
       "EventosCompletados":[
-        0,0,0,0,0
+        1,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
-      "numMisionesAceptadas":0
+      "numMisionesAceptadas":1
     },
     "Secretario":{
       "EventosCompletados":[
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0
+        1,0,0,0,0,0,0,0,0,0,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
-      "numMisionesAceptadas":0
+      "numMisionesAceptadas":1
     },
     "Soldado":{
       "EventosCompletados":[
-        0,0,0,0,0
+        1,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
-      "numMisionesAceptadas":0
+      "numMisionesAceptadas":1
     },
     "Tarotisa":{
       "EventosCompletados":[
-        0,0,0,0,0
+        1,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
-      "numMisionesAceptadas":0
+      "numMisionesAceptadas":1
     },
     "Vagabundo":{
       "EventosCompletados":[
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0
+        1,0,0,0,0,0,0,0,0,0,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
-      "numMisionesAceptadas":0
+      "numMisionesAceptadas":1
     }
   }
 }

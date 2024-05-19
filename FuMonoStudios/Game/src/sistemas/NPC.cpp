@@ -3,6 +3,7 @@
 #endif // !DEV_TOOLS
 #include <sistemas/NPC.h>
 #include <sistemas/NPCevent.h>
+#include <architecture/GameConstants.h>
 using namespace npc;
 npc::NPCMenorData::~NPCMenorData()
 {
@@ -39,7 +40,7 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 	std::string tipo;
 	int iterationNum = -1;
 
-	if (felicidad == Minima || (felicidad == Maxima && !gD().getUpgradeValue(npcId)) || felicidad == NoHabladoAun)
+	if (felicidad == Minima || felicidad == NoHabladoAun)
 	{
 		switch (felicidad)
 		{
@@ -51,11 +52,13 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 			tipo = "FelicidadMinima";
 			felicidad = SeFue;
 			break;
-		case Maxima:
-			tipo = "FelicidadMaxima";
-			gD().unlockUpgrade(npcId);
-			break;
 		}
+	}
+	else if (numFelicidad >= UNLOCK_UPGRADE_HAPPINES && !gD().getUpgradeValue(npcId)) {
+
+		tipo = "FelicidadMaxima";
+		gD().unlockUpgrade(npcId);
+
 	}
 	else if (giveEvent)
 	{
