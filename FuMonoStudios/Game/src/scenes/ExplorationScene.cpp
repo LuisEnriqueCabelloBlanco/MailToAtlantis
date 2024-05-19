@@ -409,6 +409,11 @@ void ecs::ExplorationScene::setupDiarioPages() {
 	std::vector<Texture*> textureVec;
 	int firstPersonaje = -1;
 	bool diarioVacio = true;
+
+	if (rendComp->getCurrentTexture() == &sdlutils().images().at("bookTest")) {
+		diarioText_.clear();
+	}
+
 	//recorremos todos los personajes
 	for (int i = 0; i < 7; i++) {
 		NPCdata* data = gD().getNPCData((npc::Personaje)i);
@@ -417,7 +422,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 			diarioVacio = false;
 			//procesamos los textos
 			DialogManager a;
-			std::string textoPersonaje = data->introText += '\n';
+			std::string textoPersonaje = data->introText + "\n";
 			a.fixText(textoPersonaje);
 			//contador de las paginas del personaje
 			int j = 0;
@@ -512,26 +517,27 @@ void ecs::ExplorationScene::setupDiarioPages() {
 			}
 		}
 		else if (data->felicidad == NoHabladoAun && data->postConversation){
+			diarioVacio = false;
 			pagesByCharacter[i] = 1;
 			textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
 			DialogManager a;
-			std::string textoPersonaje = data->introText += '\n';
+			std::string textoPersonaje = data->introText + "\n";
 			a.fixText(textoPersonaje);
 			diarioText_.push_back(textoPersonaje);
 			diarioText_.push_back(" ");
 		}
 	}
 
-	if (diarioVacio)
+	if (diarioVacio) {
 		textureVec.push_back(&sdlutils().images().at("bookTest"));
+		diarioText_.push_back(" ");
+		diarioText_.push_back(" ");
+	}
 
 	diario_->getComponent<RenderImage>()->getVector()->clear();
 	diario_->getComponent<RenderImage>()->setVector(textureVec);
 
-	if (!diarioVacio)
-	{
-		makeDiaryPages();
-	}
+	makeDiaryPages();
 
 	if (firstPersonaje == -1)
 		caraFelicidad->setTexture(nullptr);
@@ -645,9 +651,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 		if (!gm().gamePaused()) {
 			if (canInteract)
 			{
-				if (gD().getNPCData(gD().stringToPersonaje(character))->numFelicidad >= UNLOCK_UPGRADE_HAPPINES) {
-					gD().unlockUpgrade(gD().stringToPersonaje(character));
-				}
+
 				dialogMngr_.setEndDialogueCallback([this] {
 					canInteract = true;
 					});
