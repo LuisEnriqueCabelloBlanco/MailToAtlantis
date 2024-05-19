@@ -45,6 +45,28 @@ void ecs::PauseScene::init()
 			std::cerr << "Error in funcPress callback: " << e.what() << std::endl;
 		}
 	};
+
+	CallbackClickeable exitToMenu = [this/*, BotonPress*/]() {
+		try {
+#ifdef _DEBUG
+			std::cout << "eliminamos el boton" << std::endl;
+#endif // _DEBUG
+			gm().unpauseGame();
+			gm().requestChangeScene(ecs::sc::PAUSE_SCENE, ecs::sc::MENU_SCENE);
+			gm().killScene(ecs::sc::EXPLORE_SCENE);
+			gm().killScene(ecs::sc::MAIN_SCENE);
+
+#ifdef _DEBUG
+			std::cout << "salimos de la pausa" << std::endl;
+#endif // _DEBUG
+
+		}
+		catch (const std::exception& e) {
+			std::cerr << "Error in funcPress callback: " << e.what() << std::endl;
+		}
+	};
+
+	factory_->createTextuButton({ 10,730 }, "Volver al menu inicial", 50, exitToMenu, "click");
 	factory_->createTextuButton({ 10,930 }, "                          ", 50, funcPress, "click");
 
 	musicIconTexture_ = &sdlutils().images().at("iconoRojoAjustes");
