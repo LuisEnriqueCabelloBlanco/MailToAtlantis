@@ -2206,40 +2206,58 @@
     },
     "Panteon": {
 
-        "TextoPanteon50": [ "Panteon50" ],
-        "TextoPanteon51": [ "Panteon51" ],
+        "TextoPanteon50": [ "$!Qu$e bonitas obras de arte! Aunque es un poco raro que las tengan en el portal..." ],
+        "TextoPanteon51": [ "Hasta ahora no he visto llover en la ciudad, pero parece un buen sitio donde resguardarse." ],
 
-        "TextoPanteon60": [ "Panteon60" ],
-        "TextoPanteon61": [ "Panteon61" ],
+        "TextoPanteon60": [ "$!Qu$e bellas obras de arte! Aunque es un poco raro que las dejen al aire libre..." ],
+        "TextoPanteon61": [ "Me pregunto que funci$on tendr$a tener un techo tan amplio si no para resguardarse de la lluvia." ],
 
-        "TextoPanteon70": [ "Panteon70" ],
-        "TextoPanteon71": [ "Panteon71" ],
+        "TextoPanteon70": [ "$!Este arte es maravilloso! Aunque ahora que lo pienso me recuerdan a algo de la superficie..." ],
+        "TextoPanteon71": [ "EL techo es bastante amplio. A lo mejor no protege de la lluvia sino que da sombra." ],
 
-        "TextoPanteon80": [ "Panteon80" ],
-        "TextoPanteon81": [ "Panteon81" ],
+        "TextoPanteon80": [ "Se que normalmente estoy muy ocupado, pero cada vez que paso por aqu$i no puedo evitar detenerme a ver el arte" ],
+        "TextoPanteon81": [ "Fuera bromas, me sigo preguntando cu$al es el uso de este lugar.",
+                            "Aparte de exponer estás obras de arte."
+        ],
 
-        "TextoPanteon90": [ "Panteon90" ],
-        "TextoPanteon91": [ "Panteon91" ],
+        "TextoPanteon90": [ "Este arte es tan bello que podr$ia pasar todo el d$ia mirandolo.",
+                            "Si no tuviera que trabajar, claro" ],
+      "TextoPanteon91": [
+        "Sigo preguntandome cu$al es el uso de este lugar.",
+        "Cualquiera podr$ia robar estas obras."
+      ],
 
-        "TextoPanteon100": [ "Panteon100" ],
-        "TextoPanteon101": [ "Panteon101" ],
+        "TextoPanteon100": [ "Este arte es tan bonito que me gustar$ia estudiarlo.",
+                             "Aunque sigo pensando que es parecido a obras de la superficie."
+        ],
+        "TextoPanteon101": [ "La sorpresa que me llev$e al enterarme que esto era una ala del museo sigue afectandome." ],
 
-        "TextoPanteon110": [ "Panteon110" ],
-        "TextoPanteon111": [ "Panteon111" ],
+        "TextoPanteon110": [
+            "A la izquierda de este ala tenemos un cuadro que representa a una mujer ostra desnuda saliendo se su... ostra.",
+            "Curioso, aunque quiz$as un poco revelador."
+        ],
+        "TextoPanteon111": [ "Sigo encontrando curioso este museo al aire libre." ],
 
-        "TextoPanteon120": [ "Panteon120" ],
+        "TextoPanteon120": [ "Cerca de la esquina hay un cuadro con tres personas pez.",
+                             "Parecen muy amigas."
+        ],
         "TextoPanteon121": [ "Panteon121" ],
 
-        "TextoPanteon130": [ "Panteon130" ],
+        "TextoPanteon130": [ "En la pared del fondo hay una estructura de un cuerpo muy musculado.",
+                             "Aunque parezca extra$%amente humana, sigue habiendo branquias en lo que queda del cuello."
+        ],
         "TextoPanteon131": [ "Panteon131" ],
 
-        "TextoPanteon140": [ "Panteon140" ],
+        "TextoPanteon140": [ "Incluso despu$es de todo lo ocurrido, el arte sigue siendo algo merecedor de ser recordado.",
+            "Porque incluso despu$es de que perezcamos otros nos podr$an conocer por lo que hayamos hecho.",
+            "$!Por eso es tan importante documentar mis aventuras!"
+        ],
         "TextoPanteon141": [ "Panteon141" ]
     },
     "Edificios": {
 
-        "TextoEdificios50": [ "Edificios50" ],
-        "TextoEdificios51": [ "Edificios51" ],
+        "TextoEdificios50": [ "Es un edificio bastante ornamentado." ],
+        "TextoEdificios51": [ "Me pregunto que edificio ser$a esto. Es bastante inusual." ],
 
         "TextoEdificios60": [ "Edificios60" ],
         "TextoEdificios61": [ "Edificios61" ],
@@ -2247,10 +2265,12 @@
         "TextoEdificios70": [ "Edificios70" ],
         "TextoEdificios71": [ "Edificios71" ],
 
-        "TextoEdificios80": [ "Edificios80" ],
-        "TextoEdificios81": [ "Edificios81" ],
+        "TextoEdificios80": [ "$!Es un museo! Que pena que no tenga tiempo de visitarlo y aprender su historia..." ],
+        "TextoEdificios81": [ "$!Es un museo! Eso explica esa forma tan rara que tiene." ],
 
-        "TextoEdificios90": [ "Edificios90" ],
+        "TextoEdificios90": [ "Al parecer, esas obras de arte del pante$on son parte del museo.",
+                              "Aunque me sigo preguntando porque est$an al aire libre."
+        ],
         "TextoEdificios91": [ "Edificios91" ],
 
         "TextoEdificios100": [ "Edificios100" ],
@@ -2270,35 +2290,54 @@
     },
     "Charco": {
 
-        "TextoCharco50": [ "Charco50" ],
-        "TextoCharco51": [ "Charco51" ],
+        "TextoCharco50": [ "Parece ser que incluso los peces beben agua." ],
+        "TextoCharco51": [ "Me parece un poco ir$onico encontrar una fuente debajo del agua." ],
 
-        "TextoCharco60": [ "Charco60" ],
-        "TextoCharco61": [ "Charco61" ],
+        "TextoCharco60": [ "Tiene sentido que incluso los peces quieran refrescarse. Hace algo de calor hoy" ],
+        "TextoCharco61": [ "Me resulta curioso encontrar una fuente debajo del agua." ],
 
-        "TextoCharco70": [ "Charco70" ],
-        "TextoCharco71": [ "Charco71" ],
+        "TextoCharco70": [ "Entiendo porque los peces vendr$ian aqu$i a beber los d$ias de calor." ],
+        "TextoCharco71": [ "Me parece bastante gracioso encontrar una fuente debajo del agua." ],
 
-        "TextoCharco80": [ "Charco80" ],
-        "TextoCharco81": [ "Charco81" ],
+        "TextoCharco80": [ "Ahora que lo pienso, no he estado hidratandome bien. $¿Esta agua ser$a potable?" ],
+        "TextoCharco81": [ "Aunque sigue teniendo su gracia, comienzo a entender porque construir$ian una fuente aqu$i." ],
 
-        "TextoCharco90": [ "Charco90" ],
-        "TextoCharco91": [ "Charco91" ],
+        "TextoCharco90": [ "El agua parece deliciosa. $?Se dar$a alguien cuenta si echo un trago?",
+          "*gulp*",
+          "Aaaaah... Qu$e frescor."
+        ],
+        "TextoCharco91": [ "Aunque sigue siendo gracioso, es agradable ver la fuente en mi paseo." ],
 
-        "TextoCharco100": [ "Charco100" ],
-        "TextoCharco101": [ "Charco101" ],
+        "TextoCharco100": [ "El agua tiene tan buena pinta que le voy a echar un trago.",
+          "*gulp*",
+          "Tan buena como ayer."
+        ],
+        "TextoCharco101": [ "Aunque la sigo encontrando graciosa, creo que comprendo al constructor de la fuente" ],
 
-        "TextoCharco110": [ "Charco110" ],
-        "TextoCharco111": [ "Charco111" ],
+        "TextoCharco110": [ "La $ultima vez que beb$i casi me ca$i al agua de la risa.",
+                            "Se me hab$ia olvidado que llevaba el disfraz puesto y me asust$e a mi mismo."
+        ],
+        "TextoCharco111": [ "Ahora que comprendo a las fuentes, sonr$io cuando las veo." ],
 
-        "TextoCharco120": [ "Charco120" ],
-        "TextoCharco121": [ "Charco121" ],
+        "TextoCharco120": [ "Ver mi cara de pez cada vez que voy a beber me llena de determinaci$on" ],
+        "TextoCharco121": [ "No hay muchas fuentes aqu$i, pero alegra verlas de vez en cuando." ],
 
-        "TextoCharco130": [ "Charco130" ],
-        "TextoCharco131": [ "Charco131" ],
+        "TextoCharco130": [ "Al final me he acostumbrado a esta cara como si fuera la m$ia propia." ],
+        "TextoCharco131": [ "Una vez que comprend$i que las razones para la fuente, me result$o bastante mas entranable",
+                            "Incluso si hay muchas de ellas en las ciudades de la superficie, aqu$i son tan raras y art$isticas como los cuadros de all$a."
+        ],
 
-        "TextoCharco140": [ "Charco140" ],
-        "TextoCharco141": [ "Charco141" ]
+        "TextoCharco140": [ "Creo recordar que un hombre dijo una vez que antes de inventar los espejos solo pod$ias verte en el reflejo del agua",
+                            "Para verse a uno mismo deb$ias agacharte, un gesto simb$olico.",
+                            "Hay veces que nos olvidamos a nosotros mismos, o a nuestras experiencias.",
+                            "Siempre es importante saber quien eres t$u."
+        ],
+        "TextoCharco141": [
+            "Siempre recordar$e esta fuente en mis futuros viajes.",
+            "Empec$e tom$andomela a broma, pero he aprendido a apreciar momentos como este.",
+            "La risa es buena compa$%era, vayas donde vayas.",
+            "Excepto en un funeral, supongo."
+        ]
     },
     "Estatua": {
 
