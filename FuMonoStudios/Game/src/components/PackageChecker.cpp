@@ -1,18 +1,11 @@
 #include "PackageChecker.h"
-#include "../architecture/Component.h"
-#include "../architecture/Entity.h"
-#include "Transform.h"
-#include "Gravity.h"
-#include <components/MoverTransform.h>
-#include <components/Paquete.h>
 #include <components/SelfDestruct.h>
-#include <architecture/GeneralData.h>
 #include <functional>
 #include <components/ErrorNote.h>
 #include <QATools/DataCollector.h>
-#include <sistemas/SoundEmiter.h>;
+#include <sistemas/SoundEmiter.h>
 #include <sistemas/NPCeventSystem.h>
-#include <entities/PolvosAux.h>
+#include <components/DelayedCallback.h>
 
 PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc, PipeManager* mngr) : 
 	toDis_(dis),mainSc_(sc), tutSc_(nullptr), mManager_(mngr)
@@ -56,7 +49,7 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 	//comprobamos si es un paquete
 	if (ent->getComponent<Paquete>() != nullptr) {
 		SoundEmiter::instance()->playSound("tubo");
-		//Desactivamos las cosas necesarias para hacer una animación
+		//Desactivamos las cosas necesarias para hacer una animaciï¿½n
 		ent->getComponent<DragAndDrop>()->disableInteraction();
 		ent->removeComponent<Gravity>();
 
@@ -79,7 +72,17 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 		
 		ent->addComponent<SelfDestruct>(1, [this, ent]() {
 			if (ent->hasComponent(ecs::cmp::POLVOSAUX)) {
-				gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_SCENE);
+				if (ent->getComponent<Paquete>()->getRemitente() == "Francis Dupart")
+					gD().getNPCData(Vagabundo)->felicidad = FinalBien;
+				else
+					gD().getNPCData(Vagabundo)->felicidad = FinalMal;
+
+				SpecialObjectsFactory a = SpecialObjectsFactory();
+				a.makeTransition();
+				ecs::Entity* temp = gm().getScene(ecs::sc::MAIN_SCENE)->addEntity(ecs::layer::DEFAULT);
+				temp->addComponent<DelayedCallback>(3, [] {
+					gm().requestChangeScene(ecs::sc::MAIN_SCENE, ecs::sc::END_SCENE);
+					});
 			}
 			else
 			{

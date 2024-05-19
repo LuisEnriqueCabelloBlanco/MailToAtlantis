@@ -509,21 +509,30 @@
 
             {"intObj" : [
 
-                {"id" : 1,
-                "x" : 600.7,
-                "y" : 600.3,
-                "name" : "casa1",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                {"id" : 0,
+                "x" : 753.0,
+                "y" : 204.0,
+                "name" : "Estatua",
+                "scaleX" : 370,
+                "scaleY" : 440,
                 "dir" : true              
                 },
-
+                
                 {"id" : 1,
-                "x" : 600.7,
-                "y" : 600.3,
-                "name" : "casa2",
-                "scaleX" : 1,
-                "scaleY" : 1,
+                "x" : 0.0,
+                "y" : 118.0,
+                "name" : "ArbolesIzq",
+                "scaleX" : 690,
+                "scaleY" : 530,
+                "dir" : true              
+                },
+                
+                {"id" : 2,
+                "x" : 1205.0,
+                "y" : 118.0,
+                "name" : "ArbolesDer",
+                "scaleX" : 690,
+                "scaleY" : 530,
                 "dir" : true              
                 }
 

@@ -2,17 +2,12 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "GeneralData.h"
-#include <json/JSON.h>
-#include <json/JSONValue.h>
-#include <sdlutils/RandomNumberGenerator.h>
-#include <architecture/ecs.h>
 #include <sistemas/SoundEmiter.h>
 #include <sistemas/PaqueteBuilder.h>
 #include <architecture/Game.h>
 #include <sistemas/NPCeventSystem.h>
 #include <architecture/GameConstants.h>
 #include <iostream>
-#include <sdlutils/Texture.h>
 
 GeneralData::GeneralData()
 {
@@ -54,6 +49,10 @@ void GeneralData::loadSaveFile()
 	in.open(SAVE_PATH);
 	if (in.is_open()) {
 		in.close();
+
+		/*if (!npcData.empty())
+			npcData.clear();*/
+
 		std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile(SAVE_PATH));
 
 		JSONObject root = jsonFile->AsObject();
@@ -549,8 +548,9 @@ const std::string GeneralData::intObjetoToString(int pers) {
 	case 17: aux = "Charco"; break;
 
 		//Poseidon
-	case 18: aux = "casa1"; break;
-	case 19: aux = "casa2"; break;
+	case 18: aux = "Estatua"; break;
+	case 19: aux = "ArbolesIzq"; break;
+	case 20: aux = "ArbolesDer"; break;
 
 	default: break;
 	}
@@ -591,8 +591,9 @@ int GeneralData::stringToObjInt(const std::string& pers) {
 	else if (pers == "Charco") aux = 17;
 
 	//Poseidon
-	else if (pers == "casa1") aux = 18;
-	else if (pers == "casa2") aux = 19;
+	else if (pers == "Estatua") aux = 18;
+	else if (pers == "ArbolesIzq") aux = 19;
+	else if (pers == "ArbolesDer") aux = 20;
 
 	return aux;
 }

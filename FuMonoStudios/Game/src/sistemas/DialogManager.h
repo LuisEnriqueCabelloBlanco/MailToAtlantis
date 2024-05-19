@@ -4,8 +4,6 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include <functional>
-#include <string>
-#include <vector>
 #include <architecture/Scene.h>
 
 /*
@@ -61,7 +59,7 @@ public:
         PulpoCartel, TiendaCeramica, TiendaEsculturas, //Hefesto
         TiendaDerecha, PanteonIzq, PanteonDer, //Hermes
         Panteon, Edificios, Charco, //Apolo
-        Casa1, Casa2, //Poseidon
+        Estatua, ArbolesIzq, ArbolesDer, //Poseidon
         NoHabladoWarning
     };
 

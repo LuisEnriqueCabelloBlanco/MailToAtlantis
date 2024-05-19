@@ -3,18 +3,10 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "TutorialScene.h"
-#include <sistemas/PaqueteBuilder.h>
 #include <sistemas/ComonObjectsFactory.h>
-#include <components/Transform.h>
-#include <entities/ClockAux.h>
-#include <components/DialogComponent.h>
-#include <components/DelayedCallback.h>
 #include <components/PackageChecker.h>
-#include <components/ErrorNote.h>
-#include <architecture/GameConstants.h>
 #include <sistemas/SoundEmiter.h>
 #include <architecture/Game.h>
-#include <architecture/Time.h>
 
 ecs::TutorialScene::TutorialScene() : MainScene(), balanzaUsed(false) {
 	tutorialSys_ = new TutorialSystem(this);	

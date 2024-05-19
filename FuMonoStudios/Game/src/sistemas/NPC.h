@@ -2,15 +2,13 @@
 #ifndef DEV_TOOLS
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
-#include <vector>
-#include <string>
 #include <unordered_map>
 #include <json/JSON.h>
-//#include <sistemas/NPCeventSystem.h>
 class NPCevent;
 namespace npc {
 	// enum con tipos de felicidad
-	enum Felicidad { SeFue, Minima, Mala, Normal, Buena, Maxima, NoHabladoAun };
+	enum Felicidad { SeFue, Minima, Mala, Normal, Buena, Maxima, NoHabladoAun,
+					 FinalBien, FinalMal};
 
 	// enum con el nombre de todos los NPC
 	enum Personaje {
@@ -134,5 +132,6 @@ namespace npc {
 		NPCevent* getEvent() override;
 
 		int firstMision;
+		int diaDaMejora;
 	};
 }

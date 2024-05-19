@@ -637,15 +637,15 @@
       "file": "recursos/sounds/arrastrar.wav"
     },
     {
-      "id": "MoneyProfits",
+      "id": "money0",
       "file": "recursos/sounds/MoneyProfits.wav"
     },
     {
-      "id": "LoseMoney",
+      "id": "loseMon0",
       "file": "recursos/sounds/Lose.wav"
     },
     {
-      "id": "GuiImpact",
+      "id": "guiImp0",
       "file": "recursos/sounds/GuiImpact.wav"
     },
     {

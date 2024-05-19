@@ -2,13 +2,9 @@
 #ifndef DEV_TOOLS
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
-#include <architecture/Scene.h>
-#include <components/Transform.h>
-#include <components/Paquete.h>
 #include <entities/CristalBall.h>
 #include <components/Herramientas.h>
 #include <sistemas/PaqueteBuilder.h>
-#include <sistemas/PipeManager.h>
 #include <sistemas/DialogManager.h>
 #include <sistemas/WorkRestrictionsSystem.h>
 #include <sistemas/SpecialObjectsFactory.h>

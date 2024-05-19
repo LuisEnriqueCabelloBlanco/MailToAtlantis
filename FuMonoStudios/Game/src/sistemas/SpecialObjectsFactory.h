@@ -1,5 +1,4 @@
 #pragma once
-#include <architecture/Scene.h>
 #include <architecture/Entity.h>
 
 class RenderImage;
@@ -20,6 +19,9 @@ public:
 
 	// dura 4 seg
 	void makeDeathTransition();
+
+	// dura 3 seg
+	void makeTransition();
 
 	// llamar al empezar el dia y elegira que objetos especiales poner
 	void setupDayObjects();

@@ -3,12 +3,7 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "PaqueteBuilder.h"
-#include <components/Transform.h>
-#include <architecture/Entity.h>
-#include <components/Render.h>
-#include <architecture/GameConstants.h>
 #include <sistemas/ComonObjectsFactory.h>
-#include <json/JSON.h>
 #include <sistemas/NPCeventSystem.h>
 #include <components/Herramientas.h>
 #include <sistemas/SpecialObjectsFactory.h>
@@ -117,9 +112,12 @@ void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
 		else
 			a.makeBomba();
 	}
-	Paquete* pq = ent->addComponent<Paquete>(*pNPC);
-	if (!pNPC->isCarta()) addVisualElements(ent);
-	//else addVisualElementsCarta(ent);
+	else
+	{
+		Paquete* pq = ent->addComponent<Paquete>(*pNPC);
+		if (!pNPC->isCarta()) addVisualElements(ent);
+		//else addVisualElementsCarta(ent);
+	}
 }
 
 bool PaqueteBuilder::shouldBuildNPCPackage()

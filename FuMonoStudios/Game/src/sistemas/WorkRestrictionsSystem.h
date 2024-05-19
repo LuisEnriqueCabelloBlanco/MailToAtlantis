@@ -1,6 +1,5 @@
 #pragma once
 #include <sistemas/PipeManager.h>
-#include <json/JSON.h>
 
 
 using namespace tb;

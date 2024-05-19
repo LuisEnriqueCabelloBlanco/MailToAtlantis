@@ -2,10 +2,7 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include <sistemas/NPC.h>
-#include <architecture/GeneralData.h>
-#include <sdlutils/SDLUtils.h>
 #include <sistemas/NPCevent.h>
-#include <architecture/GeneralData.h>
 using namespace npc;
 npc::NPCMenorData::~NPCMenorData()
 {
@@ -168,10 +165,15 @@ NPCMayorData::NPCMayorData(Felicidad Felicidad) :NPCdata(Vagabundo,14){
 	felicidad = Felicidad;
 	postConversation = false;
 	numMisionesAceptadas = 0;
-	if (npcId == Vagabundo)
+	if (npcId == Vagabundo) {
 		firstMision = 1;
-	else
+		diaDaMejora = 7;
+	}
+	else {
 		firstMision = 5;
+		diaDaMejora = 10;
+	}
+		
 	misionAceptada = false;
 	eventosCompletados = std::vector<std::pair<bool, int>>(14, std::make_pair(false, 0));
 }
@@ -186,9 +188,8 @@ npc::NPCMayorData::NPCMayorData(Personaje charId, JSONObject& charRoot):NPCdata(
 std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 	std::string aux;
 
-	if (felicidad == Maxima && !gD().getUpgradeValue(npcId))
+	if (!gD().getUpgradeValue(npcId) && gD().getDay() == diaDaMejora)
 	{
-		aux = "FelicidadMaxima";
 		gD().unlockMejoraPersonaje(npcId);
 	}
 	else
@@ -271,6 +272,7 @@ void npc::NPCdata::loadDataFromSaveFile(JSONObject& obj)
 	felicidad = gD().stringToFelicidad(obj["Felicidad"]->AsString());
 	postConversation = false;
 	numMisionesAceptadas = obj["numMisionesAceptadas"]->AsNumber();
+	numFelicidad = obj["FelicidadNum"]->AsNumber();
 	JSONArray events = obj["EventosCompletados"]->AsArray();
 	int k = 0;
 	for (auto it : events)

@@ -2,12 +2,7 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "PauseScene.h"
-#include <architecture/Entity.h>
-#include <iostream>
-#include <sdlutils/SDLUtils.h>
-#include <components/Transform.h>
 #include <components/Render.h>
-#include <components/Clickeable.h>
 #include <architecture/Game.h>
 #include <architecture/GeneralData.h>
 #include <sistemas/ComonObjectsFactory.h>
