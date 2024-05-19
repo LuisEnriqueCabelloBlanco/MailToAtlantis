@@ -4,14 +4,18 @@
         "Mala": "b",
         "Normal":"c",
         "Buena":"d",
-        "Maxima":"e"
+        "Maxima":"e",
+        "FinalBien": "anashe",
+        "FinalMal": "anasheMal"
     },
     "Secretario":{
         "Mini":"a",
         "Mala":"b",
         "Normal":"c",
         "Buena":"d",
-        "Maxima":"e"
+        "Maxima":"e",
+        "FinalBien": "anashe",
+        "FinalMal": "anasheMal"
     },
     "Campesino":{
         "Mini":"Pancracio Warawa acaba harto de las injusticias cometidas hacia $el y los campesinos y decide hablarte ya que cree que trabajas para el secretario del rey y la nobleza. Culpa a tu gesti$on de empeorar la calidad de sus cosechas debido a la ausencia de recursos que sufre. La calidad de sus cultivos ha ca$ido paulatinamente hasta llegar a un punto que pr$acticamente produce bazofia y su econom$ia ha quedado gravemente afectada, lo que hace que sufra de problemas familiares. Pancracio comienza a descuidarse a s$i mismo, a su familia y a sus labores en el grupo de las lechuzas, vuelve a su $epoca depresiva de la que una vez le rescat$o el grupo de las lechuzas. Ahora se le ve borracho a diario en el bar del que una vez fue rescatado, su familia lo ha dejado, y $el mismo ya no acepta la ayuda del grupo de las lechuzas.",

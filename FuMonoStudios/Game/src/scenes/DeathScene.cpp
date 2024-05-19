@@ -4,6 +4,7 @@
 #include <architecture/GeneralData.h>
 #include <architecture/GameConstants.h>
 #include <architecture/Game.h>
+#include <sistemas/NPCeventSystem.h>
 
 ecs::DeathScene::DeathScene() {
 
