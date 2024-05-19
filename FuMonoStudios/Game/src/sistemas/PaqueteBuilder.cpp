@@ -527,7 +527,7 @@ void PaqueteBuilder::crearSello(ecs::Entity* paq,const std::string& texKey, int 
 
 void PaqueteBuilder::getRoutesFromJSON() {
 
-	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile("recursos/rutas.JSON"));
+	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(TAPE_ROUTE_PATH));
 
 	// check it was loaded correctly
 	// the root must be a JSON object
