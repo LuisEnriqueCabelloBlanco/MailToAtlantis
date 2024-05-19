@@ -831,6 +831,10 @@
     {
       "id": "tic0",
       "file": "recursos/musics/tictacRapido.wav"
+    },
+    {
+      "id": "explosion",
+      "file": "recursos/sounds/explosion.wav"
     }
   ],
   "musics": [
