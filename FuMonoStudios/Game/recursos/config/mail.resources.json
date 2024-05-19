@@ -89,6 +89,7 @@
       "file": "recursos/images/FONDO_MENU_INICIO_v2.png"
     },
     {"id": "blackScreen","file": "recursos/images/pantallanegra.png"},
+    {"id": "explosionScreen","file": "recursos/images/pantallaexplosion.png"},
     {"id": "fondoTutorial","file": "recursos/images/fondoTutorial.png"},
     {"id": "botella1","file": "recursos/images/Botella1.png"},
     {"id": "botella2","file": "recursos/images/Botella2.png"},

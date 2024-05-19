@@ -141,6 +141,11 @@ ecs::Entity* SpecialObjectsFactory::makeBomba() {
 	clAzul->addEvent([bombAux] {
 		bombAux->BluePressed();
 		});
+
+
+	entPaq->addComponent<MoverTransform>(Vector2D(entPaq->getComponent<Transform>()->getPos()) - Vector2D(400,0),
+		1, Easing::EaseOutBack);
+	entPaq->getComponent<MoverTransform>()->enable();
 	return entPaq;
 }
 
@@ -218,4 +223,13 @@ void SpecialObjectsFactory::makeTransition() {
 	moverTrBottom->setFinalPos(Vector2D(0, 0));
 	moverTrBottom->setMoveTime(3);
 	moverTrBottom->enable();
+}
+
+void SpecialObjectsFactory::makeExplosion() {
+
+	ecs::Entity* pantalla = gm().getScene(ecs::sc::MAIN_SCENE)->addEntity(ecs::layer::UI);
+	pantalla->addComponent<Transform>(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
+	pantalla->addComponent<RenderImage>(&sdlutils().images().at("explosionScreen"));
+
+	makeDeathTransition();
 }

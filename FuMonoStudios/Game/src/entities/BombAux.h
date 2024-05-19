@@ -14,6 +14,12 @@ public:
 
 	void RedPressed();
 	void BluePressed();
+
+	void BadEnding();
+	void GoodEnding();
 private:
+	bool kaboom;
+
+	bool redPressed;
 	bool bluePressed;
 };
