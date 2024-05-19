@@ -91,7 +91,7 @@
       "Jones, ay$udame a m$i y a las lechuzas a salvar al pueblo de este rey. Si sigues ayud$andonos, te revelar$e la verdad de las lechuzas.",
       " $!Pero ahora toca celebrar, amigo! $!Vamos a beber hasta quedarnos ciegos!",
       " $!Toma, amigo! $!Te mereces una recompensa por habernos ayudado!",
-      "*recibes un sello multicolor. Ser$a util para ahorrar tiempo buscando el color del sello.*",
+      "recibes un sello multicolor. Ser$a util para ahorrar tiempo buscando el color del sello.",
       " $!Redirige a este distrito de Hestia alg$un paquetillo con comida de Hermes, que hoy estamos de celebraci$on y hay que comer como cerdos!"
     ],
     "PostConversacionDia7": [
@@ -297,7 +297,7 @@
     ],
     "Dia10": [
       "Buenos d$ias Jones. El rey hoy te quiere recompensar por tu lealtad en estos tiempos. Toma",
-      "*Recibes un manual de trabajo mejorado. Lo ver$e en la oficina*",
+      "Recibes un manual de trabajo mejorado. Lo ver$e en la oficina",
       "Que no se te suba mucho a la cabeza. Sigues teniendo que ser obediente aun as$i.",
       "Adem$as, tengo entendido que ya puedes mandar paquetes al distrito de Poseid$on. Es una gran responsabilidad.",
       "Jones. Necesito tu ayuda. Va siendo hora de que sepas el plan que he tenido en las sombras durante todo este tiempo.",
@@ -1251,7 +1251,7 @@
         ],
         "2": [
             "Hola Jones, hoy te ha llegado esto a tu correo. Estaban repartiendo a toda la poblaci$on uno.",
-            "* lo lees, es un papel con el titulo 'CRITIAS'. Te viene un recuerdo a tu pasado como historiador y jurar$ias escuchar este mismo nombre relacionado con el fil$osofo Plat$on.*",
+            " lo lees, es un papel con el titulo 'CRITIAS'. Te viene un recuerdo a tu pasado como historiador y jurar$ias escuchar este mismo nombre relacionado con el fil$osofo Plat$on.",
             "Queridos habitantes de Atlantis, hemos descubierto pruebas indudables de la existencia de algo m$as all$a del agua. Gracias a un texto que hemos encontrado y d$ecadas de estudio.",
             "Este papel es una versi$on resumida del texto original, y explicaremos resumidamente nuestros descubrimientos. Sin embargo, no podemos revelarnos, ya que seguramente el rey nos persiga por herej$ia. Nos mantendremos ocultos.",
             "Atlantes, m$as all$a de nuestros muros, m$as all$a del agua, existe un mundo vasto y enorme que jam$as podr$iamos imaginar.",
@@ -1265,7 +1265,7 @@
             "Y ese tiempo se va a acabar en 5 a$%os, cuando cumplamos 1000 a$%os en el agua. Debemos aprovecharlo y no volver a decepcionar a Poseid$on.",
             "Tenemos que prepararnos para cuando llegue el momento, y comenzar a comunicarnos con los humanos para colaborar con ellos, y trabajar juntos en un Atlantis mejor y una superficie mejor.",
             " $!Atlantes! $!Se vienen tiempos duros! $!Debemos estar unidos y desarrollarnos para poder unirnos a los humanos!",
-            "*Hasta aqu$i el texto, deber$ia hablar con la gente de la ciudad a ver qu$e opinan de esto. Espero que no me descubran...*"
+            "Hasta aqu$i el texto, deber$ia hablar con la gente de la ciudad a ver qu$e opinan de esto. Espero que no me descubran..."
         ]
     },
     "NoHabladoWarning": {
@@ -2071,7 +2071,7 @@
 
         "TextoTiendaEsculturas80": [
             "En cierta manera, la escultura del pez con forma de bumer$an,",
-            "me recuaerda a un pez de la pel$icula de Buscando a Rodolfo. Qu$e buena pel&icula."
+            "me recuaerda a un pez de la pel$icula de Buscando a Rodolfo. Qu$e buena pel$icula."
         ],
         "TextoTiendaEsculturas81": [ "El martillo de la pared creo que lo usan para picar con el clavo la piedra." ],
 
@@ -2106,7 +2106,7 @@
         "TextoTiendaEsculturas131": [ "Me pregunto si en el taller se usar$an otras herramientas para esculpir que no sean solo martillos y clavos." ],
 
         "TextoTiendaEsculturas140": [ "El nivel de detalle de estas esculturas debi$o de requerir mucha paciencia." ],
-        "TextoTiendaEsculturas141": [ "Alg$un d$ia deber&ia de comprar una escultura de estas." ]
+        "TextoTiendaEsculturas141": [ "Alg$un d$ia deber$ia de comprar una escultura de estas." ]
     },
     "TiendaDerecha": {
 
