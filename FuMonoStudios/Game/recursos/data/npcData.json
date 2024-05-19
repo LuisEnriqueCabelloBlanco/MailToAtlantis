@@ -303,7 +303,7 @@
     }
   },
   "Secretario": {
-    "PrimeraMision": 5,
+    "PrimeraMision": 4,
     "IntroductionText": "Gargafiel Mustaki, el secretario del rey, es un hombre serio que busca que se cumpla el orden en Atlantis. Protege al rey y ejecuta las $ordenes por $el, todo Atlantis depende de lo que $el ordene.",
     "Eventos": {
       "1": {
@@ -596,7 +596,7 @@
     }
   },
   "Campesino": {
-    "IntroductionText": "campesino",
+    "IntroductionText": "Pancracio Warawa es un campesino que siempre ha vivido con pocos recursos. Es un hombre simple con un acento cerrado que le gusta proveer a su familia. Suele estar en el distrito de Demeter cerca de sus cosechas.",
     "DiasConEvento": {
       "1": false,
       "2": true,

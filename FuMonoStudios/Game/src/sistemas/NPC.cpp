@@ -173,7 +173,7 @@ NPCMayorData::NPCMayorData(Felicidad Felicidad) :NPCdata(Vagabundo,14){
 		diaDaMejora = 7;
 	}
 	else {
-		firstMision = 5;
+		firstMision = 4;
 		diaDaMejora = 10;
 	}
 		
