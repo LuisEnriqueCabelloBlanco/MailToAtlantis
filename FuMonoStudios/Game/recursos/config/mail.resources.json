@@ -822,6 +822,14 @@
     {
       "id": "dlgJef3",
       "file": "recursos/sounds/Jefe3.wav"
+    },
+    {
+      "id": "tac0",
+      "file": "recursos/musics/tictacLento.wav"
+    },
+    {
+      "id": "tic0",
+      "file": "recursos/musics/tictacRapido.wav"
     }
   ],
   "musics": [
@@ -840,14 +848,6 @@
     {
       "id": "printer",
       "file": "recursos/musics/printer.wav"
-    },
-    {
-      "id": "clockSlow",
-      "file": "recursos/musics/tictacLento.wav"
-    },
-    {
-      "id": "clockFast",
-      "file": "recursos/musics/tictacRapido.wav"
     },
     {
       "id": "exploration",
