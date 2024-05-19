@@ -115,3 +115,10 @@ void Final::loadFinal(Personaje npc, Felicidad felicidad)
 std::string Final::getFinal(Personaje npc, Felicidad nivelFelicidad) {
     return endTexts_[npc][nivelFelicidad];
 }
+
+void Final::setActive(bool value)
+{
+    periodico_->setActive(value);
+    imagenNpc_->setActive(value);
+    texto_->setActive(value);
+}

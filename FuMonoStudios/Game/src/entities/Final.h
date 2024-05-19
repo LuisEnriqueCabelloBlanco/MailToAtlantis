@@ -19,6 +19,8 @@ public:
 
 	// Devuelve el texto del final que desees
 	std::string getFinal(Personaje npc, Felicidad nivelFelicidad);
+
+	void setActive(bool value);
 private:
 	// Inicializa endTexts_
 	void inicializarFinal();
