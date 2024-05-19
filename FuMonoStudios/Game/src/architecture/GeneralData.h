@@ -276,7 +276,6 @@ public:
 	const std::string nivelPesoToString(NivelPeso nivel);
 	NivelPeso stringToNivelPeso(const std::string& nivel);							
 
-	void unlockMejoraPersonaje(Personaje p);
 	/// <summary>
 	/// Guarda el juego
 	/// </summary>

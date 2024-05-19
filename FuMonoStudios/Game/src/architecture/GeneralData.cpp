@@ -434,21 +434,17 @@ void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
 	Felicidad newFelicidad = SeFue;
 	if (newFelicidadInt < 1)
 		newFelicidad = Minima;
-	else if (newFelicidadInt > 99)
+	else if (newFelicidadInt > MAX_HAPPINES)
 		newFelicidad = Maxima;
-	else if (newFelicidadInt < 30)
+	else if (newFelicidadInt < BAD_HAPPINES)
 		newFelicidad = Mala;
-	else if (newFelicidadInt < 65)
+	else if (newFelicidadInt < NORMAL_HAPPINES)
 		newFelicidad = Normal;
 	else
 		newFelicidad = Buena;
 
 	getNPCData(p)->felicidad = newFelicidad;
 	getNPCData(p)->numFelicidad = newFelicidadInt;
-}
-
-void GeneralData::unlockMejoraPersonaje(Personaje p) {
-
 }
 
 Texture* GeneralData::personajeToTexture(Personaje pers)

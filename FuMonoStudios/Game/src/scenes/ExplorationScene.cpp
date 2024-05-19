@@ -644,7 +644,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 		if (!gm().gamePaused()) {
 			if (canInteract)
 			{
-				if (gD().getNPCData(gD().stringToPersonaje(character))->felicidad == npc::Maxima) {
+				if (gD().getNPCData(gD().stringToPersonaje(character))->numFelicidad >= UNLOCK_UPGRADE_HAPPINES) {
 					gD().unlockUpgrade(gD().stringToPersonaje(character));
 				}
 				dialogMngr_.setEndDialogueCallback([this] {

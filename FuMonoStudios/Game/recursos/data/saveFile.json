@@ -1,6 +1,6 @@
 {
-  "Dia":5,
-  "Dinero":560,
+  "Dia":10,
+  "Dinero":170,
   "Personajes":{
     "Artesano":{
       "EventosCompletados":[
@@ -12,11 +12,11 @@
     },
     "Campesino":{
       "EventosCompletados":[
-        2,4,0,0,0
+        2,4,6,9,0
       ],
       "Felicidad":"Buena",
-      "FelicidadNum":70,
-      "numMisionesAceptadas":2
+      "FelicidadNum":90,
+      "numMisionesAceptadas":4
     },
     "Contable":{
       "EventosCompletados":[
