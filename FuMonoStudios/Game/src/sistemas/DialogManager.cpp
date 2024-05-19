@@ -13,6 +13,7 @@
 #include <QATools/DataCollector.h>
 #include <sistemas/ComonObjectsFactory.h>
 #include <architecture/GameConstants.h>
+#include <sistemas/SoundEmiter.h>
 
 DialogManager::DialogManager() : scene_(nullptr), currentDialogIndex_(0),boxBackground(nullptr), textDialogue(nullptr), endDialogueCallback(nullptr),
                                 dialogSound_("")
@@ -203,6 +204,9 @@ void DialogManager::startConversation(const std::string& character)
         auto charac = gD().stringToPersonaje(character); //de que personaje queremos el dialogo
         auto data = gD().getNPCData(charac); //data de dicho personaje
         setCurrentDialogSound(character);
+        if (dialogSound_ != "") {
+            SoundEmiter::instance()->playSound(dialogSound_);
+        }   
 
         // activamos los dialogos correspondientes
         std::pair<const std::string, int> aux = data->getDialogueInfo(); 

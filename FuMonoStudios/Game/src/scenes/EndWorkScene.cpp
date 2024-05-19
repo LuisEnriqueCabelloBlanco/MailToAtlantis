@@ -104,7 +104,7 @@ void EndWorkScene::update()
 }
 
 void EndWorkScene::animTextos(ecs::Entity* texto) {
-	sdlutils().soundEffects().at("GuiImpact").play();
+	SoundEmiter::instance()->playSound("guiImp");
 	texto->setActive(true);
 }
 void EndWorkScene::animNumeros(ecs::Entity* number) {
@@ -134,7 +134,7 @@ void EndWorkScene::createButtons()
 		auto nuevoDia = factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Empezar nuevo dia", 50, call, "click", textColor);
 
 		// Sonido
-		sdlutils().soundEffects().at("MoneyProfits").play();
+		SoundEmiter::instance()->playSound("money");
 		gD().resetFailsCorrects();
 		int currentDay = gD().getDay();
 	}
@@ -145,7 +145,7 @@ void EndWorkScene::createButtons()
 		auto volver = factory_->createTextuButton(pos_ + Vector2D(0, offset_), "Volver al Menu", 50, call, "click", textColor);
 
 		// Sonido
-		sdlutils().soundEffects().at("LoseMoney").play();
+		SoundEmiter::instance()->playSound("loseMon");
 		// Texto
 		factory_->createLabel(pos_ + Vector2D(0, offset_ * 2), "No has pagado ¡Deportado!", 50);
 		gD().resetFailsCorrects();
