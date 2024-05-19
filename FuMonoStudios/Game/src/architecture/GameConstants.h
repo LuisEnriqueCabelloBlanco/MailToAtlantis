@@ -10,6 +10,7 @@ const std::string REMITENT_SETTINGS_PATH = "recursos/config/mail.destinatarios.j
 const std::string DIR_SETTINGS_PATH = "recursos/config/mail.direcctions.json";
 const std::string SAVE_PATH = "recursos/data/saveFile.json";
 const std::string NPC_DATA_PATH = "recursos/data/npcData.json";
+const std::string TAPE_ROUTE_PATH = "recursos/data/rutas.JSON";
 #pragma endregion
 
 #pragma region General
