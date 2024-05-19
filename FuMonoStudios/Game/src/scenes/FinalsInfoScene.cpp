@@ -11,14 +11,13 @@ FinalsInfoScene::FinalsInfoScene()
 void FinalsInfoScene::init()
 {
     // Fondo escena
-    factory_->setLayer(ecs::layer::FOREGROUND);
+    factory_->setLayer(ecs::layer::BACKGROUND);
     ecs::Entity* fondo = factory_->createImage(Vector2D(0, 0), &sdlutils().images().at("fondoAzul"));
-    Transform* fondoTr = fondo->getComponent<Transform>();
 
     // IDs de las imagenes de los emblemasNpcs
     std::vector<std::string> npcIDs_ = { "SoldadoEmblema", "PaulinoEmblema", "PancracioEmblema",
     "GloverEmblema", "GargafielEmblema", "AnemosEmblema", "abiEmblema" };
-
+    factory_->setLayer(ecs::layer::UI);
     // Creamos los npcButtons_
     int i = 0;
     for (const auto& id : npcIDs_) {
@@ -31,6 +30,7 @@ void FinalsInfoScene::init()
 
         factory_->addHoverColorMod(button, build_sdlcolor(0xaaaaaaff));
     }
+   
 
 
     setActiveButtons(true, npcButtons_); // activa los npcButtons_
@@ -38,6 +38,8 @@ void FinalsInfoScene::init()
 
 void FinalsInfoScene::update()
 {
+    //hola si hola, hacia falta llamar al update para que funcionaran las cosas, al hacer override no se estaba llamano al metodo padre
+    Scene::update();
 }
 
 void FinalsInfoScene::close()
