@@ -7,6 +7,10 @@
 #include <components/Render.h>
 #include <QATools/DataCollector.h>
 #include <sistemas/ComonObjectsFactory.h>
+//estos dos
+#include <architecture/GameConstants.h>
+#include <sistemas/SoundEmiter.h>
+
 
 DialogManager::DialogManager() : scene_(nullptr), currentDialogIndex_(0),boxBackground(nullptr), textDialogue(nullptr), endDialogueCallback(nullptr),
                                 dialogSound_("")
@@ -197,6 +201,9 @@ void DialogManager::startConversation(const std::string& character)
         auto charac = gD().stringToPersonaje(character); //de que personaje queremos el dialogo
         auto data = gD().getNPCData(charac); //data de dicho personaje
         setCurrentDialogSound(character);
+        if (dialogSound_ != "") {
+            SoundEmiter::instance()->playSound(dialogSound_);
+        }   
 
         // activamos los dialogos correspondientes
         std::pair<const std::string, int> aux = data->getDialogueInfo(); 
@@ -408,8 +415,9 @@ std::string DialogManager::dialogSelectionToString(const DialogSelection ds)
     case Charco: aux = "Charco"; break;
 
         //Poseidon
-    case Casa1: aux = "casa1"; break;
-    case Casa2: aux = "casa2"; break;
+    case Estatua: aux = "Estatua"; break;
+    case ArbolesIzq: aux = "ArbolesIzq"; break;
+    case ArbolesDer: aux = "ArbolesDer"; break;
 
     //default: break;
     }

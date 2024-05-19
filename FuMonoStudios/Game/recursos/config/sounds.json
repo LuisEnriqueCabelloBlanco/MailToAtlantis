@@ -63,6 +63,18 @@
     {
       "key": "dlgVag",
       "amount": 4
+    },
+    {
+      "key": "money",
+      "amount": 1
+    },
+    {
+      "key": "loseMon",
+      "amount": 1
+    },
+    {
+      "key": "guiImp",
+      "amount": 1
     }
   ]
 }

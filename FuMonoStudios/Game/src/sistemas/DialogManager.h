@@ -59,7 +59,7 @@ public:
         PulpoCartel, TiendaCeramica, TiendaEsculturas, //Hefesto
         TiendaDerecha, PanteonIzq, PanteonDer, //Hermes
         Panteon, Edificios, Charco, //Apolo
-        Casa1, Casa2, //Poseidon
+        Estatua, ArbolesIzq, ArbolesDer, //Poseidon
         NoHabladoWarning
     };
 

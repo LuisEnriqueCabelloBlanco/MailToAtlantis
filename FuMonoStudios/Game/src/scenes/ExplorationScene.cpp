@@ -251,16 +251,19 @@ ecs::Entity* ecs::ExplorationScene::createNavegationsArrow(Vector2D pos, std::st
 	Vector2D size{ sujetaplazas->width() * scale, sujetaplazas->height() * scale };
 	
 	CallbackClickeable cosa = [this, place, placeID]() {
-		if (actualPlace_->navigate((Distrito)placeID) && canInteract) {
-			dialogMngr_.closeDialogue();
-			actualPlace_->changeActivationObjects(false);
+		if (!gm().gamePaused()) {
+			if (actualPlace_->navigate((Distrito)placeID) && canInteract) {
+				dialogMngr_.closeDialogue();
+				actualPlace_->changeActivationObjects(false);
 
-			if (placeID < placesExplored.size() && !placesExplored[placeID]) {
-				placesExplored[placeID] = true;
+				if (placeID < placesExplored.size() && !placesExplored[placeID]) {
+					placesExplored[placeID] = true;
+				}
+
+				placeToGo = placeID;
 			}
-			
-			placeToGo = placeID;
 		}
+		
 	};
 
 	ecs::Entity* Arrow = factory_->createImageButton(pos, size, sujetaplazas, cosa, "click");
@@ -289,31 +292,34 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 	e->addComponent<Transform>(pos.getX(), pos.getY(), scale.getX(), scale.getY());
 	auto clickableBotonTrabajar = e->addComponent<Clickeable>("");
 	CallbackClickeable funcPress = [this]() {
-		if (canInteract) {
-			int numPersonajesSinHablar = 0;
-			for (int i = 0; i < gD().getNumDistritos(); i++) {
-				NPCdata* data = gD().getNPCData((Personaje)i);
-				if (data->felicidad != SeFue && !data->postConversation)
-					numPersonajesSinHablar++;
-			}
-			if (!showTalkWarning || numPersonajesSinHablar < 1)
-			{
-				if ((gD().getDay() == 1 ||
-					gD().getDay() == 3 ||
-					gD().getDay() == 5 ||
-					gD().getDay() == 8) && !gD().GetValueSkipTutorial()) {
-					gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+		if (!gm().gamePaused()) {
+
+			if (canInteract) {
+				int numPersonajesSinHablar = 0;
+				for (int i = 0; i < gD().getNumDistritos(); i++) {
+					NPCdata* data = gD().getNPCData((Personaje)i);
+					if (data->felicidad != SeFue && !data->postConversation)
+						numPersonajesSinHablar++;
 				}
-				else {
-					gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+				if (!showTalkWarning || numPersonajesSinHablar < 1)
+				{
+					if ((gD().getDay() == 1 ||
+						gD().getDay() == 3 ||
+						gD().getDay() == 5 ||
+						gD().getDay() == 8) && !gD().GetValueSkipTutorial()) {
+						gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::TUTORIAL_SCENE);
+					}
+					else {
+						gm().requestChangeScene(ecs::sc::EXPLORE_SCENE, ecs::sc::MAIN_SCENE);
+					}
 				}
+				else
+				{
+					showTalkWarning = false;
+					dialogMngr_.startConversation(DialogManager::NoHabladoWarning, 0);
+				}
+
 			}
-			else
-			{
-				showTalkWarning = false;
-				dialogMngr_.startConversation(DialogManager::NoHabladoWarning, 0);
-			}
-			
 		}
 	};
 	clickableBotonTrabajar->addEvent(funcPress);
@@ -369,18 +375,23 @@ void ecs::ExplorationScene::createDiario() {
 	diario_->addComponent<MoverTransform>(Easing::EaseOutBack);
 	HoverSensorComponent* hoverComp = diario_->addComponent<HoverSensorComponent>();
 	hoverComp->addInCall([this]() {
-		MoverTransform* comp = diario_->getComponent<MoverTransform>();
-		comp->setFinalPos(Vector2D(1300, 700));
-		comp->setMoveTime(0.2);
-		if (!comp->isEnabled())
-			comp->enable();
+		//Esto es para que en medio del menu de pausa no interactuemos con el diario, cualquier problema quitad el if del gamePaused() y ya
+		if (!gm().gamePaused()) {
+			MoverTransform* comp = diario_->getComponent<MoverTransform>();
+			comp->setFinalPos(Vector2D(1300, 700));
+			comp->setMoveTime(0.2);
+			if (!comp->isEnabled())
+				comp->enable();
+		}
 	});
 	hoverComp->addOutCall([this]() {
-		MoverTransform* comp = diario_->getComponent<MoverTransform>();
-		comp->setFinalPos(Vector2D(1300, 1000));
-		comp->setMoveTime(0.2);
-		if (!comp->isEnabled())
-			comp->enable();
+		if (!gm().gamePaused()) {
+			MoverTransform* comp = diario_->getComponent<MoverTransform>();
+			comp->setFinalPos(Vector2D(1300, 1000));
+			comp->setMoveTime(0.2);
+			if (!comp->isEnabled())
+				comp->enable();
+		}
 	});
 
 	
@@ -439,12 +450,12 @@ void ecs::ExplorationScene::setupDiarioPages() {
 						if (data->npcId < 2) {
 							textoPersonaje = textoPersonaje + std::to_string(
 								std::abs(data->eventosCompletados[j].second)) + "- " + textoCompletado + "\n"
-								+ data->events[j]->textoDiario + "\n";
+								+ data->events[abs(data->eventosCompletados[j].second) - 1]->textoDiario + "\n";
 						}
 						else {
 							textoPersonaje = textoPersonaje + std::to_string(
 								std::abs(data->eventosCompletados[j].second)) + "- " + textoCompletado + "\n"
-								+ data->events[abs(data->eventosCompletados[j].second) - 1]->textoDiario + "\n";
+								+ data->events[j]->textoDiario + "\n";
 						}
 						
 					}
@@ -630,44 +641,46 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, character]() {
-		if (canInteract)
-		{
-			if (gD().getNPCData(gD().stringToPersonaje(character))->felicidad == npc::Maxima) {
-				gD().unlockUpgrade(gD().stringToPersonaje(character));
-			}
-			dialogMngr_.setEndDialogueCallback([this] {
-				canInteract = true;
-				});
-			canInteract = false;
-			dialogMngr_.startConversation(character);
-
-			auto charac = gD().stringToPersonaje(character); //de que personaje queremos el dialogo
-			auto data = gD().getNPCData(charac); //data de dicho personaje
-
-			// activamos los dialogos correspondientes
-			std::pair<const std::string, int> aux = data->getDialogueInfo();
-
-			if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
+		if (!gm().gamePaused()) {
+			if (canInteract)
 			{
-				NPCevent* event = data->getEvent();
-				if (event != nullptr)
-				{
-					for (int i = 0; i < event->numPaquetes; i++) {
-						gD().npcEventSys->addPaqueteNPC(event->paquetes[i]);
-					}
-					gD().npcEventSys->activateEvent(event);
-					addDiarioEvent(event);
-					gD().npcEventSys->shuffleNPCqueue();
+				if (gD().getNPCData(gD().stringToPersonaje(character))->felicidad == npc::Maxima) {
+					gD().unlockUpgrade(gD().stringToPersonaje(character));
 				}
+				dialogMngr_.setEndDialogueCallback([this] {
+					canInteract = true;
+					});
+				canInteract = false;
+				dialogMngr_.startConversation(character);
+
+				auto charac = gD().stringToPersonaje(character); //de que personaje queremos el dialogo
+				auto data = gD().getNPCData(charac); //data de dicho personaje
+
+				// activamos los dialogos correspondientes
+				std::pair<const std::string, int> aux = data->getDialogueInfo();
+
+				if (aux.first == "Eventos" || aux.first.substr(0, 3) == "Dia")
+				{
+					NPCevent* event = data->getEvent();
+					if (event != nullptr)
+					{
+						for (int i = 0; i < event->numPaquetes; i++) {
+							gD().npcEventSys->addPaqueteNPC(event->paquetes[i]);
+						}
+						gD().npcEventSys->activateEvent(event);
+						addDiarioEvent(event);
+						gD().npcEventSys->shuffleNPCqueue();
+					}
+				}
+				else if (aux.first == "Presentacion")
+					setupDiarioPages();
 			}
-			else if (aux.first == "Presentacion")
-				setupDiarioPages();
 		}
 	};
 
 
 
-	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "click");
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "");
 
 	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
 
@@ -681,12 +694,15 @@ ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const st
 
 	// al pulsar sale el dialogo, el dialogue manager y el dialogue component se encargan de todo, no me direis que esto no es mas sencillo de usar que todo lo que habia que hacer antes jajajaj
 	CallbackClickeable funcPress = [this, interactableObj]() {
-		if (canInteract)
-		{
-			dialogMngr_.setEndDialogueCallback([this] {
-				canInteract = true;
-				});
-			dialogMngr_.startConversationWithObj(interactableObj);
+		if (!gm().gamePaused()) {
+			if (canInteract)
+			{
+				dialogMngr_.setEndDialogueCallback([this] {
+					canInteract = true;
+					});
+				dialogMngr_.startConversationWithObj(interactableObj);
+			}
+
 		}
 		
 	};

@@ -49,6 +49,10 @@ void GeneralData::loadSaveFile()
 	in.open(SAVE_PATH);
 	if (in.is_open()) {
 		in.close();
+
+		if (!npcData.empty())
+			npcData.clear();
+
 		std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile(SAVE_PATH));
 
 		JSONObject root = jsonFile->AsObject();
@@ -83,6 +87,7 @@ void GeneralData::setNewGameValues()
 	corrects_ = 0;
 	fails_ = 0;
 	dia_ = INITIAL_DAY;
+	rent_ = RENT_VALUE;
 	//reset de las mejoras
 	upgrades_.reset();
 }
@@ -543,8 +548,9 @@ const std::string GeneralData::intObjetoToString(int pers) {
 	case 17: aux = "Charco"; break;
 
 		//Poseidon
-	case 18: aux = "casa1"; break;
-	case 19: aux = "casa2"; break;
+	case 18: aux = "Estatua"; break;
+	case 19: aux = "ArbolesIzq"; break;
+	case 20: aux = "ArbolesDer"; break;
 
 	default: break;
 	}
@@ -585,8 +591,9 @@ int GeneralData::stringToObjInt(const std::string& pers) {
 	else if (pers == "Charco") aux = 17;
 
 	//Poseidon
-	else if (pers == "casa1") aux = 18;
-	else if (pers == "casa2") aux = 19;
+	else if (pers == "Estatua") aux = 18;
+	else if (pers == "ArbolesIzq") aux = 19;
+	else if (pers == "ArbolesDer") aux = 20;
 
 	return aux;
 }

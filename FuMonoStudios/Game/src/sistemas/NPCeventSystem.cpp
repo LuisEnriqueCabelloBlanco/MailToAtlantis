@@ -6,7 +6,7 @@
 #include <architecture/Game.h>
 
 NPCeventSystem::NPCeventSystem() {
-	readNPCEventData();
+	//readNPCEventData();
 }
 
 NPCeventSystem::~NPCeventSystem() {

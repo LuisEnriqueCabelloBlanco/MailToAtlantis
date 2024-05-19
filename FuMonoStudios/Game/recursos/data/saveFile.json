@@ -1,12 +1,12 @@
 {
-  "Dia":4,
-  "Dinero":1684300992,
+  "Dia":2,
+  "Dinero":90,
   "Personajes":{
     "Artesano":{
       "EventosCompletados":[
         0,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
       "numMisionesAceptadas":0
     },
@@ -14,7 +14,7 @@
       "EventosCompletados":[
         0,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
       "numMisionesAceptadas":0
     },
@@ -22,7 +22,7 @@
       "EventosCompletados":[
         0,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
       "numMisionesAceptadas":0
     },
@@ -30,7 +30,7 @@
       "EventosCompletados":[
         0,0,0,0,0,0,0,0,0,0,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
       "numMisionesAceptadas":0
     },
@@ -38,7 +38,7 @@
       "EventosCompletados":[
         0,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
       "numMisionesAceptadas":0
     },
@@ -46,11 +46,11 @@
       "EventosCompletados":[
         0,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
       "numMisionesAceptadas":0
     },
-    "Vagabundo":{
+    "Vagabundo": {
       "EventosCompletados":[
         0,0,0,0,0,0,0,0,0,0,0,0,0,0
       ],
