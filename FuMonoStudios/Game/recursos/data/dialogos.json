@@ -9,10 +9,12 @@
       "Bueno, va siendo hora de dejarte que tu coleguita te est$a esperando en la puerta para darte la chapa."
     ],
     "FelicidadMinima": [
-      "felicidadMinima vagabundo"
+      "Me he cansado, Jones. Estoy cansado de que me ignores y no me ayudes.",
+      "S$e que lo que pido es poco, pero se ve que no es suficiente para que muestres un poco de caridad por mi causa.",
+      "No vuelvas a hablar conmigo. Me has demostrado que eres un ego$ista y que no estas capacitado para luchar por el pueblo"
     ],
     "FelicidadMaxima": [
-      "felicidadMaxima vagabundo"
+      "no se usa"
     ],
     "Dia1": [
       "no se usa"
@@ -205,10 +207,11 @@
       "Este reinado valora mucho a sus ciudadanos, pero m$as que eso, valora la lealtad. La lealtad y la fidelidad al rey por encima de todo. Espero que lo tengas en cuenta."
     ],
     "FelicidadMinima": [
-      "FelicidadMinima"
+      "Has decepcionado Jones. Debido a tantos fallos en mis misiones, el rey est$a cabreado contigo. No vuelvas a pasar tus sucias aletas por este distrito.",
+      "Ya llegar$an tus debidas consecuencias. Como te dije, la lealtad se valora por encima de todo, y ya veo que lo has ignorado."
     ],
     "FelicidadMaxima": [
-      "FelicidadMaxima"
+      "no se usa"
     ],
     "Dia1": [
       "dia1"

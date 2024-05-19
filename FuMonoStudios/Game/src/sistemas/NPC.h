@@ -110,5 +110,6 @@ namespace npc {
 		NPCevent* getEvent() override;
 
 		int firstMision;
+		int diaDaMejora;
 	};
 }
