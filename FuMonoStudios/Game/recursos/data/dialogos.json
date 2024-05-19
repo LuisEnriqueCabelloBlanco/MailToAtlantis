@@ -1314,7 +1314,7 @@
 
         "TextoCasaGrande90": [ "Ojal$a alojarme en una casa tan grande como esta." ],
         "TextoCasaGrande91": [
-            "Si me alojara aqu$i tendr$ia que remodelar la casa un poco.",
+            "Si me alojara aqu$i tendr$ia que remodela           r la casa un poco.",
             "Seguro est$a sucia, pero puede tener mucho espacio."
         ],
 
@@ -2217,7 +2217,7 @@
 
         "TextoPanteon80": [ "Se que normalmente estoy muy ocupado, pero cada vez que paso por aqu$i no puedo evitar detenerme a ver el arte" ],
         "TextoPanteon81": [ "Fuera bromas, me sigo preguntando cu$al es el uso de este lugar.",
-                            "Aparte de exponer estás obras de arte."
+                            "Aparte de exponer est$as obras de arte."
         ],
 
         "TextoPanteon90": [ "Este arte es tan bello que podr$ia pasar todo el d$ia mirandolo.",
@@ -2299,7 +2299,7 @@
         "TextoCharco70": [ "Entiendo porque los peces vendr$ian aqu$i a beber los d$ias de calor." ],
         "TextoCharco71": [ "Me parece bastante gracioso encontrar una fuente debajo del agua." ],
 
-        "TextoCharco80": [ "Ahora que lo pienso, no he estado hidratandome bien. $¿Esta agua ser$a potable?" ],
+        "TextoCharco80": [ "Ahora que lo pienso, no he estado hidratandome bien. $?Esta agua ser$a potable?" ],
         "TextoCharco81": [ "Aunque sigue teniendo su gracia, comienzo a entender porque construir$ian una fuente aqu$i." ],
 
         "TextoCharco90": [ "El agua parece deliciosa. $?Se dar$a alguien cuenta si echo un trago?",
