@@ -807,6 +807,22 @@
     {
       "id": "dlgVag3",
       "file": "recursos/sounds/Vagabundo3.wav"
+    },
+    {
+      "id": "dlgJef0",
+      "file": "recursos/sounds/Jefe0.wav"
+    },
+    {
+      "id": "dlgJef1",
+      "file": "recursos/sounds/Jefe1.wav"
+    },
+    {
+      "id": "dlgJef2",
+      "file": "recursos/sounds/Jefe2.wav"
+    },
+    {
+      "id": "dlgJef3",
+      "file": "recursos/sounds/Jefe3.wav"
     }
   ],
   "musics": [

@@ -849,7 +849,7 @@ ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& ch
 	ecs::Entity* characterEnt = factory_->createImageButton(pos, size, characterTexture, [this, characterEnt]() {
 		jefe_->getComponent<Clickeable>()->toggleClick(false);
 		newWorkEvent();
-		}, "click");
+		}, "");
 	dialogMngr_.setEndDialogueCallback([characterEnt, this]{
 		jefe_->setAlive(false); //bye bye jefe
 		startWork();
@@ -870,6 +870,6 @@ void ecs::MainScene::newWorkEvent()
 {
 	WorkEvent eventoJefe = mWorkRes.getRandomEvent();
 	dialogMngr_.setDialogueEntitiesActive(true);
-	dialogMngr_.setDialogues(eventoJefe.dialogue);
+	dialogMngr_.setDialogues(eventoJefe.dialogue, "Jefe");
 	mPipeMngr_->activateEvent(eventoJefe);
 }

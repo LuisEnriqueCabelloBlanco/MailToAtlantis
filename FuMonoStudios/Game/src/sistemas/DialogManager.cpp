@@ -183,11 +183,13 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     }
 }
 
-void DialogManager::setDialogues(std::string& dialogo) //mirar en el .h por que no es const juro que tiene sentido
+void DialogManager::setDialogues(std::string& dialogo, std::string character) //mirar en el .h por que no es const juro que tiene sentido
 {
     dialogs_.clear();
 
     fixText(dialogo);
+    setCurrentDialogSound(character);
+    SoundEmiter::instance()->playSound(dialogSound_);
 
     dialogs_.push_back(dialogo);
 }
@@ -462,8 +464,8 @@ void DialogManager::setCurrentDialogSound(const std::string& pers)
         dialogSound_ = "dlgSold";
     else if (pers == "Contable")
         dialogSound_ = "dlgCont";
-    /*else if (pers == "Jefe")
-        dialogSound_ = "segso";
-    else
+    else if (pers == "Jefe")
+        dialogSound_ = "dlgJef";
+    /*else
         dialogSound_ = "typewritter";*/
 }
