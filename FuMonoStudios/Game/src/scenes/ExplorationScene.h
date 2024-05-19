@@ -7,8 +7,8 @@
 #include <sistemas/ComonObjectsFactory.h>
 #include <architecture/GeneralData.h>
 
-constexpr int MAX_CHAR_LEN_LEFT_DIARIO = 370;
-constexpr int MAX_CHAR_LEN_RIGHT_DIARIO = 406;
+constexpr int MAX_CHAR_LEN_LEFT_DIARIO = 350;
+constexpr int MAX_CHAR_LEN_RIGHT_DIARIO = 390;
 class NPCeventSystem;
 class RenderImage;
 

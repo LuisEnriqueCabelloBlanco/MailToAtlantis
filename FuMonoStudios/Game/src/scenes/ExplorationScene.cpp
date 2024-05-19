@@ -462,12 +462,12 @@ void ecs::ExplorationScene::setupDiarioPages() {
 						if (data->npcId < 2) {
 							textoPersonaje = textoPersonaje + std::to_string(
 								std::abs(data->eventosCompletados[j].second)) + "- " + textoCompletado + "\n"
-								+ data->events[j]->textoDiario + "\n";
+								+ data->events[abs(data->eventosCompletados[j].second) - 1]->textoDiario + "\n";
 						}
 						else {
 							textoPersonaje = textoPersonaje + std::to_string(
 								std::abs(data->eventosCompletados[j].second)) + "- " + textoCompletado + "\n"
-								+ data->events[abs(data->eventosCompletados[j].second) - 1]->textoDiario + "\n";
+								+ data->events[j]->textoDiario + "\n";
 						}
 						
 					}
