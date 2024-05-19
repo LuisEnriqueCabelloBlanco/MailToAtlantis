@@ -69,12 +69,12 @@ void ecs::MainMenu::init()
 	factory_->addHilghtOnHover(loadSave);
 	factory_->addHoverColorMod(loadSave);
 
-	auto endScene = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Mostramos Final Juego", 50, [this]() {
+	auto finalesScene = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Finales Completados", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
-		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::END_SCENE);
+		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::FINALS_INFO_SCENE);
 	}, "click", textColor);
-	factory_->addHilghtOnHover(endScene);
-	factory_->addHoverColorMod(endScene);
+	factory_->addHilghtOnHover(finalesScene);
+	factory_->addHoverColorMod(finalesScene);
 
 	auto ajustes = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 700), "Configuracion", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
