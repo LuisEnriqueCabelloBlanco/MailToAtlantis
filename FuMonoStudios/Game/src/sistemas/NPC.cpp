@@ -53,7 +53,7 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 			break;
 		case Maxima:
 			tipo = "FelicidadMaxima";
-			gD().unlockMejoraPersonaje(npcId);
+			gD().unlockUpgrade(npcId);
 			break;
 		}
 	}
@@ -190,7 +190,7 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 
 	if (!gD().getUpgradeValue(npcId) && gD().getDay() == diaDaMejora)
 	{
-		gD().unlockMejoraPersonaje(npcId);
+		gD().unlockUpgrade(npcId);
 	}
 	else
 	{
