@@ -1,5 +1,6 @@
 {
   "Vagabundo": {
+    "PrimeraMision": 1,
     "IntroductionText": "Anemos Togakawa es un vagabundo optimista que vive en el distrito de Hestia. Pasa los d$ias sobreviviendo como puede y hablando con sus colegas campesinos del distrito.",
     "Eventos": {
       "1": {
@@ -302,6 +303,7 @@
     }
   },
   "Secretario": {
+    "PrimeraMision": 5,
     "IntroductionText": "Gargafiel Mustaki, el secretario del rey, es un hombre serio que busca que se cumpla el orden en Atlantis. Protege al rey y ejecuta las $ordenes por $el, todo Atlantis depende de lo que $el ordene.",
     "Eventos": {
       "1": {

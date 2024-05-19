@@ -80,7 +80,7 @@ void ecs::TutorialScene::init() {
 
 	createStamp(SelloCalleA);
 
-	createTubes();
+	TutorialScene::createTubes();
 
 	if (gD().getDay() == 1) {
 
@@ -107,7 +107,8 @@ void ecs::TutorialScene::init() {
 
 void ecs::TutorialScene::close() {
 	ecs::Scene::close();
-  SoundEmiter::instance()->close();
+  	SoundEmiter::instance()->close();
+  	tubos.clear();
 }
 
 void ecs::TutorialScene::activateTubos() {
@@ -138,8 +139,17 @@ void ecs::TutorialScene::activateAllButOneTube(int tub)
 void ecs::TutorialScene::activateOneTube(int tube)
 {
 
-	Trigger* tuboTri = tubos[tube]->addComponent<Trigger>();
-	PackageChecker* tuboCheck = tubos[tube]->addComponent<PackageChecker>(Distrito(tube), this, mPipeMngr_);
+	if (tubos[tube]->getComponent<Trigger>() == nullptr) {
+
+		Trigger* tuboTri = tubos[tube]->addComponent<Trigger>();
+	}
+	
+	if (tubos[tube]->getComponent<PackageChecker>() == nullptr) {
+
+		PackageChecker* tuboCheck = tubos[tube]->addComponent<PackageChecker>(Distrito(tube), this, mPipeMngr_);
+
+	}
+	
 
 }
 
@@ -308,8 +318,6 @@ void ecs::TutorialScene::deactivateOneTube(int tube)
 	if (tubos[tube]->getComponent<PackageChecker>() != nullptr) {
 		tubos[tube]->removeComponent<PackageChecker>();
 	}
-	
-
 }
 
 ecs::Entity* ecs::TutorialScene::createGarbage()
@@ -359,7 +367,7 @@ ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {
 		paquete = mPaqBuild_.customPackage(Hestia, C3, "Travis Lubin", Alimento, true, pq::Ninguno, 0, true);
 		break;
 	case BalanzaTut:
-		paquete = mPaqBuild_.customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Alto, 160);
+		paquete = mPaqBuild_.customPackage(Hefesto, C2, "Rodiballo Garcia", Materiales, true, pq::Alto, 80);
 		break;
 	case Carta:
 		paquete = mPaqBuild_.customPackage(Demeter, C1, "Percebesa Crujierez", Medicinas, true, pq::Ninguno, 0, false, true);

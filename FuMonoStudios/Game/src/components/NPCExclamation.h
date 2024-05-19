@@ -5,7 +5,7 @@
 class NPCExclamation : public ecs::Component
 {
 public:
-	__CMP_DECL__(ecs::cmp::NPC_EXCLAMATION);
+	__CMP_DECL__(ecs::cmp::NPC_EXCLAMATION)
 	NPCExclamation();
 	~NPCExclamation();
 	void innit(int, int);

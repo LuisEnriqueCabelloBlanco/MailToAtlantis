@@ -32,7 +32,7 @@ namespace ecs {
 		for (int i = 0; i < objs_.size();i++ ) {
 			for (int j = 0; j < objs_[i].size();j++) {
 				auto e = objs_[i][j];
-				if (e->isActive() && e->isEnable())
+				if (e->isActive())
 					e->update();
 
 			}	

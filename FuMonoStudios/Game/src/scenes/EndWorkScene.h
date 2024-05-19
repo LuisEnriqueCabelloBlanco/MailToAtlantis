@@ -8,7 +8,10 @@ class EndWorkScene :public ecs::Scene {
 public:
 	EndWorkScene();
 	virtual ~EndWorkScene();
+
 	void init() override;
+	void close() override;
+
 	void update() override;
 private:
 	void createTextAnim(std::string msg); // Nos crea un texto preparandolo para animarlo

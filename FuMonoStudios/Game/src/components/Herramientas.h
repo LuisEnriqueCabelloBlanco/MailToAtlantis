@@ -26,14 +26,26 @@ public:
 	void initComponent() override {};
 
 	void update() override {};
-
+	/// <summary>
+	/// Establece la funcionalidad de la herramienta
+	/// </summary>
+	/// <param name="tipo"></param>
 	void setFunctionality(TipoHerramienta tipo);
-
+	/// <summary>
+	/// Interactua con otra entidad
+	/// </summary>
+	/// <param name="paquete"></param>
 	void interact(ecs::Entity* paquete);
-
+	/// <summary>
+	/// Devuelve si es un sello multicolor
+	/// </summary>
+	/// <returns></returns>
 	bool getMulticolorStamp() { return multicolorStamp; }
 private:
 	bool multicolorStamp;
+	/// <summary>
+	/// Funcion llamada al interacctuar con una entidad
+	/// </summary>
 	Callback funcion_;
 };
 

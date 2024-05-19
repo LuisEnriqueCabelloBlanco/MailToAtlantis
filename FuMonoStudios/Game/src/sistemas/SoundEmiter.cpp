@@ -124,9 +124,9 @@ void SoundEmiter::haltSound(std::string sound)
 void SoundEmiter::setMusicVolume(int volume)
 {
 	musicVolume_ = volume;
-	for (auto i = activeSongs_.begin(); i != activeSongs_.end(); i++) {
-		if ((*i).second) {
-			sdlutils().musics().at((*i).first).setMusicVolume(musicVolume_);
+	for (auto i : activeSongs_) {
+		if (i.second) {
+			sdlutils().musics().at(i.first).setMusicVolume(musicVolume_);
 		}
 	}
 }
@@ -145,7 +145,7 @@ void SoundEmiter::playMusic(std::string song)
 		}
 	}
 	catch (...) {
-		throw std::exception("No existe esa m�sica.");
+		throw std::exception("No existe esa musica.");
 	}
 }
 
@@ -199,9 +199,9 @@ void SoundEmiter::haltAllSounds()
 
 void SoundEmiter::haltAllMusic()
 {
-	for (auto i = activeSongs_.begin(); i != activeSongs_.end(); i++) {
-		if ((*i).second) {
-			sdlutils().musics().at((*i).first).haltMusic();
+	for (auto i : activeSongs_) {
+		if (i.second) {
+			sdlutils().musics().at(i.first).haltMusic();
 		}
 	}
 }

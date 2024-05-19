@@ -25,8 +25,16 @@ void ecs::DeathScene::init() {
 		SDL_Color{ 255, 255, 255, 255});
 
 	factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH / 2 - 210, 600), "CARGAR ULTIMO GUARDADO",40, []{
-			gD().loadSaveFile();
 			gm().requestChangeScene(ecs::sc::DEATH_SCENE, ecs::sc::EXPLORE_SCENE);
+			try {
+				gD().loadSaveFile();
+			}
+			catch (save_Missing e) {
+				std::string god = e.what();
+				god += "se devolviendo al menu inicial";
+				SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "ERROR", god.c_str(), sdlutils().window());
+				gm().requestChangeScene(ecs::sc::DEATH_SCENE, ecs::sc::MENU_SCENE);
+			}
 		}, "click", SDL_Color{255, 255, 255, 255});
 }
 

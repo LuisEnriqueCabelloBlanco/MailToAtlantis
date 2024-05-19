@@ -43,11 +43,29 @@ public:
 	/// </summary>
 	/// <param name="texture"></param>
 	inline void addTexture(Texture* texture) { texturesVector_.push_back(texture); }
+	/// <summary>
+	/// Establece el vector de texturas que se vaya a usar
+	/// </summary>
+	/// <param name="textures"></param>
 	inline void setVector(const std::vector<Texture*>& textures) { texturesVector_ = textures; }
+	/// <summary>
+	/// Devuelve la textura que se esta renderizando en este momento
+	/// </summary>
+	/// <returns></returns>
 	Texture* getCurrentTexture();
 	std::vector<Texture*>* getVector();
+	/// <summary>
+	/// Avanza a al siguiente textura
+	/// </summary>
 	void nextTexture();
+	/// <summary>
+	/// Retrocede a la textura anterior
+	/// </summary>
 	void previousTexture();
+	/// <summary>
+	/// Establece el numero de textura del vector la cual se va a renderizar
+	/// </summary>
+	/// <param name="i"></param>
 	void setNumberTexture(int i);
 private:
 	/// <summary>
