@@ -2247,29 +2247,34 @@
         "TextoPanteon120": [ "Cerca de la esquina hay un cuadro con tres personas pez.",
                              "Parecen muy amigas."
         ],
-        "TextoPanteon121": [ "Panteon121" ],
+        "TextoPanteon121": [ "Hoy me d$i cuenta de que no solo es un muser o un pante$on. $!Es ambas cosas!" ],
 
         "TextoPanteon130": [ "En la pared del fondo hay una estructura de un cuerpo muy musculado.",
                              "Aunque parezca extra$%amente humana, sigue habiendo branquias en lo que queda del cuello."
         ],
-        "TextoPanteon131": [ "Panteon131" ],
+        "TextoPanteon131": [ "A lo mejor la exposici$on est$a al aire libre para que todos puedan disfrutar de ella f$acilmente.",
+                             "Si es as$i, ahora lo comprendo todo."
+        ],
 
         "TextoPanteon140": [ "Incluso despu$es de todo lo ocurrido, el arte sigue siendo algo merecedor de ser recordado.",
             "Porque incluso despu$es de que perezcamos otros nos podr$an conocer por lo que hayamos hecho.",
             "$!Por eso es tan importante documentar mis aventuras!"
         ],
-        "TextoPanteon141": [ "Panteon141" ]
+        "TextoPanteon141": [ "El arte, aunque fr$agil, no deber$ia de esconderse en una c$upula, restringido a $elites despotas.",
+                             "Todos deber$ian de ser capaces de admirarlo."
+        ]
     },
     "Edificios": {
 
         "TextoEdificios50": [ "Es un edificio bastante ornamentado." ],
         "TextoEdificios51": [ "Me pregunto que edificio ser$a esto. Es bastante inusual." ],
 
-        "TextoEdificios60": [ "Edificios60" ],
-        "TextoEdificios61": [ "Edificios61" ],
+        "TextoEdificios60": [ "Es un edificio con una fachada muy cuidada." ],
+        "TextoEdificios61": [ "La forma extra$%a me recuerda a la de un supermercado." ],
 
-        "TextoEdificios70": [ "Edificios70" ],
-        "TextoEdificios71": [ "Edificios71" ],
+        "TextoEdificios70": [ "Es un edificio con arte esculpido en sus paredes." ],
+        "TextoEdificios71": [ "La curiosa disposici$on del edificio me recuerda a una tienda de bricolaje." ],
+
 
         "TextoEdificios80": [ "$!Es un museo! Que pena que no tenga tiempo de visitarlo y aprender su historia..." ],
         "TextoEdificios81": [ "$!Es un museo! Eso explica esa forma tan rara que tiene." ],
@@ -2277,22 +2282,32 @@
         "TextoEdificios90": [ "Al parecer, esas obras de arte del pante$on son parte del museo.",
                               "Aunque me sigo preguntando porque est$an al aire libre."
         ],
-        "TextoEdificios91": [ "Edificios91" ],
+        "TextoEdificios91": [
+          "Al parecer hay una exposici$on especial en la torre esa ma$%ana.",
+          "A ver si puedo hacer tiempo para pasarme."
+        ],
 
-        "TextoEdificios100": [ "Edificios100" ],
-        "TextoEdificios101": [ "Edificios101" ],
+        "TextoEdificios100": [ "Sinceramente creo que incluso las puertas podr$ian ser parte de la exposici$on con lo ornamentadas que son." ],
+        "TextoEdificios101": [
+          "Al final cancelaron la exposici$on especial en la torre.",
+          "Al menos me devolvieron el dinero de la entrada."
+        ],
 
-        "TextoEdificios110": [ "Edificios110" ],
-        "TextoEdificios111": [ "Edificios111" ],
+        "TextoEdificios110": [ "Fijandome bien, incluso el vidrio de las ventanas est$a decorado." ],
+        "TextoEdificios111": [ "Aparentemente el piso de arriba es una cafeter$ia, pero solo dejan entrar a los nobles." ],
 
-        "TextoEdificios120": [ "Edificios120" ],
-        "TextoEdificios121": [ "Edificios121" ],
+        "TextoEdificios120": [ "Los poyates " ],
+        "TextoEdificios121": [ "$!Todo el piso de arriba es exclusivo de nobles, no solo la cafeter$ia!" ],
 
         "TextoEdificios130": [ "Edificios130" ],
-        "TextoEdificios131": [ "Edificios131" ],
+        "TextoEdificios131": [ "Alg$un d$ia me gustar$ia intentar colarme ah$i arriba. No creo que lo haga, no quiero volver a tener que huir de los guardias." ],
 
         "TextoEdificios140": [ "Edificios140" ],
-        "TextoEdificios141": [ "Edificios141" ]
+        "TextoEdificios141": [
+          "Aunque una parte del edificio est$e restringida, me sigue gustando mucho su arquitectura.",
+          "Si pudiera, subir$ia a la torre. Y simplemente mirar$ia a mi alrededor.",
+          "S$i, se que el distrito del rey est$a m$as alto, pero apuesto que este se ve mejor desde no tan arriba."
+        ]
     },
     "Charco": {
 
