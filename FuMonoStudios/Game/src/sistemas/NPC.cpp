@@ -272,6 +272,7 @@ void npc::NPCdata::loadDataFromSaveFile(JSONObject& obj)
 	felicidad = gD().stringToFelicidad(obj["Felicidad"]->AsString());
 	postConversation = false;
 	numMisionesAceptadas = obj["numMisionesAceptadas"]->AsNumber();
+	numFelicidad = obj["FelicidadNum"]->AsNumber();
 	JSONArray events = obj["EventosCompletados"]->AsArray();
 	int k = 0;
 	for (auto it : events)
