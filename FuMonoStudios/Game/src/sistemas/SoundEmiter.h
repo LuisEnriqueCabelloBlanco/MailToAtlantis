@@ -33,10 +33,10 @@ public:
 	void muteSingleSound(std::string sound, bool mute);
 
 	//Activa un SFX
-	void playSound(std::string sound);
+	void playSound(std::string sound, int loops = 0);
 	//Activa un SFX a cierto volumen
 	/// <param name="modifier"> entre 0 y 1 </param>
-	void playSound(std::string sound, float modifier);
+	void playSound(std::string sound, float modifier, int loops = 0);
 	//Detiene un SFX
 	void haltSound(std::string sound);
 

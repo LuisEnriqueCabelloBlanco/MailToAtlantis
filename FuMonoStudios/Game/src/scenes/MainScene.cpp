@@ -132,8 +132,7 @@ void ecs::MainScene::init()
 	sdlutils().musics().at("office").setMusicVolume(50);
 	sdlutils().musics().at("printer").play();
 	sdlutils().musics().at("printer").setMusicVolume(50);*/
-	SoundEmiter::instance()->playMusic("office");
-	SoundEmiter::instance()->playMusic("printer");
+	SoundEmiter::instance()->playMusic("work");
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(gD().getDay());

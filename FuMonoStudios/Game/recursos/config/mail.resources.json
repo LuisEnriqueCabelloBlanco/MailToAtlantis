@@ -852,6 +852,10 @@
     {
       "id": "exploration",
       "file": "recursos/musics/ExploreTheAtlantis.wav"
+    },
+    {
+      "id": "work",
+      "file": "recursos/musics/WorkintheAtlantis.wav"
     }
   ]
 }
