@@ -145,6 +145,7 @@ void Wrap::update() {
 					ent_->getComponent<Paquete> ()->envolver ();
 					for (int i = 0; i < 4; i++)mul_->nextTexture ();	
 					tr_->setActiveChildren(false);
+					paqComp_->clearLayer(ecs::layer::BLUEPOINT);
 				}
 				else {					
 					paqComp_->puntosRojos (routeSelectedID);
