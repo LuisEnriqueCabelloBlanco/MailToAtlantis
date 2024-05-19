@@ -1,8 +1,5 @@
 #pragma once
 #include <utils/checkML.h>
-#include <architecture/Scene.h>
-#include <components/Transform.h>
-#include <components/Herramientas.h>
 #include <sistemas/PaqueteBuilder.h>
 #include <sistemas/DialogManager.h>
 

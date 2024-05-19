@@ -1,5 +1,4 @@
 #pragma once
-#include <architecture/Scene.h>
 #include <architecture/Entity.h>
 
 class RenderImage;

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <architecture/Component.h>
 #include <components/Render.h>
 #include <components/Paquete.h>
 #include <architecture/Entity.h>

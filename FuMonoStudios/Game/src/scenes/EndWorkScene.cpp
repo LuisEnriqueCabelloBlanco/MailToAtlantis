@@ -2,9 +2,6 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "EndWorkScene.h"
-#include <architecture/GeneralData.h>
-#include <architecture/Entity.h>
-#include <string>
 #include <sistemas/ComonObjectsFactory.h>
 #include <components/Paquete.h>
 #include <architecture/Game.h>

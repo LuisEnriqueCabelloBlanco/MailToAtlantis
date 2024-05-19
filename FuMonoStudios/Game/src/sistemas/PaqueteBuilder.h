@@ -2,12 +2,9 @@
 #ifndef DEV_TOOLS
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
-#include <architecture/Entity.h>
 #include <architecture/GeneralData.h>
 #include <components/Wrap.h>
 #include <components/MoverTransform.h>
-#include <components/Paquete.h>
-#include <json/JSON.h>
 
 
 

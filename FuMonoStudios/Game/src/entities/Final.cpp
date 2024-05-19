@@ -3,8 +3,8 @@
 #include <unordered_map>
 #include <string>
 #include <components/Render.h>
-#include "sistemas/ComonObjectsFactory.h"
-#include "sdlutils/SDLUtils.h"
+#include <sistemas/ComonObjectsFactory.h>
+#include <sdlutils/SDLUtils.h>
 
 std::unordered_map<Personaje, std::unordered_map<Felicidad, std::string>> Final::endTexts_;
 

@@ -4,8 +4,6 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include <functional>
-#include <string>
-#include <vector>
 #include <architecture/Scene.h>
 
 /*

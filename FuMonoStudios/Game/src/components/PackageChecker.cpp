@@ -1,18 +1,10 @@
 #include "PackageChecker.h"
-#include "../architecture/Component.h"
-#include "../architecture/Entity.h"
-#include "Transform.h"
-#include "Gravity.h"
-#include <components/MoverTransform.h>
-#include <components/Paquete.h>
 #include <components/SelfDestruct.h>
-#include <architecture/GeneralData.h>
 #include <functional>
 #include <components/ErrorNote.h>
 #include <QATools/DataCollector.h>
-#include <sistemas/SoundEmiter.h>;
+#include <sistemas/SoundEmiter.h>
 #include <sistemas/NPCeventSystem.h>
-#include <entities/PolvosAux.h>
 
 PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc, PipeManager* mngr) : 
 	toDis_(dis),mainSc_(sc), tutSc_(nullptr), mManager_(mngr)

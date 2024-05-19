@@ -2,10 +2,7 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include <sistemas/NPC.h>
-#include <architecture/GeneralData.h>
-#include <sdlutils/SDLUtils.h>
 #include <sistemas/NPCevent.h>
-#include <architecture/GeneralData.h>
 using namespace npc;
 npc::NPCMenorData::~NPCMenorData()
 {
