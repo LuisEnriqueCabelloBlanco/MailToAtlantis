@@ -297,10 +297,15 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 
 			if (canInteract) {
 				int numPersonajesSinHablar = 0;
-				for (int i = 0; i < gD().getNumDistritos(); i++) {
+				for (int i = 0; i < 7; i++) {
 					NPCdata* data = gD().getNPCData((Personaje)i);
-					if (data->felicidad != SeFue && !data->postConversation)
+					
+					// primero comprueba si eres algun npc de interior y si lo eres y estamos en < 5 dias out
+					if ((!(i == Secretario || i == Soldado || i == Contable) && gD().getDay() < 5) &&
+						data->felicidad != SeFue && !data->postConversation)
 						numPersonajesSinHablar++;
+
+					std::cout << i << numPersonajesSinHablar << std::endl;
 				}
 				if (!showTalkWarning || numPersonajesSinHablar < 1)
 				{

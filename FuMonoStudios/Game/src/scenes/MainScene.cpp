@@ -137,7 +137,7 @@ void ecs::MainScene::init()
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(gD().getDay());
 
-	//specialFactory_->setupDayObjects();
+	specialFactory_->setupDayObjects();
 }
 
 void ecs::MainScene::close() {
