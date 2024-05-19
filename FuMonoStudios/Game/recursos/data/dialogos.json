@@ -2414,17 +2414,29 @@
         ],
         "TextoArbolesIzq101": [ "Si todo en este sitio est$a muy bien cuidado, los trabajadores deben de ser muy buenos y tener buen sueldo." ],
 
-        "TextoArbolesIzq110": [ "Mondongo2110" ],
-        "TextoArbolesIzq111": [ "Mondongo2111" ],
+        "TextoArbolesIzq110": [ "Me pregunto si vivir$a aulg$un tipo de animal por esta zona." ],
+        "TextoArbolesIzq111": [ "Este distrito es donde he visto m$as panteones juntos, curioso." ],
 
-        "TextoArbolesIzq120": [ "Mondongo2120" ],
-        "TextoArbolesIzq121": [ "Mondongo2121" ],
+        "TextoArbolesIzq120": [
+            "Ser$ia muy raro que hubiesen p$ajaros aqu$i y en Dem4eter viviendo en los $arboles,",
+            "si estamos en un lugar debajo del mar."
+        ],
+        "TextoArbolesIzq121": [
+            "Me pregunto que los dem$as panteones son partes diferentes del palacio real,",
+            "supongo que s$i."
+        ],
 
-        "TextoArbolesIzq130": [ "Mondongo2130" ],
-        "TextoArbolesIzq131": [ "Mondongo2131" ],
+        "TextoArbolesIzq130": [
+            "Recuerdo en la ciudad donde antes viv$ia visitar varios parques con monumentos,",
+            "pero este sitio es bastante m$as chuclo, aunque no es un parque como tal."
+        ],
+        "TextoArbolesIzq131": [ "Me pregunto cu$antos a$%os de antiguedad tendr$a el palacio y el resto de monumentos de aqu$i." ],
 
-        "TextoArbolesIzq140": [ "Mondongo140" ],
-        "TextoArbolesIzq141": [ "Mondongo141" ]
+        "TextoArbolesIzq140": [
+            "De todos los lugares que he visitado,",
+            "este me parece ser el que tiene los edificios y estructuras m$as imponentes de toda la ciudad."
+        ],
+        "TextoArbolesIzq141": [ "Ser$ia una pena que se descuidaran los edificios de aqu$i, espero que duren muchos a$%os en mi estancia." ]
     },
     "ArbolesDer": {
 
@@ -2446,25 +2458,46 @@
             "Y no solo en este distrito, si no en toda la ciudad. Hay muy buenos jardineros y agricultores."
         ],
 
-        "TextoArbolesDer80": [ "Mondongo280" ],
-        "TextoArbolesDer81": [ "Mondongo281" ],
+        "TextoArbolesDer80": [
+            "Los panteones  y estructuras que veo por aqu$i me encantan.",
+            "est$an muy bien construidos."
+        ],
+        "TextoArbolesDer81": [ "Se nota que estoy cerca del palacio, porque est$a todo muy bien cuidado." ],
 
-        "TextoArbolesDer90": [ "Mondongo290" ],
-        "TextoArbolesDer91": [ "Mondongo291" ],
+        "TextoArbolesDer90": [
+            "Los panteones  y estructuras que veo por aqu$i me encantan.",
+            "Hay grandes arquitectos en esta ciudad, y se ven en estos edificios, enlas estructuras, y en los muros que rodean los distritos."
+        ],
+        "TextoArbolesDer91": [ "Est$a todo muy bien cuidado, el rey del palacio debe de tener buenos trabajadores que mantienen todo  impecable." ],
 
-        "TextoArbolesDer100": [ "Mondongo2100" ],
-        "TextoArbolesDer101": [ "Mondongo2101" ],
+        "TextoArbolesDer100": [
+            "Tuvieron que usar materiales de muy buena calidad, porque estos panteones y estructuras,",
+            "est$an muy bien construidos."
+        ],
+        "TextoArbolesDer101": [ "Si todo en este sitio est$a muy bien cuidado, los trabajadores deben de ser muy buenos y tener buen sueldo." ],
 
-        "TextoArbolesDer110": [ "Mondongo2110" ],
-        "TextoArbolesDer111": [ "Mondongo2111" ],
+        "TextoArbolesDer110": [ "Me pregunto si vivir$a aulg$un tipo de animal por esta zona." ],
+        "TextoArbolesDer111": [ "Este distrito es donde he visto m$as panteones juntos, curioso." ],
 
-        "TextoArbolesDer120": [ "Mondongo2120" ],
-        "TextoArbolesDer121": [ "Mondongo2121" ],
+        "TextoArbolesDer120": [
+            "Ser$ia muy raro que hubiesen p$ajaros aqu$i y en Dem4eter viviendo en los $arboles,",
+            "si estamos en un lugar debajo del mar."
+        ],
+        "TextoArbolesDer121": [
+            "Me pregunto que los dem$as panteones son partes diferentes del palacio real,",
+            "supongo que s$i."
+        ],
 
-        "TextoArbolesDer130": [ "Mondongo2130" ],
-        "TextoArbolesDer131": [ "Mondongo2131" ],
+        "TextoArbolesDer130": [
+            "Recuerdo en la ciudad donde antes viv$ia visitar varios parques con monumentos,",
+            "pero este sitio es bastante m$as chuclo, aunque no es un parque como tal."
+        ],
+        "TextoArbolesDer131": [ "Me pregunto cu$antos a$%os de antiguedad tendr$a el palacio y el resto de monumentos de aqu$i." ],
 
-        "TextoArbolesDer140": [ "Mondongo140" ],
-        "TextoArbolesDer141": [ "Mondongo141" ]
+        "TextoArbolesDer140": [
+            "De todos los lugares que he visitado,",
+            "este me parece ser el que tiene los edificios y estructuras m$as imponentes de toda la ciudad."
+        ],
+        "TextoArbolesDer141": [ "Ser$ia una pena que se descuidaran los edificios de aqu$i, espero que duren muchos a$%os en mi estancia." ]
     }
 }
