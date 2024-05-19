@@ -88,6 +88,7 @@ void GeneralData::setNewGameValues()
 	corrects_ = 0;
 	fails_ = 0;
 	dia_ = INITIAL_DAY;
+	rent_ = RENT_VALUE;
 	//reset de las mejoras
 	upgrades_.reset();
 }

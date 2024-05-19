@@ -1,6 +1,6 @@
 {
-  "Dia":2,
-  "Dinero":230,
+  "Dia":3,
+  "Dinero":90,
   "Personajes":{
     "Artesano":{
       "EventosCompletados":[
@@ -52,11 +52,11 @@
     },
     "Vagabundo":{
       "EventosCompletados":[
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0
+        3,0,0,0,0,0,0,0,0,0,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
-      "numMisionesAceptadas":0
+      "numMisionesAceptadas":1
     }
   }
 }
