@@ -256,6 +256,16 @@ npc::NPCdata::~NPCdata()
 	}
 }
 
+void npc::NPCdata::reset()
+{
+	felicidad = NoHabladoAun;
+	numFelicidad = 50;
+	postConversation = false;
+	numMisionesAceptadas = 0;
+	misionAceptada = false;
+	eventosCompletados = std::vector<std::pair<bool, int>>(eventosCompletados.size(), std::make_pair(false, 0));
+}
+
 void npc::NPCdata::loadDataFromSaveFile(JSONObject& obj)
 {
 	felicidad = gD().stringToFelicidad(obj["Felicidad"]->AsString());

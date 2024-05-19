@@ -69,6 +69,7 @@ namespace npc {
 		virtual void iterateDialogues() = 0;
 		virtual void setupDayData() = 0;
 		virtual NPCevent* getEvent() = 0;
+		virtual void reset();
 		/// <summary>
 		/// Actualiza los datos del npc a los indicados en el fichero de guardado
 		/// </summary>

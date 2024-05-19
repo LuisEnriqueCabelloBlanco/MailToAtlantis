@@ -13,6 +13,7 @@
 #include <json/JSON.h>
 #include <json/JSONValue.h>
 #include <bitset>
+#include <architecture/Exceptions.h>
 
 class DialogManager;
 class PaqueteBuilder;
@@ -283,6 +284,7 @@ public:
 
 	void newGame();
 private:
+	void setNewGameValues();
 	void addMoney(int cant) { dinero_ += cant; }
 	void reduceMoney(int cant) { dinero_ -= cant; }
 

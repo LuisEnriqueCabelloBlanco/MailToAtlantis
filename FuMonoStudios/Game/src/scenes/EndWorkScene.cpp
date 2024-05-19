@@ -58,6 +58,7 @@ void EndWorkScene::init() {
 
 	//Luis:no se si se deberia avanzar antes o despues de guardar
 	gD().setDay(gD().getDay() + 1);
+	gD().saveGame();
 }
 
 void EndWorkScene::close()

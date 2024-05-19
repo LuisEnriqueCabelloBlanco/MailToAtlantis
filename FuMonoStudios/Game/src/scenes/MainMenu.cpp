@@ -64,7 +64,15 @@ void ecs::MainMenu::init()
 	auto loadSave = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Cargar partida guardada", 50, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
-		gD().loadSaveFile();
+		try {
+			gD().loadSaveFile();
+		}
+		catch (save_Missing e) {
+			std::string god = e.what();
+			god += "se cargara una nueva partida desde el dia 1";
+			SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "ERROR",god.c_str(), sdlutils().window());
+			gD().newGame();
+		}
 		}, "click", textColor);
 	factory_->addHilghtOnHover(loadSave);
 	factory_->addHoverColorMod(loadSave);

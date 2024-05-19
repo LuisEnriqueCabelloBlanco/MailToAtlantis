@@ -16,16 +16,7 @@
 
 GeneralData::GeneralData()
 {
-	// Esto habra que cargarlo desde un archivo de guardado
-	dinero_ = INITIAL_MONEY;
-	finalID_ = INITIAL_FINAL;
-	failsMargin_ = INITIAL_FAILS_MARGIN;
-	corrects_ = 0;
-	fails_ = 0;
-	dia_ = INITIAL_DAY;
-	rent_ = 100;
-	numTubos_ = INITIAL_TUBE_AMOUNT;
-	upgrades_.reset();
+	setNewGameValues();
 	paramVolMusic_ = 50;
 	paramVolSfx_ = 50;
 
@@ -75,24 +66,30 @@ void GeneralData::loadSaveFile()
 		loadNPCsData(personajesRoot);
 	}
 	else {
-		throw std::runtime_error("error al cargar los datos del fichero de guardado");
+		throw save_Missing("error al cargar los datos del fichero de guardado");
 	}
 }
 
 void GeneralData::newGame()
 {
-	dia_ = 1;
-	dinero_ = INITIAL_MONEY;
-
-	for (int i = 0; i < 7; i++)
-	{
-		NPCdata* data = getNPCData((Personaje)i);
-		data->felicidad = NoHabladoAun;
-		data->numFelicidad = 50;
-		int numEventos = i < 2 ? 14 : 5;
-		data->eventosCompletados = std::vector<std::pair<bool, int>>(numEventos, std::make_pair(false, 0));
-		data->numMisionesAceptadas = 0;
+	setNewGameValues();
+	for (auto npcDataVal : npcData) {
+		npcDataVal.second->reset();
 	}
+}
+
+void GeneralData::setNewGameValues()
+{
+	numTubos_ = INITIAL_TUBE_AMOUNT;
+
+	dinero_ = INITIAL_MONEY;
+	finalID_ = INITIAL_FINAL;
+	failsMargin_ = INITIAL_FAILS_MARGIN;
+	corrects_ = 0;
+	fails_ = 0;
+	dia_ = INITIAL_DAY;
+	//reset de las mejoras
+	upgrades_.reset();
 }
 
 void GeneralData::updateMoney()
