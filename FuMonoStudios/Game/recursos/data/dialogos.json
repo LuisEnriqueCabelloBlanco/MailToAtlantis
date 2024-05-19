@@ -91,7 +91,7 @@
       "Jones, ay$udame a m$i y a las lechuzas a salvar al pueblo de este rey. Si sigues ayud$andonos, te revelar$e la verdad de las lechuzas.",
       " $!Pero ahora toca celebrar, amigo! $!Vamos a beber hasta quedarnos ciegos!",
       " $!Toma, amigo! $!Te mereces una recompensa por habernos ayudado!",
-      "*recibes un sello multicolor. Ser$a util para ahorrar tiempo buscando el color del sello.*",
+      "recibes un sello multicolor. Ser$a util para ahorrar tiempo buscando el color del sello.",
       " $!Redirige a este distrito de Hestia alg$un paquetillo con comida de Hermes, que hoy estamos de celebraci$on y hay que comer como cerdos!"
     ],
     "PostConversacionDia7": [
@@ -297,7 +297,7 @@
     ],
     "Dia10": [
       "Buenos d$ias Jones. El rey hoy te quiere recompensar por tu lealtad en estos tiempos. Toma",
-      "*Recibes un manual de trabajo mejorado. Lo ver$e en la oficina*",
+      "Recibes un manual de trabajo mejorado. Lo ver$e en la oficina",
       "Que no se te suba mucho a la cabeza. Sigues teniendo que ser obediente aun as$i.",
       "Adem$as, tengo entendido que ya puedes mandar paquetes al distrito de Poseid$on. Es una gran responsabilidad.",
       "Jones. Necesito tu ayuda. Va siendo hora de que sepas el plan que he tenido en las sombras durante todo este tiempo.",
@@ -330,36 +330,36 @@
       "Como te he dicho, necesito 3 paquetes de materiales que vayan a Hefesto. Son para la chapa de la nave. M$andalos a Poseid$on."
     ],
     "Dia12": [
-      "Buenos d$ias Jones. Nos acercamos al progreso.",
+      "Buenos d$ias Jones. Vamos progresando...",
       "Llevamos un buen progreso en la nave. Ahora tenemos que abastecernos de provisiones.",
       "He comprado a un campesino con el dinero que tenemos unos paquetes de alimentos. Saldr$an 2 en total. Redir$igelos a Poseid$on, que el muy listillo ha puesto Hermes en vez de Poseid$on.",
-      "Ay de verdad... Estos campesinos est$upidos... Solo sirven para cultivar y consumir...",
-      "Bueno ya sabes. Comida que vaya Hermes, redirige a Poseid$on.",
-      "Ah, su nombre es Pancracio Warawa. Para que te sea m$as f$acil moverlos."
+      "Ay, de verdad... Estos campesinos est$upidos... Solo sirven para cultivar y consumir...",
+      "Bueno, ya sabes. Toda la comida que vaya Hermes, redir$igela a Poseid$on.",
+      "Est$an a nombre de Pancracio Warawa. Para que te sea m$as f$acil moverlos."
     ],
     "PostConversacionDia12": [
-      "Redirige la comida que vaya a Hermes a Poseid$on. Dos de ellos. Los manda un tal Pancracio Warawa."
+      "Redirige la comida que vaya a Hermes a Poseid$on. Dos paquetes. Los manda un tal Pancracio Warawa."
     ],
     "Dia13": [
       "Jones. No he podido dormir. No puedo parar de trabajar.",
-      "Est$a casi casi a punto la nave. El gran d$ia ser$a dentro de dos d$ias. Necesito un d$ia para hacer pruebas. Le tengo que mandar muestras de la nave a varios ingenieros para que me digan si es segura o no.",
+      "Est$a casi casi a punto la nave. El gran d$ia ser$a dentro de dos d$ias. Necesito antes hacer pruebas. Le tengo que mandar muestras de la nave a varios ingenieros para que me digan si es segura o no.",
       "Son los $ultimos preparativos. He mandado muchos paquetes, 3 en total. Asegurate que todos los paquetes con mi nombre van a su lugar.",
-      "No la lies."
+      "No la l$ies."
     ],
     "PostConversacionDia13": [
-      "Jones, todos los paquetes que he mandado, los 3 que he mandado. Haz que lleguen bien."
+      "Jones, todos los paquetes que he mandado... los 3 que he mandado. Haz que lleguen bien."
     ],
     "Dia14": [
       " $!Por fin llegas! Jones no hay tiempo que perder.",
-      "Te he estado ocultando la parte m$as importante de nuestro plan. No se como te la vas a tomar.",
-      "Es la parte de desaparecer de la ciudad. Parece obvio pero la gente debe estar distraida mientras desaparecemos. Tardaremos un tiempo en arrancar la nave, as$i que deben tener algo que les desv$ie la atenci$on",
+      "Te he estado ocultando la parte m$as importante de nuestro plan. No s$e c$omo te la vas a tomar.",
+      "Es la parte de desaparecer de la ciudad. Parece obvio pero la gente debe estar distra$ida mientras desaparecemos. Tardaremos un tiempo en arrancar la nave, as$i que deben tener algo que les desv$ie la atenci$on",
       " $?Y qu$e mejor que una buena explosi$on para tener a un pueblo hablando?",
       "Te he preparado un paquete con una bomba cronometrada dentro de $el. Quiero que la actives y salgas pitando de all$i. Vamos a reventar tu oficina. No la vas a necesitar m$as.",
-      "Mi paquete no tendr$a ning$un sello. Solo uno de peligro, sabr$as cual es. Abrelo y pulsa el bot$on rojo despu$es del azul. PRIMERO AZUL, LUEGO ROJO. Recuerda.",
+      "Mi paquete no tendr$a ning$un sello. Solo uno de peligro, sabr$as cual es. $Abrelo y pulsa el bot$on rojo despu$es del azul. PRIMERO AZUL, LUEGO ROJO. Recuerda.",
       "Una vez lo pongas, tendr$as 30 segundos para salir pitando. Nos veremos en la salida al agua que se encuentra en Hefesto. Las llamas distraer$an a la gente mientras nos vamos.",
       "La gente estar$a bien. No te preocupes. Se lo he comentado al rey.",
       "Jones, hemos pasado mucho como para que falles ahora. No fallar$as. Estamos a horas de la grandeza de los dioses. La grandeza de Poseid$on.",
-      "No defraudes. $?PRIMERO AZUL LUEGO ROJO!"
+      "No defraudes. $!PRIMERO AZUL LUEGO ROJO!"
     ],
     "PostConversacionDia14": [
       "Jones, un paquete m$io, lo sabr$as cuando lo veas. Primero el azul y luego el rojo. Acu$erdate y luego echa a correr. Nos veremos en las aguas de m$as all$a de Hefesto."
@@ -368,14 +368,14 @@
   "Campesino": {
     "Presentacion": [
       "Pero bueno tu debes de ser nuevo por aqu$i, no me suena haberte visto antes.",
-      "Anda comet$e una de mis cosechas a ver si te ayuda un poco hoy que tienes cara de muerto, aunque no me extra$%a $ultimamente los distritos est$an muy revueltos",
-      "Por cierto que no me hab$ia presentado, soy Pancracio Warawa. Un gusto hijo.",
-      "Venga a pasar buena noche, y espabila que la vida te va ha comer!"
+      "Anda c$omete una de mis cosechas a ver si te ayuda un poco, que tienes cara de muerto. Aunque no me extra$%a $ultimamente los distritos est$an muy revueltos",
+      "Por cierto, que no me hab$ia presentado, soy Pancracio Warawa. Un gusto hijo.",
+      "Venga, a pasar buena noche y espabila, $!que la vida te va ha comer!"
     ],
 
         "FelicidadMinima": [
-            "Al llegar a la granja ves a Pancracio consternado, huele a Alcohol, lleva una botella en la mano y no se encuentra su familia en la granja",
-            "YYYYYYYY, Qu$E Tal ESt$As, hyp, yo estoy CONTENTO AHJAJAAJAja.",
+            "Al llegar a la granja ves a Pancracio consternado. Huele a Alcohol. Lleva una botella en la mano y no se encuentra su familia en la granja",
+            "EYYYYYYYY, Qu$E Tal ESt$As, hyp, yo estoy CONTENTO AHJAJAAJAja.",
             " $?El huerto?, jjiijijiJIJ Blurgh, ah$i est$a.",
             "El huerto no parece estar en muy buen estado, al igual que Pancracio",
             " $!Qu$e miras! $!$!$?eh?!! $?Qu$e miras?",
@@ -384,39 +384,39 @@
             "Vete, vete, vete..."
         ],
         "FelicidadMaxima": [
-            "Paco, la verdad es que no soy mucho de ponerme sentimental pero gracias toda tu ayuda con los paquetes he podido prosperar como jam$as li imagin$e.",
+            "Paco, la verdad es que no soy mucho de ponerme sentimental, pero gracias toda tu ayuda con los paquetes he podido prosperar como jam$as lo imagin$e.",
             "Mi mujer est$a much$isimo mejor, mis cosechas resplandecen m$as que las joyas m$as preciosas y adem$as voy a poder tener una familia como siempre quise.",
-            "Todo esto es gracias a tu gran coraz$on, gracias a que ayudas a la gente de los distritos exteriores sin buscar nada acambio, no como la mayor parte de esta podrida sociedad.",
-            "No es mucho pero me gustar$ia darte esto. Est$as modernidades yo no las entiendo, se supone que es una balanza digitat o algo as$i. Te dir$a justo lo que pesa algo."
+            "Todo esto es gracias a tu gran coraz$on, gracias a que ayudas a la gente de los distritos exteriores sin buscar nada a cambio, no como la mayor parte de esta podrida sociedad.",
+            "No es mucho, pero me gustar$ia darte esto. Estas modernidades yo no las entiendo, se supone que es una balanza digital o algo as$i. Te dir$a justo lo que pesa algo."
         ],
         "Eventos": {
 
             "1": [
                 "Paco necesito un favorcillo hijo, a ver si me puedes ayudar",
-                "He enviado unas hortalizas a un primo mio que vive en Hestia, pero entre tanto pensar y pensar en otras cosas me confund$i.",
-                "Si recibes un paquete mio de alimentos con direccion a la calle Medusia la santa,",
+                "He enviado unas hortalizas a un primo m$io que vive en Hestia, pero entre tanto pensar y pensar en otras cosas me confund$i.",
+                "Si recibes un paquete m$io de alimentos con direcci$on a la calle Medusia la santa,",
                 "tu ponle el sello para que vaya a Gambon III, que para algo que cosecho, que al menos lo pruebe a quien va dirigido de verdad"
             ],
             "2": [
                 " $Ultimamente mi rastrillo est$a empezando a chochear.",
                 "Los a$%os les pesan tanto a las cosas como a las personas.",
                 "A los artesanos les van a llegar unos paquetes de materiales, entre los que se encuentran una buena cantidad de rastrillos.",
-                "Esos lameculos amigos de los nobles no echar$an un rastrillo extraviado en falta, tu ya me entiendes. Total, ni que esas estatuas sean demasiado importantes"
+                "Esos lameculos amigos de los nobles no echar$an un rastrillo extraviado en falta, t$u ya me entiendes. Total, ni que esas estatuas sean demasiado importantes"
             ],
             "3": [
                 "Hoy esos idiotas de los intermediarios han subido el precio de mis productos,",
                 "en los mercados de los barrios bajos ya no es solo que no lo puedan comprar los habitantes,",
                 "es que hasta a los propios puestos se les hace el precio excesivo,",
-                "si se desviase alg$un paquete de comida Apolo hac$ia los distritos como Hestia tampoco creo que se muriese nadie.",
+                "si se desviase alg$un paquete de comida de Apolo hacia distritos como Hestia tampoco creo que se muriese nadie.",
                 "gui$%o gui$%o codo codo."
             ],
             "4": [
-                "Unos amigos alados de cierto grupo me han dicho que por los barrios m$as bajos andan bajos de fondos de  medicinas.",
+                "Unos amigos alados de cierto grupo me han dicho que por los barrios m$as bajos andan bajos de fondos de medicinas.",
                 "Ya estamos con las mismas tonter$ias de siempre,",
                 "a Hermes van a llegar una cantidad de medicinas absurda solamente porque hay un brote de gripe gambil.",
                 "Y mientras tanto aqu$i abajo con enfermedades mucho peores muri$endonos del asco.",
                 "Esos nobles no se merecen ni la d$ecima parte de lo que les llega.",
-                "Nosotros en Demeter con dos de sus paquetes ya tendr$iamos suficiente."
+                "Nosotros en Dem$eter con dos de sus paquetes ya tendr$iamos suficiente."
             ],
             "5": [
                 " $!Paco, Paco, Paco!",
@@ -430,26 +430,26 @@
         "GenericoMalo": {
             "1": [
                 "Buenos d$ias a quien los tenga, que no voy a ser yo.",
-                " $ultimamente mis cosechas no est$an para tirar cohetes,",
+                " $Ultimamente mis cosechas no est$an para tirar cohetes,",
                 "anda prueba un poco de esto que ha crecido vete t$u a saber c$omo.",
-                "Malo $?eh? !PUES QU$E QUIERES QUE HAGA SI NO ME DA PA M$AS, QUIZ$a SI LOS PAQUETES LLEGARAN CORRECTAMENTE SALDR$iA MEJOR!",
-                "ay, hijo, perdona, $ultimamente no duermo demasiado y me cuesta cada vez m$as mantenerme cuerdo,",
+                "Malo $?eh? $!PUES QU$E QUIERES QUE HAGA SI NO ME DA PA M$AS, QUIZ$A SI LOS PAQUETES LLEGARAN CORRECTAMENTE SALDR$IA MEJOR!",
+                "Ay, hijo, perdona, $ultimamente no duermo demasiado y me cuesta cada vez m$as mantenerme cuerdo,",
                 "las cosechas no van demasiado bien y mi mujer me presiona porque cada vez tenemos menos dinero."
             ],
             "2": [
                 "Hay que joderse que llevo 2 semanas sin dormir, esto est$a cada vez pero, mi mujer est$a que se tira de los pelos con las cuentas de la casa,",
                 "mi huerto est$a que parece el descampao de enfrente, tiene m$as malas hierbas que buenas, se las quito y vuelven a crecer.",
-                "Encima los intermediarios, los pu$%eteros intermediarios siempre dando por saco, que si les rob$e la $ultima vez d$andoles mercanc$ia en mal estado.",
+                "Encima los intermediarios, los pu$%eteros intermediarios siempre dando por saco. Que si les rob$e la $ultima vez d$andoles mercanc$ia en mal estado...",
                 "Ahora tengo que devolverles el dinero, que si a esto le llamo yo comida, que c$omo me atrevo a cobrar por esta bazofia.",
                 " $!AAAY  QUE PENA LA MIA!",
-                "como si no fuera suficiente la miseria que pido por lo poco que tengo encima van y se me quejan.",
+                "Como si no fuera suficiente la miseria que pido por lo poco que tengo encima van y se me quejan.",
                 "Si es que as$i no se puede, as$i no se puede. No s$e si son los cultivos, la tierra, o si soy yo.",
-                "Pero esto no puede no puede seguir as$i..."
+                "Pero esto no puede... no puede seguir as$i..."
             ],
             "3": [
                 "Ay, hijo, si hubiera tenido tu labor a tu edad, de las que me habr$ia librado.",
-                "En el pasado no lo tuve f$acil, comet$i muchos errores, jorobar si los comet$i.",
-                "Pero sal$i de ellos, me rescataron.",
+                "En el pasado no lo tuve f$acil. Comet$i muchos errores, jorobar si los comet$i.",
+                "Pero sal$i de ellos. Me rescataron.",
                 "Ya me rescataron una vez de una situaci$on horrenda, consegu$i este trabajo y conoc$i a mi mujer,",
                 "de verdad parec$ia que la vida me hab$ia dado otra oportunidad.",
                 "Pero ya lo ves, estas tierras en mal estado no me da para mantenernos a m$i y a mi mujer en buenas condiciones.",
@@ -469,9 +469,9 @@
             "2": [
                 "Buenos d$ias a quien los tenga, estos jodidos intermediarios no dejan de joderme a cada rato,",
                 "cada d$ia m$as baratos vendo yo mis productos y m$as caros los compran otros.",
-                "Pero bueno mejor dejar de quejarse por lo que no puedes cambiar, , $?qu$e tal andamios?.",
+                "Pero bueno mejor dejar de quejarse por lo que no puedes cambiar, $?qu$e tal andamos?.",
                 "Por aqu$i vamos tirando regular, mi mujer ha enfermado y est$a en la cama,",
-                "pero bueno con las medicinas que hemos comprado parece ir mejorando poco a poco.",
+                "pero bueno, con las medicinas que hemos comprado parece ir mejorando poco a poco.",
                 "Y bueno, $ultimamente he estado paseando por los barrios bajos, la situaci$on podr$ia ser mejor en general.",
                 "Pero bueno, en peores plazas hemos toreado los de estos lares."
             ],
@@ -479,26 +479,26 @@
                 "Aaaay hijo, quien tuviera tu edad y trabajo, por aqu$i las cosas van a pedales.",
                 "Mi mujer lleva un tiempecillo algo mosqueada, quiere tener un hijo, y mira que es dif$icil querer tener un ni$%o m$as de lo que lo quiero yo.",
                 "Pero vamos a ver, estos campos no dan para alimentar tantas cabezas, casi no nos da para alimentarnos a nosotros.",
-                "Traer una vida para no poder atenderla ..., no me lo perdonar$ia.",
+                "Traer una vida para no poder atenderla... no me lo perdonar$ia.",
                 "Pero bueno, disfruta de la juventud que algunos no tenemos, a tener un buen d$ia."
             ]
         },
         "GenericoBueno": {
             "1": [
-                "Pero bueno, a qui$en tenemos aqu$i. $?qu$e tal la vida hijo?",
+                "Pero bueno, a qui$en tenemos aqu$i. $?Qu$e tal la vida hijo?",
                 "Por aqu$i todo va bastate bien, mira prueba esto que acabo de recoger del campo.",
-                "Vaya parece que si te ha gustado",
-                " $ultimamente lo que cosecho sabe mejor, no se si ser$an los recursos o la tierra, pero estamos que nos salimos,",
+                "Vaya, parece que s$i te ha gustado",
+                " $Ultimamente lo que cosecho sabe mejor, no s$e si ser$an los recursos o la tierra, pero estamos que nos salimos,",
                 "esos intermediarios que tanto por saco me dan est$an empezando a soltar un poco m$as por mis productos."
             ],
             "2": [
                 "Buenas tardes chaval$in, estos intermediarios est$an cada vez m$as desesperados por comprarme los productos.",
                 "Oye, $?qu$e te parecer$ia un plan a futuro para hacer que los habitantes de los barrios exteriores puedan comprar mis productos a un precio m$as asequible?",
-                "Ahora mismo ser$ia insostenible para mi granja, pero tal vez en un futuro y con ayuda de ... unos amigos, es posible que pueda con la ayuda de esos amigos.",
+                "Ahora mismo ser$ia insostenible para mi granja, pero tal vez en un futuro y con ayuda de... unos amigos. Es posible que pueda con la ayuda de esos amigos.",
                 "Pero bueno, no te entretengo m$as, a pasar buena tarde."
             ],
             "3": [
-                "Ay hijo, qu$e alegr$ia y qu$e ilusi$on.",
+                "Ay hijo, que alegr$ia y que ilusi$on.",
                 "Con toda tu ayuda no solo mi campo est$a mejor, sino que todos los cultivos prosperan.",
                 "Puede que tu trabajo con esos paquetes no sea tan agotador como la vida en el campo,",
                 "pero realmente puedes llegar a marcar la diferencia desde ah$i.",
@@ -508,41 +508,41 @@
         "GenericoMaxiBueno": {
             "1": [
                 "Yeeeeeeepa, que tal estamos m$aquina",
-                "Prueba esto que est$an los clientes que me los quitan de las manos lo intemediarios,",
-                "les soplo m$as de diez veces m$as de dinero que antes, $?Que cu$anto cuesta?, t$u pruebalo.",
-                "Bueno tranquilo tranquilo, con la velocidad que te lo has comido veo que te encanta",
+                "Prueba esto, que est$an los clientes que me los quitan de las manos.",
+                "Les soplo m$as de diez veces m$as de dinero que antes. $?Que cu$anto cuesta? T$u pruebalo.",
+                "Bueno, tranquilo, tranquilo, con la velocidad que te lo has comido veo que te encanta",
                 "Bueno $?eh?, tengo unos amigos, el grupo de las lechuzas se hacen llamar,",
                 "resulta que junto a ellos estamos llevando un plan ..., digamos que muy discreto.",
-                "Consiste en que los menos favorecidos pod$ais disfrutar de mis productos a un precio menos abusivos de los que ponen los intermediarios,",
-                "no hables mucho del tema, es un secreto.",
+                "Consiste en que los menos favorecidos pod$ais disfrutar de mis productos a un precio menos abusivos de los que ponen los intermediarios.",
+                "No hables mucho del tema, es un secreto.",
                 "Toma, hoy estoy de buen humor, te puedes llevar unas pocas cosechas m$as gratis, $!A pasar buen d$ia!"
             ],
             "2": [
-                " $!Ese Paco c$omo anda!",
-                "Por aqu$i andamos muy bien, no veas c$omo han mejorado mis cultivos en poco tiempo, $!mira que es casualidad,",
-                "pero vaya, si resulta que desde que est$as por aqu$i mi situci$on a ido de bien a mejor!, traes buena suerte chaval.",
-                "Mi econom$ia est$a mejor que nunca, madre m$ia c$omo va subiendo el precio que est$an dispuestos a pagar por mis productos esos intermediarios,",
-                "se deben vender bien por los distr$itos c$entricos.",
-                "Y bueno, por el exterior la econom$ia anda un poco peor,",
-                "pero con la ayuda de unos amigos que se hacen llamar el grupo de las lechuzas estamos empezando a ayudar a comer a buen precio a los desfavorecidos.",
-                " $!Venga Paco, que te sea leve el trabajo ma$%ana!, $!y recuerda, no has escuchado nada de un grupo de lechuzas!"
+                " $!Ese Paco! $?C$omo andas?",
+                "Por aqu$i estamos muy bien, no veas c$omo han mejorado mis cultivos en poco tiempo, $!mira que casualidad!",
+                "Pero vaya, $!si resulta que desde que est$as por aqu$i mi situci$on a ido de bien a mejor!, traes buena suerte chaval.",
+                "Mi econom$ia est$a mejor que nunca, madre m$ia c$omo va subiendo el precio que est$an dispuestos a pagar por mis productos esos intermediarios.",
+                "Se deben vender bien por los distr$itos c$entricos.",
+                "Y bueno, por el exterior la econom$ia anda un poco peor.",
+                "Pero, con la ayuda de unos amigos que se hacen llamar el grupo de las lechuzas estamos empezando a ayudar a comer a buen precio a los desfavorecidos.",
+                " $!Venga Paco, que te sea leve el trabajo ma$%ana! Y recuerda, no has escuchado nada de un grupo de lechuzas."
             ],
             "3": [
                 "Pero bueeeeeno, si es el Paco.",
                 "Que alegr$ia la m$ia, Paco que vamos a tener un hijo, mi mujer est$a ah$i dentro, nos dimos cuenta porque la pobre estaba un poco pochilla.",
                 " $?Y sabes lo mejor?, $!Qu$e tal y como nos van las cosas podemos incluso permitirnos otro en un futuro no muy lejano!",
                 "Madre m$ia Paco, quien me lo iba a decir, que en tan poco tiempo me iba a dar la vida un vuelco tan gordo.",
-                "Estoy que no me lo creo, espero que junto a mis amigos del grupo de las lechuzas podamos empezar a crear un futuro mejor para mis ni$%os,",
-                "sin reyes ni amos tiranos que subleven a la poblaci$on y la condenen a vivir en la miseria.",
+                "Estoy que no me lo creo, espero que junto a mis amigos del grupo de las lechuzas podamos empezar a crear un futuro mejor para mis ni$%os.",
+                "Sin reyes ni amos tiranos que subleven a la poblaci$on y la condenen a vivir en la miseria.",
                 "Sea como fuere, t$u no has escuchado nada de un grupo que mira con desd$en al actual rey.",
-                "Larga vida y prosperidad amigo, ojal$a te trate la vida igual de bien que a mi estos $ultimos tiempos."
+                "Larga vida y prosperidad amigo, ojal$a te trate la vida igual de bien que a m$i estos $ultimos tiempos."
             ]
         }
     },
     "Artesano": {
         "Presentacion": [
-            "Hola querido! Bienvenido a mi humilde taller! En qu$e puedo ayudarte hoy?",
-            "Espera... Tu debes de ser el nuevo verdad? Soy Paulino Tinteiros, el maestro de estos mares.",
+            "Hola querido! Bienvenido a mi humilde taller! $?En qu$e puedo ayudarte hoy?",
+            "Espera... T$u debes de ser el nuevo, $?verdad? Soy Paulino Tinteiros, el maestro de estos mares.",
             "Mis tent$aculos son como pinceles y mis obras ser$an el patrimonio de Atlantis al paso de los a$%os!"
         ],
         "FelicidadMinima": [
@@ -550,11 +550,11 @@
             "Todo ha sido un desastre... Lo siento... Pero no puedo... No puedo m$as... Por favor... d$ejame... d$ejame solo..."
         ],
         "FelicidadMaxima": [
-            " $!Oh, por todos los oc$eanos! $!Incre$ible! $!Fant$astico! $!Al fin! $!Por fin te veo con mis propios ojos!",
-            " $!Un ser humano de verdad, aqu$i, en este humilde taller! $!No estaba loco, no!",
+            " $!Oh! $!Por todos los oc$eanos! $!Incre$ible! $!Fant$astico! $!Al fin! $!Por fin te veo con mis propios ojos!",
+            " $!Un ser humano de verdad aqu$i, en este humilde taller! $!No estaba loco, no!",
             "Y no solo eso, $!mira a tu alrededor! $!Materiales en abundancia, listos para comenzar una nueva era art$istica! $!Imagina las creaciones que podr$iamos hacer juntos!",
-            "Gracias por mostrarme tu secreto y tranquilo a estas horas nadie nos habr$a visto. Adem$as, no te preocupes, no le dire a nadie esto, Paco amigo mio",
-            "Por cierto, me gustar$ia que tuvieras esto. Es una cinta que te permite envolver rapidamente cualquier paquete al acercarla a $el. Espero que te sirva."
+            "Gracias por mostrarme tu secreto y tranquilo, a estas horas nadie nos habr$a visto. Adem$as, no te preocupes, no le dir$e a nadie esto, Paco, amigo m$io",
+            "Por cierto, me gustar$ia que tuvieras esto. Es una cinta que te permite envolver r$apidamente cualquier paquete al acercarla a $el. Espero que te sirva."
         ],
         "Eventos": {
             "1": [
@@ -563,8 +563,8 @@
                 " $?Sabes qu$e? No ser$ia el fin del mundo si un solo paquete de materiales se extraviara y terminara por alg$un remoto error en este taller, $?verdad?"
             ],
             "2": [
-                " $!No brilla! $!No resplandece! $?Y las joyas? $?Y las Perlas? Necesito un favor, creo que ya te haces una idea,",
-                "no quiero ponerte en un aprieto pero es que mi jefe no para de abaratar la mercanc$ia...",
+                " $!No brilla! $!No resplandece! $?Y las joyas? $?Y las Perlas? Necesito un favor, creo que ya te haces una idea.",
+                "No quiero ponerte en un aprieto pero es que mi jefe no para de abaratar la mercanc$ia...",
                 " $?A qui$en quiere mi jefe enga$%ar con esta baratija? Consigueme desviar un paquete, se que no te decepcionar$e!"
             ],
             "3": [
@@ -574,16 +574,16 @@
             ],
             "4": [
                 " $!Caracolas! S$e que esto te sonar$a mal Paco pero necesito que me hagas un favor.",
-                "Un cliente de Hermes nos pidi$o hacerle una escultura con tungsteno, pero entre las prisas de mi jefe y mi propia confusi$on acaba haci$endola de hierro.",
+                "Un cliente de Hermes nos pidi$o hacerle una escultura con tungsteno, pero entre las prisas de mi jefe y mi propia confusi$on acab$e haci$endola de hierro.",
                 "El exterior es casi el mismo pero pesa mucho menos de lo que deber$ia el paquete.",
                 "Por favor haz la vista gorda con esa balanza tuya."
             ],
             "5": [
                 " $!Por todos los corales! como puedo ser tan despistado.",
                 "Un cliente de Apolo nos pidi$o un jarr$on de vidrio, algo muy fr$agil y delicado.",
-                "Sin embargo a la hora de enviarlo se me olvido poner el sello de fragil para que se envuelva con cuidado.",
-                "Por favor, crees que podr$ias embalar mi paquete aunque no tenga el sello de fragilidad.",
-                "No quiero causarte problemas pero es que sino me echaran una bronca gigantequisima."
+                "Sin embargo a la hora de enviarlo se me olvid$o poner el sello de fr$agil para que se envuelva con cuidado.",
+                "Por favor, crees que podr$ias embalar mi paquete, aunque no tenga el sello de fragilidad.",
+                "No quiero causarte problemas, pero es que si no me echaran una bronca gigantequisima."
             ]
         },
         "GenericoMalo": {
@@ -595,36 +595,36 @@
                 "Ahora d$ejame, prefiero estar solo..."
             ],
             "2": [
-                "Maldita sea, el otro d$ia se rieron de mi $ultima creaci$on, una fantastica obra de arte dedicada a los mitologicos humanos, lo llam$e la Vid de Alga Angel.",
+                "Maldita sea, el otro d$ia se rieron de mi $ultima creaci$on, una fant$astica obra de arte dedicada a los mitol$ogicos humanos. Lo llam$e la Vid de Alga $Angel.",
                 "Entre t$u y yo, mi querido amigo, no todos comprenden la verdadera belleza de mis creaciones...",
-                "Lo lamento mucho pero hoy estoy completamente sumergido en el trabajo, cada vez que no env$ias los paquetes la presi$on del taller recae m$as sobre m$i,",
-                "por favor, manda los paquetes querido."
+                "Lo lamento, mucho pero hoy estoy completamente sumergido en el trabajo, cada vez que no env$ias los paquetes la presi$on del taller recae m$as sobre m$i.",
+                "Por favor, manda los paquetes, querido."
             ],
             "3": [
                 "Sabes, amigo, el otro d$ia tuve una experiencia bastante desagradable. Un cliente vino a recoger su pedido y qued$o muy decepcionado.",
                 "Resulta que los recortes en materiales que est$a implementando mi jefe $ultimamente est$an afectando a la calidad de mis creaciones.",
-                "Ahora mi jefe me metera cada vez m$as y m$as prisa, sin dejarme trabajar como a mi me gusta.",
+                "Ahora mi jefe me meter$a cada vez m$as y m$as prisa, sin dejarme trabajar como a m$i me gusta.",
                 "Si hubiera sabido que esto iba a ser as$i jam$as me habr$ia vuelto artesano."
             ]
         },
         "GenericoNormal": {
             "1": [
-                " $!Hola, amigo! $?Qu$e opinas de Gargafiel Mustaki? El otro d$ia me lo encontr$e en el PezerKing, $!s$i, en el mism$isimo PezerKing!",
+                " $!Hola, amigo! $?Qu$e opinas de Gargafiel Mustaki? El otro d$ia me lo encontr$e en el PezerKing. $!S$i! $!En el mism$isimo PezerKing!",
                 "Fue una sorpresa verlo por all$i despu$es de tanto tiempo.",
                 " $?Qui$en iba a decir que el campesino que una vez lleg$o a mi taller buscando un poco de orientaci$on se convertir$ia en nada menos que el mism$isimo secretario del rey?",
-                "Es incre$ible c$omo la vida nos sorprende a veces. Aunque ni siquiera me dirigi$o la palabra, creo que el poder le ha cambiado"
+                "Es incre$ible c$omo la vida nos sorprende a veces. Aunque ni siquiera me dirigi$o la palabra. Creo que el poder le ha cambiado"
             ],
             "2": [
                 "El otro d$ia fui a ver a la tarotista, me dol$ia bastante la cabeza, el caso es que ella me recet$o unas medicinas.",
                 "Fui al boticario m$as cercano y la verdad es que me sigue doliendo bastante la cabeza, como si no me hubiera hecho efecto...",
-                "Sin embargo, una simple migra$%a no me parar$a! El arte me llama!"
+                "Sin embargo, una simple migra$%a no me parar$a! $!El arte me llama!"
             ],
             "3": [
                 "Sabes, hay algo que he mantenido en secreto durante mucho tiempo y siento que puedo compartirlo contigo. Hace un tiempo, encontr$e una maleta muy peculiar en las ruinas submarinas.",
                 "Estaba escondida entre los restos de un antiguo monumento, como si el mism$isimo Poseid$on la hubiera dejado all$i como un regalo del pasado.",
-                "Al abrirla, descubr$i una serie de objetos extra$%os y fascinantes. Algunos de ellos me resultaban familiares de las antiguas leyendas que escuchaba de ni$%o,",
-                "historias sobre seres misteriosos llamados humanos.",
-                "Aunque no estoy completamente seguro de su origen, estas reliquias han despertado mi curiosidad y han inspirado mi creatividad como nunca antes."
+                "Al abrirla, descubr$i una serie de objetos extra$%os y fascinantes. Algunos de ellos me resultaban familiares de las antiguas leyendas que escuchaba de ni$%o.",
+                "Historias sobre seres misteriosos llamados humanos.",
+                "Aunque no estoy completamente seguro de su origen, estas reliquias han despertado mi curiosidad y han inspirado mi creatividad como nunca."
             ]
         },
         "GenericoBueno": {
@@ -656,24 +656,24 @@
             ],
             "3": [
                 "La gente durante toda mi vida se ha re$ido de m$i, por mi inter$es en los humanos y porque realmente cre$ia en su existencia.",
-                "Aunque ha sido duro, jam$as dej$e de creer en ellos, en mi interior siempre he confiado en que estos est$an en alg$un lugar desconocido para nosotros.",
-                "Es por ello que por fin he decidido dar el gran paso.",
+                "Aunque ha sido duro, jam$as dej$e de creer en ellos, en mi interior siempre he confiado en que estos estaban en alg$un lugar desconocido para nosotros.",
+                "Es por ello que, por fin, he decidido dar el gran paso.",
                 "Dedicar$e mi vida a mostrar a la gente de la Atl$antida el esplendor de los humanos,",
                 "para que as$i, quiz$a viendo sus formas, se den cuenta que su existencia no es tan descabellada.",
-                "Si bien muchos se burlaran, se que otros confiaran en m$i, tal como tu has hecho desde que nos conocimos Paco."
+                "Si bien muchos se burlaran, s$e que otros confiaran en m$i, tal como t$u has hecho desde que nos conocimos Paco."
             ]
         }
     },
     "Tarotisa": {
         "Presentacion": [
-            "Bendita la carne fresca, que tenemos por aqu$i. Joven tu debes ser nuevo en el reino, o me equivoco?",
-            "No hace falta que respondas. Yo nunca me equivoco. Sabes porque?, por que puedo ver el futuro.",
+            "Bendita la carne fresca, $?qu$e tenemos por aqu$i? Joven tu debes ser nuevo en el reino, $?me equivoco?",
+            "No hace falta que respondas. Yo nunca me equivoco. $?Sabes porque?, por que puedo ver el futuro.",
             "Mi nombre es Abigail Ampoule y soy una reconocida tarotista.",
             "Secretos, enga$%os, enfermedades y todo lo dem$as, nada puede escapar de mi conocimiento, la luz de mi cabeza me muestra cualquier cosa.",
             "Ven a verme siempre que te preocupe algo, yo siempre estoy aqu$i para las pobres almas sin rumbo ni ambiciones."
         ],
         "FelicidadMinima": [
-            "Tu maldito at$un sarnoso y desagradecido. No solo no me ayudas en mi negocio sino que encima me lo pones todo m$as dif$icil.",
+            "Tu maldito at$un sarnoso y desagradecido. No solo no me ayudas en mi negocio, sino que encima me lo pones todo m$as dif$icil.",
             "Realmente te crees tan superior en tu peque$%a posici$on de poder.",
             "Solo por manejar los paquetes del reino te crees en tu derecho de hacer imposible la vida de las personas, en especial de una pobre anciana como yo.",
             "Esc$uchame atentamente lo que te digo, que caigan mil y una desgracias en tu vida,",
@@ -692,19 +692,19 @@
         "Eventos": {
             "1": [
                 "Maldita sea, c$omo se atreven a decir que mi predicci$on es una pantomima.",
-                "Sabes que hace falta, efectos luminosos de colores. Sin embargo eso solo lo puedo lograr con cristales y joyas.",
-                " $?Oye no crees que podr$ias desviar un paquete de joyas hasta el distrito de Artemisa?.",
+                "Sabes que hace falta, efectos luminosos de colores. Sin embargo, eso solo lo puedo lograr con cristales y joyas.",
+                " $?Oye no crees que podr$ias desviar un paquete de joyas hasta el distrito de Artemisa?",
                 "Con esas gemas seguro que se quedar$an alucinados con el poder de mi magia."
             ],
             "2": [
                 "Mira muchacho, ves ese grupo de boticarios ah$i reunidos.",
                 "Por muy normales que parezcan, se dedican a entrar en los negocios rivales para vandalizar y destrozar todo a su paso.",
-                "Por m$as que mis compa$%eros y yo hemos intentado denunciar esto a los soldados, est$an demasiado ocupados siendo las estupidas ni$%eras de los nobles.",
-                "Es por eso que si pudieras me gustar$ia que extraviaras un paquete de armas al distrito de Artemisa.",
-                "Tranquilo no vamos a hacer ninguna locura, tan solo pero para meterles miedo, a fin de cuentas, por mucho que vandalicen siguen siendo solo unos charlatanes flacuchos."
+                "Por m$as que mis compa$%eros y yo hemos intentado denunciar esto a los soldados, est$an demasiado ocupados siendo las est$upidas ni$%eras de los nobles.",
+                "Es por eso que, si pudieras, me gustar$ia que extraviaras un paquete de armas al distrito de Artemisa.",
+                "Tranquilo no vamos a hacer ninguna locura, tan solo para meterles miedo, a fin de cuentas, por mucho que vandalicen siguen siendo solo unos charlatanes flacuchos."
             ],
             "3": [
-                "Oye chico dejame decirte una cosa.",
+                "Oye chico d$ejame decirte una cosa.",
                 "El $ultimo d$ia me pidi$o un noble que buscase una forma de ayudarle con una dieta que quiere hacer.",
                 "Entre unas cosas y otras le dije que era capaz de hacer la comida m$as pesada para que su cuerpo se llenase antes con menos cantidad.",
                 "En resumen, si ves un paquete m$io con una etiqueta de mucho peso, hazlo pasar marque lo que marque la b$ascula.",
@@ -723,20 +723,20 @@
                 "Sabes, a$un recuerdo mis $epocas como campesina de una manera muy dulce,",
                 "sin embargo lo que hasta d$ia de hoy me enfurece es como se aprovechaban esos est$upidos comerciantes para revender lo que tanto nos cost$o cosechar",
                 " $?Qu$e te parece si les das una lecci$on por m$i y por los campesinos?",
-                "tres paquete de alimentos que vaya al distrito Hermes devuelvelo por donde ha venido, a Demeter,",
-                "que la gente abra los ojos y deje de negociar con esas sanguijuelas"
+                "tres paquete de alimentos que vaya al distrito Hermes devu$elvelo por donde ha venido, a Dem$eter.",
+                "Que la gente abra los ojos y deje de negociar con esas sanguijuelas"
             ]
         },
         "GenericoMalo": {
             "1": [
-                "La gente de este distrito es absoluta basura, esos creidos de los boticarios se creen que me pueden tener trabajando a mi,",
+                "La gente de este distrito es absoluta basura, esos cre$idos de los boticarios se creen que me pueden tener trabajando a m$i,",
                 "una pobre anciana noche y d$ia para al final darme una miseria.",
                 "Yo soy la que lee el futuro a la gente para que acudan a sus est$upidas tiendas.",
                 "Y tu muchacho l$argate de aqu$i ahora mismo que no estoy de humor."
             ],
             "2": [
-                "La primera vez que te v$i sent$i que ten$ias cara de bobo y ahora veo que no me equivocaba,",
-                "no se que har$as durante tus horas de trabajo pero siempre me llegan mal los paquetes o directamente no me llegan.",
+                "La primera vez que te v$i sent$i que ten$ias cara de bobo y ahora veo que no me equivocaba.",
+                "No s$e qu$e har$as durante tus horas de trabajo, pero siempre me llegan mal los paquetes o directamente no me llegan.",
                 "Tampoco creo que haga falta ser adivino para enviar un par de cositas."
             ],
             "3": [
@@ -754,7 +754,7 @@
             ],
             "2": [
                 "He muchacho ven aqu$i. Sabes cada vez que te veo est$as hecho una pena, deber$ias relacionarte un poco m$as con otras personas.",
-                "Sal, haz amigos, buscate una novia, cualquier cosa. Cuando seas mayor a penas tendr$as las fuerzas suficientes para soportar a los imb$eciles que hay en este reino."
+                "Sal, haz amigos, b$uscate una novia, cualquier cosa. Cuando seas mayor a penas tendr$as las fuerzas suficientes para soportar a los imb$eciles que hay en este reino."
             ],
             "3": [
                 "Uy uy uy chico, ahora que veo tu cara est$a un poco, como te lo dir$ia... deca$ida.",
@@ -766,19 +766,19 @@
         "GenericoBueno": {
             "1": [
                 "Mira quien ha amanecido contento hoy, si es mi muchacho favorito.",
-                "A$un parece que no vienen los clientes pero esto en unos minutos se llenar$a hasta reventar.",
+                "A$un parece que no vienen los clientes, pero esto en unos minutos se llenar$a hasta reventar.",
                 "Sabes es gracioso,",
                 "una gran parte de los que vienen se quedan haciendo cola por horas y horas para al final preguntarme cosas como qu$e hacer para conseguir amor o riqueza.",
                 "No se dan cuenta que en el tiempo que gastan aqu$i podr$ian estar con sus seres queridos, haciendo algo productivo.",
                 "Supongo que uno no sabe lo que tiene hasta perderlo."
             ],
             "2": [
-                "Aunque odie que la gente me llame se$%ora en lugar de se$%orita no hay nada que pueda hacer para remediarlo, a fin de cuentas soy una mujer casada.",
+                "Aunque odie que la gente me llame se$%ora en lugar de se$%orita no hay nada que pueda hacer para remediarlo, a fin de cuentas, soy una mujer casada.",
                 " $?No lo sab$ias? Mi marido fue un campesino del distrito de Demeter, yo le ayudaba cuando pod$ia.",
-                " $el me termin$o abandonando, no estaba demasiado feliz con mi peque$%o negocio."
+                " $El me termin$o abandonando, no estaba demasiado feliz con mi peque$%o negocio."
             ],
             "3": [
-                "Puede que no lo parezca chico pero en mi $epoca de campesina estaba rodeada de amigas,",
+                "Puede que no lo parezca, chico, pero en mi $epoca de campesina estaba rodeada de amigas,",
                 "la vida era dif$icil pero con la gente de all$i una se sent$ia c$omoda y en familia.",
                 "Actualmente tengo todo el dinero que pude llegar a desear en esa $epoca,",
                 "aunque en el distrito de Artemisa jam$as me he llegado a sentir como en ese entonces."
@@ -787,7 +787,7 @@
         "GenericoMaxiBueno": {
             "1": [
                 "Hola muchacho que te cuentas.",
-                " $?Qu$e por qu$e nunca te llamo por tu nombre? tranquilo que me acuerdo perfectamente de c$omo te llamas Pancho, a no espera Paco eso es.",
+                " $?Que por qu$e nunca te llamo por tu nombre? Tranquilo que me acuerdo perfectamente de c$omo te llamas Pancho. A no espera, Paco, eso es.",
                 "Ver a tanta gente todos los d$ias hace que me cueste recordar caras, aunque con lo que me has ayudado es dif$icil que ya me olvide de t$i."
 
             ],
@@ -801,19 +801,19 @@
 
             ],
             "3": [
-                "No creo que pueda seguir con este muchacho.",
+                "No creo que pueda seguir con esto, muchacho.",
                 "Llevo un tiempo pensando en dejar el negocio, buscar quiz$a a mi marido. Al menos empezar de 0, sin seguir estafando a las personas.",
                 "El problema es... que tengo miedo, a mi edad arriesgarme tanto la verdad es que me aterra.",
                 "Adem$as los boticarios no estar$an felices si no les sigo mandando a personas a comprar en sus tiendas con enga$%os de falsas predicciones.",
-                "No se que har$e al final, pero te agradezco toda la ayuda que me has brindado hasta ahora."
+                "No s$e qu$e har$e al final, pero te agradezco toda la ayuda que me has brindado hasta ahora."
 
             ]
         }
     },
     "Soldado": {
         "Presentacion": [
-            "Saludos! Me llamo Abakand Istacoz, soldado del glorioso ej$ercito de Atlantis.",
-            "Eres nuevo por aqu$i? Debo decirte que el deber me ha llevado a servir en el distrito de Apolo",
+            " $!Saludos! Me llamo Abakand Istacoz, soldado del glorioso ej$ercito de Atlantis.",
+            " $?Eres nuevo por aqu$i? Debo decirte que el deber me ha llevado a servir en el distrito de Apolo",
             "Aunque mi coraz$on anhelaba proteger los distritos exteriores, como Hestia, donde crec$i.",
             "Mi pasado es tan resistente como mi armadura, y mi deber es velar por la paz, incluso cuando la tarea me resulta desalentadora."
         ],
@@ -824,27 +824,27 @@
             " $?De verdad estoy protegiendo a alguien aqu$i?",
             "La frustraci$on se acumula, y cada d$ia es un recordatorio de que mi sue$%o de defender los distritos exteriores sigue siendo inalcanzable.",
             "Y adem$as, para las pocas veces que soy yo el que pide ayuda, se me ignora y se me hace la vida imposible.",
-            "Largate, no quiero que te vuelvas a acercar a mi jam$as $?entiendes?"
+            "L$argate, no quiero que te vuelvas a acercar a mi jam$as, $?entiendes?"
         ],
         "FelicidadMaxima": [
             " $!Incre$ible! No puedo creerlo,",
             "Este es un d$ia que no olvidar$e. Mi coraz$on late con emoci$on al ver que alguien valora mi servicio.",
             "Gracias a tu amistad y apoyo he podido ir cumplir mi verdadera aspiraci$on,",
-            "por fin podr$e trabajar en los distritos exteriores. Solo tengo que aguantar aqui unas semanas m$as.",
-            "De verdad muchas gracias, se que juntos en los distritos exteriores podremos cambiar el rumbo de las cosas.",
+            "por fin podr$e trabajar en los distritos exteriores. Solo tengo que aguantar aqu$i unas semanas m$as.",
+            "De verdad muchas gracias, s$e que juntos en los distritos exteriores podremos cambiar el rumbo de las cosas.",
             "Por toda tu ayuda por el bien de la Atl$antida, hablar$e con tu jefe para que sea m$as permisivo con tus fallos."
         ],
         "Eventos": {
             "1": [
                 "Hoy cuando recog$ia los suministros, encontr$e una extra$%a nota en la que se mencionaba que hoy iban a pasar sustancias ilegales a trav$es de paquetes.",
                 "Parece que hay un aumento en el tr$afico de objetos extra$%os y sustancias ilegales en el mercado negro.",
-                "Podr$ias hacerme un favor, necesito que envies a mi distrito dos paquetes con un peso grande, aunque este no sea su destino.",
-                "Es una cuestion de seguridad Atlantiana, por lo que es muy importante."
+                "Podr$ias hacerme un favor, necesito que env$ies a mi distrito dos paquetes con un peso grande, aunque este no sea su destino.",
+                "Es una cuesti$on de seguridad Atl$antiana, por lo que es muy importante."
             ],
             "2": [
                 "El otro d$ia recib$i una carta de mi familia y al parecer los suministros m$edicos en los distritos exteriores escasean mucho.",
-                "Parece ser que los boticarios estan pasandose bastante con los precios",
-                "Aseg$urate de que el distrito de Hestia reciban al menos 3 paquetes con los recursos m$edicos a tiempo y en buenas condiciones.",
+                "Parece ser que los boticarios est$an pas$andose bastante con los precios",
+                "Aseg$urate de que el distrito de Hestia reciba al menos 3 paquetes con los recursos m$edicos a tiempo y en buenas condiciones.",
                 "La salud de la gente depende de ello."
             ],
             "3": [
@@ -860,10 +860,10 @@
                 "Qui$en sabe, tal vez estemos forjando al pr$oximo protector de Atlantis."
             ],
             "5": [
-                "Buenas Paco, no lo digas por ah$i pero no se si sabes que varios grupos criminales de la Atl$antida han estado falsificando sellos $ultimamente",
-                "Al parecer estos sellos los venden a precios baratos a los incredulos habitantes de los distintos distritos.",
-                " $?Como dices?, que te han llegado varios paquetes a tu oficina con esos sellos. Paco eso es buenisimo para el caso",
-                "Por favor enviame a Apolo dos paquetes con sellos falsos, para que podamos hacer un minucioso an$alisis de estos."
+                "Buenas Paco, no lo digas por ah$i pero no s$e si sabes que varios grupos criminales de la Atl$antida han estado falsificando sellos $ultimamente",
+                "Al parecer estos sellos los venden a precios baratos a los incr$edulos habitantes de los distintos distritos.",
+                " $?Como dices?, que te han llegado varios paquetes a tu oficina con esos sellos. Paco eso es buen$isimo para el caso",
+                "Por favor env$iame a Apolo dos paquetes con sellos falsos, para que podamos hacer un minucioso an$alisis de estos."
             ]
         },
         "GenericoMalo": {
@@ -874,7 +874,7 @@
             ],
             "2": [
                 "Otra vez m$as, los nobles se burlan de mis esfuerzos. $?Te das cuenta de lo absurdo que es tener que cuidar de ellos como si fueran ni$%os peque$%os?",
-                "Y encima cuando cometes un minimo error te culpan como si hubieras dejado escapar a un asesino o algo asi",
+                "Y encima cuando cometes un m$inimo error te culpan como si hubieras dejado escapar a un asesino o algo as$i",
                 "Estoy harto de estas estupideces, estoy harto de haber trabajado toda mi vida para esto, estoy harto de todo"
             ],
             "3": [
@@ -894,11 +894,11 @@
             "2": [
                 "He visto cosas extra$%as $ultimamente. Rumores de antiguas reliquias encontradas en las ruinas submarinas. No s$e qu$e pensar al respecto.",
                 "Tal vez sea solo un cuento de viejos pescadores, pero si es verdad, podr$ia cambiar muchas cosas.",
-                "Quiza mostrarnos una visi$on que a$un desconocemos. $?T$u qu$e opinas al respecto?"
+                "Quiz$a mostrarnos una visi$on que a$un desconocemos. $?T$u qu$e opinas al respecto?"
             ],
             "3": [
                 "Sabes, a veces hecho un poco de menos cuando viv$ia en el distrito de Hestia",
-                "Mucha gente se queda ensimismada con la belleza arquitectonica de Hermes, o todas las obras de arte de Apolo.",
+                "Mucha gente se queda ensimismada con la belleza arquitect$onica de Hermes, o todas las obras de arte de Apolo.",
                 "Sin embargo los distritos exteriores tienen una belleza particular que no se explicar, igual es solo la nostalgia, que se yo"
             ]
         },
@@ -929,7 +929,7 @@
             ],
             "2": [
                 " $ultimamente las cosas han estado algo movidas por los distritos exteriores, varios de los soldados asignados all$i est$an abandonando su puesto.",
-                "Aunque parezca mala situaci$on esto viene muy bien, asi los soldados se iran antes de que pase algo gordo de verdad.",
+                "Aunque parezca mala situaci$on esto viene muy bien, as$i los soldados se ir$an antes de que pase algo gordo de verdad.",
                 "Si todo sale bien igual puedo obtener el puesto que tanto tiempo he deseado."
             ],
             "3": [
@@ -943,11 +943,11 @@
     },
     "Contable": {
         "Presentacion": [
-            "Anda hola, debes ser nuevo por aqui, mi nombre es Glover Globus, CEO principal de la empresa Globinterprise.",
+            "Anda hola, debes ser nuevo por aqui. Mi nombre es Glover Globus, CEO principal de la empresa Globinterprise.",
             "Principalmente nos encargamos de mediar entre la compra y venta de los anillos exteriores e interiores a cambio de una comisi$on.",
-            "Basicamente les compramos los productos a los campesinos y los artesanos y se los vendemos a los nobles.",
-            "La verdad que no nos podemos quejar jiji.",
-            "Bueno espero verte por aqui m$as de seguido, un placer pimpollo."
+            "B$asicamente les compramos los productos a los campesinos y los artesanos y se los vendemos a los nobles.",
+            "La verdad que no nos podemos quejar, jiji.",
+            "Bueno espero verte por aqu$i m$as de seguido, un placer pimpollo."
         ],
         "FelicidadMinima": [
             "Como puedes ser as$i de malo conmigo.",
@@ -958,19 +958,19 @@
         "FelicidadMaxima": [
             "Sabes, nunca antes nadie se hab$ia preocupado as$i por mi.",
             "Aunque la gente no lo crea noto muchas de las cosas que pasan a mi alrededor,",
-            "por eso se que no tengo demasiados amigos, solo gente interesada en mi posici$on y poder.",
+            "por eso s$e que no tengo demasiados amigos, solo gente interesada en mi posici$on y poder.",
             "Pero a ti no te tiembla la voz al decirme las verdades a la cara y ayud$andome en mis peores momentos.",
             "Te lo agradezco, espero que tu tambi$en me consideres como un amigo.",
             "Y como yo se tratar a mis amigos, voy a invertir en la empresa de AtlantisExpress donde trabajas para que te puedan subir el sueldo y te vaya todo mejor."
         ],
         "Eventos": {
             "1": [
-                "No se que voy a hacer, los campesinos se han enfadado por el precio que les he ofrecido y no me han querido vender las cosechas.",
+                "No s$e qu$e voy a hacer, los campesinos se han enfadado por el precio que les he ofrecido y no me han querido vender las cosechas.",
                 "Los nobles no van a ser capaces de aguantar sin esa comida, se van a enfadar y la empresa lo va a pasar mal, qu$e puedo hacer.",
-                "Ya se, no podr$ias por favor redirigir un par de paquetes de alimentos hasta el distrito de Hermes, te lo agradecer$ia de verdad."
+                "Ya s$e, $¿nos podr$ias por favor redirigir un par de paquetes de alimentos hasta el distrito de Hermes? Te lo agradecer$ia de verdad."
             ],
             "2": [
-                "Madre mia Paco, no puedo estar m$as estresado.",
+                "Madre m$ia Paco, no puedo estar m$as estresado.",
                 "Ayer uno de mis clientes m$as importantes se port$o muy mal conmigo,",
                 "insult$andome solo por un peque$%o retraso que tuvimos con la llegada de sus art$iculos.",
                 "Para desahogarme decid$i comprar un mu$%eco bud$u de $el en el distrito de Artemisa.",
@@ -981,23 +981,23 @@
                 "Sabes pimpollo, mi empresa no solo vende la cosecha de los campesinos, tambi$en los trabajos de los artesanos.",
                 "Estos son igual de importantes y valorados que los alimentos, aunque deben de tratarse con m$as cuidado ya que suelen ser fr$agiles.",
                 "Hoy mismo yo en persona le he enviado al mism$isimo rey una de esas... esper$a.",
-                "O Poseid$on mio, se me ha olvidado el sello de fragilidad,",
-                "por favor cuando veas mi paquete envu$elvelo aunque no tenga el sello, sino qui$en sabe qu$e le podr$ia pasar. Un d$ia de estos pierdo la cabeza."
+                "O Poseid$on m$io, se me ha olvidado el sello de fragilidad.",
+                "Por favor cuando veas mi paquete envu$elvelo aunque no tenga el sello, sino qui$en sabe qu$e le podr$ia pasar. Un d$ia de estos pierdo la cabeza."
             ],
             "4": [
-                "Paco necesito tu ayuda. Nunca le he dicho esto a nadie asi que necesito que guardes el secreto.",
+                "Paco necesito tu ayuda. Nunca le he dicho esto a nadie as$i que necesito que guardes el secreto.",
                 "Lo creas o no, aunque mi padre mont$o esta exitosa empresa, no lo hizo de la nada, tuvo que pedir muchos favores a muchas personas.",
                 "Y ahora esas cargas est$an recayendo sobre m$i.",
                 "Un grupo de delfines con los que mi padre negociaba me est$an reclamando cierto dinero que les debemos.",
-                "Yo sacar$ia eso de los fondos de la empresa pero manchar$ia el nombre de mi padre por negociar con tales rufianes.",
+                "Yo sacar$ia eso de los fondos de la empresa, pero manchar$ia el nombre de mi padre por negociar con tales rufianes.",
                 "No podr$ias quiz$a desviar algunas joyas hac$ia el distrito de Hermes, con un paquete ser$a m$as que suficiente.",
-                "De verdad que me sabe fatal pedirte esto pero no puedo acudir a nadie m$as."
+                "De verdad que me sabe fatal pedirte esto, pero no puedo acudir a nadie m$as."
 
             ],
             "5": [
                 "Paco voy a darte una lecci$on de finanzas.",
-                "hay veces que es muy importante abaratar costes en peque$%as minucias, por ejemplo, hoy mismo he enviado dos paquetes pero usando unos sellos m$as baratos.",
-                "Se los compr$e a un vendedor ambulante que encontre en la plaza de Hermes.",
+                "hay veces que es muy importante abaratar costes en peque$%as minucias. Por ejemplo, hoy mismo he enviado dos paquetes, pero usando unos sellos m$as baratos.",
+                "Se los compr$e a un vendedor ambulante que encontr$e en la plaza de Hermes.",
                 " $?Como dices?, que si el sello no es el oficial debes devolver los paquetes. Por dios, pero no puedes hacer eso, este env$io es muy urgente.",
                 "Por favor paco haz la vista gorda por esta vez por favor te lo pido"
             ]
@@ -1010,7 +1010,7 @@
             ],
             "2": [
                 "Sabes, varios de los env$ios a mi empresa se han perdido.",
-                "No quiero meterme en tus asuntos ni incomodarte pero por favor intenta tener m$as cuidado.",
+                "No quiero meterme en tus asuntos ni incomodarte, pero por favor intenta tener m$as cuidado.",
                 "Muchas familias dependen de la gesti$on que hacemos as$i que haz tu mayor esfuerzo para no retrasarnos."
             ],
             "3": [
@@ -1021,9 +1021,9 @@
         },
         "GenericoNormal": {
             "1": [
-                "Anda pero si es mi pimpollo favorito, Paco.",
-                "Sabes no se como lo haces para tener una mira con tanta seguridad.",
-                "Yo sin embargo soy un manojo de nervios jijiji, creo que el estr$es hace que me inche aunque no estoy seguro."
+                "Anda, pero si es mi pimpollo favorito, Paco.",
+                "Sabes no s$e c$omo lo haces para tener una mira con tanta seguridad.",
+                "Yo sin embargo soy un manojo de nervios jijiji, creo que el estr$es hace que me hinche, aunque no estoy seguro."
             ],
             "2": [
                 "Hombre Paco, qu$e tal te va la vida.",
@@ -1031,17 +1031,17 @@
                 "Sea como sea, los negocios no paran as$i que no hay tanto problema."
             ],
             "3": [
-                "No se si te lo cont$e alguna vez Paco pero antes el distrito de Hermes era muy diferente.",
+                "No s$e si te lo cont$e alguna vez Paco, pero antes el distrito de Hermes era muy diferente.",
                 "Cuando mi padre a$un no mont$o la empresa, este distrito estaba lleno de mercados ambulantes por todos lados.",
                 "La verdad es que la organizaci$on era un desastre, y se escuchaban gritos de aqu$i para all$a.",
-                "Sin embargo el ambiente ten$ia algo $unico que no te se decir a$un. Ojal$a poder replicarlo con mi empresa alg$un d$ia."
+                "Sin embargo el ambiente ten$ia algo $unico que no te s$e decir a$un. Ojal$a poder replicarlo con mi empresa alg$un d$ia."
             ]
         },
         "GenericoBueno": {
             "1": [
                 "Muy buenos d$ias Paco. Sabes desde hace un tiempo me he ido preguntando si realmente los campesinos y artesanos necesitan un intermediario.",
                 "La verdad es que me encantar$ia que los anillos pudieran convivir en paz, pero por experiencia propia s$e que tanto los unos como los otros se odian mucho.",
-                "Ojala pueda cambiar eso en alg$un momento."
+                "Ojal$a pueda cambiar eso en alg$un momento."
             ],
             "2": [
                 "Pero bueno Paco hoy resplandeces.",
@@ -1058,7 +1058,7 @@
         },
         "GenericoMaxiBueno": {
             "1": [
-                " $ultimamente he estado pensando en c$omo acercar unos a los otros a los habitantes de los anillos exteriores e interiores y creo haber dado con la soluci$on,",
+                " $Ultimamente he estado pensando en c$omo acercar unos a los otros a los habitantes de los anillos exteriores e interiores y creo haber dado con la soluci$on,",
                 "no es seguro y hace falta que le eche valor para proponer esto a todos los de mi empresa.",
                 "Aunque no me cabe la menor duda de que con tu apoyo podr$e seguir mi instinto."
 
@@ -1076,7 +1076,7 @@
                 "Lo creas o no, cuando se trata de negocios no soy tan amable jijiji.",
                 "Antes de que mi padre dejara este mundo me ense$%o un par de t$ecnicas para conseguir mejores tratos en los t$ipicos toma y daca.",
                 "Siempre que necesites ayuda para un negocio av$isame,",
-                "estar$e encantado de ayudar a mi mejor amigo con cualquiera de sus problemas, al igual que tu me ayudas con los m$ios."
+                "estar$e encantado de ayudar a mi mejor amigo con cualquiera de sus problemas, al igual que t$u me ayudas con los m$ios."
 
             ]
         }
@@ -1251,7 +1251,7 @@
         ],
         "2": [
             "Hola Jones, hoy te ha llegado esto a tu correo. Estaban repartiendo a toda la poblaci$on uno.",
-            "* lo lees, es un papel con el titulo 'CRITIAS'. Te viene un recuerdo a tu pasado como historiador y jurar$ias escuchar este mismo nombre relacionado con el fil$osofo Plat$on.*",
+            " lo lees, es un papel con el titulo 'CRITIAS'. Te viene un recuerdo a tu pasado como historiador y jurar$ias escuchar este mismo nombre relacionado con el fil$osofo Plat$on.",
             "Queridos habitantes de Atlantis, hemos descubierto pruebas indudables de la existencia de algo m$as all$a del agua. Gracias a un texto que hemos encontrado y d$ecadas de estudio.",
             "Este papel es una versi$on resumida del texto original, y explicaremos resumidamente nuestros descubrimientos. Sin embargo, no podemos revelarnos, ya que seguramente el rey nos persiga por herej$ia. Nos mantendremos ocultos.",
             "Atlantes, m$as all$a de nuestros muros, m$as all$a del agua, existe un mundo vasto y enorme que jam$as podr$iamos imaginar.",
@@ -1265,7 +1265,7 @@
             "Y ese tiempo se va a acabar en 5 a$%os, cuando cumplamos 1000 a$%os en el agua. Debemos aprovecharlo y no volver a decepcionar a Poseid$on.",
             "Tenemos que prepararnos para cuando llegue el momento, y comenzar a comunicarnos con los humanos para colaborar con ellos, y trabajar juntos en un Atlantis mejor y una superficie mejor.",
             " $!Atlantes! $!Se vienen tiempos duros! $!Debemos estar unidos y desarrollarnos para poder unirnos a los humanos!",
-            "*Hasta aqu$i el texto, deber$ia hablar con la gente de la ciudad a ver qu$e opinan de esto. Espero que no me descubran...*"
+            "Hasta aqu$i el texto, deber$ia hablar con la gente de la ciudad a ver qu$e opinan de esto. Espero que no me descubran..."
         ]
     },
     "NoHabladoWarning": {
@@ -2071,7 +2071,7 @@
 
         "TextoTiendaEsculturas80": [
             "En cierta manera, la escultura del pez con forma de bumer$an,",
-            "me recuaerda a un pez de la pel$icula de Buscando a Rodolfo. Qu$e buena pel&icula."
+            "me recuaerda a un pez de la pel$icula de Buscando a Rodolfo. Qu$e buena pel$icula."
         ],
         "TextoTiendaEsculturas81": [ "El martillo de la pared creo que lo usan para picar con el clavo la piedra." ],
 
@@ -2106,7 +2106,7 @@
         "TextoTiendaEsculturas131": [ "Me pregunto si en el taller se usar$an otras herramientas para esculpir que no sean solo martillos y clavos." ],
 
         "TextoTiendaEsculturas140": [ "El nivel de detalle de estas esculturas debi$o de requerir mucha paciencia." ],
-        "TextoTiendaEsculturas141": [ "Alg$un d$ia deber&ia de comprar una escultura de estas." ]
+        "TextoTiendaEsculturas141": [ "Alg$un d$ia deber$ia de comprar una escultura de estas." ]
     },
     "TiendaDerecha": {
 
@@ -2414,17 +2414,29 @@
         ],
         "TextoArbolesIzq101": [ "Si todo en este sitio est$a muy bien cuidado, los trabajadores deben de ser muy buenos y tener buen sueldo." ],
 
-        "TextoArbolesIzq110": [ "Mondongo2110" ],
-        "TextoArbolesIzq111": [ "Mondongo2111" ],
+        "TextoArbolesIzq110": [ "Me pregunto si vivir$a aulg$un tipo de animal por esta zona." ],
+        "TextoArbolesIzq111": [ "Este distrito es donde he visto m$as panteones juntos, curioso." ],
 
-        "TextoArbolesIzq120": [ "Mondongo2120" ],
-        "TextoArbolesIzq121": [ "Mondongo2121" ],
+        "TextoArbolesIzq120": [
+            "Ser$ia muy raro que hubiesen p$ajaros aqu$i y en Dem4eter viviendo en los $arboles,",
+            "si estamos en un lugar debajo del mar."
+        ],
+        "TextoArbolesIzq121": [
+            "Me pregunto que los dem$as panteones son partes diferentes del palacio real,",
+            "supongo que s$i."
+        ],
 
-        "TextoArbolesIzq130": [ "Mondongo2130" ],
-        "TextoArbolesIzq131": [ "Mondongo2131" ],
+        "TextoArbolesIzq130": [
+            "Recuerdo en la ciudad donde antes viv$ia visitar varios parques con monumentos,",
+            "pero este sitio es bastante m$as chuclo, aunque no es un parque como tal."
+        ],
+        "TextoArbolesIzq131": [ "Me pregunto cu$antos a$%os de antiguedad tendr$a el palacio y el resto de monumentos de aqu$i." ],
 
-        "TextoArbolesIzq140": [ "Mondongo140" ],
-        "TextoArbolesIzq141": [ "Mondongo141" ]
+        "TextoArbolesIzq140": [
+            "De todos los lugares que he visitado,",
+            "este me parece ser el que tiene los edificios y estructuras m$as imponentes de toda la ciudad."
+        ],
+        "TextoArbolesIzq141": [ "Ser$ia una pena que se descuidaran los edificios de aqu$i, espero que duren muchos a$%os en mi estancia." ]
     },
     "ArbolesDer": {
 
@@ -2446,25 +2458,46 @@
             "Y no solo en este distrito, si no en toda la ciudad. Hay muy buenos jardineros y agricultores."
         ],
 
-        "TextoArbolesDer80": [ "Mondongo280" ],
-        "TextoArbolesDer81": [ "Mondongo281" ],
+        "TextoArbolesDer80": [
+            "Los panteones  y estructuras que veo por aqu$i me encantan.",
+            "est$an muy bien construidos."
+        ],
+        "TextoArbolesDer81": [ "Se nota que estoy cerca del palacio, porque est$a todo muy bien cuidado." ],
 
-        "TextoArbolesDer90": [ "Mondongo290" ],
-        "TextoArbolesDer91": [ "Mondongo291" ],
+        "TextoArbolesDer90": [
+            "Los panteones  y estructuras que veo por aqu$i me encantan.",
+            "Hay grandes arquitectos en esta ciudad, y se ven en estos edificios, enlas estructuras, y en los muros que rodean los distritos."
+        ],
+        "TextoArbolesDer91": [ "Est$a todo muy bien cuidado, el rey del palacio debe de tener buenos trabajadores que mantienen todo  impecable." ],
 
-        "TextoArbolesDer100": [ "Mondongo2100" ],
-        "TextoArbolesDer101": [ "Mondongo2101" ],
+        "TextoArbolesDer100": [
+            "Tuvieron que usar materiales de muy buena calidad, porque estos panteones y estructuras,",
+            "est$an muy bien construidos."
+        ],
+        "TextoArbolesDer101": [ "Si todo en este sitio est$a muy bien cuidado, los trabajadores deben de ser muy buenos y tener buen sueldo." ],
 
-        "TextoArbolesDer110": [ "Mondongo2110" ],
-        "TextoArbolesDer111": [ "Mondongo2111" ],
+        "TextoArbolesDer110": [ "Me pregunto si vivir$a aulg$un tipo de animal por esta zona." ],
+        "TextoArbolesDer111": [ "Este distrito es donde he visto m$as panteones juntos, curioso." ],
 
-        "TextoArbolesDer120": [ "Mondongo2120" ],
-        "TextoArbolesDer121": [ "Mondongo2121" ],
+        "TextoArbolesDer120": [
+            "Ser$ia muy raro que hubiesen p$ajaros aqu$i y en Dem4eter viviendo en los $arboles,",
+            "si estamos en un lugar debajo del mar."
+        ],
+        "TextoArbolesDer121": [
+            "Me pregunto que los dem$as panteones son partes diferentes del palacio real,",
+            "supongo que s$i."
+        ],
 
-        "TextoArbolesDer130": [ "Mondongo2130" ],
-        "TextoArbolesDer131": [ "Mondongo2131" ],
+        "TextoArbolesDer130": [
+            "Recuerdo en la ciudad donde antes viv$ia visitar varios parques con monumentos,",
+            "pero este sitio es bastante m$as chuclo, aunque no es un parque como tal."
+        ],
+        "TextoArbolesDer131": [ "Me pregunto cu$antos a$%os de antiguedad tendr$a el palacio y el resto de monumentos de aqu$i." ],
 
-        "TextoArbolesDer140": [ "Mondongo140" ],
-        "TextoArbolesDer141": [ "Mondongo141" ]
+        "TextoArbolesDer140": [
+            "De todos los lugares que he visitado,",
+            "este me parece ser el que tiene los edificios y estructuras m$as imponentes de toda la ciudad."
+        ],
+        "TextoArbolesDer141": [ "Ser$ia una pena que se descuidaran los edificios de aqu$i, espero que duren muchos a$%os en mi estancia." ]
     }
 }

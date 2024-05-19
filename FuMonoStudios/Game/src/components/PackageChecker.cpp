@@ -1,18 +1,10 @@
 #include "PackageChecker.h"
-#include "../architecture/Component.h"
-#include "../architecture/Entity.h"
-#include "Transform.h"
-#include "Gravity.h"
-#include <components/MoverTransform.h>
-#include <components/Paquete.h>
 #include <components/SelfDestruct.h>
-#include <architecture/GeneralData.h>
 #include <functional>
 #include <components/ErrorNote.h>
 #include <QATools/DataCollector.h>
-#include <sistemas/SoundEmiter.h>;
+#include <sistemas/SoundEmiter.h>
 #include <sistemas/NPCeventSystem.h>
-#include <entities/PolvosAux.h>
 #include <components/DelayedCallback.h>
 
 PackageChecker::PackageChecker(pq::Distrito dis, ecs::MainScene* sc, PipeManager* mngr) : 
@@ -57,7 +49,7 @@ void PackageChecker::checkEntity(ecs::Entity* ent)
 	//comprobamos si es un paquete
 	if (ent->getComponent<Paquete>() != nullptr) {
 		SoundEmiter::instance()->playSound("tubo");
-		//Desactivamos las cosas necesarias para hacer una animación
+		//Desactivamos las cosas necesarias para hacer una animaciï¿½n
 		ent->getComponent<DragAndDrop>()->disableInteraction();
 		ent->removeComponent<Gravity>();
 

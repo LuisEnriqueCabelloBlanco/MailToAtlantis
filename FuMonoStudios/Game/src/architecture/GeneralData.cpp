@@ -2,17 +2,12 @@
 #include <utils/checkML.h>
 #endif // !DEV_TOOLS
 #include "GeneralData.h"
-#include <json/JSON.h>
-#include <json/JSONValue.h>
-#include <sdlutils/RandomNumberGenerator.h>
-#include <architecture/ecs.h>
 #include <sistemas/SoundEmiter.h>
 #include <sistemas/PaqueteBuilder.h>
 #include <architecture/Game.h>
 #include <sistemas/NPCeventSystem.h>
 #include <architecture/GameConstants.h>
 #include <iostream>
-#include <sdlutils/Texture.h>
 
 GeneralData::GeneralData()
 {
@@ -55,8 +50,8 @@ void GeneralData::loadSaveFile()
 	if (in.is_open()) {
 		in.close();
 
-		if (!npcData.empty())
-			npcData.clear();
+		/*if (!npcData.empty())
+			npcData.clear();*/
 
 		std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile(SAVE_PATH));
 

@@ -1,13 +1,10 @@
 #include "Wrap.h"
-#include <components/Transform.h>
 
 #include <sistemas/SoundEmiter.h>
-#include <architecture/Entity.h>
 #include <sdlutils/InputHandler.h>
 #include <json/JSON.h>
 #include <sdlutils/SDLUtils.h>
 
-#include <SDL.h>
 #include <vector>
 #include <assert.h>
 #include <cmath>

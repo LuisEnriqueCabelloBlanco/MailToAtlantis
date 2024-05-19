@@ -4,13 +4,8 @@
 #endif // !DEV_TOOLS
 #include "EndGameScene.h"
 #include <sistemas/ComonObjectsFactory.h>
-#include <vector>
-#include <json/JSON.h>
-#include <architecture/GeneralData.h>
-#include <string>
-#include <components/Render.h>
 #include <architecture/Game.h>
-#include "entities/Final.h"
+#include <entities/Final.h>
 
 EndGameScene::EndGameScene()
 {

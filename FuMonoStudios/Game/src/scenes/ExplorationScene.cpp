@@ -2,33 +2,21 @@
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
-#else
-#include <utils/checkML.h>
-#endif // DEV_TOOLS
-#include "ExplorationScene.h"
-#include <architecture/Entity.h>
-#include <iostream>
-#include <sdlutils/SDLUtils.h>
-#include <components/Transform.h>
-#include <components/Render.h>
-#include <components/Clickeable.h>
-#include <architecture/Game.h>
-#include <architecture/Config.h>
-#include <architecture/GeneralData.h>
-#include <string>
-#include <sdlutils/Texture.h>
-#include <components/DialogComponent.h>
-#include <sistemas/ComonObjectsFactory.h>
-#include <architecture/GameConstants.h>
-#include <QATools/DataCollector.h>
-
-#ifdef DEV_TOOLS
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
+#else
+#include <utils/checkML.h>
 #endif // DEV_TOOLS
 
-#include <components/RenderWithLight.h>
+#include "ExplorationScene.h"
+#include <sdlutils/SDLUtils.h>
+#include <components/Transform.h>
+#include <components/Render.h>
+#include <sdlutils/Texture.h>
+#include <sistemas/ComonObjectsFactory.h>
+#include <architecture/GameConstants.h>
+#include <QATools/DataCollector.h>
 #include <sistemas/SoundEmiter.h>
 #include <sistemas/NPCeventSystem.h>
 #include <components/HoverSensorComponent.h>
@@ -692,7 +680,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 
 
-	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "click");
+	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "");
 
 	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
 

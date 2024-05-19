@@ -1,9 +1,7 @@
 #pragma once
-#include <architecture/Component.h>
 #include <scenes/MainScene.h>
 #include <components/Paquete.h>
 #include <scenes/TutorialScene.h>
-#include <sistemas/PipeManager.h>
 #include <functional>
 
 using Condition = std::function<bool(Paquete*)>;
