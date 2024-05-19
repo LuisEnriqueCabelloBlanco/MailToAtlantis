@@ -5,21 +5,36 @@
 #include <architecture/GeneralData.h>
 #include <sdlutils/SDLUtils.h>
 #include <sistemas/NPCevent.h>
+#include <architecture/GeneralData.h>
 using namespace npc;
 npc::NPCMenorData::~NPCMenorData()
 {
 
 }
 // NPC MENOR
-NPCMenorData::NPCMenorData(Felicidad Felicidad, std::vector<bool> DiasDanEvento) {
+NPCMenorData::NPCMenorData(Felicidad Felicidad, std::vector<bool>& DiasDanEvento):NPCdata(Campesino,5) {
 	felicidad = Felicidad;
-	iteration = 1;
-	diasDanEvento = DiasDanEvento;
-	giveEvent = false;
 	postConversation = false;
-	eventosCompletados = std::vector<std::pair<bool,int>>(5,std::make_pair(false,0));
-	misionAceptada = false;
 	numMisionesAceptadas = 0;
+	giveEvent = false;
+	diasDanEvento = DiasDanEvento;
+	eventosCompletados = std::vector<std::pair<bool,int>>(5,std::make_pair(false,0));
+	iteration = 1;
+}
+
+npc::NPCMenorData::NPCMenorData(Personaje charac, JSONObject& obj):NPCdata(charac,5)
+{
+	events = std::vector<NPCevent*>(5, nullptr);
+	JSONObject jDiasEvento = obj["DiasConEvento"]->AsObject();
+
+	// leemos los 14 booleanos que indican los dias de evento
+	for (int j = 0; j < 14; j++)
+	{
+		diasDanEvento.push_back(jDiasEvento[std::to_string(j + 1)]->AsBool());
+	}
+	iteration = 1;
+	giveEvent = false;
+	introText = obj["IntroductionText"]->AsString();
 }
 
 std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
@@ -149,7 +164,7 @@ npc::NPCMayorData::~NPCMayorData()
 {
 }
 
-NPCMayorData::NPCMayorData(Felicidad Felicidad) {
+NPCMayorData::NPCMayorData(Felicidad Felicidad) :NPCdata(Vagabundo,14){
 	felicidad = Felicidad;
 	postConversation = false;
 	numMisionesAceptadas = 0;
@@ -159,6 +174,13 @@ NPCMayorData::NPCMayorData(Felicidad Felicidad) {
 		firstMision = 5;
 	misionAceptada = false;
 	eventosCompletados = std::vector<std::pair<bool, int>>(14, std::make_pair(false, 0));
+}
+
+npc::NPCMayorData::NPCMayorData(Personaje charId, JSONObject& charRoot):NPCdata(charId, 14)
+{
+	events = std::vector<NPCevent*>(14, nullptr);
+	firstMision = charRoot["PrimeraMision"]->AsNumber();
+	introText = charRoot["IntroductionText"]->AsString();
 }
 
 std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
@@ -216,9 +238,35 @@ NPCevent* npc::NPCMayorData::getEvent()
 	return events[firstMision + numMisionesAceptadas];
 }
 
+npc::NPCdata::NPCdata(Personaje charac, int evtAmount)
+{
+	npcId = charac;
+	felicidad = NoHabladoAun;
+	numFelicidad = 50;
+	postConversation = false;
+	numMisionesAceptadas = 0;
+	misionAceptada = false;
+	eventosCompletados = std::vector<std::pair<bool, int>>(evtAmount, std::make_pair(false, 0));
+}
+
 npc::NPCdata::~NPCdata()
 {
 	for (auto ev : events) {
 		delete ev;
+	}
+}
+
+void npc::NPCdata::loadDataFromSaveFile(JSONObject& obj)
+{
+	felicidad = gD().stringToFelicidad(obj["Felicidad"]->AsString());
+	postConversation = false;
+	numMisionesAceptadas = obj["numMisionesAceptadas"]->AsNumber();
+	JSONArray events = obj["EventosCompletados"]->AsArray();
+	int k = 0;
+	for (auto it : events)
+	{
+		eventosCompletados[k].first = it->AsNumber() > 0;
+		eventosCompletados[k].second = it->AsNumber();
+		k++;
 	}
 }

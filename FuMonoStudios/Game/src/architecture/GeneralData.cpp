@@ -25,21 +25,12 @@ GeneralData::GeneralData()
 	dia_ = INITIAL_DAY;
 	rent_ = 100;
 	numTubos_ = INITIAL_TUBE_AMOUNT;
-	//upgrades_.resize(ecs::upg::_LAST_UPGRADE);
 	upgrades_.reset();
 	paramVolMusic_ = 50;
 	paramVolSfx_ = 50;
 
 	skipTutorial_ = false;
 	fullScreen_ = true;
-	//upgrades_[ecs::upg::MONEY_UPGRADE] = true;
-
-	/*if (upgrades_[ecs::upg::MONEY_UPGRADE]) {
-		std::cout << "Mejora de dinero desbloqueada" << std::endl;
-	}
-	else {
-		std::cout << "Mejora de dinero NO desbloqueada" << std::endl;
-	}*/
 #ifdef _DEBUG
 	std::cout << "Tamanyo vector de mejoras: " << upgrades_.size() << std::endl;
 #endif // _DEBUG
@@ -78,6 +69,10 @@ void GeneralData::loadSaveFile()
 
 		dia_ = root["Dia"]->AsNumber();
 		dinero_ = root["Dinero"]->AsNumber();
+
+		JSONObject saveFileRoot = jsonFile->AsObject();
+		JSONObject personajesRoot = saveFileRoot["Personajes"]->AsObject();
+		loadNPCsData(personajesRoot);
 	}
 	else {
 		throw std::runtime_error("error al cargar los datos del fichero de guardado");
@@ -319,6 +314,14 @@ void GeneralData::saveNPCData(JSONObject& obj)
 
 }
 
+void GeneralData::loadNPCsData(JSONObject& charRoot)
+{
+	for (int i = Vagabundo; i < Jefe; i++) {
+		JSONObject charObj = charRoot[personajeToString((Personaje)i)]->AsObject();
+		npcData[(Personaje)i]->loadDataFromSaveFile(charObj);
+	}
+}
+
 int GeneralData::getPaqueteLevel() {
 	//Aqui habra que decidir el paquete level en funci�n del d�a
 	return paqueteLvl_;
@@ -371,15 +374,7 @@ void GeneralData::readNPCData() {
 		throw "Something went wrong while load/parsing npcData";
 	}
 
-	std::unique_ptr<JSONValue> jsonFileSaveFile(JSON::ParseFromFile(SAVE_PATH));
-	if (jsonFileSaveFile == nullptr || !jsonFileSaveFile->IsObject()) {
-		throw "Something went wrong while load/parsing saveFile";
-	}
-
 	JSONObject npcDataRoot = jsonFileNpcData->AsObject();
-	JSONObject saveFileRoot = jsonFileSaveFile->AsObject();
-	JSONObject personajesRoot = saveFileRoot["Personajes"]->AsObject();
-	JSONValue* jValue = nullptr;
 
 	// cargamos los 7 personajes
 
@@ -387,73 +382,20 @@ void GeneralData::readNPCData() {
 	{
 		//localizamos el personaje segun el indice
 		std::string aux = personajeToString((Personaje)i);
-		jValue = personajesRoot[aux];
-
-		JSONObject jObject = jValue->AsObject();
+		//obtenemos los datos del personaje
 		JSONObject charData = npcDataRoot[aux]->AsObject();
-		std::string felicidadStr = jObject["Felicidad"]->AsString();
-
+		NPCdata* data = nullptr;
 		if (i < Campesino) // npc grandes
 		{
-			NPCMayorData* data = new NPCMayorData(stringToFelicidad(felicidadStr));
-			data->numMisionesAceptadas = jObject["numMisionesAceptadas"]->AsNumber();
-			data->numFelicidad = jObject["FelicidadNum"]->AsNumber();
-			data->events = std::vector<NPCevent*>(14, nullptr);
-			JSONArray eventosCompletados = jObject["EventosCompletados"]->AsArray();
-			int k = 0;
-			for (auto it : eventosCompletados)
-			{
-				data->eventosCompletados[k].first = it->AsNumber() > 0;
-				data->eventosCompletados[k].second = it->AsNumber();
-				k++;
-			}
-			for (int z = k; z < 14; z++)
-				data->eventosCompletados[z] = std::make_pair(false, 0);
-
-			data->npcId = (Personaje)i;
-
-			data->firstMision = charData["PrimeraMision"]->AsNumber();
-
-			JSONObject jObjectNPCdata = npcDataRoot[aux]->AsObject();
-
-			data->introText = jObjectNPCdata["IntroductionText"]->AsString();
-
-			npcData.emplace((Personaje)i, data);
+			data = new NPCMayorData((Personaje)i, charData);
 		}
 		else
 		{
-			std::vector<bool> diasDanEventos;
-			JSONObject jObjectNPCdata = npcDataRoot[aux]->AsObject();
-			JSONObject jDiasEvento = jObjectNPCdata["DiasConEvento"]->AsObject();
-
-			// leemos los 14 booleanos
-			for (int j = 0; j < 14; j++)
-			{
-				diasDanEventos.push_back(jDiasEvento[std::to_string(j + 1)]->AsBool());
-			}
-			NPCMenorData* data = new NPCMenorData(stringToFelicidad(felicidadStr), diasDanEventos);
-
-			data->introText = jObjectNPCdata["IntroductionText"]->AsString();
-
-			data->events = std::vector<NPCevent*>(5, nullptr);
-			data->numMisionesAceptadas = jObject["numMisionesAceptadas"]->AsNumber();
-			data->numFelicidad = jObject["FelicidadNum"]->AsNumber();
-			JSONArray eventosCompletados = jObject["EventosCompletados"]->AsArray();
-			int k = 0;
-			for (auto it : eventosCompletados)
-			{
-				data->eventosCompletados[k].first = it->AsNumber() > 0;
-				data->eventosCompletados[k].second = it->AsNumber();
-				k++;
-			}
-			for (int z = k; z < 5; z++)
-				data->eventosCompletados[z] = std::make_pair(false, 0);
-
-			npcData.emplace((Personaje)i, data);
+			data = new NPCMenorData((Personaje)i,charData);
 		}
-		jValue = nullptr;
+		npcData.emplace((Personaje)i, data);
 	}
-
+	//creamos el sistema de eventos y lo inicializamos
 	if (npcEventSys == nullptr)
 		npcEventSys = new NPCeventSystem();
 }
@@ -472,6 +414,7 @@ void GeneralData::saveGame() {
 	//modificacion de los valores en el json
 	modifyJsonData(root, "Dia", dia_);
 	modifyJsonData(root, "Dinero", dinero_);
+
 	//puede sustituir a la lectura del npcData que es un poco intrusiva
 	saveNPCData(root);
 
