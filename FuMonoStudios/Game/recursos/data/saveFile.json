@@ -1,14 +1,14 @@
 {
-  "Dia":12,
-  "Dinero":0,
+  "Dia":14,
+  "Dinero":400,
   "Personajes":{
     "Artesano":{
       "EventosCompletados":[
-        2,7,-9,10,0
+        0,0,0,0,0
       ],
-      "Felicidad":"Buena",
-      "FelicidadNum":70,
-      "numMisionesAceptadas":4,
+      "Felicidad":"Normal",
+      "FelicidadNum":50,
+      "numMisionesAceptadas":0,
       "unlockUpgrade":false
     },
     "Campesino":{
@@ -40,12 +40,12 @@
     },
     "Soldado":{
       "EventosCompletados":[
-        0,0,0,0,0
+        6,8,10,12,14
       ],
-      "Felicidad":"Normal",
-      "FelicidadNum":50,
-      "numMisionesAceptadas":0,
-      "unlockUpgrade":false
+      "Felicidad":"Maxima",
+      "FelicidadNum":100,
+      "numMisionesAceptadas":4,
+      "unlockUpgrade":true
     },
     "Tarotisa":{
       "EventosCompletados":[
@@ -61,7 +61,7 @@
         0,0,0,0,0,0,0,0,0,0,0,0,0,0
       ],
       "Felicidad":"Normal",
-      "FelicidadNum":50,
+      "FelicidadNum":40,
       "numMisionesAceptadas":0,
       "unlockUpgrade":false
     }

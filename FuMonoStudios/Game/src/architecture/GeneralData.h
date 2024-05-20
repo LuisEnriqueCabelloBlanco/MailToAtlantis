@@ -14,6 +14,7 @@
 #include <json/JSONValue.h>
 #include <bitset>
 #include <architecture/Exceptions.h>
+#include <architecture/GameConstants.h>
 
 class DialogManager;
 class PaqueteBuilder;
@@ -221,7 +222,12 @@ public:
 	}
 
 	inline int getDay() { return dia_; }
-	inline void setDay(int dia) { dia_ = dia; updateDia(); }
+	inline void setDay(int dia) { 	
+		dia_ = dia; 
+		if (dia < MAX_DAYS) {
+			updateDia();
+		}
+	}
 
 	inline int getNumDistritos() { return (Distrito::Erroneo); }
 
