@@ -244,10 +244,15 @@ void DialogManager::startConversationWithObj(const std::string& interactableObj)
     }
 }
 
-void DialogManager::startConversation(DialogSelection enter, int numIteration) {
+void DialogManager::startConversation(DialogSelection enter, int numIteration, const std::string& character) {
     if (canStartConversation) {
 
         setDialogues(enter, std::to_string(numIteration));
+
+        setCurrentDialogSound(character);
+        /*if (dialogSound_ != "") {
+            SoundEmiter::instance()->playSound(dialogSound_);
+        }*/
 
         setDialogueEntitiesActive(true);
 

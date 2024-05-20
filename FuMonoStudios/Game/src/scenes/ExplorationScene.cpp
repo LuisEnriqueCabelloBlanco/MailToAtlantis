@@ -81,7 +81,7 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 			canInteract = true;
 			temporalSprite->setAlive(false);
 			});
-		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 0);
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 0, "Jefe");
 	}
 	else if (gD().getDay() == 5) {
 		canInteract = false;
@@ -90,7 +90,7 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 			canInteract = true;
 			temporalSprite->setAlive(false);
 			});
-		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 1);
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 1, "Jefe");
 	}
 	else if ((gD().getNPCData(Vagabundo)->misionAceptada == 5 && gD().getNPCData(Secretario)->misionAceptada < 3)
 		|| (gD().getNPCData(Secretario)->misionAceptada == 2 && gD().getNPCData(Vagabundo)->misionAceptada < 6)) 
@@ -103,7 +103,7 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 			canInteract = true;
 			temporalSprite->setAlive(false);
 			});
-		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 2);
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 2, "Jefe");
 	}
 }
 
