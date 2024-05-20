@@ -89,7 +89,7 @@ void DialogManager::setDialogues(const DialogSelection ds, const std::string& ti
     // check it was loaded correctly
     // the root must be a JSON object
     if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-        throw "Something went wrong while load/parsing dialogues";
+        throw config_File_Missing(jsonPath);
     }
     // we know the root is JSONObject
     JSONObject root = jValueRoot->AsObject();
@@ -213,8 +213,10 @@ void DialogManager::startConversation(const std::string& character)
 
         setDialogueEntitiesActive(true);
 
-
+#ifdef _DEBUG
         std::cout << "jefe otro dialogo que este tenia un agujero\n";
+#endif // _DEBUG
+
 #ifdef QA_TOOLS
         dataCollector().recordNPC(charac + 1, aux.second, gD().getNPCData(charac)->felicidad);
 #endif // QA_TOOLS
@@ -234,8 +236,10 @@ void DialogManager::startConversationWithObj(const std::string& interactableObj)
         setDialogues((DialogManager::DialogSelection)(gD().stringToObjInt(interactableObj) + DialogManager::DialogSelection::CasaGrande), "Texto"+interactableObj+aux1+aux2);
 
         setDialogueEntitiesActive(true);
-
+#ifdef _DEBUG
         std::cout << "jefe otro dialogo que este tenia un agujero\n";
+#endif // _DEBUG
+
         canStartConversation = false;
     }
 }

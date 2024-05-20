@@ -153,7 +153,7 @@ void SoundEmiter::processSoundListJSON()
 	// check it was loaded correctly
 	// the root must be a JSON object
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw save_Missing(SOUNDS_PATH);
+		throw config_File_Missing(SOUNDS_PATH);
 	}
 
 	JSONObject root = jValueRoot->AsObject();
@@ -171,7 +171,10 @@ void SoundEmiter::processSoundListJSON()
 			soundPulls_.insert({ key, {ammount, false} });
 		}
 		else {
-			throw wrong_JSON_Format(SOUNDS_PATH);
+#ifdef _DEBUG
+			std::cerr<< wrong_JSON_Format(SOUNDS_PATH).what() << std::endl;
+#endif // _DEBUG
+
 		}
 	}
 }

@@ -19,20 +19,22 @@ public:
 	save_Missing(const std::string& msg):mail_Exception(msg) {}
 };
 
-class config_File_Missing :public mail_Exception {
+class wrong_JSON_Format : public mail_Exception {
 public:
-	config_File_Missing(const std::string& path):mail_Exception() {
+	wrong_JSON_Format(const std::string& path) :mail_Exception() {
 		path_ = path;
-		message_ = "Archvo con ruta " + path  + "no pudo encontrarse";
+		message_ = "Objeto en "+path+ "no es del tipo esperado";
 	}
 protected:
 	std::string path_;
 };
 
-class wrong_JSON_Format : public mail_Exception {
-	wrong_JSON_Format(const std::string& path) :mail_Exception() {
+
+class config_File_Missing :public mail_Exception {
+public:
+	config_File_Missing(const std::string& path):mail_Exception() {
 		path_ = path;
-		message_ = "Objeto en "+path+ "no es del tipo esperado";
+		message_ = "Archvo con ruta " + path  + "no pudo encontrarse";
 	}
 protected:
 	std::string path_;

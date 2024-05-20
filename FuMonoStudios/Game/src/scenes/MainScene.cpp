@@ -838,8 +838,7 @@ void ecs::MainScene::createPaquete (int lv) {
 ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
 	dialogoPendiente = true;
 
-	std::string jsonPath = "recursos/data/eventosjefe.json";
-	dialogMngr_.init(this, jsonPath);
+	dialogMngr_.init(this, BOSS_EVENTS_PATH);
 
 	mWorkRes.init();
 	Texture* characterTexture = &sdlutils().images().at(character);

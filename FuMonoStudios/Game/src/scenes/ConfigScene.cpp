@@ -22,7 +22,10 @@ ecs::ConfigScene::~ConfigScene()
 
 void ecs::ConfigScene::init()
 {
+#ifdef _DEBUG
 	std::cout << "Hola Config" << std::endl;
+#endif // _DEBUG
+
 	sdlutils().clearRenderer();
 
 	Entity* fondo = addEntity(ecs::layer::BACKGROUND);

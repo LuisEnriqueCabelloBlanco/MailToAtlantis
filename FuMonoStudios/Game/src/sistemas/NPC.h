@@ -93,7 +93,6 @@ namespace npc {
 
 	struct NPCMenorData : public NPCdata {
 		virtual ~NPCMenorData();
-		NPCMenorData(Felicidad Felicidad, std::vector<bool>& DiasDanEvento);
 		/// <summary>
 		/// Constructora que lee los datos del jsonObject de npcData.json
 		/// </summary>
@@ -119,7 +118,6 @@ namespace npc {
 
 	struct NPCMayorData : public NPCdata {
 		virtual ~NPCMayorData();
-		NPCMayorData(Felicidad Felicidad);
 		/// <summary>
 		/// Constructora que lee los datos del jsonObject de npcData.json
 		/// </summary>

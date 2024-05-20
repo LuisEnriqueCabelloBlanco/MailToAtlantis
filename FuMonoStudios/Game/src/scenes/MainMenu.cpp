@@ -52,7 +52,7 @@ void ecs::MainMenu::init()
 		try {
 			gD().loadSaveFile();
 		}
-		catch (save_Missing e) {
+		catch (save_Missing& e) {
 			std::string god = e.what();
 			god += "se cargara una nueva partida desde el dia 1";
 			SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "ERROR",god.c_str(), sdlutils().window());

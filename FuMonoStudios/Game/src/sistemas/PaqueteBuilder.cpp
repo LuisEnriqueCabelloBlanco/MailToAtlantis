@@ -7,6 +7,7 @@
 #include <sistemas/NPCeventSystem.h>
 #include <components/Herramientas.h>
 #include <sistemas/SpecialObjectsFactory.h>
+#include <architecture/Exceptions.h>
 
 std::unordered_map<Distrito, std::vector<std::string>> PaqueteBuilder::distritoCalle_;
 std::vector<std::string> PaqueteBuilder::names;
@@ -20,7 +21,7 @@ void PaqueteBuilder::initdata()
 	// check it was loaded correctly
 	// the root must be a JSON object
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while load/parsing '" + DIR_SETTINGS_PATH + "'";
+		throw config_File_Missing(DIR_SETTINGS_PATH);
 	}
 	// we know the root is JSONObject
 	JSONObject root = jValueRoot->AsObject();
@@ -340,7 +341,7 @@ void PaqueteBuilder::getNamesFromJSON() {
 	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(REMITENT_SETTINGS_PATH));
 
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while load/parsing '" + REMITENT_SETTINGS_PATH + "'";
+		throw config_File_Missing(REMITENT_SETTINGS_PATH);
 	}
 
 	// we know the root is JSONObject
@@ -360,13 +361,13 @@ void PaqueteBuilder::getNamesFromJSON() {
 					names.push_back(aux);
 				}
 				else {
-					throw "'Name' array in '" + REMITENT_SETTINGS_PATH
-						+ "' includes and invalid value";
+					/*throw "'Name' array in '" + REMITENT_SETTINGS_PATH
+						+ "' includes and invalid value";*/
 				}
 			}
 		}
 		else {
-			throw "'Name' is not an array in '" + REMITENT_SETTINGS_PATH + "'";
+			/*throw "'Name' is not an array in '" + REMITENT_SETTINGS_PATH + "'";*/
 		}
 	}	
 	jValue = root["Surname"];
@@ -382,13 +383,13 @@ void PaqueteBuilder::getNamesFromJSON() {
 					surnames.push_back(aux);
 				}
 				else {
-					throw "'Surname' array in '" + REMITENT_SETTINGS_PATH
-						+ "' includes and invalid value";
+					/*throw "'Surname' array in '" + REMITENT_SETTINGS_PATH
+						+ "' includes and invalid value";*/
 				}
 			}
 		}
 		else {
-			throw "'Surname' is not an array in '" + REMITENT_SETTINGS_PATH + "'";
+			/*throw "'Surname' is not an array in '" + REMITENT_SETTINGS_PATH + "'";*/
 		}
 	}
 }
@@ -418,12 +419,12 @@ void PaqueteBuilder::getStreetsFromJSON(JSONObject& root, Distrito dist)
 					distritoCalle_[dist].emplace_back(aux);
 				}
 				else {
-					throw "'Calles' array in includes and invalid value";
+					/*throw "'Calles' array in includes and invalid value";*/
 				}
 			}
 		}
 		else {
-			throw "'is not an array '";
+			/*throw "'is not an array '";*/
 		}
 	}
 }
@@ -434,7 +435,7 @@ PaqueteBuilder::DifficultySettings PaqueteBuilder::getLevelSetings(int lvl)
 	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(DIFF_SETTINGS_PATH));
 
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while load/parsing '" + DIFF_SETTINGS_PATH + "'";
+		throw config_File_Missing(DIFF_SETTINGS_PATH);
 	}
 
 	JSONObject root = jValueRoot->AsObject();
@@ -542,7 +543,7 @@ void PaqueteBuilder::getRoutesFromJSON() {
 	// check it was loaded correctly
 	// the root must be a JSON object
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while load/parsing ' rutas.JSON ' ";
+		throw config_File_Missing(TAPE_ROUTE_PATH);
 	}
 
 	// we know the root is JSONObject
@@ -564,19 +565,19 @@ void PaqueteBuilder::getRoutesFromJSON() {
 							routePoints.push_back(static_cast<int>(pointValue->AsNumber()));
 						}
 						else {
-							throw "'points' array in 'rutas.JSON' includes an invalid value";
+							/*throw "'points' array in 'rutas.JSON' includes an invalid value";*/
 						}
 					}
 
 					allRoutes.push_back(routePoints);
 				}
 				else {
-					throw "'rutas' array in 'rutas.JSON' includes an invalid value";
+					/*throw "'rutas' array in 'rutas.JSON' includes an invalid value";*/
 				}
 			}
 		}
 		else {
-			throw "'rutas' is not an array in 'rutas.JSON'";
+			/*throw "'rutas' is not an array in 'rutas.JSON'";*/
 		}
 	}
 }

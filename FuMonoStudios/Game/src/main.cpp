@@ -9,6 +9,7 @@
 #include <architecture/Game.h>
 #include <sdlutils/SDLUtils.h>
 #include <../rapidCSV/rapidcsv.h>
+#include <architecture/Exceptions.h>
 
 
 
@@ -19,6 +20,11 @@ int main(int argc, char* argv[]) {
 	}
 	catch (std::string& e) {
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", e.c_str(), sdlutils().window());
+	}
+	catch (config_File_Missing& e) {
+		std::string msg = e.what();
+		msg += "\nReinstale el juego para recuperar el fichero";
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.c_str(), sdlutils().window());
 	}
 	catch(std::runtime_error& e){
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", e.what(), sdlutils().window());
