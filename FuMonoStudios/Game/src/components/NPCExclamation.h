@@ -2,6 +2,8 @@
 #include <architecture/Component.h>
 #include <components/Transform.h>
 
+//Material descartado por diseño pero mantenido para futuras implementaciones del juego
+
 class NPCExclamation : public ecs::Component
 {
 public:
