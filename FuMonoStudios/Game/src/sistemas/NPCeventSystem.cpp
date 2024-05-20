@@ -488,10 +488,10 @@ void NPCeventSystem::readNPCevent(JSONObject& eventObject, int personaje, int in
 * como necesites. */
 void NPCeventSystem::readNPCEventData() {
 
-	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/npcData.json"));
+	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile(NPC_DATA_PATH));
 
 	if (jsonFile == nullptr || !jsonFile->IsObject()) {
-		throw std::runtime_error("Something went wrong while load/parsing npcData");
+		throw config_File_Missing(NPC_DATA_PATH);
 	}
 
 	JSONObject root = jsonFile->AsObject();

@@ -16,7 +16,6 @@ namespace ecs {
 
         void init() override;
         void close() override;
-        void changeToMainScene();
     };
 }
 

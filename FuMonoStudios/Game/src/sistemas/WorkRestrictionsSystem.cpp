@@ -12,7 +12,7 @@ WorkRestrictionsSystem::~WorkRestrictionsSystem()
 
 void WorkRestrictionsSystem::init()
 {
-    jsonPath = "recursos/data/eventosjefe.json";
+    jsonPath = BOSS_EVENTS_PATH;
 }
 
 tb::WorkEvent WorkRestrictionsSystem::getRandomEvent()
@@ -38,7 +38,7 @@ tb::WorkEvent WorkRestrictionsSystem::getEvent(int selection)
     // check it was loaded correctly
     // the root must be a JSON object
     if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-        throw "Something went wrong while load/parsing dialogues";
+        throw config_File_Missing(jsonPath);
     }
     // we know the root is JSONObject
     JSONObject root = jValueRoot->AsObject();

@@ -369,7 +369,7 @@ void GeneralData::readNPCData() {
 	std::unique_ptr<JSONValue> jsonFileNpcData(JSON::ParseFromFile(NPC_DATA_PATH));
 
 	if (jsonFileNpcData == nullptr || !jsonFileNpcData->IsObject()) {
-		throw "Something went wrong while load/parsing npcData";
+		throw config_File_Missing(NPC_DATA_PATH);
 	}
 
 	JSONObject npcDataRoot = jsonFileNpcData->AsObject();

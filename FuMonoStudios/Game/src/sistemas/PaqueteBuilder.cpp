@@ -7,6 +7,7 @@
 #include <sistemas/NPCeventSystem.h>
 #include <components/Herramientas.h>
 #include <sistemas/SpecialObjectsFactory.h>
+#include <architecture/Exceptions.h>
 
 std::unordered_map<Distrito, std::vector<std::string>> PaqueteBuilder::distritoCalle_;
 std::vector<std::string> PaqueteBuilder::names;
@@ -15,12 +16,13 @@ std::vector<std::list<int>> PaqueteBuilder::allRoutes;
 
 void PaqueteBuilder::initdata()
 {
+	
 	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(DIR_SETTINGS_PATH));
 
 	// check it was loaded correctly
 	// the root must be a JSON object
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while load/parsing '" + DIR_SETTINGS_PATH + "'";
+		throw config_File_Missing(DIR_SETTINGS_PATH);
 	}
 	// we know the root is JSONObject
 	JSONObject root = jValueRoot->AsObject();
@@ -273,8 +275,8 @@ pq::TipoPaquete PaqueteBuilder::tipoRND() {	//Este m�todo devuelve un Tipo de 
 }
 
 pq::Calle PaqueteBuilder::calleRND(int probError) {	//Este m�todo devuelve una calle aleatoria de las posibilidades, con probabilidad de que salga un resultado err�neo
-	int rnd = sdlutils().rand().nextInt(0, 101);
-	if (rnd > probError) {
+	int rnd = sdlutils().rand().nextInt(0, 100);
+	if (rnd >= probError) {
 		rnd = sdlutils().rand().nextInt(0, 3);
 		return (pq::Calle)rnd;
 	}
@@ -284,7 +286,7 @@ pq::Calle PaqueteBuilder::calleRND(int probError) {	//Este m�todo devuelve una
 }
 
 bool PaqueteBuilder::boolRND(int probFalse) { //Este m�todo devuelve una valor aleatorio entre treu y false para un bool seg�n una probabilidad
-	int rnd = sdlutils().rand().nextInt(0, 101);
+	int rnd = sdlutils().rand().nextInt(0, 100);
 	if (rnd >= probFalse) {
 		return true;
 	}
@@ -294,7 +296,7 @@ bool PaqueteBuilder::boolRND(int probFalse) { //Este m�todo devuelve una valor
 }
 
 pq::NivelPeso PaqueteBuilder::pesoRND(int probPeso, int probError, int& peso) {	//Este m�todo elige aleatoriamente si colocar un sello de peso o no en el paquete y, en caso positivo,
-	int rnd = sdlutils().rand().nextInt(0, 101);										//elige aleatoriamente si el resultado es correcto o incorrecto, devolviendo un peso para el paquete
+	int rnd = sdlutils().rand().nextInt(0, 100);										//elige aleatoriamente si el resultado es correcto o incorrecto, devolviendo un peso para el paquete
 	if (rnd < probPeso) {
 		pq::NivelPeso pes;
 		rnd = sdlutils().rand().nextInt(1, 4);
@@ -303,13 +305,13 @@ pq::NivelPeso PaqueteBuilder::pesoRND(int probPeso, int probError, int& peso) {	
 		rnd = sdlutils().rand().nextInt(0, 101);
 		if (rnd > probError) {
 			if (pes == pq::NivelPeso::Alto) {
-				peso = sdlutils().rand().nextInt(MEDIO_MAX+2, PESADO_MAX -1);
+				peso = sdlutils().rand().nextInt(MEDIO_MAX+5, PESADO_MAX -4);
 			}
 			else if (pes == pq::NivelPeso::Medio) {
-				peso = sdlutils().rand().nextInt(LIGERO_MAX+2, MEDIO_MAX-2);
+				peso = sdlutils().rand().nextInt(LIGERO_MAX+5, MEDIO_MAX-5);
 			}
 			else if (pes == pq::NivelPeso::Bajo) {
-				peso = sdlutils().rand().nextInt(PAQUETE_MIN, LIGERO_MAX-2);
+				peso = sdlutils().rand().nextInt(PAQUETE_MIN, LIGERO_MAX-5);
 			}
 		}
 		else {
@@ -340,7 +342,7 @@ void PaqueteBuilder::getNamesFromJSON() {
 	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(REMITENT_SETTINGS_PATH));
 
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while load/parsing '" + REMITENT_SETTINGS_PATH + "'";
+		throw config_File_Missing(REMITENT_SETTINGS_PATH);
 	}
 
 	// we know the root is JSONObject
@@ -360,13 +362,13 @@ void PaqueteBuilder::getNamesFromJSON() {
 					names.push_back(aux);
 				}
 				else {
-					throw "'Name' array in '" + REMITENT_SETTINGS_PATH
-						+ "' includes and invalid value";
+					/*throw "'Name' array in '" + REMITENT_SETTINGS_PATH
+						+ "' includes and invalid value";*/
 				}
 			}
 		}
 		else {
-			throw "'Name' is not an array in '" + REMITENT_SETTINGS_PATH + "'";
+			/*throw "'Name' is not an array in '" + REMITENT_SETTINGS_PATH + "'";*/
 		}
 	}	
 	jValue = root["Surname"];
@@ -382,13 +384,13 @@ void PaqueteBuilder::getNamesFromJSON() {
 					surnames.push_back(aux);
 				}
 				else {
-					throw "'Surname' array in '" + REMITENT_SETTINGS_PATH
-						+ "' includes and invalid value";
+					/*throw "'Surname' array in '" + REMITENT_SETTINGS_PATH
+						+ "' includes and invalid value";*/
 				}
 			}
 		}
 		else {
-			throw "'Surname' is not an array in '" + REMITENT_SETTINGS_PATH + "'";
+			/*throw "'Surname' is not an array in '" + REMITENT_SETTINGS_PATH + "'";*/
 		}
 	}
 }
@@ -418,12 +420,12 @@ void PaqueteBuilder::getStreetsFromJSON(JSONObject& root, Distrito dist)
 					distritoCalle_[dist].emplace_back(aux);
 				}
 				else {
-					throw "'Calles' array in includes and invalid value";
+					/*throw "'Calles' array in includes and invalid value";*/
 				}
 			}
 		}
 		else {
-			throw "'is not an array '";
+			/*throw "'is not an array '";*/
 		}
 	}
 }
@@ -434,7 +436,7 @@ PaqueteBuilder::DifficultySettings PaqueteBuilder::getLevelSetings(int lvl)
 	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(DIFF_SETTINGS_PATH));
 
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while load/parsing '" + DIFF_SETTINGS_PATH + "'";
+		throw config_File_Missing(DIFF_SETTINGS_PATH);
 	}
 
 	JSONObject root = jValueRoot->AsObject();
@@ -542,7 +544,7 @@ void PaqueteBuilder::getRoutesFromJSON() {
 	// check it was loaded correctly
 	// the root must be a JSON object
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw "Something went wrong while load/parsing ' rutas.JSON ' ";
+		throw config_File_Missing(TAPE_ROUTE_PATH);
 	}
 
 	// we know the root is JSONObject
@@ -564,19 +566,19 @@ void PaqueteBuilder::getRoutesFromJSON() {
 							routePoints.push_back(static_cast<int>(pointValue->AsNumber()));
 						}
 						else {
-							throw "'points' array in 'rutas.JSON' includes an invalid value";
+							/*throw "'points' array in 'rutas.JSON' includes an invalid value";*/
 						}
 					}
 
 					allRoutes.push_back(routePoints);
 				}
 				else {
-					throw "'rutas' array in 'rutas.JSON' includes an invalid value";
+					/*throw "'rutas' array in 'rutas.JSON' includes an invalid value";*/
 				}
 			}
 		}
 		else {
-			throw "'rutas' is not an array in 'rutas.JSON'";
+			/*throw "'rutas' is not an array in 'rutas.JSON'";*/
 		}
 	}
 }

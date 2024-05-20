@@ -211,7 +211,7 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 	
 	if (dia >= 1) {
 		if (GeneralData::instance()->getUpgradeValue(ecs::upg::SELLO_UPGRADE)) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina								
-		else createStamp(SelloCalleA);
+		else createStamp(SelloVacio);
 
 		createInks();
 
@@ -276,7 +276,7 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 
 ecs::Entity* ecs::MainScene::createStamp(TipoHerramienta type)
 {
-	if (type > 2) return nullptr;
+	if (type > 2 && !SelloVacio) return nullptr;
 
 	constexpr float STAMPSIZE = 1;
 	factory_->setLayer(layer::STAMP);
@@ -821,16 +821,7 @@ void ecs::MainScene::createPaquete (int lv) {
 		int rnd = sdlutils().rand().nextInt(0, 4);		
 		if(rnd !=1) bolaCrist_->check(pac->getComponent<Paquete>(), true);
 		else bolaCrist_->check(pac->getComponent<Paquete>(), false);
-	}
-	Paquete* p = pac->getComponent<Paquete>();
-	std::cout << "\n";
-	std::cout << p->getPeso();
-	std::cout << "\n";
-	std::cout << p->getCantidadPeso();
-	std::cout << "\n";
-	if (p->pesoCorrecto()) std::cout << "true";
-	else std::cout << "false";
-	std::cout << "\n";
+	}	
 }
 
 
@@ -838,8 +829,7 @@ void ecs::MainScene::createPaquete (int lv) {
 ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
 	dialogoPendiente = true;
 
-	std::string jsonPath = "recursos/data/eventosjefe.json";
-	dialogMngr_.init(this, jsonPath);
+	dialogMngr_.init(this, BOSS_EVENTS_PATH);
 
 	mWorkRes.init();
 	Texture* characterTexture = &sdlutils().images().at(character);
