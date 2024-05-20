@@ -50,12 +50,12 @@ void ecs::MainScene::update()
 			if (timer_ > 0) {
 				timer_ -= Time::getDeltaTime();
 				if (timer_ <= MINIGAME_TIME / 4 && clockMusic == 0) {
-					SoundEmiter::instance()->playSound("tac");
+					SoundEmiter::instance()->playSoundWithPriority("tac");
 					clockMusic++;
 				}
 				if (timer_ <= MINIGAME_TIME / 10 && clockMusic == 1) {
 					SoundEmiter::instance()->haltSound("tac");
-					SoundEmiter::instance()->playSound("tic");
+					SoundEmiter::instance()->playSoundWithPriority("tic");
 					clockMusic++;
 				}
 			}
