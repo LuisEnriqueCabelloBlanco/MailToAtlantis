@@ -69,6 +69,8 @@ void NPCeventSystem::minigameOver() {
 		data->eventosCompletados[event->numEvento].second =
 			gD().getDay() * (event->completed ? 1 : -1);
 
+		data->numMisionesAceptadas++;
+
 		procesarStringRecompensas(event->completed, event->recompensas);
 	}
 

@@ -106,9 +106,9 @@ void NPCMenorData::setupDayData() {
 	iteration = 1;
 	int day = gD().getDay() - 1;
 	giveEvent = diasDanEvento[day];
-	if (misionAceptada) {
-		numMisionesAceptadas++;
-	}
+	//if (misionAceptada) {
+	//	numMisionesAceptadas++;
+	//}
 	misionAceptada = false;
 	/*// comprobar si hemos completado todos los eventos
 	bool npcCompleted = true;
@@ -234,9 +234,9 @@ void NPCMayorData::setupDayData() {
 	if (postConversation && felicidad == NoHabladoAun)
 		felicidad = Normal;
 	postConversation = false;
-	if (misionAceptada) {
-		numMisionesAceptadas++;
-	}
+	//if (misionAceptada) {
+	//	numMisionesAceptadas++;
+	//}
 	misionAceptada = false;
 }
 
