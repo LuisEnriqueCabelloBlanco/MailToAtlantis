@@ -12,6 +12,12 @@ EndGameScene::EndGameScene()
 {
 }
 
+EndGameScene::~EndGameScene()
+{
+    /*if (final_ != nullptr) //ahora mismo deja memory leak pero mejor eso a que pete
+        delete final_;*/
+}
+
 void EndGameScene::init()
 {
     npcId_ = 0;
