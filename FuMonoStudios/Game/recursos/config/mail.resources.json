@@ -799,6 +799,26 @@
       "id": "hvdComicSerif50",
       "file": "recursos/fonts/HVD_Comic_Serif_Pro.otf",
       "size": 50
+    },
+    {
+      "id": "hvdComicSerif80",
+      "file": "recursos/fonts/HVD_Comic_Serif_Pro.otf",
+      "size": 80
+    },
+    {
+      "id": "Courier50",
+      "file": "recursos/fonts/Cour.ttf",
+      "size": 50
+    },
+    {
+      "id": "Courier40",
+      "file": "recursos/fonts/Cour.ttf",
+      "size": 40
+    },
+    {
+      "id": "Courier30",
+      "file": "recursos/fonts/Cour.ttf",
+      "size": 30
     }
   ],
   "sounds": [

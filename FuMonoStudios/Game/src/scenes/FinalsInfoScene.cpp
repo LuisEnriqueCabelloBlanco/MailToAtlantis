@@ -28,7 +28,7 @@ FinalsInfoScene::FinalsInfoScene()
         final_->setActive(false); // desactiva periodico con el final
     };
     auto textColor = build_sdlcolor(0xffffffff);
-
+    factory_->setFont("hvdComicSerif");
     auto backButton = factory_->createTextuButton(Vector2D(210, 50), "Atras", 80, callback, "click", textColor);
     factory_->addHoverColorMod(backButton);
 
