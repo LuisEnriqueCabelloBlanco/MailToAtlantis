@@ -87,6 +87,10 @@
     {
       "key": "tac",
       "amount": 1
+    },
+    {
+      "key": "explosion",
+      "amount": 1
     }
   ]
 }

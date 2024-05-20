@@ -2,6 +2,6 @@
   "fullScreenEnable":true,
   "gameEnded":false,
   "musicVal":50,
-  "sfxVal":50,
-  "skipTutorial":false
+  "sfxVal":40,
+  "skipTutorial":true
 }

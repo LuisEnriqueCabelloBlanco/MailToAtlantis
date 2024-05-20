@@ -133,11 +133,11 @@
         "textoDiario": "Me ha dicho que aun tengo una prueba que superar hasta poder ser de fiar. Tengo que mandar a Poseidon el paquete del 'Buitre'. Seguramente tenga que usar el papel con agujeros para ello."
       },
       "7": {
-        "numPaquetes": 1,
+        "numPaquetes": 2,
         "numPaquetesParaCompletar": 1,
         "paquetes": {
           "tipoPaquete": "Alimento",
-          "distrito": "Demeter"
+          "distrito": "Hermes"
         },
         "condiciones": {
           "tuboSeleccionado": "Hestia",
@@ -375,13 +375,43 @@
         "textoDiario": "El secretario necesita que elimine paquetes de un grupo llamado 'lechuzas'. Tengo que mandar a la basura 3 paquetes de alimentos que vayan hacia Apolo."
       },
       "6": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 4,
+        "numPaquetesParaCompletar": 3,
         "paquetes": {
-          "remitente": "Albama Ice"
+          "1":{
+            "tipoPaquete": "Alimento",
+            "distrito": "Hermes"
+          },
+          "2":{
+            "tipoPaquete": "Alimento",
+            "distrito": "Hermes"
+          },
+          "3":{
+            "tipoPaquete": "Alimento",
+            "distrito": "Apolo"
+          },
+          "4":{
+            "tipoPaquete": "Alimento",
+            "distrito": "Apolo"
+          }
         },
         "condiciones": {
-          "remitente": "Albama Ice"
+          "1":{
+            "tipoPaquete": "Alimento",
+            "tuboSeleccionado": "Basura"
+          },
+          "2":{
+            "tipoPaquete": "Alimento",
+            "tuboSeleccionado": "Basura"
+          },
+          "3":{
+            "tipoPaquete": "Alimento",
+            "tuboSeleccionado": "Basura"
+          },
+          "4":{
+            "tipoPaquete": "Alimento",
+            "tuboSeleccionado": "Basura"
+          }
         },
         "recompensa": {
           "1": "Secretario+++++",
@@ -445,8 +475,8 @@
         "textoDiario": "Me ha pasado una lista con nombres de gente de las lechuzas. Debo mandar sus paquetes a Apolo, donde los analizar$a."
       },
       "9": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 3,
         "paquetes": {
           "1":{
             "remitente": "Anemos Togakawa",
@@ -483,21 +513,6 @@
         "textoDiario": "Hoy dice que ha encontrado nombres de gente importante en las lechuzas. Igual que ayer, debo reenviar sus paquetes a Apolo."
       },
       "10": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
-        "paquetes": {
-          "remitente": "Albama Ice"
-        },
-        "condiciones": {
-          "remitente": "Albama Ice"
-        },
-        "recompensa": {
-          "1": "Secretario+++++",
-          "2": " $Secretario-----"
-        },
-        "textoDiario": "Texto diario"
-      },
-      "11": {
         "numPaquetes": 4,
         "numPaquetesParaCompletar": 2,
         "paquetes": {
@@ -546,7 +561,7 @@
         },
         "textoDiario": "El secretario me ha contado su revelaci$on que tuvo de Poseid$on. Dice que nos est$a poniendo a prueba y $el es el $unico que podr$a salvarnos. Debemos resurgir a la superficie con una nave que ha estado construyendo, y una vez arriba, pelear$a con los humanos con el poder de los Dioses. Para poder ayudarle, necesita 2 paquetes de joyas. Debo redirigir 2 paquetes que vayan a Hestia, Demeter, Artemisa o a Hefesto y mandarlos a Poseid$on."
       },
-      "12": {
+      "11": {
         "numPaquetes": 4,
         "numPaquetesParaCompletar": 3,
         "paquetes": {
@@ -564,9 +579,9 @@
         },
         "textoDiario": "Ahora necesitamos materiales para la chapa de la nave. Debo redirigir 3 paquetes de materiales que vayan a Hefesto y mandarlos a Poseid$on."
       },
-      "13": {
-        "numPaquetes": 1,
-        "numPaquetesParaCompletar": 1,
+      "12": {
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 2,
         "paquetes": {
           "remitente": "Pancracio Warawa",
           "distrito": "Hermes",
@@ -582,6 +597,23 @@
           "2": " $Secretario-----"
         },
         "textoDiario": "Gargafiel me ha pedido suministros de comida para la nave. Ha comprado paquetes de comida a un campesino pero van a Hermes en vez de Poseid$on. Debo redirigir los 2 paquetes hacia Poseid$on. El nombre del campesino es Pancracio Warawa."
+      },
+      "13": {
+        "numPaquetes": 3,
+        "numPaquetesParaCompletar": 3,
+        "paquetes": {
+          "remitente": "Gargafiel Mustaki",
+          "distrito": "Hefesto"
+        },
+        "condiciones": {
+          "remitente": "Gargafiel Mustaki",
+          "tuboSeleccionado": "Hefesto"
+        },
+        "recompensa": {
+          "1": "Secretario+++++",
+          "2": " $Secretario-----"
+        },
+        "textoDiario": "Necesita que lleguen unos paquetes suyos sanos y salvos. Ha mandado 3 paquetes en total, esta bastante cansado asi que puede ser que est$en mal sellados."
       },
       "14": {
         "numPaquetes": 1,

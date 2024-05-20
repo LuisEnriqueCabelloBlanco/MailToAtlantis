@@ -121,8 +121,8 @@ void EndWorkScene::createButtons()
 	if (money > 0) {
 		// Boton nuevo dia
 
-		
-		gD().saveGame();
+		if (gD().getDay() < 14)
+			gD().saveGame();
 		
 		auto call = []() {
 			if (gD().getDay() == 15) {

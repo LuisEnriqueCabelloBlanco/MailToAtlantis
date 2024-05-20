@@ -110,7 +110,7 @@ void SpecialObjectsFactory::makeListaSecretario(bool first) {
 		ecs::Entity* texto = gm().getScene(ecs::sc::MAIN_SCENE)->addEntity(ecs::layer::OFFICEELEMENTS);
 		Transform* textoTr = texto->addComponent<Transform>(15, 20, 1, 1);
 		textoTr->setParent(tr);
-		const std::string textoString = "   POSIBLES MIEMBROS DE LAS\n              LECHUZAS.\n     ELIMINAR SUS PAQUETES\n\n-Dr Merluzo\n-Anxoa Rios\nGorg Lotus";
+		const std::string textoString = "   POSIBLES MIEMBROS DE LAS\n              LECHUZAS.\n     REENVIAR A APOLO\n\n-Dr Merluzo\n-Anxoa Rios\n-Gorg Lotus";
 		Texture* textTexture = new Texture(
 			sdlutils().renderer(), textoString, sdlutils().fonts().at("simpleHandmade20"),
 			build_sdlcolor(0x00000000ff), 250);
@@ -132,7 +132,7 @@ void SpecialObjectsFactory::makeListaSecretario(bool first) {
 		ecs::Entity* texto = gm().getScene(ecs::sc::MAIN_SCENE)->addEntity(ecs::layer::OFFICEELEMENTS);
 		Transform* textoTr = texto->addComponent<Transform>(15, 20, 1, 1);
 		textoTr->setParent(tr);
-		const std::string textoString = "   POSIBLES MIEMBROS DE LAS\n              LECHUZAS.\n     ELIMINAR SUS PAQUETES\n\n-Anemos Togakawa\n-Merla Flota\nSalvador Coral";
+		const std::string textoString = "   POSIBLES MIEMBROS DE LAS\n              LECHUZAS.\n     REENVIAR A APOLO\n\n-Anemos Togakawa\n-Merla Flota\n-Salvador Coral";
 		Texture* textTexture = new Texture(
 			sdlutils().renderer(), textoString, sdlutils().fonts().at("simpleHandmade20"),
 			build_sdlcolor(0x00000000ff), 250);
