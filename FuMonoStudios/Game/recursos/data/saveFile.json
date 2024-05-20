@@ -1,6 +1,6 @@
 {
-  "Dia":6,
-  "Dinero":98290,
+  "Dia":2,
+  "Dinero":100,
   "Personajes":{
     "Artesano":{
       "EventosCompletados":[
@@ -61,7 +61,7 @@
         2,-3,4,5,0,0,0,0,0,0,0,0,0,0
       ],
       "Felicidad":"Normal",
-      "FelicidadNum":38,
+      "FelicidadNum":50,
       "numMisionesAceptadas":4,
       "unlockUpgrade":false
     }
