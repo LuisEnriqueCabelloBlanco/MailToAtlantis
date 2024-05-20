@@ -211,7 +211,7 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 	
 	if (dia >= 1) {
 		if (GeneralData::instance()->getUpgradeValue(ecs::upg::SELLO_UPGRADE)) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina								
-		else createStamp(SelloCalleA);
+		else createStamp(SelloVacio);
 
 		createInks();
 
@@ -821,16 +821,7 @@ void ecs::MainScene::createPaquete (int lv) {
 		int rnd = sdlutils().rand().nextInt(0, 4);		
 		if(rnd !=1) bolaCrist_->check(pac->getComponent<Paquete>(), true);
 		else bolaCrist_->check(pac->getComponent<Paquete>(), false);
-	}
-	Paquete* p = pac->getComponent<Paquete>();
-	std::cout << "\n";
-	std::cout << p->getPeso();
-	std::cout << "\n";
-	std::cout << p->getCantidadPeso();
-	std::cout << "\n";
-	if (p->pesoCorrecto()) std::cout << "true";
-	else std::cout << "false";
-	std::cout << "\n";
+	}	
 }
 
 

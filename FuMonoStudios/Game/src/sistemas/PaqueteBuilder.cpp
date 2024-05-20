@@ -15,6 +15,7 @@ std::vector<std::list<int>> PaqueteBuilder::allRoutes;
 
 void PaqueteBuilder::initdata()
 {
+	
 	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(DIR_SETTINGS_PATH));
 
 	// check it was loaded correctly
@@ -273,8 +274,8 @@ pq::TipoPaquete PaqueteBuilder::tipoRND() {	//Este m�todo devuelve un Tipo de 
 }
 
 pq::Calle PaqueteBuilder::calleRND(int probError) {	//Este m�todo devuelve una calle aleatoria de las posibilidades, con probabilidad de que salga un resultado err�neo
-	int rnd = sdlutils().rand().nextInt(0, 101);
-	if (rnd > probError) {
+	int rnd = sdlutils().rand().nextInt(0, 100);
+	if (rnd >= probError) {
 		rnd = sdlutils().rand().nextInt(0, 3);
 		return (pq::Calle)rnd;
 	}
@@ -284,7 +285,7 @@ pq::Calle PaqueteBuilder::calleRND(int probError) {	//Este m�todo devuelve una
 }
 
 bool PaqueteBuilder::boolRND(int probFalse) { //Este m�todo devuelve una valor aleatorio entre treu y false para un bool seg�n una probabilidad
-	int rnd = sdlutils().rand().nextInt(0, 101);
+	int rnd = sdlutils().rand().nextInt(0, 100);
 	if (rnd >= probFalse) {
 		return true;
 	}
@@ -294,7 +295,7 @@ bool PaqueteBuilder::boolRND(int probFalse) { //Este m�todo devuelve una valor
 }
 
 pq::NivelPeso PaqueteBuilder::pesoRND(int probPeso, int probError, int& peso) {	//Este m�todo elige aleatoriamente si colocar un sello de peso o no en el paquete y, en caso positivo,
-	int rnd = sdlutils().rand().nextInt(0, 101);										//elige aleatoriamente si el resultado es correcto o incorrecto, devolviendo un peso para el paquete
+	int rnd = sdlutils().rand().nextInt(0, 100);										//elige aleatoriamente si el resultado es correcto o incorrecto, devolviendo un peso para el paquete
 	if (rnd < probPeso) {
 		pq::NivelPeso pes;
 		rnd = sdlutils().rand().nextInt(1, 4);
@@ -303,13 +304,13 @@ pq::NivelPeso PaqueteBuilder::pesoRND(int probPeso, int probError, int& peso) {	
 		rnd = sdlutils().rand().nextInt(0, 101);
 		if (rnd > probError) {
 			if (pes == pq::NivelPeso::Alto) {
-				peso = sdlutils().rand().nextInt(MEDIO_MAX+2, PESADO_MAX -1);
+				peso = sdlutils().rand().nextInt(MEDIO_MAX+5, PESADO_MAX -4);
 			}
 			else if (pes == pq::NivelPeso::Medio) {
-				peso = sdlutils().rand().nextInt(LIGERO_MAX+2, MEDIO_MAX-2);
+				peso = sdlutils().rand().nextInt(LIGERO_MAX+5, MEDIO_MAX-5);
 			}
 			else if (pes == pq::NivelPeso::Bajo) {
-				peso = sdlutils().rand().nextInt(PAQUETE_MIN, LIGERO_MAX-2);
+				peso = sdlutils().rand().nextInt(PAQUETE_MIN, LIGERO_MAX-5);
 			}
 		}
 		else {
