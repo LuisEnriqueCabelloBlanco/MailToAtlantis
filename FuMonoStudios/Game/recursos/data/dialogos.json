@@ -9,10 +9,25 @@
       "Bueno, va siendo hora de dejarte que va siendo hora de que vayas a tu primer dia"
     ],
     "FelicidadMinima": [
-      "felicidadMinima vagabundo"
+        "Notas que Anemos est$a muy desanimado, decides acercarte y pregunatarle qu$e le pasa.",
+        " $?Acaso tienes idea de lo que es perderlo todo Paco?",
+        " $!Deber$ia de estar ejerciendo el cargo que me corresponde como rey de la Atl$antida,",
+        "y deber$ia estar luchando contra las injusticias de mi pueblo y haciendo que el desgraciado de Mustaki!",
+        "Pero ya no ser$a posible, $!y todo porque t$u me has dejado de lado!",
+        "Por gente como t$u, Poseid$on ha abandonado a su pueblo,",
+        "y s$e que en principio esta lucha no era tuya, pero pensaba que eras mi amigo y que me apoyabas.",
+        "Pero no parece haber sido el caso, me has decepcionado.",
+        "Espero que mientras puedas disfrutes del reinado corrupto de Mustaki, porque alg$un d$ia lo lamentar$as",
+        "Hasta nunca, Paco.",
+        "Ves que Anemos est$a muy decepcionado y enfadado contigo, no quiere ni verte."
     ],
     "FelicidadMaxima": [
-      "felicidadMaxima vagabundo"
+        "Ves que Anemos est$a de muy buen humor, decides acercarte a ver qu$e le pone tan contento.",
+        " $!Paco amigo m$io, no sabes cuanto agradezco toda la ayuda que me has prestado!",
+        "Creo que gracias a t$i ya puedo cumplir mi objetivo e intentar recuperar el trono!",
+        "Ya ver$as la cara que pone Mustaki, se va a enterar ese asesino.",
+        "Una vez m$as gracias por todo Paco, y toma este sello multicolor a cambio,",
+        "ya no tendr$as que pensar qu$e sello corresponde al paquete, $!porque es multicolor!"
     ],
     "Dia1": [
       "no se usa"
@@ -205,10 +220,20 @@
       "Este reinado valora mucho a sus ciudadanos, pero m$as que eso, valora la lealtad. La lealtad y la fidelidad al rey por encima de todo. Espero que lo tengas en cuenta."
     ],
     "FelicidadMinima": [
-      "FelicidadMinima"
+        "Ves a Mustaki muy enfadado, $?le habr$an llamado bajito?",
+        " $!T$u, Paco, maldito seas! $!Por tu culpa mis planes no se van a cumplir!",
+        "Pensaba que eras una persona medianamente inteligente y que juraba lealtad a mi causa, pero eres d$ebil.",
+        "Alg$un d$ia aparecer$e en tus peores pesadillas y te arrepentir$as de no haberme apoyado lo suficiente.",
+        "Fuera de mi vista, $!y ni se te ocurra mirarme por encima del hombro porque ah$i si que lo lamentar$as!",
+        "Mustaki parece star muy enfadado, decides dejarlo en paz."
     ],
     "FelicidadMaxima": [
-      "FelicidadMaxima"
+        "Te das cuenta de que Mustaki est$a m$as contento que de costumbre.",
+        "Me alegro de verte Paco, quer$ia darte las gracias por toda tu ayuda.",
+        "Gracias a t$i creo que puedo seguir con mis asuntos sin ning$un problema.",
+        "Ya sabes que este reinado valora mucho a los ciudadanos con mucha lealtad a este, y por ello quiero obsequiarte algo.",
+        "Esto es una mejora para el manual, har$a la lectura m$as r$apida y m$as eficiente.",
+        "Espero que sigas jurando lealtad a este reinado, pero no me mires por encima del hombro o dejar$e de ser tan amable."
     ],
     "Dia1": [
       "dia1"
