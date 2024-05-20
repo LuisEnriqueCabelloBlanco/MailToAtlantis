@@ -232,7 +232,7 @@ void npc::NPCdata::loadDataFromSaveFile(JSONObject& obj)
 	int k = 0;
 	for (auto it : events)
 	{
-		eventosCompletados[k].first = it->AsNumber() > 0;
+		eventosCompletados[k].first = it->AsNumber() != 0;
 		eventosCompletados[k].second = it->AsNumber();
 		k++;
 	}

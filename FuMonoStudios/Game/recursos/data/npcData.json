@@ -27,7 +27,6 @@
           "tipoPaquete": "Alimento"
         },
         "condiciones": {
-          "remitente": "Albama Ice",
           "distrito": "Demeter",
           "tuboSeleccionado": "Hestia",
           "tipoPaquete": "Alimento"
@@ -124,13 +123,14 @@
           "calle" : "C1"
         },
         "condiciones": {
-          "remitente": "Vito Perenne"
+          "remitente": "Vito Perenne",
+          "tuboSeleccionado": "Poseidon"
         },
         "recompensa": {
           "1": "Vagabundo++++++++",
           "2": " $Vagabundo--------------------"
         },
-        "textoDiario": "Me ha dicho que aun tengo una prueba que superar hasta poder ser de fiar. Tengo que eliminar el paquete del 'Buitre'. Seguramente tenga que usar el papel con agujeros para ello."
+        "textoDiario": "Me ha dicho que aun tengo una prueba que superar hasta poder ser de fiar. Tengo que mandar a Poseidon el paquete del 'Buitre'. Seguramente tenga que usar el papel con agujeros para ello."
       },
       "7": {
         "numPaquetes": 1,
@@ -147,7 +147,7 @@
           "1": "Vagabundo+++++",
           "2": " $Vagabundo-----"
         },
-        "textoDiario": "Ha sido publicado un libro llamado 'CRITIAS'. Habla sobre la existencia de humanos en la superficie. Segun el libro, Poseidon estaba enfadado con Atlantis, y les hundio bajo el mar durante un milenio como castigo. Si el libro es verdadero, llevan 995 a&%os hundidos. Anemos esta que se sale, me ha pedido que mueva un paquete de comida de Hermes a Hestia."
+        "textoDiario": "Ha sido publicado un libro llamado 'CRITIAS'. Habla sobre la existencia de humanos en la superficie. Segun el libro, Poseidon estaba enfadado con Atlantis, y les hundio bajo el mar durante un milenio como castigo. Si el libro es verdadero, llevan 995 a$%os hundidos. Anemos esta que se sale, me ha pedido que mueva un paquete de comida de Hermes a Hestia."
       },
       "8": {
         "numPaquetes": 1,
@@ -177,7 +177,7 @@
             "legal": false
           },
           "2":{
-            "remitente": "Demetrius DC",
+            "remitente": "Merla Flota",
             "distrito": "Demeter",
             "legal": false
           },
@@ -198,7 +198,7 @@
             "tuboSeleccionado": "Apolo"
           },
           "2":{
-            "remitente": "Demetrius DC",
+            "remitente": "Merla Flota",
             "tuboSeleccionado": "Demeter"
           },
           "3":{

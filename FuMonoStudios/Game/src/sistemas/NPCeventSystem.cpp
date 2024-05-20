@@ -76,6 +76,8 @@ void NPCeventSystem::minigameOver() {
 
 	while (areTherePaquetesNPC())
 		paquetesNPCs.pop_back();
+
+	activeEventsNPCs.clear();
 }
 
 void NPCeventSystem::addPaqueteNPC(Paquete* p) {
@@ -243,6 +245,15 @@ void NPCeventSystem::readCondiciones(JSONObject& obj, NPCevent* auxEvent) {
 		std::string aux = hasRemitente->second->AsString();
 		condicionesDeTodos.push_back([aux](Paquete* p) -> bool {
 			return p->getRemitente() == aux;
+			});
+	}
+
+	auto hasTubo = obj.find("tuboSeleccionado");
+	if (hasTubo != obj.end()) {
+		auxEvent->usingCondicionTubo = true;
+		Distrito aux = (Distrito)gD().fromStringToDistrito(hasTubo->second->AsString());
+		auxEvent->condicionTubo = ([aux](Distrito tubo) -> bool {
+			return tubo == aux;
 			});
 	}
 
