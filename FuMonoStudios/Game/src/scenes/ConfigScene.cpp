@@ -39,6 +39,7 @@ void ecs::ConfigScene::init()
 	factory_->createTextuButton({ 10,930 }, "                          ", 50, funcPress, "click");
 
 	factory_->setLayer(ecs::layer::UI);
+	factory_->setFont("hvdComicSerif");
 	createMusicOptions();
 	createSFXOptions();
 	createFullscreenOptions();
@@ -57,13 +58,14 @@ void ecs::ConfigScene::createMusicOptions()
 		gD().changeParamID(0, false);
 		musicIconEnt_->getComponent<Transform>()->setPos(550 + (gD().getParamMusic() * 7.4f), 330);
 		};
-	Entity* aux = factory_->createTextuButton({ 570,380 }, "    ", 50, funcPress2, "click");
+	Entity* aux = factory_->createTextuButton({ 570,380 }, "-", 50, funcPress2, "click");
 	// Boton (+) para el parametro de audio musica
 	CallbackClickeable funcPress3 = [this]() {
 		gD().changeParamID(0, true);
 		musicIconEnt_->getComponent<Transform>()->setPos(550 + (gD().getParamMusic() * 7.4f), 330);
 		};
-	factory_->createTextuButton({ 1300,380 }, "    ", 50, funcPress3, "click");
+	factory_->createTextuButton({ 1300,380 }, "+", 50, funcPress3, "click");
+	factory_->createLabel(Vector2D(670, 280), "Volumen de la musica", 50);
 }
 
 void ecs::ConfigScene::createSFXOptions()
@@ -76,21 +78,26 @@ void ecs::ConfigScene::createSFXOptions()
 		gD().changeParamID(1, false);
 		sfxIconEnt_->getComponent<Transform>()->setPos(550 + (gD().getParamSfx() * 7.4f), 500);
 		};
-	factory_->createTextuButton({ 570,560 }, "    ", 50, funcPress4, "click");
-
+	auto minus = factory_->createTextuButton({ 570,560 }, "-", 50, funcPress4, "click",build_sdlcolor("0x000000ff"));
+	factory_->addHoverColorMod(minus,build_sdlcolor("0xffffffff"));
 	// Boton (+) para el parametro de audio sfx
 	CallbackClickeable funcPress5 = [this]() {
 		gD().changeParamID(1, true);
 		sfxIconEnt_->getComponent<Transform>()->setPos(550 + (gD().getParamSfx() * 7.4f), 500);
 		};
-	factory_->createTextuButton({ 1300,560 }, "    ", 50, funcPress5, "click");
+	auto plus = factory_->createTextuButton({ 1300,560 }, "+", 50, funcPress5, "click", build_sdlcolor("0x000000ff"));
+	factory_->addHoverColorMod(plus, build_sdlcolor("0xffffffff"));
+	factory_->createLabel(Vector2D(670,460), "Volumen de los efectos", 50);
 }
 
 void ecs::ConfigScene::createFullscreenOptions()
 {
 	//screenModeIconTexture_ = &sdlutils().images().at("iconoVerdeAjustes");
 	std::vector<Texture*> textures = { &sdlutils().images().at("iconoVerdeAjustes"),nullptr };
+	Transform* trBase = factory_->createImage(Vector2D(-10,60),&sdlutils().images().at("tinta2"))->getComponent<Transform>();
 	screenModeIconEnt_ = factory_->createMultiTextureImage(Vector2D(585, 665), Vector2D(95, 122), textures);
+	trBase->setParent(screenModeIconEnt_->getComponent<Transform>());
+
 	screenModeIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueFullScreen()?0:1);
 
 	CallbackClickeable funcScreenModeBoton = [this]() {
@@ -98,20 +105,22 @@ void ecs::ConfigScene::createFullscreenOptions()
 		gD().ToggleFullScreen();
 		screenModeIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueFullScreen()?0:1);
 	};
-	factory_->createTextuButton({ 540,730 }, "             ", 50, funcScreenModeBoton, "click");
+	factory_->createTextuButton({ 740,730 }, "Pantalla Completa", 50, funcScreenModeBoton, "click");
 }
 
 void ecs::ConfigScene::createSkipTutorialOptions()
 {
 	//skipTutoIconTexture_ = &sdlutils().images().at("iconoAmarilloAjustes");
 	std::vector<Texture*> textures = { &sdlutils().images().at("iconoAmarilloAjustes"),nullptr };
+	Transform* trBase = factory_->createImage(Vector2D(-10, 60), &sdlutils().images().at("tinta2"))->getComponent<Transform>();
 	skipTutoIconEnt_ = factory_->createMultiTextureImage(Vector2D(585, 850), Vector2D(95, 122), textures);
+	trBase->setParent(skipTutoIconEnt_->getComponent<Transform>());
 	skipTutoIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueSkipTutorial() ? 0 : 1);
 
 	CallbackClickeable funcPressSkipTutorial = [this]() {
 		gD().ToggleSkipTutorial();
 		skipTutoIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueSkipTutorial()?0:1);
 	};
-	factory_->createTextuButton({ 540,920 }, "             ", 50, funcPressSkipTutorial, "click");
+	factory_->createTextuButton({ 740,920 }, "Skip Tutorial", 50, funcPressSkipTutorial, "click");
 }
 
