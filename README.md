@@ -177,25 +177,22 @@ Los NPCs te entregaran un regalo que te hará la labor más fácil en el trabajo
 - **Tarotisa**: te entrega una bola de cristal que tiene 1/x posibilidad de lanzar un brillo cuando el paquete actual es erroneo
 - **Artesano**: te permite envolver rapidamente un paquete con una cinta especial
 - **Campesino**: te dará una balanza digital que te dice el peso directamente
-- **Contable**: hace que los paquetes bien entregados te den dinero extra por cada paquete que envies correctamente
-- **Soldado**: te permite equivocarte con x paquetes antes de que se te aplique una penalización
-- **Secretario real**: te permite pasar rapidamente el libro de instrucciones pulsando A y D sin necesidad de usar el ratón.
+- **Contable**: hace que los paquetes bien entregados te den 10 de dinero extra por cada paquete que envíes correctamente
+- **Soldado**: te permite equivocarte con 2 paquetes antes de que se te aplique una penalización
+- **Secretario real**: te pone marcadores en el manual que te permiten saltar a páginas clave del manual.
 
 #### Hablar con personajes
-Al hacer click sobre un NPC durante la **fase de exploración**, se abrirá una pantalla donde el NPC hablará con el jugador diciendo sus lineas de diálogo. El jugador podrá pasar los bloques de texto con un botón (todavía por determinar).
+Al hacer click sobre un NPC durante la **fase de exploración**, se abrirá una pantalla donde el NPC hablará con el jugador diciendo sus lineas de diálogo. El jugador con un primer click podrá hacer que aparezca todo el texto sin la animacion de que se escriba poco a poco y con un click posterior aparece el siguente dialogo. Con el último dialogo se cierra la conversación.
 
-Si el jugador vuelve a hablar con un NPC este dirá un diálogo reducido, como contestacion repetida y contante.
-
-Tras el trascurso de varios días el jugador vera **limitado** el número de personajes con los que puede hablar. En el momento que exceda ese número acabará la **fase de exploración** y se irá a la **fase de revisión de paquetes**. (Esto puede descartarse)
+Si el jugador vuelve a hablar con un NPC este repetirá su dialogo para que el jugador pueda tomar nota si se le escapó algo de lo que dijo.
 
 #### Funcionamiento de eventos/sidequest de los NPC
 Cada NPC tendrá misiones que asignar al jugador. En estas misiones habrá una condicion concreta que tendrá que cumplir sobre un tipo de paquetes que va en contra de lo legal, por lo que será amonestado por ella, por lo que el jugador debe controlar cuanto quiere ayudar a los NPC mientras mantiene un nivel de dinero alto.
 Estos eventos pueden ir desde dejar pasar un paquete especial con el nombre del NPC hasta desviar paquetes a donde el NPC te diga.
 
-La felicidad de los NPC subirá cada vez que cumples un evento, y necesitarás cumplir los 5 eventos distintos para conseguir su maxifinal, no obstante, si consigues su felicidad a 70 te dará su mejora.
+La felicidad de los NPC subirá cada vez que cumples un evento, y necesitarás cumplir los 5 eventos distintos para conseguir su maxifinal, no obstante, si consigues su felicidad a 90 te dará su mejora. La forma en la que sube y baja la felicidad no es lineal, habiendo misiones que recompensen o penalicen más que otras.
 
 Cada evento saldrá solo una vez.
-
 
 Los **paquetes de eventos** se deben definir de antemano en un JSON, de forma que los **paquetes de eventos** nunca sean random.
 
@@ -204,7 +201,6 @@ Ejemplos tipicos de eventos:
 - NPC te pide que trates su paquete de una forma especial: ignorar una de las mecanicas como el peso, enviar a un sitio incorrecto, desecharlo aunque este bien...
 - NPC te pide enviar x paquetes de un tipo a otro distinto a pesar de que estos sean correctos de su ubicacion normal. Todos los paquetes añadidos a la pool de esta condicion serán correctos para que no sean desechados.
 
-
 ---
 
 ## Diseño
@@ -212,18 +208,18 @@ El juego constará de varias jornadas (14) donde el jugador tendrá que ir mante
 
 ### Fase de exploracion
 
-En esta fase el jugador podra recorrer el mapa en primera persona moviendose por los distintos distritos de la Atalantida. En cada distrito podra encontrar a un NPC específico del distrito el cual le contará algo de su historia o le pedira un favor relacionado con el correo. En un principio los barrios de los anillos más interiores estarán bloqueados pero a partir del segundo y tercer día en el que se introduzca una nueva mecánica estos estarán libres.
+En esta fase el jugador podra recorrer el mapa en primera persona moviendose por los distintos distritos de la Atlántida. En cada distrito podrá encontrar a un NPC específico del distrito el cual le contará algo de su historia o le pedira un favor relacionado con el correo. En un principio los barrios de los anillos más interiores estarán bloqueados pero a partir del día 5 estos estarán libres.
 ![Imagen de como va atlantis](Imagenes/Mapa1Nombres.png)
 
 ### Fase de gestión de paquetes
 
-Durante la fase de gestíon el jugador deberá comprobar la validez de los **paquetes** esto llevará a distintos minijuegos que se irán añadiendo con el transcurso de los días. Cada nueva capa añadidida le irá obligando a estar más atento a los detalles en cada paquete.
+Durante la fase de gestíon el jugador deberá comprobar la validez de los **paquetes** esto llevará a distintos minijuegos que se irán añadiendo con el transcurso de los días. Cada nueva capa añadida le irá obligando a estar más atento a los detalles en cada paquete.
 
 #### Amonestaciones
-El **número de paquetes** que se puede **fallar** sin penalizar en el ingreso al final del día irá **bajando** conforme avanzan los días. Se *avisará* al jugador cuando le falte 1 fallo para penalizar. Una vez penalizado, el **ingreso** del día del jugador se restara por una cantidad fija de dinero multiplicado por el numero de fallos cometidos.
+Cada vez que el jugador cometa un fallo se le aplicara una penalización y aparecerá una nota con el tipo de fallo la cual puede ser tirada a la basura. Una vez penalizado, el **ingreso** del día del jugador se restará por una cantidad fija de dinero multiplicado por el número de fallos cometidos.
 
 #### Condiciones especiales del jefe Oficina
-Cada tres días comenzando por el día 2 el **jefe** de la oficina comentara un problema en el lugar de trabajo lo que provocara un cambio en la dinámica normal de la fase de gestión. Estos cambios iran desde mezclar tubos hasta invertir los sellos de pesado, simepre cosas que confundan al **jugador** pero que no impidan usar alguna de las mecanicas ya desbloqueadas.
+Cada tres días comenzando por el día 2 el **jefe** de la oficina comentará un problema en el lugar de trabajo lo que provocará un cambio en la dinámica normal de la fase de gestión. Estos cambios iran desde mezclar tubos hasta invertir los sellos de pesado, simepre cosas que confundan al **jugador** pero que no impidan usar alguna de las mecánicas ya desbloqueadas.
 
 Ejemplos de condiciones:
 
@@ -235,33 +231,30 @@ Ejemplos de condiciones:
 
 - **Restringir según el tipo del sello el peso que puede tener un paquete**: los paquetes de armas no pueden exceder el peso medio por ejemplo.
 
-
 #### Paquetes especiales de NPC
-Los NPC podrán **asignar eventos** que spawneen paquetes especiales a lo largo de la jornada. Estos paquetes compondrán una lista que poco a poco irán saliendo intentando salir todos antes de acabar el tiempo. Si el jugador promedio consiguiese 30 paquetes en ese día se enseñarán todos los paquetes de evento hasta antes del paquete 20. Estos paquetes serán completamente idénticos a los que pueden salir en ese día, salvo las cualidades especiales que lleve el evento.
+Los NPC podrán **asignar eventos** que spawneen paquetes especiales a lo largo de la jornada. Estos paquetes compondrán una lista que poco a poco irán saliendo intentando salir todos antes de acabar el tiempo. Si el jugador promedio consiguiese 15 paquetes en ese día se enseñarán todos los paquetes de evento hasta antes del paquete 10. Estos paquetes serán completamente idénticos a los que pueden salir en ese día, salvo las cualidades especiales que lleve el evento.
 Por ejemplo, la medium pide que los paquetes de medicina que van hacia el distrito hestia vayan hacia el distrito de demeter, y en total serán 3.
 Estos paquetes serán identicos al resto, es decir, si en ese día se ha desbloqueado el sello de pesaje, estos paquetes podrán llevar el sello de pesaje y así. Es de notar que serán correctos, osea que no tendrán nada ilegal ni fuera de lugar, lo único que cambiará será las características del evento, en el caso del medium, será que mandará medicinas y irá a Hestia.
 Si queda **1 minuto de juego**, los paquetes que falten por salir **saldrán 100%** para evitar penalizar a jugadores muy lentos.
-Si *se mandan a donde deben ir*, **no penalizarán**, pero **no hará feliz** al NPC, sin embargo *si hacemos lo que pidió el evento*, **penalizará** y el **NPC será feliz**.
+Si *se mandan a donde deben ir*, **no penalizarán**, pero **harán infeliz** al NPC, sin embargo *si hacemos lo que pidió el evento*, **penalizará** y el **NPC será feliz**.
 
 Estos eventos pueden ser sobre todo tipo de características de los paquetes, *no dejar pasar paquetes de un nombre*, *redirigir paquetes de medicina de un distrito a otro*, *descartar paquetes que pesen X*, *tirar todos los paquetes de una calle*, etc...
 
-Para facilitar este sistema y evitar que salgan más fallos de los que tienen que ser, cada evento tendrá un número de paquetes que van a salir, y se añadirá a una lista los paquetes que no podrán salir de forma random. Por ejemplo, si un evento hace que los paquetes de medicina de Hestia deben ser eliminados y que van a salir 2, haremos que durante el día no puedan salir generados de forma random paquetes de medicina de Hestia, para que no se genere uno random y en vez de 2 salgan 3 y así.
-Luego se añadirá a una queue los paquetes especiales que deben salir y saldrán dispersados durante el día.
-
-La probabilidad $X$ de que salga un paquete especial tomando una queue de tamaño $N$, un promedio de paquetes de un jugador promedio $P$, y el paquete actual $i$
-<div align="center">
-
-$$X = \frac{N + i + 1}{30} * 100$$
-
-</div>
+La probabilidad de que salga un paquete especial es de 70% al inicio de la partida, cada vez que pasa 1/4 de tiempo de partida se suma un 10% a dicha probabilidad resultando en el último cuarto de partida (62 segundos) en un 100% de probabilidad.
 
 ### Fase de dinero
 
-Una vez terminado la fase de trabajo, saldrá una pantalla con texto que explique el dinero actual, el dinero a pagar del alquiler, los fallos y los bonus conseguidos en el minijuego.
-En caso de quedarte sin dinero, saldrá el game over de quedarse sin dinero (te deportan de Atlantis)
+Una vez terminado la fase de trabajo, saldrá una pantalla con texto que explique el número de aciertos, el número de fallos, el gasto del alquiler, el dinero obtenido ese día y el dinero con el que acaba el jugador el día.
+- ((ahorros - alquiler) + aciertos * 20 - fallos * 30) en condiciones normales.
+
+En caso de quedarte sin dinero, saldrá el game over de quedarse sin dinero (te deportan de Atlantis). Dicho game over no te reinicia la partida, pudiendo acceder al inicio del día en el que te deportaron desde el menú inicial.
 
 ## Arte
-Al irnos moviendo por los diferentes distritos, lo haremos a través de diferentes pantallas con fondos estáticos en primera persona. Los fondos tendrán un estilo artístico simple inspirado e juegos como profesor Layton, con una paleta de colores sencilla estilo acuarela donde los objetos lejanos tendrán menos detalle o estarán más difuminados mientras que los objetos mas cercanos tendrán mas detalle, aunque como es una paleta de colores tirando a acuarela a veces los colores se pueden salir de las líneas como pasa en la película de 101 Dalmatas de Disney (la animación antigua, no el remake live action). En los escenarios de exploración encontraremos algunos personajes con los que poder interactuar teniendo una forma física en su diseño inspirada en juegos como profesor Layton por su estilo caricaturesco. Sin embargo, los personajes con los que interactuaremos tendrán más detalle que el resto dando igual las distancias, es decir, siempre estarán enfocados. También habra decorado con el que pueda interactuar el jugador para asi recibir información extra de la atlantida.
+Al irnos moviendo por los diferentes distritos, lo haremos a través de diferentes pantallas con fondos estáticos en primera persona. Los fondos tendrán un estilo artístico simple inspirado e juegos como profesor Layton, con una paleta de colores sencilla estilo acuarela donde los objetos lejanos tendrán menos detalle o estarán más difuminados mientras que los objetos mas cercanos tendrán mas detalle, aunque como es una paleta de colores tirando a acuarela a veces los colores se pueden salir de las líneas como pasa en la película de 101 Dalmatas de Disney (la animación antigua, no el remake live action). 
+
+En los escenarios de exploración encontraremos algunos personajes con los que poder interactuar teniendo una forma física en su diseño inspirada en juegos como profesor Layton por su estilo caricaturesco. Su diseño mezcla su personalidad con el pescado que sea más capaz de resaltarla. Por ejemplo el pez globo se le da al contable al ser una persona timida y que vive en continuo estrés. O la tarotisa es un pez abisal debido a la posibilidad de usar su linterna como bola de cristal, unido a que le aporta el aspecto de tener mucha edad.
+
+También habra decorado con el que pueda interactuar el jugador para asi recibir información extra de la atlantida. Dicha decoración no estara resaltada y se acomodará con el fondo ya que es una recompensa para los jugadores más curiosos.
 
 La parte estética de los escenarios se basará en una arquitectura griega antigua, teniendo como referencia a juegos como Assassin's Creed Odyssey.
 
@@ -301,13 +294,13 @@ La Atlantida es una monarquía centralista, en la cual hay una gran división en
 ### Personajes
 
 #### Protagonista
-En el juego encarnamos a Paco Jones, un aventurero español de 35 años que tras innumerables fracasos acabo sus días trabajando en correos. Sin embargo, uno de sus monotonos dias de trabajo recibe una botella de cristal que en su interior tenía una gran revelación. Este lee que la carta viene de la Atlantida, por parte de un grupo que se hace llamar las lechuzas. Este, si bien al principio se muestra exceptico, acaba convenciendose gracias a una imagen en la que se ve un lugar rodeado de una cúpula con muchos hombres pez. Decidido a retomar su carrera como aventurero, decide guardarse la información para si mismo e intentar explorar esta maravillosa ciudad. Para lograr llegar a ella pide prestado un submarino bajo la promesa de devolverlo junto a una gran suma de dinero. También gasta sus ahorros para construirse un disfraz de pescado, para poder camuflarse entre los atlantes, ya que no sabia si estos serían hostiles o no. Tras un largo viaje logra llegar a la gran Atlantida, en donde, tras explorar un poco sus calles se encuentra con un hombre-salmón que cansado se su trabajo decide relegarlo en Paco. Dicho trabajo consistía en la gestión de correo de la Atlantida. Aunque de primeras esto no le convence, decide tomarlo para recaudar información. Es asi como inicía su gran aventura en Atlantis.
+En el juego encarnamos a Paco Jones, un aventurero español de 35 años que tras innumerables fracasos acabo sus días trabajando en correos. Sin embargo, uno de sus monotonos dias de trabajo recibe una botella de cristal que en su interior tenía una gran revelación. Este lee que la carta viene de la Atlantida, por parte de un grupo que se hace llamar las lechuzas. Este, si bien al principio se muestra excéptico, acaba convenciendose gracias a una imagen en la que se ve un lugar rodeado de una cúpula con muchos hombres pez. Decidido a retomar su carrera como aventurero, decide guardarse la información para si mismo e intentar explorar esta maravillosa ciudad. Para lograr llegar a ella pide prestado un submarino bajo la promesa de devolverlo junto a una gran suma de dinero. También gasta sus ahorros para construirse un disfraz de pescado, para poder camuflarse entre los atlantes, ya que no sabía si estos serían hostiles o no. Tras un largo viaje logra llegar a la gran Atlántida, en donde, tras explorar un poco sus calles se encuentra con un pez gota el cual buscaba un nuevo trabajador para su empresa. Dicho trabajo consistía en la gestión de correo de la Atlántida. Aunque de primeras esto no le convence, decide tomarlo para recaudar información y dinero para sobrevivir. Es así como inicía su gran aventura en Atlantis.
 
 #### Jefe oficina
 El jefe dirige la oficina de correos y es el encargado de comprobar que todo vaya bien por la oficina y que trabajes acorde a las cuotas. 
-Lo conoces en la puerta de la oficina, cabreado contigo, ya que llevas el uniforme de trabajo y el anterior empleado salió corriendo dejandote su trabajo, y será estricto contigo ya que últimamente no se ha estado trabajando bien.
-El jefe de oficina será encargado de pagarte cuando acabas los días, así como amonestarte si cometes muchas infracciones.
-De normal no te lo encontrarás en la fase de exploración salvo en los días 1, 5 y 10 que te explicará algo. En los días 5 y 10 te desbloqueará distritos ya que te has estado portando bien.
+Lo conoces en la puerta de la oficina, cabreado con su exempleado que salió corriendo dejando su trabajo. Será estricto contigo ya que últimamente no ha tenido buenas experiencias con sus trabajadores.
+El jefe de oficina será encargado de pagarte cuando acabas los días, así como amonestarte si cometes infracciones.
+De normal no te lo encontrarás en la fase de exploración salvo en los días 1 y 5 que te explicará algo. También lo veras en la oficina cada vez que haya una condición especial ese día. Por último en los días que haya tutorial se encontrará detras de Paco narrando y observando que aprenda bien lo que tiene que hacer, razón por la cual no aparecerá en dichas escenas.
 
 ### NPC Grandes
 
@@ -317,29 +310,8 @@ Anemos Tokugawa es actualmente un vagabundo que pasa sus días bebiendo con el p
 Cómo se llevó a cabo la traición: El secretario real obtuvo veneno de pez globo del mismísimo padre de Glover Globus a cambio de ser este mismo el que manejara todo el comercio atlante.
 Estuvo malviviendo en las calles del distrito de Hestia mendigando, rebuscando los cubos de basura y robando en los otros distritos, lo cual le permitió tener una visión más amplia de las injusticias sufridas por cada distrito del reino.
 En la actualidad toda la información sobre los humanos y su propio destino como rey le es indiferente y se encuentra en un penoso estado maldiciendo su miserable vida.
-Actúa de forma amigable y de colegueo con el protagonista, y de forma filosófica y fuerte cuando habla sobre su situación con el secretario del rey. Cree que Poseidón ha abandonado a su pueblo y 
-APARIENCIA: Anemos es una carpa koi, la cual se encuentra en un estado de extrema hambruna. este viste con unos ropajes rasgados y holgados que usa para ocultar su lamentable estado. Este oculta su cara con una capucha, asomando únicamente su boca, bigotes y perilla. Este tiene colores vivos a pesar de estos, siendo principalmente el blanco y el rojo.
-
-##### Finales
-
-Maxifinal:
--Las lechuzas comienzan la revuelta al gobierno, Jones se une y les ayuda.
--Una vez en el palacio, se encuentran a Gargafiel, que esta muerto debido al polvo t$oxico.
--Anemos, una vez vagabundo, ahora se pone enfrente del pueblo Atlante, y da un discurso de nuevos tiempos y de esperanza.
--El pueblo se emociona y reconoce a Anemos como el verdadero rey de Atlantis.
--Jones pasar$a a gobernar como el mano derecha de Anemos. Durante este reinado, se lograron superar muchas injusticias de la ciudad y la ciudad progres$o exponencialmente.
-
-Malo (No consigues maxiFinal con ningún NPC grande):
--La policia de Atlantis comienza ya a sospechar la existencia de las lechuzas.
--Se produce una gran criba, y practicamente todos los miembros de las lechuzas son perseguidos y ejecutados.
--Jones, consumido por el miedo huye y se recluye a los callejones m$as escondidos de Atlantis.
--Pero solo es cuesti$on de tiempo que le alcancen.
-
-
-Oculto (Tocas los polvos y mueres):
--Las lechuzas comienzan la revuelta al gobierno. No obstante, se topan con una gran resistencia por parte de los soldados, que sab$ian de esta revuelta.
--El secretario del rey lo ten$ia todo bajo control. Las lechuzas poco a poco se retiraron y se exiliaron dentro de Atlantis.
--Jones fue encontrado al d$ia siguiente. Fue enterrado en la misma ciudad.
+Actúa de forma amigable y de colegueo con el protagonista, y de forma filosófica y fuerte cuando habla sobre su situación con el secretario del rey.
+Anemos es una carpa koi, la cual se encuentra en un estado de extrema hambruna. este viste con unos ropajes rasgados y holgados que usa para ocultar su lamentable estado. Este oculta su cara con una capucha, asomando únicamente su boca, bigotes y perilla. Este tiene colores vivos a pesar de estos, siendo principalmente el blanco y el rojo.
 
 #### Secretario del rey
 
@@ -349,33 +321,6 @@ Actúa de forma cordial y amenazante con el protagonista, también de forma ambi
 Gargafiel es un pez gato de estatura diminuta, con ojos achinados y un gran y largo bigote. Este tiene una expresión sería y enfadada. Casi siempre se dirige con prepotencia a la gente y viste una larga sotana de tonos azul marinos unida por unos trozos de madera enrollados.
 
 Este es increiblemente astuto y perspicaz, con una capacidad de convencer y manipular casi absurda. Siempre se excusa con sus errores, no siendo capaz de admitir ningun fallo. Suele estar tan metido en sus ideas y planes que a no se que le sirva para uno de ellos, no le dará ninguna importancia a la persona que le hable. Tiene un gran complejo con su tamaño asi que se enfada con todo aquel que lo mencione. Es muy reservado con la mayor parte de la gente, contestando lo más seco posible, midiendo al milimetro sus palabras.
-
-##### Finales
-MaxiFinal: 
--Jones sali$o corriendo de su puesto de trabajo y r$apidamente lleg$o al punto acordado con Gargafiel.
--R$apidamente comenzaron a subir hacia la superficie, mientras la ciudad sufr$ia la explosi$on de la bomba.
--Una vez en la superficie, Gargafiel se queda asombrado por el aire puro y el terreno extenso y interminable.
--Le pide a Jones juntos reconquistar el mundo con la gracia de Poseid$on como arma.
--Sin embargo, se va dando cuenta de que Jones todo este tiempo fue un humano. Gargafiel le repudia y sale corriendo.
--Jones vuelve a su casa, y cansado, comienza a escribir todo lo que ha aprendido sobre Atlantis.
--En la televisi$on, Jones comienza a ver el noticiero.
--En el noticiero, sale Gargafiel, que ha sido capturado por la polic$ia y ser$a investigado, ya que creen que es un alien.
--Jones pasar$a a crear un libro contando su historia en Atlantis, y lo presenta en el parlamento para permitir una expedici$on hacia la ciudad.
--Años m$as tarde, la humanidad comienza a sumergirse a la ciudad y a infiltrarse en ella, para poder gobernarla y aprender de ellos desde las sombras.
-
-Malo (No consigues maxiFinal con ningún NPC grande): 
--Debido a la mala situación campesina, se comenzaron a hacer revueltas y protestas en contra del rey. 
--Gargafiel aseguró que el rey no estaba haciendo nada malo y que el problema lo tenían ellos, llegando a instaurar medidas incluso más severas, haciendo abuso de su gran poder. 
--No obstante, esto solo hizo empeorar la situación, provocando una revolución armada que irrumpió en el palacio real en búsqueda de la cabeza del rey. 
--Al descubrir que la figura del rey era falsa, el pueblo asesinó brutalmente a Gargafiel mientras él rogaba a Poseidón que le salvase. 
--La nobleza gobernó desde entonces hasta instaurar un nuevo linaje de reyes. El pueblo nunca sabrá la verdad de los humanos y continuará bajo el mar por los tiempos de los tiempos.
-
-Oculto (Mandas la bomba a un distrito): 
--Una bomba fue detonada en el distrito de Hermes. El caos sumió a la ciudad por el atentado terrorista.
--Las lechuzas, salieron de su letargo y aprovecharon la situación para tomar el gobierno.
--Una vez entraron al palacio, se encontraron que no hab$ia nadie dentro de $el.
--La bomba mat$o a aproximadamente al 25% de la poblaci$on. Incluyendo al pobre vagabundo.
--Un nuevo linaje se instaur$o y gobern$o durante mucho mucho tiempo. 
 
 ### NPC Menores
 

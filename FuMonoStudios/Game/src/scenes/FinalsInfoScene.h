@@ -15,7 +15,7 @@ class FinalsInfoScene : public ecs::Scene
 /// </summary>
 public:
     FinalsInfoScene();
-    ~FinalsInfoScene() {};
+    ~FinalsInfoScene() { delete final_; };
 
     void init() override;
     virtual void update() override;

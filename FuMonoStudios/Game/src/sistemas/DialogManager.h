@@ -107,7 +107,7 @@ public:
     //activar/desactivar caja y texto
     void setDialogueEntitiesActive(bool onoff);
 
-    void fixText(std::string& text);
+    static void fixText(std::string& text);
 
     const std::string& getDialogSound();
 private:
