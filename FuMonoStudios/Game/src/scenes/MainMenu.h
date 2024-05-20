@@ -10,6 +10,7 @@ namespace ecs {
     class MainMenu :
         public Scene
     {
+        __SC_DECL__(ecs::sc::MAIN_SCENE)
     public:
         MainMenu();
         virtual ~MainMenu();

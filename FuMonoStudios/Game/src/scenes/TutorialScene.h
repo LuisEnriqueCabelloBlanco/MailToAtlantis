@@ -14,6 +14,7 @@
 namespace ecs {
 	class TutorialScene : public MainScene
 	{
+		__SC_DECL__(ecs::sc::TUTORIAL_SCENE)
 		friend TutorialSystem;
 	public:
 		TutorialScene();

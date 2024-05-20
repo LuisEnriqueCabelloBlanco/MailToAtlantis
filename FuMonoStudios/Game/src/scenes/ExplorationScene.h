@@ -105,6 +105,7 @@ namespace ecs {
         public Scene
 
     {
+        __SC_DECL__(ecs::sc::EXPLORE_SCENE)
     public:
 
         ExplorationScene();

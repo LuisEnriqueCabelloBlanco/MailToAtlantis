@@ -20,6 +20,7 @@
 #include <scenes/TutorialScene.h>
 #include <scenes/IntroScene.h>
 #include <scenes/DeathScene.h>
+#include <scenes/FinalsInfoScene.h>
 #include <architecture/Time.h>
 #include <architecture/GeneralData.h>
 #include <iostream>
@@ -46,7 +47,7 @@ Game::Game() :exit_(false) {
 	gameScenes_ = { new ecs::MainScene(),new ecs::ExplorationScene(),
 		new EndWorkScene(),new ecs::MainMenu(),new ecs::PauseScene(),
 		new EndGameScene(),new ecs::TutorialScene(), new ecs::ConfigScene(),
-		new ecs::IntroScene, new ecs::DeathScene()};
+		new ecs::IntroScene, new ecs::DeathScene(), new FinalsInfoScene()};
 	gamePaused_ = false;
 	if(!gD().GetValueFullScreen())
 		sdlutils().toggleFullScreen();
@@ -100,14 +101,14 @@ void Game::run()
 			auto it3 = std::find(loadedScenes_.begin(), loadedScenes_.end(), gameScenes_[ecs::sc::INTRO_SCENE]);
 			auto it4 = std::find(loadedScenes_.begin(), loadedScenes_.end(), gameScenes_[ecs::sc::DEATH_SCENE]);
 			if (it1 == loadedScenes_.end() && it2 == loadedScenes_.end() && it3 == loadedScenes_.end() && it4 == loadedScenes_.end()) {
-				if (!gamePaused_) {
+				/*if (!gamePaused_) {
 					loadScene(ecs::sc::PAUSE_SCENE);
 					gamePaused_ = true;
 				}
 				else {
 					changeScene(ecs::sc::PAUSE_SCENE, ecs::sc::NULL_SCENE);
 					gamePaused_ = false;
-				}
+				}*/
 			}
 		}
 

@@ -25,7 +25,7 @@ void EndGameScene::init()
     std::cout << "init";
 #endif // _DEBUG
     Personaje npc = (Personaje)npcId_;
-    final_ = new Final(factory_);
+    final_ = new Final(factory_, Vector2D(1600, 600), Vector2D(100, 200));
     final_->loadFinal(npc, gD().getNPCData(npc)->felicidad);
 
     remove( SAVE_PATH.c_str());

@@ -12,7 +12,7 @@
 #include <architecture/GameConstants.h>
 #include <sistemas/SoundEmiter.h>
 
-const SDL_Color baseColor = build_sdlcolor(0xbbbbbbff);
+const SDL_Color baseColor = build_sdlcolor(0x666666ff);
 
 ecs::ConfigScene::ConfigScene() : Scene() {
 
@@ -38,7 +38,7 @@ void ecs::ConfigScene::init()
 		gm().requestChangeScene(ecs::sc::CONFIG_SCENE, ecs::sc::MENU_SCENE);
 
 	};
-	factory_->createImageButton({ 0,900 }, Vector2D(400,150), &sdlutils().images().at("cartelMenuPrincipal"), funcPress, "click");
+    mainMenuButton = factory_->createImageButton({ 0,900 }, Vector2D(400,150), &sdlutils().images().at("cartelMenuPrincipal"), funcPress, "click");
 
 	factory_->setLayer(ecs::layer::UI);
 	factory_->setFont("hvdComicSerif");
@@ -108,12 +108,12 @@ void ecs::ConfigScene::createFullscreenOptions()
 	screenModeIconEnt_ = factory_->createMultiTextureImage(Vector2D(585, 665), Vector2D(95, 122), textures);
 	trBase->setParent(screenModeIconEnt_->getComponent<Transform>());
 
-	screenModeIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueFullScreen()?0:1);
+	screenModeIconEnt_->getComponent<RenderImage>()->setNumberTexture(gD().GetValueFullScreen()?0:1);
 
 	CallbackClickeable funcScreenModeBoton = [this]() {
 		sdlutils().toggleFullScreen();
 		gD().ToggleFullScreen();
-		screenModeIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueFullScreen()?0:1);
+		screenModeIconEnt_->getComponent<RenderImage>()->setNumberTexture(gD().GetValueFullScreen()?0:1);
 	};
 	auto full= factory_->createTextuButton({ 740,730 }, "Pantalla Completa", 50, funcScreenModeBoton, "click", baseColor);
 	factory_->addHoverColorMod(full);
@@ -126,11 +126,11 @@ void ecs::ConfigScene::createSkipTutorialOptions()
 	Transform* trBase = factory_->createImage(Vector2D(-10, 60), &sdlutils().images().at("tinta3"))->getComponent<Transform>();
 	skipTutoIconEnt_ = factory_->createMultiTextureImage(Vector2D(585, 850), Vector2D(95, 122), textures);
 	trBase->setParent(skipTutoIconEnt_->getComponent<Transform>());
-	skipTutoIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueSkipTutorial() ? 0 : 1);
+	skipTutoIconEnt_->getComponent<RenderImage>()->setNumberTexture(gD().GetValueSkipTutorial() ? 0 : 1);
 
 	CallbackClickeable funcPressSkipTutorial = [this]() {
 		gD().ToggleSkipTutorial();
-		skipTutoIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueSkipTutorial()?0:1);
+		skipTutoIconEnt_->getComponent<RenderImage>()->setNumberTexture(gD().GetValueSkipTutorial()?0:1);
 	};
 	auto skip = factory_->createTextuButton({ 740,920 }, "Skip Tutorial", 50, funcPressSkipTutorial, "click", baseColor);
 	factory_->addHoverColorMod(skip);
