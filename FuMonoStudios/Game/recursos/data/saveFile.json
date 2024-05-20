@@ -1,6 +1,6 @@
 {
   "Dia":1,
-  "Dinero": 0,
+  "Dinero": 200,
   "Personajes":{
     "Artesano":{
       "EventosCompletados":[
