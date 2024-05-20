@@ -126,11 +126,11 @@ void ecs::ConfigScene::createSkipTutorialOptions()
 	Transform* trBase = factory_->createImage(Vector2D(-10, 60), &sdlutils().images().at("tinta3"))->getComponent<Transform>();
 	skipTutoIconEnt_ = factory_->createMultiTextureImage(Vector2D(585, 850), Vector2D(95, 122), textures);
 	trBase->setParent(skipTutoIconEnt_->getComponent<Transform>());
-	skipTutoIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueSkipTutorial() ? 0 : 1);
+	skipTutoIconEnt_->getComponent<RenderImage>()->setNumberTexture(gD().GetValueSkipTutorial() ? 0 : 1);
 
 	CallbackClickeable funcPressSkipTutorial = [this]() {
 		gD().ToggleSkipTutorial();
-		skipTutoIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueSkipTutorial()?0:1);
+		skipTutoIconEnt_->getComponent<RenderImage>()->setNumberTexture(gD().GetValueSkipTutorial()?0:1);
 	};
 	auto skip = factory_->createTextuButton({ 740,920 }, "Skip Tutorial", 50, funcPressSkipTutorial, "click", baseColor);
 	factory_->addHoverColorMod(skip);
