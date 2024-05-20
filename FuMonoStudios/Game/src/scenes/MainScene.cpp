@@ -276,7 +276,7 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 
 ecs::Entity* ecs::MainScene::createStamp(TipoHerramienta type)
 {
-	if (type > 2) return nullptr;
+	if (type > 2 && !SelloVacio) return nullptr;
 
 	constexpr float STAMPSIZE = 1;
 	factory_->setLayer(layer::STAMP);
