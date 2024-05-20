@@ -100,6 +100,7 @@ void ecs::TutorialScene::init() {
 void ecs::TutorialScene::close() {
 	ecs::Scene::close();
   	SoundEmiter::instance()->close();
+	gD().resetFailsCorrects();
   	tubos.clear();
 }
 
