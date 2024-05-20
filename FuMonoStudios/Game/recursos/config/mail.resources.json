@@ -56,46 +56,163 @@
       "id": "book10",
       "file": "recursos/images/Book_InfoEmbalado.png"
     },
-    {"id": "MarcaManual1", "file": "recursos/images/MarcaManual1.png"},
-    {"id": "MarcaManual2", "file": "recursos/images/MarcaManual2.png"},
-    {"id": "MarcaManual3", "file": "recursos/images/MarcaManual3.png"},
-    {"id": "MarcaManual4", "file": "recursos/images/MarcaManual4.png"},
-    {"id": "diario1", "file": "recursos/images/Diario0.png"},
-    {"id": "diario2", "file": "recursos/images/Diario1.png"},
-    {"id": "diario3", "file": "recursos/images/Diario2.png"},
-    {"id": "diario4", "file": "recursos/images/Diario3.png"},
-    {"id": "diario5", "file": "recursos/images/Diario4.png"},
-    {"id": "diario6", "file": "recursos/images/Diario5.png"},
-    {"id": "diario7", "file": "recursos/images/Diario6.png"},
-    {"id": "caraFelicidadMinimo", "file": "recursos/images/caraFelicidadMinimo.png"},
-    {"id": "caraFelicidadMalo", "file": "recursos/images/caraFelicidadMalo.png"},
-    {"id": "caraFelicidadNormal", "file": "recursos/images/caraFelicidadNormal.png"},
-    {"id": "caraFelicidadBueno", "file": "recursos/images/caraFelicidadBueno.png"},
-    {"id": "caraFelicidadMaxima", "file": "recursos/images/caraFelicidadMaxima.png"},
-    {"id": "iconoPausa", "file": "recursos/images/iconoPausa.png"},
+    {
+      "id": "MarcaManual1",
+      "file": "recursos/images/MarcaManual1.png"
+    },
+    {
+      "id": "MarcaManual2",
+      "file": "recursos/images/MarcaManual2.png"
+    },
+    {
+      "id": "MarcaManual3",
+      "file": "recursos/images/MarcaManual3.png"
+    },
+    {
+      "id": "MarcaManual4",
+      "file": "recursos/images/MarcaManual4.png"
+    },
+    {
+      "id": "diario1",
+      "file": "recursos/images/Diario0.png"
+    },
+    {
+      "id": "diario2",
+      "file": "recursos/images/Diario1.png"
+    },
+    {
+      "id": "diario3",
+      "file": "recursos/images/Diario2.png"
+    },
+    {
+      "id": "diario4",
+      "file": "recursos/images/Diario3.png"
+    },
+    {
+      "id": "diario5",
+      "file": "recursos/images/Diario4.png"
+    },
+    {
+      "id": "diario6",
+      "file": "recursos/images/Diario5.png"
+    },
+    {
+      "id": "diario7",
+      "file": "recursos/images/Diario6.png"
+    },
+    {
+      "id": "caraFelicidadMinimo",
+      "file": "recursos/images/caraFelicidadMinimo.png"
+    },
+    {
+      "id": "caraFelicidadMalo",
+      "file": "recursos/images/caraFelicidadMalo.png"
+    },
+    {
+      "id": "caraFelicidadNormal",
+      "file": "recursos/images/caraFelicidadNormal.png"
+    },
+    {
+      "id": "caraFelicidadBueno",
+      "file": "recursos/images/caraFelicidadBueno.png"
+    },
+    {
+      "id": "caraFelicidadMaxima",
+      "file": "recursos/images/caraFelicidadMaxima.png"
+    },
+    {
+      "id": "iconoPausa", 
+      "file": "recursos/images/iconoPausa.png"},
+    {
+      "id": "cartelContinuar",
+      "file": "recursos/images/cartelContinuar.png"
+    },
+    {
+      "id": "cartelMenuPrincipal",
+      "file": "recursos/images/cartelMenuPrincipal.png"
+    },
+    {
+      "id": "sliderRojo",
+      "file": "recursos/images/sliderRojo.png"
+    },
+    {
+      "id": "sliderAzul",
+      "file": "recursos/images/sliderAzul.png"
+    },
 
 
-    {"id": "flechaTest","file": "recursos/images/flecha.png"},
-    {"id": "cambioPag","file": "recursos/images/NextPage.png"},
-    {"id": "Demeter","file": "recursos/images/Demeter.png"},
-    {"id": "Hefesto","file": "recursos/images/Hefesto.png"},
-    {"id": "Hestia","file": "recursos/images/Hestia.png"},
-    {"id": "HestiaHighlight","file": "recursos/images/HestiaHighlight.png"},
-    {"id": "Artemisa","file": "recursos/images/Artemisa2.png"},
-    {"id": "Hermes","file": "recursos/images/Hermes.png"},
-    {"id": "Apolo","file": "recursos/images/Apolo.png"},
-    {"id": "Poseidon","file": "recursos/images/Poseidon.png"},
+    {
+      "id": "flechaTest",
+      "file": "recursos/images/flecha.png"
+    },
+    {
+      "id": "cambioPag",
+      "file": "recursos/images/NextPage.png"
+    },
+    {
+      "id": "Demeter",
+      "file": "recursos/images/Demeter.png"
+    },
+    {
+      "id": "Hefesto",
+      "file": "recursos/images/Hefesto.png"
+    },
+    {
+      "id": "Hestia",
+      "file": "recursos/images/Hestia.png"
+    },
+    {
+      "id": "HestiaHighlight",
+      "file": "recursos/images/HestiaHighlight.png"
+    },
+    {
+      "id": "Artemisa",
+      "file": "recursos/images/Artemisa2.png"
+    },
+    {
+      "id": "Hermes",
+      "file": "recursos/images/Hermes.png"
+    },
+    {
+      "id": "Apolo",
+      "file": "recursos/images/Apolo.png"
+    },
+    {
+      "id": "Poseidon",
+      "file": "recursos/images/Poseidon.png"
+    },
     {
       "id": "fondoMainMenu",
       "file": "recursos/images/FONDO_MENU_INICIO_v2.png"
     },
-    {"id": "blackScreen","file": "recursos/images/pantallanegra.png"},
-    {"id": "explosionScreen","file": "recursos/images/pantallaexplosion.png"},
-    {"id": "fondoTutorial","file": "recursos/images/fondoTutorial.png"},
-    {"id": "menuPrincipal","file": "recursos/images/MenuPrincipal.png"},
-    {"id": "botella1","file": "recursos/images/Botella1.png"},
-    {"id": "botella2","file": "recursos/images/Botella2.png"},
-    {"id": "cartaAtlantida","file": "recursos/images/CartaAtlantida.png"},
+    {
+      "id": "blackScreen",
+      "file": "recursos/images/pantallanegra.png"
+    },
+    {
+      "id": "explosionScreen",
+      "file": "recursos/images/pantallaexplosion.png"
+    },
+    {
+      "id": "fondoTutorial",
+      "file": "recursos/images/fondoTutorial.png"
+    },
+    {
+      "id": "menuPrincipal",
+      "file": "recursos/images/MenuPrincipal.png"
+    },
+    {
+      "id": "botella1",
+      "file": "recursos/images/Botella1.png"
+    },
+    {
+      "id": "botella2",
+      "file": "recursos/images/Botella2.png"
+    },
+    {
+      "id": "cartaAtlantida",
+      "file": "recursos/images/CartaAtlantida.png"
+    },
     {
       "id": "sellador0",
       "file": "recursos/images/selladorRojo.png"
@@ -143,6 +260,10 @@
     {
       "id": "tinta2",
       "file": "recursos/images/tintaVerde.png"
+    },
+    {
+      "id": "tinta3",
+      "file": "recursos/images/tintaAmarilla.png"
     },
     {
       "id": "bola1",
@@ -336,15 +457,42 @@
       "id": "fondoFinalTrabajo",
       "file": "recursos/images/FondoEndWork.png"
     },
-    {"id": "title","file": "recursos/images/titulo.png"},
-    {"id": "fondoOficina","file": "recursos/images/OficinaProyectosDesenfocada.png"},
-    {"id": "cinta","file": "recursos/images/Cinta.png"},
-    {"id": "cintaRapida","file": "recursos/images/CintaRapida.png"},
-    {"id": "baseBalanza","file": "recursos/images/BaseBalanza.png"},
-    {"id": "balanzaFlecha","file": "recursos/images/balanzaFlecha.png"},
-    {"id": "balanzaFlecha2","file": "recursos/images/balanzaFlecha2.png"},
-    {"id": "balanzaA","file": "recursos/images/balanzaA.png"},
-    {"id": "balanzaB","file": "recursos/images/balanzaB.png"},
+    {
+      "id": "title",
+      "file": "recursos/images/titulo.png"
+    },
+    {
+      "id": "fondoOficina",
+      "file": "recursos/images/OficinaProyectosDesenfocada.png"
+    },
+    {
+      "id": "cinta",
+      "file": "recursos/images/Cinta.png"
+    },
+    {
+      "id": "cintaRapida",
+      "file": "recursos/images/CintaRapida.png"
+    },
+    {
+      "id": "baseBalanza",
+      "file": "recursos/images/BaseBalanza.png"
+    },
+    {
+      "id": "balanzaFlecha",
+      "file": "recursos/images/balanzaFlecha.png"
+    },
+    {
+      "id": "balanzaFlecha2",
+      "file": "recursos/images/balanzaFlecha2.png"
+    },
+    {
+      "id": "balanzaA",
+      "file": "recursos/images/balanzaA.png"
+    },
+    {
+      "id": "balanzaB",
+      "file": "recursos/images/balanzaB.png"
+    },
     {
       "id": "balanzaDigA",
       "file": "recursos/images/balanza2Arriba.png"
@@ -368,7 +516,7 @@
     },
     {
       "id": "fondoAjustes",
-      "file": "recursos/images/AjustesSinSellos.png"
+      "file": "recursos/images/AjustesSinTextos.png"
     },
     {
       "id": "fondoPausa",
@@ -424,7 +572,10 @@
       "file": "recursos/images/PuntoVerde.png"
     },
 
-    {"id": "carta","file": "recursos/images/carta.png"},
+    {
+      "id": "carta",
+      "file": "recursos/images/carta.png"
+    },
 
 
 
@@ -648,11 +799,6 @@
       "id": "hvdComicSerif50",
       "file": "recursos/fonts/HVD_Comic_Serif_Pro.otf",
       "size": 50
-    },
-    {
-      "id": "hvdComicSerif80",
-      "file": "recursos/fonts/HVD_Comic_Serif_Pro.otf",
-      "size": 80
     }
   ],
   "sounds": [

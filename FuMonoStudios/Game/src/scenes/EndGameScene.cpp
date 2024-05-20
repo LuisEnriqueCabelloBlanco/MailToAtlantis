@@ -12,6 +12,12 @@ EndGameScene::EndGameScene()
 {
 }
 
+EndGameScene::~EndGameScene()
+{
+    /*if (final_ != nullptr) //ahora mismo deja memory leak pero mejor eso a que pete
+        delete final_;*/
+}
+
 void EndGameScene::init()
 {
     npcId_ = 0;
@@ -46,6 +52,8 @@ void EndGameScene::update()
             gm().requestChangeScene(ecs::sc::END_SCENE, ecs::sc::MENU_SCENE);
         }
     }
+
+    SoundEmiter::instance()->playMusic("exploration");
 }
 
 void EndGameScene::nextEnding()

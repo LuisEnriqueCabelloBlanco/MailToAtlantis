@@ -9,10 +9,17 @@
       "Bueno, va siendo hora de dejarte que va siendo hora de que vayas a tu primer dia"
     ],
     "FelicidadMinima": [
-      "felicidadMinima vagabundo"
+      "Jones, estoy triste y decepcionado por t$i. Yo te consideraba un amigo y alguien el que confiar mi futuro. Ya veo que no es as$i",
+      "No me haces ning$un favor y as$i no podemos seguir. No te vuelvas a dirijir a m$i, ya no quiero saber m$as de ti.",
+      "Podr$e sobrevivir sin la caridad de Atlantis."
     ],
     "FelicidadMaxima": [
-      "felicidadMaxima vagabundo"
+        "Ves que Anemos est$a de muy buen humor, decides acercarte a ver qu$e le pone tan contento.",
+        " $!Paco amigo m$io, no sabes cuanto agradezco toda la ayuda que me has prestado!",
+        "Creo que gracias a t$i ya puedo cumplir mi objetivo e intentar recuperar el trono!",
+        "Ya ver$as la cara que pone Mustaki, se va a enterar ese asesino.",
+        "Una vez m$as gracias por todo Paco, y toma este sello multicolor a cambio,",
+        "ya no tendr$as que pensar qu$e sello corresponde al paquete, $!porque es multicolor!"
     ],
     "Dia1": [
       "no se usa"
@@ -205,10 +212,17 @@
       "Este reinado valora mucho a sus ciudadanos, pero m$as que eso, valora la lealtad. La lealtad y la fidelidad al rey por encima de todo. Espero que lo tengas en cuenta."
     ],
     "FelicidadMinima": [
-      "FelicidadMinima"
+      "Jones, has decepcionado al rey. Estamos cansados de tu poca lealtad y como desobedeces.",
+      "No te necesitamos m$as, vuelve a tu sucia oficina de trabajo y vive como un campesino.",
+      "No te preocupes, las debidas consecuencias vendr$an pronto."
     ],
     "FelicidadMaxima": [
-      "FelicidadMaxima"
+        "Te das cuenta de que Mustaki est$a m$as contento que de costumbre.",
+        "Me alegro de verte Paco, quer$ia darte las gracias por toda tu ayuda.",
+        "Gracias a t$i creo que puedo seguir con mis asuntos sin ning$un problema.",
+        "Ya sabes que este reinado valora mucho a los ciudadanos con mucha lealtad a este, y por ello quiero obsequiarte algo.",
+        "Esto es una mejora para el manual, har$a la lectura m$as r$apida y m$as eficiente.",
+        "Espero que sigas jurando lealtad a este reinado, pero no me mires por encima del hombro o dejar$e de ser tan amable."
     ],
     "Dia1": [
       "dia1"
@@ -1147,7 +1161,6 @@
             "Muy bien, sigamos ya con la $ultima parte de tu formaci$on"
         ],
         "17": [
-            "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
             "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
             "No te preocupes que no te voy a penalizar... Tranquilo...",
             "Coge este paquete, que en principio est$a bien reglamentado, y mandalo a la basura.",

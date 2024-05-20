@@ -35,6 +35,8 @@ namespace ecs {
 
 		// getters
 		Transform* getManualTransform() { return manualEnt_->getComponent<Transform>(); }
+
+		DragAndDrop* getManualDragAndDrop() {return manualEnt_->getComponent<DragAndDrop>();}
 	private:
 
 		//Sobreescritura de varios metodos de creacion para incluir la recepcion de la accion
@@ -57,10 +59,11 @@ namespace ecs {
 		//Activa solo un tubo
 		void activateOneTube(int tube);
 
-		
-
 		void activateGarbage();
 		void deactivateGarbage();
+
+		void createPauseButton();
+
 
 		ecs::Entity* garbage_;
 

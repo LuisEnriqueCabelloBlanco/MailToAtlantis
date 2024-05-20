@@ -95,11 +95,15 @@ void ecs::TutorialScene::init() {
 
 	}
 	
+	SoundEmiter::instance()->playMusic("work");
+
+	createPauseButton();
 }
 
 void ecs::TutorialScene::close() {
 	ecs::Scene::close();
   	SoundEmiter::instance()->close();
+	gD().resetFailsCorrects();
   	tubos.clear();
 }
 
@@ -335,6 +339,19 @@ void ecs::TutorialScene::deactivateGarbage() {
 
 	garbage_->removeComponent<PackageChecker>();
 
+}
+
+void ecs::TutorialScene::createPauseButton()
+{
+	factory_->setFont("capture_it");
+	Texture* pauseTexture = &sdlutils().images().at("iconoPausa");
+	float scale = 60;
+	factory_->createImageButton(Vector2D(LOGICAL_RENDER_WIDTH - scale - 5, 5), Vector2D(scale, scale), pauseTexture, [this]() {
+		gm().pauseGame();
+		gm().loadScene(ecs::sc::PAUSE_SCENE);
+
+		}, "click");
+	factory_->setFont("arial");
 }
 
 ecs::Entity* ecs::TutorialScene::createPackage(PackageTutorial pt) {

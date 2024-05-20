@@ -54,6 +54,8 @@ namespace ecs {
 
         void updateToolsPerDay(int dia);
 
+        void createPauseButton();
+
         int fails_;
         int correct_;
 
@@ -71,7 +73,6 @@ namespace ecs {
         void startWork();
 
         void newWorkEvent();
-
 #ifdef DEV_TOOLS
         bool nextPacageCorrect_;
         bool stampsUnloked_;

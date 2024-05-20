@@ -12,9 +12,7 @@ class EndGameScene :
 {
 public:
     EndGameScene();
-    ~EndGameScene() {
-
-    }
+    ~EndGameScene();
     void init() override;
     virtual void update() override;
 private:
@@ -25,6 +23,6 @@ private:
     int npcId_;
     double minTime = 1000; // Tiempo minimo antes de poder pasar al siguiente final, en milesimas
     VirtualTimer timer_;
-    Final* final_;
+    Final* final_ = nullptr;
 };
 
