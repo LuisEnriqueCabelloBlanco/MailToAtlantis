@@ -50,12 +50,12 @@ void ecs::MainScene::update()
 			if (timer_ > 0) {
 				timer_ -= Time::getDeltaTime();
 				if (timer_ <= MINIGAME_TIME / 4 && clockMusic == 0) {
-					SoundEmiter::instance()->playMusic("clockSlow");
+					SoundEmiter::instance()->playSound("tac");
 					clockMusic++;
 				}
 				if (timer_ <= MINIGAME_TIME / 10 && clockMusic == 1) {
-					SoundEmiter::instance()->haltMusic("clockSlow");
-					SoundEmiter::instance()->playMusic("clockFast");
+					SoundEmiter::instance()->haltSound("tac");
+					SoundEmiter::instance()->playSound("tic");
 					clockMusic++;
 				}
 			}
@@ -132,8 +132,7 @@ void ecs::MainScene::init()
 	sdlutils().musics().at("office").setMusicVolume(50);
 	sdlutils().musics().at("printer").play();
 	sdlutils().musics().at("printer").setMusicVolume(50);*/
-	SoundEmiter::instance()->playMusic("office");
-	SoundEmiter::instance()->playMusic("printer");
+	SoundEmiter::instance()->playMusic("work");
 
 	//Se ha quitado toda la mierda, pero modificad en que dia exacto quereis crear las herramientas
 	updateToolsPerDay(gD().getDay());

@@ -178,12 +178,12 @@ NPCMayorData::NPCMayorData(Felicidad Felicidad) :NPCdata(Vagabundo,14){
 	postConversation = false;
 	numMisionesAceptadas = 0;
 	if (npcId == Vagabundo) {
-		firstMision = 1;
-		diaDaMejora = 7;
+		//firstMision = 1;
+		//diaDaMejora = 7;
 	}
 	else {
-		firstMision = 4;
-		diaDaMejora = 10;
+		//firstMision = 4;
+		//diaDaMejora = 10;
 	}
 		
 	misionAceptada = false;
@@ -195,6 +195,7 @@ npc::NPCMayorData::NPCMayorData(Personaje charId, JSONObject& charRoot):NPCdata(
 	events = std::vector<NPCevent*>(14, nullptr);
 	firstMision = charRoot["PrimeraMision"]->AsNumber();
 	introText = charRoot["IntroductionText"]->AsString();
+	diaDaMejora = charRoot["DiaMejora"]->AsNumber();
 }
 
 std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
@@ -204,28 +205,26 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 	{
 		gD().unlockUpgrade(npcId);
 	}
-	else
+
+	switch (felicidad)
 	{
-		switch (felicidad)
-		{
-		case NoHabladoAun:
-			aux = "Presentacion";
-			postConversation = true;
-			break;
-		case Minima:
-			aux = "FelicidadMinima";
-			felicidad = SeFue;
-			break;
-		case SeFue:
-			aux = "FelicidadMinima";
-			break;
-		default:
-			misionAceptada = true;
-			aux = postConversation ?
-				"PostConversacionDia" : "Dia";
-			aux = aux + std::to_string(gD().getDay());
-			break;
-		}
+	case NoHabladoAun:
+		aux = "Presentacion";
+		postConversation = true;
+		break;
+	case Minima:
+		aux = "FelicidadMinima";
+		felicidad = SeFue;
+		break;
+	case SeFue:
+		aux = "FelicidadMinima";
+		break;
+	default:
+		misionAceptada = true;
+		aux = postConversation ?
+			"PostConversacionDia" : "Dia";
+		aux = aux + std::to_string(gD().getDay());
+		break;
 	}
 
 	return std::make_pair(aux, -1);

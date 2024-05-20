@@ -3,6 +3,7 @@
 #include <components/Clickeable.h>
 #include <entities/BombAux.h>
 #include <components/DelayedCallback.h>
+#include <sistemas/SoundEmiter.h>
 
 SpecialObjectsFactory::SpecialObjectsFactory() {
 
@@ -226,6 +227,8 @@ void SpecialObjectsFactory::makeTransition() {
 }
 
 void SpecialObjectsFactory::makeExplosion() {
+
+	SoundEmiter::instance()->playSound("explosion");
 
 	ecs::Entity* pantalla = gm().getScene(ecs::sc::MAIN_SCENE)->addEntity(ecs::layer::UI);
 	pantalla->addComponent<Transform>(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
