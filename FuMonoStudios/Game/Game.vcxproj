@@ -345,6 +345,7 @@
     <Image Include="recursos\images\Armas.png" />
     <Image Include="recursos\images\Fragil.png" />
     <Image Include="recursos\images\IconoEjecutable.ico" />
+    <Image Include="recursos\images\IconoEjecutable2.ico" />
     <Image Include="recursos\images\Joyas.png" />
     <Image Include="recursos\images\Materiales.png" />
     <Image Include="recursos\images\Medicina.png" />
