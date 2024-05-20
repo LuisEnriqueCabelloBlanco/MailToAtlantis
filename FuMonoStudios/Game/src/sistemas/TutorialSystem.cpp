@@ -84,6 +84,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		#pragma region Primer Paquete
 		case TutorialEvent::PaqueteEnsenarRemitente:
+			scene_->getManualDragAndDrop()->disable();
 			DragAndDrop::enableDrag = false;
 			scene_->createPackage(ecs::TutorialScene::Primero);
 			delayedCallback(1, [this]() {
@@ -108,7 +109,8 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			activateDialogue(false);
 			break;
 		case TutorialEvent::EnsenarSellos:
-			
+
+			DragAndDrop::enableDrag = false;
 			canPassPagesManual = false;
 			activateDialogue(true);
 			arrow_->setActive(true);
@@ -120,7 +122,9 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 				arrow_->getComponent<MoverTransform>()->enable();
 				});
 			break;
+
 		case TutorialEvent::EnsenarTubos:
+			DragAndDrop::enableDrag = false;
 			scene_->activateOneTube(0);
 			activateDialogue(false);
 			break;
@@ -139,10 +143,12 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			activateDialogue(false);
 			break;
 		case TutorialEvent::SellarSegundoPaquete:
+			DragAndDrop::enableDrag = false;
 			canPassPagesManual = false;
 			activateDialogue(false);
 			break;
 		case TutorialEvent::EnviarSegundoPaquete:
+			DragAndDrop::enableDrag = false;
 			activateDialogue(false);
 			break;
 #pragma endregion
@@ -162,6 +168,8 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			break;
 
 		case TutorialEvent::EnviarCarta:
+
+			DragAndDrop::enableDrag = false;
 
 			delayedCallback(0.5, [this]() {
 				activateDialogue(false);
@@ -362,6 +370,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::EnsenarTubos:
+			DragAndDrop::enableDrag = true;
 			scene_->deactivateGarbage();
 			addActionListener(Action::PaqueteEnviado, [this]() {
 				activateEvent(TutorialEvent::EntraSegundoPaquete);
@@ -388,14 +397,18 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::SellarSegundoPaquete:
-			DragAndDrop::enableDrag = false;
+
+			DragAndDrop::enableDrag = true;
 			addActionListener(Action::PaqueteEstampado, [this]() {
 				scene_->activateOneTube(2);
 				activateEvent(TutorialEvent::EnviarSegundoPaquete);
-				});
-			DragAndDrop::enableDrag = true;
+			});
+			
 			break;
 		case TutorialEvent::EnviarSegundoPaquete:
+
+			DragAndDrop::enableDrag = true;
+
 			addActionListener(Action::PaqueteEnviado, [this]() {
 				activateEvent(TutorialEvent::EntraCarta);
 				});
@@ -419,6 +432,8 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 			break;
 
 		case TutorialEvent::EnviarCarta:
+
+			DragAndDrop::enableDrag = true;
 
 			scene_->activateOneTube(2);
 

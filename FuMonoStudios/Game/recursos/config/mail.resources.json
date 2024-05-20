@@ -72,6 +72,7 @@
     {"id": "caraFelicidadNormal", "file": "recursos/images/caraFelicidadNormal.png"},
     {"id": "caraFelicidadBueno", "file": "recursos/images/caraFelicidadBueno.png"},
     {"id": "caraFelicidadMaxima", "file": "recursos/images/caraFelicidadMaxima.png"},
+    {"id": "iconoPausa", "file": "recursos/images/iconoPausa.png"},
 
 
     {"id": "flechaTest","file": "recursos/images/flecha.png"},
@@ -628,6 +629,11 @@
       "id": "hvdComicSerif50",
       "file": "recursos/fonts/HVD_Comic_Serif_Pro.otf",
       "size": 50
+    },
+    {
+      "id": "hvdComicSerif80",
+      "file": "recursos/fonts/HVD_Comic_Serif_Pro.otf",
+      "size": 80
     }
   ],
   "sounds": [

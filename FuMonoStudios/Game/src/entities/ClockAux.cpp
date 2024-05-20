@@ -8,6 +8,7 @@
 #include <components/Transform.h>
 #include <architecture/Time.h>
 #include <architecture/Game.h>
+#include <architecture/GeneralData.h>
 
 ClockAux::ClockAux(float MinigameTime) {
 	minigameTime = MinigameTime;
@@ -62,6 +63,8 @@ void ClockAux::update() {
 
 		if (hours > 18)
 		{
+			gD().setNPCpackageProb(PROBABILIDAD_NPC_Q4);
+
 			timerLowTime = sdlutils().currRealTime();
 
 			if (timerLowTime > timeToUpdateLowTime)
@@ -70,6 +73,12 @@ void ClockAux::update() {
 				timeToUpdateLowTime = sdlutils().currRealTime() + timeBetweenLowTime;
 				lowTimeFlag = !lowTimeFlag;
 			}
+		}
+		else if (hours > 12) {
+			gD().setNPCpackageProb(PROBABILIDAD_NPC_Q3);
+		}
+		else if (hours > 6) {
+			gD().setNPCpackageProb(PROBABILIDAD_NPC_Q2);
 		}
 	}
 

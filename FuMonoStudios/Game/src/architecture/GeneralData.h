@@ -291,6 +291,9 @@ public:
 
 	inline void setEndGame(bool end) { gameEndedOnce_ = end; };
 	inline bool hasGameEndedOnce() { return gameEndedOnce_; };
+
+	int getNPCpackageProb() { return probabilidadPaqueteNpc; }
+	void setNPCpackageProb(int prob) { probabilidadPaqueteNpc = prob; }
 private:
 	void setNewGameValues();
 	void addMoney(int cant) { dinero_ += cant; }
@@ -330,6 +333,9 @@ private:
 	/// Margen de fallos que puede cometer el jugador
 	/// </summary>
 	int failsMargin_;
+
+	// probabilidad de que salga un paqNPc
+	int probabilidadPaqueteNpc;
 
 	int finalID_; //Variable int que define en la �ltima escena cu�l final se va a reproducir
 	/// <summary>
