@@ -7,9 +7,12 @@
 class Game;
 
 namespace ecs {
-    class ConfigScene :
-        public Scene
+    class ConfigScene : public Scene
     {
+    public:
+        ConfigScene();
+        virtual ~ConfigScene();
+        void init() override;
     private:
         Texture* musicIconTexture_;
         Entity* musicIconEnt_;
@@ -20,12 +23,12 @@ namespace ecs {
         Entity* screenModeIconEnt_;
         Texture* skipTutoIconTexture_;
         Entity* skipTutoIconEnt_;
-    public:
-        ConfigScene();
-        virtual ~ConfigScene();
 
-        void init() override;
-        void changeToMenuScene();
+        void createMusicOptions();
+        void createSFXOptions();
+        void createFullscreenOptions();
+        void createSkipTutorialOptions();
     };
+
 }
 

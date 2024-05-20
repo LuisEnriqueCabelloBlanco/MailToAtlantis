@@ -81,7 +81,7 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 			canInteract = true;
 			temporalSprite->setAlive(false);
 			});
-		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 0);
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 0, "Jefe");
 	}
 	else if (gD().getDay() == 5) {
 		canInteract = false;
@@ -90,10 +90,12 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 			canInteract = true;
 			temporalSprite->setAlive(false);
 			});
-		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 1);
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 1, "Jefe");
+
+		gD().getNPCData(Secretario)->felicidad = Normal;
 	}
-	else if ((gD().getNPCData(Vagabundo)->misionAceptada == 5 && gD().getNPCData(Secretario)->misionAceptada < 3)
-		|| (gD().getNPCData(Secretario)->misionAceptada == 2 && gD().getNPCData(Vagabundo)->misionAceptada < 6)) 
+	else if ((gD().getNPCData(Vagabundo)->numMisionesAceptadas == 5 && gD().getNPCData(Secretario)->numMisionesAceptadas < 3)
+		|| (gD().getNPCData(Secretario)->numMisionesAceptadas == 2 && gD().getNPCData(Vagabundo)->numMisionesAceptadas < 6))
 	{
 		canInteract = false;
 		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
@@ -103,7 +105,7 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 			canInteract = true;
 			temporalSprite->setAlive(false);
 			});
-		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 2);
+		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 2, "Jefe");
 	}
 }
 
@@ -187,19 +189,22 @@ void ecs::ExplorationScene::close() {
 	rightTex = nullptr;
 	delete leftTex;
 	leftTex = nullptr;
+	
 	SoundEmiter::instance()->close();
 
 	clearScene();
 
-	diarioText_.clear();
-	pagesByCharacter.clear();
-	currentDiarioPage = 0;
 	rightPageTr = nullptr;
 	rightPageRnd = nullptr;
 	leftPageTr = nullptr;
 	rightPageTr = nullptr;
 	diario_ = nullptr;
 	caraFelicidad = nullptr;
+
+	diarioText_.clear();
+	pagesByCharacter.clear();
+	currentDiarioPage = 0;
+
 }
 
 void ecs::ExplorationScene::navigate(Distrito placeDir) 
@@ -442,7 +447,8 @@ void ecs::ExplorationScene::setupDiarioPages() {
 						if (i < 2) {
 							textoPersonaje = textoPersonaje + std::to_string(day) +
 								textoCompletado + "\n" +
-								data->events[day - 1]->textoDiario + "\n";
+								data->events[data->numMisionesAceptadas + 
+								dynamic_cast<NPCMayorData*>(data)->firstMision]->textoDiario + "\n";
 						}
 						else {
 							textoPersonaje = textoPersonaje + std::to_string(day) +
@@ -641,13 +647,13 @@ void ecs::ExplorationScene::addDiarioEvent(NPCevent* event)
 	setupDiarioPages();
 }
 
-ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
+ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::string& character, float scale, int flip) {
 
 	ComonObjectsFactory factory(this);
 
 	Texture* characterTexture = &sdlutils().images().at(character);
 	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
-	
+
 	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
 	//Actualmente los personajes no tienen memoria, si queremos esto haria falta anadrile un parametro
 
@@ -692,6 +698,19 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "");
+
+	auto* cTR = characterEnt->getComponent<Transform>();
+
+	if (flip == 1) {
+		cTR->setFlip(SDL_FLIP_VERTICAL);
+	}
+	else if (flip == 2) {
+		cTR->setFlip(SDL_FLIP_HORIZONTAL);
+	}
+	else {
+		cTR->setFlip(SDL_FLIP_NONE);
+	}
+
 
 	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
 
@@ -773,7 +792,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 	for (int i = 0; i < pl.myCharacters.size(); ++i) {
 		if (gD().getNPCData(gD().stringToPersonaje(characters[i].name_))->felicidad != npc::SeFue) {
 			dist.addObject(createCharacter(characters[i].pos,
-				characters[i].name_, characters[i].scale_));
+				characters[i].name_, characters[i].scale_, characters[i].flip_));
 		}
 	}
 

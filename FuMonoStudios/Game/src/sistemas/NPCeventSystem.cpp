@@ -69,11 +69,15 @@ void NPCeventSystem::minigameOver() {
 		data->eventosCompletados[event->numEvento].second =
 			gD().getDay() * (event->completed ? 1 : -1);
 
+		data->numMisionesAceptadas++;
+
 		procesarStringRecompensas(event->completed, event->recompensas);
 	}
 
 	while (areTherePaquetesNPC())
 		paquetesNPCs.pop_back();
+
+	activeEventsNPCs.clear();
 }
 
 void NPCeventSystem::addPaqueteNPC(Paquete* p) {
@@ -241,6 +245,15 @@ void NPCeventSystem::readCondiciones(JSONObject& obj, NPCevent* auxEvent) {
 		std::string aux = hasRemitente->second->AsString();
 		condicionesDeTodos.push_back([aux](Paquete* p) -> bool {
 			return p->getRemitente() == aux;
+			});
+	}
+
+	auto hasTubo = obj.find("tuboSeleccionado");
+	if (hasTubo != obj.end()) {
+		auxEvent->usingCondicionTubo = true;
+		Distrito aux = (Distrito)gD().fromStringToDistrito(hasTubo->second->AsString());
+		auxEvent->condicionTubo = ([aux](Distrito tubo) -> bool {
+			return tubo == aux;
 			});
 	}
 
@@ -486,10 +499,10 @@ void NPCeventSystem::readNPCevent(JSONObject& eventObject, int personaje, int in
 * como necesites. */
 void NPCeventSystem::readNPCEventData() {
 
-	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile("recursos/data/npcData.json"));
+	std::unique_ptr<JSONValue> jsonFile(JSON::ParseFromFile(NPC_DATA_PATH));
 
 	if (jsonFile == nullptr || !jsonFile->IsObject()) {
-		throw std::runtime_error("Something went wrong while load/parsing npcData");
+		throw config_File_Missing(NPC_DATA_PATH);
 	}
 
 	JSONObject root = jsonFile->AsObject();

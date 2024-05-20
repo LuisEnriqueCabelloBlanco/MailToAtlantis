@@ -30,23 +30,25 @@ public:
 	//Modifica el sonido de los SFX
 	void setSoundVolumes(int volume);
 	//Mutea un sonido
-	void muteSingleSound(std::string sound, bool mute);
+	void muteSingleSound(const std::string& sound, bool mute);
 
 	//Activa un SFX
-	void playSound(std::string sound, int loops = 0);
+	void playSound(const std::string& sound, int loops = 0);
 	//Activa un SFX a cierto volumen
 	/// <param name="modifier"> entre 0 y 1 </param>
-	void playSound(std::string sound, float modifier, int loops = 0);
+	void playSound(const std::string& sound, float modifier, int loops = 0);
+	//Activa un SFX y añade prioridad al canal en el que se encuentra para que no lo sobreescriban
+	void playSoundWithPriority(const std::string& sound, int loops = 0);
 	//Detiene un SFX
-	void haltSound(std::string sound);
+	void haltSound(const std::string& sound);
 
 	//Modifica el sonido de la música
 	void setMusicVolume(int volume);
 
 	//Activa una canción
-	void playMusic(std::string song);
+	void playMusic(const std::string& song);
 	//Detiene una canción
-	void haltMusic(std::string song);
+	void haltMusic(const std::string& song);
 private:
 	//Procesa el Json de sounds.json
 	void processSoundListJSON();
@@ -72,6 +74,8 @@ private:
 	//Manejo de canales
 	int playInChannel_;
 	void changeChannel();
+
+	int priorityChannel_;
 };
 
 

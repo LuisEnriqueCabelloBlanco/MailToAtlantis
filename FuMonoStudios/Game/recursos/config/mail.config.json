@@ -12,7 +12,6 @@
                 "y" : 816.6,
                 "dest" : "Hefesto",
                 "scale" : 0.64,
-                "dir" : false,
                 "flip" : 2              
                 },
 
@@ -21,7 +20,6 @@
                 "y" : 583.6,
                 "dest" : "Hermes",
                 "scale" : 0.46,
-                "dir" : true,
                 "flip" : 0              
                 },
 
@@ -30,7 +28,6 @@
                 "y" : 616.5,
                 "dest" : "Artemisa",
                 "scale" : 0.29,
-                "dir" : true,
                 "flip" : 0              
                 }
 
@@ -45,8 +42,8 @@
                 "x" : 230,
                 "y" : 478.5,
                 "name" : "Campesino",
-                "scale" : 0.42,
-                "dir" : true              
+                "scale": 0.42,
+                "flip":  0
                 }
 
             ]}
@@ -60,8 +57,7 @@
                 "y" : 0.0,
                 "name" : "Molino",
                 "scaleX" : 433,
-                "scaleY" : 505,
-                "dir" : true              
+                "scaleY" : 505            
                 },
 
                 {"id" : 1,
@@ -69,8 +65,7 @@
                 "y" : 0.0,
                 "name" : "Arbol",
                 "scaleX" : 543,
-                "scaleY" : 785,
-                "dir" : true              
+                "scaleY" : 785            
                 },
 
                 {"id" : 2,
@@ -78,8 +73,7 @@
                 "y" : 602.0,
                 "name" : "Carreta",
                 "scaleX" : 312,
-                "scaleY" : 338,
-                "dir" : true              
+                "scaleY" : 338           
                 }
 
             ]}
@@ -97,7 +91,6 @@
                 "y" : 627.5,
                 "dest" : "Hestia",
                 "scale" : 0.61,
-                "dir" : false,
                 "flip" : 2              
                 },
 
@@ -106,7 +99,6 @@
                 "y" : 250.9,
                 "dest" : "Hermes",
                 "scale" : 0.22,
-                "dir" : true,
                 "flip" : 2              
                 },
 
@@ -115,7 +107,6 @@
                 "y" : 612,
                 "dest" : "Demeter",
                 "scale" : 0.61,
-                "dir" : true,
                 "flip" : 0              
                 }
 
@@ -126,13 +117,14 @@
 
             {"character" : [
 
-                {"id" : 0,
-                "x" : 553.6,
-                "y" : 307,
-                "name" : "Artesano",
-                "scale" : 0.26,
-                "dir" : true              
-                }
+              {
+                "id": 0,
+                "x": 553.6,
+                "y": 307,
+                "name": "Artesano",
+                "scale": 0.26,
+                "flip": 0
+              }
 
             ]}
         ],
@@ -145,8 +137,7 @@
                 "y" : 69.0,
                 "name" : "PulpoCartel",
                 "scaleX" : 643,
-                "scaleY" : 207,
-                "dir" : true              
+                "scaleY" : 207            
                 },
 
                 {"id" : 1,
@@ -154,8 +145,7 @@
                 "y" : 35.0,
                 "name" : "TiendaCeramica",
                 "scaleX" : 198,
-                "scaleY" : 497,
-                "dir" : true              
+                "scaleY" : 497              
                 },
 
                 {"id" : 2,
@@ -163,8 +153,7 @@
                 "y" : 0.0,
                 "name" : "TiendaEsculturas",
                 "scaleX" : 281,
-                "scaleY" : 551,
-                "dir" : true              
+                "scaleY" : 551             
                 }
 
             ]}]},
@@ -179,7 +168,6 @@
                 "y" : 846.9,
                 "dest" : "Artemisa",
                 "scale" : 0.55,
-                "dir" : false,
                 "flip" : 2              
                 },
 
@@ -188,7 +176,6 @@
                 "y" : 627,
                 "dest" : "Hefesto",
                 "scale" : 0.41,
-                "dir" : true,
                 "flip" : 0              
                 }
 
@@ -199,13 +186,14 @@
 
             {"character" : [
 
-                {"id" : 0,
-                "x" : 919.7,
-                "y" : 555.3,
-                "name" : "Vagabundo",
-                "scale" : 0.38,
-                "dir" : true              
-                }
+              {
+                "id": 0,
+                "x": 919.7,
+                "y": 555.3,
+                "name": "Vagabundo",
+                "scale": 0.38,
+                "flip": 0
+              }
 
             ]}
         ],
@@ -218,8 +206,7 @@
                 "y" : 0.0,
                 "name" : "CasaGrande",
                 "scaleX" : 300,
-                "scaleY" : 690,
-                "dir" : true              
+                "scaleY" : 690          
                 },
 
                 {"id" : 1,
@@ -227,8 +214,7 @@
                 "y" : 109.0,
                 "name" : "CartelOficina",
                 "scaleX" : 385,
-                "scaleY" : 165,
-                "dir" : true              
+                "scaleY" : 165           
                 },
 
                 {"id" : 2,
@@ -236,8 +222,7 @@
                 "y" : 247.0,
                 "name" : "Muro",
                 "scaleX" : 327,
-                "scaleY" : 429,
-                "dir" : true              
+                "scaleY" : 429          
                 }
 
             ]}
@@ -254,7 +239,6 @@
                 "y" : 467.2,
                 "dest" : "Demeter",
                 "scale" : 0.45,
-                "dir" : false,
                 "flip" : 2              
                 },
 
@@ -263,7 +247,6 @@
                 "y" : 409.1,
                 "dest" : "Hestia",
                 "scale" : 0.35,
-                "dir" : true,
                 "flip" : 0              
                 }
 
@@ -274,13 +257,14 @@
 
             {"character" : [
 
-                {"id" : 0,
-                "x" : 902.5,
-                "y" : 348.4,
-                "name" : "Tarotisa",
-                "scale" : 0.23,
-                "dir" : true              
-                }
+              {
+                "id": 0,
+                "x": 902.5,
+                "y": 348.4,
+                "name": "Tarotisa",
+                "scale": 0.23,
+                "flip": 2
+              }
 
             ]}
         ],
@@ -293,8 +277,7 @@
                 "y" : 201.0,
                 "name" : "TiendaPociones",
                 "scaleX" : 489,
-                "scaleY" : 435,
-                "dir" : true              
+                "scaleY" : 435           
                 },
 
                 {"id" : 1,
@@ -302,8 +285,7 @@
                 "y" : 113.0,
                 "name" : "TiendaBolas",
                 "scaleX" : 277,
-                "scaleY" : 961,
-                "dir" : true              
+                "scaleY" : 961            
                 },
 
                 {"id" : 2,
@@ -311,8 +293,7 @@
                 "y" : 0.0,
                 "name" : "TiendaJarrones",
                 "scaleX" : 480,
-                "scaleY" : 480,
-                "dir" : true              
+                "scaleY" : 480          
                 }
 
             ]}]},
@@ -327,7 +308,6 @@
                 "y" : 398,
                 "dest" : "Hefesto",
                 "scale" : 0.18,
-                "dir" : false,
                 "flip" : 2              
                 },
 
@@ -336,7 +316,6 @@
                 "y" : 433.1,
                 "dest" : "Apolo",
                 "scale" : 0.26,
-                "dir" : true,
                 "flip" : 0             
                 },
 
@@ -345,7 +324,6 @@
                 "y" : 745.6,
                 "dest" : "Demeter",
                 "scale" : 0.74,
-                "dir" : true,
                 "flip" : 2              
                 }
 
@@ -356,13 +334,14 @@
 
             {"character" : [
 
-                {"id" : 0,
-                "x" : 0,
-                "y" : 341,
-                "name" : "Contable",
-                "scale" : 0.36,
-                "dir" : true              
-                }
+              {
+                "id": 0,
+                "x": 0,
+                "y": 341,
+                "name": "Contable",
+                "scale": 0.36,
+                "flip": 0
+              }
 
             ]}
         ],
@@ -375,8 +354,7 @@
                 "y" : 112.0,
                 "name" : "TiendaDerecha",
                 "scaleX" : 627,
-                "scaleY" : 618,
-                "dir" : true              
+                "scaleY" : 618             
                 },
 
                 {"id" : 1,
@@ -384,8 +362,7 @@
                 "y" : 9.0,
                 "name" : "PanteonIzq",
                 "scaleX" : 268,
-                "scaleY" : 341,
-                "dir" : true              
+                "scaleY" : 341             
                 },
 
                 {"id" : 2,
@@ -393,8 +370,7 @@
                 "y" : 120.0,
                 "name" : "PanteonDer",
                 "scaleX" : 408,
-                "scaleY" : 307,
-                "dir" : true              
+                "scaleY" : 307            
                 }
 
             ]}]},
@@ -409,7 +385,6 @@
                 "y" : 465.1,
                 "dest" : "Hermes",
                 "scale" : 0.19,
-                "dir" : false,
                 "flip" : 2              
                 },
 
@@ -418,7 +393,6 @@
                 "y" : 465.1,
                 "dest" : "Poseidon",
                 "scale" : 0.46,
-                "dir" : true,
                 "flip" : 0              
                 }
 
@@ -429,13 +403,14 @@
 
             {"character" : [
 
-                {"id" : 0,
-                "x" : 744.4,
-                "y" : 402.2,
-                "name" : "Soldado",
-                "scale" : 0.37,
-                "dir" : true              
-                }
+              {
+                "id": 0,
+                "x": 744.4,
+                "y": 402.2,
+                "name": "Soldado",
+                "scale": 0.37,
+                "flip": 2
+              }
 
             ]}
         ],
@@ -448,8 +423,7 @@
                 "y" : 75.0,
                 "name" : "Panteon",
                 "scaleX" : 982,
-                "scaleY" : 387,
-                "dir" : true              
+                "scaleY" : 387            
                 },
 
                 {"id" : 1,
@@ -457,8 +431,7 @@
                 "y" : 108.0,
                 "name" : "Edificios",
                 "scaleX" : 860,
-                "scaleY" : 310,
-                "dir" : true              
+                "scaleY" : 310             
                 },
 
                 {"id" : 2,
@@ -466,8 +439,7 @@
                 "y" : 725.0,
                 "name" : "Charco",
                 "scaleX" : 530,
-                "scaleY" : 352,
-                "dir" : true              
+                "scaleY" : 352            
                 }
 
             ]}]},
@@ -482,7 +454,6 @@
                 "y" : 650,
                 "dest" : "Apolo",
                 "scale" : 0.25,
-                "dir" : false,
                 "flip" : 2              
                 }
 
@@ -494,14 +465,15 @@
 
             {"character" : [
 
-                {"id" : 0,
-                "x" : 700,
-                "y" : 650,
-                "name" : "Secretario",
-                "scale" : 0.23,
-                "dir": true
-                
-                }
+              {
+                "id": 0,
+                "x": 700,
+                "y": 650,
+                "name": "Secretario",
+                "scale": 0.23,
+                "flip": 2
+
+              }
 
             ]}
         ],
@@ -514,8 +486,7 @@
                 "y" : 204.0,
                 "name" : "Estatua",
                 "scaleX" : 370,
-                "scaleY" : 440,
-                "dir" : true              
+                "scaleY" : 440             
                 },
                 
                 {"id" : 1,
@@ -523,8 +494,7 @@
                 "y" : 118.0,
                 "name" : "ArbolesIzq",
                 "scaleX" : 690,
-                "scaleY" : 530,
-                "dir" : true              
+                "scaleY" : 530            
                 },
                 
                 {"id" : 2,
@@ -532,8 +502,7 @@
                 "y" : 118.0,
                 "name" : "ArbolesDer",
                 "scaleX" : 690,
-                "scaleY" : 530,
-                "dir" : true              
+                "scaleY" : 530             
                 }
 
             ]}]}

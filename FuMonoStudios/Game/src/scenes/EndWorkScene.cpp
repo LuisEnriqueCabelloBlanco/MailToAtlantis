@@ -121,12 +121,13 @@ void EndWorkScene::createButtons()
 	if (money > 0) {
 		// Boton nuevo dia
 
-		
-		gD().saveGame();
+		if (gD().getDay() < 14)
+			gD().saveGame();
 		
 		auto call = []() {
 			if (gD().getDay() == 15) {
-			gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::END_SCENE);
+				gD().setEndGame(true);
+				gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::END_SCENE);
 			} 
 			else {
 				gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE);

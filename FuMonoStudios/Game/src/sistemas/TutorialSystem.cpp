@@ -108,7 +108,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			activateDialogue(false);
 			break;
 		case TutorialEvent::EnsenarSellos:
-			DragAndDrop::enableDrag = true;
+			
 			canPassPagesManual = false;
 			activateDialogue(true);
 			arrow_->setActive(true);
@@ -151,6 +151,8 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		case TutorialEvent::EntraCarta:
 
+			DragAndDrop::enableDrag = false;
+
 			scene_->createPackage(ecs::TutorialScene::Carta);
 
 			delayedCallback(0.5, [this]() {
@@ -171,6 +173,8 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 #pragma region SignificadoSellos
 
 		case TutorialEvent::BuscarPaginaSellos:
+
+			DragAndDrop::enableDrag = false;
 			canPassPagesManual = true;
 
 			delayedCallback(0.5, [this]() {
@@ -191,7 +195,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		#pragma region Tercer Paquete
 		case TutorialEvent::EntraTercerPaquete:
-			DragAndDrop::enableDrag = true; // CAMBIAR A TRUE PARA EMPEZAR DESDE MAS ADELANTE
+			DragAndDrop::enableDrag = true;
 			canPassPagesManual = false;
 			scene_->deactivateTubos();
 			scene_->createPackage(ecs::TutorialScene::Tercero);
@@ -351,6 +355,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::EnsenarSellos:
+			DragAndDrop::enableDrag = true;
 			arrow_->setActive(false);
 			addActionListener(Action::PaqueteEstampado, [this]() {
 				activateEvent(TutorialEvent::EnsenarTubos);
@@ -367,7 +372,6 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 		#pragma region Segundo Paquete
 		case TutorialEvent::EntraSegundoPaquete:
 
-			DragAndDrop::enableDrag = true;
 			canPassPagesManual = true;
 			scene_->deactivateOneTube(0);
 			
@@ -384,6 +388,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::SellarSegundoPaquete:
+			DragAndDrop::enableDrag = false;
 			addActionListener(Action::PaqueteEstampado, [this]() {
 				scene_->activateOneTube(2);
 				activateEvent(TutorialEvent::EnviarSegundoPaquete);

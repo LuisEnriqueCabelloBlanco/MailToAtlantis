@@ -32,7 +32,7 @@ private:
 
 	void makePapelAgujeros();
 
-	void makeListaVagabundo();
+	void makeListaVagabundo(bool first);
 
 	void makeListaSecretario(bool first);
 
