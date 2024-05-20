@@ -68,7 +68,7 @@ void ecs::MainMenu::init()
 	if (gD().hasGameEndedOnce()) {
 		auto endScene = factory_->createTextuButton(pos, "Mostramos Final Juego", 50, [this]() {
 			sdlutils().musics().at("mainMenu").haltMusic();
-			gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::END_SCENE);
+			gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::FINALS_INFO_SCENE);
 		}, "click", textColor);
 		pos.setY(pos.getY() + 100);
 		factory_->addHoverColorMod(endScene);

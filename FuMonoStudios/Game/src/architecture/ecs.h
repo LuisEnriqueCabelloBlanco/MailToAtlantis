@@ -61,6 +61,7 @@ namespace ecs {
 			CONFIG_SCENE,
 			INTRO_SCENE,
 			DEATH_SCENE,
+			FINALS_INFO_SCENE,
 			_LAST_SCENE,
 			NULL_SCENE
 		};

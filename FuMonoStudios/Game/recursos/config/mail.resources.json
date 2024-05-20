@@ -702,14 +702,17 @@
       "id": "ojo",
       "file": "recursos/images/ojo.png"
     },
-    {
-      "id": "periodico",
-      "file": "recursos/images/Periodico.png"
-    },
-    {
-      "id": "finalFondo",
-      "file": "recursos/images/FondoFinales.png"
-    }
+    {"id": "periodico","file": "recursos/images/Periodico.png"},
+    {"id": "finalFondo","file": "recursos/images/FondoFinales.png"},
+    {"id": "fondoAzul","file": "recursos/images/FondoAzul.png"},
+
+    {"id": "SoldadoEmblema","file": "recursos/images/EmblemasFinales/Soldado Final.png"},
+    {"id": "PaulinoEmblema","file": "recursos/images/EmblemasFinales/Paulino Tinteiros Final.png"},
+    {"id": "PancracioEmblema","file": "recursos/images/EmblemasFinales/Pancracio Warawa Final.png"},
+    {"id": "GloverEmblema","file": "recursos/images/EmblemasFinales/Glover Globus Final.png"},
+    {"id": "GargafielEmblema","file": "recursos/images/EmblemasFinales/Gargafiel Mustaki Final.png"},
+    {"id": "AnemosEmblema","file": "recursos/images/EmblemasFinales/Anemos Tokugawa Final.png"},
+    {"id": "abiEmblema","file": "recursos/images/EmblemasFinales/Abigail Ampoure Final.png"}
   ],
   "fonts": [
     {
@@ -763,9 +766,19 @@
       "size": 20
     },
     {
+      "id": "simpleHandmade30",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 30
+    },
+    {
       "id": "simpleHandmade40",
       "file": "recursos/fonts/SimpleHandmade.ttf",
       "size": 40
+    },
+    {
+      "id": "simpleHandmade50",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 50
     },
     {
       "id": "simpleHandmade60",

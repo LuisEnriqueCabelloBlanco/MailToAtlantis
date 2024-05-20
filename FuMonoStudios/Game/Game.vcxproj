@@ -158,6 +158,7 @@
     <ClCompile Include="src\entities\BombAux.cpp" />
     <ClCompile Include="src\scenes\DeathScene.cpp" />
     <ClCompile Include="src\entities\Final.cpp" />
+    <ClCompile Include="src\scenes\FinalsInfoScene.cpp" />
     <ClCompile Include="src\scenes\IntroScene.cpp" />
     <ClCompile Include="src\sistemas\SpecialObjectsFactory.cpp" />
     <ClCompile Include="src\entities\CristalBall.cpp" />
@@ -237,6 +238,7 @@
     <ClInclude Include="src\entities\BombAux.h" />
     <ClInclude Include="src\scenes\DeathScene.h" />
     <ClInclude Include="src\entities\Final.h" />
+    <ClInclude Include="src\scenes\FinalsInfoScene.h" />
     <ClInclude Include="src\scenes\IntroScene.h" />
     <ClInclude Include="src\sistemas\SpecialObjectsFactory.h" />
     <ClInclude Include="src\entities\CristalBall.h" />
