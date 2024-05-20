@@ -54,13 +54,13 @@ void ecs::ConfigScene::init()
 
 void ecs::ConfigScene::createMusicOptions()
 {
-	auto mainTr = factory_->createImage(Vector2D(570, 390), &sdlutils().images().at("sliderRojo"))->getComponent<Transform>();
+	auto mainTr = factory_->createImage(Vector2D(530, 370), &sdlutils().images().at("sliderRojo"))->getComponent<Transform>();
 	// Boton (-) para el parametro de audio musica
 	CallbackClickeable funcPress2 = [this]() {
 		gD().changeParamID(0, false);
 		musicIconEnt_->getComponent<Transform>()->setPos(550 + (gD().getParamMusic() * 7.4f), 330);
 		};
-	auto aux = factory_->createTextuButton({ 0,-10 }, "-", 50, funcPress2, "click", baseColor);
+	auto aux = factory_->createTextuButton({ 10,10 }, " - ", 50, funcPress2, "click", baseColor);
 	aux->getComponent<Transform>()->setParent(mainTr);
 	factory_->addHoverColorMod(aux);
 	// Boton (+) para el parametro de audio musica
@@ -68,24 +68,26 @@ void ecs::ConfigScene::createMusicOptions()
 		gD().changeParamID(0, true);
 		musicIconEnt_->getComponent<Transform>()->setPos(550 + (gD().getParamMusic() * 7.4f), 330);
 		};
-	auto plus = factory_->createTextuButton({ 700,-10 }, "+", 50, funcPress3, "click", baseColor);
+	auto plus = factory_->createTextuButton({ 770,15 }, " + ", 50, funcPress3, "click", baseColor);
 	plus->getComponent<Transform>()->setParent(mainTr);
 	factory_->addHoverColorMod(plus);
 	//iconito del sello
 	musicIconTexture_ = &sdlutils().images().at("iconoRojoAjustes");
 	musicIconEnt_ = factory_->createImage(Vector2D(560 + (gD().getParamMusic() * 7.4f), 330), Vector2D(musicIconTexture_->width(), musicIconTexture_->height()), musicIconTexture_);
+	factory_->setLayer(ecs::layer::DEFAULT);
 	factory_->createLabel(Vector2D(670, 280), "Volumen de la musica", 50, baseColor);
+	factory_->setLayer(ecs::layer::UI);
 }
 
 void ecs::ConfigScene::createSFXOptions()
 {
-	auto mainTr = factory_->createImage(Vector2D(570, 570), &sdlutils().images().at("sliderAzul"))->getComponent<Transform>();
+	auto mainTr = factory_->createImage(Vector2D(530, 550), &sdlutils().images().at("sliderAzul"))->getComponent<Transform>();
 	// Boton (-) para el parametro de audio sfx
 	CallbackClickeable funcPress4 = [this]() {
 		gD().changeParamID(1, false);
-		sfxIconEnt_->getComponent<Transform>()->setPos(550 + (gD().getParamSfx() * 7.4f), 500);
+		sfxIconEnt_->getComponent<Transform>()->setPos(530 + (gD().getParamSfx() * 7.4f), 500);
 		};
-	auto minus = factory_->createTextuButton({ 0,-10 }, "-", 50, funcPress4, "click",baseColor);
+	auto minus = factory_->createTextuButton({ 0,15 }, " - ", 50, funcPress4, "click",baseColor);
 	minus->getComponent<Transform>()->setParent(mainTr);
 	factory_->addHoverColorMod(minus);
 	// Boton (+) para el parametro de audio sfx
@@ -93,12 +95,14 @@ void ecs::ConfigScene::createSFXOptions()
 		gD().changeParamID(1, true);
 		sfxIconEnt_->getComponent<Transform>()->setPos(550 + (gD().getParamSfx() * 7.4f), 500);
 		};
-	auto plus = factory_->createTextuButton({ 700,-10 }, "+", 50, funcPress5, "click",baseColor);
+	auto plus = factory_->createTextuButton({ 770,15 }, " + ", 50, funcPress5, "click",baseColor);
 	plus->getComponent<Transform>()->setParent(mainTr);
 	factory_->addHoverColorMod(plus);
 	sfxIconTexture_ = &sdlutils().images().at("iconoAzulAjustes");
 	sfxIconEnt_ = factory_->createImage(Vector2D(560 + (gD().getParamSfx() * 7.4f), 500), Vector2D(sfxIconTexture_->width(), sfxIconTexture_->height()), sfxIconTexture_);
+	factory_->setLayer(ecs::layer::DEFAULT);
 	factory_->createLabel(Vector2D(670,460), "Volumen de los efectos", 50, baseColor);
+	factory_->setLayer(ecs::layer::UI);
 }
 
 void ecs::ConfigScene::createFullscreenOptions()
