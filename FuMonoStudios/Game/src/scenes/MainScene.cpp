@@ -405,7 +405,7 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createTubes()
 	}
 
 	//Creación de paquetes bloqueados
-	for (int z = j; z < 7; ++z) { //grande jose la los numeros magicos te la sabes
+	for (int z = j; z < MAX_DISTRICTS; ++z) { //grande jose la los numeros magicos te la sabes
 		if (j == 6)
 			tubos.push_back(createTubo((pq::Distrito)z, true));
 		else

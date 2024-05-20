@@ -13,11 +13,11 @@
     },
     "Campesino":{
       "EventosCompletados":[
-        0,0,0,0,0
+        2,0,0,0,0
       ],
       "Felicidad":"Normal",
-      "FelicidadNum":50,
-      "numMisionesAceptadas":0,
+      "FelicidadNum":60,
+      "numMisionesAceptadas":1,
       "unlockUpgrade":false
     },
     "Contable":{
@@ -40,11 +40,11 @@
     },
     "Soldado":{
       "EventosCompletados":[
-        6,8,10,12,14
+        0,0,0,0,0
       ],
-      "Felicidad":"Maxima",
-      "FelicidadNum":100,
-      "numMisionesAceptadas":4,
+      "Felicidad":"Normal",
+      "FelicidadNum":50,
+      "numMisionesAceptadas":0,
       "unlockUpgrade":true
     },
     "Tarotisa":{
