@@ -91,9 +91,11 @@ void ecs::ExplorationScene::dialogueWhenEntering() {
 			temporalSprite->setAlive(false);
 			});
 		dialogMngr_.startConversation(DialogManager::ExplorationEnter, 1, "Jefe");
+
+		gD().getNPCData(Secretario)->felicidad = Normal;
 	}
-	else if ((gD().getNPCData(Vagabundo)->misionAceptada == 5 && gD().getNPCData(Secretario)->misionAceptada < 3)
-		|| (gD().getNPCData(Secretario)->misionAceptada == 2 && gD().getNPCData(Vagabundo)->misionAceptada < 6)) 
+	else if ((gD().getNPCData(Vagabundo)->numMisionesAceptadas == 5 && gD().getNPCData(Secretario)->numMisionesAceptadas < 3)
+		|| (gD().getNPCData(Secretario)->numMisionesAceptadas == 2 && gD().getNPCData(Vagabundo)->numMisionesAceptadas < 6))
 	{
 		canInteract = false;
 		ecs::Entity* temporalSprite = addEntity(ecs::layer::UI);
@@ -187,19 +189,22 @@ void ecs::ExplorationScene::close() {
 	rightTex = nullptr;
 	delete leftTex;
 	leftTex = nullptr;
+	
 	SoundEmiter::instance()->close();
 
 	clearScene();
 
-	diarioText_.clear();
-	pagesByCharacter.clear();
-	currentDiarioPage = 0;
 	rightPageTr = nullptr;
 	rightPageRnd = nullptr;
 	leftPageTr = nullptr;
 	rightPageTr = nullptr;
 	diario_ = nullptr;
 	caraFelicidad = nullptr;
+
+	diarioText_.clear();
+	pagesByCharacter.clear();
+	currentDiarioPage = 0;
+
 }
 
 void ecs::ExplorationScene::navigate(Distrito placeDir) 
@@ -442,7 +447,8 @@ void ecs::ExplorationScene::setupDiarioPages() {
 						if (i < 2) {
 							textoPersonaje = textoPersonaje + std::to_string(day) +
 								textoCompletado + "\n" +
-								data->events[day - 1]->textoDiario + "\n";
+								data->events[data->numMisionesAceptadas + 
+								dynamic_cast<NPCMayorData*>(data)->firstMision]->textoDiario + "\n";
 						}
 						else {
 							textoPersonaje = textoPersonaje + std::to_string(day) +

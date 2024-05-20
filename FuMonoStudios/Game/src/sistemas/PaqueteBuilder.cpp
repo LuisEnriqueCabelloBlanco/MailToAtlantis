@@ -116,8 +116,11 @@ void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
 		}
 		else {
 			ent->addComponent<Paquete>(*pNPC);
-			ent->removeComponent<RenderImage>();
-			ent->removeComponent<DragAndDrop>();
+			selectRandomRoute();
+			ent->addComponent<Wrap>(40, 0, route, selectedRouteIndex);
+			//ent->removeComponent<RenderImage>();
+			//ent->removeComponent<DragAndDrop>();
+			ent->setAlive(false);
 			a.makeBomba();
 		}
 	}
