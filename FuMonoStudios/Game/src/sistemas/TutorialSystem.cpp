@@ -84,6 +84,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		#pragma region Primer Paquete
 		case TutorialEvent::PaqueteEnsenarRemitente:
+			scene_->getManualDragAndDrop()->disable();
 			DragAndDrop::enableDrag = false;
 			scene_->createPackage(ecs::TutorialScene::Primero);
 			delayedCallback(1, [this]() {
