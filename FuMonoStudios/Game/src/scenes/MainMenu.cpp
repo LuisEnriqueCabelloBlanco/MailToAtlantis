@@ -92,10 +92,3 @@ void ecs::MainMenu::init()
 	SoundEmiter::instance()->playMusic("mainMenu");
 	factory_->setFont("arial");
 }
-
-void ecs::MainMenu::close()
-{
-	ecs::Scene::close();
-	SoundEmiter::instance()->close();
-}
-

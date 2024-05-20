@@ -30,7 +30,7 @@ constexpr int MAX_DAYS = 14;
 constexpr int INITIAL_TUBE_AMOUNT = 1;
 constexpr int WRITE_PACAGES_VALUE = 20;
 constexpr int WRONG_PACAGES_VALUE = 30;
-constexpr int MINIGAME_TIME = 120;
+constexpr int MINIGAME_TIME = 154;
 constexpr int INITIAL_FAILS_MARGIN = 1;
 constexpr int LOGICAL_RENDER_WIDTH = 1920;
 constexpr int LOGICAL_RENDER_HEITH = 1080;
@@ -78,4 +78,11 @@ constexpr int PESO_SELLO_POS_Y = 60;
 constexpr int PESO_SELLO_SIZE = 80;
 //Escala del paquete 
 constexpr float PAQUETE_SIZE = 0.25f;
+// Probabilidad de carta en porcentaje
+constexpr float PROBABILIDAD_CARTA = 7;
+// probabilidad de paquete NPC
+constexpr int PROBABILIDAD_NPC_Q1 = 70;
+constexpr int PROBABILIDAD_NPC_Q2 = 80;
+constexpr int PROBABILIDAD_NPC_Q3 = 90;
+constexpr int PROBABILIDAD_NPC_Q4 = 100;
 #pragma endregion

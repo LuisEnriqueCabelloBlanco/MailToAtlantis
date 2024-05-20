@@ -8,6 +8,7 @@
 #include <components/Herramientas.h>
 #include <sistemas/SpecialObjectsFactory.h>
 #include <architecture/Exceptions.h>
+#include <scenes/MainScene.h>
 
 std::unordered_map<Distrito, std::vector<std::string>> PaqueteBuilder::distritoCalle_;
 std::vector<std::string> PaqueteBuilder::names;
@@ -54,9 +55,9 @@ ecs::Entity* PaqueteBuilder::buildPackage(int level, ecs::Scene* mScene) {
 
 	ecs::Entity* packageBase;
 	
-	int rnd = sdlutils().rand().nextInt(0, 10);
+	int rnd = sdlutils().rand().nextInt(0, 100);
 
-	if (rnd == 0) {
+	if (rnd < PROBABILIDAD_CARTA) {
 		packageBase = buildBasePackage(mScene, true);
 		cartaRND(packageBase);
 	}
@@ -134,8 +135,10 @@ void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
 
 bool PaqueteBuilder::shouldBuildNPCPackage()
 {
-	int rnd = sdlutils().rand().nextInt(0, 4);
-	return gD().npcEventSys->areTherePaquetesNPC() && rnd > 0;
+	
+	int rnd = sdlutils().rand().nextInt(0, 100);
+
+	return gD().npcEventSys->areTherePaquetesNPC() && rnd < gD().getNPCpackageProb();
 }
 
 ecs::Entity* PaqueteBuilder::customPackage(pq::Distrito distrito, pq::Calle calle, const std::string& remitente, pq::TipoPaquete tipo, bool correcto, pq::NivelPeso nivPeso, int peso, bool fragil, bool carta)

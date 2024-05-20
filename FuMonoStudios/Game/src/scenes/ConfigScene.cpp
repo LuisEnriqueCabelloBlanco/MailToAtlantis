@@ -10,6 +10,7 @@
 #include <architecture/GeneralData.h>
 #include <sistemas/ComonObjectsFactory.h>
 #include <architecture/GameConstants.h>
+#include <sistemas/SoundEmiter.h>
 
 
 ecs::ConfigScene::ConfigScene() : Scene() {
@@ -44,6 +45,8 @@ void ecs::ConfigScene::init()
 	createFullscreenOptions();
 	createSkipTutorialOptions();
 	factory_->setLayer(ecs::layer::DEFAULT);
+
+	SoundEmiter::instance()->playMusic("printer");
 }
 
 void ecs::ConfigScene::createMusicOptions()

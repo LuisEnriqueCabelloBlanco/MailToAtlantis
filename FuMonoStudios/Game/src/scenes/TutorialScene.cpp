@@ -95,11 +95,14 @@ void ecs::TutorialScene::init() {
 
 	}
 	
+	SoundEmiter::instance()->playMusic("work");
+
 }
 
 void ecs::TutorialScene::close() {
 	ecs::Scene::close();
   	SoundEmiter::instance()->close();
+	gD().resetFailsCorrects();
   	tubos.clear();
 }
 

@@ -10,7 +10,6 @@ public:
 	virtual ~EndWorkScene();
 
 	void init() override;
-	void close() override;
 
 	void update() override;
 private:

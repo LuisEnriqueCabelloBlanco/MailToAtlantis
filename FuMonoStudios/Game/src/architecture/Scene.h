@@ -7,6 +7,7 @@
 #include <vector>
 #include <array>
 #include <queue>
+#include <sistemas/SoundEmiter.h>
 //#include <sistemas/ComonObjectsFactory.h>
 //#include "Entity.h"
 class ComonObjectsFactory;
