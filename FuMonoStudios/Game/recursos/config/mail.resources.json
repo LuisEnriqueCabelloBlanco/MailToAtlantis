@@ -121,6 +121,9 @@
       "file": "recursos/images/caraFelicidadMaxima.png"
     },
     {
+      "id": "iconoPausa", 
+      "file": "recursos/images/iconoPausa.png"},
+    {
       "id": "cartelContinuar",
       "file": "recursos/images/cartelContinuar.png"
     },
