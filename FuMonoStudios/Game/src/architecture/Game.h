@@ -49,6 +49,12 @@ public:
 	/// <param name="scene2"></param>
 	void requestChangeScene(ecs::sc::sceneId scene1, ecs::sc::sceneId scene2);
 	/// <summary>
+    /// Despausa el juego
+    /// </summary>
+	inline void pauseGame() {
+		gamePaused_ = true;
+	}
+	/// <summary>
 	/// Despausa el juego
 	/// </summary>
 	inline void unpauseGame() {
