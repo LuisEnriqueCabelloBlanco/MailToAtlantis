@@ -14,8 +14,8 @@
           "remitente" : "no se usa"
         },
         "recompensa": {
-          "1": "Vagabundo+++++",
-          "2": " $Vagabundo-----"
+          "1": "Vagabundo++++++++++",
+          "2": " $Vagabundo-------------------------"
         },
         "textoDiario": "no se usa"
       },
@@ -32,8 +32,8 @@
           "tipoPaquete": "Alimento"
         },
         "recompensa": {
-          "1": "Vagabundo+++++",
-          "2": " $Vagabundo-----"
+          "1": "Vagabundo++++++++++",
+          "2": " $Vagabundo-------------------------"
         },
         "textoDiario": "Me ha contado que lleva mucho tiempo sin comer bien y me ha pedido un paquete de comida de Demeter.\nDebo redirigir un paquete de alimentos de Demeter a Hestia"
       },
@@ -51,7 +51,7 @@
         },
         "recompensa": {
           "1": "Vagabundo+++++",
-          "2": " $Vagabundo-----"
+          "2": " $Vagabundo-------------------------"
         },
         "textoDiario": "Ha mandado un paquete a Artemisa. Seguramente el paquete este mal sellado o sea ilegal..."
       },
@@ -68,8 +68,8 @@
           "tuboSeleccionado": "Hefesto"
         },
         "recompensa": {
-          "1": "Vagabundo+++++",
-          "2": " $Vagabundo-----"
+          "1": "Vagabundo+++++++++++++++",
+          "2": " $Vagabundo-------------------------"
         },
         "textoDiario": "Dice que ha encontrado una pepita de oro y que sera millonario. Tengo que asegurarme que el paquete llegue a su destino, aunque la verdad que la pepita es bastante falsa..."
       },
@@ -109,8 +109,8 @@
           }
         },
         "recompensa": {
-          "1": "Vagabundo++++++++",
-          "2": " $Vagabundo--------------------"
+          "1": "Vagabundo+++++++++++++++",
+          "2": " $Vagabundo-------------------------"
         },
         "textoDiario": "Me ha dado un papel con un sello de un grupo llamado 'lechuzas'. Tiene una serie de nombres, y unas instrucciones. Tambien un papel con agujeros."
       },
@@ -127,8 +127,9 @@
           "tuboSeleccionado": "Poseidon"
         },
         "recompensa": {
-          "1": "Vagabundo++++++++",
-          "2": " $Vagabundo--------------------"
+          "1": "Vagabundo++++++++++",
+          "2": " $Vagabundo--------------------",
+          "3": "Secretario---------------"
         },
         "textoDiario": "Me ha dicho que aun tengo una prueba que superar hasta poder ser de fiar. Tengo que mandar a Poseidon el paquete del 'Buitre'. Seguramente tenga que usar el papel con agujeros para ello."
       },
@@ -144,8 +145,9 @@
           "tipoPaquete": "Alimento"
         },
         "recompensa": {
-          "1": "Vagabundo+++++",
-          "2": " $Vagabundo-----"
+          "1": "Vagabundo++++++++++",
+          "2": " $Vagabundo----------",
+          "3": "Secretario---------------"
         },
         "textoDiario": "Ha sido publicado un libro llamado 'CRITIAS'. Habla sobre la existencia de humanos en la superficie. Segun el libro, Poseidon estaba enfadado con Atlantis, y les hundio bajo el mar durante un milenio como castigo. Si el libro es verdadero, llevan 995 a$%os hundidos. Anemos esta que se sale, me ha pedido que mueva un paquete de comida de Hermes a Hestia."
       },
@@ -162,8 +164,9 @@
           "tuboSeleccionado": "Hermes"
         },
         "recompensa": {
-          "1": "Vagabundo+++++",
-          "2": " $Vagabundo-----"
+          "1": "Vagabundo+++++++++++++++",
+          "2": " $Vagabundo---------------",
+          "3": "Secretario---------------"
         },
         "textoDiario": "Anemos se ha dado cuenta de que su pez estaba tieso. Lo quiere llevar a enterrar a Hermes, tendre que asegurarme de que el paquete llega seguro."
       },
@@ -211,8 +214,9 @@
           }
         },
         "recompensa": {
-          "1": "Vagabundo+++++",
-          "2": " $Vagabundo--------------------"
+          "1": "Vagabundo+++++++++++++++",
+          "2": " $Vagabundo--------------------",
+          "3": "Secretario-------------------------"
         },
         "textoDiario": "Anemos dice que me contar$a su verdad y me unir$e a las lechuzas si cumplo est$a misi$on. Tengo que pasar una lista de paquetes ilegales. Hoy no voy a cobrar casi nada..."
       },
@@ -229,8 +233,9 @@
           "tuboSeleccionado": "Hestia"
         },
         "recompensa": {
-          "1": "Vagabundo+++++",
-          "2": " $Vagabundo-----"
+          "1": "Vagabundo+++++++++++++++",
+          "2": " $Vagabundo--------------------",
+          "3": "Secretario-------------------------"
         },
         "textoDiario": "Ahora s$e la verdad. Anemos es el verdadero heredero al trono, y el secretario del rey solo es un impostor. Las lechuzas tienen un plan para fabricar un veneno y causar una revoluci$on. Si quiero ayudar a las lechuzas, debo reenviar paquetes de joyas de Poseid$on a Hestia, al menos tres."
       },
@@ -248,8 +253,9 @@
           "peso": "Bajo"
         },
         "recompensa": {
-          "1": "Vagabundo+++++",
-          "2": " $Vagabundo-----"
+          "1": "Vagabundo+++++++++++++++",
+          "2": " $Vagabundo--------------------",
+          "3": "Secretario-------------------------"
         },
         "textoDiario": "Anemos me ha pedido materiales para el veneno. Debo reenviar 2 paquetes ligeros, osea, que pesen menos de 15kg que vayan a Hermes y mandarlos a Hefesto."
       },
@@ -264,8 +270,9 @@
           "remitente": "Grog Koroth"
         },
         "recompensa": {
-          "1": "Vagabundo+++++",
-          "2": " $Vagabundo-----"
+          "1": "Vagabundo+++++++++++++++",
+          "2": " $Vagabundo--------------------",
+          "3": "Secretario-------------------------"
         },
         "textoDiario": "El veneno est$a hecho. Tengo que asegurarme que pasa bien, lo mandar$a un tal 'Grog Koroth'. Vaya nombre."
       },
@@ -283,8 +290,9 @@
           "tuboSeleccionado": "Apolo"
         },
         "recompensa": {
-          "1": "Vagabundo+++++",
-          "2": " $Vagabundo-----"
+          "1": "Vagabundo+++++++++++++++",
+          "2": " $Vagabundo--------------------",
+          "3": "Secretario-------------------------"
         },
         "textoDiario": "Van a repartir las lechuzas instrucciones por toda la ciudad. Ser$an 3 paquetes ligeros que van dirigidos a Hestia. Debo mandarlos a Apolo, donde se redistribuir$an."
       },
@@ -369,8 +377,8 @@
           "tuboSeleccionado": "Basura"
         },
         "recompensa": {
-          "1": "Secretario+++++",
-          "2": " $Secretario-----"
+          "1": "Secretario+++++++++++++++",
+          "2": " $Secretario---------------------"
         },
         "textoDiario": "El secretario necesita que elimine paquetes de un grupo llamado 'lechuzas'. Tengo que mandar a la basura 3 paquetes de alimentos que vayan hacia Apolo."
       },
@@ -414,8 +422,9 @@
           }
         },
         "recompensa": {
-          "1": "Secretario+++++",
-          "2": " $Secretario-----"
+          "1": "Secretario+++++++++++++++",
+          "2": " $Secretario---------------------",
+          "3": "Vagabundo--------------------"
         },
         "textoDiario": "Se est$an pasando paquetes ilegales de comida en Apolo y Hermes. Debo eliminar 3 paquetes de comida que vayan a Apolo o a Hermes. Dice que si cumplo esta tarea, ma$%ana me dar$a una recompensa."
       },
@@ -431,8 +440,9 @@
           "tuboSeleccionado": "Poseidon"
         },
         "recompensa": {
-          "1": "Secretario+++++",
-          "2": " $Secretario-----"
+          "1": "Secretario+++++++++++++++",
+          "2": " $Secretario---------------------",
+          "3": "Vagabundo--------------------"
         },
         "textoDiario": "Gargafiel esta que hecha humos, no creo que me de ninguna recompensa. Debe recomponer la sociedad para evitar un revuelo por el nuevo texto 'Critias' que alenta a la poblaci$on a unirse a los humanos. Me ha pedido que reenvie unos tres paquetes con su nombre al distrito de Poseid$on."
       },
@@ -468,8 +478,8 @@
           }
         },
         "recompensa": {
-          "1": "Secretario+++++",
-          "2": " $Secretario-----",
+          "1": "Secretario+++++++++++++++",
+          "2": " $Secretario---------------------",
           "3": "Vagabundo--------------------"
         },
         "textoDiario": "Me ha pasado una lista con nombres de gente de las lechuzas. Debo mandar sus paquetes a Apolo, donde los analizar$a."
@@ -506,9 +516,9 @@
           }
         },
         "recompensa": {
-          "1": "Secretario+++++",
-          "2": " $Secretario-----",
-          "3": "Vagabundo--------------------"
+          "1": "Secretario+++++++++++++++",
+          "2": " $Secretario---------------------",
+          "3": "Vagabundo---------------"
         },
         "textoDiario": "Hoy dice que ha encontrado nombres de gente importante en las lechuzas. Igual que ayer, debo reenviar sus paquetes a Apolo."
       },
@@ -556,8 +566,9 @@
           }
         },
         "recompensa": {
-          "1": "Secretario+++++",
-          "2": " $Secretario-----"
+          "1": "Secretario+++++++++++++++",
+          "2": " $Secretario---------------------",
+          "3": "Vagabundo---------------"
         },
         "textoDiario": "El secretario me ha contado su revelaci$on que tuvo de Poseid$on. Dice que nos est$a poniendo a prueba y $el es el $unico que podr$a salvarnos. Debemos resurgir a la superficie con una nave que ha estado construyendo, y una vez arriba, pelear$a con los humanos con el poder de los Dioses. Para poder ayudarle, necesita 2 paquetes de joyas. Debo redirigir 2 paquetes que vayan a Hestia, Demeter, Artemisa o a Hefesto y mandarlos a Poseid$on."
       },
@@ -574,8 +585,9 @@
           "tuboSeleccionado": "Poseidon"
         },
         "recompensa": {
-          "1": "Secretario+++++",
-          "2": " $Secretario-----"
+          "1": "Secretario+++++++++++++++",
+          "2": " $Secretario---------------------",
+          "3": "Vagabundo---------------"
         },
         "textoDiario": "Ahora necesitamos materiales para la chapa de la nave. Debo redirigir 3 paquetes de materiales que vayan a Hefesto y mandarlos a Poseid$on."
       },
@@ -593,8 +605,9 @@
           "tipoPaquete": "Alimento"
         },
         "recompensa": {
-          "1": "Secretario+++++",
-          "2": " $Secretario-----"
+          "1": "Secretario+++++++++++++++",
+          "2": " $Secretario---------------------",
+          "3": "Vagabundo---------------"
         },
         "textoDiario": "Gargafiel me ha pedido suministros de comida para la nave. Ha comprado paquetes de comida a un campesino pero van a Hermes en vez de Poseid$on. Debo redirigir los 2 paquetes hacia Poseid$on. El nombre del campesino es Pancracio Warawa."
       },
@@ -610,8 +623,9 @@
           "tuboSeleccionado": "Hefesto"
         },
         "recompensa": {
-          "1": "Secretario+++++",
-          "2": " $Secretario-----"
+          "1": "Secretario+++++++++++++++",
+          "2": " $Secretario--------------------",
+          "3": "Vagabundo---------------"
         },
         "textoDiario": "Necesita que lleguen unos paquetes suyos sanos y salvos. Ha mandado 3 paquetes en total, esta bastante cansado asi que puede ser que est$en mal sellados."
       },
@@ -1046,7 +1060,7 @@
           "2": " $Soldado----------"
 
         },
-        "textoDiario": "El soldado me ha pedido que le env$ie dos paquetes muy pesados, por la seguridad de la Atl$antida se supone"
+        "textoDiario": "El soldado me ha pedido que le env$ie dos paquetes muy pesados a Apolo, por la seguridad de la Atl$antida se supone"
       },
       "2": {
         "numPaquetes": 3,
