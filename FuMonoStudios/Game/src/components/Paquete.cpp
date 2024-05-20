@@ -14,11 +14,6 @@ const int nivelFragil = 3;
 const int nivelPeso = 2;
 const int nivelSellos = 1;
 
-const int desviacionPeso = 15;
-const int ligeroMax = 25;
-const int medioMax = 50;
-const int pesadoMax = 75;
-
 Paquete::Paquete(Paquete& otherPckg)
 {
 	miDistrito_ = otherPckg.miDistrito_;
@@ -56,13 +51,13 @@ bool Paquete::pesoCorrecto() const {
 	bool result = true;
 	if (miPeso_ != Ninguno) {	//Si tiene un sello de pesado y su peso no est� entre los valores indicados, el paquete no es correcto
 		if (miPeso_ == Bajo) {
-			if (peso_ > ligeroMax) result = false;
+			if (peso_ > LIGERO_MAX) result = false;
 		}
 		else if (miPeso_ == Medio) {
-			if (peso_ < ligeroMax || peso_ > medioMax) result = false;
+			if (peso_ < LIGERO_MAX || peso_ > MEDIO_MAX) result = false;
 		}
 		else if (miPeso_ == Alto) {
-			if (peso_ < medioMax) result = false;
+			if (peso_ < MEDIO_MAX) result = false;
 		}
 	}
 	return result;
