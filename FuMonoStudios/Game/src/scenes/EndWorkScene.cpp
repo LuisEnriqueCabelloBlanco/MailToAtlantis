@@ -126,7 +126,8 @@ void EndWorkScene::createButtons()
 		
 		auto call = []() {
 			if (gD().getDay() == 15) {
-			gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::END_SCENE);
+				gD().setEndGame(true);
+				gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::END_SCENE);
 			} 
 			else {
 				gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::EXPLORE_SCENE);

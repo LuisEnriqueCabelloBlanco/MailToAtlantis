@@ -15,6 +15,7 @@ const std::string SOUNDS_PATH = "recursos/config/sounds.json";
 const std::string END_PATH = "recursos/data/ends.json";
 const std::string DIALOGS_PATH = "recursos/data/dialogos.json";
 const std::string BOSS_EVENTS_PATH ="recursos/data/eventosjefe.json";
+const std::string PERSISTENT_DATA_PATH = "recursos/config/persistentData.json";
 #pragma endregion
 
 #pragma region General

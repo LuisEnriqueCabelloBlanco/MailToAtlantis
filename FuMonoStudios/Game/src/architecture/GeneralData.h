@@ -288,6 +288,8 @@ public:
 	void saveGame();
 
 	void newGame();
+
+	inline void setEndGame(bool end) { gameEndedOnce_ = end; };
 private:
 	void setNewGameValues();
 	void addMoney(int cant) { dinero_ += cant; }
@@ -298,6 +300,10 @@ private:
 	void saveNPCData(JSONObject& obj);
 
 	void loadNPCsData(JSONObject& persojaesRoot);
+
+	void savePersistentData();
+
+	void loadPersistentData();
 
 	/// <summary>
 	/// estructura que almacena los datos de los npc
@@ -350,6 +356,10 @@ private:
 	/// booleano que indica si esta el juego en pantalla completa o no
 	/// </summary>
 	bool fullScreen_;
+	/// <summary>
+	/// indica si el juego se ha completado en algun momento
+	/// </summary>
+	bool gameEndedOnce_;
 
 	// Si en verdad en cuanto desbloqueas un distrito que explorar, aparece el tubo correspondiente en la oficina,
 	// podemos hacer que la variable de numero de tubos y del numero de distritos desbloqueados sean una sola para simplificar todo
@@ -388,6 +398,7 @@ inline GeneralData& gD() {
 /// <summary>
 /// metodo template que te permite modificar objetos de un JsonObject
 /// usado en el metodo en el saveGame
+/// Si se internta modificar un valor ya existente se generar memoty leaks
 /// </summary>
 /// <typeparam name="T">tipo que tendra el objeto a insertal en el jsonObject</typeparam>
 /// <param name="obj">raiz del objeto Json a modificar</param>
@@ -395,6 +406,9 @@ inline GeneralData& gD() {
 /// <param name="val"></param>
 template<typename T>
 inline void modifyJsonData(JSONObject& obj, const std::string& key, T val) {
+	//Luis: hacer destrucccion provoca una perdida de iterador en algun punto de JSONValue
+	if (obj.count(key) != 0)
+		delete obj[key];
 	auto jsonVal = new JSONValue(val);
 	obj[key] = jsonVal;
 	//jsonValVec.push_back(jsonVal);

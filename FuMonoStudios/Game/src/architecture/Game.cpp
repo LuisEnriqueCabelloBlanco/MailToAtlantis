@@ -48,7 +48,8 @@ Game::Game() :exit_(false) {
 		new EndGameScene(),new ecs::TutorialScene(), new ecs::ConfigScene(),
 		new ecs::IntroScene, new ecs::DeathScene()};
 	gamePaused_ = false;
-
+	if(!gD().GetValueFullScreen())
+		sdlutils().toggleFullScreen();
 	loadScene(ecs::sc::MENU_SCENE);
 	sceneChange_ = false;
 }
