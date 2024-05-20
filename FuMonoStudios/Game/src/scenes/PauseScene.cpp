@@ -4,6 +4,7 @@
 #include "PauseScene.h"
 #include <architecture/Game.h>
 #include <sistemas/ComonObjectsFactory.h>
+#include <sistemas/SoundEmiter.h> 
 
 
 ecs::PauseScene::PauseScene() : ConfigScene() {
@@ -54,4 +55,7 @@ void ecs::PauseScene::init()
 
 	factory_->createTextuButton({ 10,730 }, "                          ", 50, exitToMenu, "click");
 	factory_->createTextuButton({ 10,930 }, "                          ", 50, funcPress, "click");
+
+	SoundEmiter::instance()->playMusic("printer");
 }
+

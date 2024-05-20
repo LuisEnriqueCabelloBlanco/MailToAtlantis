@@ -144,7 +144,6 @@ void ecs::MainScene::close() {
 	ecs::Scene::close();
 	gD().npcEventSys->minigameOver();
 	gD().updateMoney();
-	SoundEmiter::instance()->close();
 
 	//sdlutils().musics().at("office").haltMusic();
 	//sdlutils().musics().at("printer").haltMusic();

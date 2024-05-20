@@ -189,8 +189,6 @@ void ecs::ExplorationScene::close() {
 	rightTex = nullptr;
 	delete leftTex;
 	leftTex = nullptr;
-	
-	SoundEmiter::instance()->close();
 
 	clearScene();
 
