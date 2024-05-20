@@ -72,6 +72,8 @@
     {"id": "caraFelicidadNormal", "file": "recursos/images/caraFelicidadNormal.png"},
     {"id": "caraFelicidadBueno", "file": "recursos/images/caraFelicidadBueno.png"},
     {"id": "caraFelicidadMaxima", "file": "recursos/images/caraFelicidadMaxima.png"},
+    {"id": "cartelContinuar", "file": "recursos/images/cartelContinuar.png"},
+    {"id": "cartelMenuPrincipal", "file": "recursos/images/cartelMenuPrincipal.png"},
 
 
     {"id": "flechaTest","file": "recursos/images/flecha.png"},
