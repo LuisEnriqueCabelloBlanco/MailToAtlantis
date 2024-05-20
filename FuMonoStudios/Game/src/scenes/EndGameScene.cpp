@@ -6,6 +6,7 @@
 #include <sistemas/ComonObjectsFactory.h>
 #include <architecture/Game.h>
 #include <entities/Final.h>
+#include <cstdio>
 
 EndGameScene::EndGameScene()
 {
@@ -20,6 +21,8 @@ void EndGameScene::init()
     Personaje npc = (Personaje)npcId_;
     final_ = new Final(factory_);
     final_->loadFinal(npc, gD().getNPCData(npc)->felicidad);
+
+    remove( SAVE_PATH.c_str());
 
     // Fondo escena
     ComonObjectsFactory* fact = getFactory();
