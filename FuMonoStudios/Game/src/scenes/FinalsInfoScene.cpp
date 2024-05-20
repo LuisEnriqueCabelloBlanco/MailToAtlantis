@@ -1,6 +1,7 @@
 #include "FinalsInfoScene.h"
 #include <sistemas/ComonObjectsFactory.h>
 #include "entities/Final.h"
+#include <architecture/Game.h>
 
 FinalsInfoScene::FinalsInfoScene()
 {
@@ -67,7 +68,6 @@ FinalsInfoScene::FinalsInfoScene()
             final_->setActive(true);
             backButton->setActive(true);
         };
-        auto textColor = build_sdlcolor(0xffffffff);
 
         auto button = factory_->createTextuButton(Vector2D(900, 300 + 100* i), "Final con Felicidad " + gD().felicidadToString((Felicidad)(i + 2)), 80, callback, "click", textColor);
         factory_->addHoverColorMod(button);
@@ -85,7 +85,6 @@ FinalsInfoScene::FinalsInfoScene()
             final_->setActive(true);
             backButton->setActive(true);
         };
-        auto textColor = build_sdlcolor(0xffffffff);
 
         auto button = factory_->createTextuButton(Vector2D(900, 700 + 100 * i), "Final con Felicidad " + gD().felicidadToString((Felicidad)(i + 7)), 80, callback, "click", textColor);
         factory_->addHoverColorMod(button);
@@ -93,11 +92,20 @@ FinalsInfoScene::FinalsInfoScene()
         finalButtonsAdicionales_.push_back(button);
     }
 
+    // Boton para volver al menu
+    CallbackClickeable callbackMenu = [this]() {
+        gm().requestChangeScene(ecs::sc::FINALS_INFO_SCENE , ecs::sc::MENU_SCENE);
+    };
+
+    auto menuButton = factory_->createTextuButton(Vector2D(120, 970), "Menu", 80, callbackMenu, "click", textColor);
+    factory_->addHoverColorMod(menuButton);
+
     // Start Confi
     setActiveButtons(false, finalButtons_); // desactiva los finalButtons_
     setActiveButtons(false, finalButtonsAdicionales_);
     setActiveButtons(true, npcButtons_); // activa los npcButtons_
     backButton->setActive(false);
+    menuButton->setActive(true);
 }
 
 void FinalsInfoScene::init()
