@@ -18,6 +18,20 @@ FinalsInfoScene::FinalsInfoScene()
     "PaulinoEmblema", "abiEmblema", "SoldadoEmblema", "GloverEmblema"};
 
     factory_->setLayer(ecs::layer::UI);
+
+    // Boton de atras
+    CallbackClickeable callback = [this]() {
+        setActiveButtons(true, npcButtons_); // activa los npcButtons_
+        setActiveButtons(false, felicidadButtons_); // desactiva los felicidadButtons_
+        final_->setActive(false); // desactiva periodico con el final
+    };
+    auto textColor = build_sdlcolor(0xffffffff);
+
+    auto backButton = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 1000), "Atras", 80, callback, "click", textColor);
+    factory_->addHoverColorMod(backButton);
+
+    felicidadButtons_.push_back(backButton);
+
     // Creamos los npcButtons_
     int i = 0;
     int offsetX = 50;
@@ -37,11 +51,12 @@ FinalsInfoScene::FinalsInfoScene()
     }
     // Creamos los felicidadButtons_
     for (int i = 0; i < 4; i++) {
-        CallbackClickeable callback = [this, i]() {
+        CallbackClickeable callback = [this, i, backButton]() {
             setActiveButtons(false, npcButtons_); // desactiva los npcButtons_
             setActiveButtons(false, felicidadButtons_); // desactiva los felicidadButtons_
             final_->loadFinal(selectedPer_, (Felicidad)(i + 2));
             final_->setActive(true);
+            backButton->setActive(true);
         };
         auto textColor = build_sdlcolor(0xffffffff);
 
@@ -51,20 +66,10 @@ FinalsInfoScene::FinalsInfoScene()
         felicidadButtons_.push_back(button);
     }
 
-    // Boton de atras
-    CallbackClickeable callback = [this]() {
-        setActiveButtons(true, npcButtons_); // activa los npcButtons_
-        setActiveButtons(false, felicidadButtons_); // desactiva los felicidadButtons_
-        final_->setActive(false); // desactiva periodico con el final
-    };
-    auto textColor = build_sdlcolor(0xffffffff);
-
-    auto button = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 1000), "Atras", 80, callback, "click", textColor);
-    factory_->addHoverColorMod(button);
-
     // Start Confi
     setActiveButtons(false, felicidadButtons_); // desactiva los felicidadButtons_
     setActiveButtons(true, npcButtons_); // activa los npcButtons_
+    backButton->setActive(false);
 }
 
 void FinalsInfoScene::init()
