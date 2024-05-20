@@ -91,10 +91,10 @@ void Game::run()
 		if (ih().isKeyDown(SDL_SCANCODE_ESCAPE) || ih().closeWindowEvent()) {
 			exit_ = true;
 		}
+#ifdef _DEBUG
 		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_F)) {
 			sdlutils().toggleFullScreen();
 		}
-
 		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_P)) {
 			auto it1 = std::find(loadedScenes_.begin(), loadedScenes_.end(), gameScenes_[ecs::sc::MENU_SCENE]);
 			auto it2 = std::find(loadedScenes_.begin(), loadedScenes_.end(), gameScenes_[ecs::sc::END_WORK_SCENE]);
@@ -111,6 +111,7 @@ void Game::run()
 				}*/
 			}
 		}
+#endif
 
 #ifdef _DEBUG
 		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_S)) {

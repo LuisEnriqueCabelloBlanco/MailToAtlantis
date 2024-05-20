@@ -5,6 +5,7 @@
 #include <components/Render.h>
 #include <sistemas/ComonObjectsFactory.h>
 #include <sdlutils/SDLUtils.h>
+#include <sistemas/DialogManager.h>
 
 std::unordered_map<Personaje, std::unordered_map<Felicidad, std::string>> Final::endTexts_;
 
@@ -115,6 +116,7 @@ void Final::loadFinal(Personaje npc, Felicidad felicidad)
 
     // Generamos texto
     std::string texto = endTexts_[npc][felicidad];
+    DialogManager::fixText(texto);
     factory_->setFont("simpleHandmade");
     if (texto.size() < 450) {
         texto_ = factory_->createLabel(textoPos_, 850, texto, 50, build_sdlcolor(0x000000ff));

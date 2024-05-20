@@ -108,12 +108,12 @@ void ecs::ConfigScene::createFullscreenOptions()
 	screenModeIconEnt_ = factory_->createMultiTextureImage(Vector2D(585, 665), Vector2D(95, 122), textures);
 	trBase->setParent(screenModeIconEnt_->getComponent<Transform>());
 
-	screenModeIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueFullScreen()?0:1);
+	screenModeIconEnt_->getComponent<RenderImage>()->setNumberTexture(gD().GetValueFullScreen()?0:1);
 
 	CallbackClickeable funcScreenModeBoton = [this]() {
 		sdlutils().toggleFullScreen();
 		gD().ToggleFullScreen();
-		screenModeIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueFullScreen()?0:1);
+		screenModeIconEnt_->getComponent<RenderImage>()->setNumberTexture(gD().GetValueFullScreen()?0:1);
 	};
 	auto full= factory_->createTextuButton({ 740,730 }, "Pantalla Completa", 50, funcScreenModeBoton, "click", baseColor);
 	factory_->addHoverColorMod(full);
