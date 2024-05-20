@@ -37,6 +37,8 @@ public:
 	//Activa un SFX a cierto volumen
 	/// <param name="modifier"> entre 0 y 1 </param>
 	void playSound(const std::string& sound, float modifier, int loops = 0);
+	//Activa un SFX y añade prioridad al canal en el que se encuentra para que no lo sobreescriban
+	void playSoundWithPriority(const std::string& sound, int loops = 0);
 	//Detiene un SFX
 	void haltSound(const std::string& sound);
 
@@ -72,6 +74,8 @@ private:
 	//Manejo de canales
 	int playInChannel_;
 	void changeChannel();
+
+	int priorityChannel_;
 };
 
 
