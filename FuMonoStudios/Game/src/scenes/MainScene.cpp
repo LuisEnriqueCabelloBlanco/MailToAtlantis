@@ -138,6 +138,17 @@ void ecs::MainScene::init()
 	updateToolsPerDay(gD().getDay());
 
 	specialFactory_->setupDayObjects();
+
+	factory_->setFont("capture_it");
+	Texture* pauseTexture = &sdlutils().images().at("iconoPausa");
+	float scale = 60;
+	factory_->createImageButton(Vector2D(LOGICAL_RENDER_WIDTH - scale - 5, 5), Vector2D(scale, scale), pauseTexture, [this]() {
+		gm().pauseGame();
+		gm().loadScene(ecs::sc::PAUSE_SCENE);
+
+		}, "click");
+	factory_->setFont("arial");
+
 }
 
 void ecs::MainScene::close() {
