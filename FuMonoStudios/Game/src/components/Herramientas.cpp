@@ -25,7 +25,7 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
 			ent_->getComponent<MoverTransform>()->enable();
 			auto stampRender = ent_->getComponent<RenderImage>();
-			stampRender->setTexture(&sdlutils().images().at("sellador"));
+			stampRender->setTexture(&sdlutils().images().at("sellador4"));
 			setFunctionality(SelloVacio);
 			};
 		break;
@@ -37,7 +37,7 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
 			ent_->getComponent<MoverTransform>()->enable();
 			auto stampRender = ent_->getComponent<RenderImage>();
-			stampRender->setTexture(&sdlutils().images().at("sellador"));
+			stampRender->setTexture(&sdlutils().images().at("sellador4"));
 			setFunctionality(SelloVacio);
 			};
 		break;
@@ -49,7 +49,7 @@ void Herramientas::setFunctionality(TipoHerramienta tipo) {
 			ent_->addComponent<MoverTransform>(Vector2D(230, 800), 0.5, EaseOutBack);
 			ent_->getComponent<MoverTransform>()->enable();
 			auto stampRender = ent_->getComponent<RenderImage>();
-			stampRender->setTexture(&sdlutils().images().at("sellador"));
+			stampRender->setTexture(&sdlutils().images().at("sellador4"));
 			setFunctionality(SelloVacio);
 			};
 		break;
