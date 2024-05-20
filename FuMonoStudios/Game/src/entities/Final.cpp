@@ -61,9 +61,7 @@ Final::Final(ecs::Scene* escene, Personaje npc, Felicidad felicidad)
 
 Final::~Final()
 {
-    delete periodico_;
-    delete imagenNpc_;
-    delete texto_;
+
 }
 
 void Final::inicializarFinal(ecs::Scene* escene, Personaje npc, Felicidad felicidad)

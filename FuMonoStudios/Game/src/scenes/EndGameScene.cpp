@@ -45,6 +45,13 @@ void EndGameScene::update()
     }
 }
 
+void EndGameScene::close()
+{
+    Scene::close();
+    npcId_ = 0;
+    delete final_;
+}
+
 void EndGameScene::nextEnding()
 {
     npcId_++;

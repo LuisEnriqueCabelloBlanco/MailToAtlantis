@@ -18,6 +18,7 @@ public:
     }
     void init() override;
     virtual void update() override;
+    virtual void close() override;
 private:
     void nextEnding();
     ecs::Entity* endImage_;
