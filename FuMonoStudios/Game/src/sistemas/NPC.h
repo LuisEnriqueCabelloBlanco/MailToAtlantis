@@ -78,6 +78,7 @@ namespace npc {
 		Felicidad felicidad;
 		int numFelicidad;
 		int numMisionesAceptadas;
+		bool unlockUpgrade;
 		bool postConversation;
 		bool misionAceptada;
 		// el primero es si ha sido completado, el segundo es si ha sido succesful

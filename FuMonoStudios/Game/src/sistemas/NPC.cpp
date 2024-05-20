@@ -3,6 +3,7 @@
 #endif // !DEV_TOOLS
 #include <sistemas/NPC.h>
 #include <sistemas/NPCevent.h>
+#include <architecture/GameConstants.h>
 using namespace npc;
 npc::NPCMenorData::~NPCMenorData()
 {
@@ -13,6 +14,7 @@ NPCMenorData::NPCMenorData(Felicidad Felicidad, std::vector<bool>& DiasDanEvento
 	felicidad = Felicidad;
 	postConversation = false;
 	numMisionesAceptadas = 0;
+	unlockUpgrade = false;
 	giveEvent = false;
 	diasDanEvento = DiasDanEvento;
 	eventosCompletados = std::vector<std::pair<bool,int>>(5,std::make_pair(false,0));
@@ -39,7 +41,7 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 	std::string tipo;
 	int iterationNum = -1;
 
-	if (felicidad == Minima || (felicidad == Maxima && !gD().getUpgradeValue(npcId)) || felicidad == NoHabladoAun)
+	if (felicidad == Minima || felicidad == NoHabladoAun)
 	{
 		switch (felicidad)
 		{
@@ -51,11 +53,14 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 			tipo = "FelicidadMinima";
 			felicidad = SeFue;
 			break;
-		case Maxima:
-			tipo = "FelicidadMaxima";
-			gD().unlockMejoraPersonaje(npcId);
-			break;
 		}
+	}
+	else if (numFelicidad >= UNLOCK_UPGRADE_HAPPINES && !unlockUpgrade) {
+
+		unlockUpgrade = true;
+		tipo = "FelicidadMaxima";
+		gD().unlockUpgrade(npcId);
+
 	}
 	else if (giveEvent)
 	{
@@ -81,7 +86,14 @@ std::pair<const std::string, int> NPCMenorData::getDialogueInfo() {
 			iterateDialogues();
 			iterationNum = iteration;
 			break;
+		case Maxima:
+			tipo = "GenericoMaxiBueno";
+			iterateDialogues();
+			iterationNum = iteration;
+			break;
 		}
+		
+
 	}
 
 	return std::make_pair(tipo, iterationNum);
@@ -166,12 +178,12 @@ NPCMayorData::NPCMayorData(Felicidad Felicidad) :NPCdata(Vagabundo,14){
 	postConversation = false;
 	numMisionesAceptadas = 0;
 	if (npcId == Vagabundo) {
-		firstMision = 1;
-		diaDaMejora = 7;
+		//firstMision = 1;
+		//diaDaMejora = 7;
 	}
 	else {
-		firstMision = 5;
-		diaDaMejora = 10;
+		//firstMision = 4;
+		//diaDaMejora = 10;
 	}
 		
 	misionAceptada = false;
@@ -183,6 +195,7 @@ npc::NPCMayorData::NPCMayorData(Personaje charId, JSONObject& charRoot):NPCdata(
 	events = std::vector<NPCevent*>(14, nullptr);
 	firstMision = charRoot["PrimeraMision"]->AsNumber();
 	introText = charRoot["IntroductionText"]->AsString();
+	diaDaMejora = charRoot["DiaMejora"]->AsNumber();
 }
 
 std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
@@ -190,30 +203,28 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 
 	if (!gD().getUpgradeValue(npcId) && gD().getDay() == diaDaMejora)
 	{
-		gD().unlockMejoraPersonaje(npcId);
+		gD().unlockUpgrade(npcId);
 	}
-	else
+
+	switch (felicidad)
 	{
-		switch (felicidad)
-		{
-		case NoHabladoAun:
-			aux = "Presentacion";
-			postConversation = true;
-			break;
-		case Minima:
-			aux = "FelicidadMinima";
-			felicidad = SeFue;
-			break;
-		case SeFue:
-			aux = "FelicidadMinima";
-			break;
-		default:
-			misionAceptada = true;
-			aux = postConversation ?
-				"PostConversacionDia" : "Dia";
-			aux = aux + std::to_string(gD().getDay());
-			break;
-		}
+	case NoHabladoAun:
+		aux = "Presentacion";
+		postConversation = true;
+		break;
+	case Minima:
+		aux = "FelicidadMinima";
+		felicidad = SeFue;
+		break;
+	case SeFue:
+		aux = "FelicidadMinima";
+		break;
+	default:
+		misionAceptada = true;
+		aux = postConversation ?
+			"PostConversacionDia" : "Dia";
+		aux = aux + std::to_string(gD().getDay());
+		break;
 	}
 
 	return std::make_pair(aux, -1);
@@ -247,6 +258,7 @@ npc::NPCdata::NPCdata(Personaje charac, int evtAmount)
 	postConversation = false;
 	numMisionesAceptadas = 0;
 	misionAceptada = false;
+	unlockUpgrade = false;
 	eventosCompletados = std::vector<std::pair<bool, int>>(evtAmount, std::make_pair(false, 0));
 }
 
@@ -264,6 +276,7 @@ void npc::NPCdata::reset()
 	postConversation = false;
 	numMisionesAceptadas = 0;
 	misionAceptada = false;
+	unlockUpgrade = false;
 	eventosCompletados = std::vector<std::pair<bool, int>>(eventosCompletados.size(), std::make_pair(false, 0));
 }
 
@@ -273,6 +286,7 @@ void npc::NPCdata::loadDataFromSaveFile(JSONObject& obj)
 	postConversation = false;
 	numMisionesAceptadas = obj["numMisionesAceptadas"]->AsNumber();
 	numFelicidad = obj["FelicidadNum"]->AsNumber();
+	unlockUpgrade = obj["unlockUpgrade"]->AsBool();
 	JSONArray events = obj["EventosCompletados"]->AsArray();
 	int k = 0;
 	for (auto it : events)

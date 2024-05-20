@@ -89,7 +89,9 @@
       "file": "recursos/images/FONDO_MENU_INICIO_v2.png"
     },
     {"id": "blackScreen","file": "recursos/images/pantallanegra.png"},
+    {"id": "explosionScreen","file": "recursos/images/pantallaexplosion.png"},
     {"id": "fondoTutorial","file": "recursos/images/fondoTutorial.png"},
+    {"id": "menuPrincipal","file": "recursos/images/MenuPrincipal.png"},
     {"id": "botella1","file": "recursos/images/Botella1.png"},
     {"id": "botella2","file": "recursos/images/Botella2.png"},
     {"id": "cartaAtlantida","file": "recursos/images/CartaAtlantida.png"},
@@ -368,6 +370,10 @@
       "file": "recursos/images/AjustesSinSellos.png"
     },
     {
+      "id": "fondoPausa",
+      "file": "recursos/images/PausaFondo.png"
+    },
+    {
       "id": "iconoAzulAjustes",
       "file": "recursos/images/SelloAzulAjustes.png"
     },
@@ -618,6 +624,11 @@
       "size": 40
     },
     {
+      "id": "simpleHandmade60",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 60
+    },
+    {
       "id": "simpleHandmade80",
       "file": "recursos/fonts/SimpleHandmade.ttf",
       "size": 80
@@ -816,6 +827,34 @@
     {
       "id": "dlgVag3",
       "file": "recursos/sounds/Vagabundo3.wav"
+    },
+    {
+      "id": "dlgJef0",
+      "file": "recursos/sounds/Jefe0.wav"
+    },
+    {
+      "id": "dlgJef1",
+      "file": "recursos/sounds/Jefe1.wav"
+    },
+    {
+      "id": "dlgJef2",
+      "file": "recursos/sounds/Jefe2.wav"
+    },
+    {
+      "id": "dlgJef3",
+      "file": "recursos/sounds/Jefe3.wav"
+    },
+    {
+      "id": "tac0",
+      "file": "recursos/musics/tictacLento.wav"
+    },
+    {
+      "id": "tic0",
+      "file": "recursos/musics/tictacRapido.wav"
+    },
+    {
+      "id": "explosion",
+      "file": "recursos/sounds/explosion.wav"
     }
   ],
   "musics": [
@@ -836,16 +875,12 @@
       "file": "recursos/musics/printer.wav"
     },
     {
-      "id": "clockSlow",
-      "file": "recursos/musics/tictacLento.wav"
-    },
-    {
-      "id": "clockFast",
-      "file": "recursos/musics/tictacRapido.wav"
-    },
-    {
       "id": "exploration",
       "file": "recursos/musics/ExploreTheAtlantis.wav"
+    },
+    {
+      "id": "work",
+      "file": "recursos/musics/WorkintheAtlantis.wav"
     }
   ]
 }

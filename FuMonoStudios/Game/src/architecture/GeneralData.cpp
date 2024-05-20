@@ -298,6 +298,7 @@ void GeneralData::saveNPCData(JSONObject& obj)
 		modifyJsonData(charac, "Felicidad", gD().felicidadToString(npc.second->felicidad));
 		modifyJsonData(charac, "FelicidadNum", npc.second->numFelicidad);
 		modifyJsonData(charac, "numMisionesAceptadas", npc.second->numMisionesAceptadas);
+		modifyJsonData(charac, "unlockUpgrade", npc.second->unlockUpgrade);
 		//Procesado de eventos completados
 		auto& completedEvents = npc.second->eventosCompletados;
 		JSONArray arrayEvents;
@@ -409,7 +410,7 @@ void GeneralData::saveGame() {
 	JSONObject root;
 
 	//modificacion de los valores en el json
-	modifyJsonData(root, "Dia", dia_);
+	modifyJsonData(root, "Dia", std::min(dia_, MAX_DAYS));
 	modifyJsonData(root, "Dinero", dinero_);
 
 	//puede sustituir a la lectura del npcData que es un poco intrusiva
@@ -434,21 +435,17 @@ void GeneralData::incrementarFelicidad(Personaje p, int felicidadIncr)
 	Felicidad newFelicidad = SeFue;
 	if (newFelicidadInt < 1)
 		newFelicidad = Minima;
-	else if (newFelicidadInt > 99)
+	else if (newFelicidadInt > MAX_HAPPINES)
 		newFelicidad = Maxima;
-	else if (newFelicidadInt < 30)
+	else if (newFelicidadInt < BAD_HAPPINES)
 		newFelicidad = Mala;
-	else if (newFelicidadInt < 65)
+	else if (newFelicidadInt < NORMAL_HAPPINES)
 		newFelicidad = Normal;
 	else
 		newFelicidad = Buena;
 
 	getNPCData(p)->felicidad = newFelicidad;
 	getNPCData(p)->numFelicidad = newFelicidadInt;
-}
-
-void GeneralData::unlockMejoraPersonaje(Personaje p) {
-
 }
 
 Texture* GeneralData::personajeToTexture(Personaje pers)

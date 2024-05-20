@@ -65,7 +65,7 @@ void SoundEmiter::muteSingleSound(std::string sound, bool mute)
 	}
 }
 
-void SoundEmiter::playSound(std::string sound)
+void SoundEmiter::playSound(std::string sound, int loops)
 {
 	try {
 		auto& it = soundPulls_.at(sound);
@@ -77,7 +77,7 @@ void SoundEmiter::playSound(std::string sound)
 			std::cout << "Playing sound: " << fileName << "\n";
 #endif // DEBUG
 			sdlutils().soundEffects().at(fileName).setVolume(soundVolume_);
-			sdlutils().soundEffects().at(fileName).play(0, playInChannel_);
+			sdlutils().soundEffects().at(fileName).play(loops, playInChannel_);
 			it.lastChannel = playInChannel_;
 			changeChannel();
 		}
@@ -87,7 +87,7 @@ void SoundEmiter::playSound(std::string sound)
 	}
 }
 
-void SoundEmiter::playSound(std::string sound, float modifier)
+void SoundEmiter::playSound(std::string sound, float modifier, int loops)
 {
 	try {
 		auto& it = soundPulls_.at(sound);
@@ -97,7 +97,7 @@ void SoundEmiter::playSound(std::string sound, float modifier)
 			std::string fileName = sound + std::to_string(rnd);
 			std::cout << "Playing sound: " << fileName << "\n";
 			sdlutils().soundEffects().at(fileName).setVolume(soundVolume_ * modifier);
-			sdlutils().soundEffects().at(fileName).play(0, playInChannel_);
+			sdlutils().soundEffects().at(fileName).play(loops, playInChannel_);
 			it.lastChannel = playInChannel_;
 			changeChannel();
 		}

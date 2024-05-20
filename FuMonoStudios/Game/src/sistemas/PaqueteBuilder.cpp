@@ -71,6 +71,9 @@ ecs::Entity* PaqueteBuilder::buildPackage(int level, ecs::Scene* mScene) {
 		}
 	}
 
+	selectRandomRoute();
+	packageBase->addComponent<Wrap>(40, 0, route, selectedRouteIndex);
+
 	return packageBase;
 }
 
@@ -109,8 +112,12 @@ void PaqueteBuilder::paqueteNPC(ecs::Entity* ent) {
 			ent->addComponent<Paquete>(Poseidon, C2, "Calle del trono", "Francis Dupart", Materiales);
 			addVisualElements(ent);
 		}
-		else
+		else {
+			ent->addComponent<Paquete>(*pNPC);
+			ent->removeComponent<RenderImage>();
+			ent->removeComponent<DragAndDrop>();
 			a.makeBomba();
+		}
 	}
 	else
 	{
@@ -199,6 +206,9 @@ ecs::Entity* PaqueteBuilder::buildBasePackage(ecs::Scene* mScene, bool esCarta)
 	packageBase->addComponent<MoverTransform>(packageBase->getComponent<Transform>()->getPos() - Vector2D(200, 0),
 		1, Easing::EaseOutBack)->disable();
 	factory->setLayer(ecs::layer::DEFAULT);
+
+
+
 	return packageBase;
 }
 
@@ -527,7 +537,7 @@ void PaqueteBuilder::crearSello(ecs::Entity* paq,const std::string& texKey, int 
 
 void PaqueteBuilder::getRoutesFromJSON() {
 
-	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile("recursos/rutas.JSON"));
+	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(TAPE_ROUTE_PATH));
 
 	// check it was loaded correctly
 	// the root must be a JSON object

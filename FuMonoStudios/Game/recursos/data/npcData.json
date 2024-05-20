@@ -1,7 +1,8 @@
 {
   "Vagabundo": {
     "PrimeraMision": 1,
-    "IntroductionText": "Anemos Togakawa es un vagabundo optimista que vive en el distrito de Hestia. Pasa los d$ias sobreviviendo como puede y hablando con sus colegas campesinos del distrito.",
+    "DiaMejora": 7,
+    "IntroductionText": "Anemos Togakawa es un vagabundo optimista que vive en el distrito de Hestia. Pasa los d$ias sobreviviendo como puede, comerciando y hablando con sus colegas campesinos.",
     "Eventos": {
       "1": {
         "numPaquetes": 1,
@@ -303,7 +304,8 @@
     }
   },
   "Secretario": {
-    "PrimeraMision": 5,
+    "PrimeraMision": 4,
+    "DiaMejora": 10,
     "IntroductionText": "Gargafiel Mustaki, el secretario del rey, es un hombre serio que busca que se cumpla el orden en Atlantis. Protege al rey y ejecuta las $ordenes por $el, todo Atlantis depende de lo que $el ordene.",
     "Eventos": {
       "1": {
@@ -596,7 +598,7 @@
     }
   },
   "Campesino": {
-    "IntroductionText": "campesino",
+    "IntroductionText": "Pancracio Warawa es un campesino que siempre ha vivido con pocos recursos. Es un hombre simple con un acento cerrado que le gusta proveer a su familia. Suele estar en el distrito de Demeter cerca de sus cosechas.",
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -726,7 +728,7 @@
     }
   },
   "Artesano": {
-    "IntroductionText": "artesano",
+    "IntroductionText": "Paulino Tinteiros es un artesano que ve en sus esculturas algo m$as que piedra y yeso. Su trabajo para $el es todo y busca mejorar siempre de cualquier manera en su trabajo. Es due$%o de un peque$%o taller en Hefesto.",
     "DiasConEvento": {
       "1": false,
       "2": true,
@@ -839,7 +841,7 @@
           "distrito": "Apolo",
           "tuboSeleccionado": "Apolo",
           "tipoPaquete": "Materiales",
-          "fragil": true
+          "envuelto": true
         },
         "recompensa": {
 
@@ -852,7 +854,7 @@
     }
   },
   "Tarotisa": {
-    "IntroductionText": "tarotisa",
+    "IntroductionText": "Abigail Ampoure es una mujer anciana que jura ver el futuro gracias a sus cartas. Tiene un peque$%o puesto en Artemisa donde trabaj$o toda su vida. Debido a malas decisiones, vive un poco amargada y a base de favores de sus clientes.",
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -941,7 +943,7 @@
           "distrito": "Apolo"
         },
         "condiciones": {
-          "remitente": "Dr Luengostino",
+          "remitente": "Dr. Luengostino",
           "tipoPaquete": "Medicinas",
           "tuboSeleccionado": "Erroneo"
         },
@@ -976,7 +978,7 @@
     }
   },
   "Soldado": {
-    "IntroductionText": "soldado",
+    "IntroductionText": "Abakand Istacoz es un fuerte soldado que se rige por un gran sentido de la justicia, lucha por los d$ebiles y es un hombre honrado. Vive en el distrito Apolo, custodiando la entrada a los distritos interiores.",
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -1091,7 +1093,7 @@
     }
   },
   "Contable": {
-    "IntroductionText": "contable",
+    "IntroductionText": "Glover Globus es un hombre de negocios due$%o de una gran empresa. Esta empresa se dedica a comprar articulos a los campesinos y revenderlos a los mayores compradores. Suele vivir en el disrito de Hermes, contando monedas en una mesa con una gran sonrisa.",
     "DiasConEvento": {
       "1": false,
       "2": false,
@@ -1161,7 +1163,7 @@
           "tipoPaquete": "Materiales",
           "distrito": "Apolo",
           "tuboSeleccionado": "Apolo",
-          "fragil": true
+          "envuelto": true
         },
         "recompensa": {
           "1": "Contable++++++++++",

@@ -3,6 +3,7 @@
 #include <components/Clickeable.h>
 #include <entities/BombAux.h>
 #include <components/DelayedCallback.h>
+#include <sistemas/SoundEmiter.h>
 
 SpecialObjectsFactory::SpecialObjectsFactory() {
 
@@ -23,13 +24,13 @@ void SpecialObjectsFactory::setupDayObjects() {
 	if ((gD().getNPCData(Vagabundo)->numMisionesAceptadas == 4 ||
 		gD().getNPCData(Vagabundo)->numMisionesAceptadas == 5) && gD().getNPCData(Vagabundo)->postConversation)
 		makePapelAgujeros();
-	if (gD().getNPCData(Secretario)->numMisionesAceptadas == 3)
+	if (gD().getNPCData(Secretario)->numMisionesAceptadas == 3 && gD().getNPCData(Secretario)->postConversation)
 		makeListaSecretario(true);
-	if (gD().getNPCData(Secretario)->numMisionesAceptadas == 4)
+	if (gD().getNPCData(Secretario)->numMisionesAceptadas == 4 && gD().getNPCData(Secretario)->postConversation)
 		makeListaSecretario(false);
 
-	makePolvos();
-	//makeBomba();
+	if (gD().getNPCData(Vagabundo)->numMisionesAceptadas == 10 && gD().getNPCData(Vagabundo)->postConversation)
+		makePolvos();
 }
 
 void SpecialObjectsFactory::makeListaVagabundo() {
@@ -141,6 +142,11 @@ ecs::Entity* SpecialObjectsFactory::makeBomba() {
 	clAzul->addEvent([bombAux] {
 		bombAux->BluePressed();
 		});
+
+
+	entPaq->addComponent<MoverTransform>(Vector2D(entPaq->getComponent<Transform>()->getPos()) - Vector2D(400,0),
+		1, Easing::EaseOutBack);
+	entPaq->getComponent<MoverTransform>()->enable();
 	return entPaq;
 }
 
@@ -218,4 +224,15 @@ void SpecialObjectsFactory::makeTransition() {
 	moverTrBottom->setFinalPos(Vector2D(0, 0));
 	moverTrBottom->setMoveTime(3);
 	moverTrBottom->enable();
+}
+
+void SpecialObjectsFactory::makeExplosion() {
+
+	SoundEmiter::instance()->playSound("explosion");
+
+	ecs::Entity* pantalla = gm().getScene(ecs::sc::MAIN_SCENE)->addEntity(ecs::layer::UI);
+	pantalla->addComponent<Transform>(0, 0, LOGICAL_RENDER_WIDTH, LOGICAL_RENDER_HEITH);
+	pantalla->addComponent<RenderImage>(&sdlutils().images().at("explosionScreen"));
+
+	makeDeathTransition();
 }

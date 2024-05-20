@@ -2,11 +2,11 @@
   "Vagabundo": {
     "Presentacion": [
       "Hey, perdona! $?Tienes alguna monedilla de sobra para alguien que est$a pasando un mal d$ia?",
-      "No tienes nada verdad... Ah si, $!t$u eres el notas ese que ha salido corriendo de la oficina de correos!",
-      "Vaya liada has hecho, ha llegado tu jefe y est$a que echa humo contigo... $!Si es que tendr$ia que ser yo el que te ayude a ti!",
+      "No tienes nada verdad... Ah si, $!t$u eres el notas ese que es nuevo en la oficina de correos!",
+      "Bienvenido amigo, a la gran pozilga de distito en el que vivimos llamado Hestia.",
       "Oye amigo perdona por los modales, que llevo mucho tiempo sin que nadie se pare conmigo a hablar y se me est$a olvidando comportarme.",
       "Me llamo Anemos, un placer conocerte.",
-      "Bueno, va siendo hora de dejarte que tu coleguita te est$a esperando en la puerta para darte la chapa."
+      "Bueno, va siendo hora de dejarte que va siendo hora de que vayas a tu primer dia"
     ],
     "FelicidadMinima": [
       "felicidadMinima vagabundo"
@@ -1276,11 +1276,11 @@
         "TextoCasaGrande10": [ "Esta casa parece ser muy grande." ],
         "TextoCasaGrande11": [ "Se ve que esta casa tiene ya sus a$%os." ],
 
-        "TextoCasaGrande20": [ "Esta casa parece ser muy grande." ],
-        "TextoCasaGrande21": [ "Se ve que esta casa tiene ya sus a$%os." ],
+        "TextoCasaGrande20": [ "Esta casa es m$as grande que la que hay al otro lado de la oficina." ],
+        "TextoCasaGrande21": [ "No es fea, pero se ve que esta casa tiene ya sus a$%os." ],
 
-        "TextoCasaGrande30": [ "Esta casa parece ser muy grande." ],
-        "TextoCasaGrande31": [ "Se ve que esta casa tiene ya sus a$%os." ],
+        "TextoCasaGrande30": [ "Me pregunto si alg$un d$ia vivir$e en una casas m$as grande que esta." ],
+        "TextoCasaGrande31": [ "Se ve que esta casa tiene ya sus a$%os, pero las he visto peores en la superficie." ],
 
         "TextoCasaGrande40": [
             "Igual de grande la casa que ayer.",
@@ -1290,15 +1290,18 @@
 
         "TextoCasaGrande50": [
             "Igual de grande la casa que ayer.",
-            "Bueno... eso es obvio."
+            "Bueno... eso es obvio.",
+            "Deja v$u."
         ],
-        "TextoCasaGrande51": [ "El que debe de vivir aqu$i no debe tener mucho dinero." ],
+        "TextoCasaGrande51": [ "El que debe de vivir aqu$i debe de limpiar la casa cada mucho tiempo." ],
 
         "TextoCasaGrande60": [
             "Igual de grande la casa que ayer.",
-            "Bueno... eso es obvio."
+            "Bueno... eso es obvio.",
+            "...",
+            "Bueno mejor sigo a lo m$io."
         ],
-        "TextoCasaGrande61": [ "El que debe de vivir aqu$i no debe tener mucho dinero." ],
+        "TextoCasaGrande61": [ "Vivir aqu$i puede implicar no tener mucho dinero, pero he visto casas peores en la superficie." ],
 
         "TextoCasaGrande70": [ "Ojal$a alojarme en una casa tan grande como esta." ],
         "TextoCasaGrande71": [
@@ -1306,16 +1309,16 @@
             "Seguro est$a sucia, pero puede tener mucho espacio."
         ],
 
-        "TextoCasaGrande80": [ "Ojal$a alojarme en una casa tan grande como esta." ],
+        "TextoCasaGrande80": [ "Sigo so$%ando con vivir en una casa tan grande como esta." ],
         "TextoCasaGrande81": [
             "Si me alojara aqu$i tendr$ia que remodelar la casa un poco.",
-            "Seguro est$a sucia, pero puede tener mucho espacio."
+            "El due$%o parece que no limpia mucho tampoco."
         ],
 
         "TextoCasaGrande90": [ "Ojal$a alojarme en una casa tan grande como esta." ],
         "TextoCasaGrande91": [
             "Si me alojara aqu$i tendr$ia que remodelar la casa un poco.",
-            "Seguro est$a sucia, pero puede tener mucho espacio."
+            "Tambi$en necesita todav$ia un poco de limpieza..."
         ],
 
         "TextoCasaGrande100": [
@@ -1325,16 +1328,19 @@
         "TextoCasaGrande101": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
 
         "TextoCasaGrande110": [
-            "Hay una mancha en la pared, parece ser...",
-            "Snif, snif. Bueno, prefiero no tocar la verdad."
+            "Hay una mancha en la pared,",
+            "prefiero no tocar."
         ],
-        "TextoCasaGrande111": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
+        "TextoCasaGrande111": [
+            "Deber$ian de limpiar m$as amenudo las paredes,",
+            "y bueno, la zona en general."
+        ],
 
         "TextoCasaGrande120": [
             "Hay una mancha en la pared, parece ser...",
-            "Snif, snif. Bueno, prefiero no tocar la verdad."
+            "Bueno, mejor no huelo."
         ],
-        "TextoCasaGrande121": [ "Deber$ian de limpiar m$as amenudo las paredes" ],
+        "TextoCasaGrande121": [ "Deber$ian de limpiar m$as amenudo todo esto, pero no se ve feo... Curioso" ],
 
         "TextoCasaGrande130": [
             "Puede que no luciera en las mejores condiciones,",
@@ -1347,13 +1353,13 @@
         ],
 
         "TextoCasaGrande140": [
-            "Puede que no luciera en las mejores condiciones,",
+            "Puede que se vea un poco vieja,",
             "pero esta casa parece ser acogedora."
         ],
         "TextoCasaGrande141": [
             "Ha pasado un tiempo desde que llegu$e,",
             "pero echo de menos aunque sea mi pisito en la superficie.",
-            "Pero cobraban caro para lo que era."
+            "So$%aba con tener un pisito en la playa, pero tener uno bajo el mar es m$as raro y guay todav$ia."
         ]
     },
     "CartelOficina": {
@@ -2174,131 +2180,212 @@
     },
     "PanteonDer": {
 
-        "TextoPanteonDer50": [ "PanteonDer50" ],
-        "TextoPanteonDer51": [ "PanteonDer51" ],
+        "TextoPanteonDer50": [ "Este pante$on se parece al de las izquierda, est$an muy chulos." ],
+        "TextoPanteonDer51": [ "En la parte de arriba del pante$on hhay una especie de estatua rara." ],
 
-        "TextoPanteonDer60": [ "PanteonDer60" ],
-        "TextoPanteonDer61": [ "PanteonDer61" ],
+        "TextoPanteonDer60": [ "EL pante$on de la derecha se parece al de la izquierda, pero tiene muchos arbustos y plantas." ],
+        "TextoPanteonDer61": [ "Me pregunto qu$e clase de estatua es la que hay arriba." ],
 
-        "TextoPanteonDer70": [ "PanteonDer70" ],
-        "TextoPanteonDer71": [ "PanteonDer71" ],
+        "TextoPanteonDer70": [ "Me pregunto cada cuanto tiempo cortar$an las plantas del pante$on de la derecha, hay demasiadas" ],
+        "TextoPanteonDer71": [
+            "La estatuta de arriba parece la de una persona...",
+            "lo cual es un poco raro pero tampoco se puede ver muy bien, as$i que no s$e."
+        ],
 
-        "TextoPanteonDer80": [ "PanteonDer80" ],
-        "TextoPanteonDer81": [ "PanteonDer81" ],
+        "TextoPanteonDer80": [ "Dentro del pante$on hay como una piedra rara, me pregunto qu$e ser$a." ],
+        "TextoPanteonDer81": [
+            "Me encanta el color de las banderas,",
+            "es tan... morado..."
+        ],
 
-        "TextoPanteonDer90": [ "PanteonDer90" ],
-        "TextoPanteonDer91": [ "PanteonDer91" ],
+        "TextoPanteonDer90": [
+            "La piedra que hay dentro del pante$on es muy rara,",
+            "quiz$as es la base de la estatua que sobresale por arriba..."
+        ],
+        "TextoPanteonDer91": [ "Me gusta el color de las banderas, pero molar$ia que tuviesen alg$un dibujo pintado." ],
 
-        "TextoPanteonDer100": [ "PanteonDer100" ],
-        "TextoPanteonDer101": [ "PanteonDer101" ],
+        "TextoPanteonDer100": [
+            "La piedra que hay dentro del pante$on puede que sea la base de la estatua que sobresale por arriba,",
+            "pero las plantas no dejan ver bien, deber$ian de cortarlas y cuidarlas m$as."
+        ],
+        "TextoPanteonDer101": [
+            "Me gusta el color, pero a lo mejor le dibujar$ia algo a esas banderas,",
+            "aunque no soy muy buen pintor."
+        ],
 
-        "TextoPanteonDer110": [ "PanteonDer110" ],
-        "TextoPanteonDer111": [ "PanteonDer111" ],
+        "TextoPanteonDer110": [
+            "Me pregunto que se esconder$a a trav$es de esas plantas,",
+            "puede que se vea m$as la estatua."
+        ],
+        "TextoPanteonDer111": [ "Me encantan las formas de las columnas, est$an igual que en otros distritos, pero igual me encantan" ],
 
-        "TextoPanteonDer120": [ "PanteonDer120" ],
-        "TextoPanteonDer121": [ "PanteonDer121" ],
+        "TextoPanteonDer120": [ "Me pregunto si vivir$a alguien escondido entre esas plantas del pante$on." ],
+        "TextoPanteonDer121": [ "Puede que se parezcan, pero me encantan como se ven los panteones en todos los distritos, incluyendo este." ],
 
-        "TextoPanteonDer130": [ "PanteonDer130" ],
-        "TextoPanteonDer131": [ "PanteonDer131" ],
+        "TextoPanteonDer130": [
+            "Me gustar$ia un d$ia adentrarme entre esas plantas y ver si descubro algo nuevo que no se ve a simple vista,",
+            "me gustar$ia saciar mi esp$iritu de explorador."
+        ],
+        "TextoPanteonDer131": [
+            "Me pregunto qu$e se necesitar$a para cortar esas plantas del pante$on,",
+            "son muchas pero a lo mejor con algo bien afilado se puede."
+        ],
 
-        "TextoPanteonDer140": [ "PanteonDer140" ],
-        "TextoPanteonDer141": [ "PanteonDer141" ]
+        "TextoPanteonDer140": [
+            "Me pregunto qu$e tesoros se pueden esconder tras esas plantas,",
+            "puede que si descubro la base de la estatua encuentre un pasadizo hacia un tesoro oculto."
+        ],
+        "TextoPanteonDer141": [ "Alg$un d$ia me adentrar$e en esas plantas y ver$e si descubro algo nuevo." ]
     },
     "Panteon": {
 
-        "TextoPanteon50": [ "Panteon50" ],
-        "TextoPanteon51": [ "Panteon51" ],
+        "TextoPanteon50": [ "$!Qu$e bonitas obras de arte! Aunque es un poco raro que las tengan en el portal..." ],
+        "TextoPanteon51": [ "Hasta ahora no he visto llover en la ciudad, pero parece un buen sitio donde resguardarse." ],
 
-        "TextoPanteon60": [ "Panteon60" ],
-        "TextoPanteon61": [ "Panteon61" ],
+        "TextoPanteon60": [ "$!Qu$e bellas obras de arte! Aunque es un poco raro que las dejen al aire libre..." ],
+        "TextoPanteon61": [ "Me pregunto que funci$on tendr$a tener un techo tan amplio si no para resguardarse de la lluvia." ],
 
-        "TextoPanteon70": [ "Panteon70" ],
-        "TextoPanteon71": [ "Panteon71" ],
+        "TextoPanteon70": [ "$!Este arte es maravilloso! Aunque ahora que lo pienso me recuerdan a algo de la superficie..." ],
+        "TextoPanteon71": [ "EL techo es bastante amplio. A lo mejor no protege de la lluvia sino que da sombra." ],
 
-        "TextoPanteon80": [ "Panteon80" ],
-        "TextoPanteon81": [ "Panteon81" ],
+        "TextoPanteon80": [ "Se que normalmente estoy muy ocupado, pero cada vez que paso por aqu$i no puedo evitar detenerme a ver el arte" ],
+        "TextoPanteon81": [ "Fuera bromas, me sigo preguntando cu$al es el uso de este lugar.",
+                            "Aparte de exponer est$as obras de arte."
+        ],
 
-        "TextoPanteon90": [ "Panteon90" ],
-        "TextoPanteon91": [ "Panteon91" ],
+        "TextoPanteon90": [ "Este arte es tan bello que podr$ia pasar todo el d$ia mirandolo.",
+                            "Si no tuviera que trabajar, claro" ],
+      "TextoPanteon91": [
+        "Sigo preguntandome cu$al es el uso de este lugar.",
+        "Cualquiera podr$ia robar estas obras."
+      ],
 
-        "TextoPanteon100": [ "Panteon100" ],
-        "TextoPanteon101": [ "Panteon101" ],
+        "TextoPanteon100": [ "Este arte es tan bonito que me gustar$ia estudiarlo.",
+                             "Aunque sigo pensando que es parecido a obras de la superficie."
+        ],
+        "TextoPanteon101": [ "La sorpresa que me llev$e al enterarme que esto era una ala del museo sigue afectandome." ],
 
-        "TextoPanteon110": [ "Panteon110" ],
-        "TextoPanteon111": [ "Panteon111" ],
+        "TextoPanteon110": [
+            "A la izquierda de este ala tenemos un cuadro que representa a una mujer ostra desnuda saliendo se su... ostra.",
+            "Curioso, aunque quiz$as un poco revelador."
+        ],
+        "TextoPanteon111": [ "Sigo encontrando curioso este museo al aire libre." ],
 
-        "TextoPanteon120": [ "Panteon120" ],
-        "TextoPanteon121": [ "Panteon121" ],
+        "TextoPanteon120": [ "Cerca de la esquina hay un cuadro con tres personas pez.",
+                             "Parecen muy amigas."
+        ],
+        "TextoPanteon121": [ "Hoy me d$i cuenta de que no solo es un muser o un pante$on. $!Es ambas cosas!" ],
 
-        "TextoPanteon130": [ "Panteon130" ],
-        "TextoPanteon131": [ "Panteon131" ],
+        "TextoPanteon130": [ "En la pared del fondo hay una estructura de un cuerpo muy musculado.",
+                             "Aunque parezca extra$%amente humana, sigue habiendo branquias en lo que queda del cuello."
+        ],
+        "TextoPanteon131": [ "A lo mejor la exposici$on est$a al aire libre para que todos puedan disfrutar de ella f$acilmente.",
+                             "Si es as$i, ahora lo comprendo todo."
+        ],
 
-        "TextoPanteon140": [ "Panteon140" ],
-        "TextoPanteon141": [ "Panteon141" ]
+        "TextoPanteon140": [ "Incluso despu$es de todo lo ocurrido, el arte sigue siendo algo merecedor de ser recordado.",
+            "Porque incluso despu$es de que perezcamos otros nos podr$an conocer por lo que hayamos hecho.",
+            "$!Por eso es tan importante documentar mis aventuras!"
+        ],
+        "TextoPanteon141": [ "El arte, aunque fr$agil, no deber$ia de esconderse en una c$upula, restringido a $elites despotas.",
+                             "Todos deber$ian de ser capaces de admirarlo."
+        ]
     },
     "Edificios": {
 
-        "TextoEdificios50": [ "Edificios50" ],
-        "TextoEdificios51": [ "Edificios51" ],
+        "TextoEdificios50": [ "Es un edificio bastante ornamentado." ],
+        "TextoEdificios51": [ "Me pregunto que edificio ser$a esto. Es bastante inusual." ],
 
-        "TextoEdificios60": [ "Edificios60" ],
-        "TextoEdificios61": [ "Edificios61" ],
+        "TextoEdificios60": [ "Es un edificio con una fachada muy cuidada." ],
+        "TextoEdificios61": [ "La forma extra$%a me recuerda a la de un supermercado." ],
 
-        "TextoEdificios70": [ "Edificios70" ],
-        "TextoEdificios71": [ "Edificios71" ],
+        "TextoEdificios70": [ "Es un edificio con arte esculpido en sus paredes." ],
+        "TextoEdificios71": [ "La curiosa disposici$on del edificio me recuerda a una tienda de bricolaje." ],
 
-        "TextoEdificios80": [ "Edificios80" ],
-        "TextoEdificios81": [ "Edificios81" ],
 
-        "TextoEdificios90": [ "Edificios90" ],
-        "TextoEdificios91": [ "Edificios91" ],
+        "TextoEdificios80": [ "$!Es un museo! Que pena que no tenga tiempo de visitarlo y aprender su historia..." ],
+        "TextoEdificios81": [ "$!Es un museo! Eso explica esa forma tan rara que tiene." ],
 
-        "TextoEdificios100": [ "Edificios100" ],
-        "TextoEdificios101": [ "Edificios101" ],
+        "TextoEdificios90": [ "Al parecer, esas obras de arte del pante$on son parte del museo.",
+                              "Aunque me sigo preguntando porque est$an al aire libre."
+        ],
+        "TextoEdificios91": [
+          "Al parecer hay una exposici$on especial en la torre esa ma$%ana.",
+          "A ver si puedo hacer tiempo para pasarme."
+        ],
 
-        "TextoEdificios110": [ "Edificios110" ],
-        "TextoEdificios111": [ "Edificios111" ],
+        "TextoEdificios100": [ "Sinceramente creo que incluso las puertas podr$ian ser parte de la exposici$on con lo ornamentadas que son." ],
+        "TextoEdificios101": [
+          "Al final cancelaron la exposici$on especial en la torre.",
+          "Al menos me devolvieron el dinero de la entrada."
+        ],
 
-        "TextoEdificios120": [ "Edificios120" ],
-        "TextoEdificios121": [ "Edificios121" ],
+        "TextoEdificios110": [ "Fijandome bien, incluso el vidrio de las ventanas est$a decorado." ],
+        "TextoEdificios111": [ "Aparentemente el piso de arriba es una cafeter$ia, pero solo dejan entrar a los nobles." ],
 
-        "TextoEdificios130": [ "Edificios130" ],
-        "TextoEdificios131": [ "Edificios131" ],
+        "TextoEdificios120": [ "Los poyates." ],
+        "TextoEdificios121": [ "$!Todo el piso de arriba es exclusivo de nobles, no solo la cafeter$ia!" ],
 
-        "TextoEdificios140": [ "Edificios140" ],
-        "TextoEdificios141": [ "Edificios141" ]
+        "TextoEdificios130": [ "$?Vivir$a gente dentro de esos edificios?" ],
+        "TextoEdificios131": [ "Alg$un d$ia me gustar$ia intentar colarme ah$i arriba. No creo que lo haga, no quiero volver a tener que huir de los guardias." ],
+
+        "TextoEdificios140": [ "Los poyates, me gustan los poyates." ],
+        "TextoEdificios141": [
+          "Aunque una parte del edificio est$e restringida, me sigue gustando mucho su arquitectura.",
+          "Si pudiera, subir$ia a la torre. Y simplemente mirar$ia a mi alrededor.",
+          "S$i, se que el distrito del rey est$a m$as alto, pero apuesto que este se ve mejor desde no tan arriba."
+        ]
     },
     "Charco": {
 
-        "TextoCharco50": [ "Charco50" ],
-        "TextoCharco51": [ "Charco51" ],
+        "TextoCharco50": [ "Parece ser que incluso los peces beben agua." ],
+        "TextoCharco51": [ "Me parece un poco ir$onico encontrar una fuente debajo del agua." ],
 
-        "TextoCharco60": [ "Charco60" ],
-        "TextoCharco61": [ "Charco61" ],
+        "TextoCharco60": [ "Tiene sentido que incluso los peces quieran refrescarse. Hace algo de calor hoy" ],
+        "TextoCharco61": [ "Me resulta curioso encontrar una fuente debajo del agua." ],
 
-        "TextoCharco70": [ "Charco70" ],
-        "TextoCharco71": [ "Charco71" ],
+        "TextoCharco70": [ "Entiendo porque los peces vendr$ian aqu$i a beber los d$ias de calor." ],
+        "TextoCharco71": [ "Me parece bastante gracioso encontrar una fuente debajo del agua." ],
 
-        "TextoCharco80": [ "Charco80" ],
-        "TextoCharco81": [ "Charco81" ],
+        "TextoCharco80": [ "Ahora que lo pienso, no he estado hidratandome bien. $?Esta agua ser$a potable?" ],
+        "TextoCharco81": [ "Aunque sigue teniendo su gracia, comienzo a entender porque construir$ian una fuente aqu$i." ],
 
-        "TextoCharco90": [ "Charco90" ],
-        "TextoCharco91": [ "Charco91" ],
+        "TextoCharco90": [ "El agua parece deliciosa. $?Se dar$a alguien cuenta si echo un trago?",
+          "*gulp*",
+          "Aaaaah... Qu$e frescor."
+        ],
+        "TextoCharco91": [ "Aunque sigue siendo gracioso, es agradable ver la fuente en mi paseo." ],
 
-        "TextoCharco100": [ "Charco100" ],
-        "TextoCharco101": [ "Charco101" ],
+        "TextoCharco100": [ "El agua tiene tan buena pinta que le voy a echar un trago.",
+          "*gulp*",
+          "Tan buena como ayer."
+        ],
+        "TextoCharco101": [ "Aunque la sigo encontrando graciosa, creo que comprendo al constructor de la fuente" ],
 
-        "TextoCharco110": [ "Charco110" ],
-        "TextoCharco111": [ "Charco111" ],
+        "TextoCharco110": [ "La $ultima vez que beb$i casi me ca$i al agua de la risa.",
+                            "Se me hab$ia olvidado que llevaba el disfraz puesto y me asust$e a mi mismo."
+        ],
+        "TextoCharco111": [ "Ahora que comprendo a las fuentes, sonr$io cuando las veo." ],
 
-        "TextoCharco120": [ "Charco120" ],
-        "TextoCharco121": [ "Charco121" ],
+        "TextoCharco120": [ "Ver mi cara de pez cada vez que voy a beber me llena de determinaci$on" ],
+        "TextoCharco121": [ "No hay muchas fuentes aqu$i, pero alegra verlas de vez en cuando." ],
 
-        "TextoCharco130": [ "Charco130" ],
-        "TextoCharco131": [ "Charco131" ],
+        "TextoCharco130": [ "Al final me he acostumbrado a esta cara como si fuera la m$ia propia." ],
+        "TextoCharco131": [ "Una vez que comprend$i que las razones para la fuente, me result$o bastante mas entranable",
+                            "Incluso si hay muchas de ellas en las ciudades de la superficie, aqu$i son tan raras y art$isticas como los cuadros de all$a."
+        ],
 
-        "TextoCharco140": [ "Charco140" ],
-        "TextoCharco141": [ "Charco141" ]
+        "TextoCharco140": [ "Creo recordar que un hombre dijo una vez que antes de inventar los espejos solo pod$ias verte en el reflejo del agua",
+                            "Para verse a uno mismo deb$ias agacharte, un gesto simb$olico.",
+                            "Hay veces que nos olvidamos a nosotros mismos, o a nuestras experiencias.",
+                            "Siempre es importante saber quien eres t$u."
+        ],
+        "TextoCharco141": [
+            "Siempre recordar$e esta fuente en mis futuros viajes.",
+            "Empec$e tom$andomela a broma, pero he aprendido a apreciar momentos como este.",
+            "La risa es buena compa$%era, vayas donde vayas.",
+            "Excepto en un funeral, supongo."
+        ]
     },
     "Estatua": {
 

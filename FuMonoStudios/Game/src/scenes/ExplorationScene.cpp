@@ -30,7 +30,8 @@ ecs::ExplorationScene::ExplorationScene() :Scene()
 
 ecs::ExplorationScene::~ExplorationScene()
 {
-
+	delete rightTex;
+	delete leftTex;
 }
 
 void ecs::ExplorationScene::init()
@@ -296,10 +297,15 @@ ecs::Entity* ecs::ExplorationScene::createWorkButton(Vector2D pos, Vector2D scal
 
 			if (canInteract) {
 				int numPersonajesSinHablar = 0;
-				for (int i = 0; i < gD().getNumDistritos(); i++) {
+				for (int i = 0; i < 7; i++) {
 					NPCdata* data = gD().getNPCData((Personaje)i);
-					if (data->felicidad != SeFue && !data->postConversation)
+					
+					// primero comprueba si eres algun npc de interior y si lo eres y estamos en < 5 dias out
+					if ((!(i == Secretario || i == Soldado || i == Contable) && gD().getDay() < 5) &&
+						data->felicidad != SeFue && !data->postConversation)
 						numPersonajesSinHablar++;
+
+					std::cout << i << numPersonajesSinHablar << std::endl;
 				}
 				if (!showTalkWarning || numPersonajesSinHablar < 1)
 				{
@@ -408,6 +414,11 @@ void ecs::ExplorationScene::setupDiarioPages() {
 	std::vector<Texture*> textureVec;
 	int firstPersonaje = -1;
 	bool diarioVacio = true;
+
+	if (rendComp->getCurrentTexture() == &sdlutils().images().at("bookTest")) {
+		diarioText_.clear();
+	}
+
 	//recorremos todos los personajes
 	for (int i = 0; i < 7; i++) {
 		NPCdata* data = gD().getNPCData((npc::Personaje)i);
@@ -416,7 +427,7 @@ void ecs::ExplorationScene::setupDiarioPages() {
 			diarioVacio = false;
 			//procesamos los textos
 			DialogManager a;
-			std::string textoPersonaje = data->introText += '\n';
+			std::string textoPersonaje = data->introText + "\n";
 			a.fixText(textoPersonaje);
 			//contador de las paginas del personaje
 			int j = 0;
@@ -511,26 +522,27 @@ void ecs::ExplorationScene::setupDiarioPages() {
 			}
 		}
 		else if (data->felicidad == NoHabladoAun && data->postConversation){
+			diarioVacio = false;
 			pagesByCharacter[i] = 1;
 			textureVec.push_back(&sdlutils().images().at("diario" + std::to_string(i + 1)));
 			DialogManager a;
-			std::string textoPersonaje = data->introText += '\n';
+			std::string textoPersonaje = data->introText + "\n";
 			a.fixText(textoPersonaje);
 			diarioText_.push_back(textoPersonaje);
 			diarioText_.push_back(" ");
 		}
 	}
 
-	if (diarioVacio)
+	if (diarioVacio) {
 		textureVec.push_back(&sdlutils().images().at("bookTest"));
+		diarioText_.push_back(" ");
+		diarioText_.push_back(" ");
+	}
 
 	diario_->getComponent<RenderImage>()->getVector()->clear();
 	diario_->getComponent<RenderImage>()->setVector(textureVec);
 
-	if (!diarioVacio)
-	{
-		makeDiaryPages();
-	}
+	makeDiaryPages();
 
 	if (firstPersonaje == -1)
 		caraFelicidad->setTexture(nullptr);
@@ -644,12 +656,11 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 		if (!gm().gamePaused()) {
 			if (canInteract)
 			{
-				if (gD().getNPCData(gD().stringToPersonaje(character))->felicidad == npc::Maxima) {
-					gD().unlockUpgrade(gD().stringToPersonaje(character));
-				}
+
 				dialogMngr_.setEndDialogueCallback([this] {
 					canInteract = true;
-					});
+				});
+
 				canInteract = false;
 				dialogMngr_.startConversation(character);
 

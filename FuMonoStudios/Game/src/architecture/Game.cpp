@@ -95,13 +95,19 @@ void Game::run()
 		}
 
 		if (ih().keyDownEvent() && ih().isKeyDown(SDL_SCANCODE_P)) {
-			if (!gamePaused_) {
-				loadScene(ecs::sc::PAUSE_SCENE);
-				gamePaused_ = true;
-			}
-			else {
-				changeScene(ecs::sc::PAUSE_SCENE, ecs::sc::NULL_SCENE);
-				gamePaused_ = false;
+			auto it1 = std::find(loadedScenes_.begin(), loadedScenes_.end(), gameScenes_[ecs::sc::MENU_SCENE]);
+			auto it2 = std::find(loadedScenes_.begin(), loadedScenes_.end(), gameScenes_[ecs::sc::END_WORK_SCENE]);
+			auto it3 = std::find(loadedScenes_.begin(), loadedScenes_.end(), gameScenes_[ecs::sc::INTRO_SCENE]);
+			auto it4 = std::find(loadedScenes_.begin(), loadedScenes_.end(), gameScenes_[ecs::sc::DEATH_SCENE]);
+			if (it1 == loadedScenes_.end() && it2 == loadedScenes_.end() && it3 == loadedScenes_.end() && it4 == loadedScenes_.end()) {
+				if (!gamePaused_) {
+					loadScene(ecs::sc::PAUSE_SCENE);
+					gamePaused_ = true;
+				}
+				else {
+					changeScene(ecs::sc::PAUSE_SCENE, ecs::sc::NULL_SCENE);
+					gamePaused_ = false;
+				}
 			}
 		}
 
