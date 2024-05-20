@@ -89,6 +89,7 @@
       "file": "recursos/images/FONDO_MENU_INICIO_v2.png"
     },
     {"id": "blackScreen","file": "recursos/images/pantallanegra.png"},
+    {"id": "explosionScreen","file": "recursos/images/pantallaexplosion.png"},
     {"id": "fondoTutorial","file": "recursos/images/fondoTutorial.png"},
     {"id": "menuPrincipal","file": "recursos/images/MenuPrincipal.png"},
     {"id": "botella1","file": "recursos/images/Botella1.png"},
@@ -812,6 +813,34 @@
     {
       "id": "dlgVag3",
       "file": "recursos/sounds/Vagabundo3.wav"
+    },
+    {
+      "id": "dlgJef0",
+      "file": "recursos/sounds/Jefe0.wav"
+    },
+    {
+      "id": "dlgJef1",
+      "file": "recursos/sounds/Jefe1.wav"
+    },
+    {
+      "id": "dlgJef2",
+      "file": "recursos/sounds/Jefe2.wav"
+    },
+    {
+      "id": "dlgJef3",
+      "file": "recursos/sounds/Jefe3.wav"
+    },
+    {
+      "id": "tac0",
+      "file": "recursos/musics/tictacLento.wav"
+    },
+    {
+      "id": "tic0",
+      "file": "recursos/musics/tictacRapido.wav"
+    },
+    {
+      "id": "explosion",
+      "file": "recursos/sounds/explosion.wav"
     }
   ],
   "musics": [
@@ -832,16 +861,12 @@
       "file": "recursos/musics/printer.wav"
     },
     {
-      "id": "clockSlow",
-      "file": "recursos/musics/tictacLento.wav"
-    },
-    {
-      "id": "clockFast",
-      "file": "recursos/musics/tictacRapido.wav"
-    },
-    {
       "id": "exploration",
       "file": "recursos/musics/ExploreTheAtlantis.wav"
+    },
+    {
+      "id": "work",
+      "file": "recursos/musics/WorkintheAtlantis.wav"
     }
   ]
 }

@@ -65,6 +65,10 @@
       "amount": 4
     },
     {
+      "key": "dlgJef",
+      "amount": 4
+    },
+    {
       "key": "money",
       "amount": 1
     },
@@ -74,6 +78,14 @@
     },
     {
       "key": "guiImp",
+      "amount": 1
+    },
+    {
+      "key": "tic",
+      "amount": 1
+    },
+    {
+      "key": "tac",
       "amount": 1
     }
   ]

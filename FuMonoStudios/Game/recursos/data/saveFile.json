@@ -1,10 +1,10 @@
 {
-  "Dia":14,
-  "Dinero":170,
+  "Dia":1,
+  "Dinero":0,
   "Personajes":{
     "Artesano":{
       "EventosCompletados":[
-        1,0,0,0,0
+        0,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
@@ -13,16 +13,16 @@
     },
     "Campesino":{
       "EventosCompletados":[
-        2,4,6,9,11
+        0,0,0,0,0
       ],
-      "Felicidad":"Maxima",
-      "FelicidadNum":90,
-      "numMisionesAceptadas":5,
+      "Felicidad":"Normal",
+      "FelicidadNum":50,
+      "numMisionesAceptadas":0,
       "unlockUpgrade":false
     },
     "Contable":{
       "EventosCompletados":[
-        1,0,0,0,0
+        0,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
@@ -31,24 +31,25 @@
     },
     "Secretario":{
       "EventosCompletados":[
-        5,6,7,8,9,10,11,12,13,0,0,0,0,0
-      ],
-      "Felicidad":"Normal",
-      "FelicidadNum":50,
-      "numMisionesAceptadas":9
-    },
-    "Soldado":{
-      "EventosCompletados":[
-        1,0,0,0,0
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
       "numMisionesAceptadas":0,
       "unlockUpgrade":false
     },
+    "Soldado":{
+      "EventosCompletados":[
+        6,8,10,12,14
+      ],
+      "Felicidad":"Maxima",
+      "FelicidadNum":100,
+      "numMisionesAceptadas":4,
+      "unlockUpgrade":true
+    },
     "Tarotisa":{
       "EventosCompletados":[
-        1,0,0,0,0
+        0,0,0,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
@@ -57,10 +58,10 @@
     },
     "Vagabundo":{
       "EventosCompletados":[
-        0,0,0,0,0,1,2,3,4,5,6,7,8,9
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0
       ],
       "Felicidad":"Normal",
-      "FelicidadNum":50,
+      "FelicidadNum":40,
       "numMisionesAceptadas":0,
       "unlockUpgrade":false
     }

@@ -28,6 +28,8 @@ void EndWorkScene::init() {
 	factory_->setLayer(ecs::layer::UI);
 	animFinish = false;
 
+	
+
 	// Dia actual
 	msg = "Fin del Dia " + std::to_string(gD().getDay());
 	factory_->createLabel(Vector2D(1250, 50), msg, 80);
@@ -119,10 +121,11 @@ void EndWorkScene::createButtons()
 	if (money > 0) {
 		// Boton nuevo dia
 
+		
 		gD().saveGame();
 		
 		auto call = []() {
-			if (gD().getDay() == 14) {
+			if (gD().getDay() == 15) {
 			gm().requestChangeScene(ecs::sc::END_WORK_SCENE, ecs::sc::END_SCENE);
 			} 
 			else {
