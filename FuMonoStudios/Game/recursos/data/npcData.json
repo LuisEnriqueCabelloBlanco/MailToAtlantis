@@ -678,8 +678,8 @@
           "tipoPaquete": "Alimento"
         },
         "recompensa": {
-           "1": "Campesino++++++++++",
-           "2": " $Campesino----------"
+           "1": "Campesino+++++++++++++",
+           "2": " $Campesino---------------"
         },
         "textoDiario": "Pancracio me ha pedido que selle su paquete con la direcci$on de Gambon III en lugar de Medusia la Santa"
       },
@@ -697,8 +697,8 @@
         },
         "recompensa": {
 
-          "1": "Campesino++++++++++",
-          "2": " $Campesino----------"
+          "1": "Campesino+++++++++++++",
+          "2": " $Campesino---------------"
 
         },
         
@@ -718,8 +718,8 @@
         },
         "recompensa": {
 
-          "1": "Campesino++++++++++",
-          "2": " $Campesino----------"
+          "1": "Campesino++++++++++++++",
+          "2": " $Campesino--------------------"
 
         },
         "textoDiario": "Pancracio quiere que desv$ie un paquete de Apolo a Demeter"
@@ -738,7 +738,7 @@
         },
         "recompensa": {
 
-          "1": "Campesino++++++++++",
+          "1": "Campesino+++++",
           "2": " $Campesino----------"
 
         },
@@ -764,7 +764,7 @@
         },
         "recompensa": {
 
-          "1": "Campesino++++++++++",
+          "1": "Campesino+++++",
           "2": " $Campesino----------"
 
         },
@@ -805,8 +805,8 @@
         },
         "recompensa": {
 
-          "1": "Artesano++++++++++",
-          "2": " $Artesano----------"
+          "1": "Artesano+++++++++++++",
+          "2": " $Artesano---------------"
 
         },
         "textoDiario": "El artista Tinteiros necesita un paquete de materiales para sus obras."
@@ -823,8 +823,8 @@
         },
         "recompensa": {
 
-          "1": "Artesano++++++++++",
-          "2": " $Artesano----------"
+          "1": "Artesano+++++++++++++",
+          "2": " $Artesano---------------"
 
         },
         "textoDiario": "Paulino esta molesto con su jefe, dice que necesita un paquete lleno de joyas para sus obras."
@@ -841,8 +841,8 @@
         },
         "recompensa": {
 
-          "1": "Artesano++++++++++",
-          "2": " $Artesano----------"
+          "1": "Artesano++++++++++++++",
+          "2": " $Artesano--------------------"
 
         },
         "textoDiario": "Paulino tiene bastante hambre y me ha pedido que le envie dos paquetes de comida"
@@ -867,7 +867,7 @@
         },
         "recompensa": {
 
-          "1": "Artesano++++++++++",
+          "1": "Artesano+++++",
           "2": " $Artesano----------"
 
         },
@@ -891,7 +891,7 @@
         },
         "recompensa": {
 
-          "1": "Artesano++++++++++",
+          "1": "Artesano+++++",
           "2": " $Artesano----------"
 
         },
@@ -930,8 +930,8 @@
         },
         "recompensa": {
 
-          "1": "Tarotisa++++++++++",
-          "2": " $Tarotisa----------"
+          "1": "Tarotisa+++++++++++++",
+          "2": " $Tarotisa---------------"
 
         },
         "textoDiario": "La tarotisa esta muy enfadada, dice que necesita joyas para sus creaciones, quiza podria desviar un paquete."
@@ -948,8 +948,8 @@
         },
         "recompensa": {
 
-          "1": "Tarotisa++++++++++",
-          "2": " $Tarotisa----------"
+          "1": "Tarotisa+++++++++++++",
+          "2": " $Tarotisa---------------"
 
         },
         "textoDiario": "Abigail realmente es agresiva, me ha pedido que le envie un paquete de armas, aunque dice que es solo para intimidar"
@@ -974,8 +974,8 @@
         },
         "recompensa": {
 
-          "1": "Tarotisa++++++++++",
-          "2": " $Tarotisa----------"
+          "1": "Tarotisa++++++++++++++",
+          "2": " $Tarotisa--------------------"
 
         },
         "textoDiario": "Abigail quiere que la ayude con una estafa. Tengo que enviar su paquete aunque el peso no sea correcto"
@@ -995,7 +995,7 @@
         },
         "recompensa": {
 
-          "1": "Tarotisa++++++++++",
+          "1": "Tarotisa+++++",
           "2": " $Tarotisa----------"
 
         },
@@ -1015,7 +1015,7 @@
         },
         "recompensa": {
 
-          "1": "Tarotisa++++++++++",
+          "1": "Tarotisa+++++",
           "2": " $Tarotisa----------"
 
         },
@@ -1056,8 +1056,8 @@
         },
         "recompensa": {
 
-          "1": "Soldado++++++++++",
-          "2": " $Soldado----------"
+          "1": "Soldado+++++++++++++",
+          "2": " $Soldado---------------"
 
         },
         "textoDiario": "El soldado me ha pedido que le env$ie dos paquetes muy pesados a Apolo, por la seguridad de la Atl$antida se supone"
@@ -1075,8 +1075,8 @@
         },
         "recompensa": {
 
-          "1": "Soldado++++++++++",
-          "2": " $Soldado----------"
+          "1": "Soldado+++++++++++++",
+          "2": " $Soldado---------------"
 
         },
         "textoDiario": "Abakand quiere que redirija tres paquetes de medicina a Hestia, se ve que est$an muy mal all$i."
@@ -1093,8 +1093,8 @@
         },
         "recompensa": {
 
-          "1": "Soldado++++++++++",
-          "2": " $Soldado----------"
+          "1": "Soldado++++++++++++++",
+          "2": " $Soldado--------------------"
 
         },
         "textoDiario": "Los disturbios de Hestia est$an muy mal. Abakand me ha pedido que mande all$i un paquete de comida y otro de medicina."
@@ -1111,7 +1111,7 @@
         },
         "recompensa": {
 
-          "1": "Soldado++++++++++",
+          "1": "Soldado+++++",
           "2": " $Soldado----------"
 
         },
@@ -1130,7 +1130,7 @@
         },
         "recompensa": {
 
-          "1": "Soldado++++++++++",
+          "1": "Soldado+++++",
           "2": " $Soldado----------"
 
         },
@@ -1169,8 +1169,8 @@
         },
         "recompensa": {
 
-          "1": "Contable++++++++++",
-          "2": " $Contable----------"
+          "1": "Contable+++++++++++++",
+          "2": " $Contable---------------"
 
         },
         "textoDiario": "Don Globus necesita dos paquetes de alimentos en Hermes desesperadamente"
@@ -1190,8 +1190,8 @@
         },
         "recompensa": {
 
-          "1": "Contable++++++++++",
-          "2": " $Contable----------"
+          "1": "Contable+++++++++++++",
+          "2": " $Contable---------------"
 
         },
         "textoDiario": "Glover quiere que le tire su paquete que envi$o por error a la basura."
@@ -1212,8 +1212,8 @@
           "envuelto": true
         },
         "recompensa": {
-          "1": "Contable++++++++++",
-          "2": " $Contable----------"
+          "1": "Contable++++++++++++++",
+          "2": " $Contable--------------------"
         },
         "textoDiario": "Glover no le ha puesto el sello de fragilidad al paquete de un cliente, me ha pedido que lo envuelva aun sin el sello"
       },
@@ -1229,7 +1229,7 @@
           "tuboSeleccionado": "Hermes"
         },
         "recompensa": {
-          "1": "Contable++++++++++",
+          "1": "Contable+++++",
           "2": " $Contable----------"
         },
         "textoDiario": "Parece que Glover tiene problemas con gente muy chunga. Deber$ia enviarle ese paquete de joyas por su bien."
@@ -1249,7 +1249,7 @@
           "legal": false
         },
         "recompensa": {
-          "1": "Contable++++++++++",
+          "1": "Contable+++++",
           "2": " $Contable----------"
         },
         "textoDiario": "Glover a estado usando sellos falsos sin saber que son ilegales. En cuanto se lo dije me pidio hacer la vista gorda con sus paquetes, solo por hoy."
