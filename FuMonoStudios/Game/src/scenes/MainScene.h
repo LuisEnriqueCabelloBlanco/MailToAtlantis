@@ -54,6 +54,8 @@ namespace ecs {
 
         void updateToolsPerDay(int dia);
 
+        void createPauseButton();
+
         int fails_;
         int correct_;
 

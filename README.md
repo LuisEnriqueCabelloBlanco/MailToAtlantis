@@ -60,7 +60,7 @@
 ## Mecanicas
 
 ### Movimiento en la exploracion
-Para explorar la Atlántida se mostrarán imágenes de los distritos donde podrá seleccionar hacia donde ir clicando en las direcciones de las calles, estilo *Profesor Layton*. Cada vez que se clickea una flecha se cambia de un distrito a otro. En cada distrito siempre habrá un **NPC** con el cual se podra hablar. Este podra dejarte **encargos** en algunas ocasiones mientras que te contara un poco de su vida en otras. No es podible acceder a todos los distritos desde todos los distritos, estando conectados: todos los distritos en un mismo anillo, los distritos de Demeter y Hefesto con el de Hermes y el distrito de Apolo con el de Poseidón. Según pasen los días se iran desbloqueando el acceso a los distintos anillos, pudiendo al principio solo acceder a los **exteriores**, y a partir de cierto día se podrá acceder al **interior** y al **castillo real**. En el mapa también será posible clickear en elementos de los distritos para recibir información extra del lugar.
+Para explorar la Atlántida se mostrarán imágenes de los distritos donde podrá seleccionar hacia donde ir clicando en las direcciones de las calles, estilo *Profesor Layton*. Cada vez que se clickea una flecha se cambia de un distrito a otro. En cada distrito siempre habrá un **NPC** con el cual se podra hablar. Este podra dejarte **encargos** en algunas ocasiones mientras que te contara un poco de su vida en otras. No es podible acceder a todos los distritos desde todos los distritos, estando conectados: todos los distritos en un mismo anillo, los distritos de Demeter y Hefesto con el de Hermes y el distrito de Apolo con el de Poseidón. Según pasen los días se iran desbloqueando el acceso a los distintos anillos, pudiendo al principio solo acceder a los **exteriores**, y a partir del quinto día se podrá acceder al **interior** y al **castillo real**. En el mapa también será posible clickear en elementos de los distritos para recibir información extra del lugar.
 
 ![Imagen de como va atlantis](Imagenes/Mapa1Nombres.png)
 
@@ -68,10 +68,9 @@ Para explorar la Atlántida se mostrarán imágenes de los distritos donde podr�
 Al hacer clic sobre un NPC mientras se está en la fase de exploración se mostrará en pantalla un cuadro de diálogo con lo que te dice dicho NPC, dicho dialogo puede ser tanto un encargo de correo como simplemente algo de información sobre la historia de ese NPC y su entorno. Si un jugador vuelve a hablar con el NPC aparecera un dialogo predeterminado con el cual el jugador en el que le indicara que deje de molestarlo o que esta ocupado, cortando asi la conversación. 
 
 En total hay 6 tipos de dialogos: 
- - Dialogos de favores en donde le explicaran los NPC al jugador una adversidad y le pediran su ayuda mediante la desviación del correo. 
- - Dialogos de contexto, los cuales varían según el nivel de felicidad de los NPC y estos sirven tanto para informarte de la situación personal del NPC como su entorno. 
  - Dialogo de presentación que le dirán al jugador la primera vez que hablen con ellos. 
- - Dialogo de no volver a hablar con el NPC.
+ - Dialogos de contexto, los cuales varían según el nivel de felicidad de los NPC y estos sirven tanto para informarte de la situación personal del NPC como su entorno. 
+ - Dialogos de favores en donde le explicaran los NPC al jugador una adversidad y le pediran su ayuda mediante la desviación del correo. 
  - Dialogo Maxifeliz el cual te dice el NPC una vez alcanzas la felicidad máxima con él, haciendote entrega de un regalo con ello. 
  - Dialogo de perdida, que es un dialogo que aparece cuando haces totalmente infeliz al NPC, lo que supone en una perdida completa de la progresión de este. 
 
@@ -86,11 +85,11 @@ Al envíar un paquete de forma incorrecta el jugador recibirá una **amonestaci�
 #### Direcciones
 Cada paquete tendrá un bloque de texto donde se podrá leer: **nombre**, **cógido postal** y **calle**.
 
-El jugador deberá comprobar que el **código postal** y la calle son validos. Esto es que el **código postal** exista y que la **calle** pertenezca al distrito al que va asociado el **codigo postal**. Para comprobar estas cosas el jugador cuenta con un **manual de trabajo** donde están enlistados los distritos con sus calles.
+El jugador deberá comprobar que el **código postal** y la calle son validos. Esto es que el **código postal** exista y que la **calle** pertenezca al distrito al que va asociado el **código postal**. Para comprobar estas cosas el jugador cuenta con un **manual de trabajo** donde están enlistados los distritos con sus calles.
 
 |Codigo|Distrito|Calles|
 |---|---|---|
-|001|Hestia|"Avenida del Besugo real"<br>"Calle Medusia la santa"<br>"Calle Gambon III"|
+|001|Hestia|"Avenida del Besugo real"<br>"Calle Medusa la santa"<br>"Calle Gambon III"|
 |010|Artemisa|"Avenida Mantarraya"<br>"Calle de la ballena tiburona"<br>"Calle Rodaballo"|
 |011|Demeter|"Gran ruta de las algas"<br> "Camino del calamar"<br> "Camino de la morena"|
 |100|Hefesto|"Calle Caballito de tierra"<br>"Calle Lubina, La Sabia"<br>"Calle de la trucha dorada"|
@@ -106,7 +105,6 @@ El jugador contará con una libreta que podrá abrir (situada en la zona inferio
  - [Sellos](#sello-de-tipo-de-paquete)
  - [Pesos](#pesado)
  - [Explicación de envoltura](#envoltura)
- - Anotaciones sobre la historia (nice to have).
 
 |Ejemplos|a|
 |-|-|
@@ -133,21 +131,18 @@ Un paquete con un **sello de pesado** deberá ser pesado y comprobado respecto a
 #### Envoltura
 <img src=Imagenes/Fragil.png width=100>
 
-Un paquete con un **sello de fragil** deberá ser envuelto con **cinta de embalaje**. Cada paquete tendra una ruta de embalaje diferente, siendo estos los distintos puntos ordenados por los que debe pasar la cinta para que el embalado sea correcto. Los patrones de cada **paquete** serán reflejados por medio de puntos y rectas en el paquete una vez tomada la **cinta**. Enviar un **paquete fragil** sin envalar supone una **amonestación**. De primeras, solo podra ser posible usar la **cinta** con los **paquetes** con sello de envoltura.
+Un paquete con un **sello de frágil** deberá ser envuelto con **cinta de embalaje**. Cada paquete tendra una ruta de embalaje diferente, siendo estos los distintos puntos ordenados por los que debe pasar la cinta para que el embalado sea correcto. Los patrones de cada **paquete** serán reflejados por medio de puntos y rectas en el paquete una vez tomada la **cinta**. Enviar un **paquete frágil** sin embalar supone una **amonestación**. De primeras, solo podra ser posible usar la **cinta** con los **paquetes** con sello de envoltura.
 
 
 #### Cálculo del dinero al final de la jornada
 Al final de la jornada se abonará al jugador cierta cantidad de dinero siguiendo el siguiente cálculo
 
-> Envíos correctos * 20 - Envíos Erroneos * (30 + 2 por número de fallo)
+> Envíos correctos * 20 - Envíos Erroneos * 30
 
 Tras saber cuanto recibe el jugador se le quitará lo correspondiente para pagar el alquier. Si el jugador se queda sin dinero implica fin de partida, saliendo el final de deportado y sin la posibilidad de saber cual son el resto de finales de los NPC.
 
-#### Fallo envio paquete
-Cada vez que el jugador falle en el envio de un **paquete**, aparece un **ticket** que le dice el fallo cometido y la sanción puesta por este. Dicho **ticket** se puede guardar en un espacio que funciona como una pila en la cual se pueden ir guardando los distintos **fallos** para que ocupen menos espacio. Para sacar los fallos estos saldran en forma de pila.
-
-El **taco de fallos** ira cambiando de sprites según el numero de **fallos** almacenados en el.
-
+#### Fallo envío paquete
+Cada vez que el jugador falle en el envio de un **paquete**, aparece un **ticket** que le dice el fallo cometido y la sanción puesta por este.
 
 ### Calculo de Finales y Felicidad
 
@@ -180,8 +175,8 @@ Los NPCs te entregaran un regalo que te hará la labor más fácil en el trabajo
 
 - **Vagabundo**: te da un sello multicolor que se puede poner a los paquetes y vale para todas las calles
 - **Tarotisa**: te entrega una bola de cristal que tiene 1/x posibilidad de lanzar un brillo cuando el paquete actual es erroneo
-- **Artesano**: te permite envolver rapidamente un paquete tan solo pulsando E
-- **Campesino**: te permite conocer el peso del paquete sin necesidad de usar la balanza
+- **Artesano**: te permite envolver rapidamente un paquete con una cinta especial
+- **Campesino**: te dará una balanza digital que te dice el peso directamente
 - **Contable**: hace que los paquetes bien entregados te den dinero extra por cada paquete que envies correctamente
 - **Soldado**: te permite equivocarte con x paquetes antes de que se te aplique una penalización
 - **Secretario real**: te permite pasar rapidamente el libro de instrucciones pulsando A y D sin necesidad de usar el ratón.

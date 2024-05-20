@@ -68,6 +68,8 @@ void ecs::ExplorationScene::init()
 
 	SoundEmiter::instance()->playMusic("exploration");
 
+	createPauseButton();
+
 	dialogueWhenEntering();
 }
 
@@ -738,6 +740,19 @@ ecs::Entity* ecs::ExplorationScene::createInteractableObj(Vector2D pos, const st
 	ecs::Entity* objEnt = factory_->createImageButton(pos, size, nullptr, funcPress, "click");
 
 	return objEnt;
+}
+
+void ecs::ExplorationScene::createPauseButton()
+{
+	factory_->setFont("capture_it");
+	Texture* pauseTexture = &sdlutils().images().at("iconoPausa");
+	float scale = 60;
+	factory_->createImageButton(Vector2D(LOGICAL_RENDER_WIDTH - scale - 5, 5), Vector2D(scale, scale), pauseTexture, [this]() {
+		gm().pauseGame();
+		gm().loadScene(ecs::sc::PAUSE_SCENE);
+
+		}, "click");
+	factory_->setFont("arial");
 }
 
 void ecs::ExplorationScene::setNavegabilityOfPlace(int place, bool value)

@@ -12,9 +12,7 @@ class EndGameScene :
 {
 public:
     EndGameScene();
-    ~EndGameScene() {
-        delete final_;
-    }
+    ~EndGameScene();
     void init() override;
     virtual void update() override;
 private:

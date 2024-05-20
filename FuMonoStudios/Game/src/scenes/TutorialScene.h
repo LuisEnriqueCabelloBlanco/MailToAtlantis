@@ -62,6 +62,9 @@ namespace ecs {
 		void activateGarbage();
 		void deactivateGarbage();
 
+		void createPauseButton();
+
+
 		ecs::Entity* garbage_;
 
 		TutorialSystem* tutorialSys_;
