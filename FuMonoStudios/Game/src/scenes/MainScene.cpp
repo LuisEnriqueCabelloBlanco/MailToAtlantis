@@ -125,8 +125,10 @@ void ecs::MainScene::init()
 	else
 		startWork();
 
+
+	gD().setNPCpackageProb(PROBABILIDAD_NPC_Q1);
 	//creacion de las herramientas
-	
+
 
 	/*sdlutils().musics().at("office").play();
 	sdlutils().musics().at("office").setMusicVolume(50);
@@ -138,13 +140,23 @@ void ecs::MainScene::init()
 	updateToolsPerDay(gD().getDay());
 
 	specialFactory_->setupDayObjects();
+
+	factory_->setFont("capture_it");
+	Texture* pauseTexture = &sdlutils().images().at("iconoPausa");
+	float scale = 60;
+	factory_->createImageButton(Vector2D(LOGICAL_RENDER_WIDTH - scale - 5, 5), Vector2D(scale, scale), pauseTexture, [this]() {
+		gm().pauseGame();
+		gm().loadScene(ecs::sc::PAUSE_SCENE);
+
+		}, "click");
+	factory_->setFont("arial");
+
 }
 
 void ecs::MainScene::close() {
 	ecs::Scene::close();
 	gD().npcEventSys->minigameOver();
 	gD().updateMoney();
-	SoundEmiter::instance()->close();
 
 	//sdlutils().musics().at("office").haltMusic();
 	//sdlutils().musics().at("printer").haltMusic();
@@ -613,12 +625,10 @@ ecs::Entity* ecs::MainScene::createMiniManual() {
 	miniManualEnt_->addComponent<DragAndDrop>(false, true, "arrastrar");
 
 	Trigger* mmTri = miniManualEnt_->getComponent<Trigger>();
-	//Luis: TODO refactorizacion del codigo -> seguramente meter en un componente 
 
 	mmTri->addCallback([this, mmTri, manualTransform, minimanualX, minimanualY](ecs::Entity* entRec) {
 
 		if (miniManualEnt_->isActive()) {
-
 
 			std::list<ecs::layer::layerId> entTouchingID = mmTri->getEntitiesTouching();
 
@@ -647,12 +657,10 @@ ecs::Entity* ecs::MainScene::createMiniManual() {
 
 				if (it == entTouchingID.end()) {
 
-
 					manualTransform->setPos(minimanualX, minimanualY);
 					miniManualEnt_->setActive(false);
 
 					manualEnt_->setActive(true);
-
 
 				}
 

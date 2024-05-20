@@ -11,7 +11,6 @@ namespace ecs {
 
 		~DeathScene();
 
-		void close() override;
 		void init() override;
 	private:
 	};

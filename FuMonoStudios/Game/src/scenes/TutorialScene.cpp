@@ -95,6 +95,8 @@ void ecs::TutorialScene::init() {
 
 	}
 	
+	SoundEmiter::instance()->playMusic("work");
+
 }
 
 void ecs::TutorialScene::close() {

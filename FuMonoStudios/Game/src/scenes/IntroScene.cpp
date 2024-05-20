@@ -4,6 +4,7 @@
 #include <components/SelfDestruct.h>
 #include <sdlutils/InputHandler.h>
 #include <architecture/GameConstants.h>
+#include <sistemas/SoundEmiter.h>
 
 ecs::IntroScene::IntroScene() : mPaqBuild_(nullptr), fondo_(nullptr), tubo_(nullptr), bottle_(nullptr), carta_(nullptr), jefe_(nullptr), door_(nullptr)
 {
@@ -43,6 +44,7 @@ void ecs::IntroScene::init()
 	mDialogManager.init(this, DIALOGS_PATH);
 	factory_->setLayer(layer::BACKGROUND);
 	updateIteration(introIteration);
+	SoundEmiter::instance()->playMusic("exploration");
 }
 
 void ecs::IntroScene::updateIteration(int it)

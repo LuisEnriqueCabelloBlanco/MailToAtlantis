@@ -9,7 +9,9 @@
       "Bueno, va siendo hora de dejarte que va siendo hora de que vayas a tu primer dia"
     ],
     "FelicidadMinima": [
-      "felicidadMinima vagabundo"
+      "Jones, estoy triste y decepcionado por t$i. Yo te consideraba un amigo y alguien el que confiar mi futuro. Ya veo que no es as$i",
+      "No me haces ning$un favor y as$i no podemos seguir. No te vuelvas a dirijir a m$i, ya no quiero saber m$as de ti.",
+      "Podr$e sobrevivir sin la caridad de Atlantis."
     ],
     "FelicidadMaxima": [
       "felicidadMaxima vagabundo"
@@ -205,7 +207,9 @@
       "Este reinado valora mucho a sus ciudadanos, pero m$as que eso, valora la lealtad. La lealtad y la fidelidad al rey por encima de todo. Espero que lo tengas en cuenta."
     ],
     "FelicidadMinima": [
-      "FelicidadMinima"
+      "Jones, has decepcionado al rey. Estamos cansados de tu poca lealtad y como desobedeces.",
+      "No te necesitamos m$as, vuelve a tu sucia oficina de trabajo y vive como un campesino.",
+      "No te preocupes, las debidas consecuencias vendr$an pronto."
     ],
     "FelicidadMaxima": [
       "FelicidadMaxima"
@@ -267,7 +271,7 @@
       "Perd$on por incriminarte. El rey y yo estamos hartos de que salgan mentiras a la luz que den falsa esperanza al pueblo.",
       "Sabes de sobra que el rey quiere lo mejor para la Atl$antida, y esparcir falsa informaci$on que culpa al rey de no haberla revelado...",
       "Tenemos que actuar r$apido. Nos va a tocar sacar alguna explicaci$on a esta farsa.",
-      "Voy a mandar unos paquetes importantes a unas personas del distrito Poseid$on, sin embargo, me han robado los sellos de Poseid$on y he tenido que poner de Apolo. Simplemente redir$igelos a Apolo y ya me encargo yo de moverlos.",
+      "Voy a mandar unos paquetes importantes a unas personas del distrito Poseid$on, sin embargo, me han robado los sellos de Poseid$on y he tenido que poner de Apolo. Simplemente redir$igelos a Poseidon y ya me encargo yo de recogerlos.",
       "Jones, no quiero que te creas las mentiras de las lechuzas. Poseid$on no nos ha castigado, Poseid$on nos est$a poniendo a prueba. Poseid$on nos cre$o como raza superior a los humanos y nos recluye en el fondo del mar como desaf$io.",
       "No podemos juntarnos con los humanos porque ellos nos rechazar$an por ser los hijos de Poseid$on y nos tendr$an envidia. Por eso ese librito no vale de nada.",
       "Y en cuanto nuestra especie surja de los mares, nos ayudar$a a reconquistar lo que nos merecemos, la superficie.",
@@ -838,7 +842,7 @@
             "1": [
                 "Hoy cuando recog$ia los suministros, encontr$e una extra$%a nota en la que se mencionaba que hoy iban a pasar sustancias ilegales a trav$es de paquetes.",
                 "Parece que hay un aumento en el tr$afico de objetos extra$%os y sustancias ilegales en el mercado negro.",
-                "Podr$ias hacerme un favor, necesito que env$ies a mi distrito dos paquetes con un peso grande, aunque este no sea su destino.",
+                "Podr$ias hacerme un favor, necesito que env$ies a mi distrito, Apolo, dos paquetes con un peso grande, aunque este no sea su destino.",
                 "Es una cuesti$on de seguridad Atl$antiana, por lo que es muy importante."
             ],
             "2": [
@@ -1148,7 +1152,6 @@
         ],
         "17": [
             "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
-            "Como somos una empresa super seria, te quiero mostrar que pasa cuando fallas. Para que no falles, obviamente.",
             "No te preocupes que no te voy a penalizar... Tranquilo...",
             "Coge este paquete, que en principio est$a bien reglamentado, y mandalo a la basura.",
             "La basura es el tubo negro de la izquierda, cualquier paquete que no cumpla lo establecido ira ah$i."
@@ -1433,7 +1436,7 @@
             "a trabajar."
         ],
 
-        "TextoCartelOficina130": [ "trece (anulo rima) d$ias y todav$ia sigo trabajando aqu$i" ],
+        "TextoCartelOficina130": [ "Trece (anulo rima) d$ias y todav$ia sigo trabajando aqu$i" ],
         "TextoCartelOficina131": [
             "Llevo un tiempo pregunt$andomelo,",
             "pero seguro la A del logo es por lo de Atl$antida."
@@ -1674,7 +1677,7 @@
 
         "TextoTiendaBolas80": [
             "No solo parecen patatas, tienen aspecto de huevos.",
-            "$?Acaso aqu$i abajo hay animales que den huevos como los de las gallinas?"
+            " $?Acaso aqu$i abajo hay animales que den huevos como los de las gallinas?"
         ],
         "TextoTiendaBolas81": [ "Si me pusiera a contar estas frutas, de seguro no acabar$ia hasta ma$%ana." ],
 
@@ -1685,7 +1688,7 @@
         "TextoTiendaBolas91": [ "Contar cuantas frutas hay ser$ia entretenido, pero hay demasiadas a la vista." ],
 
         "TextoTiendaBolas100": [ "Tengo hambre, quiz$as deba de comprar una fruta de estas." ],
-        "TextoTiendaBolas101": [ "$?Esto caducar$a?." ],
+        "TextoTiendaBolas101": [ " $?Esto caducar$a?." ],
 
         "TextoTiendaBolas110": [ "Lucen simples, pero a lo mejor me sacian el hambre estas frutas con unas pocas." ],
         "TextoTiendaBolas111": [ "Espero que si me compre una fruta, pueda conservarla durante d$ias." ],
@@ -1782,7 +1785,7 @@
         "TextoMolino31": [ "Me pregunto si en el molino vive alguien m$as que la tortuga, si es que vive aqu$i claro." ],
 
         "TextoMolino40": [ "Este molino me recuerda a una historia muy popular de mi pa$is, pero no recuerdo el nombre." ],
-        "TextoMolino41": [ "$?En el molino guardar$an m$asa cosas aparte de trigo?" ],
+        "TextoMolino41": [ " $?En el molino guardar$an m$asa cosas aparte de trigo?" ],
 
         "TextoMolino50": [ "A veces cuando miro este molino me recuerda a una historia de mi pa$is donde el protagonista los confund$ia con monstruos." ],
         "TextoMolino51": [ "Con lo grande que es, de seguro este molino no solo garda trigo si qes que se cultiva." ],
@@ -1831,7 +1834,7 @@
         "TextoArbol30": [ "Este $arbol me sigue pareciendo enorme." ],
         "TextoArbol31": [ "No he visto todav$ia otro $arbol tan imponente como este por aqu$i." ],
 
-        "TextoArbol40": [ "$?Este $arbol dar$a frutos?" ],
+        "TextoArbol40": [ " $?Este $arbol dar$a frutos?" ],
         "TextoArbol41": [ "Este $arbol parece muy sano." ],
 
         "TextoArbol50": [ "Si este $arbol da frutos, espero que sean como los de la superficie, se parece mucho a los $arboles de all$a." ],
@@ -1900,7 +1903,7 @@
         "TextoCarreta81": [ "Puede que los frutos raros de aquella tienda de Artemisa, sean traidos con una carretilla como esta." ],
 
         "TextoCarreta90": [ "Debe de haber alg$un animal, que no sea un hombre pez, que lleve estas carretillas cual mula de carga." ],
-        "TextoCarreta91": [ "$?Desde donde llevar$an los alimentos que podr$ian llevar en una carretilla como esta?" ],
+        "TextoCarreta91": [ " $?Desde donde llevar$an los alimentos que podr$ian llevar en una carretilla como esta?" ],
 
         "TextoCarreta100": [ "Quisiera conocer al artesano de esta carretilla, luce bastante bien hecha." ],
         "TextoCarreta101": [
@@ -2239,13 +2242,13 @@
     },
     "Panteon": {
 
-        "TextoPanteon50": [ "$!Qu$e bonitas obras de arte! Aunque es un poco raro que las tengan en el portal..." ],
+        "TextoPanteon50": [ " $!Qu$e bonitas obras de arte! Aunque es un poco raro que las tengan en el portal..." ],
         "TextoPanteon51": [ "Hasta ahora no he visto llover en la ciudad, pero parece un buen sitio donde resguardarse." ],
 
-        "TextoPanteon60": [ "$!Qu$e bellas obras de arte! Aunque es un poco raro que las dejen al aire libre..." ],
+        "TextoPanteon60": [ " $!Qu$e bellas obras de arte! Aunque es un poco raro que las dejen al aire libre..." ],
         "TextoPanteon61": [ "Me pregunto que funci$on tendr$a tener un techo tan amplio si no para resguardarse de la lluvia." ],
 
-        "TextoPanteon70": [ "$!Este arte es maravilloso! Aunque ahora que lo pienso me recuerdan a algo de la superficie..." ],
+        "TextoPanteon70": [ " $!Este arte es maravilloso! Aunque ahora que lo pienso me recuerdan a algo de la superficie..." ],
         "TextoPanteon71": [ "EL techo es bastante amplio. A lo mejor no protege de la lluvia sino que da sombra." ],
 
         "TextoPanteon80": [ "Se que normalmente estoy muy ocupado, pero cada vez que paso por aqu$i no puedo evitar detenerme a ver el arte" ],
@@ -2285,7 +2288,7 @@
 
         "TextoPanteon140": [ "Incluso despu$es de todo lo ocurrido, el arte sigue siendo algo merecedor de ser recordado.",
             "Porque incluso despu$es de que perezcamos otros nos podr$an conocer por lo que hayamos hecho.",
-            "$!Por eso es tan importante documentar mis aventuras!"
+            " $!Por eso es tan importante documentar mis aventuras!"
         ],
         "TextoPanteon141": [ "El arte, aunque fr$agil, no deber$ia de esconderse en una c$upula, restringido a $elites despotas.",
                              "Todos deber$ian de ser capaces de admirarlo."
@@ -2303,8 +2306,8 @@
         "TextoEdificios71": [ "La curiosa disposici$on del edificio me recuerda a una tienda de bricolaje." ],
 
 
-        "TextoEdificios80": [ "$!Es un museo! Que pena que no tenga tiempo de visitarlo y aprender su historia..." ],
-        "TextoEdificios81": [ "$!Es un museo! Eso explica esa forma tan rara que tiene." ],
+        "TextoEdificios80": [ " $!Es un museo! Que pena que no tenga tiempo de visitarlo y aprender su historia..." ],
+        "TextoEdificios81": [ " $!Es un museo! Eso explica esa forma tan rara que tiene." ],
 
         "TextoEdificios90": [ "Al parecer, esas obras de arte del pante$on son parte del museo.",
                               "Aunque me sigo preguntando porque est$an al aire libre."
@@ -2324,9 +2327,9 @@
         "TextoEdificios111": [ "Aparentemente el piso de arriba es una cafeter$ia, pero solo dejan entrar a los nobles." ],
 
         "TextoEdificios120": [ "Los poyates." ],
-        "TextoEdificios121": [ "$!Todo el piso de arriba es exclusivo de nobles, no solo la cafeter$ia!" ],
+        "TextoEdificios121": [ " $!Todo el piso de arriba es exclusivo de nobles, no solo la cafeter$ia!" ],
 
-        "TextoEdificios130": [ "$?Vivir$a gente dentro de esos edificios?" ],
+        "TextoEdificios130": [ " $?Vivir$a gente dentro de esos edificios?" ],
         "TextoEdificios131": [ "Alg$un d$ia me gustar$ia intentar colarme ah$i arriba. No creo que lo haga, no quiero volver a tener que huir de los guardias." ],
 
         "TextoEdificios140": [ "Los poyates, me gustan los poyates." ],
@@ -2389,7 +2392,7 @@
     },
     "Estatua": {
 
-        "TextoEstatua50": [ "$!Ala, qu$e estatua tan majestuosa!" ],
+        "TextoEstatua50": [ " $!Ala, qu$e estatua tan majestuosa!" ],
         "TextoEstatua51": [
             "No hab$ia visto una estatua como esta en toda la ciudad.",
             "Est$a posicionada al frente del palacio real, que parece un pantenon enorme."
