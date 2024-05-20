@@ -839,7 +839,7 @@
           "distrito": "Apolo",
           "tuboSeleccionado": "Apolo",
           "tipoPaquete": "Materiales",
-          "fragil": true
+          "envuelto": true
         },
         "recompensa": {
 
@@ -941,7 +941,7 @@
           "distrito": "Apolo"
         },
         "condiciones": {
-          "remitente": "Dr Luengostino",
+          "remitente": "Dr. Luengostino",
           "tipoPaquete": "Medicinas",
           "tuboSeleccionado": "Erroneo"
         },
@@ -1161,7 +1161,7 @@
           "tipoPaquete": "Materiales",
           "distrito": "Apolo",
           "tuboSeleccionado": "Apolo",
-          "fragil": true
+          "envuelto": true
         },
         "recompensa": {
           "1": "Contable++++++++++",

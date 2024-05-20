@@ -410,7 +410,7 @@ void GeneralData::saveGame() {
 	JSONObject root;
 
 	//modificacion de los valores en el json
-	modifyJsonData(root, "Dia", dia_);
+	modifyJsonData(root, "Dia", std::min(dia_, MAX_DAYS));
 	modifyJsonData(root, "Dinero", dinero_);
 
 	//puede sustituir a la lectura del npcData que es un poco intrusiva
