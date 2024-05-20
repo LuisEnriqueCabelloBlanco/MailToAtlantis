@@ -31,5 +31,13 @@ void ecs::PauseScene::init()
 #endif // _DEBUG
 	};
 
-	factory_->createImageButton({ 0,700 }, Vector2D(400, 150), &sdlutils().images().at("cartelContinuar"), funcPress, "click");
+	factory_->createImageButton({ 0,750 }, Vector2D(375, 125), &sdlutils().images().at("cartelContinuar"), funcPress, "click");
+
+	mainMenuButton->getComponent<Clickeable>()->deleteEvents();
+	mainMenuButton->getComponent<Clickeable>()->addEvent([this]
+		{
+			gm().requestChangeScene(ecs::sc::PAUSE_SCENE, ecs::sc::MENU_SCENE);
+			gm().killScene(ecs::sc::MAIN_SCENE);
+			gm().killScene(ecs::sc::EXPLORE_SCENE);
+		});
 }

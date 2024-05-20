@@ -9,6 +9,7 @@ class Game;
 namespace ecs {
     class PauseScene : public ConfigScene
     {
+        __SC_DECL__(ecs::sc::PAUSE_SCENE)
     public:
         PauseScene();
         virtual ~PauseScene();

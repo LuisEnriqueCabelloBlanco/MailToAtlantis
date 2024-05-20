@@ -9,10 +9,13 @@ class Game;
 namespace ecs {
     class ConfigScene : public Scene
     {
+        __SC_DECL__(ecs::sc::CONFIG_SCENE)
     public:
         ConfigScene();
         virtual ~ConfigScene();
         void init() override;
+    protected:
+        Entity* mainMenuButton;
     private:
         Texture* musicIconTexture_;
         Entity* musicIconEnt_;

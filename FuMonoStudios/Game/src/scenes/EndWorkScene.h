@@ -5,6 +5,7 @@
 #include <sdlutils/VirtualTimer.h>
 
 class EndWorkScene :public ecs::Scene {
+	__SC_DECL__(ecs::sc::END_WORK_SCENE)
 public:
 	EndWorkScene();
 	virtual ~EndWorkScene();

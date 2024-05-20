@@ -12,7 +12,7 @@
 #include <architecture/GameConstants.h>
 #include <sistemas/SoundEmiter.h>
 
-const SDL_Color baseColor = build_sdlcolor(0xbbbbbbff);
+const SDL_Color baseColor = build_sdlcolor(0x666666ff);
 
 ecs::ConfigScene::ConfigScene() : Scene() {
 
@@ -38,7 +38,7 @@ void ecs::ConfigScene::init()
 		gm().requestChangeScene(ecs::sc::CONFIG_SCENE, ecs::sc::MENU_SCENE);
 
 	};
-	factory_->createImageButton({ 0,900 }, Vector2D(400,150), &sdlutils().images().at("cartelMenuPrincipal"), funcPress, "click");
+    mainMenuButton = factory_->createImageButton({ 0,900 }, Vector2D(400,150), &sdlutils().images().at("cartelMenuPrincipal"), funcPress, "click");
 
 	factory_->setLayer(ecs::layer::UI);
 	factory_->setFont("hvdComicSerif");

@@ -10,6 +10,7 @@ class Final;
 class EndGameScene :
     public ecs::Scene
 {
+    __SC_DECL__(ecs::sc::END_SCENE)
 public:
     EndGameScene();
     ~EndGameScene();
