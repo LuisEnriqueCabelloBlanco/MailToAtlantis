@@ -31,13 +31,11 @@ void ecs::DeathScene::init() {
 			}
 			catch (save_Missing e) {
 				std::string god = e.what();
-				god += "se devolviendo al menu inicial";
+				god += " devolviendo al menu inicial";
 				SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "ERROR", god.c_str(), sdlutils().window());
 				gm().requestChangeScene(ecs::sc::DEATH_SCENE, ecs::sc::MENU_SCENE);
 			}
 		}, "click", SDL_Color{255, 255, 255, 255});
-}
 
-void ecs::DeathScene::close() {
-
+	SoundEmiter::instance()->playMusic("printer");
 }
