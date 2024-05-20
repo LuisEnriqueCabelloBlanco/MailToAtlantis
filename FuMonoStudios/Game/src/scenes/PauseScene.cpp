@@ -41,3 +41,8 @@ void ecs::PauseScene::init()
 			gm().killScene(ecs::sc::EXPLORE_SCENE);
 		});
 }
+
+void ecs::PauseScene::close()
+{
+	clearScene();
+}

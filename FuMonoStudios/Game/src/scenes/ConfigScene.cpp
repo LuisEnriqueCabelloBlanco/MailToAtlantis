@@ -48,7 +48,7 @@ void ecs::ConfigScene::init()
 	createSkipTutorialOptions();
 	factory_->setLayer(ecs::layer::DEFAULT);
 
-	SoundEmiter::instance()->playMusic("printer");
+	//SoundEmiter::instance()->playMusic("printer");
 }
 
 void ecs::ConfigScene::createMusicOptions()
