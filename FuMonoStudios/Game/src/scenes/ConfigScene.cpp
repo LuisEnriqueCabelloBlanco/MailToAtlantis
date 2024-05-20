@@ -37,7 +37,7 @@ void ecs::ConfigScene::init()
 		gm().requestChangeScene(ecs::sc::CONFIG_SCENE, ecs::sc::MENU_SCENE);
 
 	};
-	factory_->createImageButton({ 10,900 }, Vector2D(400,150), &sdlutils().images().at("cartelMenuPrincipal"), funcPress, "click");
+	factory_->createImageButton({ 0,900 }, Vector2D(400,150), &sdlutils().images().at("cartelMenuPrincipal"), funcPress, "click");
 
 	factory_->setLayer(ecs::layer::UI);
 	factory_->setFont("hvdComicSerif");
