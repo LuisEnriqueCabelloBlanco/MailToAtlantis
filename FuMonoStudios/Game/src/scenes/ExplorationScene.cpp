@@ -641,13 +641,13 @@ void ecs::ExplorationScene::addDiarioEvent(NPCevent* event)
 	setupDiarioPages();
 }
 
-ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
+ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::string& character, float scale, int flip) {
 
 	ComonObjectsFactory factory(this);
 
 	Texture* characterTexture = &sdlutils().images().at(character);
 	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
-	
+
 	//QA: DETECTAR CUANTAS VECES SE HA PULSADO EN CADA PERSONAJE EN LA FASE DE EXPLORACION
 	//Actualmente los personajes no tienen memoria, si queremos esto haria falta anadrile un parametro
 
@@ -692,6 +692,19 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 
 	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "");
+
+	auto* cTR = characterEnt->getComponent<Transform>();
+
+	if (flip == 1) {
+		cTR->setFlip(SDL_FLIP_VERTICAL);
+	}
+	else if (flip == 2) {
+		cTR->setFlip(SDL_FLIP_HORIZONTAL);
+	}
+	else {
+		cTR->setFlip(SDL_FLIP_NONE);
+	}
+
 
 	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
 
@@ -773,7 +786,7 @@ void ecs::ExplorationScene::createObjects(int place) {
 	for (int i = 0; i < pl.myCharacters.size(); ++i) {
 		if (gD().getNPCData(gD().stringToPersonaje(characters[i].name_))->felicidad != npc::SeFue) {
 			dist.addObject(createCharacter(characters[i].pos,
-				characters[i].name_, characters[i].scale_));
+				characters[i].name_, characters[i].scale_, characters[i].flip_));
 		}
 	}
 

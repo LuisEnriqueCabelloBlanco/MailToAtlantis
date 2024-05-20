@@ -174,7 +174,7 @@ namespace ecs {
 		/// <summary>
 		/// Metodo factoria para characters
 		/// </summary>
-		ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale);
+		ecs::Entity* createCharacter(Vector2D pos, const std::string& character, float scale, int flip);
 
 		ecs::Entity* createInteractableObj(Vector2D pos, const std::string& character, float scaleX, float scaleY);
         
