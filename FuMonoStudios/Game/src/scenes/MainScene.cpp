@@ -50,12 +50,12 @@ void ecs::MainScene::update()
 			if (timer_ > 0) {
 				timer_ -= Time::getDeltaTime();
 				if (timer_ <= MINIGAME_TIME / 4 && clockMusic == 0) {
-					SoundEmiter::instance()->playSound("tac");
+					SoundEmiter::instance()->playSoundWithPriority("tac");
 					clockMusic++;
 				}
 				if (timer_ <= MINIGAME_TIME / 10 && clockMusic == 1) {
 					SoundEmiter::instance()->haltSound("tac");
-					SoundEmiter::instance()->playSound("tic");
+					SoundEmiter::instance()->playSoundWithPriority("tic");
 					clockMusic++;
 				}
 			}
@@ -860,5 +860,24 @@ void ecs::MainScene::newWorkEvent()
 	WorkEvent eventoJefe = mWorkRes.getRandomEvent();
 	dialogMngr_.setDialogueEntitiesActive(true);
 	dialogMngr_.setDialogues(eventoJefe.dialogue, "Jefe");
+
+	// COMENTAR ESTO SI NO QUEREIS LA NOTA
+
+	ecs::Entity* papel = addEntity(ecs::layer::FOREGROUND);
+	Texture* NotaTex = &sdlutils().images().at("notaError");
+	Transform* NotaTR = papel->addComponent<Transform>(300, 900, NotaTex->width() * 2, NotaTex->height() * 2);
+	NotaTR->setScale(0.2f);
+	papel->addComponent<Depth>();
+	papel->addComponent<Gravity>();
+	papel->addComponent<DragAndDrop>(true, "arrastrar");
+	papel->addComponent<RenderImage>(NotaTex);
+	//El texto de la nota
+	factory_->setLayer(layer::FOREGROUND);
+	Entity* texto = factory_->createLabel(Vector2D(15, 15), Vector2D(270, 200), eventoJefe.dialogue, 30);
+	texto->getComponent<Transform>()->setParent(papel->getComponent<Transform>());
+	factory_->setLayer(layer::DEFAULT);
+
+	// HASTA AQUI
+
 	mPipeMngr_->activateEvent(eventoJefe);
 }

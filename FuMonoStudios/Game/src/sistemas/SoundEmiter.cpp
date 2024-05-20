@@ -10,7 +10,7 @@
 const int MAX_CHANNELS = 3;
 
 
-SoundEmiter::SoundEmiter() : soundVolume_(100), musicVolume_(100), playInChannel_(0)
+SoundEmiter::SoundEmiter() : soundVolume_(100), musicVolume_(100), playInChannel_(0), priorityChannel_(-1)
 {
 
 }
@@ -69,7 +69,7 @@ void SoundEmiter::muteSingleSound(const std::string& sound, bool mute)
 
 void SoundEmiter::playSound(const std::string& sound, int loops)
 {
-	playSound(sound, 1, loops);
+	playSound(sound, 1.0f, loops);
 }
 
 void SoundEmiter::playSound(const std::string& sound, float modifier, int loops)
@@ -94,12 +94,23 @@ void SoundEmiter::playSound(const std::string& sound, float modifier, int loops)
 	}
 }
 
+void SoundEmiter::playSoundWithPriority(const std::string& sound, int loops)
+{
+	if(priorityChannel_ == -1) {
+		priorityChannel_ = playInChannel_;
+	}
+	playSound(sound, 1, loops);
+}
+
 void SoundEmiter::haltSound(const std::string& sound)
 {
 	try {
 		auto& it = soundPulls_.at(sound);
 		for (int i = 0; i < it.amount; i++) {
 			sdlutils().soundEffects().at(sound + std::to_string(i)).haltChannel(it.lastChannel);
+		}
+		if (it.lastChannel == priorityChannel_) {
+			priorityChannel_ = -1;
 		}
 	}
 	catch (const std::string& e) {
@@ -112,7 +123,7 @@ void SoundEmiter::setMusicVolume(int volume)
 	musicVolume_ = volume;
 	for (auto i : activeSongs_) {
 		if (i.second) {
-			sdlutils().musics().at(i.first).setMusicVolume(musicVolume_);
+			sdlutils().musics().at(i.first).setMusicVolume(musicVolume_ * 0.5);
 		}
 	}
 }
@@ -197,8 +208,8 @@ void SoundEmiter::haltAllMusic()
 
 void SoundEmiter::changeChannel()
 {
-	playInChannel_++;
-	if (playInChannel_ == MAX_CHANNELS) {
-		playInChannel_ = 0;
+	playInChannel_ = (playInChannel_ + 1) % MAX_CHANNELS;
+	if (playInChannel_ == priorityChannel_) {
+		playInChannel_ = (playInChannel_ + 1) % MAX_CHANNELS;
 	}
 }
