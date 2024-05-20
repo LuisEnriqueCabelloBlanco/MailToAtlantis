@@ -38,15 +38,17 @@ void ecs::MainMenu::init()
 	factory_->setFont("simpleHandmade");
 	factory_->setLayer(layer::UI);
 
-	auto start = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 500), "Nueva partida", 60, [this]() {
+	Vector2D pos(LOGICAL_RENDER_WIDTH - 700, 500);
+
+	auto start = factory_->createTextuButton(pos, "Nueva partida", 60, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gD().newGame();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::INTRO_SCENE);
 		},"click", textColor);
-
+	pos.setY(pos.getY()+100);
     factory_->addHoverColorMod(start);
 
-	auto loadSave = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 600), "Cargar partida guardada", 60, [this]() {
+	auto loadSave = factory_->createTextuButton(pos, "Cargar partida guardada", 60, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::EXPLORE_SCENE);
 		try {
@@ -59,24 +61,28 @@ void ecs::MainMenu::init()
 			gD().newGame();
 		}
 		}, "click", textColor);
-
+	pos.setY(pos.getY() + 100);
 	factory_->addHoverColorMod(loadSave);
 
-	auto endScene = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 700), "Mostramos Final Juego", 60, [this]() {
-		sdlutils().musics().at("mainMenu").haltMusic();
-		gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::END_SCENE);
-	}, "click", textColor);
 
-    factory_->addHoverColorMod(endScene);
+	if (gD().hasGameEndedOnce()) {
+		auto endScene = factory_->createTextuButton(pos, "Mostramos Final Juego", 60, [this]() {
+			sdlutils().musics().at("mainMenu").haltMusic();
+			gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::END_SCENE);
+		}, "click", textColor);
+		pos.setY(pos.getY() + 100);
+		factory_->addHoverColorMod(endScene);
+	}
 
-	auto ajustes = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 800), "Configuracion", 60, [this]() {
+
+	auto ajustes = factory_->createTextuButton(pos, "Configuracion", 60, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 	gm().requestChangeScene(ecs::sc::MENU_SCENE, ecs::sc::CONFIG_SCENE);
 		}, "click", textColor);
-
+	pos.setY(pos.getY() + 100);
     factory_->addHoverColorMod(ajustes);
 
-	auto exit = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 900), "Salir", 60, [this]() {
+	auto exit = factory_->createTextuButton(pos, "Salir", 60, [this]() {
 		sdlutils().musics().at("mainMenu").haltMusic();
 		gm().endGame();
 		}, "click", textColor);

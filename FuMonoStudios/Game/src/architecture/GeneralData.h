@@ -290,6 +290,7 @@ public:
 	void newGame();
 
 	inline void setEndGame(bool end) { gameEndedOnce_ = end; };
+	inline bool hasGameEndedOnce() { return gameEndedOnce_; };
 private:
 	void setNewGameValues();
 	void addMoney(int cant) { dinero_ += cant; }
