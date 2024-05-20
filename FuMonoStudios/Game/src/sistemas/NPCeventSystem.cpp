@@ -117,12 +117,13 @@ void NPCeventSystem::procesarStringRecompensas(bool completed, std::vector<std::
 				int index = reward.find_first_of("$");
 				int indexPlusMinus = reward.find_first_of("+-");
 
-				std::string personajeString = reward.substr(index + 1, reward.size() - indexPlusMinus - 1);
+
+				int felicidadIncrement = reward.size() - indexPlusMinus;
+
+				std::string personajeString = reward.substr(index + 1, reward.size() - felicidadIncrement - 2);
 
 				npc::Personaje aux = gD().stringToPersonaje(personajeString);
 
-				index = reward.find_first_of("+-");
-				int felicidadIncrement = reward.size() - index;
 				if (reward.find("-") != std::string::npos)
 					felicidadIncrement = -felicidadIncrement;
 				gD().incrementarFelicidad(aux, felicidadIncrement);
