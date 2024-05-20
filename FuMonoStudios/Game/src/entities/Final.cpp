@@ -8,7 +8,7 @@
 
 std::unordered_map<Personaje, std::unordered_map<Felicidad, std::string>> Final::endTexts_;
 
-Final::Final(ComonObjectsFactory* factory): factory_(factory)
+Final::Final(ComonObjectsFactory* factory, Vector2D npcImagePos, Vector2D textPos): factory_(factory), textoPos_(textPos), imagenNpcPos_(npcImagePos)
 {
     // Comprobamos si hay que inicializar endTexts_
     if (endTexts_.empty()) {
@@ -19,18 +19,16 @@ Final::Final(ComonObjectsFactory* factory): factory_(factory)
 
     // Creamos entidad periodico
     Texture* periodicoTex = &sdlutils().images().at("periodico");
-    periodico_ = factory->createImage(Vector2D(30, 110), Vector2D(periodicoTex->width(), periodicoTex->height()), periodicoTex);
+    periodico_ = factory->createImage(imagenNpcPos_ - Vector2D(460,530), Vector2D(periodicoTex->width(), periodicoTex->height()), periodicoTex);
     Transform* periodicoTr = periodico_->getComponent<Transform>();
-    periodicoTr->setScale(1);
 
     // Creamos entidad imagenNpc
     Texture* imagenNpcTex = gD().personajeToTexture(npc::Vagabundo);
-    imagenNpc_ = factory->createImage(Vector2D(30, 110), Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
+    imagenNpc_ = factory->createImage(imagenNpcPos_, Vector2D(imagenNpcTex->width(), imagenNpcTex->height()), imagenNpcTex);
     Transform* imagenNpcTr = imagenNpc_->getComponent<Transform>();
     imagenNpcTr->setScale(0.25);
-    imagenNpcTr->setPos(300, 500);
     //Creamos Texto
-    texto_ = factory->createImage(Vector2D(1000, 400), Vector2D(400, 200), nullptr);
+    texto_ = factory->createImage(textoPos_, Vector2D(400, 200), nullptr);
 }
 
 Final::~Final()
@@ -55,7 +53,7 @@ void Final::inicializarFinal()
     // Numero de personajes con finales
     int numNpc = 7;
 
-    // Cargamos endTexts_ HACER METODO STATICO PARA RELLENAR unordered_map
+    // Cargamos endTexts_
     for (int i = 0; i < numNpc; i++) {
         Personaje npc = (Personaje)i;
 
@@ -65,20 +63,18 @@ void Final::inicializarFinal()
         if (jsonEntry != nullptr)
         {
             auto data = jsonEntry->AsObject();
-            endTexts_[npc][Minima] = data["Mini"]->AsString();
+            endTexts_[npc][SeFue] = data["Mala"]->AsString();
+            endTexts_[npc][Minima] = data["Mala"]->AsString();
             endTexts_[npc][Mala] = data["Mala"]->AsString();
             endTexts_[npc][Normal] = data["Normal"]->AsString();
+            endTexts_[npc][NoHabladoAun] = data["Normal"]->AsString();
             endTexts_[npc][Buena] = data["Buena"]->AsString();
             endTexts_[npc][Maxima] = data["Maxima"]->AsString();
             
-            auto finalBien = data.find("FinalBien");
-            if (finalBien != data.end())
+            if (npc == Personaje::Vagabundo || npc == Personaje::Secretario) {
                 endTexts_[npc][FinalBien] = data["FinalBien"]->AsString();
-            auto finalMal = data.find("FinalMal");
-            if (finalMal != data.end())
                 endTexts_[npc][FinalMal] = data["FinalMal"]->AsString();
-
-            endTexts_[npc][NoHabladoAun] = "No hablaste con este Personaje";
+            }
         }
         else
         {
@@ -96,6 +92,8 @@ void Final::loadFinal(Personaje npc, Felicidad felicidad)
     Texture* imagenNpcTex = gD().personajeToTexture(npc);
     imagenNpc_->getComponent<RenderImage>()->setTexture(imagenNpcTex);
     Transform* imagenNpcTr = imagenNpc_->getComponent<Transform>();
+    imagenNpcTr->setWidth(imagenNpcTex->width());
+    imagenNpcTr->setHeith(imagenNpcTex->height());
 
     //A continuacion el autoescalado y autoposicionamiento de la imagen del npc en el periodico
 
@@ -111,18 +109,32 @@ void Final::loadFinal(Personaje npc, Felicidad felicidad)
     int scaledHeight = imagenNpcTex->height() * scaleFactor;
 
     // Centramos
-    int xPos = 500 - scaledWidth / 2;
-    int yPos = 650 - scaledHeight / 2;
+    int xPos = imagenNpcPos_.getX() - scaledWidth / 2;
+    int yPos = imagenNpcPos_.getY() - scaledHeight / 2;
     imagenNpcTr->setPos(xPos, yPos);
 
     // Generamos texto
     std::string texto = endTexts_[npc][felicidad];
-    Texture* textTex = factory_->createTextTexture(texto, 50, build_sdlcolor(0x000000ff),400);
-    //TODO una vez insertados los textos de finales hacer que escalen bien para que sean legibles
-    texto_->getComponent<RenderImage>()->setTexture(textTex);
-    //texto_ = factory_->createLabel(Vector2D(1000, 400), Vector2D(400, 200), texto, 50);
+    factory_->setFont("simpleHandmade");
+    if (texto.size() < 450) {
+        texto_ = factory_->createLabel(textoPos_, 850, texto, 50, build_sdlcolor(0x000000ff));
+    }
+    else if (texto.size() < 800) {
+        texto_ = factory_->createLabel(textoPos_, 850, texto, 40, build_sdlcolor(0x000000ff));
+    }
+    else {
+        texto_ = factory_->createLabel(textoPos_, 850, texto, 30, build_sdlcolor(0x000000ff));
+    }
 }
+
 
 std::string Final::getFinal(Personaje npc, Felicidad nivelFelicidad) {
     return endTexts_[npc][nivelFelicidad];
+}
+
+void Final::setActive(bool value)
+{
+    periodico_->setActive(value);
+    imagenNpc_->setActive(value);
+    texto_->setActive(value);
 }
