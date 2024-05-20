@@ -76,11 +76,9 @@ void Config::loadReasources(std::string filename) {
 
 							double scale = aObj["scale"]->AsNumber();
 
-							bool dir = aObj["dir"]->AsBool();
-
 							int flip = aObj["flip"]->AsNumber();
 
-							Arrows arrow{ x, y, dest, scale, dir, flip };
+							Arrows arrow{ x, y, dest, scale, flip };
 
 							placeArrows.push_back(arrow);
 
@@ -109,9 +107,9 @@ void Config::loadReasources(std::string filename) {
 
 							double scale = cObj["scale"]->AsNumber();
 
-							bool dir = cObj["dir"]->AsBool();
+							int flip = cObj["flip"]->AsNumber();
 
-							Characters character{ x, y, dest, scale, dir };
+							Characters character{ x, y, dest, scale, flip };
 
 							placeCharacters.push_back(character);
 
@@ -138,9 +136,7 @@ void Config::loadReasources(std::string filename) {
 							double scaleX = cObj["scaleX"]->AsNumber();
 							double scaleY = cObj["scaleY"]->AsNumber();
 
-							bool dir = cObj["dir"]->AsBool();
-
-							InteractableObjs interactableObj{ x, y, dest, scaleX, scaleY, dir };
+							InteractableObjs interactableObj{ x, y, dest, scaleX, scaleY};
 
 							placeInteractableObjs.push_back(interactableObj);
 

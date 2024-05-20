@@ -10,16 +10,6 @@ npc::NPCMenorData::~NPCMenorData()
 
 }
 // NPC MENOR
-NPCMenorData::NPCMenorData(Felicidad Felicidad, std::vector<bool>& DiasDanEvento):NPCdata(Campesino,5) {
-	felicidad = Felicidad;
-	postConversation = false;
-	numMisionesAceptadas = 0;
-	unlockUpgrade = false;
-	giveEvent = false;
-	diasDanEvento = DiasDanEvento;
-	eventosCompletados = std::vector<std::pair<bool,int>>(5,std::make_pair(false,0));
-	iteration = 1;
-}
 
 npc::NPCMenorData::NPCMenorData(Personaje charac, JSONObject& obj):NPCdata(charac,5)
 {
@@ -106,36 +96,7 @@ void NPCMenorData::setupDayData() {
 	iteration = 1;
 	int day = gD().getDay() - 1;
 	giveEvent = diasDanEvento[day];
-	if (misionAceptada) {
-		numMisionesAceptadas++;
-	}
 	misionAceptada = false;
-	/*// comprobar si hemos completado todos los eventos
-	bool npcCompleted = true;
-	int i = 0;
-	while (npcCompleted && i < eventosCompletados.size())
-	{
-		npcCompleted = eventosCompletados[i].first;
-		i++;
-	}
-	if (npcCompleted)
-		giveEvent = false;
-
-	selectedEvent.second = nullptr;
-	// seleccionar evento si es dia de dar evento
-	if (giveEvent)
-	{
-		std::vector<int> eventosNoCompletados;
-		for (int i = 0; i < eventosCompletados.size(); i++)
-		{
-			if (!eventosCompletados[i].first)
-				eventosNoCompletados.push_back(i);
-		}
-
-		int seleccion = eventosNoCompletados[sdlutils().rand().nextInt(0, eventosCompletados.size())];
-		selectedEvent.first = seleccion;
-		selectedEvent.second = events[seleccion];
-	}*/
 }
 
 void NPCMenorData::activateEvent() {
@@ -171,23 +132,6 @@ NPCevent* NPCMenorData::getEvent() {
 
 npc::NPCMayorData::~NPCMayorData()
 {
-}
-
-NPCMayorData::NPCMayorData(Felicidad Felicidad) :NPCdata(Vagabundo,14){
-	felicidad = Felicidad;
-	postConversation = false;
-	numMisionesAceptadas = 0;
-	if (npcId == Vagabundo) {
-		//firstMision = 1;
-		//diaDaMejora = 7;
-	}
-	else {
-		//firstMision = 4;
-		//diaDaMejora = 10;
-	}
-		
-	misionAceptada = false;
-	eventosCompletados = std::vector<std::pair<bool, int>>(14, std::make_pair(false, 0));
 }
 
 npc::NPCMayorData::NPCMayorData(Personaje charId, JSONObject& charRoot):NPCdata(charId, 14)
@@ -234,9 +178,6 @@ void NPCMayorData::setupDayData() {
 	if (postConversation && felicidad == NoHabladoAun)
 		felicidad = Normal;
 	postConversation = false;
-	if (misionAceptada) {
-		numMisionesAceptadas++;
-	}
 	misionAceptada = false;
 }
 
@@ -291,7 +232,7 @@ void npc::NPCdata::loadDataFromSaveFile(JSONObject& obj)
 	int k = 0;
 	for (auto it : events)
 	{
-		eventosCompletados[k].first = it->AsNumber() > 0;
+		eventosCompletados[k].first = it->AsNumber() != 0;
 		eventosCompletados[k].second = it->AsNumber();
 		k++;
 	}

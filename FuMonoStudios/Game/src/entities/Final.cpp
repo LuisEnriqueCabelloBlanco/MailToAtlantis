@@ -42,12 +42,12 @@ Final::~Final()
 
 void Final::inicializarFinal()
 {
-    std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile("recursos/data/ends.json"));
+    std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(END_PATH));
 
     // check it was loaded correctly
     // the root must be a JSON object
     if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-        throw "Something went wrong while load/parsing dialogues";
+        throw config_File_Missing(END_PATH);
     }
     // Inicializamos root_
     JSONObject root = jValueRoot->AsObject();
@@ -82,7 +82,10 @@ void Final::inicializarFinal()
         }
         else
         {
-            throw std::runtime_error("Fallo en la carga de dialogo");
+#ifdef _DEBUG
+            std::cerr << wrong_JSON_Format(END_PATH).what() <<std::endl;
+#endif // _DEBUG
+
         }
     }
 }

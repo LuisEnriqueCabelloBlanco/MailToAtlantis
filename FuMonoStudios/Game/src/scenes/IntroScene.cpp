@@ -3,6 +3,7 @@
 #include <QATools/DataCollector.h>
 #include <components/SelfDestruct.h>
 #include <sdlutils/InputHandler.h>
+#include <architecture/GameConstants.h>
 
 ecs::IntroScene::IntroScene() : mPaqBuild_(nullptr), fondo_(nullptr), tubo_(nullptr), bottle_(nullptr), carta_(nullptr), jefe_(nullptr), door_(nullptr)
 {
@@ -39,7 +40,7 @@ void ecs::IntroScene::init()
 {
 	introIteration = 0;
 	waitingCallback = false;
-	mDialogManager.init(this, "recursos/data/dialogos.json");
+	mDialogManager.init(this, DIALOGS_PATH);
 	factory_->setLayer(layer::BACKGROUND);
 	updateIteration(introIteration);
 }

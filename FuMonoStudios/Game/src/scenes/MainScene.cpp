@@ -50,12 +50,12 @@ void ecs::MainScene::update()
 			if (timer_ > 0) {
 				timer_ -= Time::getDeltaTime();
 				if (timer_ <= MINIGAME_TIME / 4 && clockMusic == 0) {
-					SoundEmiter::instance()->playSound("tac");
+					SoundEmiter::instance()->playSoundWithPriority("tac");
 					clockMusic++;
 				}
 				if (timer_ <= MINIGAME_TIME / 10 && clockMusic == 1) {
 					SoundEmiter::instance()->haltSound("tac");
-					SoundEmiter::instance()->playSound("tic");
+					SoundEmiter::instance()->playSoundWithPriority("tic");
 					clockMusic++;
 				}
 			}
@@ -211,7 +211,7 @@ void ecs::MainScene::updateToolsPerDay(int dia)
 	
 	if (dia >= 1) {
 		if (GeneralData::instance()->getUpgradeValue(ecs::upg::SELLO_UPGRADE)) createMultipleStamp();	  //Este es el sello multicolor. Si el jugador lo ha desbloqueado, este aparecerá en la oficina								
-		else createStamp(SelloCalleA);
+		else createStamp(SelloVacio);
 
 		createInks();
 
@@ -276,7 +276,7 @@ void ecs::MainScene::createErrorMessage(Paquete* paqComp, bool basura, bool tubo
 
 ecs::Entity* ecs::MainScene::createStamp(TipoHerramienta type)
 {
-	if (type > 2) return nullptr;
+	if (type > 2 && !SelloVacio) return nullptr;
 
 	constexpr float STAMPSIZE = 1;
 	factory_->setLayer(layer::STAMP);
@@ -405,7 +405,7 @@ std::unordered_map<std::string, ecs::Entity*> ecs::MainScene::createTubes()
 	}
 
 	//Creación de paquetes bloqueados
-	for (int z = j; z < 7; ++z) { //grande jose la los numeros magicos te la sabes
+	for (int z = j; z < MAX_DISTRICTS; ++z) { //grande jose la los numeros magicos te la sabes
 		if (j == 6)
 			tubos.push_back(createTubo((pq::Distrito)z, true));
 		else
@@ -821,16 +821,7 @@ void ecs::MainScene::createPaquete (int lv) {
 		int rnd = sdlutils().rand().nextInt(0, 4);		
 		if(rnd !=1) bolaCrist_->check(pac->getComponent<Paquete>(), true);
 		else bolaCrist_->check(pac->getComponent<Paquete>(), false);
-	}
-	Paquete* p = pac->getComponent<Paquete>();
-	std::cout << "\n";
-	std::cout << p->getPeso();
-	std::cout << "\n";
-	std::cout << p->getCantidadPeso();
-	std::cout << "\n";
-	if (p->pesoCorrecto()) std::cout << "true";
-	else std::cout << "false";
-	std::cout << "\n";
+	}	
 }
 
 
@@ -838,8 +829,7 @@ void ecs::MainScene::createPaquete (int lv) {
 ecs::Entity* ecs::MainScene::createCharacter(Vector2D pos, const std::string& character, float scale) {
 	dialogoPendiente = true;
 
-	std::string jsonPath = "recursos/data/eventosjefe.json";
-	dialogMngr_.init(this, jsonPath);
+	dialogMngr_.init(this, BOSS_EVENTS_PATH);
 
 	mWorkRes.init();
 	Texture* characterTexture = &sdlutils().images().at(character);
@@ -870,5 +860,24 @@ void ecs::MainScene::newWorkEvent()
 	WorkEvent eventoJefe = mWorkRes.getRandomEvent();
 	dialogMngr_.setDialogueEntitiesActive(true);
 	dialogMngr_.setDialogues(eventoJefe.dialogue, "Jefe");
+
+	// COMENTAR ESTO SI NO QUEREIS LA NOTA
+
+	ecs::Entity* papel = addEntity(ecs::layer::FOREGROUND);
+	Texture* NotaTex = &sdlutils().images().at("notaError");
+	Transform* NotaTR = papel->addComponent<Transform>(300, 900, NotaTex->width() * 2, NotaTex->height() * 2);
+	NotaTR->setScale(0.2f);
+	papel->addComponent<Depth>();
+	papel->addComponent<Gravity>();
+	papel->addComponent<DragAndDrop>(true, "arrastrar");
+	papel->addComponent<RenderImage>(NotaTex);
+	//El texto de la nota
+	factory_->setLayer(layer::FOREGROUND);
+	Entity* texto = factory_->createLabel(Vector2D(15, 15), Vector2D(270, 200), eventoJefe.dialogue, 30);
+	texto->getComponent<Transform>()->setParent(papel->getComponent<Transform>());
+	factory_->setLayer(layer::DEFAULT);
+
+	// HASTA AQUI
+
 	mPipeMngr_->activateEvent(eventoJefe);
 }

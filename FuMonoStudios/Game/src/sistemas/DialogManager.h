@@ -93,7 +93,7 @@ public:
 
     void startConversation(const std::string& character);
     // coge un dialogo manualmente
-    void startConversation(DialogSelection enter, int numIteration);
+    void startConversation(DialogSelection enter, int numIteration, const std::string& character = "");
     void startConversationWithObj(const std::string& interactableObj);
 
     //para quitar la caja de texto y el propio texto

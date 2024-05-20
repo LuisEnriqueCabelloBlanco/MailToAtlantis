@@ -19,7 +19,10 @@ ecs::PauseScene::~PauseScene()
 void ecs::PauseScene::init()
 {
 	//TODO revisar esto
+#ifdef _DEBUG
 	std::cout << "Hola Pausa" << std::endl;
+#endif // _DEBUG
+
 	sdlutils().clearRenderer();
 
 
@@ -30,7 +33,6 @@ void ecs::PauseScene::init()
 
 
 	CallbackClickeable funcPress = [this/*, BotonPress*/]() {
-		try {
 #ifdef _DEBUG
 			std::cout << "eliminamos el boton" << std::endl;
 #endif // _DEBUG
@@ -39,15 +41,9 @@ void ecs::PauseScene::init()
 #ifdef _DEBUG
 			std::cout << "salimos de la pausa" << std::endl;
 #endif // _DEBUG
-
-		}
-		catch (const std::exception& e) {
-			std::cerr << "Error in funcPress callback: " << e.what() << std::endl;
-		}
 	};
 
 	CallbackClickeable exitToMenu = [this/*, BotonPress*/]() {
-		try {
 #ifdef _DEBUG
 			std::cout << "eliminamos el boton" << std::endl;
 #endif // _DEBUG
@@ -59,11 +55,6 @@ void ecs::PauseScene::init()
 #ifdef _DEBUG
 			std::cout << "salimos de la pausa" << std::endl;
 #endif // _DEBUG
-
-		}
-		catch (const std::exception& e) {
-			std::cerr << "Error in funcPress callback: " << e.what() << std::endl;
-		}
 	};
 
 	factory_->createTextuButton({ 10,730 }, "                          ", 50, exitToMenu, "click");

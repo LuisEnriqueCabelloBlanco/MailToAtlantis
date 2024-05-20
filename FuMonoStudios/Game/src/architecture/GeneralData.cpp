@@ -12,11 +12,8 @@
 GeneralData::GeneralData()
 {
 	setNewGameValues();
-	paramVolMusic_ = 50;
-	paramVolSfx_ = 50;
 
-	skipTutorial_ = false;
-	fullScreen_ = true;
+	loadPersistentData();
 #ifdef _DEBUG
 	std::cout << "Tamanyo vector de mejoras: " << upgrades_.size() << std::endl;
 #endif // _DEBUG
@@ -29,7 +26,7 @@ GeneralData::GeneralData()
 }
 
 GeneralData::~GeneralData() {
-
+	savePersistentData();
 	for (auto& npc : npcData) {
 		delete npc.second;
 		npc.second = nullptr;
@@ -320,6 +317,44 @@ void GeneralData::loadNPCsData(JSONObject& charRoot)
 	}
 }
 
+void GeneralData::savePersistentData()
+{
+	std::ofstream in;
+	//en el caso de que no exista el fichero se crea uno nuevo
+	in.open("recursos/config/persistentData.json");
+
+	JSONObject root;
+
+	//modificacion de los valores en el json
+	modifyJsonData(root, "musicVal", paramVolMusic_);
+	modifyJsonData(root, "sfxVal", paramVolSfx_);
+	modifyJsonData(root, "skipTutorial", skipTutorial_);
+	modifyJsonData(root, "fullScreenEnable", fullScreen_);
+	modifyJsonData(root, "gameEnded", gameEndedOnce_);
+
+	JSONValue* jsonFile = new JSONValue(root);
+	in << jsonFile->Stringify(true);
+	delete jsonFile;
+	in.close();
+}
+
+void GeneralData::loadPersistentData()
+{
+	std::unique_ptr<JSONValue> jsonPersistentData(JSON::ParseFromFile(PERSISTENT_DATA_PATH));
+
+	if (jsonPersistentData == nullptr || !jsonPersistentData->IsObject()) {
+		throw config_File_Missing(PERSISTENT_DATA_PATH);
+	}
+
+	JSONObject dataRoot = jsonPersistentData->AsObject();
+
+	paramVolMusic_ = dataRoot["musicVal"]->AsNumber();
+	paramVolSfx_ = dataRoot["sfxVal"]->AsNumber();
+	skipTutorial_ = dataRoot["skipTutorial"]->AsBool();
+	fullScreen_ = dataRoot["fullScreenEnable"]->AsBool();
+	gameEndedOnce_ = dataRoot["gameEnded"]->AsBool();
+}
+
 int GeneralData::getPaqueteLevel() {
 	//Aqui habra que decidir el paquete level en funci�n del d�a
 	return paqueteLvl_;
@@ -369,7 +404,7 @@ void GeneralData::readNPCData() {
 	std::unique_ptr<JSONValue> jsonFileNpcData(JSON::ParseFromFile(NPC_DATA_PATH));
 
 	if (jsonFileNpcData == nullptr || !jsonFileNpcData->IsObject()) {
-		throw "Something went wrong while load/parsing npcData";
+		throw config_File_Missing(NPC_DATA_PATH);
 	}
 
 	JSONObject npcDataRoot = jsonFileNpcData->AsObject();

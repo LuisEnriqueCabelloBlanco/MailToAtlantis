@@ -27,12 +27,10 @@ public:
 
 		double scale_;
 
-		bool directionRight_;
-
 		int flip_;
 
-		Arrows(double x, double y, std::string destination, double scale, bool directionRight, int flip) : pos(x, y), destination_(destination),
-			scale_(scale), directionRight_(directionRight), flip_(flip){}
+		Arrows(double x, double y, std::string destination, double scale, int flip) : pos(x, y), destination_(destination),
+			scale_(scale), flip_(flip){}
 
 
 	};
@@ -47,10 +45,10 @@ public:
 
 		double scale_;
 
-		bool directionRight_;
+		int flip_;
 
-		Characters(double x, double y, std::string name, double scale, bool directionRight) : pos(x, y), name_(name),
-			scale_(scale), directionRight_(directionRight) {}
+		Characters(double x, double y, std::string name, double scale, int flip) : pos(x, y), name_(name),
+			scale_(scale), flip_(flip) {}
 
 
 	};
@@ -66,10 +64,8 @@ public:
 		double scaleX_;
 		double scaleY_;
 
-		bool directionRight_;
-
-		InteractableObjs(double x, double y, std::string name, double scaleX, double scaleY, bool directionRight) : pos(x, y), name_(name),
-			scaleX_(scaleX), scaleY_(scaleY), directionRight_(directionRight) {}
+		InteractableObjs(double x, double y, std::string name, double scaleX, double scaleY) : pos(x, y), name_(name),
+			scaleX_(scaleX), scaleY_(scaleY) {}
 
 
 	};
