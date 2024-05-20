@@ -14,7 +14,12 @@
       "Podr$e sobrevivir sin la caridad de Atlantis."
     ],
     "FelicidadMaxima": [
-      "felicidadMaxima vagabundo"
+        "Ves que Anemos est$a de muy buen humor, decides acercarte a ver qu$e le pone tan contento.",
+        " $!Paco amigo m$io, no sabes cuanto agradezco toda la ayuda que me has prestado!",
+        "Creo que gracias a t$i ya puedo cumplir mi objetivo e intentar recuperar el trono!",
+        "Ya ver$as la cara que pone Mustaki, se va a enterar ese asesino.",
+        "Una vez m$as gracias por todo Paco, y toma este sello multicolor a cambio,",
+        "ya no tendr$as que pensar qu$e sello corresponde al paquete, $!porque es multicolor!"
     ],
     "Dia1": [
       "no se usa"
@@ -212,7 +217,12 @@
       "No te preocupes, las debidas consecuencias vendr$an pronto."
     ],
     "FelicidadMaxima": [
-      "FelicidadMaxima"
+        "Te das cuenta de que Mustaki est$a m$as contento que de costumbre.",
+        "Me alegro de verte Paco, quer$ia darte las gracias por toda tu ayuda.",
+        "Gracias a t$i creo que puedo seguir con mis asuntos sin ning$un problema.",
+        "Ya sabes que este reinado valora mucho a los ciudadanos con mucha lealtad a este, y por ello quiero obsequiarte algo.",
+        "Esto es una mejora para el manual, har$a la lectura m$as r$apida y m$as eficiente.",
+        "Espero que sigas jurando lealtad a este reinado, pero no me mires por encima del hombro o dejar$e de ser tan amable."
     ],
     "Dia1": [
       "dia1"

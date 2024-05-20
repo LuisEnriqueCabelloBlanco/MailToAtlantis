@@ -203,7 +203,8 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		#pragma region Tercer Paquete
 		case TutorialEvent::EntraTercerPaquete:
-			DragAndDrop::enableDrag = true;
+			DragAndDrop::enableDrag = false;
+			scene_->getManualDragAndDrop()->enable();
 			canPassPagesManual = false;
 			scene_->deactivateTubos();
 			scene_->createPackage(ecs::TutorialScene::Tercero);
@@ -215,6 +216,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 				});
 			break;
 		case TutorialEvent::EnPaginaInfoSellos:
+			DragAndDrop::enableDrag = false;
 			arrow_->setActive(false);
 			canPassPagesManual = false;
 			activateDialogue(false);
@@ -249,6 +251,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 		case TutorialEvent::PesarPaquetePeso:
 
 			canPassPagesManual = false;
+			DragAndDrop::enableDrag = false;
 
 			delayedCallback(0.2, [this] {
 				activateDialogue(false);
@@ -266,7 +269,7 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 
 		#pragma region Paquete fragil
 		case TutorialEvent::EntraPaqueteFragil:
-			DragAndDrop::enableDrag = true;
+			DragAndDrop::enableDrag = false;
 			waitingWrapComp = scene_->createPackage(ecs::TutorialScene::Fragil)->getComponent<Wrap>();
 			delayedCallback(0.2, [this] {
 				activateDialogue(false);
@@ -277,6 +280,8 @@ void TutorialSystem::activateEvent(TutorialEvent event) {
 			break;
 
 		case TutorialEvent::PaginaFragil:
+
+			DragAndDrop::enableDrag = false;
 
 			delayedCallback(0.2, [this] {
 				activateDialogue(false);
@@ -487,6 +492,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 
 		#pragma region Tercer Paquete
 		case TutorialEvent::EntraTercerPaquete:
+			DragAndDrop::enableDrag = true;
 			canPassPagesManual = true;
 			addActionListener(Action::PaginaSellos, [this] {
 				activateEvent(TutorialEvent::EnPaginaInfoSellos);
@@ -523,6 +529,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 
 		case TutorialEvent::PesarPaquetePeso:
 
+			DragAndDrop::enableDrag = true;
 			arrow_->setActive(true);
 
 			// animacion de la flecha
@@ -556,6 +563,7 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 #pragma region Paquete Fragil
 		case TutorialEvent::EntraPaqueteFragil:
 
+			DragAndDrop::enableDrag = true;
 			scene_->deactivateTubos();
 			scene_->deactivateGarbage();
 			canPassPagesManual = true;
@@ -570,6 +578,8 @@ void TutorialSystem::stopEvent(TutorialEvent event) {
 
 		case TutorialEvent::PaginaFragil:
 	
+			DragAndDrop::enableDrag = true;
+
 			addActionListener(Action::PaqueteEstampado, [this] {
 				delayedCallback(1, [this] {
 					activateEvent(TutorialSystem::SellarFragil);
