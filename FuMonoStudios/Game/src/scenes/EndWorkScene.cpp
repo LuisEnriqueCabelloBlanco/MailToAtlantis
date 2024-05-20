@@ -57,13 +57,8 @@ void EndWorkScene::init() {
 
 	//Luis:no se si se deberia avanzar antes o despues de guardar
 	gD().setDay(gD().getDay() + 1);
-	
-}
 
-void EndWorkScene::close()
-{
-	ecs::Scene::close();
-	SoundEmiter::instance()->close();
+	SoundEmiter::instance()->playMusic("printer");
 }
 
 void EndWorkScene::createTextAnim(std::string msg)

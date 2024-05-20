@@ -46,6 +46,8 @@ void EndGameScene::update()
             gm().requestChangeScene(ecs::sc::END_SCENE, ecs::sc::MENU_SCENE);
         }
     }
+
+    SoundEmiter::instance()->playMusic("exploration");
 }
 
 void EndGameScene::nextEnding()

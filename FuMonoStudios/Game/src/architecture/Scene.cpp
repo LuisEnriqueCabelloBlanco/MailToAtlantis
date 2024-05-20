@@ -27,6 +27,7 @@ namespace ecs {
 	void Scene::close()
 	{
 		clearScene();
+		SoundEmiter::instance()->close();
 	}
 	void Scene::update() {
 		for (int i = 0; i < objs_.size();i++ ) {
