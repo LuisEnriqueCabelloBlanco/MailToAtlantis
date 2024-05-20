@@ -7,10 +7,10 @@ FinalsInfoScene::FinalsInfoScene()
 
     // Fondo escena
     factory_->setLayer(ecs::layer::BACKGROUND);
-    ecs::Entity* fondo = factory_->createImage(Vector2D(0, 0), &sdlutils().images().at("fondoAzul"));
+    ecs::Entity* fondo = factory_->createImage(Vector2D(0, 0), &sdlutils().images().at("finalFondo"));
 
     // Final
-    final_ = new Final(factory_);
+    final_ = new Final(factory_, Vector2D(1600, 600), Vector2D(100, 200));
     final_->setActive(false);
 
     // IDs de las imagenes de los emblemasNpcs por orden segun el enum de NPC.h porque vamos a recorrerlo

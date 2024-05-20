@@ -10,7 +10,7 @@ class Final
 public:
 
 	// Carga el final en la escena que necesites
-	Final(ComonObjectsFactory*);
+	Final(ComonObjectsFactory*, Vector2D npcImagePos, Vector2D textPos);
 	~Final();
 
 	// Carga el siguiente final en la escena donde inicializaste Final
@@ -31,5 +31,8 @@ private:
 	ecs::Entity* periodico_;
 	ecs::Entity* imagenNpc_;
 	ecs::Entity* texto_;
+
+	Vector2D textoPos_;
+	Vector2D imagenNpcPos_;
 };
 
