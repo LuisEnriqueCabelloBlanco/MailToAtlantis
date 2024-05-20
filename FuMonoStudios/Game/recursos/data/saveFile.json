@@ -1,69 +1,69 @@
 {
-  "Dia":1,
-  "Dinero": 0,
+  "Dia":10,
+  "Dinero":150,
   "Personajes":{
     "Artesano":{
       "EventosCompletados":[
-        0,0,0,0,0
+        -2,-7,-9,0,0
       ],
       "Felicidad":"Normal",
       "FelicidadNum":50,
-      "numMisionesAceptadas":0,
+      "numMisionesAceptadas":3,
       "unlockUpgrade":false
     },
     "Campesino":{
       "EventosCompletados":[
-        0,0,0,0,0
+        2,-4,-6,0,0
       ],
       "Felicidad":"Normal",
-      "FelicidadNum":50,
-      "numMisionesAceptadas":0,
+      "FelicidadNum":40,
+      "numMisionesAceptadas":3,
       "unlockUpgrade":false
     },
     "Contable":{
       "EventosCompletados":[
-        0,0,0,0,0
+        -7,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
-      "numMisionesAceptadas":0,
+      "numMisionesAceptadas":1,
       "unlockUpgrade":false
     },
     "Secretario":{
       "EventosCompletados":[
-        -5,6,-7,-8,9,10,-11,12,13,0,0,0,0,0
+        5,6,-7,8,9,0,0,0,0,0,0,0,0,0
       ],
       "Felicidad":"Buena",
-      "FelicidadNum":70,
-      "numMisionesAceptadas":9,
+      "FelicidadNum":95,
+      "numMisionesAceptadas":5,
       "unlockUpgrade":false
     },
     "Soldado":{
       "EventosCompletados":[
-        0,0,0,0,0
+        -6,0,0,0,0
       ],
-      "Felicidad":"NoHabladoAun",
+      "Felicidad":"Normal",
       "FelicidadNum":50,
-      "numMisionesAceptadas":0,
+      "numMisionesAceptadas":1,
       "unlockUpgrade":false
     },
     "Tarotisa":{
       "EventosCompletados":[
-        0,0,0,0,0
+        4,7,0,0,0
       ],
-      "Felicidad":"Normal",
-      "FelicidadNum":50,
-      "numMisionesAceptadas":0,
+      "Felicidad":"Buena",
+      "FelicidadNum":70,
+      "numMisionesAceptadas":2,
       "unlockUpgrade":false
     },
     "Vagabundo":{
       "EventosCompletados":[
-        2,-5,6,0,0,0,0,0,0,0,0,0,0,0
+        -2,3,4,5,-6,7,0,0,0,0,0,0,0,0
       ],
-      "Felicidad":"Mala",
-      "FelicidadNum":14,
-      "numMisionesAceptadas":4,
-      "unlockUpgrade":false
+      "Felicidad":"Minima",
+      "FelicidadNum":0,
+      "numMisionesAceptadas":6,
+      "unlockUpgrade":true
     }
   }
 }
