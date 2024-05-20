@@ -90,6 +90,7 @@
     },
     {"id": "blackScreen","file": "recursos/images/pantallanegra.png"},
     {"id": "fondoTutorial","file": "recursos/images/fondoTutorial.png"},
+    {"id": "menuPrincipal","file": "recursos/images/MenuPrincipal.png"},
     {"id": "botella1","file": "recursos/images/Botella1.png"},
     {"id": "botella2","file": "recursos/images/Botella2.png"},
     {"id": "cartaAtlantida","file": "recursos/images/CartaAtlantida.png"},
@@ -606,6 +607,11 @@
       "id": "simpleHandmade40",
       "file": "recursos/fonts/SimpleHandmade.ttf",
       "size": 40
+    },
+    {
+      "id": "simpleHandmade60",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 60
     },
     {
       "id": "simpleHandmade80",
