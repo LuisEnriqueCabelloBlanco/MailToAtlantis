@@ -11,6 +11,7 @@ const std::string DIR_SETTINGS_PATH = "recursos/config/mail.direcctions.json";
 const std::string SAVE_PATH = "recursos/data/saveFile.json";
 const std::string NPC_DATA_PATH = "recursos/data/npcData.json";
 const std::string TAPE_ROUTE_PATH = "recursos/data/rutas.JSON";
+const std::string SOUNDS_PATH = "recursos/config/sounds.json";
 #pragma endregion
 
 #pragma region General

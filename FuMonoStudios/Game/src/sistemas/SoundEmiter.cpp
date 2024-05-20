@@ -4,6 +4,8 @@
 #include "SoundEmiter.h"
 #include <sdlutils/SDLUtils.h>
 #include <json/JSON.h>
+#include <architecture/GameConstants.h>
+#include <architecture/Exceptions.h>
 
 const int MAX_CHANNELS = 3;
 
@@ -45,7 +47,7 @@ void SoundEmiter::setSoundVolumes(int volume)
 	*/
 }
 
-void SoundEmiter::muteSingleSound(std::string sound, bool mute)
+void SoundEmiter::muteSingleSound(const std::string& sound, bool mute)
 {
 	try {
 		auto& it = soundPulls_.at(sound);
@@ -60,12 +62,17 @@ void SoundEmiter::muteSingleSound(std::string sound, bool mute)
 			}
 		}
 	}
-	catch (...) {
-		throw std::exception("No existe ese sonido.");
+	catch (const std::string& e) {
+		std::cerr << e << "\n" << std::endl;
 	}
 }
 
-void SoundEmiter::playSound(std::string sound, int loops)
+void SoundEmiter::playSound(const std::string& sound, int loops)
+{
+	playSound(sound, 1, loops);
+}
+
+void SoundEmiter::playSound(const std::string& sound, float modifier, int loops)
 {
 	try {
 		auto& it = soundPulls_.at(sound);
@@ -73,41 +80,21 @@ void SoundEmiter::playSound(std::string sound, int loops)
 			int am = it.amount;
 			int rnd = sdlutils().rand().nextInt(0, am);
 			std::string fileName = sound + std::to_string(rnd);
-#ifdef DEBUG
+#ifdef _DEBUG
 			std::cout << "Playing sound: " << fileName << "\n";
-#endif // DEBUG
-			sdlutils().soundEffects().at(fileName).setVolume(soundVolume_);
-			sdlutils().soundEffects().at(fileName).play(loops, playInChannel_);
-			it.lastChannel = playInChannel_;
-			changeChannel();
-		}
-	}
-	catch (...) {
-		throw std::exception("No existe ese sonido.");
-	}
-}
-
-void SoundEmiter::playSound(std::string sound, float modifier, int loops)
-{
-	try {
-		auto& it = soundPulls_.at(sound);
-		if (!it.mute) {
-			int am = it.amount;
-			int rnd = sdlutils().rand().nextInt(0, am);
-			std::string fileName = sound + std::to_string(rnd);
-			std::cout << "Playing sound: " << fileName << "\n";
+#endif // _DEBUG
 			sdlutils().soundEffects().at(fileName).setVolume(soundVolume_ * modifier);
 			sdlutils().soundEffects().at(fileName).play(loops, playInChannel_);
 			it.lastChannel = playInChannel_;
 			changeChannel();
 		}
 	}
-	catch (...) {
-		throw std::exception("No existe ese sonido.");
+	catch (const std::string& e) {
+		std::cerr << e << "\n" << std::endl;
 	}
 }
 
-void SoundEmiter::haltSound(std::string sound)
+void SoundEmiter::haltSound(const std::string& sound)
 {
 	try {
 		auto& it = soundPulls_.at(sound);
@@ -115,8 +102,8 @@ void SoundEmiter::haltSound(std::string sound)
 			sdlutils().soundEffects().at(sound + std::to_string(i)).haltChannel(it.lastChannel);
 		}
 	}
-	catch (...) {
-		throw std::exception("Ha ocurrido un error al intentar detener ese sonido.");
+	catch (const std::string& e) {
+		std::cerr << e << "\n" << std::endl;
 	}
 }
 
@@ -130,7 +117,7 @@ void SoundEmiter::setMusicVolume(int volume)
 	}
 }
 
-void SoundEmiter::playMusic(std::string song)
+void SoundEmiter::playMusic(const std::string& song)
 {
 	try {
 		if (activeSongs_.find(song) != activeSongs_.end()) {
@@ -143,30 +130,30 @@ void SoundEmiter::playMusic(std::string song)
 			sdlutils().musics().at(song).setMusicVolume(musicVolume_);
 		}
 	}
-	catch (...) {
-		throw std::exception("No existe esa musica.");
+	catch (const std::string& e) {
+		std::cerr << e << "\n" << std::endl;
 	}
 }
 
-void SoundEmiter::haltMusic(std::string song)
+void SoundEmiter::haltMusic(const std::string& song)
 {
 	try {
 		sdlutils().musics().at(song).haltMusic();
 		activeSongs_.at(song) = false;
 	}
-	catch (...) {
-		throw std::exception("No existe esa m�sica.");
+	catch (const std::string& e) {
+		std::cerr << e << "\n" << std::endl;
 	}
 }
 
 void SoundEmiter::processSoundListJSON()
 {
-	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile("recursos/config/sounds.json"));
+	std::unique_ptr<JSONValue> jValueRoot(JSON::ParseFromFile(SOUNDS_PATH));
 
 	// check it was loaded correctly
 	// the root must be a JSON object
 	if (jValueRoot == nullptr || !jValueRoot->IsObject()) {
-		throw std::exception("Something went wrong while loading sound pulls");
+		throw save_Missing(SOUNDS_PATH);
 	}
 
 	JSONObject root = jValueRoot->AsObject();
@@ -184,7 +171,7 @@ void SoundEmiter::processSoundListJSON()
 			soundPulls_.insert({ key, {ammount, false} });
 		}
 		else {
-			throw std::exception("Something went wrong while loading sound");
+			throw wrong_JSON_Format(SOUNDS_PATH);
 		}
 	}
 }
