@@ -771,14 +771,29 @@
       "size": 30
     },
     {
+      "id": "simpleHandmade35",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 35
+    },
+    {
       "id": "simpleHandmade40",
       "file": "recursos/fonts/SimpleHandmade.ttf",
       "size": 40
     },
     {
+      "id": "simpleHandmade45",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 45
+    },
+    {
       "id": "simpleHandmade50",
       "file": "recursos/fonts/SimpleHandmade.ttf",
       "size": 50
+    },
+    {
+      "id": "simpleHandmade55",
+      "file": "recursos/fonts/SimpleHandmade.ttf",
+      "size": 55
     },
     {
       "id": "simpleHandmade60",

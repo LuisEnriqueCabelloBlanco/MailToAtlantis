@@ -124,13 +124,13 @@ void Final::loadFinal(Personaje npc, Felicidad felicidad)
     DialogManager::fixText(texto);
     factory_->setFont("simpleHandmade");
     if (texto.size() < 450) {
-        texto_ = factory_->createLabel(textoPos_, 850, texto, 50, build_sdlcolor(0x000000ff));
+        texto_ = factory_->createLabel(textoPos_, 1050, texto, 55, build_sdlcolor(0x000000ff));
     }
     else if (texto.size() < 800) {
-        texto_ = factory_->createLabel(textoPos_, 850, texto, 40, build_sdlcolor(0x000000ff));
+        texto_ = factory_->createLabel(textoPos_, 1050, texto, 45, build_sdlcolor(0x000000ff));
     }
     else {
-        texto_ = factory_->createLabel(textoPos_, 850, texto, 30, build_sdlcolor(0x000000ff));
+        texto_ = factory_->createLabel(textoPos_, 1050, texto, 35, build_sdlcolor(0x000000ff));
     }
 }
 
