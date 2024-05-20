@@ -78,4 +78,11 @@ constexpr int PESO_SELLO_POS_Y = 60;
 constexpr int PESO_SELLO_SIZE = 80;
 //Escala del paquete 
 constexpr float PAQUETE_SIZE = 0.25f;
+// Probabilidad de carta en porcentaje
+constexpr float PROBABILIDAD_CARTA = 7;
+// probabilidad de paquete NPC
+constexpr int PROBABILIDAD_NPC_Q1 = 70;
+constexpr int PROBABILIDAD_NPC_Q2 = 80;
+constexpr int PROBABILIDAD_NPC_Q3 = 90;
+constexpr int PROBABILIDAD_NPC_Q4 = 100;
 #pragma endregion

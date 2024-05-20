@@ -125,8 +125,10 @@ void ecs::MainScene::init()
 	else
 		startWork();
 
+
+	gD().setNPCpackageProb(PROBABILIDAD_NPC_Q1);
 	//creacion de las herramientas
-	
+
 
 	/*sdlutils().musics().at("office").play();
 	sdlutils().musics().at("office").setMusicVolume(50);

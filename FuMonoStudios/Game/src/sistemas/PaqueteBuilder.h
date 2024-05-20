@@ -7,7 +7,7 @@
 #include <components/MoverTransform.h>
 
 
-
+class MainScene;
 
 class PaqueteBuilder
 {
