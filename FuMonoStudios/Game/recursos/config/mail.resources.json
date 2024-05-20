@@ -72,6 +72,7 @@
     {"id": "caraFelicidadNormal", "file": "recursos/images/caraFelicidadNormal.png"},
     {"id": "caraFelicidadBueno", "file": "recursos/images/caraFelicidadBueno.png"},
     {"id": "caraFelicidadMaxima", "file": "recursos/images/caraFelicidadMaxima.png"},
+    {"id": "iconoPausa", "file": "recursos/images/iconoPausa.png"},
 
 
     {"id": "flechaTest","file": "recursos/images/flecha.png"},
@@ -267,31 +268,31 @@
     },
     {
       "id": "tubo1",
-      "file": "recursos/images/tubo1.png"
+      "file": "recursos/images/tuboHestia.png"
     },
     {
       "id": "tubo2",
-      "file": "recursos/images/tubo2.png"
+      "file": "recursos/images/tuboArtemisa.png"
     },
     {
       "id": "tubo3",
-      "file": "recursos/images/tubo3.png"
+      "file": "recursos/images/tuboDemeter.png"
     },
     {
       "id": "tubo4",
-      "file": "recursos/images/tubo4.png"
+      "file": "recursos/images/tuboHefesto.png"
     },
     {
       "id": "tubo5",
-      "file": "recursos/images/tubo5.png"
+      "file": "recursos/images/tuboHermes.png"
     },
     {
       "id": "tubo6",
-      "file": "recursos/images/tubo6.png"
+      "file": "recursos/images/tuboApolo.png"
     },
     {
       "id": "tubo7",
-      "file": "recursos/images/tubo7.png"
+      "file": "recursos/images/tuboPoseidon.png"
     },
     {
       "id": "cruz",
@@ -647,6 +648,11 @@
       "id": "hvdComicSerif50",
       "file": "recursos/fonts/HVD_Comic_Serif_Pro.otf",
       "size": 50
+    },
+    {
+      "id": "hvdComicSerif80",
+      "file": "recursos/fonts/HVD_Comic_Serif_Pro.otf",
+      "size": 80
     }
   ],
   "sounds": [
@@ -863,7 +869,7 @@
       "file": "recursos/musics/tictacRapido.wav"
     },
     {
-      "id": "explosion",
+      "id": "explosion0",
       "file": "recursos/sounds/explosion.wav"
     }
   ],

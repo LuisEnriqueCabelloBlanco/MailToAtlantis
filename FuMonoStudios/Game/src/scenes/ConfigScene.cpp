@@ -58,7 +58,6 @@ void ecs::ConfigScene::createMusicOptions()
 		musicIconEnt_->getComponent<Transform>()->setPos(550 + (gD().getParamMusic() * 7.4f), 330);
 		};
 	Entity* aux = factory_->createTextuButton({ 570,380 }, "    ", 50, funcPress2, "click");
-
 	// Boton (+) para el parametro de audio musica
 	CallbackClickeable funcPress3 = [this]() {
 		gD().changeParamID(0, true);
@@ -89,43 +88,30 @@ void ecs::ConfigScene::createSFXOptions()
 
 void ecs::ConfigScene::createFullscreenOptions()
 {
-	screenModeIconTexture_ = &sdlutils().images().at("iconoVerdeAjustes");
-	screenModeIconEnt_ = factory_->createImage(Vector2D(585, 665), Vector2D(95, 122), screenModeIconTexture_);
-
-	if (!gD().GetValueFullScreen()) {
-		screenModeIconEnt_->getComponent<RenderImage>()->setTexture(nullptr);
-	}
+	//screenModeIconTexture_ = &sdlutils().images().at("iconoVerdeAjustes");
+	std::vector<Texture*> textures = { &sdlutils().images().at("iconoVerdeAjustes"),nullptr };
+	screenModeIconEnt_ = factory_->createMultiTextureImage(Vector2D(585, 665), Vector2D(95, 122), textures);
+	screenModeIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueFullScreen()?0:1);
 
 	CallbackClickeable funcScreenModeBoton = [this]() {
 		sdlutils().toggleFullScreen();
 		gD().ToggleFullScreen();
-		if (!gD().GetValueFullScreen()) {
-			screenModeIconEnt_->getComponent<RenderImage>()->setTexture(nullptr);
-		}
-		else 
-			screenModeIconEnt_->getComponent<RenderImage>()->setTexture(screenModeIconTexture_);
-		};
+		screenModeIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueFullScreen()?0:1);
+	};
 	factory_->createTextuButton({ 540,730 }, "             ", 50, funcScreenModeBoton, "click");
 }
 
 void ecs::ConfigScene::createSkipTutorialOptions()
 {
-	skipTutoIconTexture_ = &sdlutils().images().at("iconoAmarilloAjustes");
-	skipTutoIconEnt_ = factory_->createImage(Vector2D(585, 850), Vector2D(95, 122), skipTutoIconTexture_);
-
-	if (!gD().GetValueSkipTutorial()) {
-		skipTutoIconEnt_->getComponent<RenderImage>()->setTexture(nullptr);
-	}
+	//skipTutoIconTexture_ = &sdlutils().images().at("iconoAmarilloAjustes");
+	std::vector<Texture*> textures = { &sdlutils().images().at("iconoAmarilloAjustes"),nullptr };
+	skipTutoIconEnt_ = factory_->createMultiTextureImage(Vector2D(585, 850), Vector2D(95, 122), textures);
+	skipTutoIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueSkipTutorial() ? 0 : 1);
 
 	CallbackClickeable funcPressSkipTutorial = [this]() {
 		gD().ToggleSkipTutorial();
-
-		if (!gD().GetValueSkipTutorial()) {
-			skipTutoIconEnt_->getComponent<RenderImage>()->setTexture(nullptr);
-		}
-		else 
-			skipTutoIconEnt_->getComponent<RenderImage>()->setTexture(skipTutoIconTexture_);
-		};
+		skipTutoIconEnt_->getComponent<RenderImage>()->setNumberTexture(!gD().GetValueSkipTutorial()?0:1);
+	};
 	factory_->createTextuButton({ 540,920 }, "             ", 50, funcPressSkipTutorial, "click");
 }
 

@@ -167,7 +167,7 @@ std::pair<const std::string, int> NPCMayorData::getDialogueInfo() {
 		misionAceptada = true;
 		aux = postConversation ?
 			"PostConversacionDia" : "Dia";
-		aux = aux + std::to_string(gD().getDay());
+		aux = aux + std::to_string(firstMision + numMisionesAceptadas + 1);
 		break;
 	}
 
