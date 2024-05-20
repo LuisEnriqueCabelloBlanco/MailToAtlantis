@@ -36,6 +36,7 @@ void ecs::PauseScene::init()
 	mainMenuButton->getComponent<Clickeable>()->deleteEvents();
 	mainMenuButton->getComponent<Clickeable>()->addEvent([this]
 		{
+			gm().unpauseGame();
 			gm().requestChangeScene(ecs::sc::PAUSE_SCENE, ecs::sc::MENU_SCENE);
 			gm().killScene(ecs::sc::MAIN_SCENE);
 			gm().killScene(ecs::sc::EXPLORE_SCENE);

@@ -35,6 +35,7 @@ void ecs::ConfigScene::init()
 
 	//boton para volver al menu
 	CallbackClickeable funcPress = [this]() {
+		gm().unpauseGame();
 		gm().requestChangeScene(ecs::sc::CONFIG_SCENE, ecs::sc::MENU_SCENE);
 
 	};
