@@ -53,7 +53,7 @@ void Final::inicializarFinal()
     // Numero de personajes con finales
     int numNpc = 7;
 
-    // Cargamos endTexts_ HACER METODO STATICO PARA RELLENAR unordered_map
+    // Cargamos endTexts_
     for (int i = 0; i < numNpc; i++) {
         Personaje npc = (Personaje)i;
 
@@ -63,20 +63,18 @@ void Final::inicializarFinal()
         if (jsonEntry != nullptr)
         {
             auto data = jsonEntry->AsObject();
-            endTexts_[npc][Minima] = data["Mini"]->AsString();
+            endTexts_[npc][SeFue] = data["Mala"]->AsString();
+            endTexts_[npc][Minima] = data["Mala"]->AsString();
             endTexts_[npc][Mala] = data["Mala"]->AsString();
             endTexts_[npc][Normal] = data["Normal"]->AsString();
+            endTexts_[npc][NoHabladoAun] = data["Normal"]->AsString();
             endTexts_[npc][Buena] = data["Buena"]->AsString();
             endTexts_[npc][Maxima] = data["Maxima"]->AsString();
             
-            auto finalBien = data.find("FinalBien");
-            if (finalBien != data.end())
+            if (npc == Personaje::Vagabundo || npc == Personaje::Secretario) {
                 endTexts_[npc][FinalBien] = data["FinalBien"]->AsString();
-            auto finalMal = data.find("FinalMal");
-            if (finalMal != data.end())
                 endTexts_[npc][FinalMal] = data["FinalMal"]->AsString();
-
-            endTexts_[npc][NoHabladoAun] = "No hablaste con este Personaje";
+            }
         }
         else
         {

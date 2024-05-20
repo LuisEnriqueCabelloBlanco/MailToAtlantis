@@ -22,15 +22,16 @@ FinalsInfoScene::FinalsInfoScene()
     // Boton de atras
     CallbackClickeable callback = [this]() {
         setActiveButtons(true, npcButtons_); // activa los npcButtons_
-        setActiveButtons(false, felicidadButtons_); // desactiva los felicidadButtons_
+        setActiveButtons(false, finalButtons_); // desactiva los finalButtons_
+        setActiveButtons(false, finalButtonsAdicionales_);
         final_->setActive(false); // desactiva periodico con el final
     };
     auto textColor = build_sdlcolor(0xffffffff);
 
-    auto backButton = factory_->createTextuButton(Vector2D(LOGICAL_RENDER_WIDTH - 700, 1000), "Atras", 80, callback, "click", textColor);
+    auto backButton = factory_->createTextuButton(Vector2D(210, 50), "Atras", 80, callback, "click", textColor);
     factory_->addHoverColorMod(backButton);
 
-    felicidadButtons_.push_back(backButton);
+    finalButtons_.push_back(backButton);
 
     // Creamos los npcButtons_
     int i = 0;
@@ -39,7 +40,13 @@ FinalsInfoScene::FinalsInfoScene()
     for (const auto& id : npcIDs_) {
         CallbackClickeable callback = [this, i]() {
             selectedPer_ = (Personaje)i;
-            setActiveButtons(true, felicidadButtons_); // Activa los felicidadButtons_
+            setActiveButtons(true, finalButtons_); // Activa los finalButtons_
+            if (selectedPer_ == Personaje::Vagabundo || selectedPer_ == Personaje::Secretario) {
+                setActiveButtons(true, finalButtonsAdicionales_);
+            }
+            else {
+                setActiveButtons(false, finalButtonsAdicionales_);
+            }
         };
         Texture* emblemaTex = &sdlutils().images().at(id);
         ecs::Entity* button = factory_->createImageButton(Vector2D(250 * (i % 3) + offsetX, 250 * (i / 3) + offsetY), Vector2D(250, 250), emblemaTex, callback, "click");
@@ -49,25 +56,46 @@ FinalsInfoScene::FinalsInfoScene()
 
         npcButtons_.push_back(button);
     }
-    // Creamos los felicidadButtons_
+
+    // Creamos los finalButtons_
     for (int i = 0; i < 4; i++) {
         CallbackClickeable callback = [this, i, backButton]() {
             setActiveButtons(false, npcButtons_); // desactiva los npcButtons_
-            setActiveButtons(false, felicidadButtons_); // desactiva los felicidadButtons_
+            setActiveButtons(false, finalButtons_); // desactiva los finalButtons_
+            setActiveButtons(false, finalButtonsAdicionales_);
             final_->loadFinal(selectedPer_, (Felicidad)(i + 2));
             final_->setActive(true);
             backButton->setActive(true);
         };
         auto textColor = build_sdlcolor(0xffffffff);
 
-        auto button = factory_->createTextuButton(Vector2D(900, 300 + 150* i), "Final con Felicidad " + gD().felicidadToString((Felicidad)(i + 2)), 80, callback, "click", textColor);
+        auto button = factory_->createTextuButton(Vector2D(900, 300 + 100* i), "Final con Felicidad " + gD().felicidadToString((Felicidad)(i + 2)), 80, callback, "click", textColor);
         factory_->addHoverColorMod(button);
 
-        felicidadButtons_.push_back(button);
+        finalButtons_.push_back(button);
+    }
+
+    // Creamos los finalButtonsAdicionales_ que son los dos finales adicionales que vagabundo y secretario incluyen
+    for (int i = 0; i < 2; i++) {
+        CallbackClickeable callback = [this, i, backButton]() {
+            setActiveButtons(false, npcButtons_); // desactiva los npcButtons_
+            setActiveButtons(false, finalButtons_); // desactiva los finalButtons_
+            setActiveButtons(false, finalButtonsAdicionales_); // desactiva los finalButtons_
+            final_->loadFinal(selectedPer_, (Felicidad)(i + 7));
+            final_->setActive(true);
+            backButton->setActive(true);
+        };
+        auto textColor = build_sdlcolor(0xffffffff);
+
+        auto button = factory_->createTextuButton(Vector2D(900, 700 + 100 * i), "Final con Felicidad " + gD().felicidadToString((Felicidad)(i + 7)), 80, callback, "click", textColor);
+        factory_->addHoverColorMod(button);
+
+        finalButtonsAdicionales_.push_back(button);
     }
 
     // Start Confi
-    setActiveButtons(false, felicidadButtons_); // desactiva los felicidadButtons_
+    setActiveButtons(false, finalButtons_); // desactiva los finalButtons_
+    setActiveButtons(false, finalButtonsAdicionales_);
     setActiveButtons(true, npcButtons_); // activa los npcButtons_
     backButton->setActive(false);
 }
@@ -84,7 +112,8 @@ void FinalsInfoScene::update()
 
 void FinalsInfoScene::close()
 {
-    setActiveButtons(false, felicidadButtons_);
+    setActiveButtons(false, finalButtons_);
+    setActiveButtons(false, finalButtonsAdicionales_);
     setActiveButtons(true, npcButtons_);
     final_->setActive(false);
 }

@@ -24,8 +24,8 @@ private:
     void setActiveButtons(bool enable, std::vector<ecs::Entity*> buttons); // enable/disable npcButtons_ o enable/disable felicidadButtons_
 
     std::vector<ecs::Entity*> npcButtons_;
-    std::vector<ecs::Entity*> felicidadButtons_; // mostrara el final correspondiente
-
+    std::vector<ecs::Entity*> finalButtons_; // mostrara el final correspondiente
+    std::vector<ecs::Entity*> finalButtonsAdicionales_; // 2 finales que tienen vagabundo y secreatario
 
     // Usaremos estas dos variables para saber que final debe estar mostrandose
     Personaje selectedPer_; // lo actualizaran los npcButtons_
