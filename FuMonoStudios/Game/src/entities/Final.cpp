@@ -89,6 +89,11 @@ void Final::inicializarFinal()
 
 void Final::loadFinal(Personaje npc, Felicidad felicidad)
 {    
+
+    if (texto_ != nullptr) {
+        texto_->setAlive(false);
+    }
+
     // Actualizamos la imagenNpc
     Texture* imagenNpcTex = gD().personajeToTexture(npc);
     imagenNpc_->getComponent<RenderImage>()->setTexture(imagenNpcTex);
