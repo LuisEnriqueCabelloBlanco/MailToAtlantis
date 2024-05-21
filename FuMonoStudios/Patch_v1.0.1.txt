@@ -3,3 +3,6 @@
 -Evitado error que provocaba el crash del juego al recibir algunas misiones
 -Las opciones de saltar los tutoriales solo están disponibles si se ha completado al menos una vez el juego
 -Si ya existe un archivo de guardado se notificará al jugador ya que empezar una nueva partida sobreescribe el fichero de guardado anterior
+-Corregidas Faltas de ortografía
+-Arreglo de los textos de la pantalla de finales
+-Cambios en la música de la oficina
