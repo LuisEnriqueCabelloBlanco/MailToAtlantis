@@ -23,7 +23,7 @@ namespace ecs {
         ecs::Entity* buildConfigButton(Vector2D& pos);
         ecs::Entity* buildExitButton(Vector2D& pos);
 
-        const SDL_Color textColor_ = build_sdlcolor(0x000000ff);
+        const SDL_Color textColor_ = build_sdlcolor(0x111111ff);
         const SDL_Color hilightColor_ = build_sdlcolor(0x555555ff);
     };
 }

@@ -594,8 +594,6 @@ void ecs::ExplorationScene::addDiarioEvent(NPCevent* event)
 
 ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::string& character, float scale, int flip) {
 
-	ComonObjectsFactory factory(this);
-
 	Texture* characterTexture = &sdlutils().images().at(character);
 	Vector2D size{ characterTexture->width() * scale, characterTexture->height() * scale };
 
@@ -642,7 +640,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 
 
 
-	ecs::Entity* characterEnt = factory.createImageButton(pos, size, characterTexture, funcPress, "");
+	ecs::Entity* characterEnt = factory_->createImageButton(pos, size, characterTexture, funcPress, "");
 
 	auto* cTR = characterEnt->getComponent<Transform>();
 
@@ -657,7 +655,7 @@ ecs::Entity* ecs::ExplorationScene::createCharacter(Vector2D pos, const std::str
 	}
 
 
-	factory.addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
+	factory_->addHoverColorMod(characterEnt, build_sdlcolor(0xccccccff));
 
 	return characterEnt;
 }

@@ -108,6 +108,7 @@ public:
 	}
 
 	inline void modColor(Uint8 r, Uint8 g, Uint8 b) {
+		SDL_SetTextureColorMod(texture_, 0, 0, 0);
 		currentColor_ = { r,g,b,255 };
 		SDL_SetTextureColorMod(texture_, r, g, b);
 	}
@@ -127,5 +128,5 @@ private:
 	SDL_Renderer* renderer_;
 	int width_;
 	int height_;
-	SDL_Color currentColor_;
+	SDL_Color currentColor_ = build_sdlcolor(0xffffffff);
 };
