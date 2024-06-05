@@ -863,8 +863,8 @@
             ],
             "3": [
                 "Un rumor inquietante est$a circulando entre los habitantes del distrito de Apolo.",
-                "Dicen que hay disturbios en el distrito de Hestia.",
-                "Necesito que verifiques la situaci$on y, si es necesario, ser$ia de mucha ayuda si pudieses redirigir 2 paquetes uno de comida y otro de medicina hacia Hestia",
+                "Dicen que hay disturbios en el distrito de Hestia. Al parecer muchos asaltantes entran en casas y roban todo lo que pueden.",
+                "Necesito que verifiques la situaci$on y, si es necesario, ser$ia de mucha ayuda si pudieses redirigir 2 paquetes de comida hacia Hestia",
                 "Los inocentes no deber$ian sufrir por peleas de otros."
             ],
             "4": [
@@ -1105,7 +1105,7 @@
         ],
         "2": [
             "En el manual est$a todo lo que necesitas saber sobre los paquetes que te ir$an llegando.",
-            "Vamos a hacer un ejemplo con un paquete que est&a al caer."
+            "Vamos a hacer un ejemplo con un paquete que est$a al caer."
 
         ],
         "3": [
